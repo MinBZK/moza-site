@@ -17,4 +17,5 @@ a[href^="http"]:not(:has(img)):before {
     content: "\2197";
     font-weight: bold;
     font-size: 1rem;
+    margin-right: 0.25rem;
 }

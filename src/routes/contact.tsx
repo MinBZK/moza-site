@@ -3,7 +3,7 @@ import { Container } from "../components/layout/Container.tsx";
 const Contact = () => {
   return (
     <Container>
-      <div className="mx-auto max-w-3xl py-8">
+      <div className="mx-auto py-8">
         <h1 className="mb-6 text-4xl font-bold text-gray-900">Contact Us</h1>
 
         <div className="mb-8 rounded-lg bg-white p-6 shadow-lg">

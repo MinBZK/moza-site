@@ -55,19 +55,18 @@ const BlogDetail = () => {
 
   return (
     <Container>
-      <div className="mx-auto max-w-full">
-        <div className="prose relative min-w-full py-4">
-          <h1 className="mb-4 text-4xl font-bold">{data.title}</h1>
-          <div className="mb-8 text-gray-600">
-            {data.date.toLocaleDateString("nl-NL", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </div>
-          <Separator />
-          <ReactMarkdown>{data.content}</ReactMarkdown>
+      <div className="prose relative mx-auto min-w-[768px] py-10">
+        <h1 className="mb-4 text-4xl font-bold">{data.title}</h1>
+        <div className="mb-8 text-gray-600">
+          {data.date.toLocaleDateString("nl-NL", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </div>
+        <Separator />
+
+        <ReactMarkdown>{data.content}</ReactMarkdown>
       </div>
     </Container>
   );

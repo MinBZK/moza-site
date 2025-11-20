@@ -15,7 +15,6 @@ export const HOME_CARDS: HomeCard[] = [
     description:
       "Noodsituaties komen vaak onverwacht. Weet jij wat je moet doen bij langdurige stroom- of internetuitval? Lees hoe je je huis en gezin eenvoudig voorbereidt.",
     href: "/onderwerpen/profielservice",
-
     imageUrl: "profiel.png",
     imageAlt: "Campagnebeeld voorbereid op morgen",
     external: false,

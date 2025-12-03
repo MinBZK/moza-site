@@ -7,7 +7,7 @@ const Contact = () => {
         <div className="w-full max-w-[768px]">
           <h1 className="mb-6 text-4xl font-bold text-gray-900">Contact</h1>
 
-          <div className="mb-8 rounded-lg bg-white p-6 shadow-lg">
+          <div>
             <p className="mb-4 text-lg">
               Duis non mauris quis nulla aliquet molestie. Nulla ullamcorper
               imperdiet sollicitudin. Fusce tristique blandit nisl ut euismod.

@@ -24,28 +24,28 @@ const Portaal = () => {
 
             <h3 className="mt-4 text-xl">Recent toegevoegd</h3>
             <div className="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded border p-4">
+              <div className="rounded-sm bg-white shadow-sm ring-1 ring-slate-200 p-4">
                 <h4 className="font-bold">Architectuur Review Q1</h4>
                 <p>Overzicht van technische keuzes en impact analyse.</p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-500 flex-auto content-end">
                   Toegevoegd op: 15-03-2024
                 </p>
               </div>
-              <div className="rounded border p-4">
+              <div className="rounded-sm bg-white shadow-sm ring-1 ring-slate-200 p-4 flex flex-col">
                 <h4 className="font-bold">Security Guidelines</h4>
                 <p>Nieuwe security richtlijnen voor development.</p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-500 flex-auto content-end">
                   Toegevoegd op: 10-03-2024
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 border-t pt-4">
+            <div className="mt-8 border-t border-gray-200 pt-4">
               <p className="text-sm text-gray-600">
                 Voor meer informatie kunt u terecht op
                 <Link
                   to="https://www.rijksoverheid.nl"
-                  className="text-blue-800 hover:underline"
+                  className="text-sky-700 hover:text-sky-800 no-underline hover:underline ml-1"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

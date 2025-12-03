@@ -14,10 +14,12 @@ export default function Home() {
       <Container>
         <div className="px-4">
           <div className="py-10 xl:w-2/3">
-            <p className="text-2xl">
+            <p className="mb-4 text-2xl paragraph-intro">
               MijnOverheid Zakelijk is het centrale portaal waar ondernemers en
-              organisaties toegang krijgen tot digitale overheidsdiensten. Deze
-              demo-omgeving laat zien hoe ondernemers straks eenvoudig kunnen
+              organisaties toegang krijgen tot digitale overheidsdiensten.
+            </p>
+            <p className="text-2xl paragraph-intro">
+              Deze demo-omgeving laat zien hoe ondernemers straks eenvoudig kunnen
               communiceren met verschillende overheidsinstanties, documenten
               kunnen beheren en belangrijke zaken kunnen regelen voor hun
               bedrijf.

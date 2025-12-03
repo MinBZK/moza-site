@@ -38,7 +38,7 @@ function App() {
         <footer className="h-56 w-full bg-[#154273] p-4">
           <Container>
             <div className="px-4 pt-5">
-              <span className="text-3xl text-white italic">
+              <span className="text-3xl text-white italic serif">
                 Eén Overheid. Voor iedereen!
               </span>
             </div>

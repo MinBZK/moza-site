@@ -2,22 +2,47 @@
 @plugin '@tailwindcss/typography';
 
 @font-face {
-    font-family: "RijksoverheidSansWebText";
-    src: url("./fonts/RijksoverheidSansWebText.woff") format("woff");
+    font-family: "RO-Sans";
+    src: url("./fonts/RijksSansVF.woff2") format("woff");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
+@font-face {
+    font-family: "RO-Serif";
+    src: url("./fonts/RijksoverheidSerifWeb.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "RO-Sans", "Fira Sans", Arial, sans-serif;
+    font-size: 18px; /* Even resetten zodat we de typografische schaal van de Rijkshuisstijl normaal kunnen toepassen */
+}
+
+p {
+    margin-bottom: .5em;
+}
+
+/* .paragraph-intro {
+    font-size: 1.333em;
+} */
+
 .rhc-theme {
     --rhc-card-inline-size: 100%;
 }
 
-a[href^="http"]:not(:has(img)):before {
+a[href^="http"]:not(:has(img)):after {
     content: "\2197";
     font-weight: bold;
     font-size: 1rem;
-    margin-right: 0.25rem;
+    margin-left: 0.25rem;
     text-decoration: none;
     display: inline-block;
+}
+
+.serif {
+    font-family: "RO-Serif", "Times New Roman", serif;
 }

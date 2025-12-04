@@ -33,7 +33,7 @@ export function Navbar() {
       <Container>
         <div className="px-4">
           <div className="flex items-center">
-            <span className="text-xl hover:underline">
+            <span className="text-xl hover:underline mt-4 mb-4">
               <Link to="/">Home</Link>
             </span>
 
@@ -80,16 +80,16 @@ export function Navbar() {
 
           {/* Mobile menu - visible when hamburger is clicked */}
           {isMenuOpen && (
-            <div className="border-t border-t-white pb-4 md:hidden md:border-none">
+            <div className="pb-4 md:hidden md:border-none">
               <ul className="flex flex-col text-lg">
                 {NAV_ITEMS.map((item) => (
-                  <li key={item.label} className="border-b border-b-white">
+                  <li key={item.label}>
                     <Link
                       to={item.href}
                       {...(item.external
                         ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
-                      className="block py-3 hover:bg-[#1a5287]"
+                      className="block py-3 hover:bg-[#1a5287] text-lg"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}

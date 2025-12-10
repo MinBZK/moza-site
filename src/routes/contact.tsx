@@ -9,20 +9,15 @@ const Contact = () => {
 
           <div>
             <p className="mb-4 text-lg">
-              Duis non mauris quis nulla aliquet molestie. Nulla ullamcorper
-              imperdiet sollicitudin. Fusce tristique blandit nisl ut euismod.
-              Sed quis ornare eros, vel elementum purus. Donec ac porttitor
-              nisl. Vivamus congue nibh sem, feugiat fringilla orci porta
-              fringilla. Cras vel eleifend justo. Quisque molestie risus in
-              lorem venenatis pellentesque. Sed cursus erat at dignissim
-              sollicitudin. Proin a ultrices metus. Suspendisse iaculis eros ut
-              pulvinar auctor.
+              MijnOverheid Zakelijk is een programma van Logius (in opdracht van
+              het ministerie van Binnenlandse Zaken en Koninkrijksrelaties) en
+              werkt samen met de Belastingdienst, douane, KVK, RDW, RijksICT
+              Gilde, gemeente Rotterdam, RVO, ministerie van Economische Zaken,
+              UWV en VNG.
             </p>
 
             <p className="mb-4 text-lg">
-              Whether you have questions about our portal, need technical
-              assistance, or want to learn more about our services, we're just
-              an email away.
+              Je kunt het programmateam bereiken via
             </p>
 
             <div className="mt-8 rounded-md bg-sky-50 p-6 text-center">

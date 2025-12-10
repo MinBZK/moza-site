@@ -95,7 +95,7 @@ const Actueel = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {weeklyEntries.nieuws.length === 0 ? (
               <p className="mb-10 px-4 py-2">
-                Geen nieuwsberichten beschikbaar.
+                Not geen nieuwsberichten beschikbaar.
               </p>
             ) : (
               weeklyEntries.nieuws.map((entry) => (
@@ -138,7 +138,9 @@ const Actueel = () => {
           </div>
           <div className="grid grid-cols-1 py-4 sm:grid-cols-2 lg:grid-cols-3">
             {weeklyEntries.presentaties.length === 0 ? (
-              <p className="mb-10 px-4 py-2">Geen agenda items beschikbaar.</p>
+              <p className="mb-10 px-4 py-2">
+                Nog geen presentaties beschikbaar.
+              </p>
             ) : (
               weeklyEntries.presentaties.map((entry) => (
                 <BlogEntry entry={entry} type={"presentaties"} />

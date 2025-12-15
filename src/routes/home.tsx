@@ -13,7 +13,7 @@ export default function Home() {
       <div className="">
         <Container>
           <div className="px-4">
-            <div className="flex w-2/3 flex-col gap-4 py-10 text-xl">
+            <div className="xs:w-full flex flex-col gap-4 py-10 text-xl lg:w-2/3">
               <p className="font-bold">
                 Via MijnOverheid Zakelijk kunnen ondernemers in de toekomst
                 eenvoudig zakendoen met de overheid. Nu krijgen zij nog

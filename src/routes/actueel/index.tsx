@@ -67,7 +67,7 @@ const Actueel = () => {
         <Container>
           <div className="px-4">
             <ul className="grid grid-cols-1 gap-4 py-6 text-xl md:grid-cols-3">
-              {["Nieuws", "Weekly", "Agenda", "Presentaties"].map((item) => (
+              {["Weekly", "Agenda", "Presentaties"].map((item) => (
                 <li key={item} className="text-[#154273]">
                   <IconText
                     IconBefore={(props) => (
@@ -89,20 +89,20 @@ const Actueel = () => {
       </div>
       <Container>
         <div className="pt-10">
-          <div id="nieuws" className="border-t border-gray-200 px-4 pt-2">
-            <h1 className="py-2 text-3xl font-bold text-slate-700">Nieuws</h1>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {weeklyEntries.nieuws.length === 0 ? (
-              <p className="mb-10 px-4 py-2">
-                Not geen nieuwsberichten beschikbaar.
-              </p>
-            ) : (
-              weeklyEntries.nieuws.map((entry) => (
-                <BlogEntry entry={entry} type={"nieuws"} />
-              ))
-            )}
-          </div>
+          {/*<div id="nieuws" className="border-t border-gray-200 px-4 pt-2">*/}
+          {/*  <h1 className="py-2 text-3xl font-bold text-slate-700">Nieuws</h1>*/}
+          {/*</div>*/}
+          {/*<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">*/}
+          {/*  {weeklyEntries.nieuws.length === 0 ? (*/}
+          {/*    <p className="mb-10 px-4 py-2">*/}
+          {/*      Nog geen nieuwsberichten beschikbaar.*/}
+          {/*    </p>*/}
+          {/*  ) : (*/}
+          {/*    weeklyEntries.nieuws.map((entry) => (*/}
+          {/*      <BlogEntry entry={entry} type={"nieuws"} />*/}
+          {/*    ))*/}
+          {/*  )}*/}
+          {/*</div>*/}
 
           <div id="weekly" className="border-t border-gray-200 px-4 pt-2">
             <h1 className="py-2 text-3xl font-bold text-slate-700">Weekly</h1>

@@ -26,7 +26,10 @@ export default function Home() {
           <div className="px-4">
             <div className="xs:w-full flex flex-col py-4 pb-8 text-xl lg:w-2/3">
               <p className="">
-                MijnOverheid Zakelijk is in ontwikkeling. Via deze website laten we zien wat we ontwikkelen en hoe we dat doen. We werken samen met diverse overheidsorganisaties en vragen regelmatig om feedback aan onze eindgebruikers. Heb je vragen of mis je informatie? Neem dan contact op met: <a href="mailto:vragen@mijnoverheidzakelijk.nl">vragen@mijnoverheidzakelijk.nl</a>
+                MijnOverheid Zakelijk is in ontwikkeling. We doen dit samen met diverse overheidsorganisaties en eindgebruikers.
+              </p>
+              <p className="">
+                Heb je vragen of mis je informatie? Neem contact op met: <a href="mailto:vragen@mijnoverheidzakelijk.nl" className="text-sky-800 hover:text-sky-900 hover:underline">vragen@mijnoverheidzakelijk.nl</a>
               </p>
             </div>
           </div>

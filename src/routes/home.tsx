@@ -24,7 +24,7 @@ export default function Home() {
       <div className="">
         <Container>
           <div className="">
-            <div className="rounded-xs rounded-tr-4xl bg-[#d9ebf7] xs:w-full flex flex-col m-4 p-4 pb-3 mb-8 lg:w-2/3">
+            <div className="rounded-xs rounded-tr-4xl bg-[#d9ebf7] xs:w-full flex flex-col m-4 p-4 pb-3 mb-4 lg:w-2/3">
               <p className="">
                 <svg className="mb-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.04 3.78C21.88 2.83 21.16 2.11 20.21 1.95C17.48 1.5 12.91 1.5 12 1.5C11.09 1.5 6.52 1.5 3.78 1.96C2.84 2.11 2.11 2.84 1.96 3.78C1.5 6.52 1.5 11.09 1.5 12C1.5 12.91 1.5 17.48 1.96 20.22C2.12 21.17 2.84 21.89 3.79 22.05C6.53 22.51 11.09 22.51 12.01 22.51C12.92 22.51 17.49 22.51 20.23 22.05C21.18 21.89 21.9 21.17 22.06 20.22C22.52 17.48 22.52 12.92 22.52 12C22.5 9.26 22.5 6.52 22.04 3.78Z" fill="#007BC7"/>

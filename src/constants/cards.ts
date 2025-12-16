@@ -28,7 +28,7 @@ export const HOME_CARDS: HomeCard[] = [
   {
     title: "Ontwerp",
     description:
-      "Hier vind u alle (figma) ontwerpen van MijnOverheid Zakelijk.",
+      "Alles over ontwerp, inclusief prototypes voor gebruikersonderzoeken.",
     href: "/onderwerpen/ontwerp",
     imageUrl: "tegel-ontwerp.svg",
     imageAlt: "",
@@ -44,7 +44,7 @@ export const HOME_CARDS: HomeCard[] = [
   },
   {
     title: "Documentatie",
-    description: "Als onze technische documentatie handig bij elkaar gezet.",
+    description: "Onze technische documentatie, handig bij elkaar.",
     href: "/onderwerpen/documentatie",
     imageUrl: "tegel-documentatie.svg",
     imageAlt: "",

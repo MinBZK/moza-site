@@ -12,7 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Actueel", href: "/actueel" },
   { label: "Onderwerpen", href: "/onderwerpen" },
   {
-    label: "Documentatie",
+    label: "Proeftuin",
     href: "https://docs.mijnoverheidzakelijk.nl",
     external: true,
   },
@@ -29,7 +29,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="flex min-h-[76px] w-full items-center bg-[#154273] text-white">
+    <nav className="flex min-h-[64px] w-full items-center bg-[#154273] text-white">
       <Container>
         <div className="px-4">
           <div className="flex items-center">

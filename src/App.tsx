@@ -53,10 +53,10 @@ function App() {
         </main>
         <footer className="h-auto w-full bg-[#154273] p-4 pb-8">
           <Container>
-            <div className="flex justify-between px-4 pt-5">
-              <span className="serif text-2xl text-white italic">
+            <div className="flex flex-col min-[900px]:flex-row justify-between px-4 pt-5">
+              <div className="mb-8 serif text-2xl text-white italic">
                 Eén Overheid. Voor iedereen!
-              </span>
+              </div>
               <div className="flex gap-16">
                 <dl className="text-white">
                   <dt className="text-2xl mb-2">Service</dt>

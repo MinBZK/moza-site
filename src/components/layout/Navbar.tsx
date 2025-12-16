@@ -81,7 +81,7 @@ export function Navbar() {
           {/* Mobile menu - visible when hamburger is clicked */}
           {isMenuOpen && (
             <div className="pb-4 md:hidden md:border-none">
-              <ul className="flex flex-col text-lg">
+              <ul className="flex flex-col text-xl">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.label}>
                     <Link
@@ -89,7 +89,7 @@ export function Navbar() {
                       {...(item.external
                         ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
-                      className="block py-3 hover:bg-[#1a5287] text-lg"
+                      className="block py-2 hover:underline focus:underline"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}

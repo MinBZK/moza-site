@@ -93,7 +93,7 @@ footer {
         margin: 0 .25em;
         width: .75em;
     }
-    a[rel="external"]::after {
+    a[href^="http"]::after {
         content: url(../../public/externe-link-inverse.svg);
     }
 }

@@ -1,7 +1,7 @@
 import "@rijkshuisstijl-community/design-tokens/dist/index.css";
 import "@rijkshuisstijl-community/components-css/dist/index.css";
 import "./styles/index.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Actueel from "./routes/actueel";
 import Detail from "./routes/actueel/[type]/[slug].tsx";
 import OnderwerpenLijst from "./routes/onderwerpen";
@@ -46,10 +46,7 @@ function App() {
             />
             <Route path="/onderwerpen/portaal" element={<Portaal />} />
             <Route path="/onderwerpen/open-werken" element={<OpenWerken />} />
-            <Route
-              path="/onderwerpen/proeftuin"
-              element={<Proeftuin />}
-            />
+            <Route path="/onderwerpen/proeftuin" element={<Proeftuin />} />
             <Route path="/onderwerpen/ontwerp" element={<Ontwerp />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
@@ -61,29 +58,31 @@ function App() {
               <div className="serif mb-8 text-2xl text-white italic">
                 Eén Overheid. Voor iedereen!
               </div>
-              <div className="flex gap-16 mr-8">
+              <div className="mr-8 flex gap-16">
                 <dl className="text-white">
                   <dt className="mb-2 text-2xl">Service</dt>
                   <dd>
                     <ul className="text-lg">
                       <li>
-                        <a href="/contact">Contact</a>
+                        <Link to="/contact">Contact</Link>
                       </li>
                       <li>
-                        <a
-                          href="https://docs.mijnoverheidzakelijk.nl"
-                          rel="external"
+                        <Link
+                          to="https://docs.mijnoverheidzakelijk.nl"
+                          target="_blank"
+                          rel="noreferrer noopener"
                         >
                           Documentatie
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="https://github.com/MinBZK/MijnOverheidZakelijk"
-                          rel="external"
+                        <Link
+                          to="https://github.com/MinBZK/MijnOverheidZakelijk"
+                          target="_blank"
+                          rel="noreferrer noopener"
                         >
                           GitHub
-                        </a>
+                        </Link>
                       </li>
                       {/* <li>
                         <a href="#">Sitemap</a>

@@ -44,7 +44,7 @@ export const HOME_CARDS: HomeCard[] = [
   {
     title: "Proeftuin",
     description: "Onze technische documentatie en achtergrondinformatie handig bij elkaar gezet.",
-    href: "/onderwerpen/documentatie",
+    href: "/onderwerpen/proeftuin",
     imageUrl: "tegel-documentatie.svg",
     imageAlt: "",
     external: false,

@@ -16,7 +16,7 @@ import { Container } from "./components/layout/Container.tsx";
 import Presentaties from "./routes/actueel/presentaties/[slug].tsx";
 import Over from "./routes/onderwerpen/over.tsx";
 import OpenWerken from "./routes/onderwerpen/openwerken.tsx";
-import Documentatie from "./routes/onderwerpen/documentatie.tsx";
+import Proeftuin from "./routes/onderwerpen/proeftuin.tsx";
 import Ontwerp from "./routes/onderwerpen/ontwerp.tsx";
 import Breadcrumb from "./components/layout/Breadcrumb.tsx";
 
@@ -45,8 +45,8 @@ function App() {
             <Route path="/onderwerpen/portaal" element={<Portaal />} />
             <Route path="/onderwerpen/open-werken" element={<OpenWerken />} />
             <Route
-              path="/onderwerpen/documentatie"
-              element={<Documentatie />}
+              path="/onderwerpen/proeftuin"
+              element={<Proeftuin />}
             />
             <Route path="/onderwerpen/ontwerp" element={<Ontwerp />} />
             <Route path="/contact" element={<Contact />} />

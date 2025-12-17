@@ -39,26 +39,6 @@ const Contact = () => {
               Kom je er niet uit? <a href="mailto:contact@mijnoverheid-zakelijk.nl" className="text-sky-700 hover:text-sky-900 hover:underline">Stuur ons een e-mail</a>!
             </p>
 
-            <h2 className="mt-8 mb-1 text-xl font-semibold text-slate-700">Over MijnOverheid Zakelijk</h2>
-            <p className="mb-4 text-slate-800">
-              MijnOverheid Zakelijk is een programma van Logius (in opdracht van
-              het ministerie van Binnenlandse Zaken en Koninkrijksrelaties) en
-              werkt samen met:
-            </p>
-            
-            <ul className="list-disc space-y-2 pl-6 mb-4 text-slate-800">
-              <li>de Belastingdienst</li>
-              <li>douane</li>
-              <li>KVK</li>
-              <li>RDW</li>
-              <li>Rijks ICT Gilde</li>
-              <li>gemeente Rotterdam</li>
-              <li>ministerie van Economische Zaken</li>
-              <li>RVO</li>
-              <li>UWV</li>
-              <li>VNG</li>
-            </ul>
-
           </div>
         </div>
       </div>

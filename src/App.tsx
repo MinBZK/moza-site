@@ -18,6 +18,7 @@ import OpenWerken from "./routes/onderwerpen/openwerken.tsx";
 import Documentatie from "./routes/onderwerpen/documentatie.tsx";
 import Ontwerp from "./routes/onderwerpen/ontwerp.tsx";
 import Breadcrumb from "./components/layout/Breadcrumb.tsx";
+import TypeIndex from "./routes/actueel/[type]";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               path="/actueel/presentaties/:name"
               element={<Presentaties />}
             />
+            <Route path="/actueel/:type/" element={<TypeIndex />} />
             <Route path="/actueel/:type/:name" element={<Detail />} />
             <Route path="/onderwerpen" element={<OnderwerpenLijst />} />
             <Route

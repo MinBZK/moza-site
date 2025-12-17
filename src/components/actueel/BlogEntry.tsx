@@ -8,10 +8,10 @@ export const BlogEntry = ({
   entry: BlogEntryType;
   type: "weekly" | "nieuws" | "presentaties";
 }) => (
-  <div className="mb-10">
+  <div className="">
     <Link
       to={`/actueel/${type}/${entry.filename}`}
-      className="group relative flex h-[220px] flex-col space-y-1 self-end px-4 lg:m-0"
+      className="group relative flex h-[220px] flex-col space-y-1 self-end lg:m-0"
     >
       <h2 className="text-xl text-sky-700 group-hover:underline">
         {entry.title}
@@ -19,7 +19,7 @@ export const BlogEntry = ({
 
       <div className="mt-1 flex items-center gap-1">
         <span className="text-base">📅</span>
-        <p className="font-bold text-sm text-gray-600">
+        <p className="text-sm font-bold text-gray-600">
           {entry.date.toLocaleDateString("nl-NL", {
             year: "numeric",
             month: "long",

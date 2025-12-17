@@ -1,6 +1,6 @@
 import { Container } from "../../components/layout/Container.tsx";
 import { BlogEntry } from "../../components/actueel/BlogEntry.tsx";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 import {
   type AgendaEntryType,
@@ -10,6 +10,7 @@ import {
 import AgendaItem from "../../components/actueel/AgendaEntry.tsx";
 import ChevronIcon from "../../components/ui/ChevronIcon.tsx";
 import { IconText } from "../../components/ui/iconText.tsx";
+import { Link } from "react-router-dom";
 
 const Actueel = () => {
   const [weeklyEntries, setWeeklyEntries] = useState<{
@@ -58,93 +59,132 @@ const Actueel = () => {
     <>
       <Container>
         <div className="pt-4">
-          {/*<div id="nieuws" className="border-t border-gray-200 px-4 pt-2">*/}
-          {/*  <h1 className="py-2 text-3xl font-bold text-slate-700">Nieuws</h1>*/}
-          {/*</div>*/}
-          {/*<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">*/}
-          {/*  {weeklyEntries.nieuws.length === 0 ? (*/}
-          {/*    <p className="mb-10 px-4 py-2">*/}
-          {/*      Nog geen nieuwsberichten beschikbaar.*/}
-          {/*    </p>*/}
-          {/*  ) : (*/}
-          {/*    weeklyEntries.nieuws.map((entry) => (*/}
-          {/*      <BlogEntry entry={entry} type={"nieuws"} />*/}
-          {/*    ))*/}
-          {/*  )}*/}
-          {/*</div>*/}
+          <Container>
+            <ActueelNav />
+          </Container>
 
-          <div className="bg-[#f3f3f3] pl-2">
-            <Container>
-              <div className="px-4 pl-2 mb-6">
-                <ul className="flex py-3 text-base">
-                  {["Weekly", "Agenda", "Presentaties"].map((item) => (
-                    <li key={item} className="text-sky-700 ml-0 mr-2">
-                      <IconText
-                        IconBefore={(props) => (
-                          <ChevronIcon {...props} className="h-3 w-4" />
-                        )}
-                      >
-                        <a
-                          href={`#${item.toLowerCase()}`}
-                          className="flex items-center hover:underline"
-                        >
-                          {item}
-                        </a>
-                      </IconText>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              </Container>
-          </div>
-
-          <div id="weekly" className="px-4 pt-0">
-            <h1 className="py-2 text-2xl font-bold text-slate-700">Weekly</h1>
-          </div>
-
-          <div className="grid grid-cols-1 py-2 sm:grid-cols-2 lg:grid-cols-3">
-            {weeklyEntries.weekly.length === 0 ? (
-              <p className="mb-10 px-4 py-2">
-                Er zijn geen weekly berichten beschikbaar.
-              </p>
-            ) : (
-              weeklyEntries.weekly.map((entry) => (
-                <BlogEntry entry={entry} type={"weekly"} />
-              ))
+          <ActueelSection
+            title="Weekly"
+            items={weeklyEntries.weekly}
+            emptyText="Er zijn geen weekly berichten beschikbaar."
+            allLink={{ to: "/actueel/weekly", label: "Alle weekly's" }}
+            renderItem={(entry) => (
+              <BlogEntry key={entry.filename} entry={entry} type="weekly" />
             )}
-          </div>
+          />
 
-          <div id="agenda" className="px-4">
-            <h1 className="py-2 text-2xl font-bold text-slate-700">Agenda</h1>
-          </div>
-          <div className="grid grid-cols-1 py-4 sm:grid-cols-2 lg:grid-cols-3">
-            {weeklyEntries.agenda.length === 0 ? (
-              <p className="mb-10 px-4 py-2">Er zijn geen agenda items beschikbaar.</p>
-            ) : (
-              weeklyEntries.agenda.map((entry) => <AgendaItem {...entry} />)
+          <ActueelSection
+            title="Agenda"
+            items={weeklyEntries.agenda}
+            emptyText="Er zijn geen agenda items beschikbaar."
+            allLink={{ to: "/actueel/agenda", label: "Alle agenda items" }}
+            renderItem={(entry) => (
+              <AgendaItem key={entry.filename} {...entry} />
             )}
-          </div>
+          />
 
-          <div id="presentaties" className="px-4">
-            <h1 className="py-2 text-2xl font-bold text-slate-700">
-              Presentaties
-            </h1>
-          </div>
-          <div className="grid grid-cols-1 py-4 sm:grid-cols-2 lg:grid-cols-3">
-            {weeklyEntries.presentaties.length === 0 ? (
-              <p className="mb-10 px-4 py-2">
-                Er zijn nog geen presentaties beschikbaar.
-              </p>
-            ) : (
-              weeklyEntries.presentaties.map((entry) => (
-                <BlogEntry entry={entry} type={"presentaties"} />
-              ))
+          <ActueelSection
+            title="Presentaties"
+            items={weeklyEntries.presentaties}
+            emptyText="Er zijn nog geen presentaties beschikbaar."
+            allLink={{
+              to: "/actueel/presentaties",
+              label: "Alle presentaties",
+            }}
+            className="mb-10 px-4 pt-2"
+            renderItem={(entry) => (
+              <BlogEntry
+                key={entry.filename}
+                entry={entry}
+                type="presentaties"
+              />
             )}
-          </div>
+          />
         </div>
       </Container>
     </>
   );
 };
+
+const NAV_ITEMS = ["Weekly", "Agenda", "Presentaties"] as const;
+
+export function ActueelNav() {
+  return (
+    <div className="bg-[#f3f3f3] pl-2">
+      <div className="mb-6 px-4 pl-2">
+        <ul className="flex py-3 text-base">
+          {NAV_ITEMS.map((item) => (
+            <li key={item} className="mr-2 ml-0 text-sky-700">
+              <IconText
+                IconBefore={(props) => (
+                  <ChevronIcon {...props} className="h-3 w-4" />
+                )}
+              >
+                <Link
+                  to={`/actueel/${item.toLowerCase()}`}
+                  className="flex items-center hover:underline"
+                >
+                  {item}
+                </Link>
+              </IconText>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+type Props<T> = {
+  title: string;
+  items: T[];
+  emptyText: string;
+  allLink: { to: string; label: string };
+  renderItem: (item: T) => ReactNode;
+  className?: string;
+  limit?: number;
+};
+
+export function ActueelSection<T>({
+  title,
+  items,
+  emptyText,
+  allLink,
+  renderItem,
+  className,
+  limit = 6,
+}: Props<T>) {
+  const visibleItems = items.slice(0, limit);
+
+  return (
+    <section className={className ?? "px-4 pt-2"}>
+      <h1 className="py-2 text-2xl font-bold text-slate-700">{title}</h1>
+
+      <div className="grid grid-cols-1 gap-4 py-2 sm:grid-cols-2 lg:grid-cols-3">
+        {items.length === 0 ? (
+          <p className="mb-10 py-2">{emptyText}</p>
+        ) : (
+          visibleItems.map(renderItem)
+        )}
+      </div>
+
+      <div className="float-end">
+        <IconText
+          IconBefore={(props) => (
+            <ChevronIcon
+              {...props}
+              bold={true}
+              className="h-3 w-4 font-bold text-[#056ba9]"
+            />
+          )}
+        >
+          <Link to={allLink.to} className="font-bold text-[#056ba9]">
+            {allLink.label}
+          </Link>
+        </IconText>
+      </div>
+    </section>
+  );
+}
 
 export default Actueel;

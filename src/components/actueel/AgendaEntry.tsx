@@ -10,17 +10,15 @@ export const AgendaItem = ({
   fromDate,
 }: AgendaEntryType) => {
   return (
-    <div className="mb-10">
+    <div className="">
       <Link
         to={`/actueel/agenda/${filename}`}
-        className="group relative flex h-[220px] flex-col space-y-2 self-end px-4 lg:m-0"
+        className="group relative flex h-[220px] flex-col space-y-1 self-end lg:m-0"
       >
-        <h2 className="text-xl text-sky-700 group-hover:underline">
-          {title}
-        </h2>
+        <h2 className="text-xl text-sky-700 group-hover:underline">{title}</h2>
         <div className="mt-1 flex items-center gap-1">
           <span className="text-base">📅</span>
-          <p className="font-bold text-sm text-gray-600">
+          <p className="text-sm font-bold text-gray-600">
             {fromDate.toLocaleDateString("nl-NL", {
               year: "numeric",
               month: "long",
@@ -40,7 +38,7 @@ export const AgendaItem = ({
         </div>
         <div className="mt-1 flex items-center gap-1">
           <span className="text-base">📍</span>
-          <p className="font-bold text-sm text-gray-600">{location}</p>
+          <p className="text-sm font-bold text-gray-600">{location}</p>
         </div>
         <div className="line-clamp-5 overflow-hidden text-ellipsis">
           {summary}

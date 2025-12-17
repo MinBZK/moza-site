@@ -1,10 +1,13 @@
-export default function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
+export default function ChevronIcon({
+  bold,
+  ...props
+}: React.SVGProps<SVGSVGElement> & { bold?: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={2}
+      strokeWidth={bold ? 6 : 2}
       stroke="currentColor"
       className="size-6"
       {...props}

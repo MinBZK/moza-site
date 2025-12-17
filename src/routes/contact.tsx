@@ -3,37 +3,42 @@ import { Container } from "../components/layout/Container.tsx";
 const Contact = () => {
   return (
     <Container>
-      <div className="mx-auto flex w-full justify-center px-2 py-6 sm:px-4 sm:py-10">
-        <div className="w-full max-w-[768px]">
-          <h1 className="mb-6 text-4xl font-bold text-gray-900">Contact</h1>
+      <div className="mx-auto flex px-2 py-8 sm:px-4 sm:py-6">
+        <div className="flex w-full flex-col gap-2 lg:w-2/3">
+          <h1 className="m-0 text-2xl font-semibold text-slate-700">
+            Contact
+          </h1>
+          <div>
 
-          <div className="mb-8 rounded-lg bg-white p-6 shadow-lg">
-            <p className="mb-4 text-lg">
-              Duis non mauris quis nulla aliquet molestie. Nulla ullamcorper
-              imperdiet sollicitudin. Fusce tristique blandit nisl ut euismod.
-              Sed quis ornare eros, vel elementum purus. Donec ac porttitor
-              nisl. Vivamus congue nibh sem, feugiat fringilla orci porta
-              fringilla. Cras vel eleifend justo. Quisque molestie risus in
-              lorem venenatis pellentesque. Sed cursus erat at dignissim
-              sollicitudin. Proin a ultrices metus. Suspendisse iaculis eros ut
-              pulvinar auctor.
+            {/* <p className="mb-4 text-slate-800">
+              Je kunt het programmateam bereiken via <a href="mailto:contact@mijnoverheid-zakelijk.nl" className="text-sky-700  hover:text-sky-900 hover:underline">contact@mijnoverheid-zakelijk.nl</a>.
+            </p> */}
+
+            <h2 className="mt-6 mb-1 text-xl font-semibold text-slate-700">Mattermost chat</h2>
+            <p className="text-slate-800">
+              Kom in contact met ons op Mattermost. Je kunt hier vragen stellen, ervaringen delen, meelezen en in contact komen met de mensen die aan MijnOverheid Zakelijk werken.
+            </p>
+            <h3 className="mt-6 mb-1 text-lg font-semibold text-slate-700">Mattermost instellen</h3>
+            <p className="text-slate-800">
+              Zorg ervoor dat je <a href="https://mattermost.com/apps/" className="text-sky-700 hover:text-sky-900 hover:underline">Mattermost hebt geïnstalleerd</a> en volg deze stappen:
+            </p>
+            <ol className="list-decimal space-y-2 pl-6 mb-4 text-slate-800">
+              <li><a href="https://realisatieibds.pleio.nl/register" className="text-sky-700 hover:text-sky-900 hover:underline">Registreer een nieuwe account op Pleio</a>
+              </li>
+              <li>
+                <a href="https://digilab.overheid.nl/chat/login" className="text-sky-700 hover:text-sky-900 hover:underline">Login</a> → GitLab → Pleio
+                <ul className="list-disc space-y-2 pl-6 mt-2 mb-4">
+                  <li>
+                    of configureer de volgende server in Mattermost: <code className="bg-[#f3f3f3] p-1 text-xs"><a href="https://digilab.overheid.nl/chat">https://digilab.overheid.nl/chat</a></code>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="https://digilab.overheid.nl/chat/signup_user_complete/?id=zzj8os1dsjb67ymuqt9e54b9uh&md=link&sbr=su" className="text-sky-700  hover:text-sky-900 hover:underline">Gebruik deze uitnodigingslink</a> of <a href="mailto:contact@mijnoverheid-zakelijk.nl" className="text-sky-700  hover:text-sky-900 hover:underline">vraag ons om je toe te voegen</a> aan het MijnOverheid Zakelijk team</li>
+            </ol>
+            <p className="text-slate-800">
+              Kom je er niet uit? <a href="mailto:contact@mijnoverheid-zakelijk.nl" className="text-sky-700 hover:text-sky-900 hover:underline">Stuur ons een e-mail</a>!
             </p>
 
-            <p className="mb-4 text-lg">
-              Whether you have questions about our portal, need technical
-              assistance, or want to learn more about our services, we're just
-              an email away.
-            </p>
-
-            <div className="mt-8 rounded-md bg-sky-50 p-6 text-center">
-              <p className="mb-2 text-sm text-sky-900">Mail ons op:</p>
-              <a
-                href="mailto:contact@mijnoverheid-zakelijk.nl"
-                className="inline-block text-2xl font-semibold text-sky-700 hover:text-sky-800 hover:underline"
-              >
-                contact@mijnoverheid-zakelijk.nl
-              </a>
-            </div>
           </div>
         </div>
       </div>

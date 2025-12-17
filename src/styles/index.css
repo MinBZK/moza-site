@@ -1,23 +1,111 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
+@theme {
+    --text-lg: 1.125em;
+    --text-xl: 1.25em;
+    --text-2xl: 1.5em;
+    --text-3xl: 1.75em;
+    --text-4xl: 2em;
+    --text-5xl: 2.5em;
+}
+
 @font-face {
-    font-family: "RijksoverheidSansWebText";
-    src: url("./fonts/RijksoverheidSansWebText.woff") format("woff");
+    font-family: "RO-Sans";
+    src: url("./fonts/RijksSansVF.woff2") format("woff");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-.rhc-theme {
-    --rhc-card-inline-size: 100%;
+@font-face {
+    font-family: "RO-SansItalic";
+    src: url("./fonts/RijksSansWeb-Italic.woff2") format("woff");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
 }
 
-a[href^="http"]:not(:has(img)):before {
-    content: "\2197";
-    font-weight: bold;
-    font-size: 1rem;
-    margin-right: 0.25rem;
-    text-decoration: none;
+@font-face {
+    font-family: "RO-Serif";
+    src: url("./fonts/RijksoverheidSerifWeb.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    color: var(--color-slate-800);
+    font-family: "RO-Sans", "Fira Sans", Arial, sans-serif;
+}
+
+p {
+    margin-bottom: .5em;
+}
+
+blockquote {
+    background: #eff7fc;
+    border-radius: 2em .25em .25em;
+    margin-bottom: 1em;
+    padding: 1em 2em .75em;
+    width: fit-content;
+    p {
+        font-family: "RO-SansItalic", "Fira Sans", Arial, sans-serif;
+        font-style: italic;
+        &::before, &::after {
+            content: "“";
+            font-size: 1.125em;
+            font-weight: 700;
+            margin-right: .125em;
+        }
+        &::after {
+            content: "”";
+            margin-left: .125em;
+        }
+    }
+}
+
+
+nav a[href^="http"]:not(:has(img)) {
+    display: inline-flex;
+    white-space: nowrap;
+}
+
+a[href^="http"]:not(:has(img))::after {
+    content: url(../../public/externe-link.svg);
     display: inline-block;
+    height: .75em;
+    margin-left: .25em;
+    width: .75em;
+}
+nav a[href^="http"]:not(:has(img))::after {
+    content: url(../../public/externe-link-inverse.svg);
+}
+
+footer {
+    li {
+        margin-bottom: .5em;
+    }
+    a::before {
+        content: url(../../public/chevron-r-inverse.svg);
+        display: inline-block;
+        height: .75em;
+        margin: 0 .25em;
+        width: .75em;
+    }
+    a[href^="http"]::after {
+        content: url(../../public/externe-link-inverse.svg);
+    }
+}
+
+.serif {
+    font-family: "RO-Serif", "Times New Roman", serif;
+}
+
+
+@layer base {
+    /* Reverts a preflight rule on hidden that breaks some reveal.js */
+    [hidden] {
+        display: revert !important;
+    }
 }

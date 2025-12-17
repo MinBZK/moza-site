@@ -1,23 +1,29 @@
+import { Container } from "./Container.tsx";
+
 export function Header() {
   return (
-    <header className="w-full">
-      <div className="logo">
-        <div className="logo__wrapper">
-          <figure className="m-0 ml-40 flex items-center justify-center">
-            <img
-              src="/logo.svg"
-              alt="Logo Rijksoverheid"
-              id="logotype"
-              className="mr-3"
-            />
-            <figcaption className="text-[15px] font-[625]">
-              <span className="font-bold text-[#154273]">
-                MijnOverheid Zakelijk
-              </span>
-            </figcaption>
-          </figure>
+    <Container>
+      <header className="mx-auto grid w-full max-w-screen-xl grid-cols-1 items-center gap-3 px-4 md:grid-cols-3">
+        <div className="hidden justify-self-center md:block md:justify-self-start">
+          <p className="!mb-0 hidden text-lg font-bold md:block">
+            MijnOverheid Zakelijk
+          </p>
+          <p className="!mb-0 hidden font-serif italic md:block">
+            Overzicht in wat er speelt
+          </p>
         </div>
-      </div>
-    </header>
+
+        <div className="justify-self-center">
+          <img
+            src="/logo.svg"
+            alt="Logo Rijksoverheid"
+            id="logotype"
+            className="h-auto max-w-full"
+          />
+        </div>
+
+        <div className="hidden md:block" />
+      </header>
+    </Container>
   );
 }

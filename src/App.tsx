@@ -8,6 +8,8 @@ import OnderwerpenLijst from "./routes/onderwerpen";
 import Profielservice from "./routes/onderwerpen/profielservice.tsx";
 import Portaal from "./routes/onderwerpen/portaal.tsx";
 import Home from "./routes/home.tsx";
+import Privacy from "./routes/privacy.tsx";
+import Toegankelijkheid from "./routes/toegankelijkheid.tsx";
 import { Header } from "./components/layout/Header.tsx";
 import { Navbar } from "./components/layout/Navbar.tsx";
 import Contact from "./routes/contact.tsx";
@@ -49,6 +51,8 @@ function App() {
             <Route path="/onderwerpen/proeftuin" element={<Proeftuin />} />
             <Route path="/onderwerpen/ontwerp" element={<Ontwerp />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/toegankelijkheid" element={<Toegankelijkheid />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
@@ -98,13 +102,13 @@ function App() {
                         <a href="#">Copyright</a>
                       </li> */}
                       <li>
-                        <a href="#">Privacy</a>
+                        <a href="/privacy">Privacy</a>
                       </li>
                       {/* <li>
                         <a href="#">Cookies</a>
                       </li> */}
                       <li>
-                        <a href="#">Toegankelijkheid</a>
+                        <a href="/toegankelijkheid">Toegankelijkheid</a>
                       </li>
                     </ul>
                   </dd>

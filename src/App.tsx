@@ -34,7 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/actueel" element={<Actueel />} />
-            <Route path="/over" element={<Over />} />
+            <Route path="/over-MOZa" element={<Over />} />
             <Route
               path="/actueel/presentaties/:name"
               element={<Presentaties />}

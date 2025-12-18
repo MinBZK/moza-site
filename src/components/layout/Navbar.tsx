@@ -6,10 +6,11 @@ type NavItem = {
   label: string;
   href: string;
   external?: boolean;
+  title?: string;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Over MOZa", href: "/over" },
+  { label: "Over MOZa", href: "/over-MOZa" },
   { label: "Actueel", href: "/actueel" },
   { label: "Onderwerpen", href: "/onderwerpen" },
   { label: "Contact", href: "/contact" },
@@ -68,8 +69,16 @@ export function Navbar() {
             <div className="hidden md:flex md:flex-1 md:items-center md:pl-6">
               <ul className="flex w-full text-xl">
                 {internalItems.map((item) => (
-                  <li key={item.label} className="mr-6 hover:underline whitespace-nowrap">
-                    <Link to={item.href}>{item.label}</Link>
+                  <li
+                    key={item.label}
+                    className="mr-6 whitespace-nowrap hover:underline"
+                  >
+                    <Link
+                      to={item.href}
+                      {...(item.title ? { state: { title: item.title } } : {})}
+                    >
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -98,6 +107,7 @@ export function Navbar() {
                 {NAV_ITEMS.map((item) => (
                   <li key={item.label}>
                     <Link
+                      {...(item.title ? { state: { title: item.title } } : {})}
                       to={item.href}
                       {...(item.external
                         ? { target: "_blank", rel: "noreferrer noopener" }

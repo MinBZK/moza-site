@@ -20,6 +20,7 @@
 }
 @font-face {
     font-family: "RO-Sans";
+    /* src: url("./fonts/RijksSansVF.woff2") format("woff"); */
     src: url("./fonts/ROsanswebtextregular.woff") format("woff");
     font-weight: 400;
     font-style: normal;
@@ -41,15 +42,13 @@
     font-weight: 400;
     font-style: italic;
     font-display: swap;
-@@ -35,10 +45,17 @@
 }
 
 body {
-    color: var(--color-slate-800);
     font-family: "RO-Sans", "Fira Sans", Arial, sans-serif;
 }
 
-body, p, main li, .prose {
+body, p, .prose {
     color: #0f172a !important;
 }
 

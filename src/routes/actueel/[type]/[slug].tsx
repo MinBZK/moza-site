@@ -103,7 +103,7 @@ const ActueelDetail = () => {
               )}
             </div>
           </div>
-          <div className="prose py-2">
+          <div className="prose max-w-none py-2 lg:w-2/3">
             <ReactMarkdown>{data.content}</ReactMarkdown>
           </div>
         </div>

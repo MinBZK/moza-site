@@ -9,7 +9,7 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Programmainformatie", href: "/over" },
+  { label: "Over MOZa", href: "/over" },
   { label: "Actueel", href: "/actueel" },
   { label: "Onderwerpen", href: "/onderwerpen" },
   { label: "Contact", href: "/contact" },
@@ -68,7 +68,7 @@ export function Navbar() {
             <div className="hidden md:flex md:flex-1 md:items-center md:pl-6">
               <ul className="flex w-full text-xl">
                 {internalItems.map((item) => (
-                  <li key={item.label} className="mr-6 hover:underline">
+                  <li key={item.label} className="mr-6 hover:underline whitespace-nowrap">
                     <Link to={item.href}>{item.label}</Link>
                   </li>
                 ))}

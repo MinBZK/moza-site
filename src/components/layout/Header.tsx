@@ -9,17 +9,19 @@ export function Header() {
             MijnOverheid Zakelijk
           </p>
           <p className="!mb-0 hidden font-serif italic md:block">
-            Overzicht in wat er speelt
+            Makkelijk zaken doen met de overheid
           </p>
         </div>
 
         <div className="justify-self-center">
+          <a href="/">
           <img
             src="/logo.svg"
-            alt="Logo Rijksoverheid"
+            alt=""
             id="logotype"
             className="h-auto max-w-full"
           />
+          </a>
         </div>
 
         <div className="hidden md:block" />

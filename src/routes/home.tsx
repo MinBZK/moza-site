@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Hero
         title="MijnOverheid Zakelijk"
-        subtitle="Een overheidsbrede samenwerking om de communicatie en interactie met bedrijven en organisaties te verbeteren."
+        subtitle="Bij MOZa staan ondernemers voorop. Elk uur minder aan gedoe met de overheid, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Samen bouwen we zo aan nieuwe digitale snelwegen."
       />
       
       <Container>

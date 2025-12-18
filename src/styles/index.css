@@ -28,7 +28,6 @@
 
 @font-face {
     font-family: "RO-Sans";
-    /* src: url("./fonts/RijksSansVF.woff2") format("woff"); */
     src: url("./fonts/ROsanswebtextbold.woff") format("woff");
     font-weight: 700;
     font-style: normal;

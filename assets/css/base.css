@@ -60,7 +60,7 @@ a {
   }
 }
 
-a[href^="http"]:not([href*="://mijnoverheidzakelijk.nl"]):not([href*="://www.mijnoverheidzakelijk.nl"])::after {
+a[rel~="external"]::after {
   content: "";
   display: inline-block;
   width: 0.75em;

@@ -1,14 +1,9 @@
 {{ define "main" }}
 <section>
   <h1>{{ .Title }}</h1>
-  {{ .Content  }}
-
-  {{ if .Pages }}
-  <div class="card-grid">
-    {{ range .Pages }}
-    {{ partial "card.html" . }}
-    {{ end }}
-  </div>
+  {{ .Content }}
+  {{ with .Pages.ByWeight }}
+  {{ partial "card-grid.html" . }}
   {{ end }}
 </section>
 {{ end }}

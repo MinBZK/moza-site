@@ -2,7 +2,7 @@ title: MijnOverheid Zakelijk
 defaultContentLanguage: nl
 
 params:
-  description: Bij MijnOverheid Zakelijk staan ondernemers voorop. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
+  description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
 
 disableKinds:
   - taxonomy

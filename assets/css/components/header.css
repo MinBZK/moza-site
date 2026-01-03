@@ -125,7 +125,7 @@ header {
         text-decoration: underline;
       }
 
-      &[href^="http"]:not([href*="://mijnoverheidzakelijk.nl"]):not([href*="://www.mijnoverheidzakelijk.nl"])::after {
+      &[rel~="external"]::after {
         background-image: url("{{ relURL "images/icons/externe-link-inverse.svg" }}");
       }
     }

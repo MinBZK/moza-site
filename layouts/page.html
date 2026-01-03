@@ -15,7 +15,7 @@
 {{ define "scripts" }}
 {{- $toc := .TableOfContents -}}
 {{ if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) }}
-{{ $toc := resources.Get "js/toc.js" }}
+{{ $toc := resources.Get "js/toc.js" | fingerprint "md5" }}
 <script src="{{ $toc.RelPermalink }}"></script>
 {{ end }}
 {{ end }}

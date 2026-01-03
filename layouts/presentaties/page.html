@@ -8,7 +8,7 @@
   {{ $revealCore := resources.Get "vendor/reveal/reveal.css" }}
   {{ $revealTheme := resources.Get "vendor/reveal/white.css" }}
   {{ $revealCustom := resources.Get "css/reveal.css" }}
-  {{ $revealCss := slice $revealCore $revealTheme $revealCustom | resources.Concat "css/reveal-bundle.css" }}
+  {{ $revealCss := slice $revealCore $revealTheme $revealCustom | resources.Concat "css/reveal-bundle.css" | fingerprint "md5" }}
   <link rel="stylesheet" href="{{ $revealCss.RelPermalink }}">
   <style>
     html, body {
@@ -40,7 +40,7 @@
   </div>
 
   {{/* Reveal.js JavaScript */}}
-  {{ $revealJs := resources.Get "vendor/reveal/reveal.js" }}
+  {{ $revealJs := resources.Get "vendor/reveal/reveal.js" | fingerprint "md5" }}
   <script src="{{ $revealJs.RelPermalink }}"></script>
   <script>
     Reveal.initialize({

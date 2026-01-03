@@ -3,7 +3,6 @@ title: "Over MijnOverheid Zakelijk"
 ---
 
 Het programma MijnOverheid Zakelijk is een overheidsbrede samenwerking om de dienstverlening voor ondernemers te verbeteren. Om dit voor elkaar te krijgen werken wij met overheidsorganisaties samen aan de ontwikkeling van verschillende digitale bouwstenen (interactieservices). Deze bouwstenen vormen samen nieuwe digitale snelwegen. Inclusief een Mijn-omgeving waar alles bij elkaar komt. Zo dragen we bij aan het verlagen van administratieve lasten en zullen ondernemers één uniforme overheid ervaren.
-{.semibold}
 
 > "Ik zie door de bomen het bos niet meer. Geef mij een overzicht van wat ik moet doen en waar ik moet zijn. Ik heb geen tijd om dingen uit te zoeken."
 

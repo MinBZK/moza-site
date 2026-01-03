@@ -20,8 +20,8 @@
 {{ $cardGrid := resources.Get "css/components/card-grid.css" }}
 {{ $box := resources.Get "css/components/box.css" }}
 {{ $button := resources.Get "css/components/button.css" }}
-{{ $callout := resources.Get "css/components/callout.css" }}
+{{ $blockquote := resources.Get "css/components/blockquote.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $callout $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />

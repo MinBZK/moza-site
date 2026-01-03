@@ -34,14 +34,15 @@ main {
 
 main > section,
 main > article,
-main > aside {
+main > .content {
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
 }
 
 main > section,
-main > article {
+main > article,
+main > .content {
   padding: 1rem;
   padding-top: 0;
 }

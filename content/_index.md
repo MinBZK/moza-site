@@ -12,8 +12,7 @@ hero:
 
 {{< card-grid section="onderwerpen" >}}
 
-{{% callout %}}
-MijnOverheid Zakelijk is in ontwikkeling. We werken hier samen aan met diverse overheidsorganisaties en eindgebruikers.
-
-Heb je vragen of mis je informatie? [Kijk dan op onze contactpagina](contact) en kom met ons in contact.
-{{% /callout %}}
+> [!INFO]
+> MijnOverheid Zakelijk is in ontwikkeling. We werken hier samen aan met diverse overheidsorganisaties en eindgebruikers.
+>
+> Heb je vragen of mis je informatie? [Kijk dan op onze contactpagina](contact) en kom met ons in contact.

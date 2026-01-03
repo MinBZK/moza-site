@@ -36,7 +36,10 @@
   --text-base: 1rem;
 
   /* Border radius */
-  --radius-upper-right: 0rem 2rem 0rem 0rem;
+  --radius-upper-left: 2rem 0 0 0;
+  --radius-upper-right: 0 2rem 0 0;
+  --radius-bottom-right: 0 0 2rem 0;
+  --radius-bottom-left: 0 0 0 2rem;
 }
 
 /* Dark mode */

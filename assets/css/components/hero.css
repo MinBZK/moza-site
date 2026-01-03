@@ -23,7 +23,7 @@
     padding: 1.25rem 1.5rem;
     margin-left: -0.6rem;
     background-color: var(--color-bg-hero);
-    border-radius: var(--radius-upper-right);
+    border-radius: var(--radius-bottom-right);
 
     @media (min-width: 900px) {
       width: clamp(450px, 40vw, 550px);
@@ -49,6 +49,6 @@
   }
 }
 
-.hero + section {
+.hero + .content {
   padding-top: 3rem;
 }

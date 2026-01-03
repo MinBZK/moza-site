@@ -108,18 +108,6 @@ b {
   font-weight: 600;
 }
 
-blockquote {
-  background: var(--color-bg-light);
-  border-radius: 2rem 0 0 0;
-  padding: 1rem 1.5rem;
-  margin: 1rem 0;
-  font-style: italic;
-
-  p:last-child {
-    margin-bottom: 0;
-  }
-}
-
 code {
   background: var(--color-bg-muted);
   padding: 0.125rem 0.25rem;

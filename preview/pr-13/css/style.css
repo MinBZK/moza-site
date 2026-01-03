@@ -36,7 +36,10 @@
   --text-base: 1rem;
 
   /* Border radius */
-  --radius-upper-right: 0rem 2rem 0rem 0rem;
+  --radius-upper-left: 2rem 0 0 0;
+  --radius-upper-right: 0 2rem 0 0;
+  --radius-bottom-right: 0 0 2rem 0;
+  --radius-bottom-left: 0 0 0 2rem;
 }
 
 /* Dark mode */
@@ -169,7 +172,7 @@ a {
   }
 }
 
-a[href^="http"]:not([href*="://mijnoverheidzakelijk.nl"]):not([href*="://www.mijnoverheidzakelijk.nl"])::after {
+a[rel~="external"]::after {
   content: "";
   display: inline-block;
   width: 0.75em;
@@ -215,18 +218,6 @@ b {
 
 .semibold {
   font-weight: 600;
-}
-
-blockquote {
-  background: var(--color-bg-light);
-  border-radius: 2rem 0 0 0;
-  padding: 1rem 1.5rem;
-  margin: 1rem 0;
-  font-style: italic;
-
-  p:last-child {
-    margin-bottom: 0;
-  }
 }
 
 code {
@@ -306,14 +297,15 @@ main {
 
 main > section,
 main > article,
-main > aside {
+main > .content {
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
 }
 
 main > section,
-main > article {
+main > article,
+main > .content {
   padding: 1rem;
   padding-top: 0;
 }
@@ -537,7 +529,7 @@ header {
         text-decoration: underline;
       }
 
-      &[href^="http"]:not([href*="://mijnoverheidzakelijk.nl"]):not([href*="://www.mijnoverheidzakelijk.nl"])::after {
+      &[rel~="external"]::after {
         background-image: url("/moza-landingspagina/preview/pr-13/images/icons/externe-link-inverse.svg");
       }
     }
@@ -698,7 +690,7 @@ header {
     padding: 1.25rem 1.5rem;
     margin-left: -0.6rem;
     background-color: var(--color-bg-hero);
-    border-radius: var(--radius-upper-right);
+    border-radius: var(--radius-bottom-right);
 
     @media (min-width: 900px) {
       width: clamp(450px, 40vw, 550px);
@@ -724,7 +716,7 @@ header {
   }
 }
 
-.hero + section {
+.hero + .content {
   padding-top: 3rem;
 }
 .card-grid {
@@ -852,25 +844,51 @@ header {
     color: var(--color-text-inverse);
   }
 }
-.callout {
+blockquote {
+  background: var(--color-bg-light);
+  border-radius: var(--radius-upper-left);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+blockquote.quote {
+  font-style: italic;
+}
+
+blockquote.callout {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
   padding: 1rem;
   padding-bottom: 0;
-  background-color: var(--color-bg-info);
   border-radius: var(--radius-upper-right);
+  background-color: var(--color-bg-info);
 
-  img {
-    width: 24px;
-    height: 24px;
+  header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .title {
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    padding-left: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
 
     h2 {
       margin-top: 0;
@@ -890,7 +908,7 @@ header {
     }
   }
 
-  &:not(:has(img)) .content {
+  &:not(:has(header)) .content {
     padding-top: 0;
   }
 }

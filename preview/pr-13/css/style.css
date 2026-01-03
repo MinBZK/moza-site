@@ -946,18 +946,22 @@ footer {
   }
 
   li {
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
   }
 
   a {
     color: var(--color-text-inverse);
 
     &::before {
-      content: "›";
+      content: "";
       display: inline-block;
-      margin-right: 0.2em;
-      font-size: 1.4em;
-      font-weight: 600;
+      width: 0.5em;
+      height: 0.5em;
+      margin-right: 0.4em;
+      margin-bottom: 0.1em;
+      border-right: 2px solid var(--color-text-inverse);
+      border-bottom: 2px solid var(--color-text-inverse);
+      transform: rotate(-45deg);
     }
   }
 

@@ -1,0 +1,54 @@
+.hero {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (min-width: 1100px) {
+    height: 350px;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 1rem;
+    padding: 1.25rem 1.5rem;
+    margin-left: -0.6rem;
+    background-color: var(--color-bg-hero);
+    border-radius: var(--radius-upper-right);
+
+    @media (min-width: 900px) {
+      width: clamp(450px, 40vw, 550px);
+    }
+
+    @media (min-width: 1100px) {
+      left: calc(50% - var(--content-max-width) / 2);
+    }
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+
+    @media (min-width: 640px) {
+      font-size: 1.75rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.hero + section {
+  padding-top: 3rem;
+}

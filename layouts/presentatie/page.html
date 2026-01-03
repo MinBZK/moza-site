@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="stylesheet" href="/vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="/vendor/reveal/white.css">
+  {{ $revealCss := resources.Get "css/reveal.css" }}
+  <link rel="stylesheet" href="{{ $revealCss.RelPermalink }}">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .reveal {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <button
+    class="close-button"
+    onclick="history.back()"
+    aria-label="Sluit presentatie"
+  >&#10005;</button>
+
+  <div class="reveal">
+    <img
+      src="/images/logo-rijksoverheid.svg"
+      alt="Logo Rijksoverheid"
+      id="header-logo"
+    />
+    <div class="slides">
+      {{ .Content }}
+    </div>
+  </div>
+
+  <script src="/vendor/reveal/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      embedded: true,
+      controls: true,
+      progress: true,
+      overview: true,
+      hash: true
+    }).then(() => {
+      // Check logo visibility on initial load
+      updateLogoVisibility(Reveal.getCurrentSlide());
+    });
+
+    function updateLogoVisibility(slide) {
+      const logo = document.getElementById('header-logo');
+      if (slide && slide.classList.contains('hide-logo')) {
+        logo.classList.add('logo-hidden');
+      } else {
+        logo.classList.remove('logo-hidden');
+      }
+    }
+
+    // Hide logo when slide has .hide-logo class
+    Reveal.on('slidechanged', event => {
+      updateLogoVisibility(event.currentSlide);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    hugo-build:
+      run: rm -rf public && hugo --minify --logLevel warn
+    htmltest:
+      run: rm -rf .htmltest && hugo --quiet --destination .htmltest/public && htmltest && rm -rf .htmltest

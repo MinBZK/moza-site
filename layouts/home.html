@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="hero">
+  {{ $hero := resources.Get "images/hero/ondernemer-keuken.png" }}
+  {{ $heroWebp := $hero.Resize "4000x webp q80" }}
+  <img src="{{ $heroWebp.RelPermalink }}" alt="Ondernemer bekijkt telefoon in zijn keuken" width="{{ $heroWebp.Width }}" height="{{ $heroWebp.Height }}">
+  <div class="content">
+    <h1>MijnOverheid Zakelijk</h1>
+    <p>Bij MOZa staan ondernemers voorop. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.</p>
+  </div>
+</div>
+
+{{/* Cards grid */}}
+<section>
+  <div class="card-grid">
+    {{ range (where .Site.RegularPages "Section" "onderwerpen").ByWeight }}
+    {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+</section>
+
+{{/* Info banner */}}
+<aside class="callout">
+  <img src="/images/icons/info.svg" alt="Informatie">
+  <div class="content">
+    <p>MijnOverheid Zakelijk is in ontwikkeling. We werken hier samen aan met diverse overheidsorganisaties en eindgebruikers.</p>
+    <p>Heb je vragen of mis je informatie? <a href="/contact/">Kijk dan op onze contactpagina</a> en kom met ons in contact.</p>
+  </div>
+</aside>
+{{ end }}

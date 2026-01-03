@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section>
+  <h1>{{ .Title }}</h1>
+  {{ .Content  }}
+
+  {{ if .Pages }}
+  <div class="card-grid">
+    {{ range .Pages }}
+    {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,44 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  width: 100%;
+  overflow: hidden;
+
+  header {
+    position: relative;
+
+    img {
+      height: 2.5rem;
+      object-fit: contain;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.1em;
+
+      a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+
+  p {
+    padding-top: 0.5rem;
+  }
+}

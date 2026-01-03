@@ -1,0 +1,59 @@
+title: MijnOverheid Zakelijk
+defaultContentLanguage: nl
+
+params:
+  description: Bij MijnOverheid Zakelijk staan ondernemers voorop. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
+
+disableKinds:
+  - taxonomy
+  - term
+
+enableRobotsTXT: true
+
+permalinks:
+  page:
+    weekly: /weekly/:slug/
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+  tableOfContents:
+    endLevel: 4
+
+menus:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 1
+    - name: Over MOZa
+      pageRef: /over-moza
+      weight: 2
+    - name: Actueel
+      pageRef: /actueel
+      weight: 3
+    - name: Onderwerpen
+      pageRef: /onderwerpen
+      weight: 4
+    - name: Contact
+      pageRef: /contact
+      weight: 5
+
+  secondary:
+    - name: Technische documentatie
+      url: https://docs.mijnoverheidzakelijk.nl
+      weight: 1
+    - name: GitHub
+      url: https://github.com/topics/mijnoverheidzakelijk
+      weight: 2
+
+  footer:
+    - name: Privacy
+      pageRef: /privacy
+      weight: 1
+    - name: Toegankelijkheid
+      pageRef: /toegankelijkheid
+      weight: 2

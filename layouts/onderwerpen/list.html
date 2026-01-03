@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section>
+  <h1>{{ .Title }}</h1>
+
+  <div class="card-grid">
+    {{ range .Pages.ByWeight }}
+    {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

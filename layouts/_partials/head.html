@@ -8,7 +8,7 @@
   name="description"
   content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
 />
-<link rel="icon" href="{{ "/favicon.ico" | relURL }}" type="image/x-icon" />
+<link rel="icon" href="{{ relURL "favicon.ico" }}" type="image/x-icon" />
 
 {{/* CSS bundling via Hugo's asset pipeline */}}
 {{ $tokens := resources.Get "css/tokens.css" }}

@@ -4,7 +4,7 @@
   <div>
     <h1>De laatste MOZa Weekly</h1>
     <p>
-      <a href="{{ "/weekly/" | relURL }}">Of lees eerdere MOZa Weekly's</a>
+      <a href="{{ relURL "weekly/" }}">Of lees eerdere MOZa Weekly's</a>
     </p>
     {{ $weekly := where .Site.RegularPages "Section" "weekly" }}
     {{ $weekly = sort $weekly ".Date" "desc" }}

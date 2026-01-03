@@ -8,10 +8,10 @@
     </div>
     <div class="site-logo">
       {{ if .IsHome }}
-      <img src="{{ "/images/logo-rijksoverheid.svg" | relURL }}" alt="Logo Rijksoverheid" />
+      <img src="{{ relURL "images/logo-rijksoverheid.svg" }}" alt="Logo Rijksoverheid" />
       {{ else }}
       <a href="/" tabindex="-1" aria-hidden="true">
-        <img src="{{ "/images/logo-rijksoverheid.svg" | relURL }}" alt="Logo Rijksoverheid" />
+        <img src="{{ relURL "images/logo-rijksoverheid.svg" }}" alt="Logo Rijksoverheid" />
       </a>
       {{ end }}
     </div>

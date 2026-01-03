@@ -51,4 +51,4 @@ jobs:
         run: hugo --gc --minify --logLevel warning
 
       - name: Test links
-        run: htmltest
+        run: hugo --minify --quiet --destination .htmltest/public && htmltest

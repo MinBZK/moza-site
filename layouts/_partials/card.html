@@ -1,7 +1,7 @@
 <div class="card">
   <header>
     {{ with .Params.image }}
-    <img src="{{ . }}" alt="{{ $.Params.image_alt }}">
+    <img src="{{ . | relURL }}" alt="{{ $.Params.image_alt }}">
     {{ end }}
     <h2>
       <a href="{{ .RelPermalink }}">{{ .Params.card_title | default .Title }}</a>

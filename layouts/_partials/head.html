@@ -23,5 +23,5 @@
 {{ $callout := resources.Get "css/components/callout.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $callout $list $footer | resources.Concat "css/style.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $callout $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />

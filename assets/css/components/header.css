@@ -126,7 +126,7 @@ header {
       }
 
       &[href^="http"]:not([href*="://mijnoverheidzakelijk.nl"]):not([href*="://www.mijnoverheidzakelijk.nl"])::after {
-        background-image: url("/images/icons/externe-link-inverse.svg");
+        background-image: url("{{ relURL "images/icons/externe-link-inverse.svg" }}");
       }
     }
 

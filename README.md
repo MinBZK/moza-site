@@ -29,13 +29,26 @@ hugo new content weekly/2026/2026-01-01.md
 
 ### Presentatie
 
-Presentaties zijn page bundles met een `index.html` bestand en een `images/` map voor afbeeldingen.
+Presentaties gebruiken [Reveal.js](https://revealjs.com/) en wijken daarmee af van de overige pagina's.
 
 Maak een nieuwe presentatie:
 
 ```bash
 hugo new content presentaties/moza-pulse-x
 ```
+
+#### Slide syntax
+
+Elke slide is een `<section>` element:
+
+```html
+<section>
+  <h2>Slide titel</h2>
+  <p>Inhoud van de slide</p>
+</section>
+```
+
+Geneste sections maken verticale slides (navigeer met pijltje omlaag). Zie [Reveal.js](https://revealjs.com/) voor meer informatie.
 
 ## Code kwaliteit
 

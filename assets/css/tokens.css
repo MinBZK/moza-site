@@ -5,10 +5,9 @@
   --navbar-height: 55px;
 
   /* Primaire kleuren */
-  --color-primary: #0369a1;
-  --color-primary-dark: #075985;
   --color-rijks-blauw: #154273;
   --color-rijks-oranje: #e17000;
+  --color-primary: var(--color-rijks-blauw);
   --color-link: #01689b;
 
   /* Achtergrondkleuren */
@@ -23,8 +22,6 @@
   --color-text-heading: #0f172a;
   --color-text-muted: #334155;
   --color-text-inverse: #ffffff;
-  --color-text-meta: #4b5563;
-
   /* Border kleur */
   --color-border: #e2e8f0;
 
@@ -46,9 +43,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Primaire kleuren */
-    --color-primary: #38bdf8;
-    --color-primary-dark: #0ea5e9;
-    --color-link: #38bdf8;
+    --color-primary: #80d5fc;
+    --color-link: #93dcfa;
 
     /* Achtergrondkleuren */
     --color-bg-page: #0f172a;
@@ -60,8 +56,7 @@
     /* Tekstkleuren */
     --color-text: #e2e8f0;
     --color-text-heading: #f1f5f9;
-    --color-text-muted: #94a3b8;
-    --color-text-meta: #94a3b8;
+    --color-text-muted: #b8c4d0;
 
     /* Border kleur */
     --color-border: #334155;

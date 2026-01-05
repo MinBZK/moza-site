@@ -47,6 +47,18 @@ Dit project heeft Claude commands voor veelvoorkomende taken:
 - Nederlands voor alle content en UI teksten
 - Gebruik bestaande components waar mogelijk
 
+### Hugo Layouts Structuur (v0.146.0+)
+
+Dit project gebruikt de nieuwe Hugo template structuur.
+
+- Templates direct in `layouts/` plaatsen (niet in `_default/`)
+- Partials in `layouts/_partials/` (met underscore)
+- Shortcodes in `layouts/_shortcodes/` (met underscore)
+- Homepage template: `layouts/home.html` (niet `index.html`)
+- Baseof templates: `layouts/baseof.html`
+
+Zie [Hugo template system overview](https://gohugo.io/templates/new-templatesystem-overview/) voor details.
+
 ## Verificatie
 
 - Test lokaal: `hugo server`

@@ -28,7 +28,6 @@ jobs:
       TZ: Europe/Amsterdam
     steps:
       - name: Checkout
-        if: github.event.action != 'closed'
         uses: actions/checkout@v6
         with:
           fetch-depth: 0

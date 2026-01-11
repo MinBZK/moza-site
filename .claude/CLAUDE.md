@@ -40,6 +40,25 @@ Dit project heeft Claude commands voor veelvoorkomende taken:
 - `/new-weekly` - Maak een nieuwe weekly update aan
 - `/new-presentatie` - Maak een nieuwe Reveal.js presentatie
 
+## Agents
+
+Gespecialiseerde agents voor specifieke taken:
+
+- `content-reviewer` - Controleer content op spelling, leesbaarheid en B1 taalniveau
+- `seo-checker` - Analyseer SEO-aspecten (meta tags, headings, alt-teksten)
+- `a11y-reviewer` - Controleer toegankelijkheid (WCAG 2.1 AA)
+- `hugo-helper` - Help met Hugo templates, shortcodes en debugging
+
+Gebruik agents door ernaar te verwijzen in je prompt, bijv.: "Gebruik de content-reviewer agent om deze pagina te controleren."
+
+## Rules
+
+Gedragsregels in `.claude/rules/`:
+
+- `taal-en-stijl.md` - Nederlands, B1 taalniveau, Rijkshuisstijl
+- `code-conventies.md` - Hugo templates, CSS, content structuur
+- `documentatie.md` - Links naar Hugo en Reveal.js documentatie
+
 ## Code Conventies
 
 - CSS: Pure CSS met variabelen (geen preprocessor)

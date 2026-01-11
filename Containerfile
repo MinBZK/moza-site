@@ -24,6 +24,9 @@ RUN echo 'server { \
     root /usr/share/nginx/html; \
     index index.html; \
     error_page 404 /404.html; \
+    location /.well-known/security.txt { \
+        return 302 https://www.ncsc.nl/.well-known/security.txt; \
+    } \
     location / { \
         try_files $uri $uri/ =404; \
     } \

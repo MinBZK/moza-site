@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/generate-presentaties-manifest.js && node scripts/generate-weekly-manifest.js && vite",
-    "build": "tsc -b && vite build && node scripts/generate-presentaties-manifest.js && node scripts/generate-weekly-manifest.js && node scripts/index-md.js && pagefind --site dist",
+    "build": "tsc -b && node scripts/generate-presentaties-manifest.js && node scripts/generate-weekly-manifest.js && vite build && node scripts/index-md.js && pagefind --site dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },

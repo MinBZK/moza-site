@@ -10,16 +10,14 @@ export function Card({
   external,
 }: HomeCard) {
   return (
-    <article
-      className={`w-full overflow-hidden`}
-    >
-       <div className="relative h-10">
+    <article className={`w-full overflow-hidden`}>
+      <div className="relative h-10">
         <Link
           to={href}
           {...(external
             ? { target: "_blank", rel: "noreferrer noopener" }
             : {})}
-          className="flex h-full w-full px-4"
+          className="flex h-full w-full"
         >
           <img
             src={imageUrl}
@@ -29,13 +27,13 @@ export function Card({
           />
         </Link>
       </div>
-      <div className="space-y-2 px-4 py-3 pt-2">
+      <div className="space-y-2 py-3 pt-2">
         <Link
           {...(external
             ? { target: "_blank", rel: "noreferrer noopener" }
             : {})}
           to={href}
-          className="flex items-center mb-0 text-xl font-bold text-sky-700 hover:text-sky-900 no-underline hover:underline"
+          className="mb-0 flex items-center text-xl font-bold text-sky-700 no-underline hover:text-sky-900 hover:underline"
         >
           {title}
         </Link>

@@ -9,6 +9,7 @@
     --text-4xl: 2em;
     --text-5xl: 2.5em;
 
+    --color-primary: #154273;
     --tw-prose-bullets: black;
 }
 
@@ -122,5 +123,27 @@ footer {
     /* Reverts a preflight rule on hidden that breaks some reveal.js */
     [hidden] {
         display: revert !important;
+    }
+
+    /* Custom Pagefind UI styling */
+    .pagefind-ui {
+        --pagefind-ui-primary: #2563eb; /* blue-600 */
+        --pagefind-ui-text: #0f172a;    /* slate-900 */
+        --pagefind-ui-background: #ffffff;
+        --pagefind-ui-border: #e2e8f0;  /* slate-200 */
+        --pagefind-ui-tag: #f1f5f9;     /* slate-100 */
+    }
+
+    .pagefind-ui .pagefind-ui__result-link {
+        color: #2563eb !important; /* blue-600 */
+        text-decoration: none;
+    }
+
+    .pagefind-ui .pagefind-ui__result-link:hover {
+        text-decoration: underline;
+    }
+
+    .pagefind-ui .pagefind-ui__result-title {
+        font-weight: 600;
     }
 }

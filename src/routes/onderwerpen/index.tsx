@@ -4,16 +4,19 @@ import { Card } from "../../components/ui/Card.tsx";
 
 const OnderwerpenLijst = () => {
   return (
-    <Container className="min-h-80 py-4 md:px-0">
-      <h1 className="mt-3 px-4 text-2xl font-semibold text-slate-700">
-        Onderwerpen
-      </h1>
-
-      <div className="mb-10 pt-14">
-        <div className="xs:grid-cols-1 mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {HOME_CARDS.map((card) => (
-            <Card key={card.href} {...card} />
-          ))}
+    <Container>
+      <div className="mx-auto flex sm:py-6">
+        <div className="flex w-full flex-col gap-2">
+          <h1 className="mb-4 px-4 text-2xl font-semibold text-slate-700">
+            Onderwerpen
+          </h1>
+          <div className="mb-10">
+            <div className="xs:grid-cols-1 mb-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3">
+              {HOME_CARDS.map((card) => (
+                <Card key={card.href} {...card} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </Container>

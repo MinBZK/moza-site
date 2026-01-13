@@ -5,35 +5,22 @@ import { Container } from "./Container.tsx";
 type NavItem = {
   label: string;
   href: string;
-  external?: boolean;
-  title?: string;
+  float: "left" | "right";
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Over MOZa", href: "/over-MOZa" },
-  { label: "Actueel", href: "/actueel" },
-  { label: "Onderwerpen", href: "/onderwerpen" },
-  { label: "Contact", href: "/contact" },
-  {
-    label: "Technische documentatie",
-    href: "https://docs.mijnoverheidzakelijk.nl",
-    external: true,
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/MinBZK/MijnOverheidZakelijk",
-    external: true,
-  },
+  { label: "Over MOZa", href: "/over-MOZa", float: "left" },
+  { label: "Actueel", href: "/actueel", float: "left" },
+  { label: "Onderwerpen", href: "/onderwerpen", float: "left" },
+  { label: "Contact", href: "/contact", float: "left" },
+  { label: "Zoeken", href: "/zoeken", float: "right" },
 ];
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const internalItems = NAV_ITEMS.filter((i) => !i.external);
-  const externalItems = NAV_ITEMS.filter((i) => i.external);
-
   return (
-    <nav className="flex min-h-[64px] w-full items-center bg-[#154273] text-white">
+    <nav className="bg-primary flex min-h-[64px] w-full items-center text-white">
       <Container>
         <div className="px-4">
           <div className="flex items-center">
@@ -67,35 +54,23 @@ export function Navbar() {
 
             {/* Desktop menu - internal left, external right */}
             <div className="hidden md:flex md:flex-1 md:items-center md:pl-6">
-              <ul className="flex w-full text-xl">
-                {internalItems.map((item) => (
-                  <li
-                    key={item.label}
-                    className="mr-6 whitespace-nowrap hover:underline"
-                  >
-                    <Link
-                      to={item.href}
-                      {...(item.title ? { state: { title: item.title } } : {})}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <ul className="flex w-full items-center text-xl">
+                {NAV_ITEMS.map((item, index) => {
+                  const isFirstRight =
+                    item.float === "right" &&
+                    (index === 0 || NAV_ITEMS[index - 1].float === "left");
 
-              <ul className="flex text-xl md:ml-auto">
-                {externalItems.map((item) => (
-                  <li key={item.label} className="ml-6 hover:underline">
-                    <Link
-                      {...(item.external
-                        ? { target: "_blank", rel: "noreferrer noopener" }
-                        : {})}
-                      to={item.href}
+                  return (
+                    <li
+                      key={item.label}
+                      className={`${
+                        isFirstRight ? "ml-auto" : "mr-6 last:mr-0"
+                      } whitespace-nowrap hover:underline`}
                     >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                      <Link to={item.href}>{item.label}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -107,11 +82,7 @@ export function Navbar() {
                 {NAV_ITEMS.map((item) => (
                   <li key={item.label}>
                     <Link
-                      {...(item.title ? { state: { title: item.title } } : {})}
                       to={item.href}
-                      {...(item.external
-                        ? { target: "_blank", rel: "noreferrer noopener" }
-                        : {})}
                       className="block py-2 hover:underline focus:underline"
                       onClick={() => setIsMenuOpen(false)}
                     >

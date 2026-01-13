@@ -36,6 +36,7 @@ De pagina is nu beschikbaar op `http://localhost:8080`.
 Zoeken werkt niet in de vite dev omgeving.
 
 Om zoekfunctie te laten werken, run het volgende commando:
-npm run build && npm run preview
+1.  Installeer de afhankelijkheden: `npm install`
+2.  Start de server: `npm run build && npm run preview`
 
 De pagina is nu beschikbaar op `http://localhost:8080`.

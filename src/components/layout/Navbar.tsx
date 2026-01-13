@@ -5,14 +5,15 @@ import { Container } from "./Container.tsx";
 type NavItem = {
   label: string;
   href: string;
+  float: "left" | "right";
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Over MOZa", href: "/over-MOZa" },
-  { label: "Actueel", href: "/actueel" },
-  { label: "Onderwerpen", href: "/onderwerpen" },
-  { label: "Contact", href: "/contact" },
-  { label: "Zoeken", href: "/zoeken" },
+  { label: "Over MOZa", href: "/over-MOZa", float: "left" },
+  { label: "Actueel", href: "/actueel", float: "left" },
+  { label: "Onderwerpen", href: "/onderwerpen", float: "left" },
+  { label: "Contact", href: "/contact", float: "left" },
+  { label: "Zoeken", href: "/zoeken", float: "right" },
 ];
 
 export function Navbar() {
@@ -53,15 +54,23 @@ export function Navbar() {
 
             {/* Desktop menu - internal left, external right */}
             <div className="hidden md:flex md:flex-1 md:items-center md:pl-6">
-              <ul className="flex w-full text-xl">
-                {NAV_ITEMS.map((item) => (
-                  <li
-                    key={item.label}
-                    className="mr-6 whitespace-nowrap hover:underline"
-                  >
-                    <Link to={item.href}>{item.label}</Link>
-                  </li>
-                ))}
+              <ul className="flex w-full items-center text-xl">
+                {NAV_ITEMS.map((item, index) => {
+                  const isFirstRight =
+                    item.float === "right" &&
+                    (index === 0 || NAV_ITEMS[index - 1].float === "left");
+
+                  return (
+                    <li
+                      key={item.label}
+                      className={`${
+                        isFirstRight ? "ml-auto" : "mr-6 last:mr-0"
+                      } whitespace-nowrap hover:underline`}
+                    >
+                      <Link to={item.href}>{item.label}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

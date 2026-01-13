@@ -1,121 +1,46 @@
 import { Container } from "../../components/layout/Container.tsx";
-import { BlogEntry } from "../../components/actueel/BlogEntry.tsx";
 import { useEffect, useState } from "react";
-
-import {
-  type AgendaEntryType,
-  type BlogEntryType,
-  loadAllEntries,
-} from "../../lib/markdown.ts";
-import { ActueelNav } from "../../components/actueel/ActueelNav.tsx";
-import { ActueelSection } from "../../components/actueel/actueelSection.tsx";
+import type { WeeklyEntry } from "../../types/WeeklyEntry.ts";
+import type { Presentatie } from "../../types/PresentatieEntry.ts";
+import { EntrySection } from "../../components/ui/EntrySection.tsx";
 
 const Actueel = () => {
-  const [weeklyEntries, setWeeklyEntries] = useState<{
-    weekly: BlogEntryType[];
-    nieuws: BlogEntryType[];
-    agenda: AgendaEntryType[];
-    presentaties: BlogEntryType[];
-  }>({ weekly: [], nieuws: [], agenda: [], presentaties: [] });
+  const [weeklys, setWeeklys] = useState<WeeklyEntry[]>([]);
+  const [presentaties, setPresentaties] = useState<Presentatie[]>([]);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    let cancelled = false;
-    async function loadEntries() {
-      try {
-        const data = await loadAllEntries();
-        if (!cancelled) {
-          setWeeklyEntries(data);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(
-            err instanceof Error
-              ? err.message
-              : "Failed to load weekly markdown content",
-          );
-        }
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    loadEntries();
-
-    return () => {
-      cancelled = true;
-    };
+    fetch("/content/weekly/manifest.json")
+      .then((res) => res.json())
+      .then((data) => setWeeklys(data));
   }, []);
 
-  if (isLoading)
-    return (
-      <>
-        <Container>
-          <div className="pt-4">Loading...</div>
-        </Container>
-      </>
-    );
-
-  if (error)
-    return (
-      <>
-        <Container>
-          <div className="pt-4">Error: {error}</div>
-        </Container>
-      </>
-    );
+  useEffect(() => {
+    fetch("/content/presentaties/manifest.json")
+      .then((res) => res.json())
+      .then((data) => setPresentaties(data));
+  }, []);
 
   return (
-    <>
-      <Container>
-        <div className="pt-4">
-          <Container>
-            <ActueelNav />
-          </Container>
-
-          <ActueelSection
-            title="Weekly"
-            items={weeklyEntries.weekly}
-            emptyText="Er zijn geen weekly berichten beschikbaar."
-            allLink={{ to: "/actueel/weekly", label: "Alle weekly's" }}
-            renderItem={(entry) => (
-              <BlogEntry key={entry.filename} entry={entry} type="weekly" />
-            )}
-          />
-
-          {/*<ActueelSection*/}
-          {/*  title="Agenda"*/}
-          {/*  items={weeklyEntries.agenda}*/}
-          {/*  emptyText="Er zijn geen agenda items beschikbaar."*/}
-          {/*  allLink={{ to: "/actueel/agenda", label: "Alle agenda items" }}*/}
-          {/*  renderItem={(entry) => (*/}
-          {/*    <AgendaItem key={entry.filename} {...entry} />*/}
-          {/*  )}*/}
-          {/*/>*/}
-
-          <ActueelSection
-            title="Presentaties"
-            items={weeklyEntries.presentaties}
-            emptyText="Er zijn nog geen presentaties beschikbaar."
-            allLink={{
-              to: "/actueel/presentaties",
-              label: "Alle presentaties",
-            }}
-            className="mb-10 px-4 pt-2"
-            renderItem={(entry) => (
-              <BlogEntry
-                key={entry.filename}
-                entry={entry}
-                type="presentaties"
-              />
-            )}
-          />
-        </div>
-      </Container>
-    </>
+    <Container>
+      <EntrySection
+        title="Weekly's"
+        entries={weeklys}
+        basePath="/actueel/weekly"
+        emptyMessage="Er zijn geen weekly berichten beschikbaar."
+        viewAllLink="/actueel/weekly"
+        viewAllText="Alle weeklys"
+        limit={6}
+      />
+      <EntrySection
+        title="Presentaties"
+        entries={presentaties}
+        basePath="/actueel/presentaties"
+        emptyMessage="Er zijn geen weekly presentaties beschikbaar."
+        viewAllLink="/actueel/presentaties"
+        viewAllText="Alle presentaties"
+        limit={6}
+      />
+    </Container>
   );
 };
 

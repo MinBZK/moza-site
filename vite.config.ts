@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
+import { Mode, plugin as markdown } from "vite-plugin-markdown";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), nodePolyfills()],
+  plugins: [react(), tailwindcss(), markdown({ mode: [Mode.MARKDOWN] })],
   server: {
     port: 8080,
     strictPort: true,
@@ -16,4 +16,7 @@ export default defineConfig({
     port: 8080,
     strictPort: true,
   },
+  // build: {
+  //   rollupOptions: { external: ["/pagefind/pagefind.js"] },
+  // },
 });

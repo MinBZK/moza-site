@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "node scripts/generate-presentaties-manifest.js && node scripts/generate-weekly-manifest.js && vite",
+    "build": "tsc -b && vite build && node scripts/generate-presentaties-manifest.js && node scripts/generate-weekly-manifest.js && node scripts/index-md.js && pagefind --site dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
-    "gray-matter": "^4.0.3",
+    "pagefind": "^1.4.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
@@ -21,15 +21,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@rijkshuisstijl-community/components-css": "^8.0.1",
-    "@rijkshuisstijl-community/components-react": "^7.1.0",
-    "@rijkshuisstijl-community/design-tokens": "^9.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/reveal.js": "^5.2.2",
-    "@utrecht/component-library-react": "^10.3.9",
     "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -39,7 +35,8 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.3",
-    "vite": "^7.2.2",
+    "vite": "^7.3.1",
+    "vite-plugin-markdown": "^2.2.0",
     "vite-plugin-node-polyfills": "^0.24.0"
   }
 }

@@ -1,9 +1,7 @@
-import "@rijkshuisstijl-community/design-tokens/dist/index.css";
-import "@rijkshuisstijl-community/components-css/dist/index.css";
 import "./styles/index.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Actueel from "./routes/actueel";
-import Detail from "./routes/actueel/[type]/[slug].tsx";
+// import Actueel from "./routes/actueel";
+// import Detail from "./routes/actueel/[type]/[slug].tsx.tsx";
 import OnderwerpenLijst from "./routes/onderwerpen";
 import Profielservice from "./routes/onderwerpen/profielservice.tsx";
 import Portaal from "./routes/onderwerpen/portaal.tsx";
@@ -15,14 +13,18 @@ import { Navbar } from "./components/layout/Navbar.tsx";
 import Contact from "./routes/contact.tsx";
 import NotFound from "./routes/errors/404.tsx";
 import { Container } from "./components/layout/Container.tsx";
-import Presentaties from "./routes/actueel/presentaties/[slug].tsx";
-import Over from "./routes/onderwerpen/over.tsx";
+// import Presentaties from "./routes/actueel/presentaties/[slug].tsx.tsx";
+import Over from "./routes/over.tsx";
 import OpenWerken from "./routes/onderwerpen/openwerken.tsx";
 import Proeftuin from "./routes/onderwerpen/proeftuin.tsx";
 import Ontwerp from "./routes/onderwerpen/ontwerp.tsx";
 import Breadcrumb from "./components/layout/Breadcrumb.tsx";
-import TypeIndex from "./routes/actueel/[type]";
+// import TypeIndex from "./routes/actueel/[type]";
 import { BreadcrumbProvider } from "./context/BreadcrumbContext.tsx";
+import Zoeken from "./routes/zoeken.tsx";
+import Weekly, { WeeklyDetail } from "./routes/actueel/weekly";
+import Presentaties, { PresentatieDetail } from "./routes/actueel/presentaties";
+import Actueel from "./routes/actueel";
 
 function App() {
   return (
@@ -37,12 +39,13 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/actueel" element={<Actueel />} />
               <Route path="/over-MOZa" element={<Over />} />
+              <Route path="/actueel/weekly/" element={<Weekly />} />
+              <Route path="/actueel/weekly/:slug" element={<WeeklyDetail />} />
+              <Route path="/actueel/presentaties/" element={<Presentaties />} />
               <Route
-                path="/actueel/presentaties/:name"
-                element={<Presentaties />}
+                path="/actueel/presentaties/:slug"
+                element={<PresentatieDetail />}
               />
-              <Route path="/actueel/:type/" element={<TypeIndex />} />
-              <Route path="/actueel/:type/:name" element={<Detail />} />
               <Route path="/onderwerpen" element={<OnderwerpenLijst />} />
               <Route
                 path="/onderwerpen/profiel-service"
@@ -56,6 +59,7 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/toegankelijkheid" element={<Toegankelijkheid />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/zoeken" element={<Zoeken />} />
             </Routes>
           </main>
           <footer className="h-auto w-full bg-[#154273] p-4 pb-8">

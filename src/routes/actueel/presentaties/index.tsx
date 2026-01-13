@@ -63,11 +63,11 @@ export const PresentatieDetail = () => {
           // Strip frontmatter
           text = text.replace(/^---[\s\S]*?---/, "");
 
-          // Fix image paths
-          text = text.replace(
-            /src="\/content\//g,
-            'src="/content/presentaties/',
-          );
+          // // Fix image paths
+          // text = text.replace(
+          //   /src="\/content\//g,
+          //   'src="/content/presentaties/',
+          // );
 
           setMarkdown(text);
         }

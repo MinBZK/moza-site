@@ -4,7 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { Mode, plugin as markdown } from "vite-plugin-markdown";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(() => ({
+  base: process.env.VITE_BASE_URL || "/",
   plugins: [react(), tailwindcss(), markdown({ mode: [Mode.MARKDOWN] })],
   server: {
     port: 8080,
@@ -19,4 +20,4 @@ export default defineConfig({
   // build: {
   //   rollupOptions: { external: ["/pagefind/pagefind.js"] },
   // },
-});
+}));

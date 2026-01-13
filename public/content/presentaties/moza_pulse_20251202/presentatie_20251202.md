@@ -21,7 +21,7 @@ date: 02-12-2025
 <section>
   <section class="show-controls">
     <h2>Profiel Service Architectuursessies</h2>
-    <img src="/content/moza_pulse_20251202/architectuur.webp" />
+    <img src="/content/presentaties/moza_pulse_20251202/architectuur.webp" />
   </section>
   <section>
     <h3>Actief samenwerken aan de totstandkoming van de Profiel Service</h3>
@@ -103,7 +103,7 @@ date: 02-12-2025
   </section>
   <section class="show-controls hide-logo">
     <h3>Federatief Datastelsel (FDS)</h3>
-    <img src="/content/moza_pulse_20251202/fds-standaard.jpg" />
+    <img src="/content/presentaties/moza_pulse_20251202/fds-standaard.jpg" />
   </section>
   <section class="show-controls hide-logo">
     <h3>Federatieve Service Connectiviteit (FSC)</h3>
@@ -120,7 +120,7 @@ date: 02-12-2025
   </section>
   <section class="show-controls hide-logo">
     <h3>Federatieve Service Connectiviteit (FSC)</h3>
-    <img src="/content/moza_pulse_20251202/fsc-standaard.png" />
+    <img src="/content/presentaties/moza_pulse_20251202/fsc-standaard.png" />
     - https://simulatie.datastelsel.nl/environments
   </section>
   <section class="show-controls">
@@ -148,7 +148,7 @@ date: 02-12-2025
 <section>
   <section class="show-controls">
     <h2>Aansluiting Profiel Service op GDI standaarden</h2>
-    <img src="/content/moza_pulse_20251202/gdi-standaard.webp" />
+    <img src="/content/presentaties/moza_pulse_20251202/gdi-standaard.webp" />
   </section>
   <section class="show-controls">
     <h3>LDV standaard geïmplementeerd in de Profiel Service</h3>
@@ -185,6 +185,6 @@ date: 02-12-2025
 </section>
 <section class="show-controls">
   <h2>Demo</h2>
-  <img src="/content/moza_pulse_20251202/demo.jpg" />
+  <img src="/content/presentaties/moza_pulse_20251202/demo.jpg" />
   <p>Laat maar zien dan!</p>
 </section>

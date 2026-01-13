@@ -1,10 +1,12 @@
 {{ define "main" }}
 <article>
   <h1>{{ .Title }}</h1>
+  {{ .Params.card_link }}
   {{ .Content }}
 </article>
 {{- $toc := .TableOfContents -}}
 {{ if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) }}
+
 <aside class="toc">
   <h2>Op deze pagina</h2>
   {{ $toc }}

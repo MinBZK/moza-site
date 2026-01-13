@@ -998,3 +998,12 @@ footer {
     }
   }
 }
+a[href$=".pdf"]::before {
+  background: url("../images/icon-pdf.svg") no-repeat left center;
+  background-size: 1em 1em;
+  content: '';
+  display: inline-block;
+  height: 1em;
+  margin-right: .5em;
+  width: 1em;
+}

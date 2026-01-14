@@ -10,7 +10,4 @@
   {{ with .Params.card_description | default .Params.description }}
   <p>{{ . }}</p>
   {{ end }}
-  {{ with .Params.card_link }}
-  <a href="{{ . }}">{{ $.Params.card_link_description }}</a>
-  {{ end }}
 </div>

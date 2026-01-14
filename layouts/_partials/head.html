@@ -23,6 +23,5 @@
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
-{{ $icon := resources.Get "css/components/icon.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $icon | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />

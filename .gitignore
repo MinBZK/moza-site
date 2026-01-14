@@ -15,6 +15,3 @@ tmp
 
 # Windows
 Thumbs.db
-
-# Node modules
-node_modules/*

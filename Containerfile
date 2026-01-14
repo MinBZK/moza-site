@@ -18,8 +18,11 @@ RUN if [ -n "$BASE_URL" ]; then \
     fi
 
 FROM nginx:stable-alpine
+
+COPY --from=builder /app/public /usr/share/nginx/html
+
 RUN echo 'server { \
-    listen 80; \
+    listen 8080; \
     server_name localhost; \
     root /usr/share/nginx/html; \
     index index.html; \
@@ -31,4 +34,5 @@ RUN echo 'server { \
         try_files $uri $uri/ =404; \
     } \
 }' > /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/public /usr/share/nginx/html
+
+EXPOSE 8080

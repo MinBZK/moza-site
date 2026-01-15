@@ -183,10 +183,62 @@ header {
 
       .navbar-right {
         margin-left: auto;
+        display: flex;
+        align-items: center;
 
         li {
           margin-right: 0;
           margin-left: 1.5rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .theme-toggle {
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          color: var(--color-text-inverse);
+          cursor: pointer;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.2s, border-color 0.2s;
+
+          &:hover, &:focus-visible {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            outline: none;
+          }
+
+          &:focus-visible {
+            box-shadow: 0 0 0 2px var(--color-text-inverse);
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          .sun { display: none; }
+          .moon { display: block; }
+        }
+      }
+    }
+
+    /* Theme-specific icon visibility */
+    :root[data-theme="dark"] & {
+      .theme-toggle {
+        .sun { display: block; }
+        .moon { display: none; }
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) & {
+        .theme-toggle {
+          .sun { display: block; }
+          .moon { display: none; }
         }
       }
     }
@@ -238,6 +290,24 @@ header {
         display: flex;
         align-items: baseline;
         padding: 0.75rem 0;
+      }
+
+      .mobile-theme-toggle {
+        .theme-toggle {
+          width: 100%;
+          background: transparent;
+          border: none;
+          color: var(--color-text-inverse);
+          font-size: 1.25rem;
+          padding: 0.75rem 0;
+          text-align: left;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          .sun { display: none; }
+          .moon { display: block; }
+        }
       }
     }
 

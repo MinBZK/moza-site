@@ -1,0 +1,19 @@
+{{- if eq .Type "alert" -}}
+<blockquote class="callout">
+  {{- if or (eq .AlertType "info") .AlertTitle }}
+  <header>
+    {{- if eq .AlertType "info" }}
+    <img src="{{ relURL "images/icons/info.svg" }}" alt="Info icon">
+    {{- end }}
+    {{- with .AlertTitle }}<span class="title">{{ . }}</span>{{ end }}
+  </header>
+  {{- end }}
+  <div class="content">
+    {{ .Text }}
+  </div>
+</blockquote>
+{{- else -}}
+<blockquote class="quote">
+  {{ .Text }}
+</blockquote>
+{{- end -}}

@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{- $titles := slice -}}
+{{- $duplicates := slice -}}
+{{- range .RegularPagesRecursive -}}
+  {{- if in $titles .Title -}}
+    {{- $duplicates = $duplicates | append .Title -}}
+  {{- else -}}
+    {{- $titles = $titles | append .Title -}}
+  {{- end -}}
+{{- end -}}
+{{- if gt (len $duplicates) 0 -}}
+  {{- errorf "Duplicate titles found for MOZa Weekly: %s" (delimit $duplicates ", ") -}}
+{{- end -}}
+
+<section class="article-layout">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{ range .RegularPagesRecursive.ByDate.Reverse }}
+  <article class="box">
+    <header>
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </header>
+    <div class="content">
+      {{ $content := .RawContent }}
+      {{ $lines := split $content "\n" }}
+      {{ $preview := slice }}
+      {{ $lineCount := 0 }}
+      {{ $charCount := 0 }}
+      {{ $maxLines := 10 }}
+      {{ $maxChars := 500 }}
+      {{ range $lines }}
+        {{ if and (lt $lineCount $maxLines) (lt $charCount $maxChars) (ne . "") }}
+          {{ $preview = $preview | append . }}
+          {{ $lineCount = add $lineCount 1 }}
+          {{ $charCount = add $charCount (len .) }}
+        {{ end }}
+      {{ end }}
+      {{ delimit $preview "\n" | markdownify }}
+    </div>
+    <a href="{{ .RelPermalink }}" class="button-outline" aria-label="Lees meer over {{ .Title }}">Lees meer</a>
+  </article>
+  {{ end }}
+</section>
+{{ end }}

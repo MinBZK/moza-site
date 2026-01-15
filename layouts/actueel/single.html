@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="sidebar-layout">
+  {{/* Linker kolom: Laatste MOZa Weekly */}}
+  <div>
+    <h1>De laatste MOZa Weekly</h1>
+    <p>
+      <a href="{{ relURL "weekly/" }}">Of lees eerdere MOZa Weekly's</a>
+    </p>
+    {{ $weekly := where .Site.RegularPages "Section" "weekly" }}
+    {{ $weekly = sort $weekly ".Date" "desc" }}
+    {{ with index $weekly 0 }}
+    <article class="box">
+      <header>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      </header>
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+  {{/* Rechter kolom: Presentaties lijst */}}
+  <aside>
+    <h2>Presentaties</h2>
+    {{ $presentaties := where .Site.RegularPages "Section" "presentaties" }}
+    {{ $presentaties = sort $presentaties ".Date" "desc" }}
+    <ul class="list">
+      {{ range $presentaties }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </aside>
+</section>
+{{ end }}

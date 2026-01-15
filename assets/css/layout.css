@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-page);
+}
+
+/* Skip link voor accessibility om direct naar de inhoud te gaan */
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  background: var(--color-rijks-blauw);
+  color: var(--color-text-inverse);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+main {
+  flex-grow: 1;
+}
+
+main > section,
+main > article,
+main > .content {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main > section,
+main > article,
+main > .content {
+  padding: 1rem;
+  padding-top: 0;
+}
+
+main > article {
+  > * {
+    max-width: var(--article-max-width);
+  }
+}
+
+/* Sidebar layout - grid met hoofdcontent en zijbalk */
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.sidebar-layout > aside :is(h1, h2) {
+  margin-top: 1rem;
+}
+
+/* Article layout - smalle, gecentreerde content voor leesbaarheid */
+.article-layout {
+  max-width: var(--article-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body:has(main > .article-layout) .breadcrumb {
+  max-width: var(--article-max-width);
+}
+
+/* Artikel met inhoudsopgave (TOC) */
+main:has(.toc) {
+  .toc {
+    display: none;
+  }
+
+  @media (min-width: 950px) {
+    max-width: var(--content-max-width);
+    display: grid;
+    grid-template-columns: var(--article-max-width) calc(
+        min(100vw, var(--content-max-width)) - var(--article-max-width) - 1rem
+      );
+    gap: 1rem;
+    margin: 0 auto;
+
+    .toc {
+      display: block;
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+      width: 100%;
+      font-size: 0.9rem;
+
+      h2 {
+        margin: 0 0 0.5rem;
+        padding-top: 1rem;
+        font-size: 1rem;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 0;
+
+        ul {
+          padding-left: 1rem;
+        }
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      a {
+        color: var(--color-text-muted);
+        text-decoration: none;
+
+        &.active {
+          color: var(--color-primary);
+          font-weight: 600;
+        }
+
+        &:hover {
+          color: var(--color-primary);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

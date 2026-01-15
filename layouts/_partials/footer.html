@@ -1,0 +1,11 @@
+<footer>
+  <p class="tagline">Eén Overheid. Voor iedereen!</p>
+  <nav aria-label="Footer navigatie">
+    <h2>Over deze site</h2>
+    <ul>
+      {{ range .Site.Menus.footer }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+</footer>

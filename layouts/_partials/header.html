@@ -1,0 +1,90 @@
+<header>
+  <div class="banner">
+    <div class="site-info">
+      <p class="title">
+        {{ if not .IsHome }}<a href="/">{{ end }}MijnOverheid Zakelijk{{ if not .IsHome }}</a>{{ end }}
+      </p>
+      <p class="tagline">Makkelijk zaken doen met de overheid</p>
+    </div>
+    <div class="site-logo">
+      {{ if .IsHome }}
+      <img src="{{ relURL "images/logo-rijksoverheid.svg" }}" alt="Logo Rijksoverheid" />
+      {{ else }}
+      <a href="/" tabindex="-1" aria-hidden="true">
+        <img src="{{ relURL "images/logo-rijksoverheid.svg" }}" alt="Logo Rijksoverheid" />
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+  <nav class="navbar" aria-label="Hoofdnavigatie">
+    {{ if .IsHome }}
+    <span class="title">MijnOverheid Zakelijk</span>
+    {{ else }}
+    <a href="/" class="title">MijnOverheid Zakelijk</a>
+    {{ end }}
+
+    <div class="menu">
+      <ul>
+        {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}" data-text="{{ .Name }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      <ul class="navbar-right">
+        {{ range .Site.Menus.secondary }}
+        <li><a href="{{ .URL }}" target="_blank" rel="external noopener noreferrer">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+
+    <button
+      type="button"
+      class="toggle"
+      aria-label="Menu openen"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      onclick="
+        const expanded = this.getAttribute('aria-expanded') === 'false';
+        this.setAttribute('aria-expanded', expanded);
+        this.setAttribute('aria-label', expanded ? 'Menu sluiten' : 'Menu openen');
+      "
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div id="mobile-menu" class="mobile" role="navigation" aria-label="Mobiel menu">
+      <ul>
+        {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+        {{ range .Site.Menus.secondary }}
+        <li><a href="{{ .URL }}" target="_blank" rel="external noopener noreferrer">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </nav>
+
+  {{ if not .IsHome }}
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Home</a>
+        <span class="separator" aria-hidden="true"></span>
+      </li>
+      {{ range .Ancestors.Reverse }}
+      {{ if not .IsHome }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="separator" aria-hidden="true"></span>
+      </li>
+      {{ end }}
+      {{ end }}
+      <li>
+        <span class="current" aria-current="page">{{ .Title }}</span>
+      </li>
+    </ol>
+  </nav>
+  {{ end }}
+</header>

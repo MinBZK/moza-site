@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="hero">
+  {{ with .Params.hero }}
+  {{ $hero := resources.Get .image }}
+  {{ $heroWebp := $hero.Resize "4000x webp q80" }}
+  <img src="{{ $heroWebp.RelPermalink }}" alt="{{ .image_alt }}" width="{{ $heroWebp.Width }}" height="{{ $heroWebp.Height }}">
+  <div class="content">
+    <h1>{{ .title }}</h1>
+    <p>{{ .text }}</p>
+  </div>
+  {{ end }}
+</div>
+
+<div class="content">
+{{ .Content }}
+</div>
+{{ end }}

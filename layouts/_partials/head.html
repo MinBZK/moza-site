@@ -1,0 +1,27 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+  {{ if .IsHome }}{{ .Site.Title }}{{ else if .Title }}{{ .Title }} | {{
+  .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
+</title>
+<meta
+  name="description"
+  content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+/>
+<link rel="icon" href="{{ relURL "favicon.ico" }}" type="image/x-icon" />
+
+{{/* CSS bundling via Hugo's asset pipeline */}}
+{{ $tokens := resources.Get "css/tokens.css" }}
+{{ $fonts := resources.Get "css/fonts.css" }}
+{{ $base := resources.Get "css/base.css" }}
+{{ $layout := resources.Get "css/layout.css" }}
+{{ $header := resources.Get "css/components/header.css" }}
+{{ $hero := resources.Get "css/components/hero.css" }}
+{{ $cardGrid := resources.Get "css/components/card-grid.css" }}
+{{ $box := resources.Get "css/components/box.css" }}
+{{ $button := resources.Get "css/components/button.css" }}
+{{ $blockquote := resources.Get "css/components/blockquote.css" }}
+{{ $list := resources.Get "css/components/list.css" }}
+{{ $footer := resources.Get "css/components/footer.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />

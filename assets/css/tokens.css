@@ -1,0 +1,64 @@
+:root {
+  /* Layout */
+  --content-max-width: 1100px;
+  --article-max-width: 800px;
+  --navbar-height: 55px;
+
+  /* Primaire kleuren */
+  --color-rijks-blauw: #154273;
+  --color-rijks-oranje: #e17000;
+  --color-primary: var(--color-rijks-blauw);
+  --color-link: #01689b;
+
+  /* Achtergrondkleuren */
+  --color-bg-page: #ffffff;
+  --color-bg-hero: rgba(220, 227, 234, 0.9);
+  --color-bg-info: #d9ebf7;
+  --color-bg-muted: #f3f3f3;
+  --color-bg-light: #eff7fc;
+
+  /* Tekstkleuren */
+  --color-text: #0f172a;
+  --color-text-heading: #0f172a;
+  --color-text-muted: #334155;
+  --color-text-inverse: #ffffff;
+  /* Border kleur */
+  --color-border: #e2e8f0;
+
+  /* Typography */
+  --font-sans: "RO-Sans", "Fira Sans", Arial, sans-serif;
+  --font-serif: "RO-Serif", "Times New Roman", serif;
+
+  /* Font size */
+  --text-base: 1rem;
+
+  /* Border radius */
+  --radius-upper-left: 2rem 0 0 0;
+  --radius-upper-right: 0 2rem 0 0;
+  --radius-bottom-right: 0 0 2rem 0;
+  --radius-bottom-left: 0 0 0 2rem;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primaire kleuren */
+    --color-primary: #80d5fc;
+    --color-link: #93dcfa;
+
+    /* Achtergrondkleuren */
+    --color-bg-page: #0f172a;
+    --color-bg-hero: rgba(30, 41, 59, 0.95);
+    --color-bg-info: #1e3a5f;
+    --color-bg-muted: #1e293b;
+    --color-bg-light: #1e293b;
+
+    /* Tekstkleuren */
+    --color-text: #e2e8f0;
+    --color-text-heading: #f1f5f9;
+    --color-text-muted: #b8c4d0;
+
+    /* Border kleur */
+    --color-border: #334155;
+  }
+}

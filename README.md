@@ -95,7 +95,7 @@ podman build --build-arg BASE_URL=https://mijnoverheidzakelijk.nl -t moza-site .
 Container draaien:
 
 ```bash
-podman run -p 8080:80 moza-site
+podman run -p 8080:8080 moza-site
 ```
 
 De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).

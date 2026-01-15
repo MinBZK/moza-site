@@ -25,3 +25,6 @@
 {{ $footer := resources.Get "css/components/footer.css" }}
 {{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+
+{{ $themeToggle := resources.Get "js/theme-toggle.js" | resources.Minify | fingerprint }}
+<script src="{{ $themeToggle.RelPermalink }}"></script>

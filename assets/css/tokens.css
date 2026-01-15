@@ -40,8 +40,29 @@
 }
 
 /* Dark mode */
+:root[data-theme="dark"] {
+  /* Primaire kleuren */
+  --color-primary: #80d5fc;
+  --color-link: #93dcfa;
+
+  /* Achtergrondkleuren */
+  --color-bg-page: #0f172a;
+  --color-bg-hero: rgba(30, 41, 59, 0.95);
+  --color-bg-info: #1e3a5f;
+  --color-bg-muted: #1e293b;
+  --color-bg-light: #1e293b;
+
+  /* Tekstkleuren */
+  --color-text: #e2e8f0;
+  --color-text-heading: #f1f5f9;
+  --color-text-muted: #b8c4d0;
+
+  /* Border kleur */
+  --color-border: #334155;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     /* Primaire kleuren */
     --color-primary: #80d5fc;
     --color-link: #93dcfa;

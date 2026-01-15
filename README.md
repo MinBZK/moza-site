@@ -1,4 +1,4 @@
-# MijnOverheid Zakelijk - Landingspagina
+# MijnOverheid Zakelijk Site
 
 In deze repository beheren we de website en content van [mijnoverheidzakelijk.nl](https://mijnoverheidzakelijk.nl).
 De site wordt gegenereerd met [Hugo](https://gohugo.io/).
@@ -15,7 +15,7 @@ Installeer Hugo door de [officiële installatie-instructies](https://gohugo.io/i
 hugo server
 ```
 
-De site is dan beschikbaar op [http://localhost:1313/](http://localhost:1313/).
+De site is dan beschikbaar op [http://localhost:1313/](http://localhost:1313/) (of de host zoals vermeld in de terminal).
 
 ## Content toevoegen
 
@@ -26,6 +26,8 @@ Voeg een nieuwe weekly toe met:
 ```bash
 hugo new content weekly/2026/2026-01-01.md
 ```
+
+Of door een bestand in de juiste `content > weekly > jjjj` map te plaatsen.
 
 ### Presentatie
 

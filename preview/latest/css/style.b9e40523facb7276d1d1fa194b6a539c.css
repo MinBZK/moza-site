@@ -126,6 +126,19 @@
   font-style: italic;
   font-display: swap;
 }
+/* Verberg tekst visueel, maar houd toegankelijk voor screenreaders */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  user-select: none;
+}
+
 body {
   font-family: var(--font-sans);
   font-size: 1.2rem;
@@ -199,10 +212,19 @@ a[rel~="external"]::after {
   width: 0.75em;
   height: 0.75em;
   margin-left: 0.25em;
-  background-image: url("/moza-site/preview/latest/images/icons/externe-link.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: currentColor;
+  mask-image: url("/moza-site/preview/latest/images/icons/externe-link.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
   vertical-align: inherit;
+}
+
+a[rel~="private"]::after {
+  width: 1em;
+  height: 1em;
+  margin-left: 0.1em;
+  vertical-align: -0.15em;
+  mask-image: url("/moza-site/preview/latest/images/icons/lock.svg");
 }
 
 p + ul,
@@ -548,10 +570,6 @@ header {
       &.active {
         font-weight: 700;
         text-decoration: underline;
-      }
-
-      &[rel~="external"]::after {
-        background-image: url("/moza-site/preview/latest/images/icons/externe-link-inverse.svg");
       }
     }
 

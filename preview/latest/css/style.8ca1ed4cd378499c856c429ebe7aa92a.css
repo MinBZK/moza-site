@@ -40,8 +40,29 @@
 }
 
 /* Dark mode */
+:root[data-theme="dark"] {
+  /* Primaire kleuren */
+  --color-primary: #80d5fc;
+  --color-link: #93dcfa;
+
+  /* Achtergrondkleuren */
+  --color-bg-page: #0f172a;
+  --color-bg-hero: rgba(30, 41, 59, 0.95);
+  --color-bg-info: #1e3a5f;
+  --color-bg-muted: #1e293b;
+  --color-bg-light: #1e293b;
+
+  /* Tekstkleuren */
+  --color-text: #e2e8f0;
+  --color-text-heading: #f1f5f9;
+  --color-text-muted: #b8c4d0;
+
+  /* Border kleur */
+  --color-border: #334155;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     /* Primaire kleuren */
     --color-primary: #80d5fc;
     --color-link: #93dcfa;
@@ -64,7 +85,7 @@
 }
 @font-face {
   font-family: "RO-Sans";
-  src: url("/moza-landingspagina/preview/latest/fonts/ROsanswebtextregular.woff") format("woff");
+  src: url("/moza-site/preview/latest/fonts/ROsanswebtextregular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -72,7 +93,7 @@
 
 @font-face {
   font-family: "RO-Sans";
-  src: url("/moza-landingspagina/preview/latest/fonts/ROsanswebtextbold.woff") format("woff");
+  src: url("/moza-site/preview/latest/fonts/ROsanswebtextbold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -80,7 +101,7 @@
 
 @font-face {
   font-family: "RO-Sans";
-  src: url("/moza-landingspagina/preview/latest/fonts/ROsanswebtextitalic.woff") format("woff");
+  src: url("/moza-site/preview/latest/fonts/ROsanswebtextitalic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -89,8 +110,8 @@
 @font-face {
   font-family: "RO-Serif";
   src:
-    url("/moza-landingspagina/preview/latest/fonts/RO-SerifWeb-Regular.woff2") format("woff2"),
-    url("/moza-landingspagina/preview/latest/fonts/RO-SerifWeb-Regular.woff") format("woff");
+    url("/moza-site/preview/latest/fonts/RO-SerifWeb-Regular.woff2") format("woff2"),
+    url("/moza-site/preview/latest/fonts/RO-SerifWeb-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -99,8 +120,8 @@
 @font-face {
   font-family: "RO-Serif";
   src:
-    url("/moza-landingspagina/preview/latest/fonts/RO-SerifWeb-Italic.woff2") format("woff2"),
-    url("/moza-landingspagina/preview/latest/fonts/RO-SerifWeb-Italic.woff") format("woff");
+    url("/moza-site/preview/latest/fonts/RO-SerifWeb-Italic.woff2") format("woff2"),
+    url("/moza-site/preview/latest/fonts/RO-SerifWeb-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -178,7 +199,7 @@ a[rel~="external"]::after {
   width: 0.75em;
   height: 0.75em;
   margin-left: 0.25em;
-  background-image: url("/moza-landingspagina/preview/latest/images/icons/externe-link.svg");
+  background-image: url("/moza-site/preview/latest/images/icons/externe-link.svg");
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: inherit;
@@ -530,7 +551,7 @@ header {
       }
 
       &[rel~="external"]::after {
-        background-image: url("/moza-landingspagina/preview/latest/images/icons/externe-link-inverse.svg");
+        background-image: url("/moza-site/preview/latest/images/icons/externe-link-inverse.svg");
       }
     }
 
@@ -587,10 +608,62 @@ header {
 
       .navbar-right {
         margin-left: auto;
+        display: flex;
+        align-items: center;
 
         li {
           margin-right: 0;
           margin-left: 1.5rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .theme-toggle {
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          color: var(--color-text-inverse);
+          cursor: pointer;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.2s, border-color 0.2s;
+
+          &:hover, &:focus-visible {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            outline: none;
+          }
+
+          &:focus-visible {
+            box-shadow: 0 0 0 2px var(--color-text-inverse);
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          .sun { display: none; }
+          .moon { display: block; }
+        }
+      }
+    }
+
+    /* Theme-specific icon visibility */
+    :root[data-theme="dark"] & {
+      .theme-toggle {
+        .sun { display: block; }
+        .moon { display: none; }
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) & {
+        .theme-toggle {
+          .sun { display: block; }
+          .moon { display: none; }
         }
       }
     }
@@ -642,6 +715,24 @@ header {
         display: flex;
         align-items: baseline;
         padding: 0.75rem 0;
+      }
+
+      .mobile-theme-toggle {
+        .theme-toggle {
+          width: 100%;
+          background: transparent;
+          border: none;
+          color: var(--color-text-inverse);
+          font-size: 1.25rem;
+          padding: 0.75rem 0;
+          text-align: left;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          .sun { display: none; }
+          .moon { display: block; }
+        }
       }
     }
 

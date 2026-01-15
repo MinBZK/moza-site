@@ -15,7 +15,10 @@
   {{- end -}}
 {{- end -}}
 {{- $isExternal := and $u.IsAbs (hasPrefix $u.Scheme "http") -}}
-{{- if $isExternal -}}
+{{- $isPrivate := and $isExternal (strings.Contains $u.Host "samenwerkruimten.nl") -}}
+{{- if $isPrivate -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="external private noopener noreferrer">{{ .Text }}<span class="visually-hidden"> (besloten omgeving)</span></a>
+{{- else if $isExternal -}}
 <a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="external noopener noreferrer">{{ .Text }}</a>
 {{- else -}}
 <a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>

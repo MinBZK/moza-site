@@ -118,3 +118,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 ├── static/              # Statische bestanden (worden 1-op-1 gekopieerd)
 └── hugo.yaml            # Hugo configuratie
 ```
+
+## Credits
+
+- Iconen: [Tabler Icons](https://tabler.io/icons) (MIT licentie)

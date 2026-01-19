@@ -1,6 +1,6 @@
 FROM alpine:3.21 AS builder
 
-ARG HUGO_VERSION=0.153.5
+ARG HUGO_VERSION=0.154.4
 
 RUN apk add --no-cache wget \
     && wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz \

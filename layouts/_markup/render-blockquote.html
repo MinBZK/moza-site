@@ -1,7 +1,7 @@
 {{- if eq .Type "alert" -}}
-<blockquote class="callout">
+<blockquote class="mox-atom-box mox-backgroundColor-secondary-subtle-2 mox-padding-3xs">
   {{- if or (eq .AlertType "info") .AlertTitle }}
-  <header>
+  <header class="mox-stack">
     {{- if eq .AlertType "info" }}
     <img src="{{ relURL "images/icons/info.svg" }}" alt="Info icon">
     {{- end }}

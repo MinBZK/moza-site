@@ -10,6 +10,9 @@
 />
 <link rel="icon" href="{{ relURL "favicon.ico" }}" type="image/x-icon" />
 
+<link rel="stylesheet" href="{{ "moxCss/tokens.css" | relURL }}" />
+<link rel="stylesheet" href="{{ "moxCss/index.css" | relURL }}" />
+
 {{/* CSS bundling via Hugo's asset pipeline */}}
 {{ $tokens := resources.Get "css/tokens.css" }}
 {{ $fonts := resources.Get "css/fonts.css" }}

@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   /* Layout */
   --content-max-width: 1100px;
   --article-max-width: 800px;
@@ -7,23 +9,25 @@
   /* Primaire kleuren */
   --color-rijks-blauw: #154273;
   --color-rijks-oranje: #e17000;
-  --color-primary: var(--color-rijks-blauw);
-  --color-link: #01689b;
+  --color-primary: light-dark(var(--color-rijks-blauw), #80d5fc);
+  --color-link: light-dark(#01689b, #93dcfa);
 
   /* Achtergrondkleuren */
-  --color-bg-page: #ffffff;
-  --color-bg-hero: rgba(220, 227, 234, 0.9);
-  --color-bg-info: #d9ebf7;
-  --color-bg-muted: #f3f3f3;
-  --color-bg-light: #eff7fc;
+  --color-bg-page: light-dark(#ffffff, #0f172a);
+  --color-bg-hero: light-dark(rgba(220, 227, 234, 0.9), rgba(30, 41, 59, 0.95));
+  --color-bg-info: light-dark(#d9ebf7, #1e3a5f);
+  --color-bg-muted: light-dark(#f3f3f3, #1e293b);
+  --color-bg-light: light-dark(#eff7fc, #1e293b);
 
   /* Tekstkleuren */
-  --color-text: #0f172a;
-  --color-text-heading: #0f172a;
-  --color-text-muted: #334155;
+  --color-text: light-dark(#0f172a, #e2e8f0);
+  --color-text-heading: light-dark(#0f172a, #f1f5f9);
+  --color-text-muted: light-dark(#334155, #b8c4d0);
   --color-text-inverse: #ffffff;
+  --color-text-on-primary: light-dark(#ffffff, #154273);
+
   /* Border kleur */
-  --color-border: #e2e8f0;
+  --color-border: light-dark(#e2e8f0, #334155);
 
   /* Highlight kleur voor zoekresultaten */
   --color-highlight: #fef08a;
@@ -43,47 +47,10 @@
   --radius-bottom-left: 0 0 0 2rem;
 }
 
-/* Dark mode */
-:root[data-theme="dark"] {
-  /* Primaire kleuren */
-  --color-primary: #80d5fc;
-  --color-link: #93dcfa;
-
-  /* Achtergrondkleuren */
-  --color-bg-page: #0f172a;
-  --color-bg-hero: rgba(30, 41, 59, 0.95);
-  --color-bg-info: #1e3a5f;
-  --color-bg-muted: #1e293b;
-  --color-bg-light: #1e293b;
-
-  /* Tekstkleuren */
-  --color-text: #e2e8f0;
-  --color-text-heading: #f1f5f9;
-  --color-text-muted: #b8c4d0;
-
-  /* Border kleur */
-  --color-border: #334155;
+:root[data-theme="light"] {
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    /* Primaire kleuren */
-    --color-primary: #80d5fc;
-    --color-link: #93dcfa;
-
-    /* Achtergrondkleuren */
-    --color-bg-page: #0f172a;
-    --color-bg-hero: rgba(30, 41, 59, 0.95);
-    --color-bg-info: #1e3a5f;
-    --color-bg-muted: #1e293b;
-    --color-bg-light: #1e293b;
-
-    /* Tekstkleuren */
-    --color-text: #e2e8f0;
-    --color-text-heading: #f1f5f9;
-    --color-text-muted: #b8c4d0;
-
-    /* Border kleur */
-    --color-border: #334155;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }

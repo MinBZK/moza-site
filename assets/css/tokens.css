@@ -25,6 +25,10 @@
   /* Border kleur */
   --color-border: #e2e8f0;
 
+  /* Highlight kleur voor zoekresultaten */
+  --color-highlight: #fef08a;
+  --color-highlight-text: #0f172a;
+
   /* Typography */
   --font-sans: "RO-Sans", "Fira Sans", Arial, sans-serif;
   --font-serif: "RO-Serif", "Times New Roman", serif;

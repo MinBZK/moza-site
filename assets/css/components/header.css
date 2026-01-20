@@ -114,10 +114,15 @@ header {
       color: var(--color-text-inverse);
       text-decoration: none;
 
-      &:hover,
-      &:focus {
+      &:hover {
         color: var(--color-text-inverse);
         text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-text-inverse);
+        outline-offset: 2px;
+        text-decoration: none;
       }
 
       &.active {
@@ -184,7 +189,7 @@ header {
 
         li {
           margin-right: 0;
-          margin-left: 1.5rem;
+          margin-left: 0.75rem;
           display: flex;
           align-items: center;
         }
@@ -201,14 +206,14 @@ header {
           justify-content: center;
           transition: background-color 0.2s, border-color 0.2s;
 
-          &:hover, &:focus-visible {
+          &:hover {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.5);
-            outline: none;
           }
 
           &:focus-visible {
-            box-shadow: 0 0 0 2px var(--color-text-inverse);
+            outline: 2px solid var(--color-text-inverse);
+            outline-offset: 2px;
           }
 
           svg {
@@ -218,6 +223,38 @@ header {
 
           .sun { display: none; }
           .moon { display: block; }
+        }
+
+        .search-trigger {
+          background: transparent;
+          border-color: rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          color: var(--color-text-inverse);
+          padding: 4px 0.5rem;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--color-text-inverse);
+            outline-offset: 2px;
+          }
+
+          .search-icon {
+            color: var(--color-text-inverse);
+          }
+
+          .search-trigger-text {
+            color: var(--color-text-inverse);
+          }
+
+          .search-shortcut {
+            background-color: transparent;
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--color-text-inverse);
+          }
         }
       }
     }

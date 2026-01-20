@@ -42,14 +42,6 @@ menus:
       pageRef: /contact
       weight: 5
 
-  secondary:
-    - name: Technische documentatie
-      url: https://docs.mijnoverheidzakelijk.nl
-      weight: 1
-    - name: GitHub
-      url: https://github.com/topics/mijnoverheidzakelijk
-      weight: 2
-
   footer:
     - name: Privacy
       pageRef: /privacy
@@ -57,3 +49,9 @@ menus:
     - name: Toegankelijkheid
       pageRef: /toegankelijkheid
       weight: 2
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON

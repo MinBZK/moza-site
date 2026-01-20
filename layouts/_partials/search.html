@@ -1,0 +1,23 @@
+<dialog id="search-modal" class="search-modal" aria-label="Zoeken">
+  <div class="search-modal-content">
+    <div class="search-modal-header">
+      {{- partial "icon.html" "search" -}}
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="Zoeken..."
+        aria-label="Zoek op de website"
+        autocomplete="off"
+        autofocus
+      />
+    </div>
+    <div class="search-filters" role="group" aria-label="Filter op sectie">
+      <button type="button" class="search-filter active" data-section="" aria-pressed="true">Alles</button>
+      <button type="button" class="search-filter" data-section="weekly" aria-pressed="false">MOZa Weekly</button>
+      <button type="button" class="search-filter" data-section="onderwerpen" aria-pressed="false">Onderwerpen</button>
+      <button type="button" class="search-filter" data-section="presentaties" aria-pressed="false">Presentaties</button>
+    </div>
+    <div id="search-results" class="search-results" role="listbox" aria-label="Zoekresultaten" aria-live="polite"></div>
+  </div>
+</dialog>

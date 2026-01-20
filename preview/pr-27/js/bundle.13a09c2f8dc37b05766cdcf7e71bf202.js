@@ -99,7 +99,8 @@ var e,t;e=this,t=function(){"use strict";function e(e,t){var n=Object.keys(e);if
       return Promise.resolve();
     }
 
-    return fetch('/index.json')
+    var searchIndexUrl = searchModal.dataset.searchIndex || '/index.json';
+    return fetch(searchIndexUrl)
       .then(function (response) {
         return response.json();
       })

@@ -62,7 +62,8 @@
       return Promise.resolve();
     }
 
-    return fetch('/index.json')
+    var searchIndexUrl = searchModal.dataset.searchIndex || '/index.json';
+    return fetch(searchIndexUrl)
       .then(function (response) {
         return response.json();
       })

@@ -1,38 +1,39 @@
-.button,
-.button-outline {
+/* Standaard button styling - geldt voor alle <button> elementen */
+button,
+.button {
   display: inline-block;
   padding: 0.5rem 1.5rem;
+  font: inherit;
   font-weight: 600;
   text-decoration: none;
-  border: 2px solid var(--color-primary);
   border-radius: 0.25rem;
   cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  color: light-dark(var(--color-text), var(--color-bg-page));
+  border: 1px solid light-dark(var(--color-bg-info), var(--color-text));
 
   &:hover {
     text-decoration: none;
   }
 
+  &:hover,
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    background-color: var(--color-rijks-blauw);
+    border-color: var(--color-rijks-blauw);
+    color: var(--color-text-inverse);
+    outline: none;
   }
 }
 
-.button {
-  background-color: var(--color-primary);
-  color: var(--color-text-on-primary);
-
-  &:hover {
-    background-color: var(--color-bg-page);
-    color: var(--color-primary);
-  }
-}
-
+/* Outline variant */
 .button-outline {
-  background-color: var(--color-bg-page);
+  background-color: transparent;
   color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: var(--color-primary);
     color: var(--color-text-on-primary);
   }

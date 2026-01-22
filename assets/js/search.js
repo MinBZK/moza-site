@@ -121,7 +121,7 @@
 
   function displayResults(results, query) {
     if (results.length === 0) {
-      searchResults.innerHTML = '<div class="search-no-results">Geen resultaten gevonden voor "' + escapeHtml(query) + '"</div>';
+      searchResults.innerHTML = '<li class="search-no-results">Geen resultaten gevonden voor "' + escapeHtml(query) + '"</li>';
       return;
     }
 
@@ -135,11 +135,12 @@
       }
 
       var url = buildSearchUrl(item.url, query);
-      return '<a href="' + url + '" class="search-result-item" role="option" tabindex="' + (i === 0 ? '0' : '-1') + '">' +
+      return '<li>' +
+        '<a href="' + url + '" class="search-result-item" tabindex="' + (i === 0 ? '0' : '-1') + '">' +
         '<span class="search-result-title">' + highlightQuery(item.title, query) + '</span>' +
-        '<span class="search-result-section">' + escapeHtml(item.section || 'Pagina') + '</span>' +
         snippetHtml +
-        '</a>';
+        '</a>' +
+        '</li>';
     }).join('');
 
     searchResults.innerHTML = html;

@@ -30,8 +30,8 @@
   --color-border: light-dark(#e2e8f0, #334155);
 
   /* Highlight kleur voor zoekresultaten */
-  --color-highlight: #fef08a;
-  --color-highlight-text: #0f172a;
+  --color-highlight: var(--color-bg-info);
+  --color-highlight-text: inherit;
 
   /* Typography */
   --font-sans: "RO-Sans", "Fira Sans", Arial, sans-serif;

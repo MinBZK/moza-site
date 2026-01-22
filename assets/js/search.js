@@ -6,7 +6,7 @@
   var searchModal;
   var searchInput;
   var searchResults;
-  var searchTrigger;
+  var searchTriggers;
   var activeFilter = '';
 
   var fuseOptions = {
@@ -25,7 +25,7 @@
     searchModal = document.getElementById('search-modal');
     searchInput = document.getElementById('search-input');
     searchResults = document.getElementById('search-results');
-    searchTrigger = document.querySelector('.search-trigger');
+    searchTriggers = document.querySelectorAll('.search-trigger');
 
     if (!searchModal || !searchInput || !searchResults) {
       return;
@@ -245,8 +245,13 @@
   }
 
   function setupEventListeners() {
-    if (searchTrigger) {
-      searchTrigger.addEventListener('click', openModal);
+    searchTriggers.forEach(function(trigger) {
+      trigger.addEventListener('click', openModal);
+    });
+
+    var closeButton = document.getElementById('search-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeModal);
     }
 
     var filterButtons = searchModal.querySelectorAll('.search-filter');

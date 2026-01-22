@@ -131,6 +131,11 @@ b {
   font-weight: 700;
 }
 
+mark {
+  background-color: var(--color-highlight);
+  color: var(--color-highlight-text);
+}
+
 .semibold {
   font-weight: 600;
 }

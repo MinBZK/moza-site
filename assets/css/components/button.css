@@ -24,6 +24,13 @@ button,
     color: var(--color-text-inverse);
     outline: none;
   }
+
+  flex-shrink: 0;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 /* Outline variant */
@@ -37,4 +44,15 @@ button,
     background-color: var(--color-primary);
     color: var(--color-text-on-primary);
   }
+}
+
+/* Ghost variant - transparant en subtiel */
+.button-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
 }

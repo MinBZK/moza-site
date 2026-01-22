@@ -136,11 +136,13 @@ header {
     }
 
     .title {
-      display: block;
+      display: flex;
+      align-items: center;
       font-size: 1.25rem;
       font-weight: 700;
       text-decoration: none;
-      line-height: var(--navbar-height);
+      min-height: var(--navbar-height);
+      align-self: flex-start;
 
       @media (min-width: 600px) {
         display: none;
@@ -194,14 +196,21 @@ header {
           align-items: center;
         }
 
-        .theme-toggle {
+        .theme-toggle,
+        .search-trigger {
+          height: 32px;
           background: transparent;
           border: 1px solid rgba(255, 255, 255, 0.3);
           color: var(--color-text-inverse);
-          padding: 4px;
+          padding: 0 8px;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .theme-toggle {
+          width: 32px;
+          padding: 0;
 
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -211,11 +220,6 @@ header {
           &:focus-visible {
             outline: 2px solid var(--color-text-inverse);
             outline-offset: 2px;
-          }
-
-          svg {
-            width: 20px;
-            height: 20px;
           }
 
           .sun { display: none; }
@@ -223,22 +227,6 @@ header {
         }
 
         .search-trigger {
-          background: transparent;
-          border-color: rgba(255, 255, 255, 0.3);
-          border-radius: 4px;
-          color: var(--color-text-inverse);
-          padding: 4px 0.5rem;
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--color-text-inverse);
-            outline-offset: 2px;
-          }
-
           .search-icon {
             color: var(--color-text-inverse);
           }
@@ -273,29 +261,64 @@ header {
       }
     }
 
+    /* Mobiele knoppen - alleen icoon, verborgen op desktop */
+    .mobile-search,
+    .mobile-theme,
     .toggle {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 2rem;
-      height: 1.7rem;
-      margin-left: auto;
-      margin-top: calc((var(--navbar-height) - 1.7rem) / 2);
-      margin-bottom: calc((var(--navbar-height) - 1.7rem) / 2);
-      padding: 0;
+      display: none;
+      padding: 0.5rem;
       background: transparent;
       border: none;
+      color: var(--color-text-inverse);
+      min-height: var(--navbar-height);
+      align-self: flex-start;
 
-      span {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-text-inverse);
-        border-radius: 2px;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
       }
 
       &:focus-visible {
         outline: 2px solid var(--color-text-inverse);
         outline-offset: 2px;
+      }
+
+      @media (max-width: 874px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .mobile-search {
+      margin-left: auto;
+    }
+
+    .mobile-theme {
+      margin-left: 0.5rem;
+
+      .sun { display: none; }
+      .moon { display: block; }
+
+      :root[data-theme="dark"] & {
+        .sun { display: block; }
+        .moon { display: none; }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) & {
+          .sun { display: block; }
+          .moon { display: none; }
+        }
+      }
+    }
+
+    .toggle {
+      margin-left: 0.5rem;
+      margin-right: -0.5rem;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
 

@@ -32,9 +32,9 @@
       </ul>
       <ul class="navbar-right">
         <li>
-          <button type="button" class="search-trigger" aria-label="Zoeken" aria-haspopup="dialog">
+          <button class="search-trigger" aria-label="Zoeken" aria-haspopup="dialog">
             {{- partial "icon.html" "search" -}}
-            <span class="search-trigger-text">Zoeken</span>
+            <span class="search-trigger-text">Zoeken...</span>
             <kbd class="search-shortcut">/</kbd>
           </button>
         </li>
@@ -47,8 +47,16 @@
       </ul>
     </div>
 
+    <button class="search-trigger mobile-search" aria-label="Zoeken" aria-haspopup="dialog">
+      {{- partial "icon.html" "search" -}}
+    </button>
+
+    <button class="theme-toggle mobile-theme" aria-label="Wissel thema" onclick="document.getElementById('theme-toggle').click()">
+      {{- partial "icon.html" "sun" -}}
+      {{- partial "icon.html" "moon" -}}
+    </button>
+
     <button
-      type="button"
       class="toggle"
       aria-label="Menu openen"
       aria-expanded="false"
@@ -59,9 +67,7 @@
         this.setAttribute('aria-label', expanded ? 'Menu sluiten' : 'Menu openen');
       "
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      {{- partial "icon.html" "menu" -}}
     </button>
 
     <div id="mobile-menu" class="mobile" role="navigation" aria-label="Mobiel menu">

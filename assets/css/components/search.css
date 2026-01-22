@@ -2,16 +2,13 @@
 .search-trigger {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.9375rem;
 }
 
 .search-trigger .search-icon {
-  width: 1.125rem;
-  height: 1.125rem;
   color: inherit;
-  flex-shrink: 0;
 }
 
 .search-trigger-text {
@@ -69,10 +66,9 @@
 .search-modal-content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 800px;
   max-height: 90vh;
-  margin: 0 1rem;
   background-color: var(--color-bg-page);
   border: 1px solid var(--color-border);
   border-radius: 0.25rem;
@@ -92,10 +88,10 @@
 /* Search filters */
 .search-filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0.25rem 1rem 0.5rem;
   flex-shrink: 0;
-  overflow-x: auto;
 }
 
 /* Search filter buttons - erft van .button, alleen afwijkende styling */
@@ -133,6 +129,7 @@
   color: var(--color-text-muted);
   flex-shrink: 0;
 }
+
 
 .search-modal .search-input {
   flex: 1;
@@ -190,21 +187,19 @@
 
 .search-result-item:hover,
 .search-result-item:focus-visible {
-  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  background-color: var(--color-bg-info);
   text-decoration: none;
   outline: none;
 }
 
 .search-result-item:hover::after,
 .search-result-item:focus-visible::after {
-  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  background-color: var(--color-bg-info);
 }
 
-.search-result-item:hover .search-result-title,
-.search-result-item:hover .search-result-snippet,
-.search-result-item:focus-visible .search-result-title,
-.search-result-item:focus-visible .search-result-snippet {
-  color: light-dark(var(--color-text), var(--color-bg-page));
+.search-result-item:hover mark,
+.search-result-item:focus-visible mark {
+  background-color: var(--color-bg-info);
 }
 
 /* Divider van vorig item meekleuren bij hover */
@@ -215,10 +210,11 @@
 
 .search-result-title {
   display: block;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   margin-bottom: 0.25rem;
   color: var(--color-text);
+  overflow-wrap: break-word;
 }
 
 .search-result-snippet {
@@ -227,6 +223,7 @@
   color: var(--color-text);
   line-height: 1.5;
   margin-top: 0.25rem;
+  overflow-wrap: break-word;
 }
 
 .search-result-snippet mark,
@@ -248,7 +245,7 @@
   }
 
   .search-modal-content {
-    margin: 0 0.5rem;
+    width: calc(100% - 1rem);
     max-height: 96vh;
   }
 }

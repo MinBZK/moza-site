@@ -30,8 +30,8 @@
   --color-border: light-dark(#e2e8f0, #334155);
 
   /* Highlight kleur voor zoekresultaten */
-  --color-highlight: #fef08a;
-  --color-highlight-text: #0f172a;
+  --color-highlight: var(--color-bg-info);
+  --color-highlight-text: inherit;
 
   /* Typography */
   --font-sans: "RO-Sans", "Fira Sans", Arial, sans-serif;
@@ -230,6 +230,11 @@ b {
   font-weight: 700;
 }
 
+mark {
+  background-color: var(--color-highlight);
+  color: var(--color-highlight-text);
+}
+
 .semibold {
   font-weight: 600;
 }
@@ -423,11 +428,20 @@ header {
     padding-bottom: 1rem;
 
     .site-info {
+      display: none;
       position: absolute;
-      left: calc(50% - var(--content-max-width) / 2 + 1rem);
       top: 50%;
       transform: translateY(-50%);
       text-align: left;
+
+      @media (min-width: 600px) {
+        display: block;
+        left: 1rem;
+      }
+
+      @media (min-width: 1100px) {
+        left: calc(50% - var(--content-max-width) / 2 + 1rem);
+      }
 
       p {
         margin: 0;
@@ -464,18 +478,6 @@ header {
 
       img {
         display: block;
-      }
-    }
-
-    @media (max-width: 1100px) {
-      .site-info {
-        left: 1rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .site-info {
-        display: none;
       }
     }
   }
@@ -554,11 +556,13 @@ header {
     }
 
     .title {
-      display: block;
+      display: flex;
+      align-items: center;
       font-size: 1.25rem;
       font-weight: 700;
       text-decoration: none;
-      line-height: var(--navbar-height);
+      min-height: var(--navbar-height);
+      align-self: flex-start;
 
       @media (min-width: 600px) {
         display: none;
@@ -612,14 +616,21 @@ header {
           align-items: center;
         }
 
-        .theme-toggle {
+        .theme-toggle,
+        .search-trigger {
+          height: 32px;
           background: transparent;
           border: 1px solid rgba(255, 255, 255, 0.3);
           color: var(--color-text-inverse);
-          padding: 4px;
+          padding: 0 8px;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .theme-toggle {
+          width: 32px;
+          padding: 0;
 
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -629,11 +640,6 @@ header {
           &:focus-visible {
             outline: 2px solid var(--color-text-inverse);
             outline-offset: 2px;
-          }
-
-          svg {
-            width: 20px;
-            height: 20px;
           }
 
           .sun { display: none; }
@@ -641,22 +647,6 @@ header {
         }
 
         .search-trigger {
-          background: transparent;
-          border-color: rgba(255, 255, 255, 0.3);
-          border-radius: 4px;
-          color: var(--color-text-inverse);
-          padding: 4px 0.5rem;
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--color-text-inverse);
-            outline-offset: 2px;
-          }
-
           .search-icon {
             color: var(--color-text-inverse);
           }
@@ -691,29 +681,64 @@ header {
       }
     }
 
+    /* Mobiele knoppen - alleen icoon, verborgen op desktop */
+    .mobile-search,
+    .mobile-theme,
     .toggle {
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 2rem;
-      height: 1.7rem;
-      margin-left: auto;
-      margin-top: calc((var(--navbar-height) - 1.7rem) / 2);
-      margin-bottom: calc((var(--navbar-height) - 1.7rem) / 2);
-      padding: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
       background: transparent;
       border: none;
+      color: var(--color-text-inverse);
+      min-height: var(--navbar-height);
+      align-self: flex-start;
 
-      span {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-text-inverse);
-        border-radius: 2px;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
       }
 
       &:focus-visible {
         outline: 2px solid var(--color-text-inverse);
         outline-offset: 2px;
+      }
+
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+
+    .mobile-search {
+      margin-left: auto;
+    }
+
+    .mobile-theme {
+      margin-left: 0.5rem;
+
+      .sun { display: none; }
+      .moon { display: block; }
+
+      :root[data-theme="dark"] & {
+        .sun { display: block; }
+        .moon { display: none; }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) & {
+          .sun { display: block; }
+          .moon { display: none; }
+        }
+      }
+    }
+
+    .toggle {
+      margin-left: 0.5rem;
+      margin-right: -0.5rem;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
 
@@ -761,7 +786,7 @@ header {
       display: block;
     }
 
-    @media (min-width: 875px) {
+    @media (min-width: 768px) {
       .menu {
         display: flex;
       }
@@ -898,6 +923,10 @@ header {
   .content {
     overflow: auto;
 
+    ol {
+      padding-left: 1.4rem;
+    }
+
     h2 {
       font-size: 1.5rem;
 
@@ -948,6 +977,13 @@ button,
     color: var(--color-text-inverse);
     outline: none;
   }
+
+  flex-shrink: 0;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 /* Outline variant */
@@ -961,6 +997,17 @@ button,
     background-color: var(--color-primary);
     color: var(--color-text-on-primary);
   }
+}
+
+/* Ghost variant - transparant en subtiel */
+.button-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
 }
 blockquote {
   background: var(--color-bg-light);
@@ -1111,20 +1158,59 @@ footer {
     }
   }
 }
+/* Toast - floating notification component */
+.toast {
+  position: fixed;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  text-align: center;
+
+  @media (min-width: 600px) {
+    left: 50%;
+    right: auto;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    max-width: calc(100% - 2rem);
+    white-space: nowrap;
+    text-align: left;
+  }
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+/* Interactive toast (button) */
+button.toast {
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-bg-info);
+    border-color: var(--color-bg-info);
+  }
+}
 /* Search trigger button - erft van button, alleen afwijkende styling */
 .search-trigger {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.9375rem;
 }
 
 .search-trigger .search-icon {
-  width: 1.125rem;
-  height: 1.125rem;
   color: inherit;
-  flex-shrink: 0;
 }
 
 .search-trigger-text {
@@ -1182,10 +1268,9 @@ footer {
 .search-modal-content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 800px;
   max-height: 90vh;
-  margin: 0 1rem;
   background-color: var(--color-bg-page);
   border: 1px solid var(--color-border);
   border-radius: 0.25rem;
@@ -1205,10 +1290,10 @@ footer {
 /* Search filters */
 .search-filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0.25rem 1rem 0.5rem;
   flex-shrink: 0;
-  overflow-x: auto;
 }
 
 /* Search filter buttons - erft van .button, alleen afwijkende styling */
@@ -1246,6 +1331,7 @@ footer {
   color: var(--color-text-muted);
   flex-shrink: 0;
 }
+
 
 .search-modal .search-input {
   flex: 1;
@@ -1303,21 +1389,19 @@ footer {
 
 .search-result-item:hover,
 .search-result-item:focus-visible {
-  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  background-color: var(--color-bg-info);
   text-decoration: none;
   outline: none;
 }
 
 .search-result-item:hover::after,
 .search-result-item:focus-visible::after {
-  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  background-color: var(--color-bg-info);
 }
 
-.search-result-item:hover .search-result-title,
-.search-result-item:hover .search-result-snippet,
-.search-result-item:focus-visible .search-result-title,
-.search-result-item:focus-visible .search-result-snippet {
-  color: light-dark(var(--color-text), var(--color-bg-page));
+.search-result-item:hover mark,
+.search-result-item:focus-visible mark {
+  background-color: var(--color-bg-info);
 }
 
 /* Divider van vorig item meekleuren bij hover */
@@ -1328,10 +1412,11 @@ footer {
 
 .search-result-title {
   display: block;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   margin-bottom: 0.25rem;
   color: var(--color-text);
+  overflow-wrap: break-word;
 }
 
 .search-result-snippet {
@@ -1340,6 +1425,7 @@ footer {
   color: var(--color-text);
   line-height: 1.5;
   margin-top: 0.25rem;
+  overflow-wrap: break-word;
 }
 
 .search-result-snippet mark,
@@ -1361,7 +1447,12 @@ footer {
   }
 
   .search-modal-content {
-    margin: 0 0.5rem;
+    width: calc(100% - 1rem);
     max-height: 96vh;
   }
+}
+
+/* Highlight bar - uses toast component */
+#highlight-bar-query {
+  font-weight: 700;
 }

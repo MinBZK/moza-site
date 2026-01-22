@@ -43,7 +43,7 @@ var e,t;e=this,t=function(){"use strict";function e(e,t){var n=Object.keys(e);if
   var searchModal;
   var searchInput;
   var searchResults;
-  var searchTrigger;
+  var searchTriggers;
   var activeFilter = '';
 
   var fuseOptions = {
@@ -62,7 +62,7 @@ var e,t;e=this,t=function(){"use strict";function e(e,t){var n=Object.keys(e);if
     searchModal = document.getElementById('search-modal');
     searchInput = document.getElementById('search-input');
     searchResults = document.getElementById('search-results');
-    searchTrigger = document.querySelector('.search-trigger');
+    searchTriggers = document.querySelectorAll('.search-trigger');
 
     if (!searchModal || !searchInput || !searchResults) {
       return;
@@ -282,8 +282,13 @@ var e,t;e=this,t=function(){"use strict";function e(e,t){var n=Object.keys(e);if
   }
 
   function setupEventListeners() {
-    if (searchTrigger) {
-      searchTrigger.addEventListener('click', openModal);
+    searchTriggers.forEach(function(trigger) {
+      trigger.addEventListener('click', openModal);
+    });
+
+    var closeButton = document.getElementById('search-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeModal);
     }
 
     var filterButtons = searchModal.querySelectorAll('.search-filter');
@@ -380,6 +385,46 @@ var e,t;e=this,t=function(){"use strict";function e(e,t){var n=Object.keys(e);if
 
     // q parameter blijft in URL zodat highlight deelbaar is
     highlightTextNodes(mainContent, query);
+    showHighlightBar(query);
+  }
+
+  function showHighlightBar(query) {
+    var highlightBar = document.getElementById('highlight-bar');
+    var querySpan = document.getElementById('highlight-bar-query');
+
+    if (!highlightBar || !querySpan) return;
+
+    querySpan.textContent = query;
+    highlightBar.hidden = false;
+    highlightBar.addEventListener('click', hideHighlights);
+    document.addEventListener('keydown', handleHighlightEscape);
+  }
+
+  function handleHighlightEscape(e) {
+    if (e.key === 'Escape' && !(searchModal && searchModal.open)) {
+      hideHighlights();
+    }
+  }
+
+  function hideHighlights() {
+    var mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.querySelectorAll('mark').forEach(function (mark) {
+        mark.replaceWith(mark.textContent);
+      });
+      mainContent.normalize();
+    }
+
+    var highlightBar = document.getElementById('highlight-bar');
+    if (highlightBar) {
+      highlightBar.hidden = true;
+    }
+
+    var url = new URL(window.location.href);
+    url.searchParams.delete('q');
+    window.history.replaceState({}, '', url.toString());
+
+    document.removeEventListener('keydown', handleHighlightEscape);
   }
 
   function highlightTextNodes(element, query) {

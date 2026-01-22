@@ -1,0 +1,118 @@
+{{- $pages := where .Site.RegularPages "Kind" "page" -}}
+{{- $index := slice -}}
+
+{{- define "partials/anchor-id" -}}
+  {{- return (. | anchorize) -}}
+{{- end -}}
+
+{{- define "partials/extract-code" -}}
+  {{- $content := . -}}
+  {{- $code := "" -}}
+  {{- range findRE "(?s)```[a-z]*\\n([^`]+)```" $content -}}
+    {{- $codeContent := replaceRE "(?s)```[a-z]*\\n([^`]+)```" "$1" . -}}
+    {{- $code = printf "%s %s" $code $codeContent -}}
+  {{- end -}}
+  {{- return ($code | strings.TrimSpace) -}}
+{{- end -}}
+
+{{- define "partials/clean-content" -}}
+  {{- $content := . -}}
+  {{- $content = replaceRE `^#+\s*` "" $content -}}
+  {{- $content = replaceRE `\n#+\s*` "\n" $content -}}
+  {{- /* Code blocks worden apart geïndexeerd */ -}}
+  {{- $content = replaceRE "(?s)```[a-z]*\\n[^`]+```" "" $content -}}
+  {{- $content = replaceRE `>\s*\[!(?:NOTE|WARNING|TIP|IMPORTANT)\][^\n]*` "" $content -}}
+  {{- $content = replaceRE `^>\s*` "" $content -}}
+  {{- $content = replaceRE `\n>\s*` "\n" $content -}}
+  {{- $content = replaceRE `\[([^\]]+)\]\([^)]+\)` "$1" $content -}}
+  {{- $content = replaceRE `\*\*([^*]+)\*\*` "$1" $content -}}
+  {{- $content = replaceRE `\*([^*]+)\*` "$1" $content -}}
+  {{- $content = replaceRE `^\d+\.\s+` "" $content -}}
+  {{- $content = replaceRE `\n\d+\.\s+` "\n· " $content -}}
+  {{- $content = replaceRE `^[-*]\s+` "" $content -}}
+  {{- $content = replaceRE `\n[-*]\s+` "\n· " $content -}}
+  {{- $content = replaceRE `[ \t]+` " " $content -}}
+  {{- $content = replaceRE `\n[ \t]+` "\n" $content -}}
+  {{- $content = replaceRE `\n{2,}` "\n" $content -}}
+  {{- return ($content | strings.TrimSpace) -}}
+{{- end -}}
+
+{{- range $pages -}}
+  {{- if not .Draft -}}
+    {{- $pageTitle := .Title -}}
+    {{- $pageUrl := .RelPermalink -}}
+    {{- $pageSection := .Section -}}
+
+    {{- if eq .Section "presentaties" -}}
+      {{- $rawContent := .RawContent -}}
+      {{- $parts := split $rawContent "<section" -}}
+      {{- $hIndex := 0 -}}
+      {{- $vIndex := -1 -}}
+      {{- $depth := 0 -}}
+      {{- range $i, $part := $parts -}}
+        {{- if gt $i 0 -}}
+          {{- $closeTags := len (findRE `</section>` $part) -}}
+          {{- if gt $depth 0 -}}
+            {{- $vIndex = add $vIndex 1 -}}
+          {{- else -}}
+            {{- if gt $i 1 -}}{{- $hIndex = add $hIndex 1 -}}{{- end -}}
+            {{- $vIndex = -1 -}}
+          {{- end -}}
+          {{- $depth = add (sub $depth $closeTags) 1 -}}
+          {{- if lt $depth 0 -}}{{- $depth = 0 -}}{{- end -}}
+          {{- $slideContent := replaceRE `(?s)^[^>]*>(.*)$` "$1" $part -}}
+          {{- $slideContent = replaceRE `(?s)<section.*` "" $slideContent -}}
+          {{- $slideContent = replaceRE `(?s)</section>.*` "" $slideContent -}}
+          {{- $heading := "" -}}
+          {{- if findRE `<h[123][^>]*>([^<]+)</h[123]>` $slideContent -}}
+            {{- $heading = replaceRE `(?s).*<h[123][^>]*>([^<]+)</h[123]>.*` "$1" $slideContent -}}
+          {{- end -}}
+          {{- $content := replaceRE `<[^>]+>` " " $slideContent -}}
+          {{- $content = replaceRE `\s+` " " $content -}}
+          {{- $content = $content | strings.TrimSpace -}}
+          {{- if gt (len $content) 5 -}}
+            {{- $url := "" -}}
+            {{- if eq $vIndex -1 -}}
+              {{- $url = printf "%s#/%d" $pageUrl $hIndex -}}
+            {{- else -}}
+              {{- $url = printf "%s#/%d/%d" $pageUrl $hIndex $vIndex -}}
+            {{- end -}}
+            {{- $title := $pageTitle -}}
+            {{- if $heading -}}
+              {{- $title = printf "%s: %s" $pageTitle $heading -}}
+            {{- end -}}
+            {{- $index = $index | append (dict "title" $title "url" $url "content" $content "section" $pageSection) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $rawContent := .RawContent -}}
+      {{- $sections := split $rawContent "\n## " -}}
+      {{- if eq (len $sections) 1 -}}
+        {{- $code := partial "extract-code" $rawContent -}}
+        {{- $content := partial "clean-content" .Plain -}}
+        {{- $index = $index | append (dict "title" $pageTitle "url" $pageUrl "content" (printf "%s %s" $content $code) "section" $pageSection) -}}
+      {{- else -}}
+        {{- /* Pagina zelf indexeren voor zoeken op titel */ -}}
+        {{- $index = $index | append (dict "title" $pageTitle "url" $pageUrl "content" "" "section" $pageSection) -}}
+        {{- range $i, $sec := $sections -}}
+          {{- if gt $i 0 -}}
+            {{- $lines := split $sec "\n" -}}
+            {{- $heading := index $lines 0 -}}
+            {{- $heading = replaceRE `\s*{#[^}]+}\s*$` "" $heading -}}
+            {{- $heading = strings.TrimSpace $heading -}}
+            {{- $anchor := partial "anchor-id" $heading -}}
+            {{- $sectionRaw := delimit (after 1 $lines) "\n" -}}
+            {{- $code := partial "extract-code" $sectionRaw -}}
+            {{- $sectionContent := partial "clean-content" $sectionRaw -}}
+            {{- $fullContent := printf "%s %s" $sectionContent $code -}}
+            {{- if or (gt (len $sectionContent) 10) (gt (len $code) 10) -}}
+              {{- $index = $index | append (dict "title" (printf "%s: %s" $pageTitle $heading) "url" (printf "%s#%s" $pageUrl $anchor) "content" $fullContent "section" $pageSection) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{ $index | jsonify }}

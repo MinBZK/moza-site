@@ -1,4 +1,4 @@
-<div class="card">
+<article class="card">
   <header>
     {{ with .Params.image }}
     <img src="{{ relURL (strings.TrimPrefix "/" .) }}" alt="{{ $.Params.image_alt }}">
@@ -10,4 +10,4 @@
   {{ with .Params.card_description | default .Params.description }}
   <p>{{ . }}</p>
   {{ end }}
-</div>
+</article>

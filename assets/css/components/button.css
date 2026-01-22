@@ -1,39 +1,58 @@
-.button,
-.button-outline {
+/* Standaard button styling - geldt voor alle <button> elementen */
+button,
+.button {
   display: inline-block;
   padding: 0.5rem 1.5rem;
+  font: inherit;
   font-weight: 600;
   text-decoration: none;
-  border: 2px solid var(--color-primary);
   border-radius: 0.25rem;
   cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: light-dark(var(--color-bg-info), var(--color-text));
+  color: light-dark(var(--color-text), var(--color-bg-page));
+  border: 1px solid light-dark(var(--color-bg-info), var(--color-text));
 
   &:hover {
     text-decoration: none;
   }
 
+  &:hover,
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-}
-
-.button {
-  background-color: var(--color-primary);
-  color: var(--color-text-inverse);
-
-  &:hover {
-    background-color: var(--color-bg-page);
-    color: var(--color-primary);
-  }
-}
-
-.button-outline {
-  background-color: var(--color-bg-page);
-  color: var(--color-primary);
-
-  &:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-rijks-blauw);
+    border-color: var(--color-rijks-blauw);
     color: var(--color-text-inverse);
+    outline: none;
   }
+
+  flex-shrink: 0;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Outline variant */
+.button-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+  }
+}
+
+/* Ghost variant - transparant en subtiel */
+.button-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
 }

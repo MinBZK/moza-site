@@ -23,8 +23,14 @@
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $toast := resources.Get "css/components/toast.css" }}
+{{ $search := resources.Get "css/components/search.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
-{{ $themeToggle := resources.Get "js/theme-toggle.js" | resources.Minify | fingerprint }}
-<script src="{{ $themeToggle.RelPermalink }}"></script>
+{{/* JavaScript bundling via Hugo's asset pipeline */}}
+{{ $themeToggleJs := resources.Get "js/theme-toggle.js" }}
+{{ $fuseJs := resources.Get "vendor/fuse/fuse.min.js" }}
+{{ $searchJs := resources.Get "js/search.js" }}
+{{ $js := slice $themeToggleJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" }}
+<script src="{{ $js.RelPermalink }}" defer></script>

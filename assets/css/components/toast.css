@@ -1,0 +1,42 @@
+/* Toast - floating notification component */
+.toast {
+  position: fixed;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  text-align: center;
+
+  @media (min-width: 600px) {
+    left: 50%;
+    right: auto;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    max-width: calc(100% - 2rem);
+    white-space: nowrap;
+    text-align: left;
+  }
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+/* Interactive toast (button) */
+button.toast {
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-bg-info);
+    border-color: var(--color-bg-info);
+  }
+}

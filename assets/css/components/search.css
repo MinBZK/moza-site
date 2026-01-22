@@ -249,3 +249,8 @@
     max-height: 96vh;
   }
 }
+
+/* Highlight bar - uses toast component */
+#highlight-bar-query {
+  font-weight: 700;
+}

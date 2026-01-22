@@ -23,8 +23,9 @@
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
+{{ $toast := resources.Get "css/components/toast.css" }}
 {{ $search := resources.Get "css/components/search.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $search | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{/* JavaScript bundling via Hugo's asset pipeline */}}

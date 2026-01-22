@@ -348,6 +348,46 @@
 
     // q parameter blijft in URL zodat highlight deelbaar is
     highlightTextNodes(mainContent, query);
+    showHighlightBar(query);
+  }
+
+  function showHighlightBar(query) {
+    var highlightBar = document.getElementById('highlight-bar');
+    var querySpan = document.getElementById('highlight-bar-query');
+
+    if (!highlightBar || !querySpan) return;
+
+    querySpan.textContent = query;
+    highlightBar.hidden = false;
+    highlightBar.addEventListener('click', hideHighlights);
+    document.addEventListener('keydown', handleHighlightEscape);
+  }
+
+  function handleHighlightEscape(e) {
+    if (e.key === 'Escape' && !(searchModal && searchModal.open)) {
+      hideHighlights();
+    }
+  }
+
+  function hideHighlights() {
+    var mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.querySelectorAll('mark').forEach(function (mark) {
+        mark.replaceWith(mark.textContent);
+      });
+      mainContent.normalize();
+    }
+
+    var highlightBar = document.getElementById('highlight-bar');
+    if (highlightBar) {
+      highlightBar.hidden = true;
+    }
+
+    var url = new URL(window.location.href);
+    url.searchParams.delete('q');
+    window.history.replaceState({}, '', url.toString());
+
+    document.removeEventListener('keydown', handleHighlightEscape);
   }
 
   function highlightTextNodes(element, query) {

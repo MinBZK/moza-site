@@ -36,7 +36,8 @@ button.toast {
 
   &:hover,
   &:focus-visible {
-    background-color: var(--color-bg-info);
-    border-color: var(--color-bg-info);
+    background-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    color: light-dark(var(--color-text-inverse), var(--color-bg-page));
   }
 }

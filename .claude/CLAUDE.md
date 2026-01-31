@@ -33,24 +33,24 @@ Presentaties gebruiken Reveal.js en wijken af van andere pagina's:
 2. Bewerk `index.html` met Reveal.js slides (geen Markdown)
 3. Plaats afbeeldingen in `images/` submap
 
-## Project Commands
+## Skills
 
-Dit project heeft Claude commands voor veelvoorkomende taken:
+Skills worden automatisch geladen wanneer relevant. Je kunt ze ook direct aanroepen met `/skill-naam`.
 
-- `/check` - Voer een volledige kwaliteitscheck uit
-- `/new-weekly` - Maak een nieuwe weekly update aan
-- `/new-presentatie` - Maak een nieuwe Reveal.js presentatie
+### Workflow
+- `/check` - Kwaliteitscheck (build + broken links)
+- `/new-weekly` - Nieuwe weekly update
+- `/new-presentatie` - Nieuwe Reveal.js presentatie
 
-## Agents
+### Review (auto-invocation)
+- `/content-review` - Spelling, leesbaarheid, B1 taalniveau
+- `/a11y-review` - Toegankelijkheid (WCAG 2.1 AA)
+- `/seo-check` - SEO-aspecten (meta tags, headings)
 
-Gespecialiseerde agents voor specifieke taken:
+### Hulp (auto-invocation)
+- `/hugo-help` - Hugo templates, shortcodes, debugging
 
-- `content-reviewer` - Controleer content op spelling, leesbaarheid en B1 taalniveau
-- `seo-checker` - Analyseer SEO-aspecten (meta tags, headings, alt-teksten)
-- `a11y-reviewer` - Controleer toegankelijkheid (WCAG 2.1 AA)
-- `hugo-helper` - Help met Hugo templates, shortcodes en debugging
-
-Gebruik agents door ernaar te verwijzen in je prompt, bijv.: "Gebruik de content-reviewer agent om deze pagina te controleren."
+De review en hulp skills worden automatisch geactiveerd wanneer je vraagt om content te checken, toegankelijkheid te controleren, of hulp nodig hebt met Hugo.
 
 ## Rules
 
@@ -93,4 +93,4 @@ De pre-commit hook (Lefthook) draait de checks automatisch bij elke commit.
 
 ## Onderhoud
 
-Bij het aanpassen van instructies in dit bestand: check ook `.claude/commands/` of de bijbehorende command files moeten worden bijgewerkt (en vice versa).
+Bij het aanpassen van instructies in dit bestand: check ook `.claude/skills/` of de bijbehorende skill files moeten worden bijgewerkt (en vice versa).

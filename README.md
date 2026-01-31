@@ -7,9 +7,22 @@ De site wordt gegenereerd met [Hugo](https://gohugo.io/).
 
 ### Vereisten
 
-Installeer Hugo door de [officiële installatie-instructies](https://gohugo.io/installation/) te volgen.
+Installeer Hugo en just:
+
+```bash
+# macOS
+brew install hugo just
+```
+
+Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/) en [just](https://just.systems/man/en/).
 
 ### Development server starten
+
+```bash
+just up
+```
+
+Of direct met Hugo:
 
 ```bash
 hugo server
@@ -69,12 +82,24 @@ lefthook install
 ### Handmatig uitvoeren
 
 ```bash
+just pre-commit
+```
+
+Of direct met Lefthook:
+
+```bash
 lefthook run pre-commit
 ```
 
 ## Bouwen
 
 ### Lokaal bouwen
+
+```bash
+just build
+```
+
+Of direct met Hugo:
 
 ```bash
 hugo --minify --gc
@@ -84,19 +109,19 @@ De gegenereerde site staat in de `public/` directory.
 
 ### Container bouwen
 
-Bouw een container met Podman (of Docker):
+Voor development (image wordt getagd met branch naam):
 
 ```bash
-# Standaard (zonder specifieke baseURL)
-podman build -t moza-site .
-
-# Met productie baseURL
-podman build --build-arg BASE_URL=https://mijnoverheidzakelijk.nl -t moza-site .
+just cbuild   # Bouw container
+just crun     # Start op localhost:8080
+just cstop    # Stop container
+just cclean   # Verwijder image en cache
 ```
 
-Container draaien:
+Voor productie met specifieke baseURL:
 
 ```bash
+podman build --build-arg BASE_URL=https://mijnoverheidzakelijk.nl -t moza-site .
 podman run -p 8080:8080 moza-site
 ```
 
@@ -116,7 +141,11 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 │   ├── _partials/       # Herbruikbare template onderdelen
 │   └── _shortcodes/     # Shortcodes, ofwel componenten, voor in content
 ├── static/              # Statische bestanden (worden 1-op-1 gekopieerd)
-└── hugo.yaml            # Hugo configuratie
+├── .claude/             # Claude Code configuratie
+├── .github/             # GitHub Actions workflows
+├── hugo.yaml            # Hugo configuratie
+├── justfile             # Command runner (just up, just build, etc.)
+└── README.md            # Deze documentatie
 ```
 
 ## Credits

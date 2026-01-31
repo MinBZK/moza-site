@@ -15,6 +15,7 @@
 - `assets/css/` - CSS met design tokens in `tokens.css`
 - `static/` - Statische bestanden (fonts, favicon)
 - `hugo.yaml` - Hoofdconfiguratie
+- `justfile` - Command runner (just up, just build, etc.)
 
 ## Veelvoorkomende Taken
 
@@ -80,11 +81,15 @@ Zie [Hugo template system overview](https://gohugo.io/templates/new-templatesyst
 
 ## Verificatie
 
-- Test lokaal: `hugo server`
-- Build: `rm -rf public && hugo --minify --gc --logLevel warn`
-- Check broken links: `rm -rf .htmltest && hugo --minify --quiet --destination .htmltest/public && htmltest && rm -rf .htmltest`
-- Pre-commit hook (Lefthook): draait beide checks automatisch bij elke commit
+Dit project gebruikt [just](https://just.systems/) als command runner:
+
+- Dev server: `just up`
+- Build: `just build`
+- Check broken links: `just check`
+- Pre-commit checks: `just pre-commit`
 - Screenshots: Playwright MCP kan worden gebruikt voor het maken van screenshots van pagina's
+
+De pre-commit hook (Lefthook) draait de checks automatisch bij elke commit.
 
 ## Onderhoud
 

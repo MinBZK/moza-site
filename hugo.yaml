@@ -3,6 +3,10 @@ defaultContentLanguage: nl
 
 params:
   description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
+  footer:
+    tagline: Eén Overheid. Voor iedereen!
+    links: Zie ook
+    rechts: Over deze site
 
 disableKinds:
   - taxonomy
@@ -42,13 +46,21 @@ menus:
       pageRef: /contact
       weight: 5
 
-  footer:
+  footer-links:
+    - name: GitHub
+      url: https://github.com/MinBZK/moza-site
+      weight: 1
+
+  footer-rechts:
     - name: Privacy
       pageRef: /privacy
       weight: 1
     - name: Toegankelijkheid
       pageRef: /toegankelijkheid
       weight: 2
+    - name: Contact
+      pageRef: /contact
+      weight: 3
 
 outputs:
   home:

@@ -1,3 +1,7 @@
+{{- /*
+  Markdown render hook voor links.
+  Lost relatieve paden en anchors op, en delegeert rendering naar de render-link partial.
+*/ -}}
 {{- $u := urls.Parse .Destination -}}
 {{- $href := $u.String -}}
 {{- if strings.HasPrefix $u.String "#" -}}
@@ -14,12 +18,4 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
-{{- $isExternal := and $u.IsAbs (hasPrefix $u.Scheme "http") -}}
-{{- $isPrivate := and $isExternal (strings.Contains $u.Host "samenwerkruimten.nl") -}}
-{{- if $isPrivate -}}
-<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="external private noopener noreferrer">{{ .Text }}<span class="visually-hidden"> (besloten omgeving)</span></a>
-{{- else if $isExternal -}}
-<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="external noopener noreferrer">{{ .Text }}</a>
-{{- else -}}
-<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
-{{- end -}}
+{{- partial "render-link" (dict "href" $href "text" .Text "title" .Title) -}}

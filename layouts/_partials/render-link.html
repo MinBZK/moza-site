@@ -1,0 +1,21 @@
+{{- /*
+  Render een link met automatische detectie van externe links.
+
+  Parameters (dict):
+    - href: De URL
+    - text: De linktekst
+    - title: (optioneel) Title attribuut
+
+  Externe links krijgen automatisch target="_blank" en rel="external noopener noreferrer".
+  Links naar samenwerkruimten.nl krijgen een "(besloten omgeving)" label.
+*/ -}}
+{{- $u := urls.Parse .href -}}
+{{- $isExternal := and $u.IsAbs (hasPrefix $u.Scheme "http") -}}
+{{- $isPrivate := and $isExternal (strings.Contains $u.Host "samenwerkruimten.nl") -}}
+{{- if $isPrivate -}}
+<a href="{{ .href }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="external private noopener noreferrer">{{ .text }}<span class="visually-hidden"> (besloten omgeving)</span></a>
+{{- else if $isExternal -}}
+<a href="{{ .href }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="external noopener noreferrer">{{ .text }}</a>
+{{- else -}}
+<a href="{{ .href }}"{{ with .title }} title="{{ . }}"{{ end }}>{{ .text }}</a>
+{{- end -}}

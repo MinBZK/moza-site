@@ -4,11 +4,38 @@
   {{ if .IsHome }}{{ .Site.Title }}{{ else if .Title }}{{ .Title }} | {{
   .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
 </title>
-<meta
-  name="description"
-  content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
-/>
-<link rel="icon" href="{{ relURL "favicon.ico" }}" type="image/x-icon" />
+{{- $description := .Description -}}
+{{- if not $description -}}
+  {{- if .Content -}}
+    {{- $description = .Plain | truncate 160 -}}
+  {{- else -}}
+    {{- $description = .Site.Params.description -}}
+  {{- end -}}
+{{- else if gt (len $description) 160 -}}
+  {{- warnf "Description te lang (%d tekens) op pagina: %s - max 160 tekens aanbevolen" (len $description) .RelPermalink -}}
+{{- end -}}
+<meta name="description" content="{{ $description }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{/* Favicons */}}
+<link rel="icon" href="{{ relURL "favicon.ico" }}" sizes="any" />
+<link rel="icon" href="{{ relURL "favicon-32x32.png" }}" type="image/png" sizes="32x32" />
+<link rel="icon" href="{{ relURL "favicon-192x192.png" }}" type="image/png" sizes="192x192" />
+<link rel="apple-touch-icon" href="{{ relURL "apple-touch-icon.png" }}" />
+
+{{/* Open Graph */}}
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:locale" content="nl_NL" />
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+
 
 {{/* CSS bundling via Hugo's asset pipeline */}}
 {{ $tokens := resources.Get "css/tokens.css" }}

@@ -3,7 +3,7 @@ defaultContentLanguage: nl
 
 params:
   tagline: Makkelijk zaken doen met de overheid
-  description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
+  description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen.
   footer:
     tagline: Eén Overheid. Voor iedereen!
     links: Zie ook
@@ -47,10 +47,23 @@ menus:
       pageRef: /contact
       weight: 5
 
+  handboek_nav:
+    - name: Hoofdmenu
+      url: "#"
+      weight: 1
+      params:
+        special: toggle-mainmenu
+    - name: MOZa Handboek
+      pageRef: /handboek
+      weight: 2
+
   footer-links:
+    - name: Handboek
+      pageRef: /handboek
+      weight: 1
     - name: GitHub
       url: https://github.com/MinBZK/moza-site
-      weight: 1
+      weight: 2
 
   footer-rechts:
     - name: Privacy

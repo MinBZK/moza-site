@@ -1,10 +1,31 @@
-<header>
+{{/* Detecteer alternative_nav - pak van pagina of hoogste ancestor */}}
+{{- $alternativeNav := "" -}}
+{{- $navTitle := .Site.Title -}}
+{{- $navURL := site.Home.RelPermalink -}}
+
+{{- if .Params.alternative_nav -}}
+  {{- $alternativeNav = .Params.alternative_nav -}}
+  {{- $navTitle = .Title -}}
+  {{- $navURL = .RelPermalink -}}
+{{- end -}}
+
+{{- range .Ancestors -}}
+  {{- if .Params.alternative_nav -}}
+    {{- $alternativeNav = .Params.alternative_nav -}}
+    {{- $navTitle = .Title -}}
+    {{- $navURL = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $hasAlternativeNav := ne $alternativeNav "" -}}
+
+<header{{ if $hasAlternativeNav }} class="has-alternative-nav"{{ end }}>
   <div class="banner">
     <div class="site-info">
       <p class="title">
-        {{ if not .IsHome }}<a href="/">{{ end }}MijnOverheid Zakelijk{{ if not .IsHome }}</a>{{ end }}
+        {{ if not .IsHome }}<a href="/">{{ end }}{{ .Site.Title }}{{ if not .IsHome }}</a>{{ end }}
       </p>
-      <p class="tagline">Makkelijk zaken doen met de overheid</p>
+      <p class="tagline">{{ .Site.Params.tagline }}</p>
     </div>
     <div class="site-logo">
       {{ if .IsHome }}
@@ -17,35 +38,53 @@
     </div>
   </div>
 
-  <nav class="navbar" aria-label="Hoofdnavigatie">
-    {{ if .IsHome }}
-    <span class="title">MijnOverheid Zakelijk</span>
+  <nav id="main-nav" class="navbar" aria-label="Hoofdnavigatie">
+    {{/* Mobiele titel - alleen zichtbaar op kleine schermen */}}
+    {{ if eq $navURL .RelPermalink }}
+    <span class="title">{{ $navTitle }}</span>
     {{ else }}
-    <a href="/" class="title">MijnOverheid Zakelijk</a>
+    <a href="{{ $navURL }}" class="title">{{ $navTitle }}</a>
     {{ end }}
 
+    {{/* Desktop menu - main of alternative */}}
     <div class="menu">
       <ul>
-        {{ range .Site.Menus.main }}
-        <li><a href="{{ .URL }}" data-text="{{ .Name }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- $navMenu := cond $hasAlternativeNav (index .Site.Menus $alternativeNav) .Site.Menus.main -}}
+        {{ range $navMenu }}
+          {{- $isActive := or (eq $.RelPermalink .URL) (and .URL (ne .URL "/") (hasPrefix $.RelPermalink .URL)) -}}
+          {{- if eq .Params.special "toggle-mainmenu" -}}
+          {{/* Speciale toggle button voor hoofdmenu */}}
+          <li>
+            <button class="nav-menu-toggle" aria-expanded="false" aria-controls="secondary-nav" data-text="{{ .Name }}">
+              {{ .Name }}
+            </button>
+          </li>
+          {{- else -}}
+          <li>
+            <a href="{{ .URL }}" data-text="{{ .Name }}"{{ if $isActive }} class="active" aria-current="page"{{ end }}>
+              {{ .Name }}
+            </a>
+          </li>
+          {{- end -}}
         {{ end }}
       </ul>
-      <ul class="navbar-right">
-        <li>
-          <button class="search-trigger" aria-label="Zoeken" aria-haspopup="dialog">
-            {{- partial "icon.html" "search" -}}
-            <span class="search-trigger-text">Zoeken...</span>
-            <kbd class="search-shortcut">/</kbd>
-          </button>
-        </li>
-        <li>
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            {{- partial "icon.html" "sun" -}}
-            {{- partial "icon.html" "moon" -}}
-          </button>
-        </li>
-      </ul>
     </div>
+
+    <ul class="navbar-right">
+      <li>
+        <button class="search-trigger" aria-label="Zoeken" aria-haspopup="dialog">
+          {{- partial "icon.html" "search" -}}
+          <span class="search-trigger-text">Zoeken...</span>
+          <kbd class="search-shortcut">/</kbd>
+        </button>
+      </li>
+      <li>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Wissel thema">
+          {{- partial "icon.html" "sun" -}}
+          {{- partial "icon.html" "moon" -}}
+        </button>
+      </li>
+    </ul>
 
     <button class="search-trigger mobile-search" aria-label="Zoeken" aria-haspopup="dialog">
       {{- partial "icon.html" "search" -}}
@@ -78,15 +117,20 @@
         {{ range .Site.Menus.secondary }}
         <li><a href="{{ .URL }}" target="_blank" rel="external noopener noreferrer">{{ .Name }}</a></li>
         {{ end }}
-        <li class="mobile-theme-toggle">
-          <button class="theme-toggle" aria-label="Toggle theme" onclick="document.getElementById('theme-toggle').click()">
-            <span class="sun">Light Mode</span>
-            <span class="moon">Dark Mode</span>
-          </button>
-        </li>
       </ul>
     </div>
   </nav>
+
+  {{/* Hoofdmenu bar - verschijnt onder navbar bij alternative_nav */}}
+  {{ if $hasAlternativeNav }}
+  <nav id="secondary-nav" class="navbar navbar-sub" hidden aria-label="Sitebrede navigatie">
+    <ul>
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL }}" data-text="{{ .Name }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+  {{ end }}
 
   {{ if not .IsHome }}
   <nav class="breadcrumb" aria-label="Breadcrumb">

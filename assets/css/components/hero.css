@@ -49,6 +49,6 @@
   }
 }
 
-.hero + .content {
-  padding-top: 3rem;
+body:not(.has-sidebar) main > .hero + .content {
+  padding-top: 2rem;
 }

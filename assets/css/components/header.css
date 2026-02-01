@@ -20,6 +20,17 @@ header {
         left: calc(50% - var(--content-max-width) / 2 + 1rem);
       }
 
+      /* Sidebar layouts - uitstel tot 1400px */
+      body.has-sidebar & {
+        @media (min-width: 1100px) {
+          left: 1rem;
+        }
+
+        @media (min-width: 1400px) {
+          left: calc(50% - var(--content-max-width) / 2 + 1rem);
+        }
+      }
+
       p {
         margin: 0;
       }
@@ -62,14 +73,13 @@ header {
   .breadcrumb {
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 1rem;
-    padding-bottom: 0;
+    padding: 0.75rem 1rem 0;
 
     ol {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0;
       font-size: var(--text-base);
     }
 
@@ -93,6 +103,7 @@ header {
     }
   }
 
+  /* Navigation bar - default is hoofdnavigatie */
   .navbar {
     display: flex;
     flex-wrap: wrap;
@@ -112,14 +123,12 @@ header {
       text-decoration: none;
 
       &:hover {
-        color: var(--color-text-inverse);
         text-decoration: underline;
       }
 
       &:focus-visible {
         outline: 2px solid var(--color-text-inverse);
         outline-offset: 2px;
-        text-decoration: none;
       }
 
       &.active {
@@ -143,6 +152,55 @@ header {
 
       @media (min-width: 600px) {
         display: none;
+      }
+    }
+
+    /* Bij alternative nav langer tonen - tot desktop menu verschijnt */
+    header.has-alternative-nav & .title {
+      @media (min-width: 600px) and (max-width: 767px) {
+        display: flex;
+      }
+    }
+
+    /* Hoofdmenu toggle button - styled als navbar link */
+    .nav-menu-toggle {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      color: var(--color-text-inverse);
+      font-size: 1.25rem;
+      font-weight: 400;
+      cursor: pointer;
+      padding: 0;
+
+      /* Zelfde data-text trick als links voor stabiele breedte */
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+
+      &::after {
+        content: attr(data-text);
+        content: attr(data-text) / "";
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+        user-select: none;
+        pointer-events: none;
+        font-weight: 700;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-text-inverse);
+        outline-offset: 2px;
+      }
+
+      &[aria-expanded="true"] {
+        font-weight: 700;
+        text-decoration: underline;
       }
     }
 
@@ -180,70 +238,75 @@ header {
           }
         }
       }
+    }
 
-      .navbar-right {
-        margin-left: auto;
+    /* Navbar right - zoek en thema knoppen */
+    .navbar-right {
+      display: none;
+      margin-left: auto;
+      padding: 0;
+      list-style: none;
+
+      @media (min-width: 768px) {
+        display: flex;
+      }
+
+      li {
+        margin-left: 0.75rem;
+      }
+
+      .theme-toggle,
+      .search-trigger {
+        height: 32px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--color-text-inverse);
+        padding: 0 8px;
         display: flex;
         align-items: center;
+        justify-content: center;
+      }
 
-        li {
-          margin-right: 0;
-          margin-left: 0.75rem;
-          display: flex;
-          align-items: center;
+      .theme-toggle {
+        width: 32px;
+        padding: 0;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .theme-toggle,
-        .search-trigger {
-          height: 32px;
-          background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          color: var(--color-text-inverse);
-          padding: 0 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        &:focus-visible {
+          outline: 2px solid var(--color-text-inverse);
+          outline-offset: 2px;
         }
 
-        .theme-toggle {
-          width: 32px;
-          padding: 0;
+        .sun { display: none; }
+        .moon { display: block; }
+      }
 
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--color-text-inverse);
-            outline-offset: 2px;
-          }
-
-          .sun { display: none; }
-          .moon { display: block; }
+      .search-trigger {
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .search-trigger {
-          .search-icon {
-            color: var(--color-text-inverse);
-          }
+        &:focus-visible {
+          outline: 2px solid var(--color-text-inverse);
+          outline-offset: 2px;
+        }
 
-          .search-trigger-text {
-            color: var(--color-text-inverse);
-          }
-
-          .search-shortcut {
-            background-color: transparent;
-            border-color: rgba(255, 255, 255, 0.4);
-            color: var(--color-text-inverse);
-          }
+        .search-shortcut {
+          background-color: transparent;
+          border-color: rgba(255, 255, 255, 0.4);
         }
       }
     }
 
     /* Theme-specific icon visibility */
     :root[data-theme="dark"] & {
-      .theme-toggle {
+      .theme-toggle,
+      .mobile-theme {
         .sun { display: block; }
         .moon { display: none; }
       }
@@ -251,7 +314,8 @@ header {
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) & {
-        .theme-toggle {
+        .theme-toggle,
+        .mobile-theme {
           .sun { display: block; }
           .moon { display: none; }
         }
@@ -295,18 +359,6 @@ header {
 
       .sun { display: none; }
       .moon { display: block; }
-
-      :root[data-theme="dark"] & {
-        .sun { display: block; }
-        .moon { display: none; }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) & {
-          .sun { display: block; }
-          .moon { display: none; }
-        }
-      }
     }
 
     .toggle {
@@ -322,7 +374,7 @@ header {
     .mobile {
       display: none;
       width: 100%;
-      padding: 1rem 0;
+      padding: 1rem 0 0.25rem;
 
       ul {
         display: flex;
@@ -339,23 +391,6 @@ header {
         display: flex;
         align-items: baseline;
         padding: 0.75rem 0;
-      }
-
-      .mobile-theme-toggle {
-        .theme-toggle {
-          width: 100%;
-          background: transparent;
-          border: none;
-          color: var(--color-text-inverse);
-          font-size: 1.25rem;
-          padding: 0.75rem 0;
-          text-align: left;
-          display: flex;
-          align-items: center;
-
-          .sun { display: none; }
-          .moon { display: block; }
-        }
       }
     }
 
@@ -375,6 +410,38 @@ header {
       .mobile,
       .toggle[aria-expanded="true"] ~ .mobile {
         display: none;
+      }
+    }
+  }
+
+  /* Submenu bar - overschrijft alleen kleuren */
+  .navbar-sub {
+    display: none;
+    background-color: var(--color-bg-info);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 0 0 100vmax var(--color-bg-info);
+    color: var(--color-text);
+
+    @media (min-width: 768px) {
+      &:not([hidden]) {
+        display: flex;
+      }
+    }
+
+    ul {
+      display: flex;
+      gap: 0 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      color: var(--color-text);
+      font-size: 1.125rem;
+
+      &:focus-visible {
+        outline-color: var(--color-primary);
       }
     }
   }

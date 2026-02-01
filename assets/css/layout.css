@@ -13,7 +13,7 @@ body {
   background-color: var(--color-bg-page);
 }
 
-/* Skip link voor accessibility om direct naar de inhoud te gaan */
+/* Skip link */
 .skip-link {
   position: absolute;
   top: -50px;
@@ -32,29 +32,31 @@ main {
   flex-grow: 1;
 }
 
-main > section,
-main > article,
-main > .content {
-  max-width: var(--content-max-width);
-  margin-left: auto;
-  margin-right: auto;
-}
+body:not(.has-sidebar) {
+  main > section:not(.article-layout),
+  main > article,
+  main > .content {
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-main > section,
-main > article,
-main > .content {
-  padding: 1rem;
-  padding-top: 0;
-}
+  main > section:not(.article-layout),
+  main > article,
+  main > .content {
+    padding: 1rem;
+    padding-top: 0;
+  }
 
-main > article {
-  > * {
-    max-width: var(--article-max-width);
+  main > article {
+    > * {
+      max-width: var(--article-max-width);
+    }
   }
 }
 
-/* Sidebar layout - grid met hoofdcontent en zijbalk */
-.sidebar-layout {
+/* Sidebar-right layout */
+.sidebar-layout-right {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 1.5rem;
@@ -65,11 +67,11 @@ main > article {
   }
 }
 
-.sidebar-layout > aside :is(h1, h2) {
+.sidebar-layout-right > aside :is(h1, h2) {
   margin-top: 1rem;
 }
 
-/* Article layout - smalle, gecentreerde content voor leesbaarheid */
+/* Article layout */
 .article-layout {
   max-width: var(--article-max-width);
   margin-left: auto;
@@ -78,10 +80,61 @@ main > article {
 
 body:has(main > .article-layout) .breadcrumb {
   max-width: var(--article-max-width);
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/* Artikel met inhoudsopgave (TOC) */
-main:has(.toc) {
+/* ============================================================================================
+   Table of Contents (TOC)
+   ============================================================================================ */
+
+.toc {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  font-size: 1rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+
+    ul {
+      padding-left: 0.5rem;
+    }
+  }
+
+  > ul > li {
+    margin-bottom: 0.5rem;
+  }
+
+  ul ul li {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+/* Artikel met TOC */
+body:not(.has-sidebar) main:has(.toc) {
   .toc {
     display: none;
   }
@@ -97,44 +150,81 @@ main:has(.toc) {
 
     .toc {
       display: block;
-      position: sticky;
-      top: 1rem;
-      align-self: start;
       width: 100%;
-      font-size: 0.9rem;
 
       h2 {
-        margin: 0 0 0.5rem;
         padding-top: 1rem;
-        font-size: 1rem;
       }
+    }
+  }
+}
 
-      ul {
-        margin: 0;
-        padding-left: 0;
+/* ============================================================================================
+   Sidebar layout
+   ============================================================================================ */
+body.has-sidebar {
+  --content-max-width: 1400px;
 
-        ul {
-          padding-left: 1rem;
+  > main {
+    --sidebar-width: 220px;
+    --sidebar-gap: 2rem;
+
+    display: block;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0.5rem 1rem 1rem;
+
+    .toc {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      display: grid;
+      width: 100%;
+      grid-template-columns: var(--sidebar-width) var(--article-max-width) minmax(0, var(--sidebar-width));
+      gap: var(--sidebar-gap);
+
+      > article,
+      > section {
+        background: var(--color-bg-page);
+        border-radius: 8px;
+        box-shadow: var(--shadow-card);
+        padding: 1.5rem 1rem 2rem 2rem;
+
+        > h1:first-child {
+          margin-top: 0;
         }
       }
 
-      li {
-        margin-bottom: 0.5rem;
+      > article {
+        max-width: var(--article-max-width);
+
+        > * {
+          max-width: var(--article-max-width);
+        }
       }
 
-      a {
-        color: var(--color-text-muted);
-        text-decoration: none;
+      .toc {
+        display: block;
 
-        &.active {
-          color: var(--color-primary);
-          font-weight: 600;
+        a.active {
+          font-weight: 700;
         }
+      }
+    }
 
-        &:hover {
-          color: var(--color-primary);
-          text-decoration: underline;
-        }
+    @media (min-width: 900px) and (max-width: 1300px) {
+      grid-template-columns: var(--sidebar-width) 1fr;
+
+      .toc {
+        display: none;
+      }
+    }
+
+    &:not(:has(.toc)) {
+      @media (min-width: 900px) {
+        grid-template-columns: var(--sidebar-width) 1fr;
       }
     }
   }

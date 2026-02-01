@@ -4,18 +4,10 @@
   {{ .Content }}
 </article>
 {{- $toc := .TableOfContents -}}
-{{ if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) }}
+{{- if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
 <aside class="toc">
   <h2>Op deze pagina</h2>
   {{ $toc }}
 </aside>
-{{ end }}
-{{ end }}
-
-{{ define "scripts" }}
-{{- $toc := .TableOfContents -}}
-{{ if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) }}
-{{ $tocScript := resources.Get "js/toc.js" | fingerprint "md5" }}
-<script src="{{ $tocScript.RelPermalink }}"></script>
-{{ end }}
-{{ end }}
+{{- end -}}
+{{- end -}}

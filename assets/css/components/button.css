@@ -1,4 +1,4 @@
-/* Standaard button styling - geldt voor alle <button> elementen */
+/* Standaard button styling */
 button,
 .button {
   display: inline-block;
@@ -54,5 +54,47 @@ button,
   padding: 0.25rem;
   background: transparent;
   border: none;
+  border-radius: 0;
   color: var(--color-text-muted);
+
+  &:hover,
+  &:focus-visible {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Link variant - button die eruitziet als een link */
+.button-link {
+  display: inline;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: var(--color-link);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    background: none;
+    border: none;
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    background: none;
+    border: none;
+    color: var(--color-link);
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
 }

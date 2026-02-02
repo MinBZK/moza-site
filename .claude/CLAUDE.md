@@ -15,6 +15,7 @@
 - `assets/css/` - CSS met design tokens in `tokens.css`
 - `static/` - Statische bestanden (fonts, favicon)
 - `hugo.yaml` - Hoofdconfiguratie
+- `justfile` - Command runner (just up, just build, etc.)
 
 ## Veelvoorkomende Taken
 
@@ -32,24 +33,24 @@ Presentaties gebruiken Reveal.js en wijken af van andere pagina's:
 2. Bewerk `index.html` met Reveal.js slides (geen Markdown)
 3. Plaats afbeeldingen in `images/` submap
 
-## Project Commands
+## Skills
 
-Dit project heeft Claude commands voor veelvoorkomende taken:
+Skills worden automatisch geladen wanneer relevant. Je kunt ze ook direct aanroepen met `/skill-naam`.
 
-- `/check` - Voer een volledige kwaliteitscheck uit
-- `/new-weekly` - Maak een nieuwe weekly update aan
-- `/new-presentatie` - Maak een nieuwe Reveal.js presentatie
+### Workflow
+- `/check` - Kwaliteitscheck (build + broken links)
+- `/new-weekly` - Nieuwe weekly update
+- `/new-presentatie` - Nieuwe Reveal.js presentatie
 
-## Agents
+### Review (auto-invocation)
+- `/content-review` - Spelling, leesbaarheid, B1 taalniveau
+- `/a11y-review` - Toegankelijkheid (WCAG 2.1 AA)
+- `/seo-check` - SEO-aspecten (meta tags, headings)
 
-Gespecialiseerde agents voor specifieke taken:
+### Hulp (auto-invocation)
+- `/hugo-help` - Hugo templates, shortcodes, debugging
 
-- `content-reviewer` - Controleer content op spelling, leesbaarheid en B1 taalniveau
-- `seo-checker` - Analyseer SEO-aspecten (meta tags, headings, alt-teksten)
-- `a11y-reviewer` - Controleer toegankelijkheid (WCAG 2.1 AA)
-- `hugo-helper` - Help met Hugo templates, shortcodes en debugging
-
-Gebruik agents door ernaar te verwijzen in je prompt, bijv.: "Gebruik de content-reviewer agent om deze pagina te controleren."
+De review en hulp skills worden automatisch geactiveerd wanneer je vraagt om content te checken, toegankelijkheid te controleren, of hulp nodig hebt met Hugo.
 
 ## Rules
 
@@ -80,12 +81,16 @@ Zie [Hugo template system overview](https://gohugo.io/templates/new-templatesyst
 
 ## Verificatie
 
-- Test lokaal: `hugo server`
-- Build: `rm -rf public && hugo --minify --gc --logLevel warn`
-- Check broken links: `rm -rf .htmltest && hugo --minify --quiet --destination .htmltest/public && htmltest && rm -rf .htmltest`
-- Pre-commit hook (Lefthook): draait beide checks automatisch bij elke commit
+Dit project gebruikt [just](https://just.systems/) als command runner:
+
+- Dev server: `just up`
+- Build: `just build`
+- Check broken links: `just check`
+- Pre-commit checks: `just pre-commit`
 - Screenshots: Playwright MCP kan worden gebruikt voor het maken van screenshots van pagina's
+
+De pre-commit hook (Lefthook) draait de checks automatisch bij elke commit.
 
 ## Onderhoud
 
-Bij het aanpassen van instructies in dit bestand: check ook `.claude/commands/` of de bijbehorende command files moeten worden bijgewerkt (en vice versa).
+Bij het aanpassen van instructies in dit bestand: check ook `.claude/skills/` of de bijbehorende skill files moeten worden bijgewerkt (en vice versa).

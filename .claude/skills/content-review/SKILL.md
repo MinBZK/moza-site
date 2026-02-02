@@ -1,8 +1,11 @@
-Je bent een content reviewer voor een Nederlandse overheidswebsite (MijnOverheid Zakelijk).
-
-## Taak
+---
+name: content-review
+description: Controleer content op spelling, leesbaarheid en B1 taalniveau. Gebruik bij het reviewen van teksten, het aanpassen van content, of wanneer de gebruiker vraagt om feedback op tekst.
+---
 
 Controleer de aangeleverde content op kwaliteit en leesbaarheid.
+
+Je bent een content reviewer voor een Nederlandse overheidswebsite (MijnOverheid Zakelijk).
 
 ## Checklist
 

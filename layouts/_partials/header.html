@@ -1,25 +1,7 @@
-{{/* Detecteer alternative_nav - pak van pagina of hoogste ancestor */}}
-{{- $alternativeNav := "" -}}
-{{- $navTitle := .Site.Title -}}
-{{- $navURL := site.Home.RelPermalink -}}
+{{- $secondNav := .Params.second_nav | default "" -}}
+{{- $hasSecondNav := ne $secondNav "" -}}
 
-{{- if .Params.alternative_nav -}}
-  {{- $alternativeNav = .Params.alternative_nav -}}
-  {{- $navTitle = .Title -}}
-  {{- $navURL = .RelPermalink -}}
-{{- end -}}
-
-{{- range .Ancestors -}}
-  {{- if .Params.alternative_nav -}}
-    {{- $alternativeNav = .Params.alternative_nav -}}
-    {{- $navTitle = .Title -}}
-    {{- $navURL = .RelPermalink -}}
-  {{- end -}}
-{{- end -}}
-
-{{- $hasAlternativeNav := ne $alternativeNav "" -}}
-
-<header{{ if $hasAlternativeNav }} class="has-alternative-nav"{{ end }}>
+<header>
   <div class="banner">
     <div class="site-info">
       <p class="title">
@@ -39,34 +21,22 @@
   </div>
 
   <nav id="main-nav" class="navbar" aria-label="Hoofdnavigatie">
-    {{/* Mobiele titel - alleen zichtbaar op kleine schermen */}}
-    {{ if eq $navURL .RelPermalink }}
-    <span class="title">{{ $navTitle }}</span>
-    {{ else }}
-    <a href="{{ $navURL }}" class="title">{{ $navTitle }}</a>
-    {{ end }}
+    {{- if .IsHome -}}
+    <span class="title">{{ .Site.Title }}</span>
+    {{- else -}}
+    <a href="{{ .Site.Home.RelPermalink }}" class="title">{{ .Site.Title }}</a>
+    {{- end -}}
 
-    {{/* Desktop menu - main of alternative */}}
     <div class="menu">
       <ul>
-        {{- $navMenu := cond $hasAlternativeNav (index .Site.Menus $alternativeNav) .Site.Menus.main -}}
-        {{ range $navMenu }}
+        {{- range .Site.Menus.main -}}
           {{- $isActive := or (eq $.RelPermalink .URL) (and .URL (ne .URL "/") (hasPrefix $.RelPermalink .URL)) -}}
-          {{- if eq .Params.special "toggle-mainmenu" -}}
-          {{/* Speciale toggle button voor hoofdmenu */}}
-          <li>
-            <button class="nav-menu-toggle" aria-expanded="false" aria-controls="secondary-nav" data-text="{{ .Name }}">
-              {{ .Name }}
-            </button>
-          </li>
-          {{- else -}}
           <li>
             <a href="{{ .URL }}" data-text="{{ .Name }}"{{ if $isActive }} class="active" aria-current="page"{{ end }}>
-              {{ .Name }}
+              {{- .Name -}}
             </a>
           </li>
-          {{- end -}}
-        {{ end }}
+        {{- end -}}
       </ul>
     </div>
 
@@ -111,46 +81,108 @@
 
     <div id="mobile-menu" class="mobile" role="navigation" aria-label="Mobiel menu">
       <ul>
-        {{ range .Site.Menus.main }}
+        {{- range .Site.Menus.main -}}
         <li><a href="{{ .URL }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
-        {{ end }}
-        {{ range .Site.Menus.secondary }}
-        <li><a href="{{ .URL }}" target="_blank" rel="external noopener noreferrer">{{ .Name }}</a></li>
-        {{ end }}
+        {{- end -}}
       </ul>
+      {{- if $hasSecondNav -}}
+      <ul class="mobile-second-nav">
+        {{- range index .Site.Menus $secondNav -}}
+        {{- $isExact := eq $.RelPermalink .URL -}}
+        {{- $isChild := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
+        {{- $class := cond $isExact "active" (cond .Params.bold "bold" "") -}}
+        <li><a href="{{ .URL }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isExact }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
+      {{- if .Site.Menus.secondary -}}
+      <ul>
+        {{- range .Site.Menus.secondary -}}
+        <li><a href="{{ .URL }}" target="_blank" rel="external noopener noreferrer">{{ .Name }}</a></li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
     </div>
   </nav>
 
-  {{/* Hoofdmenu bar - verschijnt onder navbar bij alternative_nav */}}
-  {{ if $hasAlternativeNav }}
-  <nav id="secondary-nav" class="navbar navbar-sub" hidden aria-label="Sitebrede navigatie">
+  {{- $hasPanelOpen := false -}}
+  {{- if $hasSecondNav -}}
+  {{- range $index, $item := index .Site.Menus $secondNav -}}
+    {{- if gt $index 0 -}}
+      {{- $isActive := eq $.RelPermalink .URL -}}
+      {{- $isChildActive := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
+      {{- if or $isActive $isChildActive -}}{{ $hasPanelOpen = true }}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  <nav class="navbar navbar-sub" aria-label="Sectie navigatie">
     <ul>
-      {{ range .Site.Menus.main }}
-      <li><a href="{{ .URL }}" data-text="{{ .Name }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
-      {{ end }}
+      {{- range $index, $item := index .Site.Menus $secondNav -}}
+        {{- $isActive := eq $.RelPermalink .URL -}}
+        {{- $isChildActive := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
+        {{- $class := cond $isActive "active" (cond .Params.bold "bold" "") -}}
+        {{- $page := .Page -}}
+        {{- $children := $page.Sections -}}
+        {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
+        {{- $hasChildren := gt (len $children) 0 -}}
+        {{- $showExpand := and $hasChildren (gt $index 0) -}}
+        {{- $showToggle := and $showExpand (not (or $isActive $isChildActive)) -}}
+        {{- $inSection := and $showExpand (or $isActive $isChildActive) -}}
+        {{- $liClass := cond $showToggle "has-subnav" (cond $inSection "in-section" "") -}}
+        <li{{ with $liClass }} class="{{ . }}"{{ end }}>
+          <a href="{{ .URL }}" data-text="{{ .Name }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
+          {{- if $showToggle -}}
+          <button class="subnav-toggle" aria-expanded="false" aria-controls="subnav-panel-{{ $index }}" aria-label="Toon submenu voor {{ .Name }}">
+            <svg class="icon-expand" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          {{- end -}}
+        </li>
+      {{- end -}}
     </ul>
   </nav>
-  {{ end }}
+  {{- range $index, $item := index .Site.Menus $secondNav -}}
+    {{- if gt $index 0 -}}
+    {{- $page := .Page -}}
+    {{- $children := $page.Sections -}}
+    {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
+    {{- $isActive := eq $.RelPermalink .URL -}}
+    {{- $isChildActive := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
+    {{- $showPanel := or $isActive $isChildActive -}}
+    {{- if gt (len $children) 0 -}}
+  <div class="subnav-panel" id="subnav-panel-{{ $index }}"{{ if not $showPanel }} hidden{{ end }}>
+    <ul>
+      {{- range $children.ByWeight -}}
+      <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="current"{{ end }}>{{ .Title }}</a></li>
+      {{- end -}}
+    </ul>
+  </div>
+    {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- end -}}
 
-  {{ if not .IsHome }}
+  {{- if not .IsHome -}}
+    {{- /* Breadcrumb skipLevels: 1 (home), 2 (+ second nav), 3 (+ open panel) */ -}}
+    {{- $skipLevels := cond $hasPanelOpen 3 (cond $hasSecondNav 2 1) -}}
+    {{- $ancestors := .Ancestors.Reverse -}}
+    {{- $hasEnoughAncestors := gt (len $ancestors) $skipLevels -}}
+    {{- if $hasEnoughAncestors -}}
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <ol>
-      <li>
-        <a href="{{ .Site.Home.RelPermalink }}">Home</a>
-        <span class="separator" aria-hidden="true"></span>
-      </li>
-      {{ range .Ancestors.Reverse }}
-      {{ if not .IsHome }}
+      {{- range $index, $ancestor := $ancestors -}}
+      {{- if ge $index $skipLevels -}}
       <li>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         <span class="separator" aria-hidden="true"></span>
       </li>
-      {{ end }}
-      {{ end }}
+      {{- end -}}
+      {{- end -}}
       <li>
         <span class="current" aria-current="page">{{ .Title }}</span>
       </li>
     </ol>
   </nav>
-  {{ end }}
+    {{- else -}}
+  <div class="breadcrumb" aria-hidden="true"></div>
+    {{- end -}}
+  {{- end -}}
 </header>

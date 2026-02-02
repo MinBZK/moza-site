@@ -13,7 +13,7 @@ body {
   background-color: var(--color-bg-page);
 }
 
-/* Skip link */
+/* Skip link voor toegankelijkheid */
 .skip-link {
   position: absolute;
   top: -50px;
@@ -32,30 +32,27 @@ main {
   flex-grow: 1;
 }
 
-body:not(.has-sidebar) {
-  main > section:not(.article-layout),
-  main > article,
-  main > .content {
-    max-width: var(--content-max-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
+main > section,
+main > article,
+main > .content {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  main > section:not(.article-layout),
-  main > article,
-  main > .content {
-    padding: 1rem;
-    padding-top: 0;
-  }
+main > section,
+main > article,
+main > .content {
+  padding: 1rem;
+  padding-top: 0;
+}
 
-  main > article {
-    > * {
-      max-width: var(--article-max-width);
-    }
+main > article {
+  > * {
+    max-width: var(--article-max-width);
   }
 }
 
-/* Sidebar-right layout */
 .sidebar-layout-right {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -71,7 +68,6 @@ body:not(.has-sidebar) {
   margin-top: 1rem;
 }
 
-/* Article layout */
 .article-layout {
   max-width: var(--article-max-width);
   margin-left: auto;
@@ -80,19 +76,96 @@ body:not(.has-sidebar) {
 
 body:has(main > .article-layout) .breadcrumb {
   max-width: var(--article-max-width);
-  padding-left: 0;
-  padding-right: 0;
 }
 
-/* ============================================================================================
-   Table of Contents (TOC)
-   ============================================================================================ */
+article > header:has(.toc-toggle) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 
+  h1 {
+    flex: 1;
+  }
+}
+
+button.toc-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 24px;
+    height: 24px;
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) & {
+        filter: invert(1);
+      }
+    }
+
+    :root[data-theme="dark"] & {
+      filter: invert(1);
+    }
+  }
+
+  .icon-close {
+    display: none;
+  }
+}
+
+button.toc-toggle:hover,
+button.toc-toggle[aria-expanded="true"]:hover,
+button.toc-toggle[aria-expanded="false"]:hover {
+  background: var(--color-bg-info);
+  border: none;
+  color: inherit;
+}
+
+button.toc-toggle:focus-visible {
+  background: transparent;
+  border: none;
+  color: inherit;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-open {
+  display: none;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+/* Table of Contents (TOC) */
 .toc {
   position: sticky;
   top: 1rem;
   align-self: start;
+  padding-top: 1rem;
   font-size: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    max-height: 80vh;
+    overflow: visible;
+  }
 
   h2 {
     margin: 0 0 0.5rem;
@@ -126,6 +199,11 @@ body:has(main > .article-layout) .breadcrumb {
       text-decoration: underline;
     }
 
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
     &.active {
       color: var(--color-primary);
       font-weight: 600;
@@ -133,12 +211,7 @@ body:has(main > .article-layout) .breadcrumb {
   }
 }
 
-/* Artikel met TOC */
-body:not(.has-sidebar) main:has(.toc) {
-  .toc {
-    display: none;
-  }
-
+main:has(.toc) {
   @media (min-width: 950px) {
     max-width: var(--content-max-width);
     display: grid;
@@ -147,85 +220,5 @@ body:not(.has-sidebar) main:has(.toc) {
       );
     gap: 1rem;
     margin: 0 auto;
-
-    .toc {
-      display: block;
-      width: 100%;
-
-      h2 {
-        padding-top: 1rem;
-      }
-    }
-  }
-}
-
-/* ============================================================================================
-   Sidebar layout
-   ============================================================================================ */
-body.has-sidebar {
-  --content-max-width: 1400px;
-
-  > main {
-    --sidebar-width: 220px;
-    --sidebar-gap: 2rem;
-
-    display: block;
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0.5rem 1rem 1rem;
-
-    .toc {
-      display: none;
-    }
-
-    @media (min-width: 900px) {
-      display: grid;
-      width: 100%;
-      grid-template-columns: var(--sidebar-width) var(--article-max-width) minmax(0, var(--sidebar-width));
-      gap: var(--sidebar-gap);
-
-      > article,
-      > section {
-        background: var(--color-bg-page);
-        border-radius: 8px;
-        box-shadow: var(--shadow-card);
-        padding: 1.5rem 1rem 2rem 2rem;
-
-        > h1:first-child {
-          margin-top: 0;
-        }
-      }
-
-      > article {
-        max-width: var(--article-max-width);
-
-        > * {
-          max-width: var(--article-max-width);
-        }
-      }
-
-      .toc {
-        display: block;
-
-        a.active {
-          font-weight: 700;
-        }
-      }
-    }
-
-    @media (min-width: 900px) and (max-width: 1300px) {
-      grid-template-columns: var(--sidebar-width) 1fr;
-
-      .toc {
-        display: none;
-      }
-    }
-
-    &:not(:has(.toc)) {
-      @media (min-width: 900px) {
-        grid-template-columns: var(--sidebar-width) 1fr;
-      }
-    }
   }
 }

@@ -48,14 +48,17 @@ menus:
       weight: 5
 
   handboek_nav:
-    - name: Hoofdmenu
-      url: "#"
-      weight: 1
-      params:
-        special: toggle-mainmenu
     - name: MOZa Handboek
       pageRef: /handboek
+      weight: 1
+      params:
+        bold: true
+    - name: Jouw start
+      pageRef: /handboek/jouw-start
       weight: 2
+    - name: Werkwijze
+      pageRef: /handboek/werkwijze
+      weight: 3
 
   footer-links:
     - name: Handboek

@@ -1,11 +1,21 @@
 {{ define "main" }}
+{{- $toc := .TableOfContents -}}
+{{- $hasToc := and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
 <article>
-  <h1>{{ .Title }}</h1>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{- if $hasToc -}}
+    <button class="toc-toggle" aria-expanded="false" aria-controls="toc">
+      <img class="icon-open" src="/images/icons/toc-open.svg" alt="" aria-hidden="true">
+      <img class="icon-close" src="/images/icons/toc-close.svg" alt="" aria-hidden="true">
+      <span class="visually-hidden">Inhoudsopgave tonen</span>
+    </button>
+    {{- end -}}
+  </header>
   {{ .Content }}
 </article>
-{{- $toc := .TableOfContents -}}
-{{- if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
-<aside class="toc">
+{{- if $hasToc -}}
+<aside id="toc" class="toc">
   <h2>Op deze pagina</h2>
   {{ $toc }}
 </aside>

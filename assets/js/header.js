@@ -24,51 +24,58 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Secondary nav toggle (for alternative_nav)
-  const menuToggle = document.querySelector('.nav-menu-toggle');
-  const menuBar = document.getElementById('secondary-nav');
-  if (menuToggle && menuBar) {
-    menuToggle.addEventListener('click', function() {
-      const expanded = menuBar.hidden;
-      menuBar.hidden = !expanded;
-      this.setAttribute('aria-expanded', expanded);
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !menuBar.hidden) {
-        menuBar.hidden = true;
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.focus();
+  // Subnav panel toggles
+  const defaultPanel = document.querySelector('.subnav-panel:not([hidden])');
+  const defaultPanelId = defaultPanel ? defaultPanel.id : null;
+  const defaultInSection = document.querySelector('.navbar-sub .in-section');
+
+  document.querySelectorAll('.subnav-toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const panelId = this.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+
+      document.querySelectorAll('.subnav-panel:not([hidden])').forEach(otherPanel => {
+        if (otherPanel.id !== panelId) {
+          otherPanel.hidden = true;
+        }
+      });
+
+      document.querySelectorAll('.subnav-toggle[aria-expanded="true"]').forEach(other => {
+        if (other !== this) {
+          other.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (!expanded) {
+        document.querySelectorAll('.navbar-sub .in-section').forEach(el => {
+          el.classList.remove('in-section');
+        });
+      }
+
+      this.setAttribute('aria-expanded', !expanded);
+      if (panel) panel.hidden = expanded;
+
+      if (expanded && panelId !== defaultPanelId && defaultPanelId) {
+        const origPanel = document.getElementById(defaultPanelId);
+        if (origPanel) origPanel.hidden = false;
+        if (defaultInSection) defaultInSection.classList.add('in-section');
       }
     });
-  }
+  });
 
-  // Sidebar toggle (mobile)
-  const sidebarToggle = document.querySelector('.sidebar-toggle');
-  const sidebarContent = document.getElementById('sidebar-nav-content');
-  if (sidebarToggle && sidebarContent) {
-    sidebarToggle.addEventListener('click', function() {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', !expanded);
-    });
-  }
-
-  // Sluit mobiele menu's bij resize naar desktop
+  // Sluit mobiel menu bij resize naar desktop
   const desktopBreakpoint = 900;
   let wasDesktop = window.innerWidth >= desktopBreakpoint;
 
   window.addEventListener('resize', () => {
     const isDesktop = window.innerWidth >= desktopBreakpoint;
-
-    // Alleen actie bij overgang mobiel → desktop
     if (isDesktop && !wasDesktop) {
-      document.querySelectorAll('.toggle[aria-expanded="true"], .sidebar-toggle[aria-expanded="true"]').forEach(btn => {
+      document.querySelectorAll('.toggle[aria-expanded="true"]').forEach(btn => {
         btn.setAttribute('aria-expanded', 'false');
-        if (btn.classList.contains('toggle')) {
-          btn.setAttribute('aria-label', 'Menu openen');
-        }
+        btn.setAttribute('aria-label', 'Menu openen');
       });
     }
-
     wasDesktop = isDesktop;
   });
 });

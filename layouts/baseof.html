@@ -3,13 +3,10 @@
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body{{ with .Params.sidebar }} class="has-sidebar"{{ end }}>
+  <body>
     <a href="#main-content" class="skip-link">Ga naar de inhoud</a>
     {{ partial "header.html" . }}
     <main id="main-content">
-      {{- if .Params.sidebar -}}
-        {{- partial "sidebar-nav.html" . -}}
-      {{- end -}}
       {{- block "main" . }}{{ end -}}
     </main>
     {{ partial "footer.html" . }}

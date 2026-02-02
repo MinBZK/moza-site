@@ -24,6 +24,7 @@
     img {
       height: 2.5rem;
       object-fit: contain;
+      width: 2.5rem;
     }
 
     h2 {

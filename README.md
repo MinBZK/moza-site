@@ -12,7 +12,14 @@ Installeer Hugo door de [officiële installatie-instructies](https://gohugo.io/i
 ### Development server starten
 
 ```bash
-hugo server
+./setup-dev.sh && hugo server
+```
+
+#### Diagrammen
+Om C4 diagrammen in te laden en te gebruiken binnen dit project run het volgende commando:
+```
+docker run -it --rm -v $PWD/structurizr:/usr/local/structurizr structurizr/cli export --workspace workspace.dsl --format static --output ./diagrammen
+mkdir -p static/diagrammen/ && cp -r structurizr/diagrammen/* ./static/diagrammen/
 ```
 
 De site is dan beschikbaar op [http://localhost:1313/](http://localhost:1313/) (of de host zoals vermeld in de terminal).

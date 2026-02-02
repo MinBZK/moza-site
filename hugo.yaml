@@ -1,6 +1,19 @@
 title: MijnOverheid Zakelijk
 defaultContentLanguage: nl
 
+module:
+  mounts:
+    - source: content
+      target: content
+    - source: .generated
+      target: content
+    - source: static
+      target: static
+    - source: assets
+      target: assets
+    - source: layouts
+      target: layouts
+
 params:
   description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
 
@@ -38,9 +51,12 @@ menus:
     - name: Onderwerpen
       pageRef: /onderwerpen
       weight: 4
+    - name: Documentatie
+      pageRef: /documentatie
+      weight: 5
     - name: Contact
       pageRef: /contact
-      weight: 5
+      weight: 6
 
   footer:
     - name: Privacy

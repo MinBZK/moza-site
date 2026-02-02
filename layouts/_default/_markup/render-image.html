@@ -1,0 +1,2 @@
+{{- $url := .Destination -}}
+<img src="{{ $url | safeURL }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}>

@@ -1,0 +1,17 @@
+{{ define "main" }}
+<article>
+  {{ if .Title }}
+  <h1>{{ .Title  | strings.FirstUpper }}</h1>
+  {{ end }}
+  <div >{{ .Content }}</div>
+  {{ with .Pages.ByWeight }}
+  <ul>
+    {{ range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title | strings.FirstUpper}}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+
+
+</article>
+  {{ end }}

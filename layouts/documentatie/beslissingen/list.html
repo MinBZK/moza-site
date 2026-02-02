@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <article>
+    <header>
+      <h1>{{.Title}}</h1>
+    </header>
+
+    <table style="max-width: 100%; border-collapse: collapse; margin: 20px 0;">
+      <thead>
+      <tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
+        <th style="padding: 12px; text-align: left; font-weight: bold;">Beslissing</th>
+        <th style="padding: 12px; text-align: left; font-weight: bold;">Datum</th>
+        <th style="padding: 12px; text-align: left; font-weight: bold;">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{ range .Pages.Reverse }}
+      {{ $content := .RawContent }}
+      {{ $title := index (findRE "(?m)^# .*" $content 1) 0 | replaceRE "^# " "" }}
+      {{ $date := index (findRE "(?m)^Date: .*" $content 1) 0 | replaceRE "^Date: " "" }}
+      {{ $status := index (findRE "(?s)## Status\\s+\\w+" $content 1) 0 | replaceRE "(?s)## Status\\s+" "" }}
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 12px;"><a href="{{.Permalink}}" style="color: #0066cc; text-decoration: none;">{{ $title
+          }}</a></td>
+        <td style="padding: 12px;">{{ $date }}</td>
+        <td style="padding: 12px;">{{ $status }}</td>
+      </tr>
+      {{ end }}
+      </tbody>
+    </table>
+  </article>
+{{ end }}

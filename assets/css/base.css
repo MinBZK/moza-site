@@ -181,3 +181,12 @@ nav a {
     text-decoration: underline;
   }
 }
+
+.docs {
+  table {
+    float: left;
+    text-align: left;
+  padding-bottom: 2rem;
+    min-width: 100%;
+  }
+}

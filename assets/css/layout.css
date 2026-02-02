@@ -38,6 +38,7 @@ main > .content {
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
 }
 
 main > section,
@@ -47,9 +48,34 @@ main > .content {
   padding-top: 0;
 }
 
+main .content img {
+  max-width: 100%;
+  height: auto;
+}
+
+#main-content section img {
+  max-width: 100%;
+  height: auto;
+}
+
 main > article {
+  width: 100%;
   > * {
     max-width: var(--article-max-width);
+  }
+
+  > .content {
+    max-width: 100%;
+
+    > * {
+      max-width: var(--article-max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    > :is(iframe, img) {
+      max-width: 100%;
+    }
   }
 }
 
@@ -82,10 +108,6 @@ body:has(main > .article-layout) .breadcrumb {
 
 /* Artikel met inhoudsopgave (TOC) */
 main:has(.toc) {
-  .toc {
-    display: none;
-  }
-
   @media (min-width: 950px) {
     max-width: var(--content-max-width);
     display: grid;
@@ -96,7 +118,6 @@ main:has(.toc) {
     margin: 0 auto;
 
     .toc {
-      display: block;
       position: sticky;
       top: 1rem;
       align-self: start;

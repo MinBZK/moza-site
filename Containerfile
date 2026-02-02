@@ -9,14 +9,18 @@ FROM alpine:3.21 AS builder
 
 ARG HUGO_VERSION=0.154.4
 
-RUN apk add --no-cache wget bash \
+RUN apk add --no-cache wget bash dos2unix \
     && wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz \
     && tar -xzf hugo.tar.gz -C /usr/local/bin \
     && rm hugo.tar.gz
 
 WORKDIR /app
 COPY . .
-RUN chmod +x setup-dev.sh && ./setup-dev.sh
+
+RUN dos2unix setup-dev.sh \
+    && chmod +x setup-dev.sh \
+    && ./setup-dev.sh
+
 COPY --from=structurizr-export /out/diagrammen /app/static/diagrammen
 
 ARG BASE_URL

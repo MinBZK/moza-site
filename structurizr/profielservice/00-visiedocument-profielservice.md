@@ -1,5 +1,3 @@
-# Profiel Service
-
 > | **Status**     | Conceptversie      |
 > | -------------- | ------------------ |
 > | Laatste update | 21-11-2025         |

@@ -65,15 +65,6 @@ Hier vind je onder andere:
 - Het smoelenboek met contactgegevens
 - De contentkalender
 
-## Reserveringssysteem Digilab
-
-Voor het reserveren van werkplekken op de samenwerkdagen gebruik je het reserveringssysteem van Digilab. Je vindt deze in [Mattermost](#mattermost) onder Digilab.
-
-- **Gebruik**: Reserveer een samenwerkplek voor DigiVloer Den Haag of Dev.loer Utrecht
-- **Tip**: Reserveer tijdig, vooral voor drukke dagen
-
-Geen toegang? Vraag een collega om je toe te voegen.
-
 ## Andere tools
 
 Afhankelijk van je rol kun je ook toegang nodig hebben tot:

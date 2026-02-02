@@ -1,9 +1,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>
-  {{ if .IsHome }}{{ .Site.Title }}{{ else if .Title }}{{ .Title }} | {{
-  .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
-</title>
+{{- $pageTitle := .Site.Title -}}
+{{- if and (not .IsHome) .Title -}}
+  {{- $pageTitle = printf "%s | %s" .Title .Site.Title -}}
+{{- end -}}
+<title>{{ $pageTitle }}</title>
 {{- $description := .Description -}}
 {{- if not $description -}}
   {{- if .Content -}}
@@ -24,17 +25,23 @@
 <link rel="apple-touch-icon" href="{{ relURL "apple-touch-icon.png" }}" />
 
 {{/* Open Graph */}}
-<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:title" content="{{ $pageTitle }}" />
 <meta property="og:description" content="{{ $description }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 <meta property="og:locale" content="nl_NL" />
+<meta property="og:image" content="{{ absURL "favicon-192x192.png" }}" />
+<meta property="og:image:width" content="192" />
+<meta property="og:image:height" content="192" />
 
 {{/* Twitter Card */}}
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:title" content="{{ $pageTitle }}" />
 <meta name="twitter:description" content="{{ $description }}" />
+<meta name="twitter:image" content="{{ absURL "favicon-192x192.png" }}" />
+<meta name="twitter:image:width" content="192" />
+<meta name="twitter:image:height" content="192" />
 
 
 {{/* CSS bundling via Hugo's asset pipeline */}}

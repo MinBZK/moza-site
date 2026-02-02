@@ -47,7 +47,7 @@
             </a>
           </div>
           <ul class="sidebar-pages">
-            {{ range .RegularPages.ByWeight.ByLinkTitle }}
+            {{ range .RegularPages.ByWeight }}
             <li{{ if eq $.RelPermalink .RelPermalink }} class="active"{{ end }}>
               <a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>
                 {{ .Title }}
@@ -63,7 +63,7 @@
         </li>
       {{ end }}
       {{/* Losse pagina's direct onder root */}}
-      {{ range $root.RegularPages.ByWeight.ByLinkTitle }}
+      {{ range $root.RegularPages.ByWeight }}
         <li class="sidebar-section">
           <a href="{{ .RelPermalink }}" class="section-link"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>
             {{ .Title }}

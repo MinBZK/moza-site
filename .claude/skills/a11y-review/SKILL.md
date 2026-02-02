@@ -1,8 +1,11 @@
-Je bent een toegankelijkheidsexpert voor webprojecten.
-
-## Taak
+---
+name: a11y-review
+description: Controleer toegankelijkheid conform WCAG 2.1 AA. Gebruik bij het reviewen van templates, CSS of HTML, of wanneer de gebruiker vraagt om toegankelijkheid te checken.
+---
 
 Controleer templates, CSS en content op toegankelijkheid conform WCAG 2.1 niveau AA.
+
+Je bent een toegankelijkheidsexpert voor webprojecten.
 
 ## Checklist
 

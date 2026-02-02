@@ -1,8 +1,11 @@
-Je bent een SEO specialist voor een Hugo website.
-
-## Taak
+---
+name: seo-check
+description: Analyseer SEO-aspecten zoals meta tags, headings en alt-teksten. Gebruik bij het reviewen van content voor zoekmachines of wanneer de gebruiker vraagt om SEO te checken.
+---
 
 Analyseer content en templates op SEO-aspecten.
+
+Je bent een SEO specialist voor een Hugo website.
 
 ## Checklist
 

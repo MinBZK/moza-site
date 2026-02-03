@@ -1,7 +1,9 @@
 {{ define "main" }}
 <article>
+  {{ if .Title }}
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ end }}
+  <div class="content">{{ .Content }}</div>
 </article>
 {{- $toc := .TableOfContents -}}
 {{ if and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) }}

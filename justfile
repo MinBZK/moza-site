@@ -7,14 +7,23 @@ default:
 
 # Start development server
 up:
+    ./setup-dev.sh
+    docker run -it --rm -v $PWD/structurizr:/usr/local/structurizr structurizr/cli export --workspace workspace.dsl --format static --output ./diagrammen
+    mkdir -p static/diagrammen/ && cp -r structurizr/diagrammen/* ./static/diagrammen/
     hugo server
 
 # Bouw de site
 build:
+    ./setup-dev.sh
+    docker run -it --rm -v $PWD/structurizr:/usr/local/structurizr structurizr/cli export --workspace workspace.dsl --format static --output ./diagrammen
+    mkdir -p static/diagrammen/ && cp -r structurizr/diagrammen/* ./static/diagrammen/
     rm -rf public && hugo --minify --gc --logLevel warn
 
 # Controleer op broken links
 check:
+    ./setup-dev.sh
+    docker run -it --rm -v $PWD/structurizr:/usr/local/structurizr structurizr/cli export --workspace workspace.dsl --format static --output ./diagrammen
+    mkdir -p static/diagrammen/ && cp -r structurizr/diagrammen/* ./static/diagrammen/
     rm -rf .htmltest && hugo --minify --quiet --destination .htmltest/public && htmltest && rm -rf .htmltest
 
 # Voer pre-commit checks uit

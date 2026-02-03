@@ -3,6 +3,11 @@ public
 resources
 tmp
 .hugo_build.lock
+.generated
+
+# Structurizr
+structurizr/diagrammen/
+static/diagrammen/
 
 # Editors
 .vscode/*

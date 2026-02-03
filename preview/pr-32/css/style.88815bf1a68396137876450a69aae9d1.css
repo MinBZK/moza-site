@@ -152,6 +152,10 @@ h1 + h2 {
   margin-top: 1.5rem;
 }
 
+article > header + h2 {
+  margin-top: 0.7rem;
+}
+
 h2 + h3,
 h3 + h4,
 h4 + h5,
@@ -316,7 +320,7 @@ body {
   background-color: var(--color-bg-page);
 }
 
-/* Skip link */
+/* Skip link voor toegankelijkheid */
 .skip-link {
   position: absolute;
   top: -50px;
@@ -335,30 +339,27 @@ main {
   flex-grow: 1;
 }
 
-body:not(.has-sidebar) {
-  main > section:not(.article-layout),
-  main > article,
-  main > .content {
-    max-width: var(--content-max-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
+main > section,
+main > article,
+main > .content {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  main > section:not(.article-layout),
-  main > article,
-  main > .content {
-    padding: 1rem;
-    padding-top: 0;
-  }
+main > section,
+main > article,
+main > .content {
+  padding: 1rem;
+  padding-top: 0;
+}
 
-  main > article {
-    > * {
-      max-width: var(--article-max-width);
-    }
+main > article {
+  > * {
+    max-width: var(--article-max-width);
   }
 }
 
-/* Sidebar-right layout */
 .sidebar-layout-right {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -374,7 +375,6 @@ body:not(.has-sidebar) {
   margin-top: 1rem;
 }
 
-/* Article layout */
 .article-layout {
   max-width: var(--article-max-width);
   margin-left: auto;
@@ -383,19 +383,87 @@ body:not(.has-sidebar) {
 
 body:has(main > .article-layout) .breadcrumb {
   max-width: var(--article-max-width);
-  padding-left: 0;
-  padding-right: 0;
 }
 
-/* ============================================================================================
-   Table of Contents (TOC)
-   ============================================================================================ */
+article > header:has(.toc-toggle) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 
+  h1 {
+    flex: 1;
+  }
+}
+
+button.toc-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-close {
+    display: none;
+  }
+}
+
+button.toc-toggle:hover,
+button.toc-toggle[aria-expanded="true"]:hover,
+button.toc-toggle[aria-expanded="false"]:hover {
+  background: var(--color-bg-info);
+  border: none;
+  color: inherit;
+}
+
+button.toc-toggle:focus-visible {
+  background: transparent;
+  border: none;
+  color: inherit;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-open {
+  display: none;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+/* Table of Contents (TOC) */
 .toc {
   position: sticky;
   top: 1rem;
   align-self: start;
+  padding-top: 1rem;
   font-size: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    max-height: 80vh;
+    overflow: visible;
+  }
 
   h2 {
     margin: 0 0 0.5rem;
@@ -429,6 +497,11 @@ body:has(main > .article-layout) .breadcrumb {
       text-decoration: underline;
     }
 
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
     &.active {
       color: var(--color-primary);
       font-weight: 600;
@@ -436,12 +509,7 @@ body:has(main > .article-layout) .breadcrumb {
   }
 }
 
-/* Artikel met TOC */
-body:not(.has-sidebar) main:has(.toc) {
-  .toc {
-    display: none;
-  }
-
+main:has(.toc) {
   @media (min-width: 950px) {
     max-width: var(--content-max-width);
     display: grid;
@@ -450,86 +518,6 @@ body:not(.has-sidebar) main:has(.toc) {
       );
     gap: 1rem;
     margin: 0 auto;
-
-    .toc {
-      display: block;
-      width: 100%;
-
-      h2 {
-        padding-top: 1rem;
-      }
-    }
-  }
-}
-
-/* ============================================================================================
-   Sidebar layout
-   ============================================================================================ */
-body.has-sidebar {
-  --content-max-width: 1400px;
-
-  > main {
-    --sidebar-width: 220px;
-    --sidebar-gap: 2rem;
-
-    display: block;
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0.5rem 1rem 1rem;
-
-    .toc {
-      display: none;
-    }
-
-    @media (min-width: 900px) {
-      display: grid;
-      width: 100%;
-      grid-template-columns: var(--sidebar-width) var(--article-max-width) minmax(0, var(--sidebar-width));
-      gap: var(--sidebar-gap);
-
-      > article,
-      > section {
-        background: var(--color-bg-page);
-        border-radius: 8px;
-        box-shadow: var(--shadow-card);
-        padding: 1.5rem 1rem 2rem 2rem;
-
-        > h1:first-child {
-          margin-top: 0;
-        }
-      }
-
-      > article {
-        max-width: var(--article-max-width);
-
-        > * {
-          max-width: var(--article-max-width);
-        }
-      }
-
-      .toc {
-        display: block;
-
-        a.active {
-          font-weight: 700;
-        }
-      }
-    }
-
-    @media (min-width: 900px) and (max-width: 1300px) {
-      grid-template-columns: var(--sidebar-width) 1fr;
-
-      .toc {
-        display: none;
-      }
-    }
-
-    &:not(:has(.toc)) {
-      @media (min-width: 900px) {
-        grid-template-columns: var(--sidebar-width) 1fr;
-      }
-    }
   }
 }
 header {
@@ -552,17 +540,6 @@ header {
 
       @media (min-width: 1100px) {
         left: calc(50% - var(--content-max-width) / 2 + 1rem);
-      }
-
-      /* Sidebar layouts - uitstel tot 1400px */
-      body.has-sidebar & {
-        @media (min-width: 1100px) {
-          left: 1rem;
-        }
-
-        @media (min-width: 1400px) {
-          left: calc(50% - var(--content-max-width) / 2 + 1rem);
-        }
       }
 
       p {
@@ -607,7 +584,8 @@ header {
   .breadcrumb {
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0.75rem 1rem 0;
+    padding: 0.25rem 1rem 0;
+    min-height: 2rem;
 
     ol {
       display: flex;
@@ -637,7 +615,6 @@ header {
     }
   }
 
-  /* Navigation bar - default is hoofdnavigatie */
   .navbar {
     display: flex;
     flex-wrap: wrap;
@@ -689,55 +666,6 @@ header {
       }
     }
 
-    /* Bij alternative nav langer tonen - tot desktop menu verschijnt */
-    header.has-alternative-nav & .title {
-      @media (min-width: 600px) and (max-width: 767px) {
-        display: flex;
-      }
-    }
-
-    /* Hoofdmenu toggle button - styled als navbar link */
-    .nav-menu-toggle {
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      color: var(--color-text-inverse);
-      font-size: 1.25rem;
-      font-weight: 400;
-      cursor: pointer;
-      padding: 0;
-
-      /* Zelfde data-text trick als links voor stabiele breedte */
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-
-      &::after {
-        content: attr(data-text);
-        content: attr(data-text) / "";
-        height: 0;
-        visibility: hidden;
-        overflow: hidden;
-        user-select: none;
-        pointer-events: none;
-        font-weight: 700;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--color-text-inverse);
-        outline-offset: 2px;
-      }
-
-      &[aria-expanded="true"] {
-        font-weight: 700;
-        text-decoration: underline;
-      }
-    }
-
     .menu {
       display: none;
       flex: 1;
@@ -774,7 +702,6 @@ header {
       }
     }
 
-    /* Navbar right - zoek en thema knoppen */
     .navbar-right {
       display: none;
       margin-left: auto;
@@ -837,7 +764,6 @@ header {
       }
     }
 
-    /* Theme-specific icon visibility */
     :root[data-theme="dark"] & {
       .theme-toggle,
       .mobile-theme {
@@ -856,7 +782,6 @@ header {
       }
     }
 
-    /* Mobiele knoppen - alleen icoon, verborgen op desktop */
     .mobile-search,
     .mobile-theme,
     .toggle {
@@ -917,14 +842,57 @@ header {
       }
 
       li {
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        display: block;
       }
 
       a,
       a[href^="http"] {
         display: flex;
         align-items: baseline;
+        position: relative;
         padding: 0.75rem 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background-color: rgba(255, 255, 255, 0.2);
+          box-shadow: -100vw 0 0 rgba(255, 255, 255, 0.2), 100vw 0 0 rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      li:first-child a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: -100vw 0 0 rgba(255, 255, 255, 0.2), 100vw 0 0 rgba(255, 255, 255, 0.2);
+      }
+
+      li:last-child a::after {
+        display: none;
+      }
+
+      .mobile-second-nav {
+        margin-top: 0.25rem;
+
+        li:first-child a::before {
+          display: none;
+        }
+
+        li:not(:first-child) a {
+          padding-left: 1rem;
+        }
+
+        a.bold {
+          font-weight: 700;
+        }
       }
     }
 
@@ -948,21 +916,20 @@ header {
     }
   }
 
-  /* Submenu bar - overschrijft alleen kleuren */
+  /* Second nav - alleen op desktop */
   .navbar-sub {
     display: none;
     background-color: var(--color-bg-info);
     border-bottom: 1px solid var(--color-border);
     box-shadow: 0 0 0 100vmax var(--color-bg-info);
+    clip-path: inset(0 -100vmax);
     color: var(--color-text);
 
     @media (min-width: 768px) {
-      &:not([hidden]) {
-        display: flex;
-      }
+      display: flex;
     }
 
-    ul {
+    > ul {
       display: flex;
       gap: 0 1.5rem;
       margin: 0;
@@ -976,6 +943,112 @@ header {
 
       &:focus-visible {
         outline-color: var(--color-primary);
+      }
+
+      &.bold {
+        font-weight: 700;
+      }
+
+      &.active {
+        font-weight: 700;
+        text-decoration: underline;
+      }
+    }
+
+    .has-subnav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .subnav-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      font-weight: inherit;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+        border-radius: 0;
+      }
+
+      &[aria-expanded="true"] .icon-expand {
+        transform: rotate(180deg);
+      }
+    }
+
+    .in-section,
+    .has-subnav:has(.subnav-toggle[aria-expanded="true"]) {
+      background-color: var(--color-bg-muted);
+      margin: -0.25rem -0.5rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 2px;
+    }
+
+  }
+
+  /* Third nav - uitklapbaar panel, alleen op desktop */
+  .subnav-panel {
+    display: none;
+    background-color: var(--color-bg-muted);
+    box-shadow: 0 0 0 100vmax var(--color-bg-muted);
+    clip-path: inset(0 -100vmax);
+    margin-top: -0.75rem;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem 1.5rem;
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding: 0.25rem 1rem 0.125rem;
+      list-style: none;
+    }
+
+    a {
+      color: var(--color-text);
+      font-size: 1rem;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      &.subnav-panel-parent {
+        font-weight: 600;
+      }
+
+      &.current {
+        font-weight: 700;
+        text-decoration: underline;
       }
     }
   }
@@ -1031,7 +1104,7 @@ header {
   }
 }
 
-body:not(.has-sidebar) main > .hero + .content {
+main > .hero + .content {
   padding-top: 2rem;
 }
 .card-grid {
@@ -1052,24 +1125,34 @@ body:not(.has-sidebar) main > .hero + .content {
 
 .card {
   width: 100%;
-  overflow: hidden;
 
   header {
-    position: relative;
-
     img {
       height: 2.5rem;
       object-fit: contain;
     }
 
     h2 {
+      position: relative;
       margin: 0;
       font-size: 1.1em;
 
-      a::after {
-        content: "";
-        position: absolute;
-        inset: 0;
+      a {
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
+
+        &:focus-visible {
+          outline: none;
+        }
+
+        &:focus-visible::after {
+          box-shadow: 0 0 0 2px var(--color-primary);
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+        }
       }
     }
   }
@@ -1129,7 +1212,7 @@ body:not(.has-sidebar) main > .hero + .content {
     margin: 1rem auto 0;
   }
 }
-/* Standaard button styling - geldt voor alle <button> elementen */
+/* Standaard button styling */
 button,
 .button {
   display: inline-block;
@@ -1185,7 +1268,49 @@ button,
   padding: 0.25rem;
   background: transparent;
   border: none;
+  border-radius: 0;
   color: var(--color-text-muted);
+
+  &:hover,
+  &:focus-visible {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Link variant - button die eruitziet als een link */
+.button-link {
+  display: inline;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: var(--color-link);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    background: none;
+    border: none;
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    background: none;
+    border: none;
+    color: var(--color-link);
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
 }
 blockquote {
   background: var(--color-bg-light);
@@ -1653,279 +1778,4 @@ button.toast {
 /* Highlight bar - uses toast component */
 #highlight-bar-query {
   font-weight: 700;
-}
-/* ==========================================================================
-   Mobiele navbar - zichtbaar < 900px
-   ========================================================================== */
-
-.navbar-sidebar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-height: var(--navbar-height);
-  width: 100%;
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: 0 1rem 0 0;
-  background-color: var(--color-bg-info);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 0 0 100vmax var(--color-bg-info);
-  clip-path: inset(0 -100vmax);
-  color: var(--color-text);
-
-  @media (min-width: 900px) {
-    display: none;
-  }
-
-  .sidebar-toggle {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0 0 0 -0.25rem;
-    background: transparent;
-    border: none;
-    font-size: 1.125rem;
-    font-weight: 400;
-    color: var(--color-text);
-    text-decoration: none;
-    cursor: pointer;
-
-    &::after {
-      content: attr(data-text);
-      content: attr(data-text) / "";
-      height: 0;
-      visibility: hidden;
-      overflow: hidden;
-      user-select: none;
-      pointer-events: none;
-      font-weight: 700;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 0;
-      border-radius: 0;
-    }
-
-    &[aria-expanded="true"] {
-      font-weight: 700;
-      text-decoration: underline;
-    }
-  }
-}
-
-/* ==========================================================================
-   Sidebar inner - content container
-   ========================================================================== */
-
-.sidebar-inner {
-  display: none;
-  position: relative;
-
-  .navbar-sidebar:has(.sidebar-toggle[aria-expanded="true"]) ~ & {
-    display: block;
-    width: 100%;
-    background-color: var(--color-bg-info);
-    box-shadow: 0 0 0 100vmax var(--color-bg-info);
-    clip-path: inset(0 -100vmax);
-    padding: 0 0 0.25rem;
-    margin: 0 0 1rem;
-
-    h2 {
-      display: none;
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .sidebar-sections > li,
-    .sidebar-pages > li {
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) & {
-          border-color: rgba(255, 255, 255, 0.12);
-        }
-      }
-
-      :root[data-theme="dark"] & {
-        border-color: rgba(255, 255, 255, 0.12);
-      }
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-    }
-
-    .section-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      margin-left: -0.75rem;
-      padding: 0;
-      background: transparent;
-      border: none;
-      color: var(--color-text);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.15s ease;
-
-      &:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: -2px;
-      }
-
-      &[aria-expanded="true"] {
-        transform: rotate(90deg);
-      }
-    }
-
-    .section-link {
-      display: block;
-      padding: 0.75rem 0;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--color-text);
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &[aria-current="page"] {
-        text-decoration: underline;
-      }
-    }
-
-    .sidebar-pages {
-      display: none;
-    }
-
-    .section-toggle[aria-expanded="true"] ~ .sidebar-pages,
-    .section-header:has(.section-toggle[aria-expanded="true"]) + .sidebar-pages {
-      display: block;
-    }
-
-    .sidebar-pages a {
-      display: block;
-      padding: 0.75rem 0 0.75rem 2rem;
-      font-size: 1.125rem;
-      font-weight: 400;
-      color: var(--color-text);
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &[aria-current="page"] {
-        font-weight: 600;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  @media (min-width: 900px) {
-    display: block;
-    position: sticky;
-    top: 1rem;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-    clip-path: none;
-  }
-}
-
-/* ==========================================================================
-   Sidebar navigatie
-   ========================================================================== */
-
-.sidebar-nav h2 {
-  margin: 0;
-  font-size: 1.3rem;
-}
-
-.sidebar-nav h2 a {
-  color: var(--color-text-heading);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.sidebar-sections {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.sidebar-section {
-  margin-bottom: 0.25rem;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-}
-
-.section-toggle {
-  display: none;
-}
-
-.section-link {
-  display: block;
-  padding: 0.2rem 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-text);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &[aria-current="page"] {
-    text-decoration: underline;
-  }
-}
-
-.sidebar-pages {
-  display: block;
-  margin: 0;
-  padding-left: 0.5rem;
-  list-style: none;
-}
-
-.sidebar-pages a {
-  display: block;
-  color: var(--color-text);
-  text-decoration: none;
-  font-size: 1rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &[aria-current="page"] {
-    font-weight: 600;
-    text-decoration: underline;
-  }
-}
-
-.sidebar-nav a:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
 }

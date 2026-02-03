@@ -17,7 +17,7 @@ Daarom:
 - Gebruiken we eenvoudige taal (B1-niveau)
 - Zorgen we voor digitale toegankelijkheid (WCAG 2.1 AA)
 
-Meer over [voor wie we bouwen](../../over-moza/wat-is-moza/) vind je in de sectie Wat is MOZa.
+Meer over voor wie we bouwen vind je op de pagina [Over MOZa](../../over-moza/).
 
 ## Open werken, tenzij
 

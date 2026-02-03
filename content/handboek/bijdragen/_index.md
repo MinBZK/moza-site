@@ -18,14 +18,12 @@ Door bij te dragen help je:
 
 ## Hulp nodig?
 
-Niet vertrouwd met Git, Hugo of onze werkwijze? Vraag om hulp in [Mattermost](../werkwijze/communicatie/#mattermost), of zoek contact met ons. Een teamlid kan je helpen of de wijziging voor je doorvoeren.
-
-Meer over [hoe we werken](../werkwijze/) en [communiceren](../werkwijze/communicatie/).
+Niet vertrouwd met Git, Hugo of onze werkwijze? Vraag om hulp in [Mattermost](../jouw-start/accounts-en-tools/#mattermost), of [zoek contact](../../contact/) met ons. Een teamlid kan je helpen of de wijziging voor je doorvoeren.
 
 ## Niet zeker of het goed is?
 
-Doe gerust een voorstel door bijvoorbeeld een bericht met de suggestie te sturen op [Mattermost](../werkwijze/communicatie/#mattermost). Of door "gewoon" een pull request te maken op [GitHub](https://github.com/minbzk/moza-site). Ook als je niet zeker bent of het klopt. Dat is waar reviews voor zijn. Liever een imperfecte bijdrage dan helemaal geen bijdrage.
+Doe gerust een voorstel door bijvoorbeeld een bericht met de suggestie te sturen op [Mattermost](../jouw-start/accounts-en-tools/#mattermost). Of door "gewoon" een pull request te maken op [GitHub](https://github.com/minbzk/moza-site). Ook als je niet zeker bent of het klopt. Dat is waar reviews voor zijn. Liever een imperfecte bijdrage dan helemaal geen bijdrage.
 
-Als je twijfelt, vraag het eerst in [Mattermost](../werkwijze/communicatie/#mattermost) of zoek contact met ons. We denken graag mee.
+Als je twijfelt, vraag het eerst in [Mattermost](../jouw-start/accounts-en-tools/#mattermost) of [zoek contact](../../contact/) met ons. We denken graag mee.
 
 ## Waar kun je aan bijdragen

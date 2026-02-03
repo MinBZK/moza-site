@@ -110,8 +110,8 @@ Je kunt ook helpen door pull requests van anderen te reviewen.
 
 Doe gerust een voorstel door ons een opzet te sturen, of maak een pull request. Ook als je niet zeker bent of het klopt. Dat is waar reviews voor zijn. Liever een imperfecte bijdrage dan helemaal geen bijdrage.
 
-Als je twijfelt, vraag het eerst in [Mattermost](../../werkwijze/communicatie/#mattermost). We denken graag mee.
+Als je twijfelt, vraag het eerst in [Mattermost](../../jouw-start/accounts-en-tools/#mattermost). We denken graag mee.
 
 ## Vragen?
 
-Vragen over hoe je kunt bijdragen aan het handboek? Vraag het in [Mattermost](../../werkwijze/communicatie/#mattermost) of [zoek contact](../../contact) met ons.
+Vragen over hoe je kunt bijdragen aan het handboek? Vraag het in [Mattermost](../../jouw-start/accounts-en-tools/#mattermost) of [zoek contact](../../contact) met ons.

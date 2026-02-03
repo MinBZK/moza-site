@@ -48,7 +48,7 @@ Elke week versturen we een MOZa Weekly voor iedereen die volgt wat we doen. Deze
 
 Eens per twee weken hebben we een retrospective en refinement sessie. Dit is een moment om te reflecteren op hoe we samenwerken én om aankomend werk te bespreken.
 
-We gebruiken een [Mattermost board](communicatie#mattermost) met vier kolommen:
+We gebruiken een [Mattermost board](../jouw-start/accounts-en-tools/#mattermost) met vier kolommen:
 
 - **Wat gaat goed 👍** - Dingen die goed gaan en die we willen behouden
 - **Wat kan er beter 🚫** - Zaken die verbeterd kunnen worden

@@ -26,6 +26,8 @@ markup:
     parser:
       attribute:
         block: true
+  highlight:
+    style: onedark
   tableOfContents:
     endLevel: 4
 
@@ -59,6 +61,9 @@ menus:
     - name: Werkwijze
       pageRef: /handboek/werkwijze
       weight: 3
+    - name: Bijdragen
+      pageRef: /handboek/bijdragen
+      weight: 4
 
   footer-links:
     - name: Handboek

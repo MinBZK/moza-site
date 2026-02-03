@@ -62,6 +62,6 @@ done
 
 # 3. Apply sed replacements for structurizr diagrams in the generated folder
 echo "Updating diagram embeds in $GEN_DIR..."
-find "$GEN_DIR" -type f -name "*.md" -exec sed -i 's|!\[.*\](embed:\(.*\))|<iframe id="structurizr-diagram" src="/diagrammen/index.html?iframe=structurizr-diagram#\1" width="100%" height="800px"></iframe>|g' {} +
+find "$GEN_DIR" -type f -name "*.md" -exec sed -i 's|!\[.*\](embed:\(.*\))|{{< diagram "\1" >}}|g' {} +
 
 echo "Done! You can now run 'hugo server'."

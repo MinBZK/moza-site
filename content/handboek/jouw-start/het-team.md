@@ -28,7 +28,7 @@ Naast het uitvoerende team zijn er ook overlegstructuren:
 
 Verslagen van deze overleggen vind je in de samenwerkruimte onder programmadocumentatie.
 
-Meer over de governance en organisatie vind je in de sectie [over MOZa](../over-moza/).
+Meer over de governance en organisatie vind je in de sectie [over MOZa](../../over-moza/).
 
 ## Bereikbaarheid
 

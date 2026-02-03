@@ -44,6 +44,19 @@ Elke week versturen we een MOZa Weekly voor iedereen die volgt wat we doen. Deze
 
 ## Tweewekelijks
 
+### Retrospective en refinement
+
+Eens per twee weken hebben we een retrospective en refinement sessie. Dit is een moment om te reflecteren op hoe we samenwerken én om aankomend werk te bespreken.
+
+We gebruiken een [Mattermost board](communicatie#mattermost) met vier kolommen:
+
+- **Wat gaat goed 👍** - Dingen die goed gaan en die we willen behouden
+- **Wat kan er beter 🚫** - Zaken die verbeterd kunnen worden
+- **Ideeën 💡** - Suggesties en nieuwe ideeën om uit te proberen
+- **Acties ✅** - Concrete acties die we oppakken
+
+Na de retro bespreken we aankomende taken en verduidelijken we requirements waar nodig. Dit helpt ons om goed voorbereid te zijn op het werk dat voor ons ligt.
+
 ### Team overleg
 
 Eens per twee weken hebben we een team overleg. Hier bespreken we:
@@ -51,7 +64,7 @@ Eens per twee weken hebben we een team overleg. Hier bespreken we:
 - Grotere ontwikkelingen
 - Teamzaken
 - Proces en werkwijze
-- Stand van zaken huidige fse
+- Stand van zaken huidige fase
 
 ## Maandelijks
 

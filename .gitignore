@@ -6,7 +6,7 @@ tmp
 .generated
 
 # Structurizr
-.structurizr/diagrammen/
+structurizr/diagrammen/
 static/diagrammen/
 
 # Editors

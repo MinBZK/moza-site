@@ -322,7 +322,129 @@
  alt="Project board MijnOverheid Zakelijk op GitHub"
  style="max-width: 100%; height: auto"
  /&gt;
-&lt;/section&gt;</description></item><item><title>Actueel</title><link>https://minbzk.github.io/moza-site/preview/pr-34/actueel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/actueel/</guid><description/></item><item><title>Contact</title><link>https://minbzk.github.io/moza-site/preview/pr-34/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/contact/</guid><description>&lt;p&gt;Het team kan je het beste bereiken op Mattermost. Daarnaast kun je ons altijd een e-mail sturen:&lt;/p&gt;
+&lt;/section&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0001-record-architecture-decisions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0001-record-architecture-decisions/</guid><description>&lt;h1 id="1-record-architecture-decisions"&gt;1. Record architecture decisions&lt;/h1&gt;
+&lt;p&gt;Date: 2025-05-01&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Accepted&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;We moeten ontwerpbeslissingen bijhouden tijdens de ontwikkeling van dit project. Belangrijk is om daarvan een helder overzicht te hebben, zodat we deze later makkelijk kunnen terugvinden. Bijvoorbeeld keuzes voor bepaalde frameworks en packages. Zo kunnen nieuwe projectmedewerkers / developers ook snel zien waarom er bepaalde keuzes zijn gemaakt.&lt;/p&gt;
+&lt;h2 id="decision"&gt;Decision&lt;/h2&gt;
+&lt;p&gt;We gaan gebruik maken van Architecture Decision Records, zoals &lt;a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions" target="_blank" rel="external noopener noreferrer"&gt;beschreven door Michael Nygard&lt;/a&gt;.&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0002-notify-onderzoek/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0002-notify-onderzoek/</guid><description>&lt;h1 id="2-notify-onderzoek"&gt;2. Notify Onderzoek&lt;/h1&gt;
+&lt;p&gt;Date: 2025-07-07&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Accepted&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;Tijdens onze gesprekken met verschillende organisaties (Belastingdienst, UWV en RDW) over aansluiten op MijnOverheidZakelijk kwam
+een andere behoefte eigenlijk meer omhoog, een rijksbrede, goed werkende notificatie service.
+Binnen Logius wordt hiervoor al gekeken naar NotifyNL, een fork van het project NotifyUK door het bedrijf Worth systems.
+Vanuit het programma MijnOverheidZakelijk hadden we ook tijd om hier onderzoek naar te doen. Binnen dit onderzoek is er niet gekeken naar de functionele mogelijkheden maar alleen naar de technische keuzes (code, gebruikte third party systemen en architecturale beslissingen) en de verschillen tussen het base NotifyUK project en de Nederlandse fork.&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0003-scenario-bepaling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0003-scenario-bepaling/</guid><description>&lt;h1 id="3-scenario-bepaling"&gt;3. Scenario bepaling&lt;/h1&gt;
+&lt;p&gt;Date: 2025-07-08&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Proposed&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;Vanuit de buisiness kregen we de vraag om scenarios op basis van architectuur vraagstukken van Paul Jansen uit te werken tot documenatie en ook prototypes.&lt;/p&gt;
+&lt;h3 id="scenario-2"&gt;Scenario 2&lt;/h3&gt;
+&lt;p&gt;Bij scenario 2 maken alle (vak)applicaties van bijv. het UWV, de belastingdienst of RVO allemaal direct verbinding met de notificatie service (Of dit nou Notify of een alternatief is)&lt;/p&gt;
+&lt;h4 id="scenario-2-1"&gt;Scenario 2&lt;/h4&gt;
+&lt;p&gt;&lt;img src="./images/Scenario2.png" alt="Scenario 2 uitgetekend" title="Scenario 2 uitgetekend" &gt;
+&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0004-openzaak-openklant-copy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0004-openzaak-openklant-copy/</guid><description>&lt;h1 id="4-openklant--openzaak-voor-fase-1"&gt;4. OpenKlant &amp;amp; OpenZaak voor fase 1&lt;/h1&gt;
+&lt;p&gt;Date: 2025-07-15&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Accepted&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OpenKlant gebruiken i.p.v. een profiel service ontwikkelen&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OpenKlant is op dit moment te uitgebreid voor de eerste fase; een nadere afweging is pas zinvol zodra de requirements concreter zijn.
+Enkele voorbeelden:
+Een partij kan meerdere digitale adressen hebben, waar wij e-mails naartoe kunnen sturen. Echter, er ontbreekt een mogelijkheid om aan te geven waarvoor een adres bedoeld is (bijv. voor financiële communicatie).
+Daarnaast bevat OpenKlant meerdere velden (zoals rekeningnummer, actor en interne taak) die wij voorlopig niet zouden gebruiken.&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0005-auditlog-eventsourcing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0005-auditlog-eventsourcing/</guid><description>&lt;h1 id="5-event-sourcing"&gt;5. Event Sourcing&lt;/h1&gt;
+&lt;p&gt;Date: 2025-10-05&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Accepted&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;Vanuit de business kregen we de vraag om event sourcing te onderzoeken in de context van de Profiel Service, wat momenteel dus alleen een e-mailadres betreft maar in de toekomst meer zou kunnen bevatten.&lt;/p&gt;
+&lt;p&gt;Hieronder een eenvoudig voorbeeld van hoe de tijdlijn van een profiel er uit zou kunnen zien:&lt;br&gt;
+&lt;img src="./images/ProfielTijdlijn.png" alt="Profiel tijdlijn" title="Profiel tijdlijn" &gt;
+&lt;/p&gt;
+&lt;details&gt;
+ &lt;summary&gt;Zie mermaid code&lt;/summary&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;mermaid
+flowchart TD
+ subgraph Profiel Tijdlijn
+ E[2025-01-01: ProfielCreated email=1]:::event --&amp;gt; D[2025-02-02: ProfielUpdated email=2]:::event --&amp;gt; C[2025-03-03: ProfielUpdated email=3]:::event --&amp;gt; B[2025-04-04: ProfielDeleted]:::event
+ end
+
+ classDef event fill:#e3f2fd,stroke:#2196f3,color:#0d47a1;
+&lt;/code&gt;&lt;/pre&gt;&lt;/details&gt;
+&lt;h3 id="event-sourcing"&gt;Event Sourcing&lt;/h3&gt;
+&lt;p&gt;Event sourcing is een manier van gegevensopslag waarbij niet de actuele state van een entiteit wordt opgeslagen, maar alle events die tot die state hebben geleid.&lt;br&gt;
+Elke wijziging aan een profiel, bijvoorbeeld het aanpassen van een e-mailadres of toevoegen van een telefoonnummer, wordt vastgelegd als een apart event.&lt;br&gt;
+De actuele state van een profiel wordt dan bepaald door alle events in chronologische volgorde opnieuw toe te passen.&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0006-federatieve-authenticatie-en-autorisatie-op-basis-van-oidc-en-eidas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0006-federatieve-authenticatie-en-autorisatie-op-basis-van-oidc-en-eidas/</guid><description>&lt;h1 id="6-federatieve-authenticatie-en-autorisatie-op-basis-van-openid-connect-en-eidas-20"&gt;6. Federatieve Authenticatie en Autorisatie op basis van OpenID Connect en eIDAS 2.0&lt;/h1&gt;
+&lt;p&gt;Date: 2025-10-27&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Proposed&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;h3 id="doel"&gt;Doel&lt;/h3&gt;
+&lt;p&gt;Een federatieve architectuur voor authenticatie en autorisatie van gebruikers (DigiD / eHerkenning / eIDAS), waarmee rechtstreeks geauthenticeerd kan worden bij individuele services - zoals de Profiel Service, Berichten Services, MijnServices etc - met eenduidige trust- en token-flows die aansluiten op eIDAS 2.0 en OpenID Connect.&lt;/p&gt;
+&lt;p&gt;Het document beschrijft:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Componenten en rollen&lt;/li&gt;
+&lt;li&gt;Schematische architectuur (flowdiagram)&lt;/li&gt;
+&lt;li&gt;Sequence diagram (met voorbeeld JWT-claims en HTTP-calls)&lt;/li&gt;
+&lt;li&gt;Token- en trustmechanismen (OIDC, JWT, JWKS, aud, iss, acr)&lt;/li&gt;
+&lt;li&gt;Security- en privacy-overwegingen&lt;/li&gt;
+&lt;li&gt;Management-samenvatting (A4)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="kerncomponenten"&gt;Kerncomponenten&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Gebruiker (Burger / Bedrijf)&lt;/strong&gt; – eindgebruiker die zich authenticeert met DigiD, eHerkenning of eIDAS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client (Portal / Mobile / SPA)&lt;/strong&gt; – applicatie die namens de gebruiker API-calls doet naar Berichten Services.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Identity Provider (IdP)&lt;/strong&gt; – OIDC en eIDAS-compatible of nationale IdP (DigiD/eHerkenning). Biedt ID Token, Access Token, JWKS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Federation Trust Registry / Metadata Service&lt;/strong&gt; – centrale of federatieve trustlijst met IdP’s, clients en services.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Token Exchange / Gateway (optioneel)&lt;/strong&gt; – wisselt tokens om voor resource-specifieke tokens (&lt;a href="https://www.rfc-editor.org/rfc/rfc8693.html" target="_blank" rel="external noopener noreferrer"&gt;RFC 8693&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Berichten Service (Resource Server)&lt;/strong&gt; – valideert tokens en bepaalt autorisatie.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Policy Engine (OPA/XACML)&lt;/strong&gt; – beoordeelt toegangsregels.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="architectuurdiagram"&gt;Architectuurdiagram&lt;/h2&gt;
+&lt;p&gt;Er zijn verschillende mogelijkheden om op federatieve wijze toegang tot services te verlenen, waarvan twee hoofdopties (beiden eIDAS 2.0 compliant);&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0007-logboek-dataverwer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0007-logboek-dataverwer/</guid><description>&lt;h1 id="7-logboek-dataverwerking"&gt;7. Logboek dataverwerking&lt;/h1&gt;
+&lt;p&gt;Date: 2025-10-28&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Declined&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;h3 id="bevindingen-logboek-dataverwerking-prototype"&gt;Bevindingen Logboek Dataverwerking Prototype&lt;/h3&gt;
+&lt;h4 id="prototype-implementatie"&gt;Prototype Implementatie&lt;/h4&gt;
+&lt;p&gt;Als onderdeel van ons onderzoek hebben we een Java-package ontwikkeld die OpenTelemetry traces en spans omzet naar een vooraf gedefinieerd dataformat voor logboekverwerking. Deze data wordt vervolgens opgeslagen in een ClickHouse database. Tijdens de implementatie en het testen van deze standaard hebben we verschillende uitdagingen geïdentificeerd.&lt;/p&gt;
+&lt;h4 id="kritische-knelpunten-bij-federatieve-implementatie"&gt;Kritische Knelpunten bij Federatieve Implementatie&lt;/h4&gt;
+&lt;p&gt;Voor organisaties die procesflows willen koppelen over hun eigen systemen en externe partijen heen, is een federatieve architectuur noodzakelijk. Binnen dit domein hebben we significante uitdagingen geconstateerd waarvoor momenteel geen uitgewerkte standaard beschikbaar is:&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0008-data-eigenaar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0008-data-eigenaar/</guid><description>&lt;h1 id="8-eigenaar-van-contactvoorkeur-data"&gt;8. Eigenaar van contactvoorkeur-data&lt;/h1&gt;
+&lt;p&gt;Date: 2025-11-13&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Accepted&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;Binnen de profielservice worden contactvoorkeuren vastgelegd, zoals e-mailadressen, telefoonnummers en (woon)adressen.&lt;br&gt;
+Deze gegevens kunnen persoonsgegevens bevatten en vallen daardoor onder de bescherming van de AVG.&lt;/p&gt;
+&lt;p&gt;In de huidige modellering zijn er twee relevante rollen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ontvangende Partij:&lt;/strong&gt; de partij (persoon of organisatie) die het contactmiddel beheert of bezit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Betreffende Partij:&lt;/strong&gt; de partij (persoon of organisatie) waarop de communicatie betrekking heeft.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;De vraag is wie in juridisch en functioneel opzicht de ‘eigenaar’ is van de contactvoorkeur:&lt;br&gt;
+Is dat de Ontvangende Partij (die het contactmiddel beheert), of de Betreffende Partij (waarvoor de contactvoorkeur geldt)?&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0009-nl-design-system-implementeren/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0009-nl-design-system-implementeren/</guid><description>&lt;h1 id="9-nl-design-system-implementeren"&gt;9. NL Design System implementeren&lt;/h1&gt;
+&lt;p&gt;Date: 2025-11-17&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Proposed&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;The issue motivating this decision, and any context that influences or constrains the decision.&lt;/p&gt;
+&lt;h2 id="decision"&gt;Decision&lt;/h2&gt;
+&lt;p&gt;The change that we&amp;rsquo;re proposing or have agreed to implement.&lt;/p&gt;
+&lt;h2 id="consequences"&gt;Consequences&lt;/h2&gt;
+&lt;p&gt;What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.&lt;/p&gt;</description></item><item><title/><link>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0010-ldv-implementatie/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/documentatie/beslissingen/0010-ldv-implementatie/</guid><description>&lt;h1 id="10-logboek-dataverwerking-implementeren"&gt;10. Logboek dataverwerking implementeren&lt;/h1&gt;
+&lt;p&gt;Date: 2025-12-01&lt;/p&gt;
+&lt;h2 id="status"&gt;Status&lt;/h2&gt;
+&lt;p&gt;Proposed&lt;/p&gt;
+&lt;h2 id="context"&gt;Context&lt;/h2&gt;
+&lt;p&gt;Het Logboek Dataverwerking (LDV) is een standaard van Logius die gericht is op het vergroten van de controleerbaarheid van de overheid. Dit betekent dat overheidsorganisaties hun handelingen en besluiten altijd moeten kunnen toelichten, aan burgers, bedrijven en andere overheidsinstanties.
+Het LDV-standaard helpt hierbij door een uniforme manier te bieden om vast te leggen welke gegevens van burgers en bedrijven worden verwerkt, hoe dit gebeurt en om welke redenen.&lt;/p&gt;</description></item><item><title>Actueel</title><link>https://minbzk.github.io/moza-site/preview/pr-34/actueel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/actueel/</guid><description/></item><item><title>Contact</title><link>https://minbzk.github.io/moza-site/preview/pr-34/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://minbzk.github.io/moza-site/preview/pr-34/contact/</guid><description>&lt;p&gt;Het team kan je het beste bereiken op Mattermost. Daarnaast kun je ons altijd een e-mail sturen:&lt;/p&gt;
 &lt;blockquote class="callout"&gt;
  &lt;div class="content"&gt;
  &lt;p&gt;&lt;a href="mailto:MijnOverheid@minbzk.nl?subject=MijnOverheid%20Zakelijk%3A"&gt;MijnOverheid@minbzk.nl&lt;/a&gt;&lt;/p&gt;

@@ -19,4 +19,12 @@
 <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
 </svg>
+{{- else if eq $name "toc-open" -}}
+<svg class="icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6l-11 0M20 12l-7 0M20 18l-11 0M4 8l4 4l-4 4"></path>
+</svg>
+{{- else if eq $name "toc-close" -}}
+<svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6l-7 0M20 12l-9 0M20 18l-7 0M8 8l-4 4l4 4"></path>
+</svg>
 {{- end -}}

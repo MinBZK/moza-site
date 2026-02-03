@@ -100,21 +100,12 @@ button.toc-toggle {
   margin-top: 0.5rem;
   background: transparent;
   border: none;
+  color: var(--color-text);
   cursor: pointer;
 
-  img {
+  svg {
     width: 24px;
     height: 24px;
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) & {
-        filter: invert(1);
-      }
-    }
-
-    :root[data-theme="dark"] & {
-      filter: invert(1);
-    }
   }
 
   .icon-close {

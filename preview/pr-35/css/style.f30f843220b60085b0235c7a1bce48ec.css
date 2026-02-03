@@ -407,21 +407,12 @@ button.toc-toggle {
   margin-top: 0.5rem;
   background: transparent;
   border: none;
+  color: var(--color-text);
   cursor: pointer;
 
-  img {
+  svg {
     width: 24px;
     height: 24px;
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) & {
-        filter: invert(1);
-      }
-    }
-
-    :root[data-theme="dark"] & {
-      filter: invert(1);
-    }
   }
 
   .icon-close {
@@ -1014,7 +1005,6 @@ header {
   .subnav-panel {
     display: none;
     background-color: var(--color-bg-muted);
-    border-bottom: 1px solid var(--color-border);
     box-shadow: 0 0 0 100vmax var(--color-bg-muted);
     clip-path: inset(0 -100vmax);
     margin-top: -0.75rem;

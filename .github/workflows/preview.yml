@@ -69,7 +69,11 @@ jobs:
 
       - name: Build site
         if: github.event.action != 'closed'
-        run: hugo --minify --baseURL "${{ steps.gh_pages_url.outputs.url }}"
+        run: |
+          chmod +x setup-dev.sh
+          ./setup-dev.sh
+          docker run --rm -v $(pwd)/structurizr:/usr/local/structurizr -v $(pwd)/static/diagrammen:/out structurizr/cli export --workspace workspace.dsl --format static --output /out
+          hugo --minify --baseURL "${{ steps.gh_pages_url.outputs.url }}"
 
       - name: Override robots.txt (disallow indexing)
         if: github.event.action != 'closed'

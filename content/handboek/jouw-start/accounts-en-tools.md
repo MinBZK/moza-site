@@ -20,7 +20,7 @@ We gebruiken Mattermost voor dagelijkse communicatie. Hier vind je alle teamlede
 > 1. [Registreer een nieuwe account op Pleio](https://realisatieibds.pleio.nl/register)
 > 2. [Login](https://digilab.overheid.nl/chat/login) → GitLab → Pleio
 >    - of configureer de volgende server in Mattermost en volg de instructies: `https://digilab.overheid.nl/chat`
-> 3. [Gebruik deze uitnodigingslink](https://digilab.overheid.nl/chat/signup_user_complete/?id=zzj8os1dsjb67ymuqt9e54b9uh&md=link&sbr=su) of [vraag ons om je toe te voegen](mailto:MijnOverheid@minbzk.nl?subject=MijnOverheid%20Zakelijk%3A) aan het team
+> 3. [Ga naar het MOZa kanaal](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/) of [vraag ons om je toe te voegen](mailto:MijnOverheid@minbzk.nl?subject=MijnOverheid%20Zakelijk%3A) aan het team
 
 ## GitHub
 

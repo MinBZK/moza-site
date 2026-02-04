@@ -91,7 +91,7 @@ article > header:has(.toc-toggle) {
 
 button.toc-toggle {
   flex-shrink: 0;
-  display: flex;
+  display: none; /* Verberg standaard op kleine schermen */
   align-items: center;
   justify-content: center;
   width: 2.5rem;
@@ -110,6 +110,11 @@ button.toc-toggle {
 
   .icon-close {
     display: none;
+  }
+
+  /* Toon alleen op grotere schermen waar TOC ook zichtbaar is */
+  @media (min-width: 950px) {
+    display: flex;
   }
 }
 

@@ -49,6 +49,6 @@
   }
 }
 
-.hero + .content {
-  padding-top: 3rem;
+main > .hero + .content {
+  padding-top: 2rem;
 }

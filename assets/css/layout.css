@@ -13,7 +13,7 @@ body {
   background-color: var(--color-bg-page);
 }
 
-/* Skip link voor accessibility om direct naar de inhoud te gaan */
+/* Skip link voor toegankelijkheid */
 .skip-link {
   position: absolute;
   top: -50px;
@@ -53,8 +53,7 @@ main > article {
   }
 }
 
-/* Sidebar layout - grid met hoofdcontent en zijbalk */
-.sidebar-layout {
+.sidebar-layout-right {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 1.5rem;
@@ -65,11 +64,10 @@ main > article {
   }
 }
 
-.sidebar-layout > aside :is(h1, h2) {
+.sidebar-layout-right > aside :is(h1, h2) {
   margin-top: 1rem;
 }
 
-/* Article layout - smalle, gecentreerde content voor leesbaarheid */
 .article-layout {
   max-width: var(--article-max-width);
   margin-left: auto;
@@ -80,12 +78,136 @@ body:has(main > .article-layout) .breadcrumb {
   max-width: var(--article-max-width);
 }
 
-/* Artikel met inhoudsopgave (TOC) */
-main:has(.toc) {
-  .toc {
+article > header:has(.toc-toggle) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+
+  h1 {
+    flex: 1;
+  }
+}
+
+button.toc-toggle {
+  flex-shrink: 0;
+  display: none; /* Verberg standaard op kleine schermen */
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-close {
     display: none;
   }
 
+  /* Toon alleen op grotere schermen waar TOC ook zichtbaar is */
+  @media (min-width: 950px) {
+    display: flex;
+  }
+}
+
+button.toc-toggle:hover,
+button.toc-toggle[aria-expanded="true"]:hover,
+button.toc-toggle[aria-expanded="false"]:hover {
+  background: var(--color-bg-info);
+  border: none;
+  color: inherit;
+}
+
+button.toc-toggle:focus-visible {
+  background: transparent;
+  border: none;
+  color: inherit;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-open {
+  display: none;
+}
+
+button.toc-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+/* Table of Contents (TOC) */
+.toc {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  padding-top: 1rem;
+  font-size: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    max-height: 80vh;
+    overflow: visible;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+
+    ul {
+      padding-left: 0.5rem;
+    }
+  }
+
+  > ul > li {
+    margin-bottom: 0.5rem;
+  }
+
+  ul ul li {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    &.active {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+main:has(.toc) {
   @media (min-width: 950px) {
     max-width: var(--content-max-width);
     display: grid;
@@ -94,48 +216,5 @@ main:has(.toc) {
       );
     gap: 1rem;
     margin: 0 auto;
-
-    .toc {
-      display: block;
-      position: sticky;
-      top: 1rem;
-      align-self: start;
-      width: 100%;
-      font-size: 0.9rem;
-
-      h2 {
-        margin: 0 0 0.5rem;
-        padding-top: 1rem;
-        font-size: 1rem;
-      }
-
-      ul {
-        margin: 0;
-        padding-left: 0;
-
-        ul {
-          padding-left: 1rem;
-        }
-      }
-
-      li {
-        margin-bottom: 0.5rem;
-      }
-
-      a {
-        color: var(--color-text-muted);
-        text-decoration: none;
-
-        &.active {
-          color: var(--color-primary);
-          font-weight: 600;
-        }
-
-        &:hover {
-          color: var(--color-primary);
-          text-decoration: underline;
-        }
-      }
-    }
   }
 }

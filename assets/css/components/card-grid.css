@@ -16,24 +16,34 @@
 
 .card {
   width: 100%;
-  overflow: hidden;
 
   header {
-    position: relative;
-
     img {
       height: 2.5rem;
       object-fit: contain;
     }
 
     h2 {
+      position: relative;
       margin: 0;
       font-size: 1.1em;
 
-      a::after {
-        content: "";
-        position: absolute;
-        inset: 0;
+      a {
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
+
+        &:focus-visible {
+          outline: none;
+        }
+
+        &:focus-visible::after {
+          box-shadow: 0 0 0 2px var(--color-primary);
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+        }
       }
     }
   }

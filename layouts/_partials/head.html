@@ -1,14 +1,48 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>
-  {{ if .IsHome }}{{ .Site.Title }}{{ else if .Title }}{{ .Title }} | {{
-  .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
-</title>
-<meta
-  name="description"
-  content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
-/>
-<link rel="icon" href="{{ relURL "favicon.ico" }}" type="image/x-icon" />
+{{- $pageTitle := .Site.Title -}}
+{{- if and (not .IsHome) .Title -}}
+  {{- $pageTitle = printf "%s | %s" .Title .Site.Title -}}
+{{- end -}}
+<title>{{ $pageTitle }}</title>
+{{- $description := .Description -}}
+{{- if not $description -}}
+  {{- if .Content -}}
+    {{- $description = .Plain | truncate 160 -}}
+  {{- else -}}
+    {{- $description = .Site.Params.description -}}
+  {{- end -}}
+{{- else if gt (len $description) 160 -}}
+  {{- warnf "Description te lang (%d tekens) op pagina: %s - max 160 tekens aanbevolen" (len $description) .RelPermalink -}}
+{{- end -}}
+<meta name="description" content="{{ $description }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{/* Favicons */}}
+<link rel="icon" href="{{ relURL "favicon.ico" }}" sizes="any" />
+<link rel="icon" href="{{ relURL "favicon-32x32.png" }}" type="image/png" sizes="32x32" />
+<link rel="icon" href="{{ relURL "favicon-192x192.png" }}" type="image/png" sizes="192x192" />
+<link rel="apple-touch-icon" href="{{ relURL "apple-touch-icon.png" }}" />
+
+{{/* Open Graph */}}
+<meta property="og:title" content="{{ $pageTitle }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:image" content="{{ absURL "favicon-192x192.png" }}" />
+<meta property="og:image:width" content="192" />
+<meta property="og:image:height" content="192" />
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ $pageTitle }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+<meta name="twitter:image" content="{{ absURL "favicon-192x192.png" }}" />
+<meta name="twitter:image:width" content="192" />
+<meta name="twitter:image:height" content="192" />
+
 
 {{/* CSS bundling via Hugo's asset pipeline */}}
 {{ $tokens := resources.Get "css/tokens.css" }}
@@ -29,8 +63,9 @@
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{/* JavaScript bundling via Hugo's asset pipeline */}}
-{{ $themeToggleJs := resources.Get "js/theme-toggle.js" }}
+{{ $headerJs := resources.Get "js/header.js" }}
+{{ $tocJs := resources.Get "js/toc.js" }}
 {{ $fuseJs := resources.Get "vendor/fuse/fuse.min.js" }}
 {{ $searchJs := resources.Get "js/search.js" }}
-{{ $js := slice $themeToggleJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" }}
+{{ $js := slice $headerJs $tocJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" }}
 <script src="{{ $js.RelPermalink }}" defer></script>

@@ -1,0 +1,150 @@
+name: Preview deployment
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
+      image-tag: ${{ steps.image-tag.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/preview
+          tags: |
+            type=sha,format=short,prefix=pr-${{ github.event.pull_request.number }}-
+
+      - name: Determine deployment URL
+        id: url
+        run: |
+          PR_NUM="${{ github.event.pull_request.number }}"
+          DEPLOYMENT_URL="https://main-pr${PR_NUM}-mzs-3ik.rig.prd1.gn2.quattro.rijksapps.nl"
+          echo "deployment_url=${DEPLOYMENT_URL}" >> $GITHUB_OUTPUT
+
+      - name: Build and push container image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Containerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_URL=${{ steps.url.outputs.deployment_url }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Extract image tag
+        id: image-tag
+        run: |
+          TAG="pr-${{ github.event.pull_request.number }}-$(echo ${{ github.sha }} | cut -c1-7)"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+  deploy-preview:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      pull-requests: write
+    needs: build
+    environment:
+      name: pr${{ github.event.pull_request.number }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Deploy to ZAD
+        id: deploy
+        uses: RijksICTGilde/zad-actions/deploy@v2
+        with:
+          api-key: ${{ secrets.ZAD_API_KEY }}
+          project-id: mzs-3ik
+          deployment-name: pr${{ github.event.pull_request.number }}
+          component: main
+          image: ${{ needs.build.outputs.image }}
+          comment-on-pr: true
+          qr-code: true
+          wait-for-ready: true
+
+  cleanup-preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      packages: write
+      pull-requests: write
+    steps:
+      - name: Cleanup ZAD deployment
+        uses: RijksICTGilde/zad-actions/cleanup@v2
+        with:
+          api-key: ${{ secrets.ZAD_API_KEY }}
+          project-id: mzs-3ik
+          deployment-name: pr${{ github.event.pull_request.number }}
+          delete-github-env: true
+          delete-github-deployments: true
+          delete-pr-comment: true
+
+      - name: Delete container images for this PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONTAINER_ORG: ${{ github.repository_owner }}
+          CONTAINER_NAME: ${{ github.event.repository.name }}/preview
+          TAG_PREFIX: pr-${{ github.event.pull_request.number }}-
+        run: |
+          echo "Deleting container images with tag prefix: $TAG_PREFIX"
+
+          # URL-encode the package name (slashes need to be encoded)
+          ENCODED_NAME=$(echo "$CONTAINER_NAME" | jq -sRr @uri)
+
+          # Get all versions and filter by tag prefix
+          VERSIONS=$(gh api "orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions" 2>/dev/null | \
+            jq -r --arg prefix "$TAG_PREFIX" '.[] | select(.metadata.container.tags[]? | startswith($prefix)) | .id' 2>/dev/null || echo "")
+
+          if [ -z "$VERSIONS" ]; then
+            echo "No versions found with tag prefix: $TAG_PREFIX (may already be deleted)"
+            exit 0
+          fi
+
+          # Delete each version
+          DELETED_COUNT=0
+          for VERSION_ID in $VERSIONS; do
+            echo "Deleting version: $VERSION_ID"
+            if gh api "orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions/$VERSION_ID" -X DELETE 2>/dev/null; then
+              echo "Deleted version: $VERSION_ID"
+              DELETED_COUNT=$((DELETED_COUNT + 1))
+            else
+              echo "Failed to delete version: $VERSION_ID (may already be deleted)"
+            fi
+          done
+
+          echo "Deleted $DELETED_COUNT container version(s) for PR ${{ github.event.pull_request.number }}"

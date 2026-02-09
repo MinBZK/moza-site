@@ -4,7 +4,7 @@ title: MijnOverheid Zakelijk
 description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
 
 hero:
-  image: images/hero/ondernemer-keuken.png
+  image: images/hero/hero-ondernemer-tablet.webp
   image_alt: Ondernemer bekijkt telefoon in zijn keuken
   title: MijnOverheid Zakelijk
   text: Bij MOZa staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.

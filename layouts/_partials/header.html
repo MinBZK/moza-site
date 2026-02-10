@@ -60,7 +60,7 @@
       {{- partial "icon.html" "search" -}}
     </button>
 
-    <button class="theme-toggle mobile-theme" aria-label="Wissel thema" onclick="document.getElementById('theme-toggle').click()">
+    <button class="theme-toggle mobile-theme" aria-label="Wissel thema">
       {{- partial "icon.html" "sun" -}}
       {{- partial "icon.html" "moon" -}}
     </button>
@@ -70,11 +70,6 @@
       aria-label="Menu openen"
       aria-expanded="false"
       aria-controls="mobile-menu"
-      onclick="
-        const expanded = this.getAttribute('aria-expanded') === 'false';
-        this.setAttribute('aria-expanded', expanded);
-        this.setAttribute('aria-label', expanded ? 'Menu sluiten' : 'Menu openen');
-      "
     >
       {{- partial "icon.html" "menu" -}}
     </button>

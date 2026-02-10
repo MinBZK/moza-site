@@ -9,7 +9,15 @@
   --rijksoverheid-text-donker: #1b1b1b;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .reveal {
+  height: 100vh;
   font-family: "Fira Sans", sans-serif;
   font-size: 32px;
   font-weight: 400;
@@ -97,6 +105,33 @@
 
 .reveal-viewport {
   background-color: var(--rijksoverheid-wit);
+}
+
+/* Presentation utility classes */
+.reveal .dimmed {
+  color: var(--rijksoverheid-grijs-donker);
+  opacity: 0.5;
+}
+
+.reveal .large-image {
+  max-width: 100%;
+  max-height: 65vh;
+  height: auto;
+  margin-top: 100px;
+}
+
+.reveal .full-width-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 0;
+}
+
+.reveal .hidden-element {
+  opacity: 0;
+}
+
+.reveal h2.small-header {
+  font-size: 1.5em;
 }
 
 /* Close button */

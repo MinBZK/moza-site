@@ -124,16 +124,31 @@ jobs:
 
           # Package name without org (e.g., "moza-site/preview")
           CONTAINER_NAME="${{ github.event.repository.name }}/preview"
+          echo "Container name: $CONTAINER_NAME"
 
           # URL-encode the package name (slashes need to be encoded)
           ENCODED_NAME=$(echo "$CONTAINER_NAME" | jq -sRr @uri)
+          echo "Encoded name: $ENCODED_NAME"
+          echo "API endpoint: orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions"
 
           # Get all versions and filter by tag prefix
-          VERSIONS=$(gh api "orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions" 2>/dev/null | \
-            jq -r --arg prefix "$TAG_PREFIX" '.[] | select(.metadata.container.tags[]? | startswith($prefix)) | .id' 2>/dev/null || echo "")
+          echo "Fetching versions..."
+          API_RESPONSE=$(gh api "orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions" 2>&1)
+          API_EXIT_CODE=$?
+
+          if [ $API_EXIT_CODE -ne 0 ]; then
+            echo "API call failed with exit code $API_EXIT_CODE"
+            echo "Response: $API_RESPONSE"
+            exit 1
+          fi
+
+          echo "API response received, filtering by tag prefix..."
+          VERSIONS=$(echo "$API_RESPONSE" | jq -r --arg prefix "$TAG_PREFIX" '.[] | select(.metadata.container.tags[]? | startswith($prefix)) | .id')
 
           if [ -z "$VERSIONS" ]; then
-            echo "No versions found with tag prefix: $TAG_PREFIX (may already be deleted)"
+            echo "No versions found with tag prefix: $TAG_PREFIX"
+            echo "All available tags:"
+            echo "$API_RESPONSE" | jq -r '.[].metadata.container.tags[]?' | head -20
             exit 0
           fi
 

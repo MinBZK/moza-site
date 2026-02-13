@@ -118,10 +118,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CONTAINER_ORG: ${{ github.repository_owner }}
-          CONTAINER_NAME: ${{ env.IMAGE_NAME }}
           TAG_PREFIX: pr-${{ github.event.pull_request.number }}-
         run: |
           echo "Deleting container images with tag prefix: $TAG_PREFIX"
+
+          # Package name without org (e.g., "moza-site/preview")
+          CONTAINER_NAME="${{ github.event.repository.name }}/preview"
 
           # URL-encode the package name (slashes need to be encoded)
           ENCODED_NAME=$(echo "$CONTAINER_NAME" | jq -sRr @uri)

@@ -127,7 +127,7 @@ jobs:
           echo "Container name: $CONTAINER_NAME"
 
           # URL-encode the package name (slashes need to be encoded)
-          ENCODED_NAME=$(echo "$CONTAINER_NAME" | jq -sRr @uri)
+          ENCODED_NAME=$(printf '%s' "$CONTAINER_NAME" | jq -sRr @uri)
           echo "Encoded name: $ENCODED_NAME"
           echo "API endpoint: orgs/$CONTAINER_ORG/packages/container/$ENCODED_NAME/versions"
 

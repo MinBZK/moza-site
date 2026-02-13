@@ -64,6 +64,26 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Mobile menu toggle
+  document.querySelectorAll('.navbar .toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      const targetId = this.getAttribute('aria-controls');
+      const target = document.getElementById(targetId);
+
+      this.setAttribute('aria-expanded', !expanded);
+      this.setAttribute('aria-label', !expanded ? 'Menu sluiten' : 'Menu openen');
+    });
+  });
+
+  // Mobile theme toggle (sync with main toggle)
+  const mobileThemeToggle = document.querySelector('.mobile-theme');
+  if (mobileThemeToggle && toggle) {
+    mobileThemeToggle.addEventListener('click', () => {
+      toggle.click();
+    });
+  }
+
   // Sluit mobiel menu bij resize naar desktop
   const desktopBreakpoint = 900;
   let wasDesktop = window.innerWidth >= desktopBreakpoint;

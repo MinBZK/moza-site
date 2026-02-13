@@ -11,7 +11,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}/preview
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/preview
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=sha,format=short,prefix=pr-${{ github.event.pull_request.number }}-
 
@@ -118,7 +118,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CONTAINER_ORG: ${{ github.repository_owner }}
-          CONTAINER_NAME: ${{ github.event.repository.name }}/preview
+          CONTAINER_NAME: ${{ env.IMAGE_NAME }}
           TAG_PREFIX: pr-${{ github.event.pull_request.number }}-
         run: |
           echo "Deleting container images with tag prefix: $TAG_PREFIX"

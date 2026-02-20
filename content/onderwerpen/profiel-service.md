@@ -17,6 +17,9 @@ De profielservice slaat contactvoorkeuren en eventueel contactgegevens op die (n
 
 "/images/Profielservice-concept.svg"
 
+image: "/images/tegel-profiel.svg"
+image_alt: "Icoon van een profiel"
+
 
 Aan de 'pijlen' wordt de contactvoorkeur gekoppeld - en per 'pijl' is daarmee een (eigen) contactvoorkeur. Echter de profielservice zal altijd wanneer mogelijk refereren naar de (wettelijke) bronnen die daarvoor zijn ingericht. De profielservice is daarmee:
 

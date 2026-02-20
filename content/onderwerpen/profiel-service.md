@@ -10,8 +10,10 @@ Hét centrale punt voor je communicatievoorkeuren en bijbehorende contactgegeven
 
 De Profiel Service is een van de services die binnen het programma MOZa wordt ontwikkeld. Het doel van deze service is dat ondernemers straks, net als burgers, op één plek hun communicatievoorkeuren en waar relevant contactgegevens, met de overheid beheren. 
 Hierbij wordt onderscheid gemaakt in twee primaire zaken:
+
 **Contactvoorkeur**
 Op welke manier wil ik (als persoon) benaderd worden (email, post, sms, anders..)
+
 **Contactgegevens**
 Als ik een voorkeur heb aangeven, op welk 'adres' wordt ik dan benaderd. Dit kan dan een digitaal 'adres' zijn, maar ook een fysiek adres
 

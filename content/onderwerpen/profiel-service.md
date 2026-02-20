@@ -5,19 +5,25 @@ image: "/images/tegel-profiel.svg"
 image_alt: "Icoon van een profiel"
 weight: 2
 ---
-Op één plek je contactgegevens en communicatievoorkeuren beheren
+Hét centrale punt voor je communicatievoorkeuren en bijbehorende contactgegevens 
 ================================================================
 
-De Profiel Service is een van de services die binnen het programma MOZa wordt ontwikkeld. Dankzij deze service kunnen ondernemers straks, net als burgers, op één plek hun contactgegevens en communicatievoorkeuren met de overheid (digitaal of per post) beheren. Ze hoeven deze dus niet meer op verschillende plekken in te voeren of bij te houden.
+De Profiel Service is een van de services die binnen het programma MOZa wordt ontwikkeld. Het doel van deze service is dat ondernemers straks, net als burgers, op één plek hun communicatievoorkeuren en waar relevant contactgegevens, met de overheid beheren. 
+Hierbij wordt onderscheid gemaakt in twee primaire zaken:
+**Contactvoorkeur**
+Op welke manier wil ik (als persoon) benaderd worden (email, post, sms, anders..)
+**Contactgegevens**
+Als ik een voorkeur heb aangeven, op welk 'adres' wordt ik dan benaderd. Dit kan dan een digitaal 'adres' zijn, maar ook een fysiek adres
 
 Visie profielservice
 ====================
-
-De profielservice slaat contactvoorkeuren en eventueel contactgegevens op die (nog) geen centrale (wettelijke) plek hebben. Vanuit de context voor de ondernemer legt de profielservice dit vast in de combinatie persoon-bedrijf, en beide kunnen 1 tot n zijn. Simpelweg betekent dit dat één persoon gekoppeld kan zijn aan meerdere bedrijven - maar ook meerdere personen aan één bedrijf. Hieronder wordt dit conceptueel uitgelicht:  
+De profielservice slaat de contactvoorkeur overheidsbreed op, en daarnaast eventueel contactgegevens op die (nog) geen centrale (wettelijke) plek hebben. Vanuit de context voor de ondernemer legt de profielservice dit vast in de combinatie persoon-bedrijf, en beide kunnen 1 tot n zijn. Simpelweg betekent dit dat één persoon gekoppeld kan zijn aan meerdere bedrijven - maar ook meerdere personen aan één bedrijf. Hieronder wordt dit conceptueel uitgelicht:  
 
 ![Profielservice Concept](/images/Profielservice-concept.svg)
 
-Aan de 'pijlen' wordt de contactvoorkeur gekoppeld - en per 'pijl' is daarmee een (eigen) contactvoorkeur. Echter de profielservice zal altijd wanneer mogelijk refereren naar de (wettelijke) bronnen die daarvoor zijn ingericht. De profielservice is daarmee:
+Aan de 'pijlen' wordt in elk geval contactvoorkeur gekoppeld - er is\ per 'pijl' is daarmee een eigen contactvoorkeur. 
+
+Echter de profielservice zal altijd wanneer mogelijk refereren naar de (wettelijke) bronnen die daarvoor zijn ingericht. De profielservice is daarmee:
 
 *   Dé centrale plek waarin een voorkeur kenbaar gemaakt wordt
 *   Dé startplek waar contactgegevens te vinden zijn, ofwel;

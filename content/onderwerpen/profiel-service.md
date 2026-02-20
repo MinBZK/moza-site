@@ -15,7 +15,7 @@ Visie profielservice
 
 De profielservice slaat contactvoorkeuren en eventueel contactgegevens op die (nog) geen centrale (wettelijke) plek hebben. Vanuit de context voor de ondernemer legt de profielservice dit vast in de combinatie persoon-bedrijf, en beide kunnen 1 tot n zijn. Simpelweg betekent dit dat één persoon gekoppeld kan zijn aan meerdere bedrijven - maar ook meerdere personen aan één bedrijf. Hieronder wordt dit conceptueel uitgelicht:  
 
-![Profielservice]"../static/images/Profielservice-concept.svg"
+![Profielservice Concept](https://mijnoverheidzakelijk.nl/images/Profielservice-concept.svg)
 
 Aan de 'pijlen' wordt de contactvoorkeur gekoppeld - en per 'pijl' is daarmee een (eigen) contactvoorkeur. Echter de profielservice zal altijd wanneer mogelijk refereren naar de (wettelijke) bronnen die daarvoor zijn ingericht. De profielservice is daarmee:
 

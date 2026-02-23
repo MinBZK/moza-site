@@ -1,4 +1,9 @@
-<pre class="mermaid">
-  {{- .Inner | htmlEscape | safeHTML }}
-</pre>
+<div class="mermaid-container">
+  <button class="mermaid-download button-ghost" title="Download als afbeelding" aria-label="Download als afbeelding">
+    {{- partial "icon.html" "download" -}}
+  </button>
+  <pre class="mermaid">
+    {{- .Inner | htmlEscape | safeHTML }}
+  </pre>
+</div>
 {{- .Page.Store.Set "hasMermaid" true -}}

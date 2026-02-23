@@ -16,6 +16,11 @@ Deze regels gelden voor alle content en communicatie.
 - Houd alinea's kort (max 3-4 zinnen)
 - Spreek de lezer aan met "u" (formeel)
 
+## Naamgeving services
+
+- Gebruik "profielservice" (één woord), niet "profiel service"
+- Hetzelfde geldt voor andere services: "notificatieservice", niet "notificatie service"
+
 ## Rijkshuisstijl
 
 - Volg de Rijkshuisstijl voor overheidswebsites

@@ -11,6 +11,7 @@ layouts/               # Go templates
 layouts/_partials/     # Partials (underscore prefix)
 layouts/_shortcodes/   # Shortcodes
 assets/css/            # CSS, tokens in tokens.css
+assets/vendor/         # Vendored JS (Mermaid, Fuse, Tabler icons)
 hugo.yaml              # Configuratie
 justfile               # Commands: just up, just build, just check
 ```

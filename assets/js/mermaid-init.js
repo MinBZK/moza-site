@@ -13,12 +13,13 @@
     },
   ]);
 
+  var probe = document.createElement('div');
+  probe.style.display = 'none';
+  document.body.appendChild(probe);
+
   function resolveToken(name) {
-    var el = document.createElement('div');
-    el.style.color = 'var(' + name + ')';
-    document.body.appendChild(el);
-    var rgb = getComputedStyle(el).color;
-    el.remove();
+    probe.style.color = 'var(' + name + ')';
+    var rgb = getComputedStyle(probe).color;
     var m = rgb.match(/(\d+)/g);
     return '#' + m.slice(0, 3).map(function (v) {
       return ('0' + parseInt(v).toString(16)).slice(-2);
@@ -39,6 +40,7 @@
     mermaid.initialize({
       startOnLoad: false,
       theme: 'base',
+      themeCSS: '.flowchartTitleText { font-weight: bold; font-size: 1.4em; }',
       themeVariables: {
         darkMode: isDark(),
         primaryColor: resolveToken('--color-bg-info'),
@@ -57,9 +59,12 @@
 
   render();
 
-  new MutationObserver(function () { render(); })
-    .observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
+  var renderTimer;
+  new MutationObserver(function () {
+    clearTimeout(renderTimer);
+    renderTimer = setTimeout(render, 50);
+  }).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
 })();

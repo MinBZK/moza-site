@@ -18,9 +18,27 @@ Als ik een voorkeur heb aangeven, op welk 'adres' wordt ik dan benaderd. Dit kan
 Visie profielservice
 De profielservice slaat de contactvoorkeur overheidsbreed op, en daarnaast eventueel contactgegevens op die (nog) geen centrale (wettelijke) plek hebben. Vanuit de context voor de ondernemer legt de profielservice dit vast in de combinatie persoon-bedrijf, en beide kunnen 1 tot n zijn. Simpelweg betekent dit dat één persoon gekoppeld kan zijn aan meerdere bedrijven - maar ook meerdere personen aan één bedrijf. Hieronder wordt dit conceptueel uitgelicht:  
 
-![Profielservice Concept](/images/Profielservice-concept.svg)
+```mermaid
+---
+title: N:M-model Profielservice
+---
+graph LR
+  accTitle: N:M-model Profielservice
+  accDescr: Meerdere personen kunnen gekoppeld zijn aan meerdere bedrijven (N:M-model). Elke pijl symboliseert een contactvoorkeur. 
+  P1@{ icon: "tabler:user", label: "Persoon A" }
+  P2@{ icon: "tabler:user", label: "Persoon B" }
+  P3@{ icon: "tabler:user", label: "Persoon C" }
+  B1@{ icon: "tabler:buildings", label: "Bedrijf 1" }
+  B2@{ icon: "tabler:buildings", label: "Bedrijf 2" }
+  B3@{ icon: "tabler:buildings", label: "Bedrijf 3" }
 
-Aan de 'pijlen' wordt in elk geval contactvoorkeur gekoppeld - er is\ per 'pijl' is daarmee een eigen contactvoorkeur. 
+  P1 <-->|contactvoorkeur| B1
+  P2 <--> B2
+  P2 <--> B3
+  P3 <-->|contactvoorkeur| B3
+```
+
+In bovenstaand diagram symboliseert elke pijl een contactvoorkeur. Een contactvoorkeur wordt opgeslagen in de profielservcie waarbij meerdere personen gekoppeld kunnen zijn aan meerdere bedrijven. Een zogenaamd N:M-model.
 
 Echter de profielservice zal altijd wanneer mogelijk refereren naar de (wettelijke) bronnen die daarvoor zijn ingericht. De profielservice is daarmee:
 

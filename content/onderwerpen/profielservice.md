@@ -8,24 +8,97 @@ aliases:
   - /onderwerpen/profiel-service/
 ---
 
-## Op één plek je contactgegevens en communicatievoorkeuren beheren
+## Wat is de profielservice?
 
-De Profielservice is een van de services die binnen het programma MOZa wordt ontwikkeld. Dankzij deze service kunnen ondernemers straks, net als burgers, op één plek hun contactgegevens en communicatievoorkeuren met de overheid (digitaal of per post) beheren. Ze hoeven deze dus niet meer op verschillende plekken in te voeren of bij te houden.
+De profielservice is een centrale plek waar ondernemers hun contactgegevens en communicatievoorkeuren met de overheid beheren. Denk aan: wil je e-mail, post of sms ontvangen? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens.
 
-## Overheden kunnen gegevens opvragen
+### Wat kun je als ondernemer?
 
-Overheidsorganisaties kunnen deze profielgegevens (als de ondernemer daar toestemming voor heeft gegeven) via gestandaardiseerde API's opvragen en gebruiken. Deze gegevens worden dan niet meer versnipperd opgeslagen in losse portalen en applicaties, maar komen samen in een centraal, goed beheerd register.
+```mermaid
+---
+title: Klantreis ondernemer
+---
+graph LR
+  accTitle: Klantreis ondernemer
+  accDescr: De stappen die een ondernemer doorloopt: inloggen, gegevens bekijken, voorkeuren instellen.
+  A@{ icon: "tabler:login", label: "Inloggen met eHerkenning" }
+  B@{ icon: "tabler:user", label: "Gegevens bekijken" }
+  C@{ icon: "tabler:settings", label: "Voorkeuren instellen" }
+  D@{ icon: "tabler:check", label: "Klaar" }
 
-- Geeft ondernemers controle over hun profielgegevens en hoe zij met de overheid willen communiceren. Ze ervaren minder administratieve handelingen en lasten en betere communicatie met de overheid.
-- Voorziet overheidsorganisaties van actuele en verifieerbare gegevens, rechtstreeks uit een centrale bron.
-- Versterkt de digitale overheid met een herbruikbare bouwsteen die past binnen de Generieke Digitale Infrastructuur (GDI).
+  A --> B --> C --> D
+```
 
-## Gefaseerde ontwikkelstrategie
+Je logt in met eHerkenning, bekijkt je gegevens en stelt je communicatievoorkeuren in. Dat is alles. Je hoeft dit niet meer apart te doen bij elke overheidsorganisatie.
 
-De profielservice wordt stapsgewijs ontwikkeld, met een nadruk op eenvoud, hergebruik en federatieve samenwerking. We beginnen met een basisprofiel (e-mailadres, telefoonnummer, postadres en één algemene contactvoorkeur). Later kunnen er meer contactvoorkeuren aangegeven worden. Er worden steeds meer bronregisters gekoppeld zoals KvK, BRP en BAG. Tot slot kunnen overheidsorganisaties aansluiten via standaarden en API's. Bij de ontwikkeling volgen we de Nederlandse Richtlijn Digitale Systemen (NeRDS) en gebruiken we open standaarden (NORA, NL GOV API Design Rules en GDI-richtlijnen). Toegang wordt geregeld via DigiD, eHerkenning en eIDAS. We hanteren privacy by design principes (minimale dataverwerking, transparantie en logging conform LDV).
+### Wat kunnen overheidsorganisaties?
 
-## Oproep tot samenwerking
+```mermaid
+---
+title: Klantreis overheidsorganisatie
+---
+graph LR
+  accTitle: Klantreis overheidsorganisatie
+  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten, gegevens opvragen, communiceren op voorkeur.
+  A@{ icon: "tabler:plug-connected", label: "Aansluiten via API" }
+  B@{ icon: "tabler:database", label: "Gegevens opvragen" }
+  C@{ icon: "tabler:mail", label: "Communiceren op voorkeur" }
+  D@{ icon: "tabler:shield-check", label: "Betrouwbare gegevens" }
 
-De ontwikkeling van MOZa en daarbinnen de Profielservice vraagt intensieve samenwerking tussen beleidsmakers, ontwerpers, ontwikkelaars en uitvoeringsorganisaties. Alleen door gezamenlijk standaarden te ontwikkelen, adoptie te stimuleren en kennis te delen ontstaat een breed gedragen voorziening die écht waarde toevoegt. Wij nodigen daarom alle overheidsorganisaties uit om mee te denken, mee te bouwen en mee te leren. Samen maken we van MOZa niet alleen een technische voorziening, maar een belangrijke bijdrage aan het fundament voor betrouwbare, toegankelijke en toekomstbestendige digitale dienstverlening.
+  A --> B --> C --> D
+```
 
-Wil je meer weten over hoe de profielservice tot stand komt? Kijk dan op onze GitHub: [GitHub profielservice](https://github.com/MinBZK/moza-profiel-service)
+Overheidsorganisaties sluiten aan via een gestandaardiseerde API. Zij vragen de contactgegevens en voorkeuren op die de ondernemer heeft ingesteld. Zo communiceren zij altijd op de manier die de ondernemer heeft gekozen.
+
+## Waarom is dit nodig?
+
+Nu slaan overheidsorganisaties contactgegevens los van elkaar op. Ondernemers voeren dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten.
+
+De profielservice lost dit op:
+
+- **Voor ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
+- **Voor overheidsorganisaties:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
+- **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de Generieke Digitale Infrastructuur (GDI).
+
+## Hoe werkt het?
+
+Een ondernemer kan bij meerdere bedrijven betrokken zijn. En een bedrijf kan meerdere contactpersonen hebben. De profielservice houdt hier rekening mee: je kunt per bedrijf andere voorkeuren instellen.
+
+```mermaid
+---
+title: N:M-model Profielservice
+---
+graph LR
+  accTitle: N:M-model Profielservice
+  accDescr: Meerdere personen kunnen gekoppeld zijn aan meerdere bedrijven (N:M-model). Elke pijl symboliseert een contactvoorkeur.
+  P1@{ icon: "tabler:user", label: "Persoon A" }
+  P2@{ icon: "tabler:user", label: "Persoon B" }
+  P3@{ icon: "tabler:user", label: "Persoon C" }
+  B1@{ icon: "tabler:buildings", label: "Bedrijf 1" }
+  B2@{ icon: "tabler:buildings", label: "Bedrijf 2" }
+  B3@{ icon: "tabler:buildings", label: "Bedrijf 3" }
+
+  P1 <-->|contactvoorkeur| B1
+  P2 <--> B2
+  P2 <--> B3
+  P3 <-->|contactvoorkeur| B3
+```
+
+In dit diagram staat elke pijl voor een contactvoorkeur. Persoon B is bijvoorbeeld betrokken bij bedrijf 2 en bedrijf 3, en kan voor elk bedrijf een andere voorkeur instellen.
+
+## Hoe bouwen we dit?
+
+We bouwen de profielservice stap voor stap in vier fasen:
+
+1. **Basisprofiel** — E-mailadres, telefoonnummer, postadres en één algemene contactvoorkeur.
+2. **Meer voorkeuren** — Ondernemers kunnen per situatie een andere contactvoorkeur aangeven.
+3. **Bronregisters koppelen** — We koppelen registers zoals KvK, BRP en BAG zodat gegevens niet dubbel worden opgeslagen.
+4. **Overheidsorganisaties aansluiten** — Organisaties sluiten aan via standaard-API's en gebruiken de profielgegevens.
+
+We volgen open standaarden: de Nederlandse Richtlijn Digitale Systemen (NeRDS), NORA, NL GOV API Design Rules en GDI-richtlijnen. Toegang regelen we via eHerkenning en eIDAS.
+
+## Doe mee
+
+De profielservice bouwen we samen met beleidsmakers, ontwerpers, ontwikkelaars en uitvoeringsorganisaties. Wil je meedenken of meebouwen? Dat kan.
+
+Bekijk onze voortgang en broncode op GitHub: [GitHub profielservice](https://github.com/MinBZK/moza-profiel-service)

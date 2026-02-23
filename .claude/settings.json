@@ -12,6 +12,7 @@
       "mcp__plugin_playwright_playwright__browser_fill_form",
       "mcp__plugin_playwright_playwright__browser_hover",
       "mcp__plugin_playwright_playwright__browser_close",
+      "mcp__plugin_playwright_playwright__browser_wait_for",
       "WebFetch(domain:gohugo.io)",
       "WebFetch(domain:revealjs.com)",
       "WebFetch(domain:mermaid.js.org)"

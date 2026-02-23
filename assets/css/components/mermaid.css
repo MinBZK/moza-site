@@ -1,3 +1,31 @@
-pre.mermaid {
+.mermaid-container {
+  position: relative;
+}
+
+.mermaid-container pre.mermaid {
   text-align: center;
+}
+
+.mermaid-container pre.mermaid:not([data-processed]) {
+  visibility: hidden;
+  min-height: 4rem;
+}
+
+.mermaid-container pre.mermaid[data-processed] {
+  transition: opacity 0.2s ease;
+}
+
+.mermaid-download {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  border-radius: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.mermaid-container:hover .mermaid-download,
+.mermaid-download:focus-visible {
+  opacity: 1;
 }

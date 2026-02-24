@@ -10,7 +10,7 @@ aliases:
 
 ## Wat is de profielservice?
 
-De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en -voorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
+De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en contactvoorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
 
 ## Waarom is dit nodig?
 

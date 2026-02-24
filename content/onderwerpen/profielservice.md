@@ -116,7 +116,7 @@ In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken 
 
 We bouwen de profielservice stap voor stap in drie fasen:
 
-1. **Basisprofiel** — E-mailadres, telefoonnummer, postadres en een algemene contactvoorkeur. Later kun je meer contactvoorkeuren instellen.
+1. **Basisprofiel** — E-mailadres en een algemene contactvoorkeur voor e-mail en/of post. Later kun je meer contactvoorkeuren instellen.
 2. **Bronregisters koppelen** — We koppelen registers zoals KVK, BRP en BAG zodat gegevens niet dubbel worden opgeslagen.
 3. **Overheidsorganisaties aansluiten** — Organisaties sluiten aan via standaard-API's op basis van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en gebruiken de profielgegevens.
 

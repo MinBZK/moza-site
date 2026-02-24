@@ -12,7 +12,17 @@ aliases:
 
 De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en -voorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
 
-### Wat kun je als ondernemer?
+## Waarom is dit nodig?
+
+Nu slaan overheidsorganisaties contactgegevens los van elkaar op. Burgers en ondernemers voeren dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten.
+
+De profielservice lost dit op:
+
+- **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
+- **Voor overheidsorganisaties:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
+- **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
+
+## Wat kan de ondernemer?
 
 ```mermaid
 ---
@@ -34,7 +44,7 @@ Je logt in met DigiD, eHerkenning of een Europees inlogmiddel (eIDAS), bekijkt j
 - **Contactvoorkeur** — op welke manier wil je benaderd worden? Denk aan e-mail, post of sms.
 - **Contactgegevens** — op welk adres bereiken we je? Dat kan een e-mailadres zijn, maar ook een fysiek postadres.
 
-### Wat kunnen overheidsorganisaties?
+## Wat kunnen overheidsorganisaties?
 
 ```mermaid
 ---
@@ -74,23 +84,11 @@ graph LR
 
 Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagazijn. De notificatieservice zoekt via de profielservice de contactvoorkeur van de ondernemer op. Bij voorkeur voor e-mail gaat er een e-mailnotificatie uit. De ondernemer kan daarna in de berichtenbox het bericht lezen. Bij voorkeur voor post ontvangt de ondernemer een brief. Zo bepaalt de ondernemer zelf hoe die wordt bereikt.
 
-## Waarom is dit nodig?
+## Hoe slaan we gegevens flexibel op?
 
-Nu slaan overheidsorganisaties contactgegevens los van elkaar op. Burgers en ondernemers voeren dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten.
+Een ondernemer kan bij meerdere bedrijven betrokken zijn. En een bedrijf kan meerdere contactpersonen hebben. Daarom kun je met de profielservice per bedrijf andere contactvoorkeuren instellen.
 
-De profielservice lost dit op:
-
-- **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
-- **Voor overheidsorganisaties:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
-- **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
-
-## Hoe werkt het?
-
-De profielservice slaat centraal de contactvoorkeuren op die alle overheidsorganisaties kunnen gebruiken. Daarnaast slaat de profielservice contactgegevens op die nog geen plek hebben in een centraal register.
-
-Dit opslaan gebeurt per combinatie van persoon en bedrijf. Een overheidsorganisatie vraagt de contactvoorkeur op voor een specifiek bedrijf en krijgt de gegevens van de juiste contactpersonen terug.
-
-Een ondernemer kan bij meerdere bedrijven betrokken zijn. En een bedrijf kan meerdere contactpersonen hebben. Dit heet een N:M-model. De profielservice houdt hier rekening mee. Daarbij kun je per bedrijf andere contactvoorkeuren instellen.
+De profielservice slaat contactvoorkeuren op per combinatie van persoon en bedrijf. Dit heet een N:M-model: veel personen kunnen gekoppeld zijn aan veel bedrijven. Een overheidsorganisatie vraagt de contactvoorkeur op voor een specifiek bedrijf en krijgt de gegevens van de juiste contactpersonen terug.
 
 ```mermaid
 ---
@@ -112,7 +110,7 @@ graph LR
   P3 <-->|contactvoorkeur| B3
 ```
 
-In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken bij één bedrijf en heeft één contactvoorkeur. Persoon B is betrokken bij bedrijf 2 én bedrijf 3, en kan voor elk bedrijf een andere contactvoorkeur instellen. En bedrijf 3 heeft twee mogelijke contactpersonen: persoon B en persoon C.
+In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken bij één bedrijf en heeft één contactvoorkeur. Persoon B is betrokken bij bedrijf 2 én bedrijf 3. Voor elk bedrijf kan persoon B een andere contactvoorkeur instellen. Bedrijf 3 heeft twee contactpersonen: persoon B en persoon C.
 
 ## Hoe bouwen we dit?
 

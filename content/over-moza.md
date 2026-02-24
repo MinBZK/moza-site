@@ -24,7 +24,7 @@ MijnOverheid Zakelijk zorgt daarvoor. Deze digitale omgeving brengt alle informa
 
 In **2026** worden de eerste services ontwikkeld en aangeboden als minimal viable product (MVP). Het gaat dan om:
 
-- **Profielservice**: op één plek je bedrijfsgegevens en contactvoorkeuren invoeren en bijhouden. Andere overheden kunnen deze gegevens eenvoudig hergebruiken. Uiteraard alleen met toestemming van de ondernemer of op basis van een wettelijke grondslag.
+- **Profielservice**: op één plek je contactgegevens en contactvoorkeuren beheren. Alle aangesloten overheidsorganisaties gebruiken deze gegevens.
 - **Notificatieservice**: automatisch een seintje als je als ondernemer iets moet doen. Bijvoorbeeld dat er informatie voor je klaar staat die je moet lezen.
 - **Relevante ontwikkelingen**: een overzicht in MijnOverheid Zakelijk met daarin voor de eindgebruiker relevante ontwikkelingen op het gebied van bijvoorbeeld wet- en regelgeving, subsidies en ontwikkelingen in de buurt.
 

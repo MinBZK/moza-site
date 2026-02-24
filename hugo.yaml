@@ -1,9 +1,10 @@
+baseURL: https://mijnoverheidzakelijk.nl/
 title: MijnOverheid Zakelijk
 defaultContentLanguage: nl
 
 params:
-  tagline: Makkelijk zaken doen met de overheid
-  description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen.
+  tagline: Makkelijk zakendoen met de overheid
+  description: Bij MijnOverheid Zakelijk staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zakendoen.
   footer:
     tagline: Eén Overheid. Voor iedereen!
     links: Zie ook

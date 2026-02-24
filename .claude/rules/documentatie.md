@@ -19,6 +19,13 @@ Dit project gebruikt Hugo v0.153.5+ met de nieuwe template structuur.
 
 Presentaties staan in `content/presentaties/` als HTML page bundles.
 
+## Mermaid
+
+- **Documentatie**: https://mermaid.js.org/intro/
+- **Syntax**: https://mermaid.js.org/syntax/flowchart.html
+
+Mermaid-diagrammen worden conditioneel geladen via `layouts/_markup/render-codeblock-mermaid.html`. Gebruik een `mermaid` codeblock in Markdown. Kleuren volgen automatisch het actieve thema via design tokens.
+
 ## Aanpak
 
 Bij Hugo of Reveal.js vragen:

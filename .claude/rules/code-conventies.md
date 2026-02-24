@@ -19,3 +19,6 @@
 - Front matter altijd in YAML formaat
 - Slugs in kebab-case
 - Afbeeldingen in page bundles waar mogelijk
+- Description: max 160 tekens voor SEO en social media
+  - Plaats belangrijkste info in eerste 69 tekens (LinkedIn limiet)
+  - Hugo toont waarschuwing bij te lange descriptions

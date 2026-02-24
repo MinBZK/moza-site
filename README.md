@@ -65,6 +65,19 @@ Elke slide is een `<section>` element:
 
 Geneste sections maken verticale slides (navigeer met pijltje omlaag). Zie [Reveal.js](https://revealjs.com/) voor meer informatie.
 
+### Diagrammen
+
+Gebruik een `mermaid` codeblock in Markdown voor diagrammen:
+
+````markdown
+```mermaid
+flowchart LR
+    A[Start] --> B[Einde]
+```
+````
+
+Mermaid wordt alleen geladen op pagina's die een diagram bevatten. De kleuren volgen automatisch het lichte of donkere thema. Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
+
 ## Code kwaliteit
 
 We gebruiken [Lefthook](https://github.com/evilmartians/lefthook) voor pre-commit checks. Dit controleert automatisch of de site correct bouwt en of er geen broken links zijn.
@@ -150,4 +163,6 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 
 ## Credits
 
+- Diagrammen: [Mermaid](https://mermaid.js.org/) (MIT licentie)
 - Iconen: [Tabler Icons](https://tabler.io/icons) (MIT licentie)
+- Zoeken: [Fuse.js](https://www.fusejs.io/) (Apache 2.0 licentie)

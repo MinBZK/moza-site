@@ -17,7 +17,7 @@ RUN if [ -n "$BASE_URL" ]; then \
       hugo --minify; \
     fi
 
-FROM nginx:stable-alpine
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
 COPY --from=builder /app/public /usr/share/nginx/html
 

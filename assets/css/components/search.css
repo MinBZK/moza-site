@@ -100,12 +100,16 @@
   font-size: 0.9375rem;
   font-weight: normal;
   white-space: nowrap;
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-bg-muted);
+  color: var(--color-text);
 }
 
 .search-filter.active {
-  background-color: var(--color-rijks-blauw);
-  border-color: var(--color-rijks-blauw);
-  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  font-weight: 600;
 }
 
 /* Border alleen tonen als er resultaten zijn - tekstbreed */

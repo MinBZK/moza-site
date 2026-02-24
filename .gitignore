@@ -4,6 +4,10 @@ resources
 tmp
 .hugo_build.lock
 
+# Claude
+.claude/plans
+.playwright-mcp
+
 # Editors
 .vscode/*
 !.vscode/extensions.json

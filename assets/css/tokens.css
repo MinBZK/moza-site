@@ -24,7 +24,7 @@
   --color-text-heading: light-dark(#0f172a, #f1f5f9);
   --color-text-muted: light-dark(#334155, #b8c4d0);
   --color-text-inverse: #ffffff;
-  --color-text-on-primary: light-dark(#ffffff, #154273);
+  --color-text-on-primary: light-dark(#ffffff, #1e293b);
 
   /* Border kleur */
   --color-border: light-dark(#e2e8f0, #334155);
@@ -45,6 +45,20 @@
   --radius-upper-right: 0 2rem 0 0;
   --radius-bottom-right: 0 0 2rem 0;
   --radius-bottom-left: 0 0 0 2rem;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 :root[data-theme="light"] {

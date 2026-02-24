@@ -39,24 +39,35 @@ h1 + h2 {
   margin-top: 1.5rem;
 }
 
+article > header + h2 {
+  margin-top: 0.7rem;
+}
+
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+  margin-top: 1rem;
+}
+
 h2 {
   font-size: 1.75rem;
 }
 
 h3 {
-  font-size: 1.6rem;
-}
-
-h4 {
   font-size: 1.5rem;
 }
 
-h5 {
+h4 {
   font-size: 1.4rem;
 }
 
-h6 {
+h5 {
   font-size: 1.3rem;
+}
+
+h6 {
+  font-size: 1.25rem;
 }
 
 p {
@@ -108,7 +119,7 @@ ul,
 ol {
   padding-left: 1.1rem;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   list-style: disc;
 }
 
@@ -117,11 +128,11 @@ ol {
 }
 
 li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 
   > ul,
   > ol {
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
   }
 }

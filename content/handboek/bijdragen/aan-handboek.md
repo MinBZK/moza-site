@@ -52,7 +52,7 @@ Voor grotere wijzigingen of als je lokaal wilt testen:
 - **B1-niveau** - Houd de taal eenvoudig en toegankelijk
 - **Korte zinnen** - Max 15-20 woorden per zin
 - **Actieve zinnen** - "We doen" in plaats van "wordt gedaan"
-- **Formeel maar toegankelijk** - Spreek de lezer aan met "u" of "je"
+- **Informeel maar respectvol** - Spreek de lezer aan met "je"
 
 ### Structuur
 

@@ -59,13 +59,11 @@
 {{ $footer := resources.Get "css/components/footer.css" }}
 {{ $toast := resources.Get "css/components/toast.css" }}
 {{ $search := resources.Get "css/components/search.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $mermaid := resources.Get "css/components/mermaid.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search $mermaid | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
-{{/* JavaScript bundling via Hugo's asset pipeline */}}
-{{ $headerJs := resources.Get "js/header.js" }}
-{{ $tocJs := resources.Get "js/toc.js" }}
-{{ $fuseJs := resources.Get "vendor/fuse/fuse.min.js" }}
-{{ $searchJs := resources.Get "js/search.js" }}
-{{ $js := slice $headerJs $tocJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" }}
-<script src="{{ $js.RelPermalink }}" defer></script>
+{{/* Thema uit localStorage toepassen vóór renderen om flash te voorkomen */}}
+{{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}
+<script src="{{ $themeInit.RelPermalink }}"></script>
+

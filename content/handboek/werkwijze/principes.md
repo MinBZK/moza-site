@@ -8,7 +8,7 @@ Bij MOZa werken we vanuit vaste principes. Deze helpen ons om de juiste keuzes t
 
 ## Ondernemer centraal
 
-Bij MOZa staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zaken doen met de overheid. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
+Bij MOZa staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zakendoen met de overheid. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
 
 Daarom:
 

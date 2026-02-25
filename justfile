@@ -23,7 +23,7 @@ pre-commit:
 
 # Bouw container image
 cbuild:
-    podman build -t {{image}} .
+    podman build -t {{image}} -f container/Containerfile .
 
 # Start container op localhost:8080
 crun:

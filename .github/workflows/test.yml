@@ -22,6 +22,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Render Mermaid SVGs
+        run: npm run render-mermaid
+
+      - name: Verify rendered SVGs exist
+        run: |
+          count=$(find static/images/render -name '*.svg' 2>/dev/null | wc -l)
+          echo "Gevonden: ${count} SVG-bestanden"
+          if [ "$count" -eq 0 ]; then
+            echo "::error::Geen SVGs gegenereerd — controleer render-mermaid script"
+            exit 1
+          fi
+
       - name: Setup Go
         uses: actions/setup-go@v6
         with:

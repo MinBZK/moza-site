@@ -6,11 +6,3 @@
 {{- $js := slice $baseJs $tocJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" -}}
 <script src="{{ $js.RelPermalink }}"></script>
 
-{{- if .Store.Get "hasMermaid" }}
-{{- $icons := resources.Get "vendor/tabler/tabler-icons.json" | fingerprint "md5" -}}
-{{- $ctx := dict "iconsUrl" $icons.RelPermalink -}}
-{{- $mermaidVendor := resources.Get "vendor/mermaid/mermaid.min.js" -}}
-{{- $mermaidInit := resources.Get "js/mermaid-init.js" | resources.ExecuteAsTemplate "js/mermaid-init.js" $ctx -}}
-{{- $mermaid := slice $mermaidVendor $mermaidInit | resources.Concat "js/mermaid.js" | fingerprint "md5" -}}
-<script src="{{ $mermaid.RelPermalink }}"></script>
-{{- end }}

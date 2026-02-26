@@ -7,14 +7,20 @@ De site wordt gegenereerd met [Hugo](https://gohugo.io/).
 
 ### Vereisten
 
-Installeer Hugo en just:
+Installeer Hugo, just en Node.js:
 
 ```bash
 # macOS
-brew install hugo just
+brew install hugo just node
 ```
 
-Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/) en [just](https://just.systems/man/en/).
+Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/), [just](https://just.systems/man/en/) en [Node.js](https://nodejs.org/).
+
+Installeer daarna de Node dependencies (eenmalig):
+
+```bash
+npm install
+```
 
 ### Development server starten
 
@@ -22,13 +28,13 @@ Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/) 
 just up
 ```
 
-Of direct met Hugo:
+Dit rendert eerst de Mermaid-diagrammen als SVG en start daarna de Hugo development server. De site is dan beschikbaar op [http://localhost:1313/](http://localhost:1313/) (of de host zoals vermeld in de terminal).
+
+Wil je dat diagrammen automatisch opnieuw worden gemaakt bij wijzigingen? Start dan in een aparte terminal:
 
 ```bash
-hugo server
+just watch-mermaid
 ```
-
-De site is dan beschikbaar op [http://localhost:1313/](http://localhost:1313/) (of de host zoals vermeld in de terminal).
 
 ## Content toevoegen
 
@@ -67,16 +73,26 @@ Geneste sections maken verticale slides (navigeer met pijltje omlaag). Zie [Reve
 
 ### Diagrammen
 
-Gebruik een `mermaid` codeblock in Markdown voor diagrammen:
+Gebruik een `mermaid` codeblock in Markdown voor diagrammen. Voeg altijd een `accTitle` en `accDescr` toe voor toegankelijkheid en als bestandsnaam voor de pre-gerenderde SVG:
 
 ````markdown
 ```mermaid
-flowchart LR
+graph LR
+    accTitle: Mijn diagram
+    accDescr: Beschrijving van het diagram voor screenreaders.
     A[Start] --> B[Einde]
 ```
 ````
 
-Mermaid wordt alleen geladen op pagina's die een diagram bevatten. De kleuren volgen automatisch het lichte of donkere thema. Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
+Diagrammen worden vooraf gerenderd als SVG (light + dark variant) door `scripts/render-mermaid.js`. De kleuren volgen automatisch het lichte of donkere thema via design tokens. Als de SVGs ontbreken, faalt de Hugo build met een foutmelding.
+
+Render de SVGs opnieuw na het wijzigen van een diagram:
+
+```bash
+just render-mermaid
+```
+
+Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
 
 ## Code kwaliteit
 
@@ -112,11 +128,7 @@ lefthook run pre-commit
 just build
 ```
 
-Of direct met Hugo:
-
-```bash
-hugo --minify --gc
-```
+Dit rendert eerst de Mermaid-diagrammen als SVG en bouwt daarna de site met Hugo.
 
 De gegenereerde site staat in de `public/` directory.
 
@@ -153,6 +165,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 ├── layouts/             # Templates voor pagina's en componenten
 │   ├── _partials/       # Herbruikbare template onderdelen
 │   └── _shortcodes/     # Shortcodes, ofwel componenten, voor in content
+├── scripts/             # Build scripts (Mermaid SVG rendering)
 ├── static/              # Statische bestanden (worden 1-op-1 gekopieerd)
 ├── .claude/             # Claude Code configuratie
 ├── .github/             # GitHub Actions workflows

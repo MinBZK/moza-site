@@ -11,7 +11,9 @@ layouts/               # Go templates
 layouts/_partials/     # Partials (underscore prefix)
 layouts/_shortcodes/   # Shortcodes
 assets/css/            # CSS, tokens in tokens.css
-assets/vendor/         # Vendored JS (Mermaid, Fuse, Tabler icons)
+assets/vendor/         # Vendored JS (Fuse.js, Reveal.js)
+scripts/               # Build scripts (render-mermaid.js)
+static/images/render/  # Pre-gerenderde Mermaid SVGs (gegenereerd, in .gitignore)
 hugo.yaml              # Configuratie
 justfile               # Commands: just up, just build, just check
 ```
@@ -19,11 +21,22 @@ justfile               # Commands: just up, just build, just check
 ## Commando's
 
 ```bash
-just up          # Dev server
-just build       # Build
-just check       # Broken links check
-just pre-commit  # Pre-commit checks
+npm install             # Node dependencies (eenmalig, voor Mermaid rendering)
+just up                 # Render SVGs + dev server
+just build              # Render SVGs + build
+just test               # Tests uitvoeren
+just render-mermaid     # Alleen SVGs renderen
+just watch-mermaid      # SVGs herrenderen bij wijzigingen (aparte terminal)
+just check              # Render SVGs + broken links check
+just clean              # Verwijder gegenereerde bestanden
+just pre-commit         # Pre-commit checks
 ```
+
+## Mermaid-diagrammen
+
+Diagrammen in Markdown worden vooraf gerenderd als SVG (light + dark) door `scripts/render-mermaid.js`. De render hook (`layouts/_markup/render-codeblock-mermaid.html`) toont de pre-gerenderde SVGs als `<img>`. Als de SVGs ontbreken, faalt de Hugo build.
+
+Elk mermaid-blok moet een `accTitle` hebben voor de bestandsnaam en toegankelijkheid. Zonder `accTitle` wordt een fallback `diagram-N` gebruikt.
 
 ## Skills
 

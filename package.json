@@ -1,0 +1,14 @@
+{
+  "name": "moza-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render-mermaid": "node scripts/render-mermaid.js",
+    "test": "node --test scripts/render-mermaid.test.js"
+  },
+  "devDependencies": {
+    "@iconify-json/tabler": "^1",
+    "mermaid": "^11",
+    "puppeteer": "^23"
+  }
+}

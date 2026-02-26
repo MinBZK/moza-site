@@ -1,20 +1,47 @@
-.mermaid-container {
+/* Pre-rendered SVG diagrammen */
+.mermaid-diagram {
   position: relative;
-}
-
-.mermaid-container pre.mermaid {
   text-align: center;
+  background-color: var(--color-bg-muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
 }
 
-.mermaid-container pre.mermaid:not([data-processed]) {
-  visibility: hidden;
-  min-height: 4rem;
+.mermaid-diagram img {
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
 }
 
-.mermaid-container pre.mermaid[data-processed] {
-  transition: opacity 0.2s ease;
+.mermaid-diagram .mermaid-img--light {
+  display: block;
 }
 
+.mermaid-diagram .mermaid-img--dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .mermaid-diagram .mermaid-img--light {
+  display: none;
+}
+
+:root[data-theme="dark"] .mermaid-diagram .mermaid-img--dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mermaid-diagram .mermaid-img--light {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .mermaid-diagram .mermaid-img--dark {
+    display: block;
+  }
+}
+
+/* Download-knop */
 .mermaid-download {
   position: absolute;
   top: 0.5rem;
@@ -25,7 +52,7 @@
   transition: opacity 0.2s;
 }
 
-.mermaid-container:hover .mermaid-download,
+.mermaid-diagram:hover .mermaid-download,
 .mermaid-download:focus-visible {
   opacity: 1;
 }

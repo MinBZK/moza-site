@@ -1,9 +1,72 @@
-<div class="mermaid-container">
-  <button class="mermaid-download button-ghost" title="Download als afbeelding" aria-label="Download als afbeelding">
+{{- $inner := .Inner -}}
+{{- $accTitle := "" -}}
+{{- $accDescr := "" -}}
+{{- $inMultiDescr := false -}}
+{{- range split $inner "\n" -}}
+  {{- $line := trim . " " -}}
+  {{- if $inMultiDescr -}}
+    {{- if strings.Contains $line "}" -}}
+      {{- $inMultiDescr = false -}}
+    {{- else if $line -}}
+      {{- if $accDescr -}}
+        {{- $accDescr = printf "%s %s" $accDescr $line -}}
+      {{- else -}}
+        {{- $accDescr = $line -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if hasPrefix $line "accTitle:" -}}
+    {{- $accTitle = trim (strings.TrimPrefix "accTitle:" $line) " " -}}
+  {{- else if hasPrefix $line "accDescr {" -}}
+    {{- $inMultiDescr = true -}}
+  {{- else if hasPrefix $line "accDescr:" -}}
+    {{- $accDescr = trim (strings.TrimPrefix "accDescr:" $line) " " -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Blokteller (voor fallback slug bij ontbrekende accTitle) */ -}}
+{{- $blockKey := "mermaid-block-num" -}}
+{{- $blockNum := .Page.Store.Get $blockKey | default 0 -}}
+{{- $blockNum = add $blockNum 1 -}}
+{{- .Page.Store.Set $blockKey $blockNum -}}
+
+{{- /* Subpad afgeleid van content-bestand */ -}}
+{{- $pageDir := path.Dir .Page.File.Path -}}
+{{- $baseName := .Page.File.ContentBaseName -}}
+{{- $subdir := $pageDir -}}
+{{- if and (ne $baseName "index") (ne $baseName "_index") -}}
+  {{- $subdir = path.Join $pageDir $baseName -}}
+{{- end -}}
+
+{{- /* Slug: op basis van accTitle of fallback diagram-N */ -}}
+{{- $slug := "" -}}
+{{- if $accTitle -}}
+  {{- $slug = $accTitle | lower | replaceRE "\\s+" "-" | replaceRE "[^a-z0-9-]" "" | replaceRE "-+" "-" | replaceRE "^-|-$" "" -}}
+  {{- $countKey := printf "mermaid-slug-%s" $slug -}}
+  {{- $count := .Page.Store.Get $countKey | default 0 -}}
+  {{- $count = add $count 1 -}}
+  {{- .Page.Store.Set $countKey $count -}}
+  {{- if gt $count 1 -}}
+    {{- $slug = printf "%s-%d" $slug $count -}}
+  {{- end -}}
+{{- else -}}
+  {{- $slug = printf "diagram-%d" $blockNum -}}
+{{- end -}}
+
+{{- /* Pre-rendered SVGs in static/ */ -}}
+{{- $lightFile := path.Join "static/images/render" $subdir (printf "%s-light.svg" $slug) -}}
+{{- $darkFile := path.Join "static/images/render" $subdir (printf "%s-dark.svg" $slug) -}}
+
+{{- $lightUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-light.svg" $slug)) -}}
+{{- $darkUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-dark.svg" $slug)) -}}
+
+{{- if and (os.FileExists $lightFile) (os.FileExists $darkFile) -}}
+<div class="mermaid-diagram">
+  <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" title="Download als afbeelding" aria-label="Download als afbeelding">
     {{- partial "icon.html" "download" -}}
-  </button>
-  <pre class="mermaid">
-    {{- .Inner | htmlEscape | safeHTML }}
-  </pre>
+  </a>
+  <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $accDescr }}" loading="lazy">
+  <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $accDescr }}" loading="lazy">
 </div>
-{{- .Page.Store.Set "hasMermaid" true -}}
+{{- else -}}
+{{- errorf "Mermaid SVGs ontbreken voor '%s' op pagina %s. Voer 'npm run render-mermaid' uit." $slug .Page.File.Path -}}
+{{- end -}}

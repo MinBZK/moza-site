@@ -15,7 +15,7 @@ build:
 
 # Controleer op broken links
 check:
-    rm -rf .htmltest && hugo --minify --quiet --destination .htmltest/public && htmltest && rm -rf .htmltest
+    rm -rf .htmltest && hugo --minify --quiet --baseURL / --destination .htmltest/public && htmltest && rm -rf .htmltest
 
 # Voer pre-commit checks uit
 pre-commit:

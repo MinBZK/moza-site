@@ -8,9 +8,6 @@ aliases:
   - /onderwerpen/Opzet MijnOverheid Zakelijk/
 ---
 
-**Informatie**
-Leuk dat je wil weten hoe de huidge oplossing eruit ziet. Weet dat dit continue in ontwikkeling is -dus het kan zijn dat de informatie die je nu ziet anders is dan hoe het er eerder uitzag. 
-
 ## Waarom deze opzet?
 
 Het doel van het neerzetten van de volledig (technische) opzet binnen het MOZa programma is drieledig:

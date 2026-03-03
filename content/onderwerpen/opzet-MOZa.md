@@ -1,12 +1,15 @@
 ---
 title: "Huidige opzet MijnOverheid Zakelijk"
 description: "Er wordt continue gewerkt aan het opzetten en verbeteren van functionaliteit voor de ondernemer. Lees hier de meest actuele status" 
-image: ""
+image: "/images/tegel-actualiteiten.svg""
 image_alt: "Icoon van huidige opzet"
 weight: 7
 aliases:
   - /onderwerpen/Opzet MijnOverheid Zakelijk/
 ---
+
+**Informatie**
+Leuk dat je wil weten hoe de huidge oplossing eruit ziet. Weet dat dit continue in ontwikkeling is -dus het kan zijn dat de informatie die je nu ziet anders is dan hoe het er eerder uitzag. 
 
 ## Waarom deze opzet?
 
@@ -28,6 +31,8 @@ Niet in de laatste plaats is deze centrale plek in het level geroepen om te bewi
 
 In de huidige opzet wordt reeds gebruik gemaakt van verschillende 'bouwstenen' die als volgt samenwerken:
 
-Overzicht-MOZa-oplossing.svg
+"/images/tegel-actualiteiten.svg"
+
+
 
 

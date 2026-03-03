@@ -1,7 +1,7 @@
 ---
 title: "Huidige opzet MijnOverheid Zakelijk"
 description: "Er wordt continue gewerkt aan het opzetten en verbeteren van functionaliteit voor de ondernemer. Lees hier de meest actuele status" 
-image: "/images/tegel-actualiteiten.svg""
+image: "/images/tegel-actualiteiten.svg"
 image_alt: "Icoon van huidige opzet"
 weight: 7
 aliases:

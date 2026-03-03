@@ -28,7 +28,7 @@ Niet in de laatste plaats is deze centrale plek in het level geroepen om te bewi
 
 In de huidige opzet wordt reeds gebruik gemaakt van verschillende 'bouwstenen' die als volgt samenwerken:
 
-[test](/images/Overzicht-MOZa-oplossing.svg)
+![Overzicht MOZa opzet](/images/Overzicht-MOZa-oplossing.svg)
 
 
 

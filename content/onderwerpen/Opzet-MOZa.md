@@ -28,6 +28,6 @@ Niet in de laatste plaats is deze centrale plek in het level geroepen om te bewi
 
 In de huidige opzet wordt reeds gebruik gemaakt van verschillende 'bouwstenen' die als volgt samenwerken:
 
-
+Overzicht-MOZa-oplossing.svg
 
 

@@ -28,8 +28,9 @@ Niet in de laatste plaats is deze centrale plek in het level geroepen om te bewi
 
 In de huidige opzet wordt reeds gebruik gemaakt van verschillende 'bouwstenen' die als volgt samenwerken:
 
+<!-- Hugo gebruikt dit: -->
+{{< figure src="images/Overzicht-MOZa-oplossing.svg" alt="Overzicht MOZa opzet" >}}
+
+<!-- Git/GitHub gebruikt dit: -->
 ![Overzicht MOZa opzet](/images/Overzicht-MOZa-oplossing.svg)
-
-
-
 

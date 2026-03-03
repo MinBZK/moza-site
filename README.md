@@ -5,7 +5,7 @@ De site wordt gegenereerd met [Hugo](https://gohugo.io/).
 
 ## Lokaal ontwikkelen
 
-### Vereisten
+### Vereisten 
 
 Installeer Hugo en just:
 

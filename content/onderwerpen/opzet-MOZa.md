@@ -1,6 +1,6 @@
 ---
-title: "Huidige opzet MijnOverheid Zakelijk: Bouwstenen voor uniforme dienstverlening"
-description: "Hoe de eerste versie van MOZa bijdraagt aan makkelijker zakendoen met de overheid: architectuur, doel en volgende stappen."
+title: "Huidige opzet MijnOverheid Zakelijk"
+description: "Bouwstenen voor uniforme dienstverlening"
 image: "/images/tegel-applicatie.svg"
 image_alt: "Pictogram van de MOZa-architectuur"
 weight: 7

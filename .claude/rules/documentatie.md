@@ -24,7 +24,11 @@ Presentaties staan in `content/presentaties/` als HTML page bundles.
 - **Documentatie**: https://mermaid.js.org/intro/
 - **Syntax**: https://mermaid.js.org/syntax/flowchart.html
 
-Mermaid-diagrammen worden conditioneel geladen via `layouts/_markup/render-codeblock-mermaid.html`. Gebruik een `mermaid` codeblock in Markdown. Kleuren volgen automatisch het actieve thema via design tokens.
+Mermaid-diagrammen worden vooraf gerenderd als SVG (light + dark) door `scripts/render-mermaid.js` met Puppeteer. De render hook (`layouts/_markup/render-codeblock-mermaid.html`) toont de pre-gerenderde SVGs als `<img>`. Als de SVGs ontbreken, faalt de Hugo build.
+
+Kleuren komen uit `assets/css/tokens.css` (via `scripts/render-mermaid.js`). Fonts (RO-Sans) worden als base64 in de SVG ingebed.
+
+Elk mermaid-blok heeft een `accTitle` nodig voor de bestandsnaam en toegankelijkheid.
 
 ## Aanpak
 

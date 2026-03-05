@@ -4,50 +4,50 @@ Dit document beschrijft de bestuurlijke structuur en projectorganisatie van Mijn
 
 ## Bestuurlijke structuur
 
-MOZa kent een governance-model met vier groepen die samenwerken rondom het productteam.
+MOZa kent een governance-model met vier groepen die samenwerken rondom de te ontwikkelen dienstverlening.
 
 ### Stuurgroep
 
 - Draagvlak binnen eigen organisatie en ambassadeur richting andere organisaties
 - Beschikbaar stellen van capaciteit en prioriteit
-- Daadwerkelijk aansluiten bij het programma
+- Daadwerkelijk aansluiten van de eigen organisatie op generieke dienstverlening die ontwikkeld worden vanuit het programma MOZa
 
-De stuurgroep bestaat uit directeuren van deelnemende organisaties.
+De stuurgroep bestaat uit directeuren van organisaties die deelnemen in de kopgroep van MOZa. Niet elk lid in de kopgroep is vertegenwoordig in de stuurgroep.
 
 ### Regieteam
 
-- Meedenken over strategie
-- Zorgen voor aanhaking van professionals
-- Coördineren van onderzoeken, zoals aansluiting van de eigen organisatie
+- Meedenken over strategie en richting geven aan de te ontwikkelen generieke dienstverlening
+- Zorgen voor aahaken van professionals uit de eigen organisatie
+- Coördineren van onderzoeken en verzoeken, zoals aansluiting van de eigen organisatie
 
-Het regieteam bestaat uit strategisch adviseurs en business consultants van de deelnemende organisaties.
+Het regieteam bestaat uit strategisch adviseurs en business consultants van organisaties die deelnemen in de kopgroep van MOZa.
 
 ### Professionals
 
 - Meedenken over oplossingen
 - Uitwerken van draagvlak
-- Testen met eigen organisatie en deelname aan pilots en fieldlabs
+- Testen met eigen organisatie en deelname aan pilots
 
-Deze groep bestaat uit product owners, UX-ers, architecten en business analisten vanuit de deelnemende organisaties.
+Deze groep bestaat uit product owners, ontwikkelaars, UX-ers, architecten, juristen, business analisten etc. De professionals kunnen komen van organisaties die deelnemen in de kopgroep van MOZa, maar ook van andere overheidsorgnisaties of van buiten de overheid.
 
 ### MOZa productteam
 
-- Uitwerken van usecases
+- Uitwerken van klantreizen en usecases
 - Ontwikkelen en testen van prototypes
 - Pilots samen met dienstverleners
 - Realiseren van alfa- en bètaversies
 - Communicatie
 - Organiseren van fieldlabs
 
-Het opdrachtgeverschap ligt bij beleidsmedewerkers van MinBZK.
+Het opdrachtgeverschap ligt bij de directie [Directie Digitale Overheid (PDI)](https://organisaties.overheid.nl/27646725/Directie_Digitale_Overheid/) van het [Ministerie van Binnenlandse Zaken en Koninkrijksrelaties (MinBZK)](https://organisaties.overheid.nl/9632/Binnenlandse_Zaken_en_Koninkrijksrelaties/).
 
 Het project MOZa heeft een productmanager die sturing geeft aan:
 
-* Architect
-* Business analist
-* Communicatiespecialist
-* UX-onderzoekers
-* Een of meer teams van:
+* Architectuur
+* Business analyse
+* Communicatie
+* UX-onderzoeker
+* Meerdere ontwikkelteams die bestaan uit:
   * Product owner
   * Tech lead
   * UX-ontwerpers
@@ -58,11 +58,11 @@ Het project MOZa heeft een productmanager die sturing geeft aan:
 
 ### Eindverantwoordelijk
 
-De **product/programma manager** is samen met de **opdrachtgever vanuit MinBZK** eindverantwoordelijk voor het programma.
+De **productmanager** is samen met de **opdrachtgever MinBZK** eindverantwoordelijk voor het programma.
 
 ### Inhoudelijk verantwoordelijk
 
-De **product owner** is samen met **UX** (gebruikersonderzoeken) en de **business analist / functioneel ontwerper** inhoudelijk verantwoordelijk voor het product. De **architect** zorgt ervoor dat de verschillende services vanuit MOZa in het geheel passen.
+De **product owner** is samen met **UX** (gebruikersonderzoeken) inhoudelijk verantwoordelijk voor het product. De **architect** zorgt ervoor dat de verschillende services vanuit MOZa in het geheel passen.
 
 ### Technische teams
 

@@ -25,11 +25,11 @@ De kenmerken waarop de filtering kan plaatvinden worden waar mogelijk voor ingev
 
 ## Waarom is dit nodig?
 
-### Huidige situatie  ← FEITEN (wat is er nu?)
-Ondernemers ontvangen overheidsinformatie via **10+ verschillende kanalen** zonder centrale regie:
+### Huidige situatie 
+Ondernemers ontvangen overheidsinformatie via **meerdere verschillende kanalen** zonder centrale regie:
 
-- **Bronnen**: RVO, KVK, gemeentes, ministeries (allen apart)
-- **Formaten**: Nieuwsbrieven, websites, PDF's, sociale media
+- **Bronnen**: RVO, KVK, gemeentes, ministeries (allen apart), etc
+- **Formaten**: Nieuwsbrieven, websites, PDF's, sociale media, etc
 - **Gebruikerservaring**:
   - Handmatig zoeken op meerdere sites
   - Apart inloggen per bron
@@ -43,7 +43,7 @@ Ondernemers ontvangen overheidsinformatie via **10+ verschillende kanalen** zond
 De huidige situatie leidt tot **vier kernproblemen**:
 
 1. **Inefficiëntie**:
-   - Ondernemers besteden **3 uur/maand** aan zoekwerk
+   - Ondernemers zijn nodeloos tijd kwijt aan het opzoeken van informatie
    - Overheden publiceren dezelfde content meerdere keren
 
 2. **Informatieverlies**:
@@ -92,7 +92,7 @@ De actualiteitenservice lost deze problemen op door:
 
 #### Filterkenmerken
 
-De service filtert informatie op basis van **bedrijfsspecifieke kenmerken**:
+De service filtert informatie op basis van **bedrijfsspecifieke kenmerken**. Hieronder een illustratie hoe bepaalde kenmerken kunnen doorwerken in de actualiteitenservices
 
 | Categorie          | Voorbeelden                                                                 | Toelichting                                  |
 |---------------------|-----------------------------------------------------------------------------|----------------------------------------------|
@@ -114,7 +114,7 @@ De service filtert informatie op basis van **bedrijfsspecifieke kenmerken**:
 
 ### Voor overheidsorganisaties
 
-De Actualiteitenservice biedt overheidsorganisaties een **gestandaardiseerde manier** om informatie te publiceren en te verspreiden onder ondernemers.
+De Actualiteitenservice biedt overheidsorganisaties een **gestandaardiseerde manier** om informatie te publiceren en te verspreiden onder ondernemers. We nodigen alle overheidspartijen uit om hier actief over mee te denken. Op dit moment wordt het volgende proces voorzien:
 
 #### Publicatieproces
 
@@ -174,8 +174,7 @@ Elk bericht moet voorzien zijn van **gestructureerde metadata** voor optimale fi
 
 ## Technische werking
 
-Voor de meer technische werking kijk vooral naar: [Technische documentatie] (LINK nog toevoegen
-
+Voor de meer technische werking kijk vooral naar: [Technische documentatie] 
 
 ---
 

@@ -62,9 +62,12 @@ menus:
     - name: Werkwijze
       pageRef: /handboek/werkwijze
       weight: 3
+    - name: Over MOZa
+      pageRef: /handboek/over-moza
+      weight: 4
     - name: Bijdragen
       pageRef: /handboek/bijdragen
-      weight: 4
+      weight: 5
 
   footer-links:
     - name: Handboek

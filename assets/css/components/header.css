@@ -368,6 +368,10 @@ header {
           padding-left: 1rem;
         }
 
+        .mobile-subnav-child {
+          margin-left: 1rem;
+        }
+
         a.bold {
           font-weight: 700;
         }
@@ -502,7 +506,7 @@ header {
       gap: 0.25rem 1.5rem;
       max-width: var(--content-max-width);
       margin: 0 auto;
-      padding: 0.25rem 1rem 0.125rem;
+      padding: 0.4rem 1rem 0rem;
       list-style: none;
     }
 

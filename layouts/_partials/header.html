@@ -82,11 +82,19 @@
       </ul>
       {{- if $hasSecondNav -}}
       <ul class="mobile-second-nav">
-        {{- range index .Site.Menus $secondNav -}}
+        {{- range $index, $item := index .Site.Menus $secondNav -}}
         {{- $isExact := eq $.RelPermalink .URL -}}
         {{- $isChild := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
         {{- $class := cond $isExact "active" (cond .Params.bold "bold" "") -}}
         <li><a href="{{ .URL }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isExact }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- if and (gt $index 0) (or $isExact $isChild) -}}
+          {{- $page := .Page -}}
+          {{- $children := $page.Sections -}}
+          {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
+          {{- range $children.ByWeight -}}
+          <li class="mobile-subnav-child"><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="active" aria-current="page"{{ end }}>{{ .Title }}</a></li>
+          {{- end -}}
+        {{- end -}}
         {{- end -}}
       </ul>
       {{- end -}}

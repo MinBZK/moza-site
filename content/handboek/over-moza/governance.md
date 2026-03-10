@@ -20,7 +20,7 @@ Taken van de stuurgroep:
 
 - Draagvlak binnen eigen organisatie en ambassadeur richting andere organisaties
 - Beschikbaar stellen van capaciteit en prioriteit
-- Daadwerkelijk aansluiten van de eigen organisatie op generieke dienstverlening dat ontwikkeld wordt vanuit het programma MOZa
+- Daadwerkelijk aansluiten van de eigen organisatie op generieke dienstverlening die ontwikkeld wordt vanuit het programma MOZa
 
 ## Regieteam
 

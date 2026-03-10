@@ -10,9 +10,9 @@ Al in 2007 startte het programma [Slim Geregeld, Goed Verbonden](https://nl.wiki
 
 ## MijnOverheid voor Ondernemers (2015 - 2019)
 
-In 2015 zegde Minister Henk Kamp (EZ) toe om het Ondernemingsdossier door te ontwikkelen naar MijnOverheid voor Ondernemers (MOvO). In 2016 stelde het programma haar [doelen](https://zoek.officielebekendmakingen.nl/kst-29515-397.html) vast en startte de KVK met de uitvoering.
+In 2015 zegde Minister Henk Kamp (EZ) toe om het Ondernemingsdossier door te ontwikkelen naar MijnOverheid voor Ondernemers (MOvO). In 2016 stelde het programma zijn [doelen](https://zoek.officielebekendmakingen.nl/kst-29515-397.html) vast en startten de KVK en UWV met de uitvoering.
 
-In 2019 werd een basisversie opgeleverd in de vorm van een "assistent" en getest met een beperkt aantal ondernemers. Het project werd in september 2019 [formeel afgerond](https://www.rijksictdashboard.nl/ict-activiteiten/b33ce2ae-9aa6-42bc-bd2b-b721b2918471/binnenlandse-zaken-en-koninkrijksrelaties-mijnoverheid-voor-ondernemers). De geplande vervolgstappen, een berichtenservice voor bedrijven, zijn niet gerealiseerd.
+In 2019 werd een basisversie opgeleverd in de vorm van een "assistent" en getest met een beperkt aantal ondernemers. Het project werd in september 2019 [formeel afgerond](https://www.rijksictdashboard.nl/ict-activiteiten/b33ce2ae-9aa6-42bc-bd2b-b721b2918471/binnenlandse-zaken-en-koninkrijksrelaties-mijnoverheid-voor-ondernemers). De geplande vervolgstappen zijn niet gerealiseerd.
 
 ## Een nieuwe start (2024 - heden)
 

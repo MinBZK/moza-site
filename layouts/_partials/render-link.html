@@ -5,13 +5,16 @@
     - href: De URL
     - text: De linktekst
     - title: (optioneel) Title attribuut
+    - private: (optioneel) Markeer als besloten link via {.private} in Markdown
 
   Externe links krijgen automatisch target="_blank" en rel="external noopener noreferrer".
-  Links naar samenwerkruimten.nl krijgen een "(besloten omgeving)" label.
+  Private links krijgen een slotje-icoon en "(besloten omgeving)" label.
+  Een link is private als {.private} is meegegeven in Markdown, of automatisch
+  bij samenwerkruimten.nl en digilab.overheid.nl/chat.
 */ -}}
 {{- $u := urls.Parse .href -}}
 {{- $isExternal := and $u.IsAbs (hasPrefix $u.Scheme "http") -}}
-{{- $isPrivate := and $isExternal (or (strings.Contains $u.Host "samenwerkruimten.nl") (and (strings.Contains $u.Host "digilab.overheid.nl") (strings.Contains $u.Path "/chat"))) -}}
+{{- $isPrivate := or .private (and $isExternal (or (strings.Contains $u.Host "samenwerkruimten.nl") (and (strings.Contains $u.Host "digilab.overheid.nl") (strings.Contains $u.Path "/chat")))) -}}
 {{- if $isPrivate -}}
 <a href="{{ .href }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="external private noopener noreferrer">{{ .text }}<span class="visually-hidden"> (besloten omgeving)</span></a>
 {{- else if $isExternal -}}

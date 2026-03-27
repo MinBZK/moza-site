@@ -18,4 +18,6 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
-{{- partial "render-link" (dict "href" $href "text" .Text "title" .Title) -}}
+{{- $private := or (eq .Title "private") (eq .Title "besloten") -}}
+{{- $title := cond $private "" .Title -}}
+{{- partial "render-link" (dict "href" $href "text" .Text "title" $title "private" $private) -}}

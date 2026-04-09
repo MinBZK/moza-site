@@ -23,3 +23,9 @@ Dit deel is bedoeld voor iedereen die wil begrijpen _waarom_ het prototype is zo
 Het _Hoe_ beschrijft de concrete technische keuzes en werkwijze waarmee de principes worden vertaald naar ontwerp. Welke CSS-technieken gebruiken we en waarom? Hoe werken de design tokens? Hoe zetten we AI-assistentie in? Hoe waarborgen we consistentie in tekst- en taalgebruik?
 
 Dit deel is bedoeld voor iedereen die aan het prototype werkt of wil begrijpen hoe het technisch in elkaar zit.
+
+## Prototype en Storybook omgeving
+
+Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
+
+De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/moza/storybook/)

@@ -94,4 +94,10 @@ Het ontwerpproces beweegt zich continu tussen twee perspectieven: wat we nu kunn
 - **De stip op de horizon als kompas** — sommige oplossingen zijn nu nog niet realiseerbaar: wetgeving staat het niet toe, systemen zijn er nog niet klaar voor, of de organisatie moet eerst anders ingericht worden. Toch ontwerpen we alvast voor die toekomst, zodat we daar klaar voor zijn wanneer de randvoorwaarden veranderen.
 - **Kleine stappen in de goede richting** — elk increment levert iets op dat getest en gebruikt kan worden, maar brengt het ontwerp ook dichter bij het grotere doel. We kiezen bewust voor oplossingen die zowel op korte termijn waarde leveren als op lange termijn passen in het toekomstbeeld.
 
+## Prototype en Storybook omgeving
+
+Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
+
+De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/moza/storybook/)
+
 Ga naar [Ontwerpprincipes: Hoe: Werkwijze en techniek](ontwerp-hoe).

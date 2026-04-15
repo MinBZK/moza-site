@@ -98,6 +98,6 @@ Het ontwerpproces beweegt zich continu tussen twee perspectieven: wat we nu kunn
 
 Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
 
-De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/moza/storybook/)
+De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/storybook/)
 
 Ga naar [Ontwerpprincipes: Hoe: Werkwijze en techniek](ontwerp-hoe).

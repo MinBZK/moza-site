@@ -14,7 +14,7 @@ tmp
 # Claude
 .claude/plans
 .playwright-mcp
-.claude/settings*
+.claude/settings.local*
 
 # Editors
 .vscode/*

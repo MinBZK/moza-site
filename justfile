@@ -5,6 +5,10 @@ image := "moza-site:" + `git branch --show-current`
 default:
     @just --list
 
+# Installeer dependencies (eenmalig)
+setup:
+    npm install
+
 # Voer tests uit
 test:
     npm test

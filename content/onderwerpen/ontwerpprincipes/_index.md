@@ -6,6 +6,7 @@ image: "/images/tegel-ontwerp.svg"
 image_alt: "Icoon van een ontwerp"
 weight: 3
 hide_tiles: true
+prev_next: true
 aliases:
   - /onderwerpen/ontwerp/
 ---

@@ -21,7 +21,7 @@ justfile               # Commands: just up, just build, just check
 ## Commando's
 
 ```bash
-npm install             # Node dependencies (eenmalig, voor Mermaid rendering)
+just setup              # Node dependencies installeren (eenmalig, voor Mermaid rendering)
 just up                 # Render SVGs + dev server
 just build              # Render SVGs + build
 just test               # Tests uitvoeren

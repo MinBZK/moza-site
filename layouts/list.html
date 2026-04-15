@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{ if .Params.hide_tiles }}
+  {{- partial "article.html" . -}}
+{{ else }}
 <section>
   <h1>{{ .Title }}</h1>
   {{ .Content }}
@@ -6,4 +9,5 @@
   {{ partial "card-grid.html" . }}
   {{ end }}
 </section>
+{{ end }}
 {{ end }}

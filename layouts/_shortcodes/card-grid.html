@@ -2,6 +2,10 @@
 {{- if not $section -}}
   {{- errorf "card-grid shortcode: 'section' parameter is verplicht" -}}
 {{- end -}}
+{{- with site.GetPage $section -}}
 <section>
-  {{ partial "card-grid.html" (where site.RegularPages "Section" $section).ByWeight }}
+  {{ partial "card-grid.html" .Pages.ByWeight }}
 </section>
+{{- else -}}
+  {{- errorf "card-grid shortcode: sectie %q niet gevonden" $section -}}
+{{- end -}}

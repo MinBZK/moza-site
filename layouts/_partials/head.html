@@ -1,8 +1,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {{- $pageTitle := .Site.Title -}}
-{{- if and (not .IsHome) .Title -}}
-  {{- $pageTitle = printf "%s | %s" .Title .Site.Title -}}
+{{- $metaTitle := or .Params.page_title .Title -}}
+{{- if and (not .IsHome) $metaTitle -}}
+  {{- $pageTitle = printf "%s | %s" $metaTitle .Site.Title -}}
 {{- end -}}
 <title>{{ $pageTitle }}</title>
 {{- $description := .Description -}}
@@ -60,7 +61,8 @@
 {{ $toast := resources.Get "css/components/toast.css" }}
 {{ $search := resources.Get "css/components/search.css" }}
 {{ $mermaid := resources.Get "css/components/mermaid.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search $mermaid | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $pageNav := resources.Get "css/components/page-nav.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search $mermaid $pageNav | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{/* Thema uit localStorage toepassen vóór renderen om flash te voorkomen */}}

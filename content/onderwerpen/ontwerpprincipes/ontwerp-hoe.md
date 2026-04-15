@@ -1,10 +1,13 @@
 ---
-title: "Ontwerpprincipes – Hoe: Werkwijze en techniek"
-card_title: "Ontwerpprincipes – Hoe: Werkwijze en techniek"
+title: "Hoe: werkwijze en techniek"
+page_title: "Ontwerpprincipes - Hoe: werkwijze en techniek"
+weight: 2
 description: "Het “Hoe” beschrijft de concrete technische keuzes en werkwijze waarmee de principes worden vertaald naar code."
 image: "/images/tegel-ontwerp.svg"
 image_alt: "Icoon van een ontwerp"
 ---
+
+De eindgebruiker staat centraal, maar uiteindelijk moet er ook iets gemaakt worden. We ontwerpen direct in code – en om snel te kunnen werken, kiezen we bewust voor eenvoud. Hieronder onze technische keuzes: welke CSS we gebruiken, hoe Claude meedenkt, welke patronen steeds terugkeren en hoe feature flags varianten mogelijk maken zonder parallelle versies.
 
 ## CSS
 
@@ -22,11 +25,11 @@ De CSS maakt gebruik van [native nesting](https://developer.mozilla.org/en-US/do
 
 Spacing tussen elementen wordt aangestuurd door één schaal van layout tokens (`--toepassing-space-layout-*`), ongeacht richting. Het juiste CSS-mechanisme wordt gekozen op basis van de context:
 
-- **`> * + *` met margin** — voor content flow waar de parent geen specifiek layout-model nodig heeft. Voorbeelden: `body`, `header`, `.card`, `.accordion`, `footer nav`, `ul`/`ol`. Het voordeel is dat het het eerste element geen onnodige marge krijgt en dat spacing alleen ontstaat _tussen_ elementen.
+- **`> * + *` met margin** – voor content flow waar de parent geen specifiek layout-model nodig heeft. Voorbeelden: `body`, `header`, `.card`, `.accordion`, `footer nav`, `ul`/`ol`. Het voordeel is dat het het eerste element geen onnodige marge krijgt en dat spacing alleen ontstaat _tussen_ elementen.
 
-- **`gap` met flexbox of grid** — voor layouts waarbij specifieke uitlijning, richting-wisseling (bijvoorbeeld voor verschil in scherm-breedte) of een strikt raster van rijen en kolommen nodig is. Voorbeelden: `.action-group` (wisselt van kolom naar rij), `.tiles` (grid), `.footer-links` (wisselt van kolom naar rij), `.icon-link` (horizontaal, icoon naast tekst), `summary` (icoon naast tekst).
+- **`gap` met flexbox of grid** – voor layouts waarbij specifieke uitlijning, richting-wisseling (bijvoorbeeld voor verschil in scherm-breedte) of een strikt raster van rijen en kolommen nodig is. Voorbeelden: `.action-group` (wisselt van kolom naar rij), `.tiles` (grid), `.footer-links` (wisselt van kolom naar rij), `.icon-link` (horizontaal, icoon naast tekst), `summary` (icoon naast tekst).
 
-Per container wordt altijd één van deze twee mechanismes gebruikt, nooit beide tegelijk. De keuze voor `gap` of `> * + *` is een implementatiedetail — de spacing-waarde komt altijd uit dezelfde `layout-*` tokens.
+Per container wordt altijd één van deze twee mechanismes gebruikt, nooit beide tegelijk. De keuze voor `gap` of `> * + *` is een implementatiedetail – de spacing-waarde komt altijd uit dezelfde `layout-*` tokens.
 
 ## AI-assistentie in het ontwerpproces
 
@@ -34,10 +37,10 @@ In het ontwerpproces wordt [Claude](https://claude.ai/) ingezet als assistent bi
 
 Claude wordt onder andere ingezet voor:
 
-- **Semi-realistische content** — het prototype wordt gevuld met inhoud die dicht bij de werkelijkheid ligt: bestaande subsidienamen, echte wetten, herkenbare bekendmakingen. Dit maakt het prototype geloofwaardiger in gebruikerstests dan _lorem ipsum_ of duidelijk verzonnen tekst. Claude genereert deze content op basis van publiek beschikbare (overheids)informatie.
-- **Variatie en volume** — waar een ontwerp meerdere pagina's of varianten nodig heeft (bijvoorbeeld gepagineerde lijsten met berichten, subsidies of regelgeving), helpt Claude bij het aanmaken van consistente, gevarieerde content zonder dat elke regel handmatig geschreven hoeft te worden.
-- **Component- en patronenontwikkeling** — Claude assisteert bij het schrijven van HTML, CSS en JavaScript voor nieuwe componenten en interactiepatronen, altijd binnen de bestaande ontwerpprincipes (semantische HTML, design tokens, toegankelijkheid).
-- **Refactoring en abstractie** — herhalende patronen in de code worden met hulp van Claude geïdentificeerd en omgezet naar herbruikbare [_includes_](https://www.smashingmagazine.com/2018/03/static-site-with-nunjucks/) of geautomatiseerde logica, waardoor de codebase onderhoudbaar blijft naarmate het prototype groeit.
+- **Semi-realistische content** – het prototype wordt gevuld met inhoud die dicht bij de werkelijkheid ligt: bestaande subsidienamen, echte wetten, herkenbare bekendmakingen. Dit maakt het prototype geloofwaardiger in gebruikerstests dan _lorem ipsum_ of duidelijk verzonnen tekst. Claude genereert deze content op basis van publiek beschikbare (overheids)informatie.
+- **Variatie en volume** – waar een ontwerp meerdere pagina's of varianten nodig heeft (bijvoorbeeld gepagineerde lijsten met berichten, subsidies of regelgeving), helpt Claude bij het aanmaken van consistente, gevarieerde content zonder dat elke regel handmatig geschreven hoeft te worden.
+- **Component- en patronenontwikkeling** – Claude assisteert bij het schrijven van HTML, CSS en JavaScript voor nieuwe componenten en interactiepatronen, altijd binnen de bestaande ontwerpprincipes (semantische HTML, design tokens, toegankelijkheid).
+- **Refactoring en abstractie** – herhalende patronen in de code worden met hulp van Claude geïdentificeerd en omgezet naar herbruikbare [_includes_](https://www.smashingmagazine.com/2018/03/static-site-with-nunjucks/) of geautomatiseerde logica, waardoor de codebase onderhoudbaar blijft naarmate het prototype groeit.
 
 De inzet van AI-assistentie past bij het principe van _de eenvoudigst mogelijke oplossing_: het versnelt het werk zonder extra tooling, frameworks of afhankelijkheden te introduceren. De gegenereerde code en content worden altijd beoordeeld en waar nodig aangepast.
 
@@ -49,17 +52,17 @@ Het prototype hanteert een schrijfwijzer die consistentie waarborgt in taalgebru
 
 Het prototype documenteert terugkerende ontwerppatronen in Storybook, met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
 
-- **Interactie op inhoud** — het patroon waarmee gebruikers door middel van acties als Bewaar, Relevant, Niet relevant en Deel een profiel opbouwen dat de basis vormt voor gepersonaliseerde content (aanbevelingssysteem).
-- **Context wisselen** — het patroon waarmee een gebruiker kan wisselen tussen privé- en zakelijke contexten, eigen ondernemingen en machtigingen, zonder opnieuw in te loggen. Geïmplementeerd als accountwisselaar in de header.
+- **Interactie op inhoud** – het patroon waarmee gebruikers door middel van acties als Bewaar, Relevant, Niet relevant en Deel een profiel opbouwen dat de basis vormt voor gepersonaliseerde content (aanbevelingssysteem).
+- **Context wisselen** – het patroon waarmee een gebruiker kan wisselen tussen privé- en zakelijke contexten, eigen ondernemingen en machtigingen, zonder opnieuw in te loggen. Geïmplementeerd als accountwisselaar in de header.
 
 ## Feature flags
 
-Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit in- of uitgeschakeld kunnen worden. Dit maakt het mogelijk om verschillende configuraties van het prototype te tonen zonder aparte versies te bouwen — bijvoorbeeld tijdens gebruikerstests of stakeholdergesprekken.
+Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit in- of uitgeschakeld kunnen worden. Dit maakt het mogelijk om verschillende configuraties van het prototype te tonen zonder aparte versies te bouwen – bijvoorbeeld tijdens gebruikerstests of stakeholdergesprekken.
 
-- **Togglebaar via het paneel** — rechtsonder in het prototype bevindt zich een “Flags”-knop die een paneel opent met alle beschikbare feature flags, gegroepeerd in _Pagina's_ (navigatie-items en secties) en _Functionaliteit_ (interactiemogelijkheden zoals delen en relevantie aangeven). Deze kunnen per pagina verschillen.
-- **Onthouden in de browser** — feature flags worden opgeslagen in de browser middels [_localStorage_](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API). Standaard staan alle features aan; pas als een feature expliciet wordt uitgezet, wordt deze verborgen.
-- **Declaratief in de markup** — een element markeren als feature-flagged is een kwestie van `data-feature="Naam"` en `data-feature-type="pagina|functionaliteit"` toevoegen.
-- **localStorage wissen** — het paneel bevat een knop om alle opgeslagen staten (feature flags, favorieten, verborgen topics, gesloten notificaties) in één keer te resetten.
+- **Togglebaar via het paneel** – rechtsonder in het prototype bevindt zich een “Flags”-knop die een paneel opent met alle beschikbare feature flags, gegroepeerd in _Pagina's_ (navigatie-items en secties) en _Functionaliteit_ (interactiemogelijkheden zoals delen en relevantie aangeven). Deze kunnen per pagina verschillen.
+- **Onthouden in de browser** – feature flags worden opgeslagen in de browser middels [_localStorage_](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API). Standaard staan alle features aan; pas als een feature expliciet wordt uitgezet, wordt deze verborgen.
+- **Declaratief in de markup** – een element markeren als feature-flagged is een kwestie van `data-feature="Naam"` en `data-feature-type="pagina|functionaliteit"` toevoegen.
+- **localStorage wissen** – het paneel bevat een knop om alle opgeslagen staten (feature flags, favorieten, verborgen topics, gesloten notificaties) in één keer te resetten.
 
 ## Statische site-generatie
 
@@ -70,5 +73,3 @@ Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit 
 Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
 
 De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/storybook/)
-
-Ga naar [Ontwerpprincipes: Wat: Visie, principes en uitgangspunten](ontwerp-wat).

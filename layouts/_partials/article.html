@@ -1,0 +1,21 @@
+{{- $toc := .TableOfContents -}}
+{{- $hasToc := and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
+<article>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{- if $hasToc -}}
+    <button class="toc-toggle" aria-expanded="false" aria-controls="toc">
+      {{- partial "icon.html" "toc-open" -}}
+      {{- partial "icon.html" "toc-close" -}}
+      <span class="visually-hidden">Inhoudsopgave tonen</span>
+    </button>
+    {{- end -}}
+  </header>
+  {{ .Content }}
+</article>
+{{- if $hasToc -}}
+<aside id="toc" class="toc">
+  <h2>Op deze pagina</h2>
+  {{ $toc }}
+</aside>
+{{- end -}}

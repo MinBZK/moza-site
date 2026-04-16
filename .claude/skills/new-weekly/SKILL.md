@@ -1,25 +1,42 @@
 ---
 name: new-weekly
-description: Maak een nieuwe weekly update aan. Gebruik wanneer de gebruiker een nieuwe MOZa Weekly wil maken.
+description: Gebruik bij het maken van een nieuwe MOZa Weekly.
 ---
 
-Maak een nieuwe weekly update aan.
+# Nieuwe MOZa Weekly
 
 ## Stappen
 
-1. Vraag naar de datum voor de weekly (of gebruik vandaag)
-2. Run: `hugo new content weekly/YYYY/YYYY-MM-DD.md` (vervang jaar en datum)
-3. Vraag naar input voor de weekly
-4. Vul op basis daarvan de sectie Algemeen en eventueel andere secties in
+1. Vraag welke datum (of gebruik vandaag). Sla over als de datum al gegeven is.
+2. **Lees de laatste 3-5 weeklies** in `content/weekly/YYYY/`. Hieruit volgen: huidige sectie-indeling, toon, linkpatronen en de lopende agenda. Kopieer het patroon, schrijf niet vanaf nul.
+3. Run: `hugo new content weekly/YYYY/YYYY-MM-DD.md`.
+4. Vraag input van de gebruiker. Sla over als de input al gegeven is.
+5. Groepeer de input in secties op basis van wat er deze week speelt — secties zijn niet vast, ze volgen de onderwerpen. Laat een sectie weg als er geen inhoud voor is.
 
-## Secties
+## Secties zijn onderwerp-gedreven
 
-Een weekly bevat typisch:
-- **Algemeen**: Belangrijke updates en mededelingen
-- **Techniek**: Technische updates en releases
-- **Design**: Design gerelateerde updates
-- **Overig**: Andere relevante informatie
+Secties sluiten vaak aan op bestaande onderwerpen (zie `content/onderwerpen/`) of lopende werkstromen. Ze zijn **niet voorgeschreven**: voeg toe, laat weg of combineer op basis van wat die week speelt. Kijk in de vorige weeklies welke secties actief zijn.
 
-## Output
+**Interne links**: als er voor een onderwerp een eigen pagina bestaat in `content/onderwerpen/`, link intern in plaats van extern (bv. `[Profielservice](/onderwerpen/profielservice/)`). Verifieer dat interne URL's correct zijn — ook sub-pagina's hebben het `/onderwerpen/` prefix nodig.
 
-Toon het pad naar het aangemaakte bestand en bied aan om de content te helpen schrijven.
+**Externe links** voor terugkerende diensten en projecten: zoek in eerdere weeklies naar het linkpatroon (bv. `[RegelRecht](https://regelrecht.rijks.app/)`, `[Digilab](https://digilab.overheid.nl/)`). Link bij de eerste vermelding in de weekly.
+
+## Stijlregels
+
+- Bullet-stijl volgt de vorige weekly (typisch: `* **Label:** tekst.`)
+- B1 Nederlands, actieve zinnen (zie `.claude/rules/taal-en-stijl.md`)
+- "profielservice", "notificatieservice" (één woord)
+- **Geen persoonlijke namen** en geen persoonlijk nieuws (ziek zijn, verjaardagen, etc.)
+
+## Agenda
+
+Agenda is **cumulatief**: neem items uit de vorige weekly over die nog niet zijn geweest, verwijder voorbije items (inclusief de publicatiedatum zelf — de weekly verschijnt 's ochtends). Structuur en inleidingsregel uit de vorige weekly overnemen. Items staan in **chronologische volgorde**.
+
+## Bij onduidelijkheden
+
+Benoem expliciet aan de gebruiker wat ontbreekt (datums, links, context) in plaats van te gokken.
+
+## Publiceren
+
+- Branch: `weekly/YYYY-MM-DD`
+- Commit-bericht: `MOZa Weekly DD maand YYYY` (bv. `MOZa Weekly 15 april 2026`)

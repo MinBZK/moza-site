@@ -71,8 +71,8 @@ const THEMES = buildThemes();
 // ── Font embedding ───────────────────────────────────────────────────────────
 
 const FONT_FILES = [
-  { file: "RO-SansWebText-Regular-20220503.woff2", weight: "400" },
-  { file: "RO-SansWebText-Bold-20220503.woff2", weight: "700" },
+  { file: "RO-SansWebText-Regular.woff2", weight: "400" },
+  { file: "RO-SansWebText-Bold.woff2", weight: "700" },
 ];
 
 let fontCSS;

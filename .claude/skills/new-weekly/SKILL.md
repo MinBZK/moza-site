@@ -32,9 +32,13 @@ Secties sluiten vaak aan op bestaande onderwerpen (zie `content/onderwerpen/`) o
 
 Agenda is **cumulatief**: neem items uit de vorige weekly over die nog niet zijn geweest, verwijder voorbije items (inclusief de publicatiedatum zelf — de weekly verschijnt 's ochtends). Structuur en inleidingsregel uit de vorige weekly overnemen. Items staan in **chronologische volgorde**.
 
+**Vaste overleggen altijd op de agenda**: MOZa Pulse, Regieteam en Stuurgroep horen altijd met een eerstvolgende datum op de agenda. Als één van deze drie is geweest en er geen nieuwe datum in de input staat, vraag proactief om de volgende datum voordat je de weekly afrondt.
+
 ## Bij onduidelijkheden
 
 Benoem expliciet aan de gebruiker wat ontbreekt (datums, links, context) in plaats van te gokken.
+
+**Voorbije events zonder update**: loop de agenda van de vorige weekly langs en kijk welke items tussen toen en nu zijn geweest. Als een voorbij event niet in de input wordt genoemd, vraag proactief of er toch iets over te melden is — soms is dat namelijk wel zo.
 
 ## Publiceren
 

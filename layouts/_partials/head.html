@@ -44,6 +44,9 @@
 <meta name="twitter:image:width" content="192" />
 <meta name="twitter:image:height" content="192" />
 
+<link rel="preload" href="{{ relURL "fonts/RO-SansWebText-Regular.woff2" }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ relURL "fonts/RO-SansWebText-Bold.woff2" }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ relURL "fonts/RO-SerifWeb-Italic.woff2" }}" as="font" type="font/woff2" crossorigin />
 
 {{/* CSS bundling via Hugo's asset pipeline */}}
 {{ $tokens := resources.Get "css/tokens.css" }}
@@ -65,7 +68,5 @@
 {{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $list $footer $toast $search $mermaid $pageNav | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
-{{/* Thema uit localStorage toepassen vóór renderen om flash te voorkomen */}}
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}
 <script src="{{ $themeInit.RelPermalink }}"></script>
-

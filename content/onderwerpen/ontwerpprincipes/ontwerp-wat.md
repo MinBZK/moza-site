@@ -3,8 +3,6 @@ title: "Wat: visie en principes"
 page_title: "Ontwerpprincipes - Wat: visie en principes"
 weight: 1
 description: "Het “Wat” beschrijft de overtuigingen en uitgangspunten die aan het ontwerp ten grondslag liggen."
-image: "/images/tegel-ontwerp.svg"
-image_alt: "Icoon van een ontwerp"
 ---
 
 ## Ontwerp met de eindgebruiker centraal

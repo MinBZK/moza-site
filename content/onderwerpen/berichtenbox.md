@@ -1,7 +1,7 @@
 ---
 title: "Berichtenbox"
 description: "De Berichtenbox is de digitale brievenbus waar ondernemers berichten van overheidsorganisaties ontvangen."
-weight: 5
+weight: 6
 ---
 
 ## Wat is de Berichtenbox?
@@ -24,33 +24,32 @@ Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze meld
 In dit overzicht neemt de Belastingdienst een gemeenschappelijk Berichtenmagazijn af, omdat zij zelf géén eigen Berichtenmagazijn hebben.
 
 ```mermaid
-
----\
-title: Berichtenstroom Federatief Berichtenstelsel\
----\
-graph LR\
-accTitle: Berichtenstroom Federatief Berichtenstelsel\
-accDescr: Een beschikking wordt klaargezet in het Berichtenmagazijn. De ondernemer ontvangt een notificatie en raadpleegt het bericht via het MOZa portaal, dat gegevens opvraagt bij het Berichten Uitvraag Systeem.\
-A[Belasting verstuurt beschikking]\
-B[Ondernemer ontvangt notificatie]\
-C[Ondernemer gaat bericht bekijken]\
-M@{ icon: "tabler:device-laptop", label: "MOZa portaal" }\
-D@{ icon: "tabler:file-check", label: "Bericht" }\
-subgraph FBS [Federatief Berichtenstelsel]\
-BM@{ icon: "tabler:database", label: "Berichtenmagazijn" }\
-BUS@{ icon: "tabler:database-search", label: "Berichten Uitvraag Systeem" }\
-end\
-A -->|1| BM\
-BM -->|2| B\
-B --> C\
-BM -->|3| BUS\
-C -->|4| M\
-BM <-->|5| BUS\
-BUS -->|5| M\
-M -->|6| D\
-M -->|7| BUS\
-style FBS fill: none, stroke-dasharray: 5 5, rx: 20, ry: 20
-
+---
+title: Berichtenstroom Federatief Berichtenstelsel
+---
+flowchart TB
+  accTitle: Berichtenstroom Federatief Berichtenstelsel
+  accDescr: Een beschikking wordt klaargezet in het Berichtenmagazijn. De ondernemer ontvangt een notificatie en raadpleegt het bericht via het MOZa portaal, dat gegevens opvraagt bij het Berichten Uitvraag Systeem.
+  A@{ icon: "tabler:building-bank", label: "Belasting verstuurt beschikking" }
+  B@{ icon: "tabler:bell", label: "Ondernemer ontvangt notificatie" }
+  C@{ icon: "tabler:eye", label: "Ondernemer bekijkt bericht" }
+  M@{ icon: "tabler:device-laptop", label: "MOZa portaal" }
+  D@{ icon: "tabler:file-check", label: "Bericht" }
+  subgraph FBS["`**Federatief Berichtenstelsel**`"]
+    direction LR
+    BM@{ icon: "tabler:database", label: "Berichtenmagazijn" }
+    BUS@{ icon: "tabler:database-search", label: "Berichten Uitvraag Systeem" }
+  end
+  A -->|1| BM
+  BM -->|2| B
+  B --> C
+  BM -->|3| BUS
+  C -->|4| M
+  BM <--> BUS
+  BUS -->|5| M
+  M -->|6| D
+  M -->|7| BUS
+  style FBS fill:none,stroke:#003082,stroke-width:2px,stroke-dasharray:8 4,rx:20,ry:20
 ```
 
 ***"Het federatieve principe in één zin: er is geen centrale plek waar alle berichten worden opgeslagen. Elke organisatie beheert zijn eigen berichten; het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden".***

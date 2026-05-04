@@ -1,8 +1,6 @@
 ---
 title: "Open werken"
 description: "In onze aanpak staat zichtbaar werken en kennisdeling centraal."
-image: "/images/tegel-openwerken.svg"
-image_alt: "Icoon van open werken"
 weight: 4
 ---
 

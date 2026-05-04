@@ -3,8 +3,6 @@ title: "Hoe: werkwijze en techniek"
 page_title: "Ontwerpprincipes - Hoe: werkwijze en techniek"
 weight: 2
 description: "Het “Hoe” beschrijft de concrete technische keuzes en werkwijze waarmee de principes worden vertaald naar code."
-image: "/images/tegel-ontwerp.svg"
-image_alt: "Icoon van een ontwerp"
 ---
 
 De eindgebruiker staat centraal, maar uiteindelijk moet er ook iets gemaakt worden. We ontwerpen direct in code – en om snel te kunnen werken, kiezen we bewust voor eenvoud. Hieronder onze technische keuzes: welke CSS we gebruiken, hoe Claude meedenkt, welke patronen steeds terugkeren en hoe feature flags varianten mogelijk maken zonder parallelle versies.

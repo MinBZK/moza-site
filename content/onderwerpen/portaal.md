@@ -1,8 +1,6 @@
 ---
 title: "MijnOverheid Zakelijk portaal"
 description: "Maak kennis met de Mijn-omgeving van MOZa via ons digitale prototype."
-image: "/images/tegel-portaal.svg"
-image_alt: "Icoon van een portaal"
 weight: 1
 ---
 

@@ -18,7 +18,7 @@ Overheidsorganisaties communiceren nu elk op hun eigen manier met ondernemers. D
 De ondernemer logt in via eHerkenning of DigiD en ziet in één overzicht alle berichten van aangesloten overheidsorganisaties. Berichten zijn afkomstig van organisaties die elk hun eigen berichtenmagazijn beheren; de ondernemer merkt daar niets van. Via de Profielservice beheert de ondernemer zijn contactgegevens en communicatievoorkeuren. Zo bepaalt hij zelf hoe en waar hij genotificeerd wil worden bij een nieuw bericht: per e-mail, sms of via een app.
 
 ## Wat kunnen overheidsorganisaties?
-Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze melden vervolgens het bericht aan bij het Berichten Uitvraag Systeem. Dit stelsel zorgt er vervolgens voor dat de juiste ontvanger het bericht te zien krijgt. Organisaties zonder eigen berichtenmagazijn kunnen gebruik maken van het BBO; het gemeenschappelijk Berichtenmagazijn voor Burgers en Ondernemers.
+Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze melden vervolgens het bericht aan bij het Berichten Uitvraag Systeem (via Aanlever API). Dit stelsel zorgt er vervolgens voor dat de juiste ontvanger het bericht te zien krijgt. Organisaties zonder eigen berichtenmagazijn kunnen gebruik maken van het BBO; het gemeenschappelijk Berichtenmagazijn voor Burgers en Ondernemers.
 
 ## Hoe werkt de Berichtenbox? Het verhaal van een beschikking
 In dit overzicht neemt de Belastingdienst een gemeenschappelijk Berichtenmagazijn af, omdat zij zelf géén eigen Berichtenmagazijn hebben.
@@ -30,7 +30,7 @@ title: Berichtenstroom Federatief Berichtenstelsel
 flowchart TB
   accTitle: Berichtenstroom Federatief Berichtenstelsel
   accDescr: Een beschikking wordt klaargezet in het Berichtenmagazijn. De ondernemer ontvangt een notificatie en raadpleegt het bericht via het MOZa portaal, dat gegevens opvraagt bij het Berichten Uitvraag Systeem.
-  A@{ icon: "tabler:building-bank", label: "Belasting verstuurt beschikking" }
+  A@{ icon: "tabler:building-bank", label: "Belastingdienst verstuurt beschikking" }
   B@{ icon: "tabler:bell", label: "Ondernemer ontvangt notificatie" }
   C@{ icon: "tabler:eye", label: "Ondernemer bekijkt bericht" }
   M@{ icon: "tabler:device-laptop", label: "MOZa portaal" }
@@ -56,20 +56,18 @@ flowchart TB
 1. Aanlevering gebeurt via de Berichtenmagazijn Aanlever API. Deze API stuurt berichten ter\
    validatie op technische eisen en controleert toestemming via Profiel Service.
 
-2. Via de Publicatie Stream wordt de ondernemer genotificeerd (communicatie-en kanaalvoorkeur wordt opgehaald uit de Profielservice en Notificatie service.
+2. Als publicatiedatum is verstreken, wordt een seintje gegeven aan het 'Berichten Uitvraag Systeem'. Ook wordt via de Publicatie Stream de ondernemer genotificeerd (communicatie-en kanaalvoorkeur wordt opgehaald uit de Profielservice en Notificatie service.
 
-3. Als publicatiedatum is verstreken, wordt een seintje gegeven aan het ‘Berichten Uitvraag Systeem’.
-
-4. De ondernemer logt in op het portal Mijn Overheid Zakelijk en gebruikt daarvoor DigiD of\
+3. De ondernemer logt in op het portal Mijn Overheid Zakelijk en gebruikt daarvoor DigiD of\
    E-Herkenning.
 
-5. Het MOZa portaal haalt het bericht (incl bijlagen) op via de Berichtenmagazijn Ophaal- en Beheer API. Deze API toetst ook de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties.
+4. Het MOZa-portaal haalt het bericht (incl bijlagen) op via de Berichtenmagazijn Ophaal- en Beheer API. Deze API toetst ook de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties.
 
-6. De ondernemer leest het bericht; in dit geval de beschikking die hij heeft ontvangen van\
+5. De ondernemer leest het bericht; in dit geval de beschikking die hij heeft ontvangen van\
    de Belastingdienst.
 
-7. Tijdens de sessie van de ondernemer in het MOZa portaal, wordt continu bijgehouden\
-   of er nieuwe berichten beschikbaar komen voor de ondernemer.
+6. Tijdens de sessie van de ondernemer in het MOZa portaal, wordt continu bijgehouden\
+   of er nieuwe berichten beschikbaar komen voor de ondernemer. Deze berichten worden dan direct getoond (via flow stap 2).
 
 ## Hoe bouwen we dit?
 Het FBS wordt gefaseerd gerealiseerd:
@@ -86,7 +84,7 @@ Wil je als overheidsorganisatie aansluiten op de Berichtenbox, of bijdragen aan 
 Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
 
 * Hoe zorgen we ervoor dat berichten enkel worden getoond aan de personen die ook gemachtigd zijn om de berichten in te zien?
-* Wat gaat er anders zijn qua interactie tussen de berichtenmagazijn van de eigen organisatie versus de gemeenschappelijk berichtenmagazijn?
+* Wat gaat er anders zijn qua interactie tussen het berichtenmagazijn van de eigen organisatie versus het gemeenschappelijk berichtenmagazijn?
 * ...
 
 ## Meer info

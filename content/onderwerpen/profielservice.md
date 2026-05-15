@@ -14,7 +14,7 @@ aliases:
 
 # Huidige uitdaging
 
-Overheidsorganisaties (dienstverleners, gemeenten) slaan contactvoorkeuren en contactgegevens los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Tevens worden daarmee op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Hiermee is er een duidelijke wens voor een centrale profielservice; waarmee het volgende wordt bereikt:
+Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Tevens worden daarmee op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Hiermee is er een duidelijke wens voor een centrale profielservice; waarmee het volgende wordt bereikt:
 
 * **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
 
@@ -24,7 +24,7 @@ Overheidsorganisaties (dienstverleners, gemeenten) slaan contactvoorkeuren en co
 
 # Wat is de profielservice?
 
-De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en contactvoorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
+De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en voorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
 
 # Oplossing
 

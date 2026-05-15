@@ -7,9 +7,6 @@ weight: 2
 aliases:
   - /onderwerpen/profiel-service/
 ---
-
-# Profielservice
-
 *Laatste update: 15 mei 2026*
 
 # Huidige uitdaging

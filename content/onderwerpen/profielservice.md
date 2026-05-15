@@ -8,87 +8,66 @@ aliases:
   - /onderwerpen/profiel-service/
 ---
 
-## Wat is de profielservice?
+# Profielservice
+
+*Laatste update: 15 mei 2026*
+
+# Huidige uitdaging
+
+Overheidsorganisaties (dienstverleners, gemeenten) slaan contactvoorkeuren en contactgegevens los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Tevens worden daarmee op verschillende plekken dezelfde functionaliteiten (doorontwikkeld). Hiermee is een duidelijke wens voor een centrale profielservice; waarmee het volgende wordt bereikt:
+
+* **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
+
+* **Voor overheidsorganisaties/dienstverleners:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
+
+* **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
+
+# Wat is de profielservice?
 
 De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en contactvoorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit één keer in en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
 
-## Waarom is dit nodig?
+# Oplossing
 
-Nu slaan overheidsorganisaties contactgegevens los van elkaar op. Burgers en ondernemers voeren dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten.
+De toepassing van de profielservice kan als het volgt schematisch worden weergegeven:
 
-De profielservice lost dit op:
+![Profielservice overzicht](/images/Profielservice-overzicht.png)
 
-- **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
-- **Voor overheidsorganisaties:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
-- **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
+## Uitgangspunten
 
-## Wat kan de ondernemer?
+Er zijn verschillende uitgangspunten gehanteerd bij de profielservice. Hieronder worden enkele belangrijke zaken toegelicht, waarbij dit niet de volledige lijst betreft
 
-```mermaid
----
-title: Klantreis ondernemer
----
-graph LR
-  accTitle: Klantreis ondernemer
-  accDescr: De stappen die een ondernemer doorloopt: inloggen met DigiD, eHerkenning of eIDAS, gegevens bekijken, contactvoorkeuren instellen.
-  A@{ icon: "tabler:login", label: "Inloggen met DigiD, eHerkenning of eIDAS" }
-  B@{ icon: "tabler:user", label: "Gegevens bekijken" }
-  C@{ icon: "tabler:address-book", label: "Contactvoorkeuren instellen" }
-  D@{ icon: "tabler:check", label: "Klaar" }
+### MOZa principes
 
-  A --> B --> C --> D
-```
+Bij de ontwikkeling volgen we de [principes](https://mijnoverheidzakelijk.nl/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
 
-Je logt in met DigiD, eHerkenning of een Europees inlogmiddel (eIDAS), bekijkt je gegevens en stelt je contactvoorkeuren in. Dat is alles. Je hoeft dit niet meer apart te doen bij elke overheidsorganisatie.
+### Gegevens
 
-- **Contactvoorkeur** — op welke manier wil je benaderd worden? Denk aan e-mail, post of sms.
-- **Contactgegevens** — op welk adres bereiken we je? Dat kan een e-mailadres zijn, maar ook een fysiek postadres.
+Er wordt uitgegaan van een unieke **identificatie-contactgegeven&#x20;**&#x65;n/of **identificatie-voorkeur&#x20;**&#x76;astlegging. Dit is de unieke 'sleutel' waaraan de profielservice gegevens gekoppeld worden
 
-## Wat kunnen overheidsorganisaties?
+* **Identificatie&#x20;**- op welke manier is de identiteit uniek herkenbaar? Denk aan bijv. BSN, KvK-nummer, RSIN of een ander nummer ℹ️
 
-```mermaid
----
-title: Klantreis overheidsorganisatie
----
-graph LR
-  accTitle: Klantreis overheidsorganisatie
-  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC, voorkeuren ophalen, de ondernemer bereiken.
-  A@{ icon: "tabler:plug-connected", label: "Aansluiten via FSC" }
-  B@{ icon: "tabler:address-book", label: "Voorkeuren ophalen" }
-  C@{ icon: "tabler:mail", label: "Ondernemer bereiken" }
+* **Contactgegeven&#x20;**- op welke manier wil je benaderd worden? Denk aan e-mail, post of sms of alternatieven
 
-  A --> B --> C
-```
+* **Voorkeur&#x20;**- welke voorkeuren heb je met betrekking tot overheidsinteracties? Denk aan taal, site thema
 
-Overheidsorganisaties sluiten eenmalig aan via [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/). Bij elk contactmoment halen zij de contactvoorkeuren van de ondernemer op en bereiken zij de ondernemer op de manier die deze zelf heeft gekozen.
+_ℹ️ Bij de toepassing voor organisaties bestaat de identificatie uit twee onderdelen, een persoonskenmerk (bijv BSN) en een organisatiekenmerk (bijv KvK-nummer of RSIN)_
 
-#### Voorbeeld: bestuurlijk bericht versturen
+### Koppeling
 
-```mermaid
----
-title: Bestuurlijk bericht versturen
----
-graph LR
-  accTitle: Bestuurlijk bericht versturen
-  accDescr: Een bericht wordt klaargezet in het berichtenmagazijn. De notificatieservice zoekt de contactvoorkeuren van de ondernemer op en verstuurt een e-mail of brief.
-  A@{ icon: "tabler:inbox", label: "Bericht klaarzetten in berichtenmagazijn" }
-  B@{ icon: "tabler:bell", label: "Notificatieservice" }
-  C@{ icon: "tabler:address-book", label: "Contactvoorkeuren opzoeken in profielservice" }
-  D@{ icon: "tabler:mail", label: "E-mail verstuurd" }
-  E@{ icon: "tabler:mailbox", label: "Brief verstuurd" }
+De unieke vastlegging wordt gekoppeld aan een **dienstverlener&#x20;**&#x65;n eventueel **dienst;**
 
-  A --> B --> C
-  C -->|e-mail| D
-  C -->|post| E
-```
+* **Dienstverlener&#x20;**&#x69;s bijv. *Gemeente Amsterdam&#x20;*&#x6F;f *Belastingdienst*
 
-Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagazijn. De notificatieservice zoekt via de profielservice de contactvoorkeur van de ondernemer op. Bij voorkeur voor e-mail gaat er een e-mailnotificatie uit. De ondernemer kan daarna in de berichtenbox het bericht lezen. Bij voorkeur voor post ontvangt de ondernemer een brief. Zo bepaalt de ondernemer zelf hoe die wordt bereikt.
+* **Dienst&#x20;**&#x77;ordt vastgesteld door - en daarmee altijd gekoppeld aan - een **dienstverlener.&#x20;**&#x56;oorbeelden hiervan zijn Zorg (binnen Amsterdam), Omzetbelasting (binnen Belastingdienst) *ℹ️*
 
-## Hoe slaan we gegevens flexibel op?
+_ℹ️ Een dienst is niet verplicht - een contactgegeven of voorkeur kan ook alleen gekoppeld zijn aan een dienstverlener_
 
-Een ondernemer kan bij meerdere bedrijven betrokken zijn. En een bedrijf kan meerdere contactpersonen hebben. Daarom kun je met de profielservice per bedrijf andere contactvoorkeuren instellen.
+Er is voor gekozen om vooralsnog geen additionele verdere specificatie binnen een dienst toe te kunnen passen. Dat betekent dat een dienstverlener op één niveau de contactvoorkeur & gegevens kan specificeren.
 
-De profielservice slaat contactvoorkeuren op per combinatie van persoon en bedrijf. Dit heet een N:M-model: veel personen kunnen gekoppeld zijn aan veel bedrijven. Een overheidsorganisatie vraagt de contactvoorkeur op voor een specifiek bedrijf en krijgt de gegevens van de juiste contactpersonen terug.
+### Hergebruik gegevens
+
+Een ondernemer kan bij meerdere bedrijven betrokken zijn. En een bedrijf kan meerdere contactpersonen hebben. Daarom kun je met de profielservice per bedrijf andere contactvoorkeuren instellen. De profielservice slaat contactvoorkeuren op per combinatie van persoon en bedrijf. Dit heet een N:M-model: veel personen kunnen gekoppeld zijn aan veel bedrijven. Een overheidsorganisatie vraagt de contactvoorkeur op voor een specifiek bedrijf en krijgt de gegevens van de juiste contactpersonen terug.
+
 
 ```mermaid
 ---
@@ -110,24 +89,151 @@ graph LR
   P3 <-->|contactvoorkeur| B3
 ```
 
+
 In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken bij één bedrijf en heeft één contactvoorkeur. Persoon B is betrokken bij bedrijf 2 én bedrijf 3. Voor elk bedrijf kan persoon B een andere contactvoorkeur instellen. Bedrijf 3 heeft twee contactpersonen: persoon B en persoon C.
 
-## Hoe bouwen we dit?
+### Verificatie contactgegeven
 
-We bouwen de profielservice stap voor stap in drie fasen:
+De profielservice kan (indien gewenst) het contactgegeven verifiëren. Op het moment dat een nieuwe toevoeging op de profielservice wordt geïnitieerd waarbij het contactgegeven nog niet is geverifieerd dan zal de profielservice dit proces initiëren.
 
-1. **Basisprofiel** — E-mailadres en een algemene contactvoorkeur voor e-mail en/of post. Later kun je meer contactvoorkeuren instellen.
-2. **Bronregisters koppelen** — We koppelen registers zoals KVK, BRP en BAG zodat gegevens niet dubbel worden opgeslagen.
-3. **Overheidsorganisaties aansluiten** — Organisaties sluiten aan via standaard-API's op basis van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en gebruiken de profielgegevens.
+_ℹ️ Op dit moment is dit alleen mogelijk voor het contactgegeven e-mail_
 
-Bij de ontwikkeling volgen we de [principes](/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
+Indien een dienstverlener zelf de verificatie heeft uitgevoerd - dan kan dit bij de toevoeging/aanpassing worden meegegeven. De profielservice zal hiervoor geen verificatie initiëren
 
-## Doe mee
+### Hoe werkt dit voor de ondernemer?
 
-De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebieden — van beleid en ontwerp tot juridisch en techniek. Want deze voorziening heeft alleen waarde als alle overheidsorganisaties meedoen. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen. Benieuwd? Sluit je aan en [praat met ons mee!](contact.md)
+```mermaid
+---
+title: Klantreis ondernemer
+---
+graph LR
+  accTitle: Klantreis ondernemer
+  accDescr: De stappen die een ondernemer doorloopt: inloggen met DigiD, eHerkenning of eIDAS, gegevens bekijken, contactvoorkeuren instellen.
+  A@{ icon: "tabler:login", label: "Inloggen met DigiD, eHerkenning of eIDAS" }
+  B@{ icon: "tabler:user", label: "Gegevens bekijken" }
+  C@{ icon: "tabler:address-book", label: "Contactvoorkeuren instellen" }
+  D@{ icon: "tabler:check", label: "Klaar" }
+
+  A --> B --> C --> D
+```
+
+
+Je logt in met DigiD, eHerkenning of een Europees inlogmiddel (eIDAS), bekijkt je gegevens en stelt je contactvoorkeuren en bijbehorende gegevens in. Dat is alles. Je hoeft dit niet meer apart te doen bij elke overheidsorganisatie; en kan het centraal aanpassen. Dit betekent de volgende gegevens
+
+### Hoe werkt dit voor overheidsorganisaties?
+
+De toepassing is tweeledig:
+
+#### 1. indirect gebruik door instanties
+
+In dit geval gaat het over de toepassing van de profielservice in het notifcerings proces. Hierbij hoeft een overheidsorganisatie alleen aan te geven naar wie en wat er verstuurd moet worden. Hierbij wordt de profielservice in het notificatieproces gebruikt voor de bepaling op welke manier en naar welke ontvanger de betreffende notificatie moet
+
+#### *Voorbeeld: bestuurlijk bericht versturen*
+
+```mermaid
+---
+title: Bestuurlijk bericht versturen
+---
+graph LR
+  accTitle: Bestuurlijk bericht versturen
+  accDescr: Een bericht wordt klaargezet in het berichtenmagazijn. De notificatieservice zoekt de contactvoorkeuren van de ondernemer op en verstuurt een e-mail of brief.
+  A@{ icon: "tabler:inbox", label: "Bericht klaarzetten in berichtenmagazijn" }
+  B@{ icon: "tabler:bell", label: "Notificatieservice" }
+  C@{ icon: "tabler:address-book", label: "Contactvoorkeuren opzoeken in profielservice" }
+  D@{ icon: "tabler:mail", label: "E-mail verstuurd" }
+  E@{ icon: "tabler:mailbox", label: "Brief verstuurd" }
+
+  A --> B --> C
+  C -->|e-mail| D
+  C -->|post| E
+```
+
+
+Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagazijn. De notificatiedienst zoekt via de profielservice de contactvoorkeur van de ondernemer op. Bij voorkeur voor e-mail gaat er een e-mailnotificatie uit. De ondernemer kan daarna in de berichtenbox het bericht lezen. Bij voorkeur voor post ontvangt de ondernemer een brief. Zo bepaalt de ondernemer zelf hoe die wordt bereikt.
+
+#### 2. Direct gebruik door instanties
+
+```mermaid
+---
+title: Klantreis overheidsorganisatie
+---
+graph LR
+  accTitle: Klantreis overheidsorganisatie
+  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC, voorkeuren ophalen, de ondernemer bereiken.
+  A@{ icon: "tabler:plug-connected", label: "Aansluiten via FSC" }
+  B@{ icon: "tabler:address-book", label: "Voorkeuren ophalen" }
+  C@{ icon: "tabler:mail", label: "Ondernemer bereiken" }
+
+  A --> B --> C
+```
+
+Overheidsorganisaties sluiten eenmalig aan via [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/). Bij elk contactmoment halen zij de contactvoorkeuren van de ondernemer op en bereiken zij de ondernemer op de manier die deze zelf heeft\
+gekozen.
+
+## Huidige status
+
+De profielservice wordt verder gebracht naar een betá versie, waarbij de toepassing zowel vanuit de techniek alsook juridisch geborgd wordt. De fasering van de profielservice ziet er als volgt uit:
+
+### 👨‍💻 In ontwikkeling
+
+We onderkennen hierbij een verschil tussen wat technisch al mogelijk is, en hoe de profielservice daadwerkelijk functioneel zal worden ingezet. De techniek zal in staat zijn tot meer dan de daadwerkelijk toepassing zoals voorzien vanuit het juridische proces.
+
+De eerste versie die live zal gaan richt zich op de functionele toepassing binnen het notificatieproces - zoals aangeboden in de notificatie dienst. Hieronder volgt daarmee een uiteenzetting met welke functionaliteiten de profielservice wordt ingezet, en daaronder welke verdere mogelijkheden de profielservice heeft
+
+### Functioneel
+
+De profielservice wordt ingezet in de volgende functionele processen; het indirecte gebruik door een overheidsinstantie (via het notificatieproces)
+
+1. De ondernemer is in staat middels een overheidsportaal de voorkeur (email of fysiek) en eventueel bijbehorende gegevens (email-adres) in te voeren
+
+   * Het is de intentie om hierbij zoveel mogelijk uit te gaan van één email-adres - waarbij de toepassing overheidsbreed is
+
+2. De notificatiedienst kan de profielservice bevragen wanneer er een notificatie uitgestuurd moet worden. Hierbij dient een overheidsinstantie bij het initiëren van een notificatie ook de juiste identifier meesturen zoals ook bekend is in de profielservice
+
+ℹ️ *Er wordt onderzocht of ook reeds het direct gebruik van de profielservice door een overheidsinstantie kan worden gefaciliteerd. Dit betekent echter wel dat maar dat bij(bestuurlijke) afspraken rondom het juridische proces er een uitzondering gemaakt moet worden t.o.v. het reguliere proces*
+
+### Technisch
+
+Er wordt in deze eerste versie verder gekeken dan alleen deze functionele toepassing. Vanuit de techniek zijn er de volgende zaken ingeregeld:
+
+* Koppelen van unieke identifiers (**identificatie-contactgegeven&#x20;**&#x65;n **identificatie-voorkeur)** aan de verschillende overheidsorganisaties en eventuele specifieke diensten
+
+* Mogelijkheid tot het instellen van een primaire voorkeur
+
+* Mogelijkheid tot het instellen van verschillende voorkeuren, waaronder
+
+  * SMS
+
+  * App-id's
+
+  * Taal
+
+* Mogelijkheid tot het verwijderen van gegevens (gekoppeld aan specifieke uitgangspunten)
+
+* Mogelijkheid tot het opvragen van informatie ook door derde partijen (o.a. als onderdeel van het [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/))
+
+### 📡 Vervolgstappen
+
+We bekijken de vervolgstappen vanuit verschillende perspectieven:
+
+#### MOZa
+
+Vanuit MOZa blijven we profielservice verder ontwikkelen, waarbij we ons nu richten op:
+
+* In beheername bij Logius
+
+* Verfijning specifieke functionaliteiten (o.a. verwijderen gegevens)
+
+Voor de volledige en meest recente backlog - kijk gerust hier: [Profielservice - Beta · MijnOverheid Zakelijk](https://github.com/orgs/MinBZK/projects/40/views/20?pane=issue\&itemId=133100172\&issue=MinBZK%7CMijnOverheidZakelijk%7C24).
+
+#### Meedoen
+
+De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebieden — van beleid en ontwerp tot juridisch en techniek. Want deze voorziening heeft alleen waarde als alle overheidsorganisaties meedoen. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen. Benieuwd? Sluit je aan en [praat met ons mee!](https://mijnoverheidzakelijk.nl/contact/)
 
 ## Meer info
 
-- [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
-- [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/workspace/documentation/Profiel%20Service)
-- Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](proeftuin.md)
+* [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
+
+* [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/workspace/documentation/Profiel%20Service)
+
+* Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](https://mijnoverheidzakelijk.nl/onderwerpen/proeftuin/)

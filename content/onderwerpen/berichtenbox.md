@@ -25,31 +25,38 @@ In dit overzicht neemt de Belastingdienst een gemeenschappelijk Berichtenmagazij
 
 ```mermaid
 ---
+title: Gebruikersreis ondernemer
+---
+flowchart LR
+  accTitle: Gebruikersreis ondernemer
+  accDescr: De ondernemer ontvangt een notificatie over een beschikking, logt vervolgens in met DigiD, eHerkenning of eIDAS, en leest tot slot de beschikking in zijn Berichtenbox.
+  A@{ icon: "tabler:bell", label: "Ontvangt notificatie over beschikking" }
+  B@{ icon: "tabler:eye", label: "Logt in met DigiD, eHerkenning of eIDAS" }
+  C@{ icon: "tabler:file-check", label: "Leest beschikking in zijn Berichtenbox" }
+  A --> B --> C
+```
+
+```mermaid
+---
 title: Berichtenstroom Federatief Berichtenstelsel
 ---
-flowchart TB
+flowchart LR
   accTitle: Berichtenstroom Federatief Berichtenstelsel
-  accDescr: Een beschikking wordt klaargezet in het Berichtenmagazijn. De ondernemer ontvangt een notificatie en raadpleegt het bericht via het MOZa portaal, dat gegevens opvraagt bij het Berichten Uitvraag Systeem.
-  A@{ icon: "tabler:building-bank", label: "Belastingdienst verstuurt beschikking" }
-  B@{ icon: "tabler:bell", label: "Ondernemer ontvangt notificatie" }
-  C@{ icon: "tabler:eye", label: "Ondernemer bekijkt bericht" }
-  M@{ icon: "tabler:device-laptop", label: "MOZa portaal" }
-  D@{ icon: "tabler:file-check", label: "Bericht" }
-  subgraph FBS["`**Federatief Berichtenstelsel**`"]
+  accDescr: De Belastingdienst verstuurt een beschikking naar het Berichtenmagazijn. Het Berichtenmagazijn verstuurt een notificatie en wisselt gegevens uit met het Berichten Uitvraag Systeem. Het Berichten Uitvraag Systeem communiceert met het MOZa portaal, waar de ondernemer het bericht bekijkt.
+  BD@{ icon: "tabler:building-bank", label: "Belastingdienst verstuurt beschikking" }
+  O@{ icon: "tabler:user", label: "Ondernemer gaat bericht bekijken" }
+  MOZa@{ icon: "tabler:device-laptop", label: "MOZa portaal" }
+  subgraph FBS["Federatief Berichtenstelsel"]
     direction LR
-    BM@{ icon: "tabler:database", label: "Berichtenmagazijn" }
-    BUS@{ icon: "tabler:database-search", label: "Berichten Uitvraag Systeem" }
+    BM[(Berichtenmagazijn)]
+    BUS[(Berichten Uitvraag Systeem)]
   end
-  A -->|1| BM
-  BM -->|2| B
-  B --> C
-  BM -->|3| BUS
-  C -->|4| M
+  N@{ icon: "tabler:bell", label: "Verstuurt notificatie" }
+  BD --> BM
+  O --> MOZa
   BM <--> BUS
-  BUS -->|5| M
-  M -->|6| D
-  M -->|7| BUS
-  style FBS fill:none,stroke:#003082,stroke-width:2px,stroke-dasharray:8 4,rx:20,ry:20
+  BUS <--> MOZa
+  BM --> N
 ```
 
 ***"Het federatieve principe in één zin: er is geen centrale plek waar alle berichten worden opgeslagen. Elke organisatie beheert zijn eigen berichten; het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden".***

@@ -26,8 +26,6 @@ De profielservice is een centrale plek waar burgers en ondernemers hun contactge
 
 Voor het vormgeven van de huidige oplossing zijn verschillende uitgangspunten gehanteerd - waarvan de belangrijkste hieronder zijn beschreven.
 
-![Profielservice overzicht](/images/Profielservice-overzicht.png)
-
 ### Uitgangspunten
 
 Er zijn verschillende uitgangspunten gehanteerd bij de profielservice. Hieronder worden enkele belangrijke zaken toegelicht, waarbij dit niet de volledige lijst betreft.

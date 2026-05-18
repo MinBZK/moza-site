@@ -11,7 +11,7 @@ aliases:
 
 # Huidige uitdaging
 
-Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Tevens worden daarmee op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Hiermee is er een duidelijke wens voor een centrale profielservice; waarmee het volgende wordt bereikt:
+Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Tevens worden daarmee op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Hiermee is er een duidelijke wens voor een centrale profielservice waarmee het volgende wordt bereikt:
 
 * **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
 

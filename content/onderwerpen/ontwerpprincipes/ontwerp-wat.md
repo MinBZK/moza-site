@@ -58,7 +58,7 @@ Het ontwerp volgt [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de visuel
 
 ### 3. Design tokens als gedeelde taal
 
-[Design tokens](https://www.designtokens.org/tr/drafts/format/) vormen de brug tussen ontwerp en ontwikkeling. Ontwerp-waarden zoals kleuren, typografie en maatvoering zijn opgeslagen in een centraal JSON-bestand (`tokens.json`) dat zowel vanuit Figma (via [Tokens Studio](https://tokens.studio/)) als vanuit de code bewerkt kan worden.
+[Design tokens](https://www.w3.org/community/design-tokens/) vormen de brug tussen ontwerp en ontwikkeling. Ontwerp-waarden zoals kleuren, typografie en maatvoering zijn opgeslagen in een centraal JSON-bestand (`tokens.json`) dat zowel vanuit Figma (via [Tokens Studio](https://tokens.studio/)) als vanuit de code bewerkt kan worden.
 
 - **Twee lagen** – de [tokens zijn opgedeeld](https://medium.com/eightshapes-llc/tokens-in-design-systems-25dd82d58421) in _opties_ (de beschikbare waarden uit de Rijkshuisstijl) en _toepassingen_ (semantische verwijzingen die bepalen hoe de opties worden ingezet). In de code worden altijd toepassingsvariabelen gebruikt, nooit opties rechtstreeks.
 - **Eén bron van waarheid** – alle ontwerp-waarden leven in `tokens.json`. [Style Dictionary](https://styledictionary.com/) vertaalt deze naar CSS custom properties. De gegenereerde CSS-bestanden worden niet handmatig aangepast.

@@ -90,6 +90,17 @@ article > header:has(.toc-toggle) {
   }
 }
 
+article > footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+article > footer p {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 button.toc-toggle {
   flex-shrink: 0;
   display: none; /* Verberg standaard op kleine schermen */

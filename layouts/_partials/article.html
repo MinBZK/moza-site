@@ -35,31 +35,38 @@
     {{- end -}}
   </header>
   {{ .Content }}
-  {{- if gt $navCount 1 -}}
-    {{- $isFirst := eq $currentIdx 0 -}}
-    {{- $isLast := eq $currentIdx (sub $navCount 1) -}}
-    {{- $parent := index $navList 0 -}}
-    <nav class="page-nav" aria-label="Navigatie binnen deze reeks">
-      {{- if not $isFirst -}}
-        {{- $prev := index $navList (sub $currentIdx 1) -}}
-        <a href="{{ $prev.RelPermalink }}" rel="prev" class="page-nav-prev">
-          <span class="page-nav-label">Vorige</span>
-          <span class="page-nav-title">{{ $prev.Params.card_title | default $prev.Title }}</span>
-        </a>
-      {{- end -}}
-      {{- if $isLast -}}
-        <a href="{{ $parent.RelPermalink }}" class="page-nav-next">
-          <span class="page-nav-label">Terug naar</span>
-          <span class="page-nav-title">{{ $parent.Params.card_title | default $parent.Title }}</span>
-        </a>
-      {{- else -}}
-        {{- $next := index $navList (add $currentIdx 1) -}}
-        <a href="{{ $next.RelPermalink }}" rel="next" class="page-nav-next">
-          <span class="page-nav-label">Volgende</span>
-          <span class="page-nav-title">{{ $next.Params.card_title | default $next.Title }}</span>
-        </a>
-      {{- end -}}
-    </nav>
+  {{- if or .Params.show_lastmod (gt $navCount 1) -}}
+  <footer>
+    {{- if .Params.show_lastmod -}}
+    <p>Deze pagina is voor het laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_full" }}</time>.</p>
+    {{- end -}}
+    {{- if gt $navCount 1 -}}
+      {{- $isFirst := eq $currentIdx 0 -}}
+      {{- $isLast := eq $currentIdx (sub $navCount 1) -}}
+      {{- $parent := index $navList 0 -}}
+      <nav class="page-nav" aria-label="Navigatie binnen deze reeks">
+        {{- if not $isFirst -}}
+          {{- $prev := index $navList (sub $currentIdx 1) -}}
+          <a href="{{ $prev.RelPermalink }}" rel="prev" class="page-nav-prev">
+            <span class="page-nav-label">Vorige</span>
+            <span class="page-nav-title">{{ $prev.Params.card_title | default $prev.Title }}</span>
+          </a>
+        {{- end -}}
+        {{- if $isLast -}}
+          <a href="{{ $parent.RelPermalink }}" class="page-nav-next">
+            <span class="page-nav-label">Terug naar</span>
+            <span class="page-nav-title">{{ $parent.Params.card_title | default $parent.Title }}</span>
+          </a>
+        {{- else -}}
+          {{- $next := index $navList (add $currentIdx 1) -}}
+          <a href="{{ $next.RelPermalink }}" rel="next" class="page-nav-next">
+            <span class="page-nav-label">Volgende</span>
+            <span class="page-nav-title">{{ $next.Params.card_title | default $next.Title }}</span>
+          </a>
+        {{- end -}}
+      </nav>
+    {{- end -}}
+  </footer>
   {{- end -}}
 </article>
 {{- if $hasToc -}}

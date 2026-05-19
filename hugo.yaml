@@ -15,6 +15,7 @@ disableKinds:
   - term
 
 enableRobotsTXT: true
+enableGitInfo: true
 
 permalinks:
   page:

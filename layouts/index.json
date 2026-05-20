@@ -43,7 +43,7 @@
     {{- $pageUrl := .RelPermalink -}}
     {{- $pageSection := .Section -}}
 
-    {{- if eq .Section "presentaties" -}}
+    {{- if hasPrefix .RelPermalink "/documenten/presentaties/" -}}
       {{- $rawContent := .RawContent -}}
       {{- $parts := split $rawContent "<section" -}}
       {{- $hIndex := 0 -}}

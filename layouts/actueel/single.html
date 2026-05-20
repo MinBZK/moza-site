@@ -20,13 +20,13 @@
     {{ end }}
   </div>
 
-  {{/* Rechter kolom: Presentaties lijst */}}
+  {{/* Rechter kolom: Documenten (rapportages + presentaties) */}}
   <aside>
-    <h2>Presentaties</h2>
-    {{ $presentaties := where .Site.RegularPages "Section" "presentaties" }}
-    {{ $presentaties = sort $presentaties ".Date" "desc" }}
+    <h2><a href="{{ relURL "documenten/" }}">Documenten</a></h2>
+    {{ $documenten := where .Site.RegularPages "Section" "documenten" }}
+    {{ $documenten = sort $documenten ".Date" "desc" }}
     <ul class="list">
-      {{ range $presentaties }}
+      {{ range $documenten }}
       <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
       {{ end }}
     </ul>

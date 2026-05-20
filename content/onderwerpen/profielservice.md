@@ -24,10 +24,6 @@ De profielservice is een centrale plek waar burgers en ondernemers hun contactge
 
 Hieronder lichten we de belangrijkste uitgangspunten van de profielservice toe en hoe deze werkt voor ondernemers en overheidsorganisaties.
 
-### MOZa principes
-
-Bij de ontwikkeling volgen we de [principes](https://mijnoverheidzakelijk.nl/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
-
 ### Gegevens vastlegging
 
 Er wordt uitgegaan van een unieke **identificatie-contactgegeven** en/of **identificatie-voorkeur** vastlegging. Dit is de unieke 'sleutel' waaraan de profielservicegegevens gekoppeld worden.
@@ -199,6 +195,10 @@ Vanuit MOZa blijven we de profielservice verder ontwikkelen, waarbij we ons nu r
 * Verfijning van specifieke functionaliteiten (onder andere verwijderen van gegevens)
 
 Voor de volledige en meest recente backlog, bekijk de taak ["Profielservice" op GitHub](https://github.com/MinBZK/MijnOverheidZakelijk/issues/24).
+
+## Onze werkwijze
+
+Bij de ontwikkeling volgen we de [principes](https://mijnoverheidzakelijk.nl/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
 
 ## Meedoen
 

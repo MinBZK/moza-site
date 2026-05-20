@@ -185,14 +185,10 @@ Er wordt in deze eerste versie verder gekeken dan alleen deze functionele toepas
 
 ### Vervolgstappen
 
-We bekijken de vervolgstappen vanuit verschillende perspectieven:
-
-#### MOZa
-
-Vanuit MOZa blijven we de profielservice verder ontwikkelen, waarbij we ons nu richten op:
+We blijven de profielservice verder ontwikkelen, waarbij we ons nu richten op:
 
 * Inbeheername bij Logius
-* Verfijning van specifieke functionaliteiten (onder andere verwijderen van gegevens)
+* Verfijning van functionaliteiten, zoals het verwijderen van gegevens
 
 Voor de volledige en meest recente backlog, bekijk de taak ["Profielservice" op GitHub](https://github.com/MinBZK/MijnOverheidZakelijk/issues/24).
 

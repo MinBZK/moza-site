@@ -1,0 +1,247 @@
+/* Styling voor MOZa-rapportage-pagina's (/documenten/rapportages/). Eén file
+   voor base + alle badge-varianten en utilities die rapportages gebruiken;
+   ongebruikte regels op een individuele rapportage zijn harmloos. */
+
+* { box-sizing: border-box; }
+
+/* === NLDD design tokens — niveau 1 (status-kleuren + accent) ===
+ * Bron: github.com/MinBZK/storybook → src/assets/styles/palettes.generated.css */
+:root {
+  --nldd-success-500: #38860A;
+  --nldd-success-100: #CFE3C9;
+  --nldd-success-800: #24411A;
+  --nldd-info-100: #CAE0F4;
+  --nldd-info-700: #19507C;
+  --nldd-warning-500: #BA5B00;
+  --nldd-critical-500: #DD3426;
+  --nldd-neutral-100: #D9DEE5;
+  --nldd-neutral-700: #454E5B;
+  --nldd-violet-100: #E0D4F0;
+  --nldd-violet-700: #4A2D77;
+  --nldd-accent-700: #224F81;
+  --nldd-accent-800: #163B63;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 24px;
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+/* Header — drie kolommen: titel links, logo midden, meta rechts. Logo zit
+ * ín het witte vlak met de bovenkant rakend aan de bovenkant van de card
+ * (padding-top: 0); tekst staat top-aligned naast het logo. Rijkslogo bron:
+ * github.com/MinBZK/storybook → src/components/navigation/top-navigation-bar/logo.svg */
+.header {
+  background: white;
+  border-radius: 14px;
+  padding: 0 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* Titel en meta strekken zich uit tot de hoogte van het logo (align-items:
+ * stretch) en duwen hun content naar onderen, zodat de onderkant van de
+ * subtitle / meta-tekst uitkomt op de onderkant van het Rijkslogo. */
+.header-title {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.header-brand { flex-shrink: 0; }
+.header-brand svg {
+  width: 50px;
+  height: 100px;
+  display: block;
+}
+
+.header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.75rem;
+  color: #111827;
+  font-weight: 700;
+}
+
+.header .subtitle {
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+  /* 2px visueel naar beneden: zonder dit valt de descender van "januari" net
+   * boven de onderkant van het logo. */
+  transform: translateY(2px);
+}
+
+.header-meta {
+  color: #6b7280;
+  font-size: 1.75rem;
+  font-weight: 400;
+  text-align: right;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* padding-bottom = subtitle line-height (≈19.5px) + h1 margin-bottom (6px)
+   * zodat meta-tekst-onderkant uitlijnt op h1-onderkant. */
+  padding-bottom: 25.5px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-number {
+  background: var(--nldd-accent-700);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* Items */
+.item {
+  padding: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.item:last-child { border-bottom: none; }
+.item-content { flex: 1; min-width: 0; }
+
+.item-line {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.item-number {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  min-width: 16px;
+  text-align: right;
+}
+
+.item-title {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.9375rem;
+}
+
+.item-description {
+  margin: 4px 0 0 26px;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+.item.no-number .item-description { margin-left: 0; }
+
+/* Badge basis (badge-varianten staan in per-rapportage CSS) */
+.badge {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  line-height: 1;
+  min-width: 110px;
+}
+
+.badge-marker {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Badge-varianten — type werkzaamheid of risico/afhankelijkheid (plan-rapportages) */
+.badge-bouwen { background: var(--nldd-success-500); color: white; }
+.badge-verkennen { background: var(--nldd-info-100); color: var(--nldd-info-700); }
+.badge-onderzoek { background: var(--nldd-info-100); color: var(--nldd-info-700); }
+.badge-afspraken { background: var(--nldd-violet-100); color: var(--nldd-violet-700); }
+.badge-risico { background: var(--nldd-critical-500); color: white; }
+.badge-afhankelijkheid { background: var(--nldd-warning-500); color: white; }
+
+/* Badge-varianten — status van werkzaamheid (status-rapportages) */
+.badge-done { background: var(--nldd-success-500); color: white; }
+.badge-done-issue { background: var(--nldd-critical-500); color: white; }
+.badge-continuing { background: var(--nldd-success-100); color: var(--nldd-success-800); }
+.badge-progress { background: var(--nldd-info-100); color: var(--nldd-info-700); }
+.badge-blocked { background: var(--nldd-critical-500); color: white; }
+.badge-notstarted { background: var(--nldd-neutral-100); color: var(--nldd-neutral-700); }
+.badge-paused { background: var(--nldd-success-100); color: var(--nldd-success-800); }
+
+/* Utility: card over beide grid-kolommen voor blokken met meer gewicht */
+.card-wide { grid-column: 1 / -1; }
+
+/* Samenvatting-card heeft prose tekst i.p.v. items */
+.summary {
+  font-size: 0.9375rem;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Print */
+@media print {
+  body { padding: 0; background: white; }
+}

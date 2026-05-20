@@ -10,7 +10,7 @@ weight: 2
 
 Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Daarnaast worden op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Een centrale profielservice biedt de oplossing. Daarmee bereiken we:
 
-* **Voor burgers en ondernemers:** je beheert je gegevens op één plek. Minder administratie, betere communicatie.
+* **Voor burgers en ondernemers:** je kunt je gegevens vanuit verschillende portalen aanpassen, maar ze worden centraal op één plek opgeslagen. Minder administratie, betere communicatie.
 
 * **Voor overheidsorganisaties/dienstverleners:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
 
@@ -32,11 +32,11 @@ Bij de ontwikkeling volgen we de [principes](https://mijnoverheidzakelijk.nl/han
 
 Er wordt uitgegaan van een unieke **identificatie-contactgegeven** en/of **identificatie-voorkeur** vastlegging. Dit is de unieke 'sleutel' waaraan de profielservicegegevens gekoppeld worden.
 
-* **Identificatie** - op welke manier is de identiteit uniek herkenbaar? Denk aan bijv. BSN, KVK-nummer, RSIN of een ander nummer ℹ️
+* **Identificatie** - op welke manier is de identiteit uniek herkenbaar? Denk aan bijvoorbeeld BSN, KVK-nummer, RSIN of een ander nummer.[^identificatie-personen]
 * **Contactgegeven** - op welke manier wil je benaderd worden? Denk aan e-mail, post of sms of alternatieven.
 * **Voorkeur** - welke voorkeuren heb je met betrekking tot overheidsinteracties? Denk aan taal of site-thema.
 
-*ℹ️ Bij de toepassing bij personen in relatie tot ondernemingen bestaat de identificatie uit twee onderdelen: een persoonskenmerk (bijv. BSN) en een organisatiekenmerk (bijv. KVK-nummer of RSIN). Dit kan dus naast de koppeling KVK-nummer-contactgegeven bestaan.*
+[^identificatie-personen]: Bij de toepassing bij personen in relatie tot ondernemingen bestaat de identificatie uit twee onderdelen: een persoonskenmerk (bijvoorbeeld BSN) en een organisatiekenmerk (bijvoorbeeld KVK-nummer of RSIN). Dit kan dus naast de koppeling KVK-nummer-contactgegeven bestaan.
 
 ### Type gegevens
 
@@ -46,10 +46,10 @@ De profielservice bevat alleen gegevens over identiteiten die van toepassing zij
 
 De unieke vastlegging wordt gekoppeld aan een **dienstverlener** en eventueel een **dienst**:
 
-* **Dienstverlener** is bijv. *Gemeente Amsterdam* of *Belastingdienst*.
-* **Dienst** wordt vastgesteld door - en is daarmee altijd gekoppeld aan - een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst). ℹ️
+* **Dienstverlener** is bijvoorbeeld *Gemeente Amsterdam* of *Belastingdienst*.
+* **Dienst** wordt vastgesteld door - en is daarmee altijd gekoppeld aan - een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst).[^dienst-niet-verplicht]
 
-*ℹ️ Een dienst is niet verplicht - een contactgegeven of voorkeur kan ook alleen aan een dienstverlener gekoppeld zijn.*
+[^dienst-niet-verplicht]: Een dienst is niet verplicht - een contactgegeven of voorkeur kan ook alleen aan een dienstverlener gekoppeld zijn.
 
 Er is voor gekozen om vooralsnog geen additionele verdere specificatie binnen een dienst toe te kunnen passen. Dat betekent dat een dienstverlener op één niveau de contactgegeven & -voorkeuren kan specificeren.
 
@@ -185,7 +185,7 @@ Er wordt in deze eerste versie verder gekeken dan alleen deze functionele toepas
   * App-id's
   * Taal
 * Mogelijkheid tot het verwijderen van gegevens (gekoppeld aan specifieke uitgangspunten).
-* Mogelijkheid tot het opvragen van informatie, ook door derde partijen (o.a. als onderdeel van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/)).
+* Mogelijkheid tot het opvragen van informatie, ook door derde partijen (onder andere als onderdeel van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/)).
 
 ### Vervolgstappen
 
@@ -196,7 +196,7 @@ We bekijken de vervolgstappen vanuit verschillende perspectieven:
 Vanuit MOZa blijven we de profielservice verder ontwikkelen, waarbij we ons nu richten op:
 
 * Inbeheername bij Logius
-* Verfijning van specifieke functionaliteiten (o.a. verwijderen van gegevens)
+* Verfijning van specifieke functionaliteiten (onder andere verwijderen van gegevens)
 
 Voor de volledige en meest recente backlog, bekijk de taak ["Profielservice" op GitHub](https://github.com/MinBZK/MijnOverheidZakelijk/issues/24).
 

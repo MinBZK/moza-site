@@ -20,12 +20,11 @@ De ondernemer logt in via eHerkenning of DigiD en ziet in één overzicht alle b
 ## Wat kunnen overheidsorganisaties?
 Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze melden vervolgens het bericht aan bij het Berichten Uitvraag Systeem (via Aanlever API). Dit stelsel zorgt er vervolgens voor dat de juiste ontvanger het bericht te zien krijgt. Organisaties zonder eigen berichtenmagazijn kunnen gebruik maken van het BBO; het gemeenschappelijk Berichtenmagazijn voor Burgers en Ondernemers.
 
-## Hoe werkt de Berichtenbox? Het verhaal van een beschikking
-In dit overzicht neemt de Belastingdienst een gemeenschappelijk Berichtenmagazijn af, omdat zij zelf géén eigen Berichtenmagazijn hebben.
+## Hoe werkt de Berichtenbox? Het verhaal van een beschikking van de Belastingdienst
 
 ```mermaid
 ---
-title: Gebruikersreis ondernemer
+title: Klantreis ondernemer
 ---
 flowchart LR
   accTitle: Gebruikersreis ondernemer
@@ -60,28 +59,9 @@ flowchart LR
 ```
 
 ***"Het federatieve principe in één zin: er is geen centrale plek waar alle berichten worden opgeslagen. Elke organisatie beheert zijn eigen berichten; het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden".***
-1. Aanlevering gebeurt via de Berichtenmagazijn Aanlever API. Deze API stuurt berichten ter\
-   validatie op technische eisen en controleert toestemming via Profiel Service.
 
-2. Als publicatiedatum is verstreken, wordt een seintje gegeven aan het 'Berichten Uitvraag Systeem'. Ook wordt via de Publicatie Stream de ondernemer genotificeerd (communicatie-en kanaalvoorkeur wordt opgehaald uit de Profielservice en Notificatie service.
-
-3. De ondernemer logt in op het portal Mijn Overheid Zakelijk en gebruikt daarvoor DigiD of\
-   E-Herkenning.
-
-4. Het MOZa-portaal haalt het bericht (incl bijlagen) op via de Berichtenmagazijn Ophaal- en Beheer API. Deze API toetst ook de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties.
-
-5. De ondernemer leest het bericht; in dit geval de beschikking die hij heeft ontvangen van\
-   de Belastingdienst.
-
-6. Tijdens de sessie van de ondernemer in het MOZa portaal, wordt continu bijgehouden\
-   of er nieuwe berichten beschikbaar komen voor de ondernemer. Deze berichten worden dan direct getoond (via flow stap 2).
-
-## Hoe bouwen we dit?
-Het FBS wordt gefaseerd gerealiseerd:
-
-1. BBO-integratie; organisaties zonder eigen magazijn kunnen gebruik maken van het gemeenschappelijk BBO
-2. Aansluiting eerste organisaties; pilotorganisaties sluiten aan met hun eigen berichtenmagazijn en testen de stelselafspraken
-3. Uitrol en opschaling; bredere aansluiting van overheidsorganisaties, met doorontwikkeling van notificatie en machtigingen
+## Hoe bouwen we dit? We starten met een proof-of-concept
+Op dit moment werken we hard aan een proof-of-concept (POC) om de werking van het federatieve stelsel te verkennen en aan te tonen. We bouwen o.a. een Aanlever API (deze API stuurt berichten ter validatie op technische eisen en controleert toestemming via de Profiel Service) en een Ophaal- en Beheer API (deze API toetst de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties). Verder gaan we in de POC óók een demo engine bouwen, zodat inzichtelijk wordt hoe een ondernemer kan ervaren als er tijdens zijn inlog sessie nieuwe berichten beschikbaar komen. We verwachten na de zomer deze POC afgerond te hebben. Als vervolgstap willen we kleine pilots gaan starten zodat we de stelselafspraken kunnen gaan testen. 
 
 Het stelsel is gebouwd op open standaarden en open source principes.
 

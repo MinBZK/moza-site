@@ -22,32 +22,32 @@ De profielservice is een centrale plek waar burgers en ondernemers hun contactge
 
 ## De oplossing
 
-Hieronder lichten we de belangrijkste uitgangspunten van de profielservice toe en hoe deze werkt voor ondernemers en overheidsorganisaties.
+Hieronder lichten we de belangrijkste uitgangspunten van de profielservice toe en hoe deze werkt voor burgers, ondernemers en overheidsorganisaties.
 
 ### Gegevens vastlegging
 
-Er wordt uitgegaan van een unieke **identificatie-contactgegeven** en/of **identificatie-voorkeur** vastlegging. Dit is de unieke 'sleutel' waaraan de profielservicegegevens gekoppeld worden.
+De profielservice werkt met drie begrippen: een **identificatie**, een **contactgegeven** en een **voorkeur**. Elke vastlegging koppelt een contactgegeven of voorkeur aan een identificatie (de unieke 'sleutel' om gegevens terug te vinden).
 
-* **Identificatie** - op welke manier is de identiteit uniek herkenbaar? Denk aan bijvoorbeeld BSN, KVK-nummer, RSIN of een ander nummer.[^identificatie-personen]
-* **Contactgegeven** - op welke manier wil je benaderd worden? Denk aan e-mail, post of sms of alternatieven.
-* **Voorkeur** - welke voorkeuren heb je met betrekking tot overheidsinteracties? Denk aan taal of site-thema.
+* **Identificatie**: hoe ben je uniek herkenbaar? Denk aan BSN, KVK-nummer, RSIN of een ander identificerend nummer.[^identificatie-personen]
+* **Contactgegeven**: waar kun je worden bereikt? Denk aan een specifiek e-mailadres, postadres of telefoonnummer.
+* **Voorkeur**: hoe wil je worden bereikt? Denk aan voorkeur voor e-mail boven post, of in welke taal je liever leest.
 
 [^identificatie-personen]: Bij de toepassing bij personen in relatie tot ondernemingen bestaat de identificatie uit twee onderdelen: een persoonskenmerk (bijvoorbeeld BSN) en een organisatiekenmerk (bijvoorbeeld KVK-nummer of RSIN). Dit kan dus naast de koppeling KVK-nummer-contactgegeven bestaan.
 
 ### Type gegevens
 
-De profielservice bevat alleen gegevens over identiteiten die van toepassing zijn op de primaire processen van dienstverleners. Dat betekent concreet dat de profielservice vooralsnog geen pasfoto's of andere persoonlijke kenmerken bevat, indien deze niet noodzakelijk zijn voor de uitvoering van een primair proces.
+De profielservice bevat alleen gegevens die nog niet ergens anders zijn vastgelegd én die dienstverleners helpen hun primaire processen beter uit te voeren. Concreet gaat het om contactgegevens (zoals e-mail of postadres) en voorkeuren (zoals contactmedium of taal). Persoonlijke kenmerken zoals pasfoto's slaan we niet op.
 
 ### Koppeling
 
 De unieke vastlegging wordt gekoppeld aan een **dienstverlener** en eventueel een **dienst**:
 
 * **Dienstverlener** is bijvoorbeeld *Gemeente Amsterdam* of *Belastingdienst*.
-* **Dienst** wordt vastgesteld door - en is daarmee altijd gekoppeld aan - een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst).[^dienst-niet-verplicht]
+* **Dienst** wordt vastgesteld door, en is daarmee altijd gekoppeld aan, een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst).[^dienst-niet-verplicht]
 
-[^dienst-niet-verplicht]: Een dienst is niet verplicht - een contactgegeven of voorkeur kan ook alleen aan een dienstverlener gekoppeld zijn.
+[^dienst-niet-verplicht]: Een dienst is niet verplicht. Een contactgegeven of voorkeur kan ook alleen aan een dienstverlener gekoppeld zijn.
 
-Er is voor gekozen om vooralsnog geen additionele verdere specificatie binnen een dienst toe te kunnen passen. Dat betekent dat een dienstverlener op één niveau de contactgegeven & -voorkeuren kan specificeren.
+Een burger of ondernemer kan contactgegevens en -voorkeuren instellen per dienstverlener, en optioneel per dienst. Binnen een dienst is geen verdere onderverdeling mogelijk. Zo voorkomen we dat iemand voor verschillende onderdelen binnen één dienst aparte voorkeuren moet beheren, wat in de praktijk al snel honderden combinaties zou opleveren.
 
 ### Hergebruik gegevens
 
@@ -77,21 +77,21 @@ In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken 
 
 ### Verificatie contactgegeven
 
-De profielservice kan (indien gewenst) het contactgegeven verifiëren. Op het moment dat een nieuwe toevoeging op de profielservice wordt geïnitieerd waarbij het contactgegeven nog niet is geverifieerd, zal de profielservice dit proces initiëren.
+De profielservice kan een contactgegeven verifiëren. Wordt er een nieuw contactgegeven toegevoegd dat nog niet is geverifieerd, maar dat we wel willen verifiëren? Dan start de profielservice de verificatie automatisch.
 
 {{< info >}}Op dit moment is verificatie alleen mogelijk voor het contactgegeven e-mail.{{< /info >}}
 
-Indien een dienstverlener zelf de verificatie heeft uitgevoerd, kan dit bij de toevoeging of aanpassing worden meegegeven. De profielservice zal hiervoor geen verificatie initiëren.
+Heeft een dienstverlener het contactgegeven al zelf geverifieerd? Dan geeft die dat door bij het toevoegen of wijzigen. De profielservice start dan geen nieuwe verificatie.
 
-### Hoe werkt dit voor de ondernemer?
+### Hoe werkt dit voor burgers en ondernemers?
 
 ```mermaid
 ---
-title: Klantreis ondernemer
+title: Klantreis burger of ondernemer
 ---
 graph LR
-  accTitle: Klantreis ondernemer
-  accDescr: De stappen die een ondernemer doorloopt: inloggen met DigiD, eHerkenning of eIDAS, gegevens bekijken, contactvoorkeuren instellen.
+  accTitle: Klantreis burger of ondernemer
+  accDescr: De stappen die een burger of ondernemer doorloopt: inloggen met DigiD, eHerkenning of eIDAS, gegevens bekijken, contactvoorkeuren instellen.
   A@{ icon: "tabler:login", label: "Inloggen met DigiD, eHerkenning of eIDAS" }
   B@{ icon: "tabler:user", label: "Gegevens bekijken" }
   C@{ icon: "tabler:address-book", label: "Contactvoorkeuren instellen" }
@@ -104,7 +104,7 @@ Je logt in met DigiD, eHerkenning of een Europees inlogmiddel (eIDAS), bekijkt j
 
 ### Hoe werkt dit voor overheidsorganisaties?
 
-De toepassing is tweeledig:
+Er zijn twee toepassingen:
 
 #### 1. Indirect gebruik door instanties
 
@@ -118,7 +118,7 @@ title: Bestuurlijk bericht versturen
 ---
 graph LR
   accTitle: Bestuurlijk bericht versturen
-  accDescr: Een bericht wordt klaargezet in het berichtenmagazijn. De notificatieservice zoekt de contactvoorkeuren van de ondernemer op en verstuurt een e-mail of brief.
+  accDescr: Een bericht wordt klaargezet in het berichtenmagazijn. De notificatieservice zoekt de contactvoorkeuren van de burger of ondernemer op en verstuurt een e-mail of brief.
   A@{ icon: "tabler:inbox", label: "Bericht klaarzetten in berichtenmagazijn" }
   B@{ icon: "tabler:bell", label: "Notificatieservice" }
   C@{ icon: "tabler:address-book", label: "Contactvoorkeuren opzoeken in profielservice" }
@@ -130,7 +130,7 @@ graph LR
   C -->|post| E
 ```
 
-Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagazijn. De notificatiedienst zoekt via de profielservice het contactgegeven en/of voorkeur van de ondernemer op. Bij voorkeur voor e-mail gaat er een e-mailnotificatie uit. De ondernemer kan daarna in de berichtenbox het bericht lezen. Bij voorkeur voor post ontvangt de ondernemer een brief. Zo bepaalt de ondernemer zelf hoe die wordt bereikt.
+Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagazijn. De notificatiedienst zoekt via de profielservice het contactgegeven en/of voorkeur van de burger of ondernemer op. Bij voorkeur voor e-mail gaat er een e-mailnotificatie uit dat er een bericht klaar staat. Dit bericht kan daarna in een berichtenbox gelezen worden. Bij voorkeur voor post wordt er een brief verstuurd. Zo bepaalt de burger of ondernemer zelf hoe die wordt bereikt.
 
 #### 2. Direct gebruik door instanties
 
@@ -140,33 +140,33 @@ title: Klantreis overheidsorganisatie
 ---
 graph LR
   accTitle: Klantreis overheidsorganisatie
-  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC, voorkeuren ophalen, de ondernemer bereiken.
+  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC, voorkeuren ophalen, de burger of ondernemer bereiken.
   A@{ icon: "tabler:plug-connected", label: "Aansluiten via FSC" }
   B@{ icon: "tabler:address-book", label: "Voorkeuren ophalen" }
-  C@{ icon: "tabler:mail", label: "Ondernemer bereiken" }
+  C@{ icon: "tabler:mail", label: "Burger of ondernemer bereiken" }
 
   A --> B --> C
 ```
 
-Overheidsorganisaties sluiten eenmalig aan via [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/). Bij elk contactmoment halen zij de contactvoorkeuren van de ondernemer op en bereiken zij de ondernemer op de manier die deze zelf heeft gekozen.
+Overheidsorganisaties sluiten eenmalig aan via [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/). Bij elk contactmoment halen zij de contactvoorkeuren van de burger of ondernemer op en bereiken zij de burger of ondernemer op de manier die deze zelf heeft gekozen.
 
 ## Huidige status
 
-De profielservice wordt verder gebracht naar een bètaversie, waarbij de toepassing zowel vanuit de techniek alsook juridisch geborgd wordt. De fasering van de profielservice ziet er als volgt uit:
+De profielservice wordt verder gebracht naar een bètaversie, waarbij de toepassing zowel vanuit de techniek als juridisch gewaarborgd is. We pakken dit stap voor stap aan.
 
-### In ontwikkeling
+Wat de profielservice technisch kan, is meer dan wat we nu functioneel inzetten. Die grens wordt bepaald door het juridische proces.
 
-We onderkennen hierbij een verschil tussen wat technisch al mogelijk is, en hoe de profielservice daadwerkelijk functioneel zal worden ingezet. De techniek zal in staat zijn tot meer dan de daadwerkelijk toepassing zoals voorzien vanuit het juridische proces.
+De eerste versie richt zich op de functionele toepassing binnen het notificatieproces, zoals aangeboden in de notificatiedienst.
 
-De eerste versie die live zal gaan richt zich op de functionele toepassing binnen het notificatieproces - zoals aangeboden in de notificatiedienst. Hieronder volgt daarmee een uiteenzetting met welke functionaliteiten de profielservice wordt ingezet, en daaronder welke verdere mogelijkheden de profielservice heeft.
+Hieronder beschrijven we eerst de functionele inzet, daarna de bredere technische mogelijkheden.
 
 ### Functioneel
 
 In deze eerste versie ondersteunt de profielservice de volgende functionele toepassingen:
 
-1. De ondernemer kan via een overheidsportaal de voorkeur (e-mail of fysiek) en eventueel bijbehorende gegevens (e-mailadres) invoeren.
-   * Het is de intentie om hierbij zoveel mogelijk uit te gaan van één e-mailadres, waarbij de toepassing overheidsbreed is.
-2. De notificatiedienst kan de profielservice bevragen wanneer er een notificatie uitgestuurd moet worden. Hierbij dient een overheidsinstantie bij het initiëren van een notificatie ook de juiste identifier(s) mee te sturen, zoals de ontvanger bekend is in de profielservice.
+1. Een burger of ondernemer kan via een overheidsportaal de voorkeur (e-mail of fysiek) en eventueel bijbehorende gegevens (e-mailadres) invoeren.
+   * We willen hierbij zoveel mogelijk uitgaan van één e-mailadres, waarbij de toepassing overheidsbreed is.
+2. Wanneer er een notificatie verstuurd moet worden, bevraagt de notificatiedienst de profielservice. De overheidsinstantie moet daarbij de identifier(s) meesturen waaronder de ontvanger in de profielservice bekend is.
 
 {{< info >}}Er wordt onderzocht welke (juridische) opties we hebben, en wat er daarvoor georganiseerd moet worden, om ook het directe gebruik van de profielservice door een overheidsinstantie te faciliteren.{{< /info >}}
 
@@ -183,22 +183,22 @@ Er wordt in deze eerste versie verder gekeken dan alleen deze functionele toepas
 * Mogelijkheid tot het verwijderen van gegevens (gekoppeld aan specifieke uitgangspunten).
 * Mogelijkheid tot het opvragen van informatie, ook door derde partijen (onder andere als onderdeel van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/)).
 
-### Vervolgstappen
+## Vervolgstappen
 
 We blijven de profielservice verder ontwikkelen, waarbij we ons nu richten op:
 
-* Inbeheername bij Logius
+* Voorbereiden op beheer door Logius
 * Verfijning van functionaliteiten, zoals het verwijderen van gegevens
 
 Voor de volledige en meest recente backlog, bekijk de taak ["Profielservice" op GitHub](https://github.com/MinBZK/MijnOverheidZakelijk/issues/24).
 
 ## Onze werkwijze
 
-Bij de ontwikkeling volgen we de [principes](https://mijnoverheidzakelijk.nl/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
+Bij de ontwikkeling volgen we de [principes](/handboek/werkwijze/principes/) van MOZa. We zoeken actief de samenwerking op, hanteren open standaarden en treden op als betrouwbare partij waar privacy en transparantie hoog in het vaandel staan. Al bij het ontwerp denken we na over minimale dataverwerking en het vastleggen van gegevensverwerkingen.
 
 ## Meedoen
 
-De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebieden - van beleid en ontwerp tot juridisch en techniek. Want deze voorziening heeft alleen waarde als alle overheidsorganisaties meedoen. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen. Benieuwd? Sluit je aan en [praat met ons mee!](https://mijnoverheidzakelijk.nl/contact/)
+De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebieden, van beleid en ontwerp tot juridisch en techniek. Want deze voorziening heeft alleen waarde als alle overheidsorganisaties meedoen. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen. Benieuwd? Sluit je aan en [praat met ons mee!](/contact/)
 
 ## Meer info
 
@@ -206,4 +206,4 @@ De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebi
 
 * [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/workspace/documentation/Profiel%20Service)
 
-* Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](https://mijnoverheidzakelijk.nl/onderwerpen/proeftuin/)
+* Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)

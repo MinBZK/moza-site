@@ -1,0 +1,26 @@
+/* Terug-knop op rapportage-pagina's (rechtsonderin) */
+.moza-nav {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1001;
+  background: #224F81;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.moza-nav:hover,
+.moza-nav:focus-visible {
+  background: #163B63;
+  outline: none;
+}
+
+@media print {
+  .moza-nav { display: none !important; }
+}

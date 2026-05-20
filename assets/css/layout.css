@@ -97,7 +97,7 @@ article > header:has(.toc-toggle) {
 article > footer {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-border);
 }
 
 article > footer p {

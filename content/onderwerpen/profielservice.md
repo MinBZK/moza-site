@@ -11,14 +11,12 @@ weight: 2
 Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Daarnaast worden op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Een centrale profielservice biedt de oplossing. Daarmee bereiken we:
 
 * **Voor burgers en ondernemers:** je kunt je gegevens vanuit verschillende portalen aanpassen, maar ze worden centraal op één plek opgeslagen. Minder administratie, betere communicatie.
-
 * **Voor overheidsorganisaties/dienstverleners:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
-
 * **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
 
 ## Wat is de profielservice?
 
-De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en voorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt dit vanuit een door jou gewenste manier in één keer in, in het centrale profiel, en alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat doe je op dezelfde plek en de nieuwe gegevens zijn direct beschikbaar.
+De profielservice is een centrale plek waar burgers en ondernemers hun contactgegevens en voorkeuren met de overheid beheren. Denk aan: wil je e-mail of post? En op welk adres? Je stelt je voorkeuren in vanuit een portaal, en ze worden centraal opgeslagen. Alle aangesloten overheidsorganisaties gebruiken dezelfde gegevens. Wil je iets wijzigen? Dat kan vanaf elk portaal en de nieuwe gegevens zijn direct beschikbaar.
 
 ## De oplossing
 
@@ -108,9 +106,7 @@ Er zijn twee toepassingen:
 
 #### 1. Indirect gebruik door instanties
 
-In dit geval gaat het over de toepassing van de profielservice in het notificatieproces. Hierbij hoeft een overheidsorganisatie alleen aan te geven naar wie en wat er verstuurd moet worden. Hierbij wordt de profielservice in het notificatieproces gebruikt voor de bepaling op welke manier en naar welke ontvanger de betreffende notificatie verstuurd moet worden.
-
-##### Voorbeeld: bestuurlijk bericht versturen
+In dit geval wordt de profielservice gebruikt binnen het notificatieproces. Een overheidsorganisatie geeft alleen aan naar wie en wat er verstuurd moet worden, en de notificatiedienst zoekt via de profielservice op hoe en waarop de ontvanger het liefst benaderd wordt.
 
 ```mermaid
 ---
@@ -134,6 +130,8 @@ Een overheidsorganisatie zet een bestuurlijk bericht klaar in het berichtenmagaz
 
 #### 2. Direct gebruik door instanties
 
+In dit geval bevraagt een overheidsorganisatie de profielservice rechtstreeks om te bepalen hoe zij een burger of ondernemer kan bereiken.
+
 ```mermaid
 ---
 title: Klantreis overheidsorganisatie
@@ -152,7 +150,7 @@ Overheidsorganisaties sluiten eenmalig aan via [Federatieve Service Connectivite
 
 ## Huidige status
 
-De profielservice wordt verder gebracht naar een bètaversie, waarbij de toepassing zowel vanuit de techniek als juridisch gewaarborgd is. We pakken dit stap voor stap aan.
+We brengen de profielservice naar een bètaversie, waarbij we zowel de techniek als de juridische kant waarborgen. We pakken dit stap voor stap aan.
 
 Wat de profielservice technisch kan, is meer dan wat we nu functioneel inzetten. Die grens wordt bepaald door het juridische proces.
 
@@ -165,14 +163,14 @@ Hieronder beschrijven we eerst de functionele inzet, daarna de bredere technisch
 In deze eerste versie ondersteunt de profielservice de volgende functionele toepassingen:
 
 1. Een burger of ondernemer kan via een overheidsportaal de voorkeur (e-mail of fysiek) en eventueel bijbehorende gegevens (e-mailadres) invoeren.
-   * We willen hierbij zoveel mogelijk uitgaan van één e-mailadres, waarbij de toepassing overheidsbreed is.
+   * We willen hierbij zoveel mogelijk uitgaan van één e-mailadres dat overheidsbreed bruikbaar is.
 2. Wanneer er een notificatie verstuurd moet worden, bevraagt de notificatiedienst de profielservice. De overheidsinstantie moet daarbij de identifier(s) meesturen waaronder de ontvanger in de profielservice bekend is.
 
 {{< info >}}Er wordt onderzocht welke (juridische) opties we hebben, en wat er daarvoor georganiseerd moet worden, om ook het directe gebruik van de profielservice door een overheidsinstantie te faciliteren.{{< /info >}}
 
 ### Technisch
 
-Er wordt in deze eerste versie verder gekeken dan alleen deze functionele toepassing. Vanuit de techniek zijn de volgende zaken ingeregeld:
+In deze eerste versie kijken we verder dan alleen deze functionele toepassing. Vanuit de techniek zijn de volgende zaken ingeregeld:
 
 * Koppelen van unieke identifiers (**identificatie-contactgegeven** en **identificatie-voorkeur**) aan de verschillende overheidsorganisaties en eventuele specifieke diensten.
 * Mogelijkheid tot het instellen van een primaire voorkeur.
@@ -203,7 +201,5 @@ De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebi
 ## Meer info
 
 * [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
-
 * [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/workspace/documentation/Profiel%20Service)
-
 * Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)

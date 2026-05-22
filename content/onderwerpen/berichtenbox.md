@@ -5,20 +5,20 @@ weight: 6
 ---
 
 ## Wat is de Berichtenbox?
-De Berichtenbox is de digitale brievenbus waar ondernemers berichten van overheidsorganisaties ontvangen. Het is onderdeel van het Federatief Berichten Stelsel (FBS). Dit is een stelsel van federatief gekoppelde diensten voor het versturen van berichten van overheidsorganisaties naar burgers en ondernemers. Het FBS vervangt het huidige GLOBE-systeem en is ontworpen als toekomstbestendige, open infrastructuur.
+De Berichtenbox is de digitale brievenbus waar ondernemers berichten van overheidsorganisaties ontvangen. Het is onderdeel van het Federatief Berichten Stelsel (FBS). Dit is een stelsel van federatief gekoppelde diensten voor het versturen van berichten van overheidsorganisaties naar burgers en ondernemers. Het FBS vervangt het huidige GLOBE-systeem en ook de berichtenbox van RVO en is ontworpen als toekomstbestendige, open infrastructuur.
 
 ## Waarom is dit nodig?
 Overheidsorganisaties communiceren nu elk op hun eigen manier met ondernemers. Dit leidt tot versnippering: berichten komen via verschillende kanalen binnen, zijn moeilijk terug te vinden en bieden geen eenduidig overzicht. Het FBS lost dit op voor drie partijen:
 
-* Ondernemers: één digitale brievenbus voor alle overheidscommunicatie, toegankelijk via MijnOverheid Zakelijk
-* Overheidsorganisaties: versturen berichten vanuit het eigen berichtenmagazijn, of versturen berichten via een gemeenschappelijk berichtenmagazijn (BBO), als zij zelf geen berichtenmagazijn hebben of willen.
+* Ondernemers: één digitale brievenbus voor alle overheidscommunicatie, o.a. toegankelijk via MijnOverheid Zakelijk
+* Overheidsorganisaties: versturen berichten vanuit het eigen berichtenmagazijn, of versturen berichten via een berichtenmagazijn dat door Logius wordt gehost (specifiek voor die organisatie).
 * Digitale overheid: een herbruikbaar stelselcomponent binnen de Generieke Digitale Infrastructuur, gebouwd op open standaarden
 
 ## Wat kan de ondernemer?
-De ondernemer logt in via eHerkenning of DigiD en ziet in één overzicht alle berichten van aangesloten overheidsorganisaties. Berichten zijn afkomstig van organisaties die elk hun eigen berichtenmagazijn beheren; de ondernemer merkt daar niets van. Via de Profielservice beheert de ondernemer zijn contactgegevens en communicatievoorkeuren. Zo bepaalt hij zelf hoe en waar hij genotificeerd wil worden bij een nieuw bericht: per e-mail, sms of via een app.
+De ondernemer logt in via eHerkenning, DigiD of eIDAS (later in de toekomst via een 'wallet') en ziet in één overzicht alle berichten van de aangesloten overheidsorganisaties. Berichten zijn afkomstig van organisaties die elk hun eigen berichtenmagazijn beheren; de ondernemer merkt daar niets van. Via de Profielservice beheert de ondernemer zijn contactgegevens en communicatievoorkeuren. Zo bepaalt hij zelf hoe en waar hij genotificeerd wil worden bij een nieuw bericht: per e-mail, sms of via een app.
 
 ## Wat kunnen overheidsorganisaties?
-Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze melden vervolgens het bericht aan bij het Berichten Uitvraag Systeem (via Aanlever API). Dit stelsel zorgt er vervolgens voor dat de juiste ontvanger het bericht te zien krijgt. Organisaties zonder eigen berichtenmagazijn kunnen gebruik maken van het BBO; het gemeenschappelijk Berichtenmagazijn voor Burgers en Ondernemers.
+Overheidsorganisaties plaatsen berichten in hun eigen berichtenmagazijn. Ze melden vervolgens het bericht aan bij het Berichten Uitvraag Systeem (via Aanlever API). Dit stelsel zorgt er vervolgens voor dat de juiste ontvanger het bericht te zien krijgt. Organisaties zonder eigen berichtenmagazijn kunnen gebruik maken van een berichtenmagazijn dat door Logius wordt gehost.
 
 ## Hoe werkt de Berichtenbox? Het verhaal van een beschikking van de Belastingdienst
 
@@ -61,7 +61,7 @@ flowchart LR
 ***"Het federatieve principe in één zin: er is geen centrale plek waar alle berichten worden opgeslagen. Elke organisatie beheert zijn eigen berichten; het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden".***
 
 ## Hoe bouwen we dit? We starten met een proof-of-concept
-Op dit moment werken we hard aan een proof-of-concept (POC) om de werking van het federatieve stelsel te verkennen en aan te tonen. We bouwen o.a. een Aanlever API (deze API stuurt berichten ter validatie op technische eisen en controleert toestemming via de Profiel Service) en een Ophaal- en Beheer API (deze API toetst de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties). Verder gaan we in de POC óók een demo engine bouwen, zodat inzichtelijk wordt hoe een ondernemer kan ervaren als er tijdens zijn inlog sessie nieuwe berichten beschikbaar komen. We verwachten na de zomer deze POC afgerond te hebben. Als vervolgstap willen we kleine pilots gaan starten zodat we de stelselafspraken kunnen gaan testen. 
+Op dit moment werken we hard aan een proof-of-concept (POC) om de werking van het federatieve stelsel te verkennen en aan te tonen. We bouwen o.a. een Aanlever API (deze API stuurt berichten ter validatie op technische eisen en controleert toestemming via de Profiel Service) en een Ophaal- en Beheer API (deze API toetst de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties). Verder gaan we in de POC óók een demo engine bouwen. Via deze demo enige willen we verschillende situaties simuleren (o.a. wel of geen toestemming, tijdens inlog sessie van de ondernemer komt een nieuw bericht, traag, uitvallend berichtenmagazijn, etc). We verwachten na de zomer deze POC afgerond te hebben. Als vervolgstap willen we kleine pilots gaan starten zodat we de stelselafspraken kunnen gaan testen. 
 
 Het stelsel is gebouwd op open standaarden en open source principes.
 
@@ -72,8 +72,8 @@ Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
 
 * Hoe zorgen we ervoor dat berichten enkel worden getoond aan de personen die ook gemachtigd zijn om de berichten in te zien?
 * Wat gaat er anders zijn qua interactie tussen het berichtenmagazijn van de eigen organisatie versus het gemeenschappelijk berichtenmagazijn?
-* ...
-
+* Is een aparte Berichtenbox wel de toekomst, aangezien berichten (en notificaties) vaak gekoppeld zijn aan een 'zaak'?
+  
 ## Meer info
 * Meer achtergrondinformatie vanuit Logius: <https://www.logius.nl/onze-dienstverlening/interactie/federatief-berichten-stelsel>
 * C4-diagram: [MOZa PoC Federatief Berichtenstelsel](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/)

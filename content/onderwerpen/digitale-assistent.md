@@ -1,3 +1,9 @@
+---
+title: "Digitale Assistent"
+description: "Stel een vraag in gewone taal, de assistent kiest zelf de bron. Eén flow voor ondernemers via MCP, RegelRecht en aangesloten registers."
+weight: 6
+---
+
 ## De Digitale Assistent als Proof of Concept
 
 In de periode januari tot en met april 2026 is een proof-of-concept (POC) ontwikkeld waarin is onderzocht hoe de Model Context Protocol (MCP) AI-hosts, zoals vlam-chat of in de toekomst wellicht GPT-NL, verbindt met machine-uitvoerbare wetgeving via RegelRecht. RegelRecht maakt wetgeving uitvoerbaar als code en bijbehorende uitrekenmachine. MCP is het protocol waarmee AI-systemen deze machines/engines aanroepen, zodat ondernemers via AI-interactie regels toepassen op de eigen situatie om zaken te doen met de overheid.
@@ -10,9 +16,50 @@ De POC werkt op dit moment voor één casus: de informatieplicht energiebesparin
 
 De vraag "moet mijn bedrijf voldoen aan de informatieplicht energiebesparing?" wordt in één flow afgehandeld. De Digitale Assistent haalt de bedrijfsgegevens op bij de KVK, controleert via RegelRecht of de regel op deze onderneming van toepassing is en/of er nog data ontbreekt, verwijst naar het juiste artikel en biedt aan om de rapportage direct bij RVO in te dienen. Eén vraag, één userflow, in plaats van vier websites. Uiteraard in een afgebakende omgeving met de juiste guidelines en guardrails. Van informatievoorziening gaan we naar het uitvoeren van een actie.
 
-*Klantreis ondernemer*
+```mermaid
+---
+title: Digitale Assistent begeleidt de hele klantreis
+---
+graph LR
+  accTitle: Digitale Assistent begeleidt de hele klantreis
+  accDescr: De Digitale Assistent begeleidt de ondernemer door de hele klantreis. De ondernemer stelt een vraag in natuurlijke taal, de assistent raadpleegt de KVK en RegelRecht, geeft inzicht in wat geldt voor de situatie, en biedt twee uitkomsten, een verwijzing naar het juiste artikel om zich te informeren, of, na bevestiging, het indienen van de rapportage bij RVO.
+  A@{ icon: "tabler:message-question", label: "Vraag in natuurlijke taal" }
+  M@{ icon: "tabler:search", label: "Raadpleegt KVK en RegelRecht" }
+  G@{ icon: "tabler:bulb", label: "Inzicht: wat geldt voor jouw situatie" }
+  D@{ icon: "tabler:book", label: "Verwijzing naar artikel" }
+  E@{ icon: "tabler:send", label: "Indienen bij RVO" }
 
-*Raadpleging bronnen door Digitale Assistent*
+  A --> M --> G
+  G -->|informeren| D
+  G -->|handelen, na bevestiging| E
+
+  classDef bron fill:#d9ebf7,stroke:#154273,color:#0f172a;
+  classDef inzicht fill:#fff8e6,stroke:#b7791f,color:#0f172a;
+  class M,E bron
+  class G inzicht
+```
+
+```mermaid
+---
+title: Raadpleging bronnen en tools door Digitale Assistent
+---
+graph LR
+  accTitle: Raadpleging bronnen en tools door Digitale Assistent
+  accDescr: De ondernemer stelt een vraag aan de Digitale Assistent. Die raadpleegt via het MCP-protocol drie bronnen. KVK levert bedrijfsgegevens. RegelRecht toetst de regel en geeft de wettelijke grondslag terug. RVO is de bron waar de rapportage na bevestiging wordt ingediend.
+  O@{ icon: "tabler:user", label: "Ondernemer" }
+  D@{ icon: "tabler:robot", label: "Digitale Assistent" }
+  K@{ icon: "tabler:building", label: "KVK" }
+  R@{ icon: "tabler:scale", label: "RegelRecht" }
+  V@{ icon: "tabler:send", label: "RVO" }
+
+  O <--> D
+  D -->|ophalen| K
+  D -->|toetsen| R
+  D -->|indienen| V
+
+  classDef bron fill:#d9ebf7,stroke:#154273,color:#0f172a;
+  class K,R,V bron
+```
 
 ## Wat kunnen overheidsorganisaties?
 
@@ -40,8 +87,9 @@ Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
 
 ## Meer info
 
-* Meer achtergrondinformatie vanuit Regelrecht:
 
-- Van MCP naar CLI? <https://github.com/MinBZK/moza-poc/blob/feat/add_digitale_assistent/services/decisions/PDR-005-cli-vs-mcp-transport.md>
+- [Regelrecht](https://regelrecht.rijks.app/)
+
+- [Van MCP naar CLI?](https://github.com/MinBZK/moza-poc/blob/feat/add_digitale_assistent/services/decisions/PDR-005-cli-vs-mcp-transport.md)
 
 

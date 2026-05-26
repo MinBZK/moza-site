@@ -1,0 +1,28 @@
+{{- /* Volledige page chrome voor een rapportage. Alles via externe <link>/<script>
+   zodat strikte CSP (geen inline style/script) werkt — net als presentaties. */ -}}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Title }} | {{ .Site.Title }}</title>
+{{- /* Inter font: publiceer woff2's via .RelPermalink side-effect en koppel inter.css. */ -}}
+{{- range (resources.Match "vendor/inter/*.woff2") -}}{{- $_ := .RelPermalink -}}{{- end }}
+{{- with resources.Get "vendor/inter/inter.css" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+{{- with resources.Get "css/rapportages.css" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+{{- with resources.Get "css/rapportage-nav.css" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+</head>
+<body>
+{{ .Content }}
+<button id="moza-nav" class="moza-nav" type="button">&larr; Terug</button>
+{{- with resources.Get "js/rapportage-nav.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end }}
+</body>
+</html>

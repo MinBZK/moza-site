@@ -41,7 +41,7 @@ JavaScript alleen voor:
 
 ## Dit project
 
-- Hugo v0.153.5+
+- Hugo v0.162.1+
 - Templates in `layouts/`, partials in `layouts/_partials/`
 - CSS in `assets/css/`, tokens in `tokens.css`
 - Rijkshuisstijl design

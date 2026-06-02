@@ -17,6 +17,15 @@ disableKinds:
 enableRobotsTXT: true
 enableGitInfo: true
 
+# Whitelist van toegestane contenttypes. Vanaf Hugo v0.162 blokkeert de
+# standaardpolicy text/html. Omdat allowContent een whitelist is die de
+# standaard volledig vervangt, moeten alle gebruikte types hier staan:
+# markdown voor gewone pagina's, html voor de presentatie-page-bundles.
+security:
+  allowContent:
+    - ^text/markdown$
+    - ^text/html$
+
 permalinks:
   page:
     weekly: /weekly/:slug/

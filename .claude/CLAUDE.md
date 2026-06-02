@@ -1,6 +1,6 @@
 # MijnOverheid Zakelijk Site
 
-Hugo static site (v0.153.5) | Nederlands | Rijkshuisstijl
+Hugo static site (v0.162.1) | Nederlands | Rijkshuisstijl
 
 ## Structuur
 

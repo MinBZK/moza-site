@@ -9,7 +9,7 @@ Raadpleeg bij twijfel altijd de officiële documentatie.
 - **Functies**: https://gohugo.io/functions/
 - **Nieuwe template structuur**: https://gohugo.io/templates/new-templatesystem-overview/
 
-Dit project gebruikt Hugo v0.153.5+ met de nieuwe template structuur.
+Dit project gebruikt Hugo v0.162.1+ met de nieuwe template structuur.
 
 ## Reveal.js
 

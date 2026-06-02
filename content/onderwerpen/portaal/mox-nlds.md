@@ -1,11 +1,11 @@
 ---
-title: "MOX-nlds"
-description: "Ons design systeem voor consistente & stabiele React componenten"
+title: "MOX-nlds (gestopt)"
+description: "Een alternatief idee voor een eigen design systeem"
 ---
 
 ## Wat is MOX-nlds?
 
-MOX-nlds is een design systeem voor de ontwikkeling van de [MijnOverheid Zakelijk portaal](portaal). In potentie kan het systeem ook ingezet worden voor andere interfaces binnen het MijnOverheid Zakelijk ecosysteem (zoals b.v. deze website).
+MOX-nlds is een design systeem voor de ontwikkeling van de [MijnOverheid Zakelijk portaal](../_index.md). In potentie kan het systeem ook ingezet worden voor andere interfaces binnen het MijnOverheid Zakelijk ecosysteem (zoals b.v. deze website).
 Een design systeem is een verzameling van herbruikbare componenten, richtlijnen en standaarden die consistentie en efficiëntie bevorderen in het ontwerp en de ontwikkeling van digitale producten. Omdat we de vormgeving baseren op de richtlijnen van de Rijkshuisstijl, is MOX-nlds naast MOZa producten ook (uiteindelijk) te gebruiken voor andere webapplicaties/websites, zoals b.v. [Mijn Overheid](https://mijnoverheid.nl), [PRO websites](https://www.platformrijksoverheidonline.nl/). In principe alles dat moet voldoen aan de Rijkshuisstijl.
 
 ## Rijkshuisstijl Community Design Systeem / NLDS
@@ -21,6 +21,7 @@ Momenteel is het [Rijkshuisstijl Community Design Systeem](https://www.rijkshuis
 Momenteel is het RHC-nlds nog in ontwikkeling. De manier waarop RHC-nlds opgezet is zorgt echter voor een aantal problemen waardoor MijnOverheid Zakelijk er niet goed mee kan werken:
 
 - De componenten zijn zeer inconsistent in styling, kwaliteit, naamgeving en gebruik. Dit komt door het estafettemodel waar componenten uit diverse hoeken komen, maar een centrale controle-check ontbreekt.
+- Er moeten dingen gehackt worden om te gebruiken binnen het framework waarin het portaal opgezet is (Next.js).
 - De design-tokens (`JSON`) zijn opgezet voor _elk_ component, wat een wildgroei heeft opgeleverd. De hoeveelheid is zo groot dat we er niet goed meer mee overweg kunnen.
 - Tegelijkertijd missen de componenten vaak weer nét de dingen die je zou willen aanpassen.
 - Aanpassen van componenten is lastig: een simpel tekst-blok in een `<Badge>` kan compleet anders werken dan een tekst-blok in een `<Button>` en vaak moet je custom zelf iets bouwen. Design-tokens gebruiken voor consistente vormgeving is daarbij link: deze veranderen vaak, waardoor je styling zal breken zonder dat je dat weet.
@@ -73,7 +74,7 @@ Zie voor meer informatie de Storybook: [Scaling systeem](https://minbzk.github.i
 
 ## Werkwijze & status
 
-Momenteel verkeert het MOX-nlds nog in een alpha-versie.
+Momenteel verkeert het MOX-nlds nog in een alpha-versie en is besloten om de ontwikkeling verder tijdelijk **stop te zetten** om te zien of andere designsystemen gebruikt kunnen worden (RHC-nlds en NLDD Design systeem wat gebruiikt wordt door Regelrecht).
 
 Er wordt via het [prototype](https://www.mijnoverheidzakelijk.nl/onderwerpen/ontwerpprincipes/) gewerkt aan componenten die getest worden in UX-onderzoeken. Zodra een component qua design goed bevonden is, kan het verwerkt worden tot een component in MOX-nlds. Momenteel zijn er al een aantal componenten klaar.
 

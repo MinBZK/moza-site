@@ -1,14 +1,2 @@
 DirectoryPath: .htmltest/public
-IgnoreURLs:
-  - samenwerkruimten.nl
-  - figma.com
-  - norstat.co
-  - commonground.nl
-  - github.com/MinBZK/moza-mcp-standaard-poc
-  - claude.ai
-  - medium.com
-  - fieldlab.bzlg.apps.digilab.network
-  - styledictionary.com
-  - smashingmagazine.com
-  - code.overheid.nl
-  - realisatieibds.pleio.nl
+CheckExternal: false

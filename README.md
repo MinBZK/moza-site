@@ -179,3 +179,5 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 - Diagrammen: [Mermaid](https://mermaid.js.org/) (MIT licentie)
 - Iconen: [Tabler Icons](https://tabler.io/icons) (MIT licentie)
 - Zoeken: [Fuse.js](https://www.fusejs.io/) (Apache 2.0 licentie)
+
+Dummy change om main te testen

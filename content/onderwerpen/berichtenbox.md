@@ -1,10 +1,10 @@
 ---
-title: "Berichtenbox"
-description: "De Berichtenbox is de digitale brievenbus waar ondernemers berichten van overheidsorganisaties ontvangen."
+title: "Berichten/FBS"
+description: "Alle berichten voor jou (als burger of ondernemer) kunnen lezen op de plek die op dat moment voor jou logisch is."
 weight: 6
 ---
 
-## Wat is de Berichtenbox?
+## Wat is het federatieve berichtenstelsel?
 De Berichtenbox is de digitale brievenbus waar ondernemers berichten van overheidsorganisaties ontvangen. Het is onderdeel van het Federatief Berichten Stelsel (FBS). Dit is een stelsel van federatief gekoppelde diensten voor het versturen van berichten van overheidsorganisaties naar burgers en ondernemers. Het FBS vervangt het huidige GLOBE-systeem en ook de berichtenbox van RVO en is ontworpen als toekomstbestendige, open infrastructuur.
 
 ## Waarom is dit nodig?
@@ -62,6 +62,8 @@ flowchart LR
 
 ## Hoe bouwen we dit? We starten met een proof-of-concept
 Op dit moment werken we hard aan een proof-of-concept (POC) om de werking van het federatieve stelsel te verkennen en aan te tonen. We bouwen o.a. een Aanlever API (deze API stuurt berichten ter validatie op technische eisen en controleert toestemming via de Profiel Service) en een Ophaal- en Beheer API (deze API toetst de ophaal- en beheerverzoeken aan het autorisatiebeleid van de deelnemende organisaties). Verder gaan we in de POC óók een demo omgeving bouwen. Via deze demo omgeving willen we verschillende situaties simuleren (o.a. wel of geen toestemming, nieuw bericht tonen tijdens inlog sessie van de ondernemer, te traag berichten ophalen, uitvallende berichtenmagazijnen, etc). We verwachten na de zomer deze POC afgerond te hebben. Als vervolgstap willen we kleine pilots gaan starten zodat we de stelselafspraken kunnen gaan testen. 
+
+We werken aan een stelsel waarmee je berichten uit de berichtenmagazijnen van organisaties kan ophalen. Dit kan op een MijnOmgeving van de organisaties zijn, maar ook bijv. op portaal MijnOverheid (Zakelijk) waarbij alle berichtenmagazijnen worden uitgelezen. Of de bedrijfssoftware van een onderneming, een eigen mobile app, etc.
 
 Het stelsel is gebouwd op open standaarden en open source principes.
 

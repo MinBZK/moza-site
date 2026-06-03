@@ -1,8 +1,6 @@
 ---
 title: "Profielservice"
 description: "Eén plek voor contactvoorkeuren. Overheidsorganisaties bereiken burgers en ondernemers op de manier die ze zelf kiezen."
-image: "/images/tegel-profiel.svg"
-image_alt: "Icoon van een adresboek"
 weight: 2
 ---
 

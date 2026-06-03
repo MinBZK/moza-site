@@ -6,15 +6,15 @@ weight: 6
 
 ## De Digitale Assistent als Proof of Concept
 
-In de periode januari tot en met april 2026 is een proof-of-concept (POC) ontwikkeld waarin is onderzocht hoe de Model Context Protocol (MCP) AI-hosts, zoals vlam-chat of in de toekomst wellicht GPT-NL, verbindt met machine-uitvoerbare wetgeving via RegelRecht. RegelRecht maakt wetgeving uitvoerbaar als code en bijbehorende uitrekenmachine. MCP is het protocol waarmee AI-systemen deze machines/engines aanroepen, zodat ondernemers via AI-interactie regels toepassen op de eigen situatie om zaken te doen met de overheid.
+In de periode januari tot en met april 2026 is een proof-of-concept (POC) ontwikkeld waarin is onderzocht hoe de Model Context Protocol (MCP) AI-hosts, zoals vlam-chat of in de toekomst wellicht GPT-NL, verbindt met machine-uitvoerbare wetgeving via RegelRecht. [Regelrecht](https://regelrecht.rijks.app/) maakt wetgeving uitvoerbaar als code en bijbehorende uitrekenmachine zodat de wet uitgerekend kan worden.  MCP is het protocol waarmee AI-systemen deze machines/engines aanroepen, zodat ondernemers via AI-interactie regels toepassen op de eigen situatie om zaken te doen met de overheid.
 
 De POC werkt op dit moment voor één casus: de informatieplicht energiebesparing. De KVK draait op de testomgeving, RVO is gesimuleerd en de assistent is nog niet aangesloten op een productieomgeving. De volgende stap is meer wetten op te nemen in Regelrecht, zodat we meerdere casussen kunnen doorlopen. Om de ondernemer een uniforme ervaring te kunnen bieden, is het van belang dat zowel de uitvoering als de informatievoorziening op dezelfde bron is gebaseerd.
 
 **"De ondernemer stelt een vraag in gewone taal, de assistent kiest zelf welke bron nodig is en laat bij elk antwoord zien waar het vandaan komt".**
 
-## Wat kan de ondernemer?
+## Wat kan de ondernemer (in deze PoC)?
 
-De vraag "moet mijn bedrijf voldoen aan de informatieplicht energiebesparing?" wordt in één flow afgehandeld. De Digitale Assistent haalt de bedrijfsgegevens op bij de KVK, controleert via RegelRecht of de regel op deze onderneming van toepassing is en/of er nog data ontbreekt, verwijst naar het juiste artikel en biedt aan om de rapportage direct bij RVO in te dienen. Eén vraag, één userflow, in plaats van vier websites. Uiteraard in een afgebakende omgeving met de juiste guidelines en guardrails. Van informatievoorziening gaan we naar het uitvoeren van een actie.
+De vraag "moet mijn bedrijf voldoen aan de informatieplicht energiebesparing?" wordt in één flow direct afgehandeld. De Digitale Assistent haalt eerst de bedrijfsgegevens op bij de KVK. Vervolgens controleert De Digitale Assistent via RegelRecht of de regel op deze onderneming van toepassing is en of er nog data ontbreekt. De Digitale Assistent verwijst naar het juiste artikel en biedt de ondernemer aan om de rapportage direct bij RVO in te dienen. Eén vraag, één userflow, in plaats van vier websites. Uiteraard in een afgebakende omgeving met de juiste richtlijnen. Van informatievoorziening kan de ondernemer direct overgaan tot het uitvoeren van de actie.
 
 ```mermaid
 ---
@@ -83,7 +83,7 @@ Wil je als overheidsorganisatie aansluiten op de Digitale Assistent, of bijdrage
 
 Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
 
-* Hoe zorgen we dat Regelrecht niet alleen een bron van documenten en uitrekenmachine is voor de Digitale Assistent, maar ook de standaard uitvoering voert?
+* Hoe zorgen we dat Regelrecht niet alleen een bron van documenten is met bijbehorende uitrekenmachine voor de Digitale Assistent, maar ook de standaard uitvoering voert?
 
 ## Meer info
 

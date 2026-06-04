@@ -4,15 +4,13 @@ description: "Alle berichten voor jou (als burger of ondernemer) kunnen lezen op
 weight: 6
 ---
 
-## Een Proof of Concept (PoC) van het federatieve berichtenstelsel (berichten)
+## Een Proof of Concept (PoC) van het federatieve berichtenstelsel
 We werken aan een stelsel waarmee je berichten uit de berichtenmagazijnen van organisaties kan ophalen. In het federatieve stelsel werken overheidsorganisaties, centrale diensten en burgers en ondernemers samen via gestandaardiseerde koppelingen. Iedereen heeft een duidelijke rol:
 - Verzenders: overheidsorganisaties die berichten versturen naar ondernemers of burgers.
 - Stelsel: de centrale laag die verzenders en ontvangers met elkaar verbindt; zonder dat berichten centraal worden opgeslagen.​
 - Ontvangers: ondernemers en burgers die berichten ontvangen en lezen via één centrale interface.
 
-Het federatieve principe in 1 zin:​​
-
-***"Er is géén centrale plek waar alle berichten worden opgeslagen. Elke (overheids)organisatie beheert zijn eigen berichten; het federatieve stelsel zorgt ervoor dat de burger of ondernemer ze altijd op de plek die op dat moment logisch is (één plek) kan vinden".***
+***"Er is géén centrale plek waar alle berichten worden opgeslagen. Elke (overheids)organisatie beheert zijn eigen berichten; het federatieve stelsel zorgt ervoor dat de burger of ondernemer ze altijd op de plek die op dat moment logisch is kan vinden".***
 
 ## Waarom is dit nodig?
 Overheidsorganisaties communiceren nu elk op hun eigen manier met burgers en ondernemers. Dit leidt tot versnippering: berichten komen via verschillende kanalen binnen, zijn moeilijk terug te vinden en bieden geen eenduidig overzicht. Het Berichten/FBS lost dit op voor alle betrokken partijen:
@@ -60,7 +58,7 @@ flowchart LR
 ```
 
 ## De PoC in meer details
-Binnen de [MOZa PoC Federatief Berichtenstelsel](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/) zijn de volgende onderdelen in scope:
+Binnen het [MOZa PoC Federatief Berichtenstelsel](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/) zijn de volgende onderdelen in scope:
 1. Aanlever API: waarmee instanties berichten aanmelden nadat zij die in hun eigen magazijn hebben geplaatst en versturen naar de burger of ondernemer
 2. Validatie: elk bericht wordt gecontroleerd op technische eisen en toestemming van de ontvanger.​
 3. Publiceren (Publicatie Stream): op de publicatiedatum meldt het berichtenmagazijn het bericht aan bij het Berichten Uitvraag Systeem (BUS).​

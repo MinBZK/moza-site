@@ -51,7 +51,7 @@ Zie de pagina [accounts en tools](accounts-en-tools) voor uitleg en links.
 
 ## Het team leren kennen
 
-In de samenwerkruimte vind je o.a. [het smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/MOZa%20Communicatie/Smoelenboek%20MOZa.pptx) met foto's en contactgegevens van alle teamleden. Meer over de teamsamenstelling en wie je waarvoor kunt benaderen, vind je op de pagina [het team](het-team).
+In de samenwerkruimte vind je o.a. [het smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/01%20-%20Programmadocumenten/11%20-%20Team/Smoelenboek%20MOZa.pptx?web=1) met foto's en contactgegevens van alle teamleden. Meer over de teamsamenstelling en wie je waarvoor kunt benaderen, vind je op de pagina [het team](het-team).
 
 ## Vragen?
 

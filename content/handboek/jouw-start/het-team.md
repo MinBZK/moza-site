@@ -8,7 +8,7 @@ Het MOZa team bestaat uit verschillende disciplines die samenwerken aan MijnOver
 
 ## Smoelenboek
 
-In onze samenwerkruimte staat het [MOZa Smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/MOZa%20Communicatie/Smoelenboek%20MOZa.pptx). Hier vind je contactgegevens van alle teamleden.
+In onze samenwerkruimte staat het [MOZa Smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/01%20-%20Programmadocumenten/11%20-%20Team/Smoelenboek%20MOZa.pptx?web=1). Hier vind je contactgegevens van alle teamleden.
 
 Het smoelenboek is handig om:
 - Namen en gezichten te koppelen
@@ -34,7 +34,7 @@ Meer over de governance en organisatie vind je in de sectie [over MOZa](../../ov
 
 De beste manier om teamleden te bereiken is via [Mattermost](accounts-en-tools#mattermost). Daar is iedereen dagelijks actief.
 
-Voor formele zaken of langere berichten kun je ook e-mailen. De e-mailadressen vind je in het [smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/MOZa%20Communicatie/Smoelenboek%20MOZa.pptx).
+Voor formele zaken of langere berichten kun je ook e-mailen. De e-mailadressen vind je in het [smoelenboek](https://www.samenwerkruimten.nl/teamsites/programma%20mijnoverheid%20voor%20ondernemers/Gedeelde%20%20documenten/01%20-%20Programmadocumenten/11%20-%20Team/Smoelenboek%20MOZa.pptx?web=1).
 
 ## Nieuwe teamleden
 

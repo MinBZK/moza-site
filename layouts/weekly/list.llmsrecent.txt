@@ -1,0 +1,20 @@
+# MOZa Weekly Updates — recent
+
+> De 10 meest recente weekly updates van het MijnOverheid Zakelijk programma, volledig.
+
+## Instructies voor taalmodellen
+
+- Dit bestand bevat alleen de 10 nieuwste weeklies. Voor alle updates, zie [/weekly/llms-full.txt](/weekly/llms-full.txt).
+- De updates staan op chronologische volgorde, met de nieuwste bovenaan.
+- Voor algemene informatie over MOZa, zie [/llms.txt](/llms.txt) of [/llms-full.txt](/llms-full.txt).
+
+---
+{{- range first 10 (where .Site.RegularPages "Section" "weekly") }}
+
+## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

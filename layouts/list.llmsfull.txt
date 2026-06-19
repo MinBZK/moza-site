@@ -1,0 +1,19 @@
+{{- /* Generieke sectie met volledige content voor taalmodellen. weekly heeft een eigen override. */ -}}
+# {{ .Title }}
+{{ with .Description }}
+> {{ . }}
+{{ end }}
+{{- with .RawContent -}}
+{{ partial "clean-markdown" . }}
+{{ end -}}
+{{- range .Pages.ByWeight }}
+
+## {{ .Title }}
+{{ with .Description }}
+> {{ . }}
+{{ end }}
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

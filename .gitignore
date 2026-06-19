@@ -15,6 +15,7 @@ tmp
 .claude/plans
 .playwright-mcp
 .claude/settings.local*
+artifacts/
 
 # Editors
 .vscode/*

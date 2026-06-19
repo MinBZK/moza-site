@@ -103,3 +103,35 @@ outputs:
     - HTML
     - RSS
     - JSON
+    - llms
+    - llmsfull
+  section:
+    - HTML
+    - RSS
+    - llms
+    - llmsfull
+  page:
+    - HTML
+    - markdown
+
+outputFormats:
+  llms:
+    baseName: llms
+    mediaType: text/plain
+    isPlainText: true
+    notAlternative: true
+  llmsfull:
+    baseName: llms-full
+    mediaType: text/plain
+    isPlainText: true
+    notAlternative: true
+  llmsrecent:
+    baseName: llms-recent-full
+    mediaType: text/plain
+    isPlainText: true
+    notAlternative: true
+  markdown:
+    baseName: index
+    mediaType: text/markdown
+    isPlainText: true
+    notAlternative: true

@@ -1,0 +1,20 @@
+# MOZa Weekly Updates
+
+> Wekelijkse updates over de voortgang van het MijnOverheid Zakelijk programma.
+
+## Instructies voor taalmodellen
+
+- Weekly updates bevatten de actuele stand van zaken van het MOZa programma.
+- De updates staan op chronologische volgorde, met de nieuwste bovenaan.
+- Voor algemene informatie over MOZa, zie [/llms.txt](/llms.txt) of [/llms-full.txt](/llms-full.txt).
+
+---
+{{- range (where .Site.RegularPages "Section" "weekly") }}
+
+## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

@@ -1,0 +1,42 @@
+{{- $description := .Site.Params.description -}}
+# {{ .Site.Title }}
+
+> {{ $description }}
+
+{{ partial "llm-instructies" . }}
+## Hoofdpagina's
+{{- range .Site.Menus.main }}
+- [{{ .Name }}]({{ .URL }}): {{ with site.GetPage .PageRef }}{{ .Description | default .Title }}{{ end }}
+{{- end }}
+
+## Onderwerpen
+{{- range where .Site.RegularPages "Section" "onderwerpen" }}
+- [{{ .Title }}]({{ .RelPermalink }}): {{ .Description | default .Title }}
+{{- end }}
+
+## Weekly updates
+
+De laatste 10 updates. Index van alle updates: [/weekly/llms.txt](/weekly/llms.txt). Volledige tekst: [/weekly/llms-recent-full.txt](/weekly/llms-recent-full.txt) (10 nieuwste) of [/weekly/llms-full.txt](/weekly/llms-full.txt) (alle).
+{{- range first 10 (where .Site.RegularPages "Section" "weekly") }}
+- [{{ .Title }}]({{ .RelPermalink }}): Wekelijkse update van {{ .Date | time.Format "2 January 2006" }}
+{{- end }}
+
+## Documenten
+{{- range where .Site.RegularPages "Section" "documenten" }}
+- [{{ .Title }}]({{ .RelPermalink }}){{ with .Description }}: {{ . }}{{ end }}
+{{- end }}
+
+## Handboek
+
+Interne documentatie voor het MOZa team.
+{{- range where .Site.RegularPages "Section" "handboek" }}
+- [{{ .Title }}]({{ .RelPermalink }}): {{ .Description | default .Title }}
+{{- end }}
+
+## Optional
+{{- range (index .Site.Menus "footer-rechts") }}
+- [{{ .Name }}]({{ .URL }})
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

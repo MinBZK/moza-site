@@ -1,0 +1,48 @@
+{{- $description := .Site.Params.description -}}
+# {{ .Site.Title }}
+
+> {{ $description }}
+
+{{ partial "llm-instructies" . }}
+---
+{{- /* Hoofdpagina's (alleen over-moza en contact, skip homepage) */ -}}
+{{- range .Site.Menus.main }}
+{{- with site.GetPage .PageRef }}
+{{- if and .Title .RawContent (ne .RelPermalink "/") }}
+
+## {{ .Title }}
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- /* Onderwerpen */ -}}
+{{- range where .Site.RegularPages "Section" "onderwerpen" }}
+
+## {{ .Title }}
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+# Handboek
+
+Interne documentatie voor het MOZa team.
+{{- range where .Site.RegularPages "Section" "handboek" }}
+
+## {{ .Title }}
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+# Weekly Updates
+
+De laatste 10 updates. Voor alle updates, zie [/weekly/llms-full.txt](/weekly/llms-full.txt).
+{{- range first 10 (where .Site.RegularPages "Section" "weekly") }}
+
+## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
+
+{{ partial "clean-markdown" .RawContent }}
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

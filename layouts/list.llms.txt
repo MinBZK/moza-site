@@ -1,0 +1,16 @@
+{{- /* Generieke sectie-index voor taalmodellen. weekly heeft een eigen override. */ -}}
+# {{ .Title }}
+{{ with .Description }}
+> {{ . }}
+{{ end }}
+{{- with .RawContent -}}
+{{ partial "clean-markdown" . }}
+
+{{ end -}}
+## Pagina's in deze sectie
+{{ range .Pages.ByWeight }}
+- [{{ .Title }}]({{ .RelPermalink }}){{ with .Description }}: {{ . }}{{ end }}
+{{- end }}
+
+---
+Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}

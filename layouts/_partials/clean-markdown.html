@@ -1,0 +1,7 @@
+{{- /* Strip Hugo-shortcodes en GitHub-alerts uit ruwe Markdown. Aanroep: partial "clean-markdown" .RawContent */ -}}
+{{- $content := . -}}
+{{- $content = replaceRE `\{\{<[^>]+>\}\}` "" $content -}}
+{{- $content = replaceRE `\{\{%[^%]+%\}\}` "" $content -}}
+{{- $content = replaceRE `>\s*\[!(NOTE|WARNING|TIP|IMPORTANT|INFO|CAUTION)\]` "" $content -}}
+{{- $content = replaceRE `\n{3,}` "\n\n" $content -}}
+{{- return ($content | strings.TrimSpace | safeHTML) -}}

@@ -18,6 +18,9 @@
 {{- end -}}
 <meta name="description" content="{{ $description }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{- with .OutputFormats.Get "markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Deze pagina als Markdown" />
+{{- end }}
 
 {{/* Favicons */}}
 <link rel="icon" href="{{ relURL "favicon.ico" }}" sizes="any" />

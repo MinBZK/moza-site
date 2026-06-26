@@ -37,6 +37,26 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 
 ### Hoe werkt dit voor ondernemers?
 
+```mermaid
+---
+title: Test-Mermaid
+---
+graph LR
+  accTitle: Test-Mermaid
+  accDescr: Meerdere personen kunnen gekoppeld zijn aan meerdere bedrijven (N:M-model). Elke pijl symboliseert een contactgegeven en/of voorkeur.
+  P1@{ icon: "tabler:user", label: "Persoon A" }
+  P2@{ icon: "tabler:user", label: "Persoon B" }
+  P3@{ icon: "tabler:user", label: "Persoon C" }
+  B1@{ icon: "tabler:buildings", label: "Bedrijf 1" }
+  B2@{ icon: "tabler:buildings", label: "Bedrijf 2" }
+  B3@{ icon: "tabler:buildings", label: "Bedrijf 3" }
+
+  P1 <-->|contactgegeven/voorkeur| B1
+  P2 <--> B2
+  P2 <--> B3
+  P3 <-->|contactgegeven/voorkeur| B3
+```
+
 Je logt in met eHerkenning of een Europees inlogmiddel (eIDAS), stelt je actualiteitenprofiel in met de relevante filterkenmerken en bekijkt de berichten die voor jou relevant zijn. Daarnaast ontvang je proactieve signalen over nieuwe ontwikkelingen.
 
 ***

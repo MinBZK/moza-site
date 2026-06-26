@@ -39,7 +39,7 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 
 ```mermaid
 ---
-title: Test-Mermaid
+title: Testing
 ---
 graph LR
   accTitle: Test-Mermaid

@@ -84,7 +84,7 @@ graph LR
   A --> B --> C --> D
 ```
 
-Wanneer een nieuw bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal naar de relevante ondernemers met over deze informatie. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen
+Wanneer een nieuw bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal naar de relevante ondernemers met over deze informatie. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen.
 
 ***
 
@@ -134,9 +134,9 @@ We hebben de actualiteitenservice als concept getest bij gebruikers, en tevens h
 
 In huidige vroege alpha versie ondersteunt de actualiteitenservice de volgende functionele toepassingen:
 
-1. Een ondernemer kan via een portaal zijn profiel instellen met de relevante filterkenmerken.
+1. Een ondernemer kan via een portaal zijn profiel instellen met de relevante filterkenmerken
 
-2. Berichten van overheidsorganisaties kunnen (automatisch) gefilterd worden (op basis van eerder ingegeven voorkeuren) en getoond de ondernemers.
+2. Berichten van overheidsorganisaties kunnen (automatisch) gefilterd worden (op basis van eerder ingegeven voorkeuren) en getoond de ondernemers
 
 ### Technisch
 
@@ -150,7 +150,7 @@ Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken i
 
   * [Berichten over uw Buurt - Rondom een zelfgekozen adres](https://www.overheid.nl/berichten-over-uw-buurt)
 
-* Koppelen van berichten aan filterkenmerken.
+* Koppelen van berichten aan filterkenmerken
 
 * Mogelijkheid tot het instellen van verschillende filterkenmerken, waaronder branche, locatie, bedrijfsgrootte, onderwerp en urgentie.
 

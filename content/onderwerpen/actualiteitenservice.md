@@ -73,6 +73,7 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 ### Proactieve signalen
 
 ```mermaid
+---
 title: Proactieve signalen
 ---
 graph LR

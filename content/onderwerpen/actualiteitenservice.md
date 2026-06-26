@@ -1,12 +1,13 @@
 ---
 title: "Actualiteitenservice"
 description: "De Actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
+status: "Gepauzeerd"
 weight: 8
 ---
 
 ## Huidige uitdaging
 
-Ondernemers ontvangen overheidsinformatie via meerdere kanalen (e-mail, mobiel, applicaties), vanuit verschillende bronnen (RVO, KVK, gemeenten, ministeries) en in verschillende formaten (nieuwsbrieven, websites, pdf's, sociale media), alles zonder centrale regie. Dit leidt tot een slechte gebruikerservaring: je moet handmatig zoeken op meerdere sites, per bron apart inloggen en er is geen filtering op relevantie. Het resultaat is dat ondernemers belangrijke updates missen, waarmee subsidie-deadlines worden gemist en verplichtingen onbewust niet nagekomen worden.
+Ondernemers ontvangen overheidsinformatie via meerdere kanalen (e-mail, mobiel, applicaties), vanuit verschillende bronnen (RVO, KVK, gemeenten, ministeries, brancheorganisaties, etc.) en in verschillende formaten (nieuwsbrieven, websites, pdf's, sociale media), alles zonder centrale regie. Dit leidt tot een slechte gebruikerservaring: je moet handmatig zoeken op meerdere sites, per bron apart inloggen en er is geen filtering op relevantie. Het resultaat is dat ondernemers belangrijke updates missen, waarmee subsidie-deadlines worden gemist en verplichtingen onbewust niet nagekomen worden.
 
 ## Wat is de Actualiteitenservice?
 
@@ -43,10 +44,10 @@ title: Klantreis ondernemer
 graph LR
   accTitle: Klantreis ondernemer
   accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
-  A@{ icon: "tabler:login", label: "Inloggen met eHerkenning of eIDAS" }
-  B@{ icon: "tabler:user", label: "Profiel instellen" }
-  C@{ icon: "tabler:news", label: "Berichten bekijken" }
-  D@{ icon: "tabler:bell", label: "Proactieve signalen ontvangen" }
+  A@{ label: "Inloggen met eHerkenning of eIDAS" }
+  B@{ label: "Profiel instellen" }
+  C@{ label: "Berichten bekijken" }
+  D@{ label: "Proactieve signalen ontvangen" }
   A --> B --> C --> D
 ```
 
@@ -77,10 +78,10 @@ title: Proactieve signalen
 graph LR
   accTitle: Proactieve signalen
   accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
-  A@{ icon: "tabler:edit", label: "Dienstverlener bericht/informatie publiceren" }
-  B@{ icon: "tabler:filter", label: "Filtering toepassen" }
-  C@{ icon: "tabler:bell", label: "Signaal versturen" }
-  D@{ icon: "tabler:user", label: "Ondernemer ontvangt signaal" }
+  A@{ label: "Dienstverlener bericht/informatie publiceren" }
+  B@{ label: "Filtering toepassen" }
+  C@{ label: "Signaal versturen" }
+  D@{ label: "Ondernemer ontvangt signaal" }
   A --> B --> C --> D
 ```
 
@@ -103,9 +104,9 @@ title: Publicatieproces overheidsorganisatie
 graph LR
   accTitle: Publicatieproces overheidsorganisatie
   accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
-  A@{ icon: "tabler:plug-connected", label: "Aansluiten via FSC/FTV" }
-  B@{ icon: "tabler:edit", label: "Bericht publiceren" }
-  C@{ icon: "tabler:share", label: "Automatische distributie" }
+  A@{ label: "Aansluiten via FSC/FTV" }
+  B@{ label: "Bericht publiceren" }
+  C@{ label: "Automatische distributie" }
   A --> B --> C
 ```
 
@@ -156,7 +157,7 @@ Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken i
 
 ## Vervolgstappen
 
-Op basis van gebruikersonderzoek is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
+Op basis van [gebruikersonderzoek](https://mijnoverheidzakelijk.nl/weekly/moza-weekly-20-mei-2026/?q=gebruikers#gebruikersonderzoek:~:text=aan%20de%20profielservice.-,Gebruikersonderzoek,-Twee%20onderzoeksdagen%3A) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
 
 Daarom is op dit moment op basis van de huidige inzichten ervoor gekozen om de verdere ontwikkeling op de actualiteitenservice te pauzeren.
 

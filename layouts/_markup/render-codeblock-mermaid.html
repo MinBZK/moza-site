@@ -2,6 +2,8 @@
 {{- $accTitle := "" -}}
 {{- $accDescr := "" -}}
 {{- $inMultiDescr := false -}}
+
+{{- /* Parse accTitle en accDescr uit de Mermaid-code */ -}}
 {{- range split $inner "\n" -}}
   {{- $line := trim . " " -}}
   {{- if $inMultiDescr -}}
@@ -22,34 +24,46 @@
     {{- $accDescr = trim (strings.TrimPrefix "accDescr:" $line) " " -}}
   {{- end -}}
 {{- end -}}
+
+{{- /* Blokteller (fallback voor ontbrekende accTitle) */ -}}
 {{- $blockKey := "mermaid-block-num" -}}
 {{- $blockNum := .Page.Store.Get $blockKey | default 0 -}}
 {{- $blockNum = add $blockNum 1 -}}
 {{- .Page.Store.Set $blockKey $blockNum -}}
+
+{{- /* Subpad afgeleid van content-bestand */ -}}
 {{- $pageDir := path.Dir .Page.File.Path -}}
 {{- $baseName := .Page.File.ContentBaseName -}}
 {{- $subdir := $pageDir -}}
 {{- if and (ne $baseName "index") (ne $baseName "_index") -}}
   {{- $subdir = path.Join $pageDir $baseName -}}
 {{- end -}}
+
+{{- /* Slug: op basis van accTitle of fallback diagram-N */ -}}
 {{- $slug := "" -}}
 {{- if $accTitle -}}
   {{- $slug = $accTitle | lower | replaceRE "\\s+" "-" | replaceRE "[^a-z0-9-]" "" | replaceRE "-+" "-" | replaceRE "^-|-$" "" -}}
-  {{- $countKey := printf "mermaid-slug-%s" $slug -}}
-  {{- $count := .Page.Store.Get $countKey | default 0 -}}
-  {{- $count = add $count 1 -}}
-  {{- .Page.Store.Set $countKey $count -}}
-  {{- if gt $count 1 -}}
-    {{- $slug = printf "%s-%d" $slug $count -}}
+  {{- /* GLOBALE TELLER: Voorkom dubbele slugs op dezelfde pagina */ -}}
+  {{- $globalKey := printf "mermaid-%s-%s" .Page.File.Path $slug -}}
+  {{- $seen := site.Store.Get $globalKey | default false -}}
+  {{- if not $seen -}}
+    {{- site.Store.Set $globalKey true -}}
+  {{- else -}}
+    {{- $slug = printf "%s-2" $slug -}}
   {{- end -}}
 {{- else -}}
   {{- $slug = printf "diagram-%d" $blockNum -}}
 {{- end -}}
-{{- warnf "Hook aangeroepen voor slug=%s pagina=%s" $slug .Page.File.Path -}}
+
+{{- /* Debug-warn (optioneel, voor troubleshooting) */ -}}
+{{- warnf "Mermaid hook aangeroepen voor pagina: %s, slug: %s" .Page.File.Path $slug -}}
+
+{{- /* Pre-rendered SVGs in static/ */ -}}
 {{- $lightFile := path.Join "static/images/render" $subdir (printf "%s-light.svg" $slug) -}}
 {{- $darkFile := path.Join "static/images/render" $subdir (printf "%s-dark.svg" $slug) -}}
 {{- $lightUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-light.svg" $slug)) -}}
 {{- $darkUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-dark.svg" $slug)) -}}
+
 {{- if and (os.FileExists $lightFile) (os.FileExists $darkFile) -}}
 <div class="mermaid-diagram">
   <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" title="Download als afbeelding" aria-label="Download als afbeelding">

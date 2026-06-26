@@ -72,8 +72,9 @@
 {{ $pageNav := resources.Get "css/components/page-nav.css" }}
 {{ $news := resources.Get "css/components/news.css" }}
 {{ $downloads := resources.Get "css/components/downloads.css" }}
+{{ $relevanteLinks := resources.Get "css/components/relevante-links.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $news $downloads $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $news $downloads $relevanteLinks $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}

@@ -1,0 +1,27 @@
+{{- /* Generieke rechterkolom voor tekstpagina's: inhoudsopgave, downloads en/of
+       relevante links. Rendert niets als er geen kolominhoud is.
+
+       Aanroepen met een dict:
+         (dict "page" . "showToc" true)    standaard tekstpagina (met inhoudsopgave)
+         (dict "page" . "showToc" false)   bv. nieuwsbericht (geen inhoudsopgave) */ -}}
+{{- $p := .page -}}
+{{- $toc := $p.TableOfContents -}}
+{{- $hasToc := and .showToc $toc (ne $p.Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
+{{- $hasDownload := eq $p.Params.download true -}}
+{{- $hasLinks := $p.Params.relevante_links -}}
+{{- if or $hasToc $hasDownload $hasLinks -}}
+<aside class="page-aside">
+  {{- if $hasToc -}}
+  <nav id="toc" class="toc" aria-label="Inhoudsopgave">
+    <h2>Op deze pagina</h2>
+    {{ $toc }}
+  </nav>
+  {{- end -}}
+  {{- if $hasDownload -}}
+  {{- partial "downloads.html" $p -}}
+  {{- end -}}
+  {{- with $hasLinks -}}
+  {{- partial "relevante-links.html" $p -}}
+  {{- end -}}
+</aside>
+{{- end -}}

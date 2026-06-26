@@ -1,6 +1,5 @@
 {{- $toc := .TableOfContents -}}
 {{- $hasToc := and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
-{{- $hasDownload := eq .Params.download true -}}
 {{- $navList := slice -}}
 {{- $currentIdx := -1 -}}
 {{- if and (eq .Kind "section") .Params.prev_next -}}
@@ -70,16 +69,4 @@
   </footer>
   {{- end -}}
 </article>
-{{- if or $hasToc $hasDownload -}}
-<aside class="page-aside">
-  {{- if $hasToc -}}
-  <nav id="toc" class="toc" aria-label="Inhoudsopgave">
-    <h2>Op deze pagina</h2>
-    {{ $toc }}
-  </nav>
-  {{- end -}}
-  {{- if $hasDownload -}}
-  {{- partial "downloads.html" . -}}
-  {{- end -}}
-</aside>
-{{- end -}}
+{{- partial "page-aside.html" (dict "page" . "showToc" true) -}}

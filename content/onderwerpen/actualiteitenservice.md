@@ -39,7 +39,7 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 
 ```mermaid
 ---
-title: Klantreis ondernemer
+title: Actualiteiten Klantreis ondernemer
 ---
 graph LR
   accTitle: Klantreis ondernemer
@@ -73,7 +73,7 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 
 ```mermaid
 ---
-title: Proactieve signalen
+title: Actualiteiten Proactieve signalen
 ---
 graph LR
   accTitle: Proactieve signalen
@@ -99,7 +99,7 @@ In dit geval publiceert een overheidsorganisatie berichten via de actualiteitens
 
 ```mermaid
 ---
-title: Publicatieproces overheidsorganisatie
+title: Actualiteiten Publicatieproces overheidsorganisatie
 ---
 graph LR
   accTitle: Publicatieproces overheidsorganisatie

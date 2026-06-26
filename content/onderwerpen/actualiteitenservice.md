@@ -1,10 +1,10 @@
 ---
 title: "Actualiteitenservice"
 description: "De Actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
-summary: "De Actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
-status: "Gepauzeerd"
 weight: 8
 ---
+
+## Status: Gepauzeerd
 
 ## Huidige uitdaging
 

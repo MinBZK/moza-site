@@ -1,0 +1,69 @@
+{{ define "main" }}
+<section>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</section>
+
+<section class="sidebar-layout-right">
+  <div>
+    {{/* Nieuwsberichten */}}
+    {{ with .RegularPages }}
+    <section class="news-list">
+      {{ range .ByDate.Reverse }}
+      {{ $page := . }}
+      <article class="box">
+        {{- with .Resources.GetMatch .Params.lead_image }}
+        {{- $thumb := .Resize "600x webp q80" }}
+        <a class="news-box-image" href="{{ $page.RelPermalink }}">
+          <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $page.Params.lead_image_alt }}" loading="lazy">
+        </a>
+        {{- end }}
+        <header>
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{- with .Date }}
+          <p class="news-date">
+            <time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
+          </p>
+          {{- end }}
+        </header>
+        <div class="content">
+          <p>{{ .Summary }}</p>
+        </div>
+        <a href="{{ .RelPermalink }}" class="button" aria-label="Lees meer over {{ .Title }}">Lees meer</a>
+      </article>
+      {{ end }}
+    </section>
+    {{ end }}
+
+    {{/* Nieuwste MOZa Weekly */}}
+    <h2>De nieuwste MOZa Weekly</h2>
+    <p>
+      <a href="{{ relURL "weekly/" }}">Of lees eerdere MOZa Weekly's</a>
+    </p>
+    {{ $weekly := where .Site.RegularPages "Section" "weekly" }}
+    {{ $weekly = sort $weekly ".Date" "desc" }}
+    {{ with index $weekly 0 }}
+    <article class="box">
+      <header>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      </header>
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+  {{/* Documenten als sidebar */}}
+  <aside>
+    <h2><a href="{{ relURL "documenten/" }}">Documenten</a></h2>
+    {{ $documenten := where .Site.RegularPages "Section" "documenten" }}
+    {{ $documenten = sort $documenten ".Date" "desc" }}
+    <ul class="list">
+      {{ range $documenten }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </aside>
+</section>
+{{ end }}

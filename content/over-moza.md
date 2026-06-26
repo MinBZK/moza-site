@@ -78,11 +78,11 @@ Verifiëren van ingestelde contactgegevens - om dit moment geschikt voor email.
 
 We onderzoeken verschillende onderwerpen die we vanuit MOZa identificeren als belangrijke onderdelen in de opzet:
 
-#### **Berichtendienst -&#x20;**[Berichten/FBS | MijnOverheid Zakelijk]({{ relURL "/onderwerpen/onderwerpen/berichten-fbs/}})
+#### **Berichtendienst -&#x20;**[Berichten/FBS | MijnOverheid Zakelijk]({{ relURL "/onderwerpen/berichten-fbs/"}})
 
 Hoe kan de berichtendienst ingericht worden binnen een federatief berichtenstelsel. Uitgangspunt daarbij dat er géén centrale plek is waar alle berichten worden opgeslagen, maar elke (overheids)organisatie zijn eigen berichten beheert. Het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden.
 
-#### **Digitale Assistent -** [Digitale Assistent | MijnOverheid Zakelijk]({{ relURL "/onderwerpen/digitale-assistent/}})
+#### **Digitale Assistent -** [Digitale Assistent | MijnOverheid Zakelijk]({{ relURL "/onderwerpen/digitale-assistent/"}})
 
 Het nuttig en goed inzetten van een digitale assistent; denk hierbij aan het helpen bij aanvragen van bv subsidies, interacteren op informatie(bronnen)
 

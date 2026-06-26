@@ -42,7 +42,7 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 title: Actualiteiten Klantreis ondernemer
 ---
 graph LR
-  accTitle: Klantreis ondernemer
+  accTitle: Actualiteiten Klantreis ondernemer
   accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
   A@{ icon: "tabler:login", label: "Inloggen" }
   B@{ icon: "tabler:user", label: "Profiel instellen" }
@@ -76,7 +76,7 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 title: Actualiteiten Proactieve signalen
 ---
 graph LR
-  accTitle: Proactieve signalen
+  accTitle: Actualiteiten Proactieve signalen
   accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
   A@{ icon: "tabler:user", label: "Dienstverlener bericht/informatie publiceren" }
   B@{ icon: "tabler:user", label: "Filtering toepassen" }
@@ -102,7 +102,7 @@ In dit geval publiceert een overheidsorganisatie berichten via de actualiteitens
 title: Actualiteiten Publicatieproces overheidsorganisatie
 ---
 graph LR
-  accTitle: Publicatieproces overheidsorganisatie
+  accTitle: Actualiteiten Publicatieproces overheidsorganisatie
   accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
   A@{ icon: "tabler:user", label: "Aansluiten via FSC/FTV" }
   B@{ icon: "tabler:user", label: "Bericht publiceren" }

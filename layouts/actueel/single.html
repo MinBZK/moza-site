@@ -1,5 +1,6 @@
 {{ define "main" }}
-<article class="article-layout news-article">
+{{- $hasLinks := .Params.relevante_links -}}
+<article class="news-article{{ if not $hasLinks }} article-layout{{ end }}">
   <header>
     <h1>{{ .Title }}</h1>
     {{- with .Date }}
@@ -37,4 +38,5 @@
     <p><a href="{{ "actueel/" | relURL }}">← Terug naar Actueel</a></p>
   </footer>
 </article>
+{{ partial "page-aside.html" (dict "page" . "showToc" false) }}
 {{ end }}

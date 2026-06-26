@@ -1,0 +1,36 @@
+/* Relevante links in de zijbalk. Generiek: op elke tekstpagina via page-aside. */
+.relevante-links h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.relevante-links ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.relevante-links li {
+  margin-bottom: 0.5rem;
+}
+
+.relevante-links a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+
+  &::before {
+    content: "→";
+    display: inline-block;
+    margin-right: 0.4em;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

@@ -16,6 +16,7 @@
     {{- end -}}
   {{- else if hasPrefix $line "accTitle:" -}}
     {{- $accTitle = trim (strings.TrimPrefix "accTitle:" $line) " " -}}
+    {{- warnf "DEBUG: accTitle=%s in %s" $accTitle .Page.File.Path -}}  <!-- Debug 1 -->
   {{- else if hasPrefix $line "accDescr {" -}}
     {{- $inMultiDescr = true -}}
   {{- else if hasPrefix $line "accDescr:" -}}
@@ -45,8 +46,10 @@
   {{- $count := .Page.Store.Get $countKey | default 0 -}}
   {{- $count = add $count 1 -}}
   {{- .Page.Store.Set $countKey $count -}}
+  {{- warnf "DEBUG: slug=%s, count=%d (voor accTitle=%s in %s)" $slug $count $accTitle .Page.File.Path -}}  <!-- Debug 2 -->
   {{- if gt $count 1 -}}
     {{- $slug = printf "%s-%d" $slug $count -}}
+    {{- warnf "DEBUG: Voeg -%d toe aan slug (nieuwe slug=%s-%d) in %s" $count $slug $count .Page.File.Path -}}  <!-- Debug 3 -->
   {{- end -}}
 {{- else -}}
   {{- $slug = printf "diagram-%d" $blockNum -}}
@@ -55,7 +58,7 @@
 {{- /* Pre-rendered SVGs in static/ */ -}}
 {{- $lightFile := path.Join "static/images/render" $subdir (printf "%s-light.svg" $slug) -}}
 {{- $darkFile := path.Join "static/images/render" $subdir (printf "%s-dark.svg" $slug) -}}
-
+{{- warnf "DEBUG: Zoek naar SVGs: light=%s, dark=%s in %s" $lightFile $darkFile .Page.File.Path -}}  <!-- Debug 4 -->
 {{- $lightUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-light.svg" $slug)) -}}
 {{- $darkUrl := printf "/%s" (path.Join "images/render" $subdir (printf "%s-dark.svg" $slug)) -}}
 
@@ -64,9 +67,3 @@
   <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" title="Download als afbeelding" aria-label="Download als afbeelding">
     {{- partial "icon.html" "download" -}}
   </a>
-  <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $accDescr }}" loading="lazy">
-  <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $accDescr }}" loading="lazy">
-</div>
-{{- else -}}
-{{- errorf "Mermaid SVGs ontbreken voor '%s' op pagina %s. Voer 'npm run render-mermaid' uit." $slug .Page.File.Path -}}
-{{- end -}}

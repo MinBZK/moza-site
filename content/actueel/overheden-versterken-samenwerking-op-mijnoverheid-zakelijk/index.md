@@ -5,7 +5,10 @@ description: "Meerdere overheden ondertekenden een intentieverklaring voor MijnO
 summary: "Om het zakendoen met de overheid voor ondernemers in de toekomst makkelijker te maken, hebben meerdere overheidsorganisaties een intentieverklaring ondertekend voor MijnOverheid Zakelijk. Met deze stap spreken zij hun gezamenlijke ambitie uit. Ook steunen zij de werkwijze, de verdere ontwikkeling én toepassing van de overheidsbreed inzetbare services binnen hun eigen dienstverlening."
 lead_image: ondertekening-intentieverklaring.jpg
 lead_image_alt: "Johan Maas en Mark Vermeer staan glimlachend achter een statafel voor het gebouw van Radio Kootwijk, na het tekenen van de intentieverklaring MijnOverheid Zakelijk."
-lead_image_caption: "V.l.n.r. Johan Maas (hoofddirecteur Organisatie bij RVO) en Mark Vermeer (directeur Digitale Overheid bij BZK) tekenen de intentieverklaring namens de stuurgroep MOZa."
+lead_image_caption: "Johan Maas (links, hoofddirecteur Organisatie bij RVO) en Mark Vermeer (rechts, directeur Digitale Overheid bij BZK) tekenen de intentieverklaring namens de stuurgroep MOZa."
+relevante_links:
+  - titel: "De intentieverklaring"
+    pagina: "/documenten/intentieverklaring"
 ---
 
 Om het zakendoen met de overheid voor ondernemers in de toekomst makkelijker te maken, hebben meerdere overheidsorganisaties op 21 mei 2026 een intentieverklaring ondertekend voor **MijnOverheid Zakelijk** (MOZa). Met deze stap spreken zij hun gezamenlijke ambitie uit. Ook steunen zij de werkwijze, de verdere ontwikkeling én de toepassing van de overheidsbreed inzetbare services binnen hun eigen dienstverlening.

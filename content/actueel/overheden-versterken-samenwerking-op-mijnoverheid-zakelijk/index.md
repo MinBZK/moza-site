@@ -8,15 +8,11 @@ lead_image_alt: "Johan Maas en Mark Vermeer staan glimlachend achter een statafe
 lead_image_caption: "V.l.n.r. Johan Maas (hoofddirecteur Organisatie bij RVO) en Mark Vermeer (directeur Digitale Overheid bij BZK) tekenen de intentieverklaring namens de stuurgroep MOZa."
 ---
 
-Om het zakendoen met de overheid voor ondernemers in de toekomst makkelijker te maken, hebben meerdere overheidsorganisaties op 21 mei 2026 een intentieverklaring ondertekend voor **MijnOverheid Zakelijk** (MOZa). Met deze stap spreken zij hun gezamenlijke ambitie uit. Ook steunen zij de werkwijze, de verdere ontwikkeling én toepassing van de overheidsbreed inzetbare services binnen hun eigen dienstverlening.
+Om het zakendoen met de overheid voor ondernemers in de toekomst makkelijker te maken, hebben meerdere overheidsorganisaties op 21 mei 2026 een intentieverklaring ondertekend voor **MijnOverheid Zakelijk** (MOZa). Met deze stap spreken zij hun gezamenlijke ambitie uit. Ook steunen zij de werkwijze, de verdere ontwikkeling én de toepassing van de overheidsbreed inzetbare services binnen hun eigen dienstverlening.
 
-Het programma MijnOverheid Zakelijk is een overheidsbrede samenwerking om de dienstverlening voor ondernemers te verbeteren. Het doel: lagere administratieve lasten voor ondernemers én betrokken overheden. En dat ondernemers één uniforme overheid ervaren.
+Het programma MijnOverheid Zakelijk is een overheidsbrede samenwerking om de dienstverlening voor ondernemers te verbeteren. Het doel: lagere administratieve lasten voor ondernemers en betrokken overheden. En dat ondernemers één uniforme overheid ervaren. Om dit voor elkaar te krijgen, werken wij aan verschillende digitale bouwstenen (interactieservices).
 
-Om dit voor elkaar te krijgen, werken overheidsorganisaties samen aan verschillende digitale bouwstenen (interactieservices). Ze werken met open standaarden en aan een federatief stelsel.
-
-Een digitale omgeving brengt alle informatie over overheidszaken overzichtelijk bij elkaar. En zorgt dat de interactie daarover met de overheid op een uniforme manier plaats vindt, zodat je één overheid ervaart. Denk aan taken, aanvragen, subsidies of ontwikkelingen in wet- en regelgeving.
-
-MijnOverheid Zakelijk is een samenwerking van de Belastingdienst, Kamer van Koophandel (KVK), de Rijksdienst voor Ondernemend Nederland (RVO), UWV, Gemeente Rotterdam, de VNG, Logius, Digi Gilde, het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties en het Ministerie van Economische Zaken en Klimaat.
+De intentieverklaring wordt getekend door de Belastingdienst, Kamer van Koophandel (KVK), de Rijksdienst voor Ondernemend Nederland (RVO), UWV, Douane, VNG, Logius, het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties en het Ministerie van Economische Zaken en Klimaat.
 
 ## Eén overheid voor ondernemers
 
@@ -50,6 +46,9 @@ Deze manier van werken:
 
 We nodigen iedereen die geïnteresseerd is uit om aan te haken:
 
-- **Kijk en doe mee.**<br>We werken volgens het 'open werken'-principe. Wil je meekijken of meedoen? [Bekijk de onderwerpen waar we nu aan werken](/onderwerpen/).
-- **MOZa Pulse-bijeenkomsten.**<br>Maandelijkse online presentaties over wat we onderzoeken, bouwen en leren. Met ruimte voor vragen. Aanmelden kan via [moza@minbzk.nl](mailto:moza@minbzk.nl).
-- **MOZa Weekly.**<br>Updates over de voortgang. Mail naar [moza@minbzk.nl](mailto:moza@minbzk.nl) of lees de [weekly berichten](/weekly/) op onze site.
+- **Kijk en doe mee**<br>
+  We werken volgens het 'open werken'-principe. Wil je meekijken of meedoen? [Bekijk de onderwerpen waar we nu mee bezig zijn.](/onderwerpen/)
+- **MOZa Pulse-bijeenkomsten**<br>
+  Maandelijkse online presentaties over wat we onderzoeken, bouwen en leren. Met ruimte voor vragen. Aanmelden kan via [moza@minbzk.nl](mailto:moza@minbzk.nl).
+- **MOZa Weekly**<br>
+  Updates over de voortgang. Mail naar <moza@minbzk.nl> om ze te ontvangen of lees de [weekly berichten](/weekly/) op onze site.

@@ -44,10 +44,10 @@ title: Klantreis ondernemer
 graph LR
   accTitle: Klantreis ondernemer
   accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
-  A@{ label: "Inloggen met eHerkenning of eIDAS" }
-  B@{ label: "Profiel instellen" }
-  C@{ label: "Berichten bekijken" }
-  D@{ label: "Proactieve signalen ontvangen" }
+  A@{ icon: "tabler:login", label: "Inloggen" }
+  B@{ icon: "tabler:user", label: "Profiel instellen" }
+  C@{ icon: "tabler:login", label: "Berichten bekijken" }
+  D@{ icon: "tabler:login", label: "Proactieve signalen ontvangen" }
   A --> B --> C --> D
 ```
 
@@ -78,10 +78,10 @@ title: Proactieve signalen
 graph LR
   accTitle: Proactieve signalen
   accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
-  A@{ label: "Dienstverlener bericht/informatie publiceren" }
-  B@{ label: "Filtering toepassen" }
-  C@{ label: "Signaal versturen" }
-  D@{ label: "Ondernemer ontvangt signaal" }
+  A@{ icon: "tabler:user", label: "Dienstverlener bericht/informatie publiceren" }
+  B@{ icon: "tabler:user", label: "Filtering toepassen" }
+  C@{ icon: "tabler:user", label: "Signaal versturen" }
+  D@{ icon: "tabler:user", label: "Ondernemer ontvangt signaal" }
   A --> B --> C --> D
 ```
 
@@ -104,9 +104,9 @@ title: Publicatieproces overheidsorganisatie
 graph LR
   accTitle: Publicatieproces overheidsorganisatie
   accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
-  A@{ label: "Aansluiten via FSC/FTV" }
-  B@{ label: "Bericht publiceren" }
-  C@{ label: "Automatische distributie" }
+  A@{ icon: "tabler:user", label: "Aansluiten via FSC/FTV" }
+  B@{ icon: "tabler:user", label: "Bericht publiceren" }
+  C@{ icon: "tabler:user", label: "Automatische distributie" }
   A --> B --> C
 ```
 

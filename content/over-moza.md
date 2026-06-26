@@ -48,7 +48,7 @@ Met MijnOverheid Zakelijk zetten we een grote stap richting een uniforme en toeg
 > "Een horecaondernemer, die in MijnOverheid Zakelijk heeft aangegeven interesse te hebben in subsidies, krijgt straks in zijn mailbox een seintje dat er informatie voor hem klaarstaat over een relevante subsidie. Hij logt in op MijnOverheid Zakelijke en besluit na het lezen van de informatie een aanvraag te starten. Dat kan direct via MijnOverheid Zakelijk. Zijn bedrijfsgegevens hoeft hij daar niet meer in te vullen. Alleen de informatie die nog niet bekend is hoeft hij aan te leveren. Nadat de aanvraag is ingediend bij de desbetreffende overheidsorganisatie kan hij de voortgang eenvoudig blijven volgen via MijnOverheid Zakelijk. Als er een vervolgactie nodig is, dan krijgt hij een seintje en ziet de taken die hij moet vervullen in het portaal terug."
 
 ## Huidige status
-[Overzicht MOZa](/images/overzicht-moza.svg)
+![Overzicht MOZa](/images/overzicht-moza.svg)
 
 ### Leeswijzer:
 
@@ -124,7 +124,7 @@ Overheidsorganisaties die nu al samenwerken aan MijnOverheid Zakelijk zijn:
 
 * Logius
 
-* Rijks ICT Gilde
+* Digi Gilde
 
 * Gemeente Rotterdam
 

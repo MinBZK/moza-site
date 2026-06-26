@@ -38,18 +38,17 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 ### Hoe werkt dit voor ondernemers?
 
 ```mermaid
+
 ---
-title: Actualiteiten Klantreis ondernemer
-accTitle: Actualiteiten Klantreis ondernemer
-accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
+title: Test Diagram
 ---
 graph LR
-
+  accTitle: Test Diagram
+  accDescr: Test beschrijving.
   A@{ icon: "tabler:login", label: "Inloggen" }
   B@{ icon: "tabler:user", label: "Profiel instellen" }
-  C@{ icon: "tabler:login", label: "Berichten bekijken" }
-  D@{ icon: "tabler:login", label: "Proactieve signalen ontvangen" }
-  A --> B --> C --> D
+  A --> B
+
 ```
 
 Je logt in met eHerkenning of een Europees inlogmiddel (eIDAS), stelt je actualiteitenprofiel in met de relevante filterkenmerken en bekijkt de berichten die voor jou relevant zijn. Daarnaast ontvang je proactieve signalen over nieuwe ontwikkelingen.
@@ -72,21 +71,6 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 
 ### Proactieve signalen
 
-```mermaid
----
-title: Actualiteiten Proactieve signalen
-accTitle: Actualiteiten Proactieve signalen
-accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
----
-graph LR
-
-  A@{ icon: "tabler:user", label: "Dienstverlener bericht/informatie publiceren" }
-  B@{ icon: "tabler:user", label: "Filtering toepassen" }
-  C@{ icon: "tabler:user", label: "Signaal versturen" }
-  D@{ icon: "tabler:user", label: "Ondernemer ontvangt signaal" }
-  A --> B --> C --> D
-```
-
 Wanneer een nieuw bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal naar de relevante ondernemers met over deze informatie. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen.
 
 ***
@@ -98,20 +82,6 @@ Hieronder wordt beschreven hoe dit dan zou kunnen werken vanuit een overheidsorg
 ### Publicatieproces
 
 In dit geval publiceert een overheidsorganisatie berichten via de actualiteitenservice. De berichten worden automatisch gefilterd en getoond aan de relevante ondernemers.
-
-```mermaid
----
-title: Actualiteiten Publicatieproces overheidsorganisatie
-accTitle: Actualiteiten Publicatieproces overheidsorganisatie
-accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
----
-graph LR
-
-  A@{ icon: "tabler:user", label: "Aansluiten via FSC/FTV" }
-  B@{ icon: "tabler:user", label: "Bericht publiceren" }
-  C@{ icon: "tabler:user", label: "Automatische distributie" }
-  A --> B --> C
-```
 
 Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectiviteit (FSC) en Federatieve Toegangsverlening (FTV). Vervolgens publiceren zij berichten met gestructureerde metadata. De actualiteitenservice zorgt voor automatische distributie naar de relevante ondernemers.
 

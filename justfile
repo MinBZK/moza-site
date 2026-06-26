@@ -30,6 +30,11 @@ watch-mermaid:
 build:
     npm run render-mermaid
     rm -rf public && hugo --minify --gc --logLevel warn
+    npm run render-downloads
+
+# Genereer alleen de downloadbestanden (.odt en .pdf), vereist een bestaande build
+render-downloads:
+    npm run render-downloads
 
 # Controleer op broken links
 check:

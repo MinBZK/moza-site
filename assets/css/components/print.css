@@ -1,0 +1,54 @@
+/* Afdrukstijl. Geldt voor "Afdrukken/Opslaan als PDF" in de browser én voor
+   de PDF die scripts/render-downloads.js met Puppeteer genereert (die gebruikt
+   standaard het print-medium). Doel: alleen de inhoud, geen site-omgeving. */
+@media print {
+  /* Forceer lichte weergave, ook als de bezoeker donker thema gebruikt */
+  :root {
+    color-scheme: light !important;
+  }
+
+  /* Verberg de site-omgeving; alleen het document hoort in de afdruk/PDF */
+  .skip-link,
+  body > header,
+  body > footer,
+  .page-aside,
+  .toc-toggle,
+  .search-modal {
+    display: none !important;
+  }
+
+  /* Inhoud over de volledige breedte */
+  main:has(.page-aside) {
+    display: block;
+    max-width: none;
+  }
+
+  main > article,
+  main > article > * {
+    max-width: none;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* Houd een kop bij de tekst eronder: nooit een kop als laatste regel
+     onderaan een pagina, en breek een kop niet over twee pagina's. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  /* Geen losse begin- of eindregel van een alinea over een paginagrens */
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+}

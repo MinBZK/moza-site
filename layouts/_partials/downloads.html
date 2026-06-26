@@ -1,0 +1,35 @@
+{{- /* Downloadblok in de zijbalk. Toont dit document in alternatieve formaten.
+       Markdown komt rechtstreeks uit Hugo; .odt en .pdf worden na de build
+       gegenereerd door scripts/render-downloads.js.
+
+       Het download-attribuut zet de bestandsnaam gelijk aan de paginatitel,
+       zodat een gebruiker bijv. "Intentieverklaring MijnOverheid Zakelijk.pdf"
+       opslaat. De verborgen tekst maakt het linkdoel zelfstandig duidelijk
+       voor schermlezers (WCAG 2.4.4 / 2.4.9). */ -}}
+{{- $slug := path.Base .RelPermalink -}}
+{{- $md := .OutputFormats.Get "markdown" -}}
+<nav class="downloads" aria-label="Download deze pagina">
+  <h2>Download deze pagina</h2>
+  <ul>
+    {{- with $md }}
+    <li>
+      <a href="{{ .RelPermalink }}" download="{{ $.Title }}.md">
+        {{- partial "icon.html" "file-type-md" -}}
+        <span class="downloads-label"><span class="visually-hidden">Download deze pagina als </span>Markdown</span>
+      </a>
+    </li>
+    {{- end }}
+    <li>
+      <a href="{{ .RelPermalink }}{{ $slug }}.odt" download="{{ .Title }}.odt">
+        {{- partial "icon.html" "file-type-odt" -}}
+        <span class="downloads-label"><span class="visually-hidden">Download deze pagina als </span>Open document (ODF)</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ .RelPermalink }}{{ $slug }}.pdf" download="{{ .Title }}.pdf">
+        {{- partial "icon.html" "file-type-pdf" -}}
+        <span class="downloads-label"><span class="visually-hidden">Download deze pagina als </span>PDF-document</span>
+      </a>
+    </li>
+  </ul>
+</nav>

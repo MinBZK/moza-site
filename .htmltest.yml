@@ -14,3 +14,7 @@ IgnoreURLs:
   - realisatieibds.pleio.nl
   - docs.rijksapp.nl
   - fmis.belastingdienst.nl
+  # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
+  # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
+  - \.odt$
+  - \.pdf$

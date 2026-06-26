@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "render-mermaid": "node scripts/render-mermaid.js",
-    "test": "node --test scripts/render-mermaid.test.js"
+    "render-downloads": "node scripts/downloads/render-downloads.js",
+    "test": "node --test scripts/render-mermaid.test.js scripts/downloads/render-downloads.test.js"
   },
   "devDependencies": {
     "@iconify-json/tabler": "^1",

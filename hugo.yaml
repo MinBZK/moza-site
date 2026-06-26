@@ -105,6 +105,7 @@ outputs:
     - JSON
     - llms
     - llmsfull
+    - download
   section:
     - HTML
     - RSS
@@ -133,5 +134,10 @@ outputFormats:
   markdown:
     baseName: index
     mediaType: text/markdown
+    isPlainText: true
+    notAlternative: true
+  download:
+    baseName: download
+    mediaType: application/json
     isPlainText: true
     notAlternative: true

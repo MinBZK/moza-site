@@ -158,14 +158,22 @@ button.toc-toggle[aria-expanded="true"] .icon-close {
   display: block;
 }
 
-/* Table of Contents (TOC) */
-.toc {
+/* Zijkolom: bevat de inhoudsopgave en/of het downloadblok */
+.page-aside {
   position: sticky;
   top: 1rem;
   align-self: start;
   padding-top: 1rem;
   font-size: 1rem;
+}
 
+/* Ruimte tussen inhoudsopgave en downloads als beide zichtbaar zijn */
+.toc + .downloads {
+  margin-top: 1.5rem;
+}
+
+/* Table of Contents (TOC) */
+.toc {
   opacity: 0;
   visibility: hidden;
   max-height: 0;
@@ -223,7 +231,7 @@ button.toc-toggle[aria-expanded="true"] .icon-close {
   }
 }
 
-main:has(.toc) {
+main:has(.page-aside) {
   @media (min-width: 950px) {
     max-width: var(--content-max-width);
     display: grid;

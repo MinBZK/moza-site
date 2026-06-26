@@ -1,0 +1,11 @@
+{{- /* Manifest van pagina's die downloads aanbieden (front matter: download: true).
+       scripts/render-downloads.js leest dit en genereert per pagina .odt en .pdf. */ -}}
+{{- $list := slice -}}
+{{- range where site.RegularPages "Params.download" true -}}
+  {{- $list = $list | append (dict
+    "relPermalink" .RelPermalink
+    "name" (path.Base .RelPermalink)
+    "title" .Title
+  ) -}}
+{{- end -}}
+{{- $list | jsonify -}}

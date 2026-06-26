@@ -12,7 +12,9 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.5rem 0.5rem 0 0;
+  /* Binnenradius van de kaart: buitenradius (0.5rem) minus de 1px-rand,
+     zodat de hoek van de foto exact op de afronding van de rand aansluit. */
+  border-radius: calc(0.5rem - 1px) calc(0.5rem - 1px) 0 0;
 }
 
 /* Datum als label/tag (in de hub-box en bovenaan een bericht). */

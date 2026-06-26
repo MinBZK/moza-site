@@ -1,0 +1,46 @@
+.news-list {
+  margin-bottom: 2.5rem;
+}
+
+/* Foto bovenaan de nieuws-box: vult de box tot de randen (kaart-stijl). */
+.news-box-image {
+  display: block;
+  margin: -1.5rem -1.5rem 1rem;
+}
+
+.news-box-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Datum als label/tag (in de hub-box en bovenaan een bericht). */
+.news-date {
+  display: inline-block;
+  margin: 0.25rem 0 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  background: var(--color-bg-light);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* Kop + datum-tag bovenaan een bericht, met lucht voor de lead-foto. */
+.news-article header {
+  margin-bottom: 1.5rem;
+}
+
+/* Lead-foto bovenaan een nieuwsbericht (figure/figcaption komen uit figure.css). */
+.lead-image {
+  margin: 0 0 2rem;
+}
+
+.lead-image img {
+  width: 100%;
+  border-radius: var(--radius-upper-left);
+}
+
+.news-article > footer {
+  margin-top: 2.5rem;
+}

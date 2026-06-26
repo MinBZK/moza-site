@@ -1,35 +1,40 @@
 {{ define "main" }}
-<section class="sidebar-layout-right">
-  {{/* Linker kolom: Nieuwste MOZa Weekly */}}
-  <div>
-    <h1>De nieuwste MOZa Weekly</h1>
-    <p>
-      <a href="{{ relURL "weekly/" }}">Of lees eerdere MOZa Weekly's</a>
+<article class="article-layout news-article">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{- with .Date }}
+    <p class="news-date">
+      <time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
     </p>
-    {{ $weekly := where .Site.RegularPages "Section" "weekly" }}
-    {{ $weekly = sort $weekly ".Date" "desc" }}
-    {{ with index $weekly 0 }}
-    <article class="box">
-      <header>
-        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      </header>
-      <div class="content">
-        {{ .Content }}
-      </div>
-    </article>
-    {{ end }}
-  </div>
+    {{- end }}
+  </header>
 
-  {{/* Rechter kolom: Documenten (rapportages + presentaties) */}}
-  <aside>
-    <h2><a href="{{ relURL "documenten/" }}">Documenten</a></h2>
-    {{ $documenten := where .Site.RegularPages "Section" "documenten" }}
-    {{ $documenten = sort $documenten ".Date" "desc" }}
-    <ul class="list">
-      {{ range $documenten }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-      {{ end }}
-    </ul>
-  </aside>
-</section>
+  {{- with .Params.lead_image }}
+    {{- $img := $.Resources.GetMatch . }}
+    {{- with $img }}
+      {{- $small := .Resize "400x webp q80" }}
+      {{- $med := .Resize "800x webp q80" }}
+      {{- $large := .Resize "1153x webp q80" }}
+  <figure class="lead-image">
+    <img
+      src="{{ $med.RelPermalink }}"
+      srcset="{{ $small.RelPermalink }} 400w, {{ $med.RelPermalink }} 800w, {{ $large.RelPermalink }} 1153w"
+      sizes="(max-width: 800px) 100vw, 800px"
+      width="{{ $large.Width }}" height="{{ $large.Height }}"
+      alt="{{ $.Params.lead_image_alt }}"
+      loading="eager">
+    {{- with $.Params.lead_image_caption }}
+    <figcaption>{{ . }}</figcaption>
+    {{- end }}
+  </figure>
+    {{- end }}
+  {{- end }}
+
+  {{ .Content }}
+
+  <footer>
+    <p>Dit bericht is voor het laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_full" }}</time>.</p>
+    <p><a href="{{ "actueel/" | relURL }}">← Terug naar Actueel</a></p>
+  </footer>
+</article>
 {{ end }}

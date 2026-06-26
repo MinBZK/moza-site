@@ -1,0 +1,9 @@
+{{- /* Grote uitgelichte pull-quote. Gebruik: {{< quote source="Naam, functie" >}}Citaat{{< /quote >}} */ -}}
+<figure class="pull-quote">
+  <blockquote>
+    {{ .Inner | strings.TrimSpace | .Page.RenderString }}
+  </blockquote>
+  {{- with .Get "source" }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

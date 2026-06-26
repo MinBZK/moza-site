@@ -62,6 +62,7 @@
 {{ $box := resources.Get "css/components/box.css" }}
 {{ $button := resources.Get "css/components/button.css" }}
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
+{{ $figure := resources.Get "css/components/figure.css" }}
 {{ $infoNote := resources.Get "css/components/info-note.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
@@ -69,7 +70,8 @@
 {{ $search := resources.Get "css/components/search.css" }}
 {{ $mermaid := resources.Get "css/components/mermaid.css" }}
 {{ $pageNav := resources.Get "css/components/page-nav.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $infoNote $list $footer $toast $search $mermaid $pageNav | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $news := resources.Get "css/components/news.css" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $news | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}

@@ -40,10 +40,11 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 ```mermaid
 ---
 title: Actualiteiten Klantreis ondernemer
+accTitle: Actualiteiten Klantreis ondernemer
+accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
 ---
 graph LR
-  accTitle: Actualiteiten Klantreis ondernemer
-  accDescr: De stappen die een ondernemer doorloopt: inloggen met eHerkenning of eIDAS, profiel instellen, berichten bekijken.
+
   A@{ icon: "tabler:login", label: "Inloggen" }
   B@{ icon: "tabler:user", label: "Profiel instellen" }
   C@{ icon: "tabler:login", label: "Berichten bekijken" }
@@ -74,10 +75,11 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 ```mermaid
 ---
 title: Actualiteiten Proactieve signalen
+accTitle: Actualiteiten Proactieve signalen
+accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
 ---
 graph LR
-  accTitle: Actualiteiten Proactieve signalen
-  accDescr: Het proces van proactieve signalen: bericht publiceren, filtering toepassen, signaal versturen.
+
   A@{ icon: "tabler:user", label: "Dienstverlener bericht/informatie publiceren" }
   B@{ icon: "tabler:user", label: "Filtering toepassen" }
   C@{ icon: "tabler:user", label: "Signaal versturen" }
@@ -100,10 +102,11 @@ In dit geval publiceert een overheidsorganisatie berichten via de actualiteitens
 ```mermaid
 ---
 title: Actualiteiten Publicatieproces overheidsorganisatie
+accTitle: Actualiteiten Publicatieproces overheidsorganisatie
+accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
 ---
 graph LR
-  accTitle: Actualiteiten Publicatieproces overheidsorganisatie
-  accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, bericht publiceren, automatische distributie.
+
   A@{ icon: "tabler:user", label: "Aansluiten via FSC/FTV" }
   B@{ icon: "tabler:user", label: "Bericht publiceren" }
   C@{ icon: "tabler:user", label: "Automatische distributie" }

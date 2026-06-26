@@ -37,20 +37,6 @@ Een bericht kan relevant zijn voor meerdere ondernemers. Daarom wordt elk berich
 
 ### Hoe werkt dit voor ondernemers?
 
-```mermaid
-
----
-title: Test Diagram
----
-graph LR
-  accTitle: Test Diagram
-  accDescr: Test beschrijving.
-  A@{ icon: "tabler:login", label: "Inloggen" }
-  B@{ icon: "tabler:user", label: "Profiel instellen" }
-  A --> B
-
-```
-
 Je logt in met eHerkenning of een Europees inlogmiddel (eIDAS), stelt je actualiteitenprofiel in met de relevante filterkenmerken en bekijkt de berichten die voor jou relevant zijn. Daarnaast ontvang je proactieve signalen over nieuwe ontwikkelingen.
 
 ***

@@ -67,3 +67,9 @@
   <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" title="Download als afbeelding" aria-label="Download als afbeelding">
     {{- partial "icon.html" "download" -}}
   </a>
+  <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $accDescr }}" loading="lazy">
+  <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $accDescr }}" loading="lazy">
+</div>
+{{- else -}}
+{{- errorf "Mermaid SVGs ontbreken voor '%s' op pagina %s. Voer 'npm run render-mermaid' uit." $slug .Page.File.Path -}}
+{{- end -}}

@@ -59,40 +59,6 @@ header {
     }
   }
 
-  .breadcrumb {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0.25rem 1rem 0;
-    min-height: 2rem;
-
-    ol {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 0;
-      font-size: var(--text-base);
-    }
-
-    li {
-      display: flex;
-      align-items: center;
-    }
-
-    .separator {
-      display: inline-block;
-      width: 0.5em;
-      height: 0.5em;
-      margin: 0 0.5em;
-      border-right: 2px solid var(--color-text-muted);
-      border-bottom: 2px solid var(--color-text-muted);
-      transform: rotate(-45deg);
-    }
-
-    .current {
-      color: var(--color-text-muted);
-    }
-  }
-
   .navbar {
     display: flex;
     flex-wrap: wrap;

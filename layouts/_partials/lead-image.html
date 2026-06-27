@@ -1,0 +1,25 @@
+{{- /* Lead-foto bovenaan een pagina. Generiek; werkt op elke pagina met in de
+       front matter:
+         lead_image          afbeelding (resource in de page bundle)
+         lead_image_alt      alt-tekst
+         lead_image_caption  onderschrift (optioneel)
+       Rendert niets als lead_image ontbreekt. */ -}}
+{{- with .Params.lead_image -}}
+  {{- with $.Resources.GetMatch . -}}
+    {{- $small := .Resize "400x webp q80" -}}
+    {{- $med := .Resize "800x webp q80" -}}
+    {{- $large := .Resize "1153x webp q80" -}}
+  <figure class="lead-image">
+    <img
+      src="{{ $med.RelPermalink }}"
+      srcset="{{ $small.RelPermalink }} 400w, {{ $med.RelPermalink }} 800w, {{ $large.RelPermalink }} 1153w"
+      sizes="(max-width: 800px) 100vw, 800px"
+      width="{{ $large.Width }}" height="{{ $large.Height }}"
+      alt="{{ $.Params.lead_image_alt }}"
+      loading="eager">
+    {{- with $.Params.lead_image_caption }}
+    <figcaption>{{ . }}</figcaption>
+    {{- end }}
+  </figure>
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,10 @@
+/* Lead-foto bovenaan een pagina (generiek). De marge boven zorgt voor ruimte
+   tussen de kop en de foto; figcaption-opmaak komt uit figure.css. */
+.lead-image {
+  margin: 1.5rem 0 2rem;
+}
+
+.lead-image img {
+  width: 100%;
+  border-radius: var(--radius-upper-left);
+}

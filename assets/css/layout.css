@@ -54,25 +54,6 @@ main > article {
   }
 }
 
-.sidebar-layout-right {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 1.5rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-}
-
-.sidebar-layout-right > aside :is(h1, h2) {
-  margin-top: 1rem;
-}
-
-.sidebar-layout-right > aside :is(h1, h2) a {
-  color: var(--color-text-heading);
-}
-
 .article-layout {
   max-width: var(--article-max-width);
   margin-left: auto;
@@ -158,87 +139,5 @@ button.toc-toggle[aria-expanded="true"] .icon-close {
   display: block;
 }
 
-/* Zijkolom: bevat de inhoudsopgave en/of het downloadblok */
-.page-aside {
-  position: sticky;
-  top: 1rem;
-  align-self: start;
-  padding-top: 1rem;
-  font-size: 1rem;
-}
-
-/* Ruimte tussen inhoudsopgave en downloads als beide zichtbaar zijn */
-.toc + .downloads {
-  margin-top: 1.5rem;
-}
-
-/* Table of Contents (TOC) */
-.toc {
-  opacity: 0;
-  visibility: hidden;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
-
-  &.is-open {
-    opacity: 1;
-    visibility: visible;
-    max-height: 80vh;
-    overflow: visible;
-  }
-
-  h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.2rem;
-  }
-
-  ul {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
-
-    ul {
-      padding-left: 0.5rem;
-    }
-  }
-
-  > ul > li {
-    margin-bottom: 0.5rem;
-  }
-
-  ul ul li {
-    margin-bottom: 0;
-  }
-
-  a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-
-    &:hover {
-      color: var(--color-primary);
-      text-decoration: underline;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-
-    &.active {
-      color: var(--color-primary);
-      font-weight: 600;
-    }
-  }
-}
-
-main:has(.page-aside) {
-  @media (min-width: 950px) {
-    max-width: var(--content-max-width);
-    display: grid;
-    grid-template-columns: var(--article-max-width) calc(
-        min(100vw, var(--content-max-width)) - var(--article-max-width) - 1rem
-      );
-    gap: 1rem;
-    margin: 0 auto;
-  }
-}
+/* De rechterkolom (inhoudsopgave, downloads, relevante links) staat in
+   components/page-aside.css. De toggle-knop hierboven hoort bij de artikelkop. */

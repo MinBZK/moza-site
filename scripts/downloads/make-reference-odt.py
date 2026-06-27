@@ -122,10 +122,21 @@ def patch_styles(styles):
         quote_new, styles, flags=re.S,
     )
 
-    # 5) Links: rijksblauw, onderstreept
+    # 5) Links: rijksblauw, onderstreept.
     styles = sub_in_block(styles, "Internet_20_link", [
         (r'fo:color="#000080"', 'fo:color="#154273"'),
     ])
+    definition_new = (
+        '<style:style style:name="Definition" style:family="text">'
+        '<style:text-properties fo:color="#154273" '
+        'style:text-underline-style="solid" style:text-underline-width="auto" '
+        'style:text-underline-color="font-color" />'
+        '</style:style>'
+    )
+    styles = re.sub(
+        r'<style:style style:name="Definition" style:family="text"\s*/>',
+        definition_new, styles,
+    )
     return styles
 
 

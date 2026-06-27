@@ -1,4 +1,24 @@
 <footer>
+  {{- $ancestors := .Ancestors.Reverse -}}
+  {{- $hasBreadcrumb := and (not .IsHome) (gt (len $ancestors) 1) -}}
+  {{- $showLastmod := eq .Params.show_lastmod true -}}
+  {{- if or $hasBreadcrumb $showLastmod -}}
+  <div class="page-meta">
+    {{- if $hasBreadcrumb -}}
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        {{- range $ancestors -}}
+        <li><a href="{{ .RelPermalink }}">{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }}</a><span class="separator" aria-hidden="true"></span></li>
+        {{- end -}}
+        <li><span class="current" aria-current="page">{{ .Title }}</span></li>
+      </ol>
+    </nav>
+    {{- if $showLastmod }} <span class="lastmod">(laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>)</span>{{ end -}}
+    {{- else if $showLastmod -}}
+    <p class="lastmod">Deze pagina is voor het laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>.</p>
+    {{- end -}}
+  </div>
+  {{- end -}}
   <p class="tagline">{{ .Site.Params.footer.tagline }}</p>
   <div class="footer-columns">
     <nav aria-label="{{ .Site.Params.footer.links }}">

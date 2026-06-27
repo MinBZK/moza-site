@@ -1,11 +1,9 @@
 {{ define "main" }}
-<section>
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-</section>
-
 <section class="sidebar-layout-right">
   <div>
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
     {{/* Nieuwsberichten */}}
     {{ with .RegularPages }}
     <section class="news-list">
@@ -21,9 +19,7 @@
         <header>
           <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
           {{- with .Date }}
-          <p class="tag">
-            <time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
-          </p>
+          <time class="tag" datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
           {{- end }}
         </header>
         <div class="content">

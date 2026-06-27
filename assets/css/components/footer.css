@@ -1,6 +1,7 @@
 body > footer {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   width: 100%;
   max-width: var(--content-max-width);
   margin: 0 auto;
@@ -10,9 +11,66 @@ body > footer {
   clip-path: inset(0 -100vmax);
   color: var(--color-text-inverse);
 
+  &:has(.page-meta) {
+    padding-top: 0.75rem;
+  }
+
+  .page-meta {
+    flex-basis: 100%;
+    margin-bottom: 1.5rem;
+    font-size: var(--text-base);
+    line-height: 1.6;
+
+    .breadcrumb,
+    .breadcrumb ol,
+    .breadcrumb li {
+      display: inline;
+    }
+
+    ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      color: var(--color-text-inverse);
+
+      &::before {
+        content: none;
+      }
+    }
+
+    .separator {
+      display: inline-block;
+      width: 0.5em;
+      height: 0.5em;
+      margin: 0 0.5em;
+      border-right: 2px solid var(--color-text-inverse);
+      border-bottom: 2px solid var(--color-text-inverse);
+      transform: rotate(-45deg);
+      vertical-align: middle;
+      opacity: 0.6;
+    }
+
+    .current {
+      opacity: 0.8;
+    }
+
+    .lastmod {
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    .breadcrumb + .lastmod {
+      margin-left: 0.35em;
+    }
+  }
+
   .tagline {
     font-family: var(--font-serif);
     font-size: 1.5rem;
+    line-height: 1.2;
     font-style: italic;
     color: var(--color-text-inverse);
   }

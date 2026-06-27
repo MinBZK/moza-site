@@ -163,29 +163,4 @@
   {{- end -}}
   {{- end -}}
 
-  {{- if not .IsHome -}}
-    {{- /* Breadcrumb skipLevels: 1 (home), 2 (+ second nav), 3 (+ open panel) */ -}}
-    {{- $skipLevels := cond $hasPanelOpen 3 (cond $hasSecondNav 2 1) -}}
-    {{- $ancestors := .Ancestors.Reverse -}}
-    {{- $hasEnoughAncestors := gt (len $ancestors) $skipLevels -}}
-    {{- if $hasEnoughAncestors -}}
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <ol>
-      {{- range $index, $ancestor := $ancestors -}}
-      {{- if ge $index $skipLevels -}}
-      <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <span class="separator" aria-hidden="true"></span>
-      </li>
-      {{- end -}}
-      {{- end -}}
-      <li>
-        <span class="current" aria-current="page">{{ .Title }}</span>
-      </li>
-    </ol>
-  </nav>
-    {{- else -}}
-  <div class="breadcrumb" aria-hidden="true"></div>
-    {{- end -}}
-  {{- end -}}
 </header>

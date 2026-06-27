@@ -30,6 +30,11 @@ body {
 
 main {
   flex-grow: 1;
+  padding-top: 2rem;
+}
+
+main:has(.hero) {
+  padding-top: 0;
 }
 
 main > section,
@@ -39,19 +44,12 @@ main > .content {
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
-}
-
-main > section,
-main > article,
-main > .content {
   padding: 1rem;
   padding-top: 0;
 }
 
-main > article {
-  > * {
-    max-width: var(--article-max-width);
-  }
+main > article > * {
+  max-width: var(--article-max-width);
 }
 
 .article-layout {
@@ -60,84 +58,10 @@ main > article {
   margin-right: auto;
 }
 
-body:has(main > .article-layout) .breadcrumb {
-  max-width: var(--article-max-width);
-}
-
-article > header:has(.toc-toggle) {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-
-  h1 {
-    flex: 1;
-  }
-}
 
 article > footer {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--color-border);
-}
-
-article > footer p {
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-button.toc-toggle {
-  flex-shrink: 0;
-  display: none; /* Verberg standaard op kleine schermen */
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  margin-top: 0.5rem;
-  background: transparent;
-  border: none;
-  color: var(--color-text);
-  cursor: pointer;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .icon-close {
-    display: none;
-  }
-
-  /* Toon alleen op grotere schermen waar TOC ook zichtbaar is */
-  @media (min-width: 950px) {
-    display: flex;
-  }
-}
-
-button.toc-toggle:hover,
-button.toc-toggle[aria-expanded="true"]:hover,
-button.toc-toggle[aria-expanded="false"]:hover {
-  background: var(--color-bg-info);
-  border: none;
-  color: inherit;
-}
-
-button.toc-toggle:focus-visible {
-  background: transparent;
-  border: none;
-  color: inherit;
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-button.toc-toggle[aria-expanded="true"] .icon-open {
-  display: none;
-}
-
-button.toc-toggle[aria-expanded="true"] .icon-close {
-  display: block;
+  margin-top: 2.5rem;
 }
 
 /* De rechterkolom (inhoudsopgave, downloads, relevante links) staat in
-   components/page-aside.css. De toggle-knop hierboven hoort bij de artikelkop. */
+   components/page-aside.css. */

@@ -63,3 +63,15 @@
   height: auto;
   border-radius: calc(0.5rem - 1px) calc(0.5rem - 1px) 0 0;
 }
+
+@media (max-width: 600px) {
+  .box {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .box-image {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}

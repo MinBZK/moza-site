@@ -1,5 +1,3 @@
-{{- $toc := .TableOfContents -}}
-{{- $hasToc := and $toc (ne .Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
 {{- $navList := slice -}}
 {{- $currentIdx := -1 -}}
 {{- if and (eq .Kind "section") .Params.prev_next -}}
@@ -26,47 +24,38 @@
 <article>
   <header>
     <h1>{{ .Title }}</h1>
-    {{- if $hasToc -}}
-    <button class="toc-toggle" aria-expanded="false" aria-controls="toc">
-      {{- partial "icon.html" "toc-open" -}}
-      {{- partial "icon.html" "toc-close" -}}
-      <span class="visually-hidden">Inhoudsopgave tonen</span>
-    </button>
-    {{- end -}}
+    {{- if and .Params.show_date .Date }}
+    <time class="tag" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+    {{- end }}
   </header>
   {{ partial "lead-image.html" . }}
   {{ .Content }}
-  {{- if or .Params.show_lastmod (gt $navCount 1) -}}
+  {{- if gt $navCount 1 -}}
   <footer>
-    {{- if .Params.show_lastmod -}}
-    <p>Deze pagina is voor het laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_full" }}</time>.</p>
-    {{- end -}}
-    {{- if gt $navCount 1 -}}
-      {{- $isFirst := eq $currentIdx 0 -}}
-      {{- $isLast := eq $currentIdx (sub $navCount 1) -}}
-      {{- $parent := index $navList 0 -}}
-      <nav class="page-nav" aria-label="Navigatie binnen deze reeks">
-        {{- if not $isFirst -}}
-          {{- $prev := index $navList (sub $currentIdx 1) -}}
-          <a href="{{ $prev.RelPermalink }}" rel="prev" class="page-nav-prev">
-            <span class="page-nav-label">Vorige</span>
-            <span class="page-nav-title">{{ $prev.Params.card_title | default $prev.Title }}</span>
-          </a>
-        {{- end -}}
-        {{- if $isLast -}}
-          <a href="{{ $parent.RelPermalink }}" class="page-nav-next">
-            <span class="page-nav-label">Terug naar</span>
-            <span class="page-nav-title">{{ $parent.Params.card_title | default $parent.Title }}</span>
-          </a>
-        {{- else -}}
-          {{- $next := index $navList (add $currentIdx 1) -}}
-          <a href="{{ $next.RelPermalink }}" rel="next" class="page-nav-next">
-            <span class="page-nav-label">Volgende</span>
-            <span class="page-nav-title">{{ $next.Params.card_title | default $next.Title }}</span>
-          </a>
-        {{- end -}}
-      </nav>
-    {{- end -}}
+    {{- $isFirst := eq $currentIdx 0 -}}
+    {{- $isLast := eq $currentIdx (sub $navCount 1) -}}
+    {{- $parent := index $navList 0 -}}
+    <nav class="page-nav" aria-label="Navigatie binnen deze reeks">
+      {{- if not $isFirst -}}
+        {{- $prev := index $navList (sub $currentIdx 1) -}}
+        <a href="{{ $prev.RelPermalink }}" rel="prev" class="page-nav-prev">
+          <span class="page-nav-label">Vorige</span>
+          <span class="page-nav-title">{{ $prev.Params.card_title | default $prev.Title }}</span>
+        </a>
+      {{- end -}}
+      {{- if $isLast -}}
+        <a href="{{ $parent.RelPermalink }}" class="page-nav-next">
+          <span class="page-nav-label">Terug naar</span>
+          <span class="page-nav-title">{{ $parent.Params.card_title | default $parent.Title }}</span>
+        </a>
+      {{- else -}}
+        {{- $next := index $navList (add $currentIdx 1) -}}
+        <a href="{{ $next.RelPermalink }}" rel="next" class="page-nav-next">
+          <span class="page-nav-label">Volgende</span>
+          <span class="page-nav-title">{{ $next.Params.card_title | default $next.Title }}</span>
+        </a>
+      {{- end -}}
+    </nav>
   </footer>
   {{- end -}}
 </article>

@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 1.5rem;
+  align-items: baseline;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -15,8 +16,9 @@
   }
 }
 
-.sidebar-layout-right > aside :is(h1, h2) {
-  margin-top: 1rem;
+.sidebar-layout-right > div > :first-child,
+.sidebar-layout-right > aside > :first-child {
+  margin-top: 0;
 }
 
 .sidebar-layout-right > aside :is(h1, h2) a {

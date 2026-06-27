@@ -70,11 +70,12 @@
 {{ $search := resources.Get "css/components/search.css" }}
 {{ $mermaid := resources.Get "css/components/mermaid.css" }}
 {{ $pageNav := resources.Get "css/components/page-nav.css" }}
-{{ $news := resources.Get "css/components/news.css" }}
-{{ $downloads := resources.Get "css/components/downloads.css" }}
-{{ $relevanteLinks := resources.Get "css/components/relevante-links.css" }}
+{{ $actueel := resources.Get "css/components/actueel.css" }}
+{{ $pageAside := resources.Get "css/components/page-aside.css" }}
+{{ $leadImage := resources.Get "css/components/lead-image.css" }}
+{{ $tag := resources.Get "css/components/tag.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $news $downloads $relevanteLinks $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $actueel $pageAside $leadImage $tag $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}

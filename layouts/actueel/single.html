@@ -1,35 +1,20 @@
 {{ define "main" }}
-{{- $hasLinks := .Params.relevante_links -}}
-<article class="news-article{{ if not $hasLinks }} article-layout{{ end }}">
+{{- /* Zonder zijbalk: één gecentreerde leeskolom (.article-layout). Mét zijbalk
+       (relevante links, downloads en/of inhoudsopgave) zorgt main:has(.page-aside)
+       voor de twee-koloms layout. Standaard geen inhoudsopgave bij een bericht;
+       zet 'toc: true' of 'download: true' in de front matter om die te tonen. */ -}}
+{{- $hasAside := or .Params.relevante_links (eq .Params.download true) (eq .Params.toc true) -}}
+<article{{ if not $hasAside }} class="article-layout"{{ end }}>
   <header>
     <h1>{{ .Title }}</h1>
     {{- with .Date }}
-    <p class="news-date">
+    <p class="tag">
       <time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
     </p>
     {{- end }}
   </header>
 
-  {{- with .Params.lead_image }}
-    {{- $img := $.Resources.GetMatch . }}
-    {{- with $img }}
-      {{- $small := .Resize "400x webp q80" }}
-      {{- $med := .Resize "800x webp q80" }}
-      {{- $large := .Resize "1153x webp q80" }}
-  <figure class="lead-image">
-    <img
-      src="{{ $med.RelPermalink }}"
-      srcset="{{ $small.RelPermalink }} 400w, {{ $med.RelPermalink }} 800w, {{ $large.RelPermalink }} 1153w"
-      sizes="(max-width: 800px) 100vw, 800px"
-      width="{{ $large.Width }}" height="{{ $large.Height }}"
-      alt="{{ $.Params.lead_image_alt }}"
-      loading="eager">
-    {{- with $.Params.lead_image_caption }}
-    <figcaption>{{ . }}</figcaption>
-    {{- end }}
-  </figure>
-    {{- end }}
-  {{- end }}
+  {{ partial "lead-image.html" . }}
 
   {{ .Content }}
 
@@ -38,5 +23,5 @@
     <p><a href="{{ "actueel/" | relURL }}">← Terug naar Actueel</a></p>
   </footer>
 </article>
-{{ partial "page-aside.html" (dict "page" . "showToc" false) }}
+{{ partial "page-aside.html" (dict "page" . "showToc" (eq .Params.toc true)) }}
 {{ end }}

@@ -34,6 +34,7 @@
     </button>
     {{- end -}}
   </header>
+  {{ partial "lead-image.html" . }}
   {{ .Content }}
   {{- if or .Params.show_lastmod (gt $navCount 1) -}}
   <footer>

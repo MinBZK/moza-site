@@ -1,0 +1,10 @@
+/* Klein label/tag (pill). Generiek: bv. een datum, status of categorie. */
+.tag {
+  display: inline-block;
+  margin: 0.25rem 0 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  background: var(--color-bg-light);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}

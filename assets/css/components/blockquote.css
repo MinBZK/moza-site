@@ -75,7 +75,6 @@ blockquote.callout {
   border-left: 4px solid var(--color-rijks-oranje);
 }
 
-/* Overschrijft de basis-blockquote (achtergrond/padding/radius). */
 .pull-quote blockquote {
   margin: 0;
   padding: 0;

@@ -14,14 +14,14 @@
       <article class="box">
         {{- with .Resources.GetMatch .Params.lead_image }}
         {{- $thumb := .Resize "600x webp q80" }}
-        <a class="news-box-image" href="{{ $page.RelPermalink }}">
+        <a class="box-image" href="{{ $page.RelPermalink }}">
           <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $page.Params.lead_image_alt }}" loading="lazy">
         </a>
         {{- end }}
         <header>
           <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
           {{- with .Date }}
-          <p class="news-date">
+          <p class="tag">
             <time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
           </p>
           {{- end }}

@@ -23,7 +23,6 @@ RUN if [ -n "$BASE_URL" ]; then \
       hugo --minify; \
     fi
 
-# Genereer de download bestanden (.odt via pandoc, .pdf via Chromium) ná de build
 RUN npm run render-downloads
 
 

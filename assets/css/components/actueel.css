@@ -1,0 +1,24 @@
+/* CSS voor de Actueel-overzichtspagina: de twee-koloms opbouw */
+
+.news-list {
+  margin-bottom: 2.5rem;
+}
+
+.sidebar-layout-right {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.sidebar-layout-right > aside :is(h1, h2) {
+  margin-top: 1rem;
+}
+
+.sidebar-layout-right > aside :is(h1, h2) a {
+  color: var(--color-text-heading);
+}

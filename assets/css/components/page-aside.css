@@ -1,0 +1,118 @@
+/* De rechterkolom bij tekstpagina's: inhoudsopgave, downloads en/of relevante links. */
+
+main:has(.page-aside) {
+  @media (min-width: 950px) {
+    max-width: var(--content-max-width);
+    display: grid;
+    grid-template-columns: var(--article-max-width) calc(
+        min(100vw, var(--content-max-width)) - var(--article-max-width) - 1rem
+      );
+    gap: 1rem;
+    margin: 0 auto;
+  }
+}
+
+.page-aside {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  padding-top: 1rem;
+  font-size: 1rem;
+}
+
+.toc + .downloads {
+  margin-top: 1.5rem;
+}
+
+.toc h2,
+.downloads h2,
+.relevante-links h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.toc ul,
+.downloads ul,
+.relevante-links ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc a,
+.downloads a,
+.relevante-links a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Inhoudsopgave: inklapbaar (de toggle-knop staat in de artikelkop) */
+.toc {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    max-height: 80vh;
+    overflow: visible;
+  }
+
+  ul ul {
+    padding-left: 0.5rem;
+  }
+
+  > ul > li {
+    margin-bottom: 0.5rem;
+  }
+
+  ul ul li {
+    margin-bottom: 0;
+  }
+
+  a.active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+}
+
+/* Downloadblok: bestandstype-icoon + label */
+.downloads li {
+  margin-bottom: 0.5rem;
+}
+
+.downloads a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.downloads svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Relevante links: pijl als opsommingsteken */
+.relevante-links li {
+  margin-bottom: 0.5rem;
+}
+
+.relevante-links a::before {
+  content: "→";
+  display: inline-block;
+  margin-right: 0.4em;
+}

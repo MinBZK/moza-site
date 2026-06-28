@@ -16,17 +16,24 @@
  *   node scripts/render-downloads.js [outputmap]   # standaard: public
  */
 
-import { readFileSync, existsSync } from "node:fs";
-import { join, resolve, extname, normalize } from "node:path";
+import { readFileSync, writeFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve, extname, normalize, delimiter } from "node:path";
 import { createServer } from "node:http";
 import { execFileSync } from "node:child_process";
 import puppeteer from "puppeteer";
+import { PDFDocument } from "pdf-lib";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || "public");
 const MANIFEST = join(OUTPUT_DIR, "download.json");
 // Pandoc-stijlsjabloon: Verdana 10pt, passende koppen, opgemaakte note. Zie
 // README.md in deze map voor hoe dit bestand is afgeleid van pandocs default.
 const REFERENCE_ODT = join(import.meta.dirname, "reference.odt");
+// Bronbestand van het logo. Hugo kopieert dit naar public/images, maar we lezen
+// de bron zodat het ook werkt zonder volledige build.
+const LOGO_SVG = join(
+  import.meta.dirname, "..", "..", "static", "images", "logo-rijksoverheid.svg"
+);
 
 // In CI of als root (container) heeft Chromium deze vlaggen nodig.
 const PUPPETEER_ARGS =
@@ -92,24 +99,107 @@ function checkPandoc() {
   }
 }
 
-function renderOdt(mdFile, odtOut, pageDir) {
-  const args = [mdFile, "--resource-path", pageDir];
-  if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
-  args.push("-o", odtOut);
-  execFileSync("pandoc", args, { stdio: "pipe" });
+// Documenttitel (H1) + bron-URL en beschrijving uit de front matter van de
+// gegenereerde index.md — voor onzichtbare documenteigenschappen in ODF en PDF.
+function parseDocMeta(mdFile) {
+  const raw = readFileSync(mdFile, "utf-8");
+  const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+  const fm = fmMatch ? fmMatch[1] : "";
+  const field = (key) => {
+    const m = fm.match(new RegExp(`^${key}:\\s*"?(.*?)"?\\s*$`, "m"));
+    return m ? m[1].trim() : "";
+  };
+  const titleMatch = raw.match(/^#\s+(.+?)\s*$/m);
+  return {
+    title: titleMatch ? titleMatch[1].trim() : "",
+    url: field("url"),
+    description: field("description"),
+  };
 }
 
-async function renderPdf(page, baseUrl, relPermalink, pdfOut) {
+function setOdtMetadata(odtOut, meta) {
+  if (!meta.title) return;
+  const esc = (s) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  let xml = execFileSync("unzip", ["-p", odtOut, "meta.xml"]).toString("utf-8");
+  const title = `<dc:title>${esc(meta.title)}</dc:title>`;
+  if (/<dc:title>\s*<\/dc:title>/.test(xml)) {
+    xml = xml.replace(/<dc:title>\s*<\/dc:title>/, title);
+  } else if (xml.includes("</office:meta>") && !xml.includes("<dc:title")) {
+    xml = xml.replace("</office:meta>", `${title}</office:meta>`);
+  } else {
+    return;
+  }
+  const tmp = mkdtempSync(join(tmpdir(), "odt-meta-"));
+  try {
+    writeFileSync(join(tmp, "meta.xml"), xml);
+    execFileSync("zip", ["-q", odtOut, "meta.xml"], {
+      cwd: tmp,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+function renderOdt(mdFile, odtOut, pageDir, meta) {
+  const args = [mdFile, "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
+  if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
+  args.push("-o", odtOut);
+  execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
+  setOdtMetadata(odtOut, meta);
+}
+
+let logoDataUri;
+function rijksoverheidLogoDataUri() {
+  if (!logoDataUri) {
+    const svg = readFileSync(LOGO_SVG);
+    logoDataUri = `data:image/svg+xml;base64,${svg.toString("base64")}`;
+  }
+  return logoDataUri;
+}
+
+// Schrijf documenteigenschappen (titel, beschrijving, url) in de PDF. De url is
+// de gepubliceerde pagina en komt in Keywords.
+async function setPdfMetadata(pdfOut, meta) {
+  const doc = await PDFDocument.load(readFileSync(pdfOut));
+  if (meta.title) doc.setTitle(meta.title);
+  if (meta.description) doc.setSubject(meta.description);
+  if (meta.url) doc.setKeywords([meta.url]);
+  doc.setCreator("MijnOverheid Zakelijk");
+  writeFileSync(pdfOut, await doc.save());
+}
+
+async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "light" },
   ]);
   await page.goto(baseUrl + relPermalink, { waitUntil: "networkidle0" });
+
+  // Verberg het losse print-logo (dat is voor browser-printen, Ctrl/Cmd-P); deze
+  // PDF heeft al een doorlopende logo-header via Puppeteer.
+  await page.evaluate(() => document.documentElement.classList.add("pdf-export"));
+
+  const headerTemplate = `
+    <div style="width:100%; margin:-6mm 0 6mm 0; text-align:center;">
+      <img src="${rijksoverheidLogoDataUri()}" style="height:23mm; width:auto;" alt="" />
+    </div>`;
+  // Alleen het paginanummer, gecentreerd onderaan (consistent met de ODF).
+  const footerTemplate = `
+    <div style="width:100%; margin:0; font-size:10pt; text-align:center; color:#1a1a1a;">
+      <span class="pageNumber"></span>
+    </div>`;
+
   await page.pdf({
     path: pdfOut,
     format: "A4",
     printBackground: true,
-    margin: { top: "20mm", bottom: "20mm", left: "18mm", right: "18mm" },
+    displayHeaderFooter: true,
+    headerTemplate,
+    footerTemplate,
+    margin: { top: "30mm", bottom: "20mm", left: "18mm", right: "18mm" },
   });
+  await setPdfMetadata(pdfOut, meta);
 }
 
 async function main() {
@@ -143,10 +233,11 @@ async function main() {
       const odtOut = join(pageDir, `${name}.odt`);
       const pdfOut = join(pageDir, `${name}.pdf`);
 
-      renderOdt(mdFile, odtOut, pageDir);
+      const docMeta = parseDocMeta(mdFile);
+      renderOdt(mdFile, odtOut, pageDir, docMeta);
       console.log(`  ✓ ${relPermalink}${name}.odt`);
 
-      await renderPdf(page, baseUrl, relPermalink, pdfOut);
+      await renderPdf(page, baseUrl, relPermalink, pdfOut, docMeta);
       console.log(`  ✓ ${relPermalink}${name}.pdf`);
     }
   } finally {

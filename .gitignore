@@ -13,6 +13,7 @@ tmp
 
 # Claude
 .claude/plans
+.claude/worktrees/
 .playwright-mcp
 .claude/settings.local*
 artifacts/

@@ -3,6 +3,11 @@
 Genereert downloadbestanden voor pagina's met `download: true` in de front matter.
 Draait ná de Hugo-build (zie `just build` en de Containerfile).
 
+> **Pandoc-versie:** de Containerfile pint pandoc op een vaste versie
+> (`ARG PANDOC_VERSION`). Gebruik lokaal dezelfde versie, zodat de ODT lokaal en
+> in productie identiek is. Pandoc-versies verschillen namelijk in hoe ze
+> blockquotes (onze note) opmaken.
+
 | Bestand | Rol |
 |---|---|
 | `render-downloads.js` | Leest `download.json` (manifest, door Hugo gegenereerd) en maakt per pagina een `.odt` (pandoc) en `.pdf` (Chromium drukt de HTML-pagina af). |

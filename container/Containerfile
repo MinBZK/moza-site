@@ -1,11 +1,15 @@
 FROM alpine:3.21 AS builder
 
 ARG HUGO_VERSION=0.163.1
+ARG PANDOC_VERSION=3.10
 
-RUN apk add --no-cache wget git nodejs npm chromium pandoc-cli zip unzip \
+RUN apk add --no-cache wget git nodejs npm chromium zip unzip \
     && wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz \
     && tar -xzf hugo.tar.gz -C /usr/local/bin \
-    && rm hugo.tar.gz
+    && rm hugo.tar.gz \
+    && wget -O pandoc.tar.gz https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
+    && tar -xzf pandoc.tar.gz --strip-components=2 -C /usr/local/bin pandoc-${PANDOC_VERSION}/bin/pandoc \
+    && rm pandoc.tar.gz
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser

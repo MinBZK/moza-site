@@ -1,10 +1,54 @@
 /* Afdrukstijl. Geldt voor "Afdrukken/Opslaan als PDF" in de browser én voor
    de PDF die scripts/render-downloads.js met Puppeteer genereert (die gebruikt
    standaard het print-medium). Doel: alleen de inhoud, geen site-omgeving. */
+
+.print-logo {
+  display: none;
+}
+
+@page {
+  size: A4;
+}
+
 @media print {
   /* Forceer lichte weergave, ook als de bezoeker donker thema gebruikt */
   :root {
     color-scheme: light !important;
+  }
+
+  /* Documentpassende koptekstgroottes; de webgroottes zijn voor het scherm. */
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Rijksoverheid-logo bovenaan bij browser-printen (Ctrl/Cmd-P). De gegenereerde PDF-download verbergt dit via
+     .pdf-export i.v.m. doorlopende logo-header via Puppeteer. */
+  .print-logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .print-logo img {
+    height: 20mm;
+    width: auto;
+  }
+
+  html.pdf-export .print-logo {
+    display: none !important;
+  }
+
+  /* Geen nav-ruimte boven de inhoud (die hoort bij de schermweergave). */
+  main {
+    padding-top: 0;
   }
 
   /* Verberg de site-omgeving; alleen het document hoort in de afdruk/PDF */

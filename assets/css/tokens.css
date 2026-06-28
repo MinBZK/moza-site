@@ -29,6 +29,14 @@
   /* Border kleur */
   --color-border: light-dark(#e2e8f0, #334155);
 
+  /* Menubalk */
+  --color-navbar-bg: var(--color-bg-page);
+  --color-navbar-text: var(--color-text-heading);
+  --color-navbar-border: var(--color-border);
+  --color-navbar-control-border: var(--color-border);
+  --color-navbar-control-hover-bg: var(--color-bg-muted);
+  --color-navbar-focus: var(--color-primary);
+
   /* Highlight kleur voor zoekresultaten */
   --color-highlight: var(--color-bg-info);
   --color-highlight-text: inherit;

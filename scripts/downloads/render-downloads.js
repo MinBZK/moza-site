@@ -142,11 +142,38 @@ function setOdtMetadata(odtOut, meta) {
   }
 }
 
+function flattenOdtQuotations(odtOut) {
+  let xml = execFileSync("unzip", ["-p", odtOut, "content.xml"]).toString("utf-8");
+  let changed = false;
+  xml = xml.replace(
+    /<style:style\b[^>]*style:parent-style-name="Quotations"[^>]*>[\s\S]*?<\/style:style>/g,
+    (block) => {
+      const fixed = block
+        .replace(/fo:margin-left="[^"]*"/g, 'fo:margin-left="0in"')
+        .replace(/fo:text-indent="[^"]*"/g, 'fo:text-indent="0in"');
+      if (fixed !== block) changed = true;
+      return fixed;
+    }
+  );
+  if (!changed) return;
+  const tmp = mkdtempSync(join(tmpdir(), "odt-quote-"));
+  try {
+    writeFileSync(join(tmp, "content.xml"), xml);
+    execFileSync("zip", ["-q", odtOut, "content.xml"], {
+      cwd: tmp,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 function renderOdt(mdFile, odtOut, pageDir, meta) {
   const args = [mdFile, "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
   if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
   args.push("-o", odtOut);
   execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
+  flattenOdtQuotations(odtOut);
   setOdtMetadata(odtOut, meta);
 }
 

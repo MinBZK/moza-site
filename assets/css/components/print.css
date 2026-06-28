@@ -2,10 +2,6 @@
    de PDF die scripts/render-downloads.js met Puppeteer genereert (die gebruikt
    standaard het print-medium). Doel: alleen de inhoud, geen site-omgeving. */
 
-.print-logo {
-  display: none;
-}
-
 @page {
   size: A4;
 }
@@ -29,20 +25,15 @@
     font-size: 1.2rem;
   }
 
-  /* Rijksoverheid-logo bovenaan bij browser-printen (Ctrl/Cmd-P). De gegenereerde PDF-download verbergt dit via
-     .pdf-export i.v.m. doorlopende logo-header via Puppeteer. */
-  .print-logo {
-    display: block;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .print-logo img {
+  /* Briefhoofd bij browser-printen (Ctrl/Cmd-P): hergebruik de sitebanner (titel + payoff links, logo gecentreerd).
+     We verbergen de navigatie. De download-PDF (.pdf-export) verbergt de hele header, want die heeft al een
+     doorlopende logo-header via Puppeteer. */
+  header .site-logo img {
     height: 20mm;
     width: auto;
   }
 
-  html.pdf-export .print-logo {
+  html.pdf-export body > header {
     display: none !important;
   }
 
@@ -51,9 +42,10 @@
     padding-top: 0;
   }
 
-  /* Verberg de site-omgeving; alleen het document hoort in de afdruk/PDF */
+  /* Verberg de site-omgeving (navigatie, footer, zijbalk); alleen het document
+     en het briefhoofd horen in de afdruk/PDF. */
   .skip-link,
-  body > header,
+  body > header > *:not(.banner),
   body > footer,
   .page-aside,
   .toc-toggle,

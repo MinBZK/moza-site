@@ -5,9 +5,6 @@
   </head>
   <body>
     <a href="#main-content" class="skip-link">Ga naar de inhoud</a>
-    <div class="print-logo">
-      <img src="{{ relURL "images/logo-rijksoverheid.svg" }}" alt="Logo Rijksoverheid" />
-    </div>
     {{ partial "header.html" . }}
     <main id="main-content">
       {{- block "main" . }}{{ end -}}

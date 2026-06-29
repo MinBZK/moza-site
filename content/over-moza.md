@@ -58,17 +58,13 @@ Er is een onderscheid tussen onderdelen die wel reeds in ontwikkeling zijn; en z
 
 We (door-) ontwikkelen **digitale bouwstenen** die samen de "snelwegen" vormen voor zakelijke dienstverlening. Op dit moment zijn dat de volgende:
 
-#### **Profielservice** - [Profielservice | MijnOverheid Zakelijk](https://mijnoverheidzakelijk.nl/onderwerpen/profielservice/)
+#### **Profielservice** - [Profielservice | MijnOverheid Zakelijk](/onderwerpen/profielservice/)
 
 Beheer contactgegevens en voorkeuren op één plek.
 
 #### **Notificatie Management Component**
 
 Onderdeel van de notificatie dienst. De regisseur die van een centrale plek ervoor zorgt dat dat de notificatie dienst gebruikt kan worden.
-
-#### **Actualiteitenservice**
-
-Overzicht van wetgeving, subsidies en lokale updates; welke we ophalen uit verschillende bronnen.
 
 #### **Verificatieservice**
 
@@ -78,11 +74,11 @@ Verifiëren van ingestelde contactgegevens - om dit moment geschikt voor email.
 
 We onderzoeken verschillende onderwerpen die we vanuit MOZa identificeren als belangrijke onderdelen in de opzet:
 
-#### **Berichtendienst -&#x20;**[Berichten/FBS | MijnOverheid Zakelijk](https://mijnoverheidzakelijk.nl/onderwerpen/berichten-fbs/)
+#### **Berichtendienst -&#x20;**[Berichten/FBS | MijnOverheid Zakelijk](/onderwerpen/berichten-fbs/)
 
 Hoe kan de berichtendienst ingericht worden binnen een federatief berichtenstelsel. Uitgangspunt daarbij dat er géén centrale plek is waar alle berichten worden opgeslagen, maar elke (overheids)organisatie zijn eigen berichten beheert. Het stelsel zorgt ervoor dat de ondernemer ze altijd op één plek kan vinden.
 
-#### **Digitale Assistent -** [Digitale Assistent | MijnOverheid Zakelijk](https://mijnoverheidzakelijk.nl/onderwerpen/digitale-assistent/)
+#### **Digitale Assistent -** [Digitale Assistent | MijnOverheid Zakelijk](/onderwerpen/digitale-assistent/)
 
 Het nuttig en goed inzetten van een digitale assistent; denk hierbij aan het helpen bij aanvragen van bv subsidies, interacteren op informatie(bronnen)
 
@@ -100,7 +96,7 @@ We kijken verder of we met meer databronnen kunnen koppelen. De eerste voorbeeld
 
 ### Onderzocht
 
-#### **Actualiteitenservice** [Actualiteitenservice | MijnOverheid Zakelijk]((https://mijnoverheidzakelijk.nl/onderwerpen/actualiteitenservice/)
+#### **Actualiteitenservice** [Actualiteitenservice | MijnOverheid Zakelijk](/onderwerpen/actualiteitenservice/)
 
 De actualiteitenservice stelt ondernemers in staat om de voor hen relevante informatie te zien, afkomstig uit verschillende overheidsbronnen. Denk aan nieuwe wetten, subsidies of lokale ontwikkelingen
 

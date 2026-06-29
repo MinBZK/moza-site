@@ -10,7 +10,7 @@
   "devDependencies": {
     "@iconify-json/tabler": "^1",
     "mermaid": "^11",
-    "puppeteer": "^23"
+    "puppeteer": "^25"
   },
   "dependencies": {
     "pdf-lib": "^1.17.1"

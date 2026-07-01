@@ -1,0 +1,437 @@
+{%- macro render_post(post, is_reply) -%}
+  <article class="post
+    {% if is_reply %}post--reply{% endif %}
+    {% if not post.in_scope and not post.context_only %}post--out-of-scope{% endif %}
+    {% if post.context_only %}post--context{% endif %}">
+    <header class="post-meta">
+      <span class="post-author">{{ post.author.display_name }}</span>
+      <time class="post-time" datetime="{{ post.timestamp }}">{{ format_dt(post.timestamp) }}</time>
+      <a class="post-permalink" href="{{ post.permalink }}" target="_blank" rel="noopener">↗ Mattermost</a>
+      {% if post.edited %}<span class="badge badge--edited">bewerkt</span>{% endif %}
+      {% if post.bot %}<span class="badge badge--bot">bot</span>{% endif %}
+    </header>
+    <div class="post-body">{{ render_markdown(post.message) }}</div>
+    {% if post.attachments %}
+      <ul class="post-attachments">
+        {% for a in post.attachments %}<li>{{ a.filename }} ({{ format_size(a.size_bytes) }})</li>{% endfor %}
+      </ul>
+    {% endif %}
+  </article>
+{%- endmacro -%}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOZa Weekly Input — {{ period_label }}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/4.1.1/inter.css">
+<style>
+  * { box-sizing: border-box; }
+
+  /* NLDD design tokens — bron: github.com/MinBZK/storybook */
+  :root {
+    --nldd-success-500: #38860A;
+    --nldd-success-100: #CFE3C9;
+    --nldd-success-800: #24411A;
+    --nldd-info-100: #CAE0F4;
+    --nldd-info-700: #19507C;
+    --nldd-critical-500: #DD3426;
+    --nldd-neutral-100: #D9DEE5;
+    --nldd-neutral-700: #454E5B;
+    --nldd-accent-700: #224F81;
+    --nldd-accent-800: #163B63;
+
+    /* Specifiek voor dit rapport */
+    --bg: #f3f4f6;
+    --card-bg: #ffffff;
+    --card-border-radius: 14px;
+    --context-bg: #f3f4f6;
+    --context-text: #6b7280;
+    --context-border: #d1d5db;
+    --reply-indent: 24px;
+    --post-border: #f3f4f6;
+  }
+
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    background: var(--bg);
+    margin: 0;
+    padding: 24px;
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+  }
+
+  /* Header — drie kolommen: titel + meta + rijkslogo (identiek statusrapport) */
+  .header {
+    background: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    padding: 0 32px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .header-title {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .header-brand { flex-shrink: 0; }
+  .header-brand svg { width: 50px; height: 100px; display: block; }
+  .header h1 { margin: 0 0 6px 0; font-size: 1.75rem; color: #111827; font-weight: 700; }
+  .header .subtitle {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1rem;
+    transform: translateY(2px);
+  }
+  .header-meta {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 4px;
+    color: #6b7280;
+    font-size: 0.875rem;
+    padding-bottom: 4px;
+  }
+  .header-meta strong { color: #111827; font-size: 1rem; }
+
+  /* Tabs — CSS-only via radio + checked ~ sibling.
+   * Tabs + panels zitten samen in één witte card zodat de actieve tab visueel
+   * doorvloeit naar het panel eronder (pattern: statusrapport-card). */
+  .tabs {
+    background: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .tabs input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+  }
+  .tab-label {
+    cursor: pointer;
+    padding: 14px 18px 12px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #6b7280;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-label:hover { color: var(--nldd-accent-700); }
+  .tab-label:focus-visible {
+    outline: 2px solid var(--nldd-accent-700);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .tab-panel { display: none; }
+  {# Per-channel CSS-only tab activation: gegenereerd door Jinja #}
+  {% for ch in channels %}
+  #{{ ch.tab_id }}:checked ~ .tab-bar label[for="{{ ch.tab_id }}"] {
+    color: var(--nldd-accent-700);
+    border-bottom-color: var(--nldd-accent-700);
+  }
+  #{{ ch.tab_id }}:checked ~ .tab-panels [data-tab="{{ ch.name }}"] { display: block; }
+  {% endfor %}
+
+  /* Channel-card — geen eigen card-styling want zit in .tabs-card */
+  .channel-card {
+    background: transparent;
+    padding: 24px;
+  }
+  .channel-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .channel-meta a {
+    color: var(--nldd-accent-700);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  .channel-meta a:hover { text-decoration: underline; }
+  .channel-empty {
+    color: #6b7280;
+    font-style: italic;
+    padding: 24px 0;
+    text-align: center;
+  }
+  .channel-error {
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid var(--nldd-critical-500);
+    font-size: 0.9375rem;
+  }
+
+  /* Thread */
+  .thread {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--post-border);
+  }
+  .thread:last-child { border-bottom: none; }
+
+  /* Post — basis */
+  .post {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  .post + .post { margin-top: 8px; }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .post-author {
+    font-weight: 600;
+    color: #111827;
+  }
+  .post-time { color: #6b7280; }
+  .post-permalink {
+    color: var(--nldd-accent-700);
+    text-decoration: none;
+    font-size: 0.75rem;
+  }
+  .post-permalink:hover { text-decoration: underline; }
+  .post-body {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #1f2937;
+  }
+  .post-body p { margin: 0 0 8px 0; }
+  .post-body p:last-child { margin-bottom: 0; }
+  .post-body ul, .post-body ol { margin: 4px 0 8px 24px; padding: 0; }
+  .post-body li { margin-bottom: 2px; }
+  .post-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #f3f4f6;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.875em;
+  }
+  .post-body pre {
+    background: #f3f4f6;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+  .post-body pre code { background: transparent; padding: 0; }
+  .post-body a { color: var(--nldd-accent-700); }
+  .post-body blockquote {
+    margin: 0 0 8px 0;
+    padding: 4px 12px;
+    border-left: 3px solid var(--nldd-neutral-100);
+    color: #6b7280;
+  }
+  .mention {
+    background: var(--nldd-info-100);
+    color: var(--nldd-info-700);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+
+  /* Post-varianten */
+  .post--reply {
+    margin-left: var(--reply-indent);
+    border-left: 2px solid var(--nldd-neutral-100);
+    padding-left: 16px;
+    background: #fafbfc;
+  }
+  .post--context {
+    background: var(--context-bg);
+    color: var(--context-text);
+    border: 1px dashed var(--context-border);
+  }
+  .post--context .post-body { opacity: 0.85; }
+  .post--context::before {
+    content: "Buiten periode — context";
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--nldd-info-700);
+    background: var(--nldd-info-100);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .post--out-of-scope {
+    opacity: 0.7;
+    border-color: var(--context-border);
+  }
+  .post--out-of-scope::before {
+    content: "Buiten periode";
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--nldd-neutral-700);
+    background: var(--nldd-neutral-100);
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  /* Badges */
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .badge--bot { background: var(--nldd-info-100); color: var(--nldd-info-700); }
+  .badge--edited { background: var(--nldd-neutral-100); color: var(--nldd-neutral-700); }
+
+  .post-attachments {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    font-size: 0.8125rem;
+    color: #6b7280;
+  }
+  .post-attachments li::before {
+    content: "📎 ";
+    margin-right: 4px;
+  }
+
+  /* Print */
+  @media print {
+    body { padding: 0; background: white; }
+    .tab-panel { display: block !important; page-break-before: always; }
+    .tab-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="header-title">
+        <h1>MOZa Weekly Input</h1>
+        <p class="subtitle">Mattermost-samenvatting · {{ period_label }}</p>
+      </div>
+      <div class="header-brand" aria-hidden="true">
+        {% include "_rijkslogo.svg" %}
+      </div>
+      <div class="header-meta">
+        <div><strong>{{ stats.posts_in_period }}</strong> posts</div>
+        <div><strong>{{ stats.unique_authors }}</strong> auteurs</div>
+        <div><strong>{{ stats.channels }}</strong> kanalen</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      {% for ch in channels %}
+        <input type="radio" name="moza-tab" id="{{ ch.tab_id }}" {% if loop.first %}checked{% endif %}>
+      {% endfor %}
+
+      <div class="tab-bar" role="tablist">
+        {% for ch in channels %}
+          <label for="{{ ch.tab_id }}" class="tab-label" role="tab"
+                 tabindex="0"
+                 aria-controls="panel-{{ ch.name }}"
+                 aria-selected="{{ 'true' if loop.first else 'false' }}"># {{ ch.name }}</label>
+        {% endfor %}
+      </div>
+
+      <div class="tab-panels">
+        {% for ch in channels %}
+          <section class="tab-panel"
+                   id="panel-{{ ch.name }}"
+                   data-tab="{{ ch.name }}"
+                   role="tabpanel"
+                   aria-labelledby="{{ ch.tab_id }}">
+            <div class="channel-card">
+              <div class="channel-meta">
+                <h2 style="margin:0;font-size:1.0625rem;font-weight:600;color:#111827;"># {{ ch.name }}</h2>
+                <a href="{{ ch.url }}" target="_blank" rel="noopener">Open in Mattermost ↗</a>
+              </div>
+
+              {% if ch.error %}
+                <div class="channel-error">⚠ Fout bij ophalen: {{ ch.error }}</div>
+              {% elif not ch.threads %}
+                <div class="channel-empty">{{ ch.note or "Geen posts binnen periode." }}</div>
+              {% else %}
+                {% for th in ch.threads %}
+                  <div class="thread">
+                    {{ render_post(th.root, is_reply=False) }}
+                    {% for reply in th.replies %}
+                      {{ render_post(reply, is_reply=True) }}
+                    {% endfor %}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ARIA-tab keyboard-navigatie. Bij JS uit: CSS-only labels werken nog steeds via klikken.
+    (function () {
+      const labels = document.querySelectorAll('.tab-bar [role="tab"]');
+      const radios = document.querySelectorAll('.tabs input[type="radio"]');
+
+      function syncAria() {
+        radios.forEach((radio, i) => {
+          labels[i] && labels[i].setAttribute('aria-selected', radio.checked ? 'true' : 'false');
+        });
+      }
+
+      labels.forEach((label, i) => {
+        label.addEventListener('click', syncAria);
+        label.addEventListener('keydown', (e) => {
+          let target = null;
+          if (e.key === 'ArrowRight') target = labels[(i + 1) % labels.length];
+          else if (e.key === 'ArrowLeft') target = labels[(i - 1 + labels.length) % labels.length];
+          else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); radios[i].checked = true; syncAria(); return; }
+          if (target) { e.preventDefault(); target.focus(); target.click(); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -7,14 +7,14 @@ De site wordt gegenereerd met [Hugo](https://gohugo.io/).
 
 ### Vereisten 
 
-Installeer Hugo, just en Node.js:
+Installeer Hugo, just, Node.js en uv:
 
 ```bash
 # macOS
-brew install hugo just node
+brew install hugo just node uv
 ```
 
-Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/), [just](https://just.systems/man/en/) en [Node.js](https://nodejs.org/).
+Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/), [just](https://just.systems/man/en/), [Node.js](https://nodejs.org/) en [uv](https://docs.astral.sh/uv/). `uv` is nodig voor de Python-scripts die Mattermost-input voor de Weekly ophalen.
 
 Installeer daarna de Node dependencies (eenmalig):
 
@@ -47,6 +47,8 @@ hugo new content weekly/2026/2026-01-01.md
 ```
 
 Of door een bestand in de juiste `content > weekly > jjjj` map te plaatsen.
+
+Voor het ophalen van Mattermost-input als basis voor een Weekly, zie [`scripts/moza-weekly/README.md`](scripts/moza-weekly/README.md).
 
 ### Presentatie
 

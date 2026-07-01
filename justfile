@@ -49,6 +49,31 @@ pre-commit:
 clean:
     rm -rf public static/images/render .cache
 
+# Haal Mattermost-input op voor MOZa Weekly, schrijf geanonimiseerde JSON voor
+# LLM-input, en render HTML-rapport. Vereist MATTERMOST_TOKEN in env;
+# zie scripts/moza-weekly/README.md.
+moza-weekly *FLAGS:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    uv run scripts/moza-weekly/fetch.py {{FLAGS}}
+    YAML=tmp/moza-weekly/$(date +%Y-%m-%d).yaml
+    uv run scripts/moza-weekly/anonymize.py "$YAML"
+    uv run scripts/moza-weekly/render.py "$YAML"
+
+# Alleen HTML opnieuw renderen (na handmatige YAML-bewerking)
+moza-weekly-render YAML:
+    uv run scripts/moza-weekly/render.py {{YAML}}
+
+# Alleen geanonimiseerde JSON regenereren (na handmatige YAML-bewerking)
+moza-weekly-anonymize YAML:
+    uv run scripts/moza-weekly/anonymize.py {{YAML}}
+
+# Draai de unit-tests van de moza-weekly-scripts
+moza-weekly-test:
+    uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py \
+        --with httpx --with tenacity \
+        pytest scripts/moza-weekly/tests/ -q
+
 # Bouw container image
 cbuild:
     podman build -t {{image}} -f container/Containerfile .

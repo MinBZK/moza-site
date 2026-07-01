@@ -11,6 +11,14 @@ resources
 tmp
 .hugo_build.lock
 
+# Secrets / environment
+.env
+.env.local
+
+# Python (moza-weekly script)
+__pycache__/
+*.pyc
+
 # Claude
 .claude/plans
 .claude/worktrees/

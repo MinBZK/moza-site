@@ -14,6 +14,9 @@ IgnoreURLs:
   - realisatieibds.pleio.nl
   - docs.rijksapp.nl
   - fmis.belastingdienst.nl
+  # Ephemere PR-preview-omgevingen (verdwijnen zodra de PR sluit); links in
+  # weeklies zijn bewust tijdelijk, dus niet als broken link laten falen.
+  - rig.prd1.gn2.quattro.rijksapps.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

@@ -37,6 +37,15 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Test moza-weekly scripts
+        run: >
+          uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py
+          --with httpx --with tenacity
+          pytest scripts/moza-weekly/tests/ -q
+
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
 

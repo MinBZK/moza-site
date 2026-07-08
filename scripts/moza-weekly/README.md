@@ -2,7 +2,7 @@
 
 Drie-staps Python-pipeline die input verzamelt voor de wekelijkse MOZa Weekly-publicatie.
 
-1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`) en schrijft een gestructureerd YAML-bestand.
+1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`, `sprint-faq`) en schrijft een gestructureerd YAML-bestand.
 2. **`anonymize.py`** schrijft een geanonimiseerde JSON-variant van die YAML — bedoeld als veilige LLM-input voor de MOZa Weekly skill.
 3. **`render.py`** rendert het YAML-bestand naar een single-file HTML-rapport in de nldd-stijl (voor menselijke lezers).
 

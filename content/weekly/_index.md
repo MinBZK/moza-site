@@ -7,6 +7,8 @@ outputs:
   - llms
   - llmsfull
   - llmsrecent
+cascade:
+  download: true
 ---
 
 Wil je updates ontvangen? Gebruik de [RSS feed](index.xml).

@@ -1,0 +1,47 @@
+{{- /*
+  Schoont RawContent op en herschrijft interne links naar hun .md-variant.
+  Aanroepen met de oorsprongpagina als context (niet met een string): .GetPage
+  resolvet relatieve paden t.o.v. die pagina.
+*/ -}}
+{{- $p := . -}}
+{{- $content := .RawContent -}}
+
+{{- $content = replaceRE `\{\{<[^>]+>\}\}` "" $content -}}
+{{- $content = replaceRE `\{\{%[^%]+%\}\}` "" $content -}}
+{{- $content = replaceRE `>\s*\[!(NOTE|WARNING|TIP|IMPORTANT|INFO|CAUTION)\]` "" $content -}}
+
+{{- /* findRESubmatch-groepen: 0=geheel, 1='!', 2=tekst, 3=doel */ -}}
+{{- range findRESubmatch `(!?)\[([^\]]*)\]\(([^)\s]+)\)` $content -}}
+  {{- $whole := index . 0 -}}
+  {{- $text := index . 2 -}}
+  {{- $dest := index . 3 -}}
+  {{- if eq (index . 1) "!" }}{{ continue }}{{ end -}}
+  {{- if hasPrefix $dest "<" }}{{ continue }}{{ end -}}
+  {{- $u := urls.Parse $dest -}}
+  {{- if or $u.IsAbs (hasPrefix $dest "#") (hasPrefix $dest "//") (hasPrefix $dest "mailto:") (hasPrefix $dest "tel:") (not $u.Path) }}{{ continue }}{{ end -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- $new := "" -}}
+  {{- $target := $p.GetPage $path -}}
+  {{- with $target -}}
+    {{- $isMd := false -}}
+    {{- with .File }}{{ if eq .Ext "md" }}{{ $isMd = true }}{{ end }}{{ end -}}
+    {{- $mdOut := .OutputFormats.Get "markdown" -}}
+    {{- if and $isMd $mdOut -}}
+      {{- $new = $mdOut.RelPermalink -}}
+    {{- else -}}
+      {{- $new = .RelPermalink -}}
+    {{- end -}}
+  {{- else -}}
+    {{- with or ($p.Resources.Get $path) (resources.Get $path) -}}
+      {{- $new = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $new -}}
+    {{- with $u.RawQuery }}{{ $new = printf "%s?%s" $new . }}{{ end -}}
+    {{- with $u.Fragment }}{{ $new = printf "%s#%s" $new . }}{{ end -}}
+    {{- $content = replace $content $whole (printf "[%s](%s)" $text $new) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $content = replaceRE `\n{3,}` "\n\n" $content -}}
+{{- return ($content | strings.TrimSpace | safeHTML) -}}

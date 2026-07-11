@@ -12,7 +12,7 @@
 
 ## {{ .Title }}
 
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -21,7 +21,7 @@
 
 ## {{ .Title }}
 
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 
 # Handboek
@@ -31,7 +31,7 @@ Interne documentatie voor het MOZa team.
 
 ## {{ .Title }}
 
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 
 # Weekly Updates
@@ -41,7 +41,7 @@ De laatste 10 updates. Voor alle updates, zie [/weekly/llms-full.txt](/weekly/ll
 
 ## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
 
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 
 ---

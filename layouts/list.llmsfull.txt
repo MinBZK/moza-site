@@ -3,8 +3,8 @@
 {{ with .Description }}
 > {{ . }}
 {{ end }}
-{{- with .RawContent -}}
-{{ partial "clean-markdown" . }}
+{{- if .RawContent -}}
+{{ partial "markdown-body" . }}
 {{ end -}}
 {{- range .Pages.ByWeight }}
 
@@ -12,7 +12,7 @@
 {{ with .Description }}
 > {{ . }}
 {{ end }}
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 
 ---

@@ -13,7 +13,7 @@
 
 ## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
 
-{{ partial "clean-markdown" .RawContent }}
+{{ partial "markdown-body" . }}
 {{- end }}
 
 ---

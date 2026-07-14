@@ -1,10 +1,9 @@
 ---
 title: "Actualiteitenservice"
 description: "De Actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
+status: "Gepauzeerd"
 weight: 8
 ---
-
-## Status: Gepauzeerd
 
 ## Huidige uitdaging
 
@@ -160,12 +159,12 @@ Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken i
 
 ## Vervolgstappen
 
-Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/?q=gebruikers#gebruikersonderzoek:~:text=aan%20de%20profielservice.-,Gebruikersonderzoek,-Twee%20onderzoeksdagen%3A) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
+Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikersonderzoek) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
 
 Daarom is op dit moment op basis van de huidige inzichten ervoor gekozen om de verdere ontwikkeling op de actualiteitenservice te pauzeren.
 
 ## **Meedoen**
-De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Daarmee; heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen,  [praat met ons mee!](https://mijnoverheidzakelijk.nl/contact/)
+De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Daarmee; heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen,  [praat met ons mee!](/contact/)
 
 ## **Meer info**
 

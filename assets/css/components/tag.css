@@ -8,3 +8,7 @@
   color: var(--color-text);
   font-weight: 600;
 }
+
+.tag-status {
+  background: var(--color-bg-info);
+}

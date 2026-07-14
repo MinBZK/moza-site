@@ -53,8 +53,6 @@ graph LR
 ```
 Je logt in met eHerkenning of een Europees inlogmiddel (eIDAS), stelt je actualiteitenprofiel in met de relevante filterkenmerken en bekijkt de informatie-berichten die voor jou relevant zijn. Daarnaast ontvang je proactieve signalen over nieuwe ontwikkelingen.
 
-***
-
 ### Filterkenmerken
 
 De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hieronder een *illustratief* overzicht van de kenmerken waarop gefilterd kan worden:
@@ -66,8 +64,6 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 | **Bedrijfsgrootte** | ZZP, MKB (1-50), Middelgroot (50-250), Groot (250+)                        | Bepaalt welke regelgeving van toepassing is.              |
 | **Onderwerpen**     | Subsidies, Wetgeving, Ruimtelijke ordening, Milieu, Financieel, Veiligheid | Stel in welke onderwerpen je wilt volgen.                 |
 | **Urgentie**        | Laag, Medium, Hoog, Kritiek                                                | Filter op belangrijkheid van informatie-berichten         |
-
-***
 
 ### Proactieve signalen
 
@@ -86,8 +82,6 @@ graph LR
 ```
 
 Wanneer een nieuw informatie-bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal naar de relevante ondernemers met over deze informatie. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen.
-
-***
 
 ## Hoe kan dit werken overheidsorganisaties?
 
@@ -113,8 +107,6 @@ graph LR
 
 
 Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectiviteit (FSC) en Federatieve Toegangsverlening (FTV). Vervolgens publiceren zij informatie-berichten met gestructureerde metadata. De actualiteitenservice zorgt voor automatische distributie naar de relevante ondernemers.
-
-***
 
 ### Filterkenmerken
 
@@ -163,10 +155,11 @@ Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikerson
 
 Daarom is op dit moment op basis van de huidige inzichten ervoor gekozen om de verdere ontwikkeling op de actualiteitenservice te pauzeren.
 
-## **Meedoen**
+## Meedoen
+
 De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Daarmee; heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen,  [praat met ons mee!](/contact/)
 
-## **Meer info**
+## Meer info
 
 * [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-actualiteiten-service)
 

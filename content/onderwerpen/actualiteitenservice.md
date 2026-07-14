@@ -1,6 +1,6 @@
 ---
 title: "Actualiteitenservice"
-description: "De Actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
+description: "De actualiteitenservice filtert en deelt relevante overheidsinformatie met ondernemers op basis van hun profiel, zodat zij geen belangrijke updates missen."
 status: "Gepauzeerd"
 weight: 8
 ---
@@ -9,17 +9,19 @@ weight: 8
 
 Ondernemers krijgen overheidsinformatie op allerlei manieren en van verschillende kanten. Omdat er geen centrale plek is waar alles samenkomt, moeten ze zelf overal zoeken, inloggen en filteren. Daardoor missen ze soms belangrijke berichten, lopen ze subsidies mis of voldoen ze per ongeluk niet aan verplichtingen.
 
-## Wat is de Actualiteitenservice?
+## Wat is de actualiteitenservice?
 
-De actualiteitenservice stelt ondernemers in staat om de voor hen relevante informatie te zien, afkomstig uit verschillende overheidsbronnen. Denk aan nieuwe wetten, subsidies of lokale ontwikkelingen. De actualiteitenservice filtert deze informatie op basis van verschillende kenmerken, zoals branche, locatie of bedrijfsgrootte, en zorgt er zo voor dat de informatie zo relevant mogelijk is. De kenmerken waarop gefilterd wordt, worden waar mogelijk vooraf ingevuld, maar ondernemers kunnen deze altijd zelf aanpassen. Daarnaast biedt de actualiteitenservice de mogelijkheid om proactief een signaal te ontvangen over nieuwe ontwikkelingen.
+De actualiteitenservice laat ondernemers de informatie zien die voor hen relevant is. Die informatie komt uit verschillende overheidsbronnen. Denk aan nieuwe wetten, subsidies of lokale ontwikkelingen.
+
+De service filtert die informatie op kenmerken als branche, locatie of bedrijfsgrootte. Waar het kan vullen we die kenmerken vooraf in, maar ondernemers passen ze altijd zelf aan. Wie dat wil, krijgt daarnaast automatisch een signaal bij nieuwe ontwikkelingen.
 
 ## De oplossing
 
-Hieronder lichten we de belangrijkste uitgangspunten van de actualiteitenservice toe en hoe deze werkt voor ondernemers en overheidsorganisaties.
+Hieronder lichten we de belangrijkste uitgangspunten van de actualiteitenservice toe. We beschrijven ook hoe de service werkt voor ondernemers en voor overheidsorganisaties.
 
 ### Gegevens
 
-De actualiteitenservice werkt met **informatie-berichten** en **filterkenmerken**. In de ideale opzet koppelt een dienstverlener zijn informatie-bericht aan een of meerdere filterkenmerken, zodat het informatie-bericht alleen getoond wordt aan de relevante ondernemers op een specifiek hiervoor opgestelde inbox.
+De actualiteitenservice werkt met **informatie-berichten** en **filterkenmerken**. In de ideale opzet koppelt een dienstverlener elk informatie-bericht aan een of meer filterkenmerken. Zo komt een bericht alleen terecht bij de ondernemers voor wie het relevant is, in een inbox die daar speciaal voor bedoeld is.
 
 * **Informatie-bericht**: de informatie die een overheidsorganisatie wil delen, zoals een nieuwe wet, subsidie of lokale ontwikkeling.
 
@@ -63,7 +65,7 @@ De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hierond
 | **Locatie**         | Gemeente, Provincie, Landelijk, EU-wijd                                    | Filtert op regionale regelgeving en subsidies.            |
 | **Bedrijfsgrootte** | ZZP, MKB (1-50), Middelgroot (50-250), Groot (250+)                        | Bepaalt welke regelgeving van toepassing is.              |
 | **Onderwerpen**     | Subsidies, Wetgeving, Ruimtelijke ordening, Milieu, Financieel, Veiligheid | Stel in welke onderwerpen je wilt volgen.                 |
-| **Urgentie**        | Laag, Medium, Hoog, Kritiek                                                | Filter op belangrijkheid van informatie-berichten         |
+| **Urgentie**        | Laag, Medium, Hoog, Kritiek                                                | Filter op belangrijkheid van informatie-berichten.        |
 
 ### Proactieve signalen
 
@@ -85,7 +87,7 @@ Wanneer een nieuw informatie-bericht wordt gepubliceerd door een dienstverlener,
 
 ## Hoe werkt dit voor overheidsorganisaties?
 
-Hieronder wordt beschreven hoe dit dan zou kunnen werken vanuit een overheidsorganisatieperspectief. Let wel - in de proefopstelling die is gerealiseerd zijn niet al deze principes toegepast. Tevens zijn er ook meerdere mogelijkheden om dit principe vorm te geven; hieronder is daarmee één van de uitwerkingen toegelicht.
+Hieronder lees je hoe dit kan werken voor een overheidsorganisatie. Let op: in de proefopstelling die we gebouwd hebben, passen we nog niet al deze principes toe. Er zijn ook meerdere manieren om dit vorm te geven. Wat je hieronder ziet, is dus één van de mogelijke uitwerkingen.
 
 ### Publicatieproces
 
@@ -104,28 +106,28 @@ graph LR
   A --> B --> C
 ```
 
-Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectiviteit (FSC) en Federatieve Toegangsverlening (FTV). Vervolgens publiceren zij informatie-berichten met gestructureerde metadata. De actualiteitenservice zorgt voor automatische distributie naar de relevante ondernemers.
+Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectiviteit (FSC) en Federatieve Toegangsverlening (FTV). Daarna publiceren zij hun informatie-berichten. Bij elk bericht geven ze de filterkenmerken mee in een vast formaat, zodat de service ze automatisch kan verwerken. De actualiteitenservice zorgt vervolgens voor de distributie naar de relevante ondernemers.
 
 ### Filterkenmerken
 
 Elk informatie-bericht moet voorzien zijn van gestructureerde filterkenmerken voor optimale filtering. Hieronder een voorbeeld van verschillende kenmerken.
 
-| Filterkenmerken     | **Voorbeeldwaarden**                      | **Verplicht?** | **Toelichting**                             |
-| ------------------- | ----------------------------------------- | -------------- | ------------------------------------------- |
+| **Filterkenmerk**   | **Voorbeeldwaarden**                      | **Verplicht?** | **Toelichting**                                       |
+| ------------------- | ----------------------------------------- | -------------- | ----------------------------------------------------- |
 | **Doelgroep**       | Horeca, Bouw, Zorg, MKB, Grote bedrijven  | Ja             | Bepaalt welke ondernemers het informatie-bericht zien. |
-| **Regio**           | Landelijk, Noord-Holland, Amsterdam       | Ja             | Voor lokale of regionale informatie-berichten.            |
+| **Regio**           | Landelijk, Noord-Holland, Amsterdam       | Ja             | Voor lokale of regionale informatie-berichten.         |
 | **Onderwerp**       | Subsidie, Wetgeving, Ruimtelijke ordening | Ja             | Categorie van het informatie-bericht.                  |
-| **Urgentie**        | Laag, Medium, Hoog, Kritiek               | Ja             | Bepaalt prioriteit in weergave.             |
+| **Urgentie**        | Laag, Medium, Hoog, Kritiek               | Ja             | Bepaalt de prioriteit in de weergave.                  |
 | **Geldigheid**      | Tijdelijk (datum), Permanent              | Nee            | Voor tijdgebonden informatie-berichten.                |
-| **Contactgegevens** | E-mail, telefoonnummer, website           | Nee            | Voor follow-up vragen.                      |
+| **Contactgegevens** | E-mail, telefoonnummer, website           | Nee            | Voor vervolgvragen.                                    |
 
 ## Huidige status
 
-We hebben de actualiteitenservice als concept getest bij gebruikers, en tevens hebben wij een vroege alpha versie gerealiseerd. Dit om de eerste concepten ook technisch na te gaan; en te toetsen of deze ook daadwerkelijk gerealiseerd kunnen worden.
+We hebben de actualiteitenservice als concept getest bij gebruikers. Ook bouwden we een eerste testversie (een vroege alfaversie). Zo konden we nagaan of de ideeën technisch haalbaar zijn.
 
 ### Functioneel
 
-In huidige vroege alpha versie ondersteunt de actualiteitenservice de volgende functionele toepassingen:
+In deze eerste testversie kan de actualiteitenservice het volgende:
 
 1. Een ondernemer kan via een portaal zijn profiel instellen met de relevante filterkenmerken.
 
@@ -133,15 +135,15 @@ In huidige vroege alpha versie ondersteunt de actualiteitenservice de volgende f
 
 ### Technisch
 
-Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken ingeregeld:
+Om die functies te bieden hebben we technisch het volgende ingeregeld:
 
-* Centraal ophalen van informatie vanuit verschillende bronnen
+* Centraal ophalen van informatie uit verschillende bronnen:
 
-  * [Ondernemersplein API | Ondernemersplein](https://ondernemersplein.overheid.nl/ondernemersplein-api/)
+  * [de API van Ondernemersplein](https://ondernemersplein.overheid.nl/ondernemersplein-api/)
 
-  * wetten.overheid.nl
+  * [wetten.overheid.nl](https://wetten.overheid.nl/)
 
-  * [Berichten over uw Buurt - Rondom een zelfgekozen adres](https://www.overheid.nl/berichten-over-uw-buurt)
+  * [Berichten over uw buurt](https://www.overheid.nl/berichten-over-uw-buurt)
 
 * Koppelen van informatie-berichten aan filterkenmerken
 
@@ -149,13 +151,17 @@ Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken i
 
 ## Vervolgstappen
 
-Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikersonderzoek) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond wordt, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
+Uit [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikersonderzoek) blijkt dat de service ondernemers op dit moment te weinig oplevert. Ondernemers willen vooral informatie zien die echt over hun eigen situatie gaat. Dat kunnen we nu nog niet bieden.
 
-Daarom is op dit moment op basis van de huidige inzichten ervoor gekozen om de verdere ontwikkeling op de actualiteitenservice te pauzeren.
+Daar zijn twee redenen voor. De informatie uit de bronnen heeft nog niet de filterkenmerken die we voor dat filteren nodig hebben. En in de huidige vorm voegt die informatie te weinig toe voor ondernemers.
+
+Daarom pauzeren we de verdere ontwikkeling van de actualiteitenservice.
 
 ## Meedoen
 
-De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om dat te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen, dus [praat met ons mee!](/contact/)
+We hebben de actualiteitenservice gebouwd om ondernemers te helpen. Daarvoor hebben we nu nog niet de juiste bronnen. En de service heeft alleen waarde als meerdere overheidsorganisaties meedoen.
+
+Heb je nieuwe inzichten op dit gebied? Neem dan contact met ons op. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen: [praat met ons mee!](/contact/)
 
 ## Meer info
 

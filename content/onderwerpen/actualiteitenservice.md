@@ -7,7 +7,7 @@ weight: 8
 
 ## Huidige uitdaging
 
-Ondernemers krijgen overheidsinformatie op allerlei manieren en van verschillende kanten. Omdat er geen centrale plek is waar alles samenkomt, moeten ze zelf overal zoeken, inloggen en filteren. Daardoor missen ze soms belangrijke berichten, lopen ze subsidies mis of voldoen ze per ongeluk niet aan verplichtingen
+Ondernemers krijgen overheidsinformatie op allerlei manieren en van verschillende kanten. Omdat er geen centrale plek is waar alles samenkomt, moeten ze zelf overal zoeken, inloggen en filteren. Daardoor missen ze soms belangrijke berichten, lopen ze subsidies mis of voldoen ze per ongeluk niet aan verplichtingen.
 
 ## Wat is de Actualiteitenservice?
 
@@ -19,7 +19,7 @@ Hieronder lichten we de belangrijkste uitgangspunten van de actualiteitenservice
 
 ### Gegevens
 
-De actualiteitenservice werkt met **informatie-bericht** en **filterkenmerken**. In de ideale opzet koppelt een dienstverlener zijn informatie-bericht aan een of meerdere filterkenmerken, zodat het informatie-bericht alleen getoond wordt aan de relevante ondernemers op een specifiek hiervoor opgestelde inbox
+De actualiteitenservice werkt met **informatie-berichten** en **filterkenmerken**. In de ideale opzet koppelt een dienstverlener zijn informatie-bericht aan een of meerdere filterkenmerken, zodat het informatie-bericht alleen getoond wordt aan de relevante ondernemers op een specifiek hiervoor opgestelde inbox.
 
 * **Informatie-bericht**: de informatie die een overheidsorganisatie wil delen, zoals een nieuwe wet, subsidie of lokale ontwikkeling.
 
@@ -74,18 +74,18 @@ title: Proactieve signalen
 graph LR
   accTitle: Proactieve signalen
   accDescr: Het proces van proactieve signalen: informatie-bericht publiceren, filtering toepassen, signaal versturen.
-  A@{ icon: "tabler:edit", label: "Dienstverlener informatie-bericht/informatie publiceren" }
+  A@{ icon: "tabler:edit", label: "Dienstverlener publiceert informatie-bericht" }
   B@{ icon: "tabler:filter", label: "Filtering toepassen" }
   C@{ icon: "tabler:bell", label: "Signaal versturen" }
   D@{ icon: "tabler:user", label: "Ondernemer ontvangt signaal" }
   A --> B --> C --> D
 ```
 
-Wanneer een nieuw informatie-bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal naar de relevante ondernemers met over deze informatie. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen.
+Wanneer een nieuw informatie-bericht wordt gepubliceerd door een dienstverlener, past de actualiteitenservice filterkenmerken toe en verstuurt indien gewenst een signaal over deze informatie naar de relevante ondernemers. Gekoppeld aan de notificatiedienst kan de ondernemer een signaal via het gekozen kanaal, zoals e-mail of een melding in hun dashboard, ontvangen.
 
-## Hoe kan dit werken overheidsorganisaties?
+## Hoe werkt dit voor overheidsorganisaties?
 
-Hieronder wordt beschreven hoe dit dan zou kunnen werken vanuit een overheidsorganisatieperspectief. Let wel - in de proefopstelling die is gerealiseerd zijn niet al deze principe toegepast. Tevens zijn er ook meerder mogelijkheden om dit principe vorm te geven; hieronder is daarmee één van de uitwerkingen toegelicht.
+Hieronder wordt beschreven hoe dit dan zou kunnen werken vanuit een overheidsorganisatieperspectief. Let wel - in de proefopstelling die is gerealiseerd zijn niet al deze principes toegepast. Tevens zijn er ook meerdere mogelijkheden om dit principe vorm te geven; hieronder is daarmee één van de uitwerkingen toegelicht.
 
 ### Publicatieproces
 
@@ -99,39 +99,37 @@ graph LR
   accTitle: Publicatieproces overheidsorganisatie
   accDescr: De stappen die een overheidsorganisatie doorloopt: aansluiten via FSC/FTV, informatie-berichten publiceren, automatische distributie.
   A@{ icon: "tabler:plug-connected", label: "Aansluiten via FSC/FTV" }
-  B@{ icon: "tabler:edit", label: "informatie-berichten publiceren" }
+  B@{ icon: "tabler:edit", label: "Informatie-berichten publiceren" }
   C@{ icon: "tabler:share", label: "Automatische distributie" }
   A --> B --> C
 ```
-
-
 
 Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectiviteit (FSC) en Federatieve Toegangsverlening (FTV). Vervolgens publiceren zij informatie-berichten met gestructureerde metadata. De actualiteitenservice zorgt voor automatische distributie naar de relevante ondernemers.
 
 ### Filterkenmerken
 
-Elk informatie-bericht moet voorzien zijn van gestructureerde filterkenmerken voor optimale filtering. Hieronder een voorbeeld van verschillende kenmerken
+Elk informatie-bericht moet voorzien zijn van gestructureerde filterkenmerken voor optimale filtering. Hieronder een voorbeeld van verschillende kenmerken.
 
 | Filterkenmerken     | **Voorbeeldwaarden**                      | **Verplicht?** | **Toelichting**                             |
 | ------------------- | ----------------------------------------- | -------------- | ------------------------------------------- |
 | **Doelgroep**       | Horeca, Bouw, Zorg, MKB, Grote bedrijven  | Ja             | Bepaalt welke ondernemers het informatie-bericht zien. |
-| **Regio**           | Landelijk, Noord-Holland, Amsterdam       | Ja             | Voor lokale/regionale informatie-bericht.            |
+| **Regio**           | Landelijk, Noord-Holland, Amsterdam       | Ja             | Voor lokale of regionale informatie-berichten.            |
 | **Onderwerp**       | Subsidie, Wetgeving, Ruimtelijke ordening | Ja             | Categorie van het informatie-bericht.                  |
 | **Urgentie**        | Laag, Medium, Hoog, Kritiek               | Ja             | Bepaalt prioriteit in weergave.             |
-| **Geldigheid**      | Tijdelijk (datum), Permanent              | Nee            | Voor tijdgebonden informatie-bericht.                |
+| **Geldigheid**      | Tijdelijk (datum), Permanent              | Nee            | Voor tijdgebonden informatie-berichten.                |
 | **Contactgegevens** | E-mail, telefoonnummer, website           | Nee            | Voor follow-up vragen.                      |
 
 ## Huidige status
 
-We hebben de actualiteitenservice als concept getest bij gebruikers, en tevens hebben wij een vroege alpha versie gerealiseerd. Dit om de eerste concepten ook technisch na te gaan; en te toetsen of deze ook daadwerkelijk gerealiseerd kunnen worden
+We hebben de actualiteitenservice als concept getest bij gebruikers, en tevens hebben wij een vroege alpha versie gerealiseerd. Dit om de eerste concepten ook technisch na te gaan; en te toetsen of deze ook daadwerkelijk gerealiseerd kunnen worden.
 
 ### Functioneel
 
 In huidige vroege alpha versie ondersteunt de actualiteitenservice de volgende functionele toepassingen:
 
-1. Een ondernemer kan via een portaal zijn profiel instellen met de relevante filterkenmerken
+1. Een ondernemer kan via een portaal zijn profiel instellen met de relevante filterkenmerken.
 
-2. Informatie-berichten van overheidsorganisaties kunnen (automatisch) gefilterd worden (op basis van eerder ingegeven voorkeuren) en getoond de ondernemers
+2. Informatie-berichten van overheidsorganisaties kunnen (automatisch) gefilterd worden (op basis van eerder ingegeven voorkeuren) en getoond worden aan de ondernemers.
 
 ### Technisch
 
@@ -151,13 +149,13 @@ Om de functionaliteiten te bieden zijn er vanuit de techniek de volgende zaken i
 
 ## Vervolgstappen
 
-Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikersonderzoek) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
+Op basis van [gebruikersonderzoek](/weekly/moza-weekly-20-mei-2026/#gebruikersonderzoek) is er geconcludeerd dat de beschikbare informatie en de mogelijkheden die daarmee geboden worden niet de gewenste toegevoegde waarde bieden voor de ondernemers. Uit het onderzoek is gebleken dat het erg belangrijk is dat er primair relevante informatie getoond wordt, iets dat op basis van de huidige mogelijkheden niet haalbaar is. Dit komt vooral uit het feit dat de informatie zelf (nog) niet voorzien is van de gewenste filterkenmerken, en uit het feit dat de informatie in de huidige vorm niet genoeg meerwaarde biedt.
 
 Daarom is op dit moment op basis van de huidige inzichten ervoor gekozen om de verdere ontwikkeling op de actualiteitenservice te pauzeren.
 
 ## Meedoen
 
-De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Daarmee; heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen,  [praat met ons mee!](/contact/)
+De actualiteitenservice is ontwikkeld vanuit de wens om de ondernemer te helpen. Echter op dit moment hebben we nog niet de juiste bronnen beschikbaar om dat te kunnen bereiken. En deze voorziening heeft immers alleen waarde als meerdere overheidsorganisaties meedoen. Heb je nieuwe inzichten op dit gebied? Kom dan vooral met ons in contact. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen, dus [praat met ons mee!](/contact/)
 
 ## Meer info
 

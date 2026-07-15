@@ -43,6 +43,10 @@ article > header + h2 {
   margin-top: 0.7rem;
 }
 
+article > header:has(.tag-status) + h2 {
+  margin-top: 1.5rem;
+}
+
 h2 + h3,
 h3 + h4,
 h4 + h5,

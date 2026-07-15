@@ -1,0 +1,42 @@
+/* Tabel: boxed surface met afgeronde hoeken en rij-dividers. */
+article table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: separate; /* zodat border-radius de hoeken clipt */
+  border-spacing: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--color-bg-page);
+  font-size: 1rem;
+}
+
+article table th,
+article table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+article table thead th {
+  font-weight: 700;
+  color: var(--color-text-heading);
+  background: var(--color-bg-light);
+}
+
+article table tbody th {
+  font-weight: 700;
+}
+
+article table tbody tr:last-child th,
+article table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 40rem) {
+  article table {
+    display: block;
+    overflow-x: auto;
+  }
+}

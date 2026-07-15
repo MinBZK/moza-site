@@ -27,6 +27,9 @@
     {{- if and .Params.show_date .Date }}
     <time class="tag" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
     {{- end }}
+    {{- with .Params.status }}
+    <p class="tag tag-status">Status: {{ . }}</p>
+    {{- end }}
   </header>
   {{ partial "lead-image.html" . }}
   {{ .Content }}

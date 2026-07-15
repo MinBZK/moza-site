@@ -66,7 +66,7 @@ Output landt in `tmp/moza-weekly/<vandaag>.yaml`, `.anonymized.json` én `.html`
 
 | Default | Wat |
 |---|---|
-| Periode | Vandaag − 7 dagen t/m vandaag |
+| Periode | Vandaag - 6 dagen t/m vandaag (7 kalenderdagen) |
 | Kanalen | uit `MOZA_WEEKLY_CHANNELS` env (of CLI `--channel`) |
 | Output | `tmp/moza-weekly/<einde-datum>.{yaml,html}` |
 

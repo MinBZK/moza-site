@@ -88,7 +88,11 @@ def _load_dotenv(path: Path) -> None:
 
 def _parse_args(argv: list[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(prog="moza-weekly-fetch", description=__doc__)
-    p.add_argument("--from", dest="date_from", help="YYYY-MM-DD (default: 7 dagen terug)")
+    p.add_argument(
+        "--from",
+        dest="date_from",
+        help="YYYY-MM-DD (default: 6 dagen terug; periode van 7 dagen incl. vandaag)",
+    )
     p.add_argument("--to", dest="date_to", help="YYYY-MM-DD (default: vandaag)")
     p.add_argument("--channel", action="append", default=None, dest="channels")
     p.add_argument("--output", type=Path, default=None)
@@ -109,7 +113,7 @@ def _build_period(date_from: str | None, date_to: str | None) -> Period:
     today = datetime.now(NL_TZ).date()
     end_date = date.fromisoformat(date_to) if date_to else today
     start_date = (
-        date.fromisoformat(date_from) if date_from else end_date - timedelta(days=7)
+        date.fromisoformat(date_from) if date_from else end_date - timedelta(days=6)
     )
     if start_date > end_date:
         raise ValueError(f"--from ({start_date}) ligt na --to ({end_date})")

@@ -17,9 +17,9 @@ def test_build_period_explicit_bounds():
     assert (period.end.hour, period.end.minute, period.end.second) == (23, 59, 59)
 
 
-def test_build_period_default_is_seven_days():
+def test_build_period_default_spans_seven_calendar_days():
     period = _build_period(None, None)
-    assert (period.end.date() - period.start.date()) == timedelta(days=7)
+    assert (period.end.date() - period.start.date()) == timedelta(days=6)
 
 
 def test_build_period_rejects_reversed_range():

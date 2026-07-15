@@ -10,7 +10,11 @@ description: Gebruik bij het maken van een nieuwe MOZa Weekly.
 1. Vraag welke datum (of gebruik vandaag). Sla over als de datum al gegeven is.
 2. **Lees de laatste 3-5 weeklies** in `content/weekly/YYYY/`. Hieruit volgen: huidige sectie-indeling, toon, linkpatronen en de lopende agenda. Kopieer het patroon, schrijf niet vanaf nul.
 3. Run: `hugo new content weekly/YYYY/YYYY-MM-DD.md`.
-4. Vraag input van de gebruiker. Sla over als de input al gegeven is.
+4. Verzamel input (sla over als de input al gegeven is):
+   - Standaardbron is de Mattermost-pipeline: run `just moza-weekly` (zie `scripts/moza-weekly/README.md`). Dat levert drie bestanden op in `tmp/moza-weekly/`.
+   - Gebruik `tmp/moza-weekly/<datum>.anonymized.json` als input. Nooit de `.yaml` of `.html` gebruiken: die bevatten namen.
+   - De gebruiker cureert eventueel de YAML; run daarna `just moza-weekly-anonymize tmp/moza-weekly/<datum>.yaml` om de JSON te verversen.
+   - Vraag de gebruiker om aanvullende input die niet uit Mattermost komt.
 5. Groepeer de input in secties op basis van wat er deze week speelt — secties zijn niet vast, ze volgen de onderwerpen. Laat een sectie weg als er geen inhoud voor is.
 
 ## Secties zijn onderwerp-gedreven

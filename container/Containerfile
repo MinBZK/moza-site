@@ -1,4 +1,4 @@
-FROM alpine:3.21 AS builder
+FROM alpine:3.24 AS builder
 
 ARG HUGO_VERSION=0.163.1
 ARG PANDOC_VERSION=3.10

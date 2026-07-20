@@ -17,16 +17,16 @@
     <title>{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else if in .Title .Site.Title }}{{ .Title }}{{ else }}{{ .Title }} van {{ .Site.Title }}{{ end }}</title>
     <link>{{ .Permalink }}</link>
     <description>{{ with .Description }}{{ . | plainify }}{{ else with .Site.Params.description }}{{ . }}{{ else }}{{ $.Site.Title }}{{ end }}</description>
-    <generator>Hugo</generator>
     {{- with site.Language.Lang }}<language>{{ . }}</language>{{ end }}
-    {{- with .Site.Copyright }}<copyright>{{ . }}</copyright>{{ end }}
-    {{- if gt (len $pages) 0 }}<lastBuildDate>{{ (index $pages 0).Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    {{- if gt (len $pages) 0 }}{{ $first := index $pages 0 }}{{ $buildDate := cond $first.Date.IsZero $first.Lastmod $first.Date }}<lastBuildDate>{{ $buildDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     {{- with .OutputFormats.Get "rss" }}{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType.Type | safeHTML }}{{ end }}
     {{- range $pages }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
-      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{- $pubDate := cond .Date.IsZero .Lastmod .Date }}
+      <pubDate>{{ $pubDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <atom:updated>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}</atom:updated>
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Content | replaceRE `(<(?:a|img)[^>]+(?:href|src)=")(/[^"]*)` (printf "${1}%s${2}" $baseURL) | transform.XMLEscape | safeHTML }}</description>
     </item>

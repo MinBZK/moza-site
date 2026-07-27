@@ -1,7 +1,10 @@
 ---
 title: "Digitale Assistent"
+card_title: "Digitale Assistent"
 description: "Stel een vraag in gewone taal, de assistent kiest zelf de bron. Eén flow voor ondernemers via MCP, RegelRecht en aangesloten registers."
 weight: 6
+hide_tiles: true
+prev_next: true
 ---
 
 ## De Digitale Assistent als Proof of Concept
@@ -11,6 +14,8 @@ In de periode januari tot en met april 2026 is een proof-of-concept (POC) ontwik
 De POC werkt op dit moment voor één casus: de informatieplicht energiebesparing. De KVK draait op de testomgeving, RVO is gesimuleerd en de assistent is nog niet aangesloten op een productieomgeving. De volgende stap is meer wetten op te nemen in Regelrecht, zodat we meerdere casussen kunnen doorlopen. Om de ondernemer een uniforme ervaring te kunnen bieden, is het van belang dat zowel de uitvoering als de informatievoorziening op dezelfde bron is gebaseerd.
 
 **"De ondernemer stelt een vraag in gewone taal, de assistent kiest zelf welke bron nodig is en laat bij elk antwoord zien waar het vandaan komt".**
+
+Waarom kiezen we voor deze oplossing, waarom gebruiken we RegelRecht en wat zijn de voor- en nadelen van een bot? Dat lees je bij [Waarom deze aanpak?](waarom-deze-aanpak)
 
 ## Wat kan de ondernemer (in deze PoC)?
 

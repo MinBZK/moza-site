@@ -1,0 +1,133 @@
+{{- /* De tekening van de notificatiedienst. Eén bron voor twee doelen: inline in
+       de pagina (zonder css) en als los te downloaden bestand (met css, zodat
+       het bestand zelfstandig te openen is). */ -}}
+<svg viewBox="0 12 960 842" width="960" height="842" role="img" aria-labelledby="dgNotifTitle dgNotifDesc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dgNotifTitle">Componenten van de notificatiedienst in samenhang</title>
+  <desc id="dgNotifDesc">Bovenaan staat een ondernemer of burger, verbonden met een overheidsportaal. Bij de dienstverlener staan een procesapplicatie en een outputmanagementcomponent (OMC), die in twee richtingen informatie uitwisselen. Boven het OMC staat het decentrale profiel, waaruit het OMC de contactvoorkeuren ophaalt en waaraan het die levert. De procesapplicatie geeft de notificatie door aan het OMC, dat het verzoek naar de centraal georganiseerde notificatiedienst stuurt. Ook het OMC en de Notificatie Management Component (NMC) wisselen in twee richtingen informatie uit. De notificatiedienst haalt de kanaalvoorkeur en contactgegevens op uit de profielservice. De notificatiedienst bestaat uit de NMC, Notify, contactherstel en de printstraat. De NMC organiseert de processen binnen de notificatiedienst: het stuurt Notify aan, dat de e-mail verstuurt, en bewaakt de status van het verzenden. Is contactherstel nodig, dan start de NMC ook dat proces, waarbij de printstraat een brief per post kan versturen. Contactherstel wisselt daarvoor gegevens uit met de basisregistraties, die buiten de notificatiedienst vallen maar wel centraal georganiseerd zijn. Deze e-mails en brieven bereiken de ondernemer of burger.</desc>
+{{- with .css }}
+  <style>{{ . | safeCSS }}</style>
+{{- end }}
+
+  <defs>
+    <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-marker" d="M0 0 L10 5 L0 10 z" />
+    </marker>
+  </defs>
+
+  <g aria-hidden="true">
+
+  <!-- Zones -->
+  <rect class="dg-zone" x="16" y="240" width="248" height="600" rx="16" />
+  <text class="dg-zone-label" x="140" y="272">Dienstverlener</text>
+
+  <rect class="dg-zone" x="300" y="240" width="644" height="600" rx="16" />
+  <text class="dg-zone-label" x="622" y="272">Centraal georganiseerde diensten</text>
+
+  <rect class="dg-block" x="320" y="388" width="440" height="330" rx="14" />
+  <text class="dg-block-label" x="540" y="416">Notificatiedienst</text>
+
+  <!-- Verbindingen -->
+  <path class="dg-arrow" d="M480 100 L480 128" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M432 192 L432 292" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M432 362 L432 440" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M525 480 L555 480" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M432 520 L432 592" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M525 632 L555 632" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow optioneel" d="M140 362 L140 440" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M140 526 L140 592" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M432 672 L432 750" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M232 480 L336 480" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M740 480 L788 480" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M740 632 L788 632" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M842 480 L900 480 L900 484" />
+  <path class="dg-arrow" d="M842 632 L900 632 L900 480" />
+  <path class="dg-arrow" d="M900 484 C900 200 760 60 528 62" marker-end="url(#dgArrow)" />
+
+  <!-- Ondernemer of burger -->
+  <g>
+    <circle class="dg-glyph" cx="480" cy="44" r="18" />
+    <path class="dg-glyph" d="M452 92 C452 68 508 68 508 92" />
+    <text class="dg-person-label" x="444" y="52">Ondernemer</text>
+    <text class="dg-person-label" x="444" y="74">of burger</text>
+  </g>
+
+  <!-- Overheidsportaal -->
+  <g>
+    <rect class="dg-node" x="380" y="128" width="200" height="64" rx="10" />
+    <text class="dg-title" x="480" y="166">Overheidsportaal</text>
+  </g>
+
+  <!-- Profielservice -->
+  <g>
+    <rect class="dg-node" x="340" y="292" width="185" height="70" rx="10" />
+    <text class="dg-title" x="432" y="333">Profielservice</text>
+  </g>
+
+  <!-- Notificatie Management Component -->
+  <g>
+    <rect class="dg-node accent" x="340" y="440" width="185" height="80" rx="10" />
+    <text class="dg-title" x="432" y="474">Notificatie Management</text>
+    <text class="dg-title" x="432" y="496">Component (NMC)</text>
+  </g>
+
+  <!-- Notify -->
+  <g>
+    <rect class="dg-node accent" x="555" y="440" width="185" height="80" rx="10" />
+    <text class="dg-title" x="647" y="486">Notify</text>
+  </g>
+
+  <!-- Contactherstel -->
+  <g>
+    <rect class="dg-node accent" x="340" y="592" width="185" height="80" rx="10" />
+    <text class="dg-title" x="432" y="638">Contactherstel</text>
+  </g>
+
+  <!-- Printstraat -->
+  <g>
+    <rect class="dg-node accent" x="555" y="592" width="185" height="80" rx="10" />
+    <text class="dg-title" x="647" y="638">Printstraat</text>
+  </g>
+
+  <!-- Decentraal profiel -->
+  <g>
+    <rect class="dg-node" x="48" y="292" width="184" height="70" rx="10" />
+    <text class="dg-title" x="140" y="333">Decentraal profiel</text>
+  </g>
+
+  <!-- Outputmanagementcomponent -->
+  <g>
+    <rect class="dg-node" x="48" y="440" width="184" height="80" rx="10" />
+    <text class="dg-title" x="140" y="474">Outputmanagement-</text>
+    <text class="dg-title" x="140" y="496">component (OMC)</text>
+  </g>
+
+  <!-- Procesapplicatie -->
+  <g>
+    <rect class="dg-node" x="48" y="592" width="184" height="80" rx="10" />
+    <text class="dg-title" x="140" y="638">Procesapplicatie</text>
+  </g>
+
+  <!-- Versturen e-mail -->
+  <g>
+    <rect class="dg-glyph" x="792" y="463" width="50" height="34" rx="3" />
+    <path class="dg-glyph" d="M792 467 L806 477" />
+    <path class="dg-glyph" d="M842 467 L828 477" />
+    <text class="dg-glyph-text" x="817" y="489">@</text>
+    <text class="dg-icon-label" x="817" y="518">Versturen e-mail</text>
+  </g>
+
+  <!-- Versturen brief -->
+  <g>
+    <rect class="dg-glyph" x="792" y="615" width="50" height="34" rx="3" />
+    <path class="dg-glyph" d="M792 619 L817 637 L842 619" />
+    <text class="dg-icon-label" x="817" y="670">Versturen brief</text>
+  </g>
+
+  <!-- Basisregistraties: buiten de notificatiedienst, binnen de centrale zone -->
+  <g>
+    <rect class="dg-node" x="340" y="750" width="185" height="70" rx="10" />
+    <text class="dg-title" x="432" y="791">Basisregistraties</text>
+  </g>
+
+  </g>
+</svg>

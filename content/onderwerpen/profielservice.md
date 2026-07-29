@@ -152,7 +152,7 @@ We brengen de profielservice naar een bètaversie, waarbij we zowel de techniek 
 
 Wat de profielservice technisch kan, is meer dan wat we nu functioneel inzetten. Die grens wordt bepaald door het juridische proces.
 
-De eerste versie richt zich op de functionele toepassing binnen het notificatieproces, zoals aangeboden in de notificatiedienst.
+De eerste versie richt zich op de functionele toepassing binnen het notificatieproces, zoals aangeboden in de [notificatiedienst](/onderwerpen/notificatiedienst/).
 
 Hieronder beschrijven we eerst de functionele inzet, daarna de bredere technische mogelijkheden.
 

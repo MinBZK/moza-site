@@ -1,0 +1,120 @@
+/* Handgetekende SVG-diagrammen in de content. */
+.diagram {
+  margin: 1.5rem 0;
+}
+
+.diagram-panel {
+  position: relative;
+  padding: 1rem;
+  background-color: var(--color-bg-muted);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.diagram-download {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  border-radius: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.diagram-panel:hover .diagram-download,
+.diagram-download:focus-visible {
+  opacity: 1;
+}
+
+.diagram-panel > svg {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+  color: var(--color-text-muted);
+}
+
+.dg-zone,
+.dg-block,
+.dg-node {
+  stroke-width: 1.5;
+}
+
+.dg-block,
+.dg-node {
+  stroke: var(--color-border);
+}
+
+.dg-zone {
+  fill: none;
+  stroke: var(--color-text-muted);
+  stroke-opacity: 0.5;
+  stroke-dasharray: 6 6;
+}
+
+.dg-block {
+  fill: light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.04));
+}
+
+.dg-node {
+  fill: var(--color-bg-page);
+}
+
+.dg-node.accent {
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+}
+
+.dg-arrow,
+.dg-glyph {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+.dg-glyph-text,
+.dg-marker {
+  fill: currentColor;
+}
+
+.dg-arrow.optioneel {
+  stroke-dasharray: 5 4;
+}
+
+.dg-zone-label,
+.dg-block-label,
+.dg-icon-label,
+.dg-person-label {
+  fill: var(--color-text);
+}
+
+.dg-zone-label,
+.dg-block-label {
+  font-size: 19px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.dg-glyph-text {
+  font-size: 24px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.dg-icon-label {
+  font-size: 15px;
+  text-anchor: middle;
+}
+
+.dg-person-label {
+  font-size: 17px;
+  font-weight: 600;
+  text-anchor: end;
+}
+
+.dg-title {
+  fill: var(--color-text-heading);
+  font-size: 16px;
+  font-weight: 600;
+  text-anchor: middle;
+}

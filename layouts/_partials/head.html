@@ -69,6 +69,7 @@
 {{ $toast := resources.Get "css/components/toast.css" }}
 {{ $search := resources.Get "css/components/search.css" }}
 {{ $mermaid := resources.Get "css/components/mermaid.css" }}
+{{ $diagram := resources.Get "css/components/diagram.css" }}
 {{ $pageNav := resources.Get "css/components/page-nav.css" }}
 {{ $actueel := resources.Get "css/components/actueel.css" }}
 {{ $pageAside := resources.Get "css/components/page-aside.css" }}
@@ -76,7 +77,7 @@
 {{ $tag := resources.Get "css/components/tag.css" }}
 {{ $table := resources.Get "css/components/table.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $pageNav $actueel $pageAside $leadImage $tag $table $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $infoNote $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}

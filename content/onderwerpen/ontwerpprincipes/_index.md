@@ -2,7 +2,7 @@
 title: "De ontwerpprincipes van MijnOverheid Zakelijk"
 card_title: "Ontwerpprincipes"
 description: "MijnOverheid Zakelijk is gebouwd vanuit een set ontwerpprincipes die richting geven aan elke keuze. In het ontwerpproces staat altijd de eindgebruiker centraal."
-weight: 3
+weight: 4
 hide_tiles: true
 prev_next: true
 aliases:

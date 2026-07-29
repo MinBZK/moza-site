@@ -75,7 +75,8 @@ In dit diagram staat elke pijl voor een contactvoorkeur. Persoon A is betrokken 
 
 De profielservice kan een contactgegeven verifiëren. Wordt er een nieuw contactgegeven toegevoegd dat nog niet is geverifieerd, maar dat we wel willen verifiëren? Dan start de profielservice de verificatie automatisch.
 
-{{< info >}}Op dit moment is verificatie alleen mogelijk voor het contactgegeven e-mail.{{< /info >}}
+> [!INFO]
+> Op dit moment is verificatie alleen mogelijk voor het contactgegeven e-mail.
 
 Heeft een dienstverlener het contactgegeven al zelf geverifieerd? Dan geeft die dat door bij het toevoegen of wijzigen. De profielservice start dan geen nieuwe verificatie.
 
@@ -164,7 +165,8 @@ In deze eerste versie ondersteunt de profielservice de volgende functionele toep
    * We willen hierbij zoveel mogelijk uitgaan van één e-mailadres dat overheidsbreed bruikbaar is.
 2. Wanneer er een notificatie verstuurd moet worden, bevraagt de notificatiedienst de profielservice. De overheidsinstantie moet daarbij de identifier(s) meesturen waaronder de ontvanger in de profielservice bekend is.
 
-{{< info >}}Er wordt onderzocht welke (juridische) opties we hebben, en wat er daarvoor georganiseerd moet worden, om ook het directe gebruik van de profielservice door een overheidsinstantie te faciliteren.{{< /info >}}
+> [!INFO]
+> Er wordt onderzocht welke (juridische) opties we hebben, en wat er daarvoor georganiseerd moet worden, om ook het directe gebruik van de profielservice door een overheidsinstantie te faciliteren.
 
 ### Technisch
 

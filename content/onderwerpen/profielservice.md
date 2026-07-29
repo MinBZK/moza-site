@@ -1,7 +1,8 @@
 ---
 title: "Profielservice"
 description: "Eén plek voor contactvoorkeuren. Overheidsorganisaties bereiken burgers en ondernemers op de manier die ze zelf kiezen."
-weight: 2
+status: "In ontwikkeling"
+weight: 3
 ---
 
 ## Huidige uitdaging

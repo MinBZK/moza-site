@@ -1,0 +1,17 @@
+{{- /* Het label staat als bestand in de repo, zodat de build niet van
+       toegankelijkheidsverklaring.nl afhangt en de CSP geen uitzondering nodig
+       heeft. `npm run check-label` bewaakt of de bron intussen is gewijzigd. */ -}}
+
+{{- $register := "https://www.toegankelijkheidsverklaring.nl/register/28557" -}}
+
+{{- with resources.Get "images/toegankelijkheidslabel.svg" -}}
+  {{- $label := . | fingerprint "md5" -}}
+  {{- /* Hugo kan een SVG niet uitmeten, dus komen de afmetingen uit het bestand zelf. */ -}}
+  {{- $maten := findRESubmatch `<svg[^>]+width="(\d+)"[^>]+height="(\d+)"` .Content 1 -}}
+  {{- if not $maten -}}
+    {{- errorf "toegankelijkheidslabel: geen width en height in de SVG gevonden" -}}
+  {{- end -}}
+  <a href="{{ $register }}"><img src="{{ $label.RelPermalink }}" alt="Status toegankelijkheidslabel van MijnOverheid Zakelijk. Volg de link voor de volledige toegankelijkheidsverklaring." width="{{ index $maten 0 1 }}" height="{{ index $maten 0 2 }}" /></a>
+{{- else -}}
+  {{- errorf "toegankelijkheidslabel: assets/images/toegankelijkheidslabel.svg ontbreekt" -}}
+{{- end -}}

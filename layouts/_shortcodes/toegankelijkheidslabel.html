@@ -1,0 +1,22 @@
+{{- /* Het label komt van toegankelijkheidsverklaring.nl en wordt bij het bouwen
+       lokaal gepubliceerd. Daardoor doet de pagina geen request naar een derde
+       partij en heeft de CSP geen uitzondering nodig. */ -}}
+
+{{- $bron := "https://www.toegankelijkheidsverklaring.nl/files/verklaring/label/c9a8a20ea7aa6e192ebfe83e357048bc.28557.svg" -}}
+{{- $register := "https://www.toegankelijkheidsverklaring.nl/register/28557" -}}
+
+{{- with try (resources.GetRemote $bron) -}}
+  {{- with .Err -}}
+    {{- errorf "toegankelijkheidslabel: ophalen mislukt: %s" . -}}
+  {{- else with .Value -}}
+    {{- $label := . | resources.Copy "images/toegankelijkheidslabel.svg" | fingerprint "md5" -}}
+    {{- /* Hugo kan een SVG niet uitmeten, dus komen de afmetingen uit het bestand zelf. */ -}}
+    {{- $maten := findRESubmatch `<svg[^>]+width="(\d+)"[^>]+height="(\d+)"` .Content 1 -}}
+    {{- if not $maten -}}
+      {{- errorf "toegankelijkheidslabel: geen width en height in de SVG gevonden" -}}
+    {{- end -}}
+    <a href="{{ $register }}"><img src="{{ $label.RelPermalink }}" alt="Status toegankelijkheidslabel van MijnOverheid Zakelijk. Volg de link voor de volledige toegankelijkheidsverklaring." width="{{ index $maten 0 1 }}" height="{{ index $maten 0 2 }}" /></a>
+  {{- else -}}
+    {{- errorf "toegankelijkheidslabel: %s niet beschikbaar" $bron -}}
+  {{- end -}}
+{{- end -}}

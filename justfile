@@ -36,6 +36,10 @@ build:
 render-downloads:
     npm run render-downloads
 
+# Controleer of het toegankelijkheidslabel bij de bron is gewijzigd
+check-label:
+    npm run check-label
+
 # Controleer op broken links
 check:
     npm run render-mermaid

@@ -1,0 +1,115 @@
+<svg aria-labelledby="summary-title explanation-text explanation-annotation" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="692" height="324" viewBox="0 0 692 324">
+  <defs>
+    <style>
+      .cls-1,.cls-15,.cls-17,.cls-25,.cls-27,.cls-29,.cls-31{fill:#fff;}.cls-15,.cls-17,.cls-23,.cls-32{font-family:Arial,sans-serif;font-weight:bold;}.cls-9{fill:url(#linear-gradient);}.cls-10{fill:url(#linear-gradient-2);}.cls-11{fill:url(#New_Gradient_Swatch_2);}.cls-12{fill:url(#New_Gradient_Swatch_3);}.cls-13{fill:url(#New_Gradient_Swatch_4);}.cls-14{filter:url(#filter-1);}.cls-15,.cls-17,.cls-23,.cls-32{isolation:isolate;}.cls-15,.cls-17{font-size:19px;}.cls-15{letter-spacing:-0.04em;}.cls-16{filter:url(#filter-1);}.cls-18{filter:url(#filter-1);}.cls-19{filter:url(#filter-1);}.cls-20{filter:url(#filter-1);}.cls-24,.cls-26,.cls-28,.cls-30{stroke-width:3.6px;fill-rule:evenodd;}.cls-25,.cls-27,.cls-29,.cls-31{stroke-width:3.24px;}.cls-23,.cls-32{font-size:16.2px;}.cls-24{fill:url(#New_Gradient_Swatch_3-2);stroke:url(#New_Gradient_Swatch_3-3);}.cls-25{stroke:url(#New_Gradient_Swatch_3-4);}.cls-26{fill:url(#New_Gradient_Swatch_2-2);stroke:url(#New_Gradient_Swatch_2-3);}.cls-27{stroke:url(#New_Gradient_Swatch_2-4);}.cls-28{fill:url(#linear-gradient-3);stroke:url(#linear-gradient-4);}.cls-29{stroke:url(#linear-gradient-5);}.cls-30{fill:url(#New_Gradient_Swatch_1);stroke:url(#New_Gradient_Swatch_1-2);}.cls-31{stroke:url(#New_Gradient_Swatch_1-3);}.cls-32{letter-spacing:-0.04em;}
+      .st0{fill:#9E9E9E;}.st1{fill:#399439;}.st2{fill:#FC142E;}.st3{fill:#FFFFFF;}.st4{font-family:Arial,sans-serif;}.st5{font-size:14px;}.st6{font-family:Arial,sans-serif;font-weight:bold;}.st7{font-size:16px;}.st8{font-size:10px;}
+    </style>
+    <linearGradient id="linear-gradient" x1="329.2" y1="183.68" x2="328.24" y2="183.68" gradientTransform="matrix(64.8 0 0 -64.8 -21244.4 11935.6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#399439"/>
+      <stop offset="1" stop-color="#226022"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="329.44" y1="183.68" x2="328.36" y2="183.68" gradientTransform="matrix(64.8 0 0 -64.8 -21244.4 11999.6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4ac04a"/>
+      <stop offset="1" stop-color="#399439"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_2" x1="329.37" y1="183.68" x2="328.36" y2="183.68" gradientTransform="matrix(64.8 0 0 -64.8 -21244.4 12064.6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd816"/>
+      <stop offset="1" stop-color="#febd57"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_3" x1="329.35" y1="183.68" x2="328.36" y2="183.68" gradientTransform="matrix(64.8 0 0 -64.8 -21244.4 12128.6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#febd57"/>
+      <stop offset="1" stop-color="#fd6b39"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_4" x1="328.36" y1="183.68" x2="329.14" y2="183.68" gradientTransform="matrix(64.8 0 0 -64.8 -21244.4 12192.6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fc142e"/>
+      <stop offset="1" stop-color="#fd6b39"/>
+    </linearGradient>
+    <filter id="filter-1" x="-25" y="-11.9" width="150" height="133.3" name="filter-1">
+      <feOffset result="shadowOffsetOuter1" dy="1" in="SourceAlpha"/>
+      <feGaussianBlur result="shadowBlurOuter1" stdDeviation="1" in="shadowOffsetOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="shadowBlurOuter1"/>
+    </filter>
+    <linearGradient id="New_Gradient_Swatch_3-2" x1="327.3" y1="181.81" x2="327.98" y2="181.82" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#New_Gradient_Swatch_3"/>
+    <linearGradient id="New_Gradient_Swatch_3-3" x1="327.32" y1="181.74" x2="327.98" y2="181.75" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#New_Gradient_Swatch_3"/>
+    <linearGradient id="New_Gradient_Swatch_3-4" x1="323.48" y1="181.79" x2="324.13" y2="181.82" gradientTransform="matrix(35.1 0 0 -35.1 -11277 6608.2)" xlink:href="#New_Gradient_Swatch_3"/>
+    <linearGradient id="New_Gradient_Swatch_2-2" x1="327.3" y1="183.65" x2="327.98" y2="183.65" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#New_Gradient_Swatch_2"/>
+    <linearGradient id="New_Gradient_Swatch_2-3" x1="327.32" y1="183.57" x2="327.98" y2="183.58" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#New_Gradient_Swatch_2"/>
+    <linearGradient id="New_Gradient_Swatch_2-4" x1="323.48" y1="183.63" x2="324.13" y2="183.66" gradientTransform="matrix(35.1 0 0 -35.1 -11277 6608.2)" xlink:href="#New_Gradient_Swatch_2"/>
+    <linearGradient id="linear-gradient-3" x1="327.3" y1="185.51" x2="327.98" y2="185.52" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-4" x1="327.32" y1="185.43" x2="327.98" y2="185.45" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4ac04a"/>
+      <stop offset="1" stop-color="#3a963a"/>
+      <stop offset="1" stop-color="#399439"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="323.48" y1="185.49" x2="324.13" y2="185.52" gradientTransform="matrix(35.1 0 0 -35.1 -11277 6608.2)" xlink:href="#linear-gradient-4"/>
+    <linearGradient id="New_Gradient_Swatch_1" x1="327.3" y1="187.31" x2="327.98" y2="187.32" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#linear-gradient"/>
+    <linearGradient id="New_Gradient_Swatch_1-2" x1="327.32" y1="187.23" x2="327.98" y2="187.24" gradientTransform="matrix(59.03 0 0 -35.1 -19270.9 6608.2)" xlink:href="#linear-gradient"/>
+    <linearGradient id="New_Gradient_Swatch_1-3" x1="323.48" y1="187.29" x2="324.13" y2="187.32" gradientTransform="matrix(35.1 0 0 -35.1 -11277 6608.2)" xlink:href="#linear-gradient"/>
+  </defs>
+  <title id="summary-title">Toegankelijkheidslabel van https://www.mijnoverheidzakelijk.nl/</title>
+  <desc id="explanation-text">
+    Status toegankelijkheid: https://www.mijnoverheidzakelijk.nl/. Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht om deze website te laten voldoenaan het Besluit digitale toegankelijkheid overheid.
+    De status van deze website is: Eerste maatregelen genomen. Deze status is toegekend op basis van een eigen verklaring.Deze is voor het laatst bijgewerkt op 09-03-2026.
+  </desc>
+  <g id="Compliance_Text" data-name="Compliance Text">
+    <rect id="Background" class="cls-1" width="692" height="344"/>
+    <text transform="translate(146.3 22.7)" class="st6 st7">Status toegankelijkheid</text>
+    <text transform="translate(146.3 39.7)" class="st6 st7">https://www.mijnoverheidzakelijk.nl/</text>
+    <text transform="translate(145.4 67.6)" class="st4 st5">Ministerie van Binnenlandse Zaken en Koninkrijksrelaties</text>
+    <text transform="translate(146.3 84.2)" class="st4 st5">is wettelijk verplicht om deze website te laten voldoen</text>
+    <text transform="translate(145.3 100)" class="st4 st5">aan het Besluit digitale toegankelijkheid overheid.</text>
+    <text transform="translate(145.3 125.1)" class="st4 st5">De status van deze website is:</text>
+    <text transform="translate(145.3 142.5)" class="st6 st7">Eerste maatregelen genomen</text>
+    <text transform="translate(145.3 169.4)" class="st4 st5">Deze status is toegekend op basis van een eigen verklaring.</text>
+    <text transform="translate(145.3 186.2)" class="st4 st5">Deze is voor het laatst bijgewerkt op 09-03-2026.</text>
+    <text transform="translate(145.4 213.2)" class="st4 st5">Ga naar de</text>
+    <text transform="translate(219.4 213.2)" class="st4 st5" style="text-decoration: underline;">toegankelijkheidsverklaring</text>
+    <text transform="translate(387.5 213.2)" class="st4 st5">:</text>
+    <text transform="translate(145.4 246.8)" class="st4 st5">- Om een toegankelijkheidsprobleem te melden.</text>
+    <text transform="translate(145.4 230)" class="st4 st5">- Om de volledige, officiële verklaring in te zien;</text>
+  </g>
+  <g id="Compliance_Meter" data-name="Compliance Meter">
+    <rect id="A_green" data-name="A green" class="cls-9" x="1" y="1" width="64.8" height="64.8"/>
+    <rect id="B_green" data-name="B green" class="cls-10" x="1" y="65" width="64.8" height="64.8"/>
+    <rect id="C_yellow" data-name="C yellow" class="cls-11" x="1" y="130" width="64.8" height="64.8"/>
+    <rect id="D_orange" data-name="D orange" class="cls-12" x="1" y="194" width="64.8" height="64.8"/>
+    <rect id="E_red" data-name="E red" class="cls-13" x="1" y="258" width="64.8" height="64.8"/>
+    <g id="A-meter">
+      <g id="A_shadow" data-name="A shadow" class="cls-14">
+        <text class="cls-15" transform="translate(26.1 40)">A</text>
+      </g>
+      <text class="cls-15" transform="translate(26.1 40)">A</text>
+    </g>
+    <g id="B-meter">
+      <g id="B_shadow" data-name="B shadow" class="cls-16">
+        <text class="cls-17" transform="translate(26.1 104)">B</text>
+      </g>
+      <text class="cls-17" transform="translate(26.1 104)">B</text>
+    </g>
+    <g id="C-meter">
+      <g id="C_shadow" data-name="C shadow" class="cls-18">
+        <text class="cls-17" transform="translate(26.1 169)">C</text>
+      </g>
+      <text class="cls-17" transform="translate(26.1 169)">C</text>
+    </g>
+    <g id="D-meter">
+      <g id="D_shadow" data-name="D shadow" class="cls-19">
+        <text class="cls-17" transform="translate(26.1 233)">D</text>
+      </g>
+      <text class="cls-17" transform="translate(26.1 233)">D</text>
+    </g>
+    <g id="E-meter">
+      <g id="E_shadow" data-name="E shadow" class="cls-20">
+        <text class="cls-17" transform="translate(27.1 297)">E</text>
+      </g>
+      <text class="cls-17" transform="translate(27.1 297)">E</text>
+    </g>
+  </g>
+  <g id="Compliance_Indicator" data-name="Compliance Indicator">
+   <g id="C-indicator">
+          <path id="Combined-Shape-3" data-name="Combined-Shape" class="cls-26" d="M95.48,144.35A17.55,17.55,0,1,1,77.93,161.9,17.55,17.55,0,0,1,95.48,144.35Zm-16.23,9.33a17.69,17.69,0,0,0-2.4,8.76,17,17,0,0,0,2.6,9.28L54,162.8Z"/>
+          <circle id="Oval-3" data-name="Oval" class="cls-27" cx="95.85" cy="161.9" r="17.55"/>
+          <text class="cls-23" transform="translate(90 168.35)">C</text></g>
+  </g>
+  
+</svg>

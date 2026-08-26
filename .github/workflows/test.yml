@@ -37,6 +37,9 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Controleer het toegankelijkheidslabel
+        run: npm run check-label
+
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
 

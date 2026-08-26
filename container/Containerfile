@@ -35,5 +35,6 @@ FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 COPY --from=builder /app/public /usr/share/nginx/html
 COPY container/nginx.conf /etc/nginx/nginx.conf
 COPY container/default.conf /etc/nginx/conf.d/default.conf
+COPY container/security-headers.conf /etc/nginx/security-headers.conf
 
 EXPOSE 8080

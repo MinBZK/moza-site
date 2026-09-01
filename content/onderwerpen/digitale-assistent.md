@@ -154,12 +154,14 @@ Daarnaast heeft de POC zich overwegend op de technische werking gefocust, maar o
 
 Wil je als overheidsorganisatie aansluiten op de Digitale Assistent, of bijdragen aan de doorontwikkeling van RegelRecht en de Digitale Assistent? We werken samen op het gebied van beleid, design, juridische kaders en techniek.
 
-Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
+Dit zijn nog openstaande punten:
 
 * Hoe zorgen we dat RegelRecht niet alleen een bron van documenten is met bijbehorende uitrekenmachine voor de Digitale Assistent, maar ook de standaard uitvoering voert?
 * Welke vorm past bij de ondernemer: een gesprek, hulp binnen het portaal, of een aansluiting op de software die de ondernemer al gebruikt?
 * Wie is verantwoordelijk als de assistent een fout antwoord geeft, en hoe leggen we dat vast met de uitvoeringsorganisaties?
 * Welke eisen stellen we aan het taalmodel zelf, bijvoorbeeld op het gebied van privacy, leveranciersafhankelijkheid en energieverbruik?
+
+Heb je hier feedback op, of wil je ergens over meedenken? Dat kan altijd.
 
 ## Meer info
 

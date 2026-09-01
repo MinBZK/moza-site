@@ -11,7 +11,8 @@ In de periode januari tot en met april 2026 is een proof of concept (POC) ontwik
 
 **"De ondernemer stelt een vraag in gewone taal, de assistent kiest zelf welke bron nodig is en laat bij elk antwoord zien waar het vandaan komt".**
 
-{{< info >}}De POC werkt op dit moment voor één casus: de informatieplicht energiebesparing. De KVK draait op de testomgeving, RVO is gesimuleerd en de assistent is nog niet aangesloten op een productieomgeving. Opschalen naar meer wetten en meer uitvoeringsorganisaties is de volgende stap.{{< /info >}}
+> [!INFO]
+> De POC werkt op dit moment voor één casus: de informatieplicht energiebesparing. De KVK draait op de testomgeving, RVO is gesimuleerd en de assistent is nog niet aangesloten op een productieomgeving. Opschalen naar meer wetten en meer uitvoeringsorganisaties is de volgende stap.
 
 ## Wat kan de ondernemer (in deze POC)?
 

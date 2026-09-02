@@ -64,7 +64,7 @@ Generatieve AI doet in deze opzet dus twee dingen: de vraag begrijpen en de bron
 Die vorm heeft duidelijke voordelen, en net zo duidelijke nadelen:
 
 * **Voordelen:** de ondernemer krijgt uitleg over de eigen situatie en kan doorvragen. Het blijft bovendien niet bij informeren: de assistent vult het formulier alvast in met de gegevens die al bekend zijn en dient het na bevestiging in bij RVO.
-* **Nadelen:** een taalmodel verzint antwoorden, formuleert dezelfde vraag steeds anders en klinkt overtuigend genoeg om niet gecontroleerd te worden. Een gesprek laat bovendien minder zien waar een antwoord op rust dan een formulier of een besluit. En niet elke ondernemer wil chatten.
+* **Nadelen:** een taalmodel beantwoordt dezelfde vraag elke keer net iets anders, en klinkt overtuigend genoeg om niet gecontroleerd te worden. Ook als het rekenwerk aan een tool wordt overgelaten, blijft de eerste stap bij het model: het moet beslissen welke wet van toepassing is en welke inputwaarden daarvoor nodig zijn. Een foutieve keuze levert een berekening op die klopt, maar de verkeerde vraag beantwoordt. Daarnaast moet nog blijken of de trace van een gesprek evenveel gewicht in de schaal legt als een ingevuld formulier. En niet elke ondernemer wil chatten.
 
 Die nadelen bepalen de opzet. Bij elk antwoord toont de assistent de bron en het artikel, handelen gebeurt pas na een expliciete bevestiging en de assistent werkt in een afgebakende omgeving met vaste bronnen en instructies. En het taalmodel rekent niet.
 

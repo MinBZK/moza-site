@@ -66,6 +66,6 @@ Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit 
 
 [Eleventy](https://www.11ty.dev/) wordt ingezet om herhalende elementen (header, footer, navigatie) als includes te beheren en pagina's te genereren. Dit houdt de HTML van individuele pagina's schoon en onderhoudbaar.
 
-## Prototype en Storybook omgeving
+## Prototype
 
 Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)

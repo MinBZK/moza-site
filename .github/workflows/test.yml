@@ -10,14 +10,29 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  TZ: Europe/Amsterdam
+
 jobs:
-  test:
+  scripts:
+    name: Python-scripts
     runs-on: ubuntu-latest
-    env:
-      GO_VERSION: 1.25.5
-      HUGO_VERSION: 0.162.1
-      HTMLTEST_VERSION: 0.17.0
-      TZ: Europe/Amsterdam
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Test moza-weekly scripts
+        run: >
+          uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py
+          --with httpx --with tenacity --with beautifulsoup4
+          pytest scripts/moza-weekly/tests/ -q
+
+  node:
+    name: Node-scripts
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -40,14 +55,24 @@ jobs:
       - name: Controleer het toegankelijkheidslabel
         run: npm run check-label
 
-      - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+  site:
+    name: Site en links
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.162.1
+      HTMLTEST_VERSION: 0.17.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
 
-      - name: Test moza-weekly scripts
-        run: >
-          uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py
-          --with httpx --with tenacity --with beautifulsoup4
-          pytest scripts/moza-weekly/tests/ -q
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
 
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
@@ -61,14 +86,7 @@ jobs:
             exit 1
           fi
 
-      - name: Setup Go
-        uses: actions/setup-go@v7
-        with:
-          go-version: ${{ env.GO_VERSION }}
-          cache: false
-
       - name: Install Hugo
-        if: github.event.action != 'closed'
         run: |
           curl -sLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
           mkdir -p "${HOME}/.local/hugo"
@@ -86,7 +104,6 @@ jobs:
 
       - name: Verify installations
         run: |
-          echo "Go: $(go version)"
           echo "Hugo: $(hugo version)"
           echo "htmltest: $(htmltest --version)"
 

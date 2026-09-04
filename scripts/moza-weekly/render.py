@@ -178,6 +178,7 @@ def main(argv: list[str] | None = None) -> int:
         meta=data["meta"],
         stats=data["stats"],
         channels=channels,
+        references=data.get("references") or [],
         period_label=period_label,
     )
 

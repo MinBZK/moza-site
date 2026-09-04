@@ -2,6 +2,7 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
+#     "beautifulsoup4>=4.12",
 #     "httpx>=0.27",
 #     "pyyaml>=6",
 #     "tenacity>=8",
@@ -13,6 +14,7 @@ Usage:
     uv run scripts/moza-weekly/fetch.py [--from YYYY-MM-DD] [--to YYYY-MM-DD]
                                         [--channel NAME ...] [--output PATH]
                                         [--no-bots] [--force]
+                                        [--no-references | --no-external]
                                         [--verbose | --quiet]
 """
 
@@ -46,11 +48,17 @@ from _model import (  # noqa: E402
     Channel,
     Period,
     Post,
+    Reference,
     Report,
     Thread,
 )
+from _references import (  # noqa: E402
+    STATUS_OK,
+    ReferenceCollector,
+    WebFetcher,
+)
 
-GENERATOR = "moza-weekly fetch.py v0.1.0"
+GENERATOR = "moza-weekly fetch.py v0.2.0"
 NL_TZ = ZoneInfo("Europe/Amsterdam")
 DEFAULT_SERVER = "https://digilab.overheid.nl/chat"
 DEFAULT_TEAM = "mijnoverheid-zakelijk"
@@ -97,6 +105,16 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
     p.add_argument("--channel", action="append", default=None, dest="channels")
     p.add_argument("--output", type=Path, default=None)
     p.add_argument("--no-bots", action="store_true")
+    p.add_argument(
+        "--no-references",
+        action="store_true",
+        help="Volg geen verwijzingen naar andere Mattermost-berichten of webpagina's",
+    )
+    p.add_argument(
+        "--no-external",
+        action="store_true",
+        help="Volg alleen Mattermost-verwijzingen, geen externe webpagina's",
+    )
     p.add_argument("--force", action="store_true")
     g = p.add_mutually_exclusive_group()
     g.add_argument("--verbose", action="store_true")
@@ -297,6 +315,57 @@ def _fetch_channel(
     return channel
 
 
+# --------------------------------------------------------------------------- references
+
+
+def _collect_references(
+    client: MattermostClient,
+    channels: list[Channel],
+    period: Period,
+    server: str,
+    team: str,
+    follow_external: bool,
+) -> list[Reference]:
+    """Volg verwijzingen in alle opgehaalde berichten en log wat niet lukte."""
+    known_post_ids = {
+        p.id for ch in channels for th in ch.threads for p in (th.root, *th.replies)
+    }
+    fetcher = WebFetcher() if follow_external else None
+    collector = ReferenceCollector(
+        client=client,
+        server=server,
+        build_post=lambda raw: _build_post(client, raw, period, server, team),
+        fetcher=fetcher,
+        known_post_ids=known_post_ids,
+    )
+    try:
+        for ch in channels:
+            for th in ch.threads:
+                for post in (th.root, *th.replies):
+                    post.references = collector.collect_from(post.message)
+    finally:
+        if fetcher is not None:
+            fetcher.close()
+
+    references = collector.references
+    mm = sum(1 for r in references if r.kind == "mattermost")
+    web = sum(1 for r in references if r.kind == "web")
+    log.info("Verwijzingen: %d Mattermost-threads, %d webpagina's", mm, web)
+    if collector.skipped_external:
+        log.info("%d externe links overgeslagen (--no-external)", collector.skipped_external)
+
+    for ref in references:
+        if ref.status != STATUS_OK:
+            log.warning("⚠ %s (%s): %s", ref.url, ref.status, ref.note or "")
+    if collector.pdf_urls:
+        log.warning(
+            "PDF-verwijzingen niet meegenomen; tekstextractie is bewust niet gebouwd. "
+            "Kom hierop terug als dit vaker voorkomt:\n  %s",
+            "\n  ".join(collector.pdf_urls),
+        )
+    return references
+
+
 # --------------------------------------------------------------------------- yaml
 
 
@@ -374,6 +443,7 @@ def main(argv: list[str] | None = None) -> int:
 
     exit_code = EXIT_OK
     fetched_channels: list[Channel] = []
+    references: list[Reference] = []
     try:
         with MattermostClient(server, token) as client:
             try:
@@ -405,6 +475,18 @@ def main(argv: list[str] | None = None) -> int:
                     if ch.error:
                         exit_code = EXIT_PARTIAL
                     fetched_channels.append(ch)
+
+            if args.no_references:
+                log.info("Verwijzingen worden niet gevolgd (--no-references)")
+            else:
+                references = _collect_references(
+                    client,
+                    fetched_channels,
+                    period,
+                    server,
+                    team,
+                    follow_external=not args.no_external,
+                )
     except MattermostError as e:
         log.error("Netwerk/server-fout: %s", e)
         return EXIT_NETWORK
@@ -416,6 +498,7 @@ def main(argv: list[str] | None = None) -> int:
         server=server,
         team=team,
         channels=fetched_channels,
+        references=references,
     )
     _write_yaml(report, output, force=args.force)
 

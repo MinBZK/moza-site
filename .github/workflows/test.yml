@@ -46,7 +46,7 @@ jobs:
       - name: Test moza-weekly scripts
         run: >
           uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py
-          --with httpx --with tenacity
+          --with httpx --with tenacity --with beautifulsoup4
           pytest scripts/moza-weekly/tests/ -q
 
       - name: Render Mermaid SVGs

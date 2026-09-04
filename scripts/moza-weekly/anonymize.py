@@ -56,19 +56,32 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
     return p.parse_args(argv)
 
 
-def _collect_authors(channels: list[dict[str, Any]]) -> "OrderedDict[str, dict[str, Any]]":
-    """Verzamel alle unieke auteurs in volgorde van voorkomen. Key = username."""
+def _collect_authors(
+    channels: list[dict[str, Any]], references: list[dict[str, Any]] | None = None
+) -> "OrderedDict[str, dict[str, Any]]":
+    """Verzamel alle unieke auteurs in volgorde van voorkomen. Key = username.
+
+    Ook de auteurs van berichten uit gevolgde verwijzingen tellen mee: zonder dat
+    zouden zij zonder pseudoniem in de LLM-input belanden.
+    """
     authors: OrderedDict[str, dict[str, Any]] = OrderedDict()
+
+    def _add(post: dict[str, Any]) -> None:
+        a = post.get("author", {})
+        username = a.get("username", "")
+        if username and username not in authors:
+            authors[username] = {
+                "display_name": a.get("display_name", username),
+                "is_bot": bool(post.get("bot", False)),
+            }
+
     for ch in channels:
         for th in ch.get("threads", []):
             for post in [th["root"], *th.get("replies", [])]:
-                a = post.get("author", {})
-                username = a.get("username", "")
-                if username and username not in authors:
-                    authors[username] = {
-                        "display_name": a.get("display_name", username),
-                        "is_bot": bool(post.get("bot", False)),
-                    }
+                _add(post)
+    for ref in references or []:
+        for post in ref.get("posts", []):
+            _add(post)
     return authors
 
 
@@ -113,10 +126,16 @@ def _build_name_redactor(authors: "OrderedDict[str, dict[str, Any]]") -> "re.Pat
     return re.compile(pattern)
 
 
+# GitHub zet de auteur in de paginatitel: "… by ericwout-overheid · Pull Request #240 …".
+# Die handle staat niet in de auteur-set, dus geen enkele naamregel vangt hem.
+_GITHUB_ATTRIBUTIE_RE = re.compile(r"\bby\s+[\w][\w.-]{2,}\s+·")
+
+
 def _redact_message(message: str, name_re: "re.Pattern[str] | None") -> str:
     if not message:
         return message
     redacted = MENTION_RE.sub("[@collega]", message)
+    redacted = _GITHUB_ATTRIBUTIE_RE.sub("by [collega] ·", redacted)
     if name_re is not None:
         redacted = name_re.sub("[collega]", redacted)
     return redacted
@@ -140,6 +159,7 @@ def _anonymize_post(
         "edited": post.get("edited", False),
         "attachments": post.get("attachments", []),
         "message": _redact_message(post.get("message", ""), name_re),
+        "references": post.get("references", []),
     }
 
 
@@ -174,9 +194,35 @@ def _anonymize_channels(
     return out
 
 
+def _anonymize_references(
+    references: list[dict[str, Any]],
+    pseudonyms: dict[str, str],
+    name_re: "re.Pattern[str] | None",
+) -> list[dict[str, Any]]:
+    """Redigeer verwijzingen: berichten via _anonymize_post, vrije tekst via de naam-regex."""
+    out: list[dict[str, Any]] = []
+    for ref in references:
+        anon: dict[str, Any] = {
+            k: ref[k] for k in ("id", "kind", "url", "status") if k in ref
+        }
+        for key in ("site", "content_type", "channel", "note", "truncated"):
+            if key in ref:
+                anon[key] = ref[key]
+        for key in ("title", "description", "text"):
+            if key in ref:
+                anon[key] = _redact_message(ref[key], name_re)
+        if "posts" in ref:
+            anon["posts"] = [
+                _anonymize_post(p, pseudonyms, name_re) for p in ref["posts"]
+            ]
+        out.append(anon)
+    return out
+
+
 def _build_anonymized(data: dict[str, Any]) -> dict[str, Any]:
     channels = data.get("channels", [])
-    authors = _collect_authors(channels)
+    references = data.get("references", []) or []
+    authors = _collect_authors(channels, references)
     pseudonyms = _build_pseudonym_map(authors)
     name_re = _build_name_redactor(authors)
 
@@ -190,7 +236,9 @@ def _build_anonymized(data: dict[str, Any]) -> dict[str, Any]:
         "limitations": (
             "Namen die NIET voorkomen in de author-set worden NIET geschrubd. "
             "Voornamen korter dan 4 letters worden niet gesubstitueerd om "
-            "vals-positieven te voorkomen."
+            "vals-positieven te voorkomen. Dit geldt ook voor de tekst van "
+            "gevolgde verwijzingen: namen op een externe pagina die niet in de "
+            "author-set zitten blijven staan."
         ),
         "pseudonym_counts": {"humans": humans, "bots": bots},
     }
@@ -203,6 +251,7 @@ def _build_anonymized(data: dict[str, Any]) -> dict[str, Any]:
         "meta": meta,
         "stats": stats,
         "channels": _anonymize_channels(channels, pseudonyms, name_re),
+        "references": _anonymize_references(references, pseudonyms, name_re),
     }
 
 

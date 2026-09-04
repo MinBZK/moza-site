@@ -66,9 +66,8 @@ Het ontwerp volgt [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de visuel
 
 Het ontwerp is opgebouwd uit herbruikbare componenten die afzonderlijk ontwikkeld, getest en gedocumenteerd worden.
 
-- **Storybook als componentenbibliotheek** – elk component heeft een story met varianten, beschrijvingen en configureerbare opties. Dit maakt het mogelijk om componenten te bekijken en te testen los van de pagina's waarin ze uiteindelijk worden gebruikt.
 - **Van component naar pagina** – pagina's zijn samengesteld uit bestaande componenten. Dit zorgt voor consistentie en vermindert duplicatie.
-- **Documentatie bij de code** – elke story bevat een beschrijving die uitlegt wanneer en hoe het component ingezet wordt. De componentenbibliotheek dient daarmee zowel als visuele referentie als gebruikershandleiding.
+- **Documentatie bij de code** – elk component heeft een beschrijving die uitlegt wanneer en hoe je het inzet.
 
 ### 5. De eenvoudigst mogelijke oplossing
 

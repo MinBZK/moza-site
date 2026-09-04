@@ -28,5 +28,3 @@ Dit deel is bedoeld voor iedereen die aan het prototype werkt of wil begrijpen h
 ## Prototype en Storybook omgeving
 
 Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
-
-De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijfwijzer staat hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/storybook/)

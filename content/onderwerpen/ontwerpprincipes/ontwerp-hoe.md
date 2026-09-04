@@ -48,7 +48,7 @@ Het prototype hanteert een schrijfwijzer die consistentie waarborgt in taalgebru
 
 ## Ontwerppatronen
 
-Het prototype documenteert terugkerende ontwerppatronen in Storybook, met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
+Het prototype wordt gebouwd vanuit terugkerende ontwerppatronen met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
 
 - **Interactie op inhoud** – het patroon waarmee gebruikers door middel van acties als Bewaar, Relevant, Niet relevant en Deel een profiel opbouwen dat de basis vormt voor gepersonaliseerde content (aanbevelingssysteem).
 - **Context wisselen** – het patroon waarmee een gebruiker kan wisselen tussen privé- en zakelijke contexten, eigen ondernemingen en machtigingen, zonder opnieuw in te loggen. Geïmplementeerd als accountwisselaar in de header.

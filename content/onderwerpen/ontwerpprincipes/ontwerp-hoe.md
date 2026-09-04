@@ -48,7 +48,7 @@ Het prototype hanteert een schrijfwijzer die consistentie waarborgt in taalgebru
 
 ## Ontwerppatronen
 
-Het prototype documenteert terugkerende ontwerppatronen in Storybook, met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
+Het prototype wordt gebouwd vanuit terugkerende ontwerppatronen met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
 
 - **Interactie op inhoud** – het patroon waarmee gebruikers door middel van acties als Bewaar, Relevant, Niet relevant en Deel een profiel opbouwen dat de basis vormt voor gepersonaliseerde content (aanbevelingssysteem).
 - **Context wisselen** – het patroon waarmee een gebruiker kan wisselen tussen privé- en zakelijke contexten, eigen ondernemingen en machtigingen, zonder opnieuw in te loggen. Geïmplementeerd als accountwisselaar in de header.
@@ -66,8 +66,6 @@ Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit 
 
 [Eleventy](https://www.11ty.dev/) wordt ingezet om herhalende elementen (header, footer, navigatie) als includes te beheren en pagina's te genereren. Dit houdt de HTML van individuele pagina's schoon en onderhoudbaar.
 
-## Prototype en Storybook omgeving
+## Prototype
 
 Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
-
-De Storybook omgeving, met daarin de design token architectuur, componenten, ontwerp-patronen en schrijwijzer staan hier: [proef.moza.rijksapp.dev/storybook/](https://proef.moza.rijksapp.dev/storybook/)

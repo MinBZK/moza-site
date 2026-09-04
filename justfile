@@ -75,7 +75,7 @@ moza-weekly-anonymize YAML:
 # Draai de unit-tests van de moza-weekly-scripts
 moza-weekly-test:
     uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py \
-        --with httpx --with tenacity \
+        --with httpx --with tenacity --with beautifulsoup4 \
         pytest scripts/moza-weekly/tests/ -q
 
 # Bouw container image

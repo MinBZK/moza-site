@@ -2,7 +2,7 @@
 
 Drie-staps Python-pipeline die input verzamelt voor de wekelijkse MOZa Weekly-publicatie.
 
-1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`, `sprint-faq`) en schrijft een gestructureerd YAML-bestand.
+1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`, `sprint-faq`), volgt de verwijzingen in die berichten (permalinks naar andere threads, publieke webpagina's) en schrijft een gestructureerd YAML-bestand.
 2. **`anonymize.py`** schrijft een geanonimiseerde JSON-variant van die YAML — bedoeld als veilige LLM-input voor de MOZa Weekly skill.
 3. **`render.py`** rendert het YAML-bestand naar een single-file HTML-rapport in de nldd-stijl (voor menselijke lezers).
 
@@ -115,6 +115,13 @@ just moza-weekly-anonymize tmp/moza-weekly/2026-05-27.yaml
 just moza-weekly --no-bots
 ```
 
+### Verwijzingen niet volgen
+
+```bash
+just moza-weekly --no-external      # alleen Mattermost-verwijzingen volgen
+just moza-weekly --no-references    # helemaal geen verwijzingen volgen
+```
+
 ### Verbose / quiet
 
 ```bash
@@ -145,8 +152,38 @@ De `anonymized.json` wijkt op deze punten af van de YAML:
 - **Bekende collega-namen** (full name + voornaam ≥ 4 letters, geleerd uit de auteur-set) → `[collega]`. Voornamen < 4 letters worden niet vervangen om vals-positieven te vermijden.
 - **Bot-flag** blijft bewaard (`is_bot: true/false`).
 - **Permalinks, timestamps, scope-flags, attachments** blijven onveranderd — die identificeren posts, niet personen.
+- **Verwijzingen** gaan door dezelfde molen: auteurs van opgehaalde Mattermost-berichten krijgen een pseudoniem uit dezelfde mapping, en titel, description en opgehaalde webtekst worden op mentions en bekende namen geschrubd.
 
 **Bewuste beperking**: namen in message-bodies die *niet* in de auteur-set voorkomen worden NIET geschrubd. Wie buiten de huidige threads om genoemd wordt blijft dus in de JSON staan. Voor een strakker filter zou NER nodig zijn — voor v0.1 een bewuste tradeoff.
+
+## Verwijzingen volgen
+
+Berichten verwijzen regelmatig naar context die buiten de opgehaalde kanalen ligt: een gespreksverslag elders in Mattermost, of een externe pagina. `fetch.py` haalt die context erbij en zet hem in een top-level `references:`-blok. Posts verwijzen ernaar met `references: [ref_1, ref_3]`.
+
+**Mattermost-permalinks** (`…/<team>/pl/<post-id>`) leveren het bericht plus de volledige thread op. Ontdubbeling gebeurt op thread-root: vijf links naar dezelfde thread geven één referentie. Een permalink naar een post die al in het rapport staat wordt overgeslagen: die inhoud hebben we al. Kanaallinks worden genegeerd.
+
+**Externe links** worden anoniem opgehaald: geen token, geen cookies, eigen user-agent, 15 seconden timeout, maximaal 5 redirects en 2 MB. Omdat de URL's uit berichten van anderen komen, controleert het script vóór elk verzoek of de hostnaam naar een publiek internetadres wijst; `localhost`, private ranges en link-local adressen (zoals het cloud-metadata-endpoint) worden geweigerd. Redirects volgt het script zelf, zodat elke hop opnieuw langs die controle gaat. Van een publieke pagina bewaren we titel, meta-description en de hoofdtekst (`<main>`/`<article>`, anders `<body>`, met nav/header/footer/script/style eruit), afgekapt op 4.000 tekens. Ontdubbeling gebeurt op de genormaliseerde URL: fragment en trackingparameters (`utm_*`, `telem_*`) eraf.
+
+Verwijzingen worden één niveau diep gevolgd: verwijzingen bínnen een opgehaalde thread of pagina volgen we niet.
+
+**Van `github.com` bewaren we alleen titel en description** (`SAMENVATTING_HOSTS` in `_references.py`). Een PR- of issue-pagina levert duizenden tekens navigatie en diff-gepraat op, terwijl titel en `og:description` samen al zeggen waar het over gaat. In een proefrun over vijf weken was 75 van de 116 verwijzingen een GitHub-link; zonder deze regel bestond de LLM-input voor 80% uit opgehaalde pagina's in plaats van uit de berichten zelf.
+
+De handle in zo'n GitHub-titel (`… by ericwout-overheid · Pull Request #240 …`) wordt in `anonymize.py` vervangen door `[collega]`. Die staat namelijk niet in de auteur-set, dus geen enkele naamregel vangt hem, en een weekly hoort geen namen te bevatten.
+
+**Pagina's die hun inhoud met JavaScript laden** (zoals de Docs-applicatie op `docs.rijksapp.nl`) geven anoniem een lege shell terug. Die krijgen `niet_publiek` met die reden erbij, niet `fout`: er is niets stuk, de inhoud komt simpelweg niet zonder browser en meestal ook niet zonder inlog. Zulke verslagen moet je zelf openen.
+
+| `status` | Betekenis | Inhoud opgeslagen? |
+|---|---|---|
+| `ok` | Opgehaald | ✅ |
+| `niet_publiek` | 401/403, loginpad in de URL, of een wachtwoordveld op de pagina | ❌ alleen de URL |
+| `geen_toegang` | Je token mag die Mattermost-thread niet lezen | ❌ |
+| `niet_gevonden` | Post of thread bestaat niet (meer) | ❌ |
+| `pdf_niet_ondersteund` | PDF, tekstextractie is bewust niet gebouwd | ❌ |
+| `geblokkeerd` | De URL wijst niet naar een publiek internetadres | ❌ |
+| `overgeslagen` | Ander content-type dan HTML of platte tekst | ❌ |
+| `fout` | Netwerkfout, HTTP-fout of geen leesbare tekst | ❌ |
+
+Alles wat niet `ok` is, logt `fetch.py` als waarschuwing. PDF's krijgen een aparte melding met de volledige lijst URL's, zodat we kunnen heroverwegen of PDF-extractie de moeite waard wordt.
 
 ## Hoe threading werkt
 
@@ -197,6 +234,7 @@ scripts/moza-weekly/
 ├── anonymize.py          # CLI-script, stap 2 (YAML → anonymized JSON)
 ├── render.py             # CLI-script, stap 3 (YAML → HTML)
 ├── _mattermost.py        # API-client (intern)
+├── _references.py        # verwijzingen volgen: permalinks + webpagina's (intern)
 ├── _model.py             # dataclasses (intern)
 ├── templates/
 │   ├── report.html.j2    # hoofdtemplate

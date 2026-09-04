@@ -16,6 +16,34 @@
         {% for a in post.attachments %}<li>{{ a.filename }} ({{ format_size(a.size_bytes) }})</li>{% endfor %}
       </ul>
     {% endif %}
+    {% if post.references %}
+      <p class="post-refs">
+        {% for ref_id in post.references %}<a class="ref-chip" href="#{{ ref_id }}">↘ {{ ref_id }}</a>{% endfor %}
+      </p>
+    {% endif %}
+  </article>
+{%- endmacro -%}
+{%- macro render_reference(ref) -%}
+  <article class="reference" id="{{ ref.id }}">
+    <header class="reference-head">
+      <span class="badge badge--{{ 'mm' if ref.kind == 'mattermost' else 'web' }}">{{ 'Mattermost' if ref.kind == 'mattermost' else 'Web' }}</span>
+      <span class="reference-id">{{ ref.id }}</span>
+      {% if ref.channel %}<span class="reference-site"># {{ ref.channel }}</span>{% endif %}
+      {% if ref.site %}<span class="reference-site">{{ ref.site }}</span>{% endif %}
+      {% if ref.status != "ok" %}<span class="badge badge--warn">{{ ref.status }}</span>{% endif %}
+      {% if ref.truncated %}<span class="badge badge--edited">afgekapt</span>{% endif %}
+    </header>
+    {% if ref.title %}<h3 class="reference-title">{{ ref.title }}</h3>{% endif %}
+    <a class="reference-url" href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.url }} ↗</a>
+    {% if ref.note %}<p class="reference-note">{{ ref.note }}</p>{% endif %}
+    {% if ref.description %}<p class="reference-description">{{ ref.description }}</p>{% endif %}
+    {% if ref.posts %}
+      <div class="reference-posts">
+        {% for p in ref.posts %}{{ render_post(p, is_reply=not loop.first) }}{% endfor %}
+      </div>
+    {% elif ref.text %}
+      <div class="reference-text">{{ ref.text }}</div>
+    {% endif %}
   </article>
 {%- endmacro -%}
 <!DOCTYPE html>
@@ -334,6 +362,79 @@
     margin-right: 4px;
   }
 
+  /* Verwijzingen */
+  .post-refs { margin: 8px 0 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ref-chip {
+    font-size: 0.75rem;
+    background: var(--nldd-info-100);
+    color: var(--nldd-info-700);
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .ref-chip:hover { text-decoration: underline; }
+
+  .references { margin-top: 32px; }
+  .references > h2 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+  }
+  .references > p.references-intro {
+    margin: 0 0 16px 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  .reference {
+    background: var(--card-bg);
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid var(--nldd-info-700);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .reference:target { border-left-color: var(--nldd-accent-700); }
+  .reference-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+  .reference-id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .reference-title { font-size: 0.9375rem; margin: 0 0 4px 0; color: #111827; }
+  .reference-url {
+    font-size: 0.75rem;
+    color: var(--nldd-accent-700);
+    word-break: break-all;
+    text-decoration: none;
+  }
+  .reference-url:hover { text-decoration: underline; }
+  .reference-note, .reference-description {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin: 8px 0 0 0;
+  }
+  .reference-text {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--post-border);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #1f2937;
+    white-space: pre-wrap;
+    max-height: 24rem;
+    overflow-y: auto;
+  }
+  .reference-posts { margin-top: 10px; }
+  .badge--mm { background: var(--nldd-accent-100, #e0e7ff); color: var(--nldd-accent-700); }
+  .badge--web { background: var(--nldd-info-100); color: var(--nldd-info-700); }
+  .badge--warn { background: #FEE2E2; color: #991B1B; }
+
   /* Print */
   @media print {
     body { padding: 0; background: white; }
@@ -357,6 +458,7 @@
         <div><strong>{{ stats.posts_in_period }}</strong> posts</div>
         <div><strong>{{ stats.unique_authors }}</strong> auteurs</div>
         <div><strong>{{ stats.channels }}</strong> kanalen</div>
+        {% if references %}<div><strong>{{ references | length }}</strong> verwijzingen</div>{% endif %}
       </div>
     </div>
 
@@ -406,6 +508,17 @@
         {% endfor %}
       </div>
     </div>
+
+    {% if references %}
+      <section class="references" aria-labelledby="referenties">
+        <h2 id="referenties">Verwijzingen</h2>
+        <p class="references-intro">
+          Context waarnaar in de berichten hierboven wordt verwezen: threads elders in
+          Mattermost en publiek bereikbare webpagina's.
+        </p>
+        {% for ref in references %}{{ render_reference(ref) }}{% endfor %}
+      </section>
+    {% endif %}
 
   </div>
 

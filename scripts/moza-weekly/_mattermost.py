@@ -93,6 +93,7 @@ class MattermostClient:
         )
         self._user_cache: dict[str, RawUser] = {}
         self._file_cache: dict[str, RawFileInfo] = {}
+        self._channel_name_cache: dict[str, str] = {}
 
     def close(self) -> None:
         self._client.close()
@@ -192,6 +193,22 @@ class MattermostClient:
         order: list[str] = data.get("order", [])
         posts_map: dict[str, dict[str, Any]] = data.get("posts", {})
         return [self._parse_post(posts_map[pid]) for pid in order if pid in posts_map]
+
+    def get_post(self, post_id: str) -> RawPost:
+        return self._parse_post(self._get_json(f"/posts/{post_id}"))
+
+    def get_channel_name(self, channel_id: str) -> str:
+        """Kanaalnaam voor een channel_id; bij een fout het id zelf (nooit fataal)."""
+        if channel_id in self._channel_name_cache:
+            return self._channel_name_cache[channel_id]
+        try:
+            data = self._get_json(f"/channels/{channel_id}")
+            name = data.get("name") or channel_id
+        except MattermostError as e:
+            log.warning("Kanaal-lookup faalde voor %s (%s), fallback op id", channel_id, e)
+            name = channel_id
+        self._channel_name_cache[channel_id] = name
+        return name
 
     def get_user(self, user_id: str) -> RawUser:
         if user_id in self._user_cache:

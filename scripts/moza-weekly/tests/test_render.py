@@ -4,6 +4,7 @@ import pytest
 
 from render import (
     _build_markdown_renderer,
+    _setup_env,
     _format_date,
     _format_dt,
     _format_period,
@@ -68,3 +69,58 @@ def test_markdown_escapes_raw_html():
     out = str(_markdown_with_mentions("<script>alert(1)</script>", md))
     assert "<script>" not in out
     assert "&lt;script&gt;" in out
+
+
+def _render(**overrides):
+    template = _setup_env().get_template("report.html.j2")
+    context = {
+        "meta": {"team": "moza", "server": "http://x"},
+        "stats": {"posts_in_period": 0, "unique_authors": 0, "channels": 0},
+        "channels": [],
+        "references": [],
+        "period_label": "20 – 27 mei 2026",
+    }
+    context.update(overrides)
+    return template.render(**context)
+
+
+def test_render_toont_referentiesectie_met_anker():
+    html = _render(
+        references=[
+            {
+                "id": "ref_1",
+                "kind": "web",
+                "url": "https://example.org/nota",
+                "status": "ok",
+                "site": "example.org",
+                "title": "Nota",
+                "text": "De inhoud.",
+                "truncated": False,
+            }
+        ]
+    )
+    assert 'id="ref_1"' in html
+    assert "De inhoud." in html
+    assert "example.org" in html
+
+
+def test_render_escapet_externe_tekst():
+    # Tekst van een externe pagina is niet te vertrouwen: autoescape moet hem neutraliseren.
+    html = _render(
+        references=[
+            {
+                "id": "ref_1",
+                "kind": "web",
+                "url": "https://example.org/x",
+                "status": "ok",
+                "text": "<img src=x onerror=alert(1)>",
+                "truncated": False,
+            }
+        ]
+    )
+    assert "<img src=x" not in html
+    assert "&lt;img src=x" in html
+
+
+def test_render_zonder_referenties_laat_sectie_weg():
+    assert 'aria-labelledby="referenties"' not in _render()

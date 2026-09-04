@@ -59,6 +59,7 @@ class Post:
     attachments: list[Attachment] = field(default_factory=list)
     message: str = ""
     context_only: bool = False  # True alleen voor root buiten periode met reply binnen periode
+    references: list[str] = field(default_factory=list)  # ref-id's uit Report.references
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {
@@ -78,6 +79,50 @@ class Post:
                 "message": self.message,
             }
         )
+        if self.references:
+            d["references"] = list(self.references)
+        return d
+
+
+@dataclass
+class Reference:
+    """Context buiten de opgehaalde kanalen: een Mattermost-thread waarnaar verwezen
+    wordt, of een publieke webpagina. Statuswaarden staan in _references.py."""
+
+    id: str
+    kind: str  # "mattermost" | "web"
+    url: str
+    status: str
+    title: str | None = None
+    site: str | None = None
+    description: str | None = None
+    content_type: str | None = None
+    channel: str | None = None
+    note: str | None = None
+    text: str = ""
+    truncated: bool = False
+    posts: list[Post] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        d: dict[str, Any] = _drop_falsy(
+            {
+                "id": self.id,
+                "kind": self.kind,
+                "url": self.url,
+                "status": self.status,
+                "title": self.title,
+                "site": self.site,
+                "description": self.description,
+                "content_type": self.content_type,
+                "channel": self.channel,
+                "note": self.note,
+            }
+        )
+        if self.kind == "web":
+            d["truncated"] = self.truncated
+            d["text"] = self.text
+        else:
+            d["posts"] = [p.to_dict() for p in self.posts]
         return d
 
 
@@ -124,6 +169,7 @@ class Report:
     server: str
     team: str
     channels: list[Channel]
+    references: list[Reference] = field(default_factory=list)
 
     def stats(self) -> dict[str, int]:
         posts_in_period = 0
@@ -150,6 +196,9 @@ class Report:
             "threads_in_period": threads_in_period,
             "posts_out_of_period_for_context": posts_context,
             "unique_authors": len(unique_authors),
+            "references_mattermost": sum(1 for r in self.references if r.kind == "mattermost"),
+            "references_web": sum(1 for r in self.references if r.kind == "web"),
+            "references_zonder_inhoud": sum(1 for r in self.references if r.status != "ok"),
         }
 
     def to_dict(self) -> dict[str, Any]:
@@ -166,4 +215,5 @@ class Report:
             },
             "stats": self.stats(),
             "channels": [c.to_dict() for c in self.channels],
+            "references": [r.to_dict() for r in self.references],
         }

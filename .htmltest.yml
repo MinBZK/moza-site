@@ -16,6 +16,9 @@ IgnoreURLs:
   - fmis.belastingdienst.nl
   # GitHub blokkeert geautomatiseerde requests (403), ook naar publieke pagina's
   - github.com/signup
+  # tweedekamer.nl geeft 404 op het verzoek van htmltest; met curl (ook HEAD) en
+  # in de browser geeft dezelfde URL gewoon 200.
+  - tweedekamer.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

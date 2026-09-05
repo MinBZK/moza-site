@@ -6,7 +6,7 @@ title: "Toegankelijkheid"
 
 Iedereen moet MijnOverheid Zakelijk kunnen gebruiken. Ook als je een schermlezer gebruikt, alleen met een toetsenbord werkt, of de tekst flink vergroot.
 
-MijnOverheid Zakelijk is nog in ontwikkeling. We hebben nog geen toegankelijkheidsonderzoek laten uitvoeren.
+MijnOverheid Zakelijk is nog in ontwikkeling. We hebben nog geen toegankelijkheidsonderzoek uitgevoerd.
 
 Onze status is daarom C: eerste maatregelen genomen. Dat betekent dat we [de verklaring hebben gepubliceerd](https://www.toegankelijkheidsverklaring.nl/register/29880) en het onderzoek hebben ingepland, maar dat het nog niet is uitgevoerd.
 

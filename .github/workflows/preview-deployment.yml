@@ -6,11 +6,15 @@ on:
       - opened
       - reopened
       - synchronize
+      - labeled
+      - unlabeled
       - closed
   workflow_dispatch:
 
+# Label-events die niet over previews gaan krijgen een eigen groep, anders breekt
+# een bot met zijn eigen labels de build af die hij zojuist startte.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ (github.event.action == 'labeled' || github.event.action == 'unlabeled') && github.event.label.name != 'preview' && github.run_id || 'shared' }}
   cancel-in-progress: true
 
 env:
@@ -19,7 +23,11 @@ env:
 
 jobs:
   build:
-    if: github.event.action != 'closed'
+    if: >-
+      github.event.action != 'closed' &&
+      github.event.action != 'unlabeled' &&
+      (github.event.action != 'labeled' || github.event.label.name == 'preview') &&
+      contains(github.event.pull_request.labels.*.name, 'preview')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -102,7 +110,13 @@ jobs:
           wait-for-ready: true
 
   cleanup-preview:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: >-
+      github.event_name == 'pull_request' &&
+      (
+        (github.event.action == 'unlabeled' && github.event.label.name == 'preview') ||
+        (github.event.action == 'closed' &&
+         contains(github.event.pull_request.labels.*.name, 'preview'))
+      )
     runs-on: ubuntu-latest
     permissions:
       deployments: write

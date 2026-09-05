@@ -19,6 +19,11 @@ IgnoreURLs:
   # tweedekamer.nl geeft 404 op het verzoek van htmltest; met curl (ook HEAD) en
   # in de browser geeft dezelfde URL gewoon 200.
   - tweedekamer.nl
+  # Deze twee geven vanaf de CI-runner met tussenpozen 403, terwijl dezelfde
+  # URL's lokaal en in de browser 200 geven. Drie builds op rij zijn erop
+  # gestrand zonder dat er iets aan de links mankeerde.
+  - zoek.officielebekendmakingen.nl
+  - wetten.overheid.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

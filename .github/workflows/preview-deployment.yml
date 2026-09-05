@@ -35,6 +35,7 @@ jobs:
     outputs:
       image: ${{ steps.meta.outputs.tags }}
       image-tag: ${{ steps.image-tag.outputs.tag }}
+      url: ${{ steps.url.outputs.deployment_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -63,7 +64,7 @@ jobs:
         id: url
         run: |
           PR_NUM="${{ github.event.pull_request.number }}"
-          DEPLOYMENT_URL="https://web-pr${PR_NUM}-mzs-3ik.rig.prd1.gn2.quattro.rijksapps.nl"
+          DEPLOYMENT_URL="https://web-pr-${PR_NUM}-mzs-3ik.rig.prd1.gn2.quattro.rijksapps.nl"
           echo "deployment_url=${DEPLOYMENT_URL}" >> $GITHUB_OUTPUT
 
       - name: Build and push container image
@@ -93,7 +94,7 @@ jobs:
       pull-requests: write
     needs: build
     environment:
-      name: pr${{ github.event.pull_request.number }}
+      name: pr-${{ github.event.pull_request.number }}
       url: ${{ steps.deploy.outputs.url }}
     steps:
       - name: Deploy to ZAD
@@ -102,12 +103,25 @@ jobs:
         with:
           api-key: ${{ secrets.ZAD_API_KEY }}
           project-id: mzs-3ik
-          deployment-name: pr${{ github.event.pull_request.number }}
+          deployment-name: pr-${{ github.event.pull_request.number }}
           component: web
           image: ${{ needs.build.outputs.image }}
+          # Niet weghalen: 'Determine deployment URL' bouwt de site op dit formaat,
+          # en die URL staat als canonical in de HTML.
+          domain-format: component-deployment-project
           comment-on-pr: true
           qr-code: true
           wait-for-ready: true
+
+      - name: Controleer de uitgerolde URL
+        env:
+          VERWACHT: ${{ needs.build.outputs.url }}
+          GEKREGEN: ${{ steps.deploy.outputs.url }}
+        run: |
+          if [ "${VERWACHT%/}" != "${GEKREGEN%/}" ]; then
+            echo "::error::Preview-URL wijkt af: gebouwd op ${VERWACHT}, uitgerold op ${GEKREGEN}"
+            exit 1
+          fi
 
   cleanup-preview:
     if: >-
@@ -128,7 +142,7 @@ jobs:
         with:
           api-key: ${{ secrets.ZAD_API_KEY }}
           project-id: mzs-3ik
-          deployment-name: pr${{ github.event.pull_request.number }}
+          deployment-name: pr-${{ github.event.pull_request.number }}
           delete-github-env: true
           delete-github-deployments: true
           delete-pr-comment: true

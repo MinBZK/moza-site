@@ -1,4 +1,9 @@
 DirectoryPath: tmp/public
+
+# htmltest kent geen retry: één trage server is meteen een rode build.
+ExternalTimeout: 30
+HTTPConcurrencyLimit: 4
+
 IgnoreURLs:
   - samenwerkruimten.nl
   - figma.com

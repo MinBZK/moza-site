@@ -1,4 +1,4 @@
-DirectoryPath: .htmltest/public
+DirectoryPath: tmp/public
 IgnoreURLs:
   - samenwerkruimten.nl
   - figma.com

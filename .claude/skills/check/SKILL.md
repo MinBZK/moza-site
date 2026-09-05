@@ -8,7 +8,7 @@ Voer een volledige kwaliteitscheck uit op de Hugo site.
 ## Technische checks
 
 1. Run: `just build`
-2. Run: `just check`
+2. Run: `just checks` - tests, CSP, toegankelijkheid en links op één build
 3. Rapporteer eventuele problemen in begrijpelijke taal
 
 ## Optionele vervolgchecks
@@ -24,4 +24,4 @@ Na de technische checks, vraag of de gebruiker ook wil:
 - Geef suggesties voor hoe het opgelost kan worden
 - Bied aan om te helpen met de fix
 
-Dit is dezelfde check die ook automatisch draait via de pre-commit hook (Lefthook).
+De pre-commit hook (Lefthook) draait alleen de build en de linkcontrole; toegankelijkheid en CSP draaien in de CI.

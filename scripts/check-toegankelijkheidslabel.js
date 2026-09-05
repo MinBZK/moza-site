@@ -13,7 +13,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const BRON =
-  'https://www.toegankelijkheidsverklaring.nl/files/verklaring/label/c9a8a20ea7aa6e192ebfe83e357048bc.28557.svg';
+  'https://www.toegankelijkheidsverklaring.nl/files/verklaring/label/9c3b703121c7d4ad1aeff1c0ef843267.29880.svg';
 const DOEL = fileURLToPath(new URL('../assets/images/toegankelijkheidslabel.svg', import.meta.url));
 const TIMEOUT_MS = 15000;
 

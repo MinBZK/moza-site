@@ -14,3 +14,8 @@ updates:
     directory: "/container"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "uv"
+    directory: "/scripts/moza-weekly"
+    schedule:
+      interval: "weekly"

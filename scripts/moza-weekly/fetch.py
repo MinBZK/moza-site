@@ -1,21 +1,11 @@
-#!/usr/bin/env -S uv run --quiet
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#     "beautifulsoup4>=4.12",
-#     "httpx>=0.27",
-#     "pyyaml>=6",
-#     "tenacity>=8",
-# ]
-# ///
+#!/usr/bin/env python3
 """Haal Mattermost-input op voor de MOZa Weekly en schrijf een YAML-bestand.
 
 Usage:
-    uv run scripts/moza-weekly/fetch.py [--from YYYY-MM-DD] [--to YYYY-MM-DD]
-                                        [--channel NAME ...] [--output PATH]
-                                        [--no-bots] [--force]
-                                        [--no-references | --no-external]
-                                        [--verbose | --quiet]
+    uv run --project scripts/moza-weekly scripts/moza-weekly/fetch.py
+        [--from YYYY-MM-DD] [--to YYYY-MM-DD] [--channel NAME ...]
+        [--output PATH] [--no-bots] [--force]
+        [--no-references | --no-external] [--verbose | --quiet]
 """
 
 from __future__ import annotations
@@ -29,7 +19,7 @@ from datetime import date, datetime, time, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-# Lokale module-imports werken doordat we via uv-script in deze dir starten.
+# De scriptmap staat op sys.path, zodat de _-modules hiernaast importeerbaar zijn.
 sys.path.insert(0, str(Path(__file__).parent))
 
 import yaml  # noqa: E402

@@ -14,10 +14,12 @@ Drie-staps Python-pipeline die input verzamelt voor de wekelijkse MOZa Weekly-pu
 
 ## Vereisten
 
-- [uv](https://docs.astral.sh/uv/) — bewaakt automatisch de venv per script.
+- [uv](https://docs.astral.sh/uv/) — bewaakt automatisch de omgeving.
 - Een Mattermost personal access token met leesrechten op de gewenste kanalen.
 
-Het script gebruikt PEP 723 inline dependency-metadata: `uv run` zorgt voor alles wat nodig is.
+De dependencies staan in `pyproject.toml` in deze map, vastgezet in `uv.lock`. Je hoeft niets te installeren: `uv run --project scripts/moza-weekly …` maakt de omgeving aan en houdt hem bij. De `just`-commando's hieronder doen dat al voor je.
+
+Dependabot bewaakt dit `pyproject.toml` via het `uv`-ecosysteem. Voeg een dependency daarom toe met `uv add --project scripts/moza-weekly <pakket>` en commit de bijgewerkte `uv.lock` mee, zodat de bewaking en de werkelijkheid gelijk blijven.
 
 ## Setup token
 
@@ -236,6 +238,8 @@ scripts/moza-weekly/
 ├── _mattermost.py        # API-client (intern)
 ├── _references.py        # verwijzingen volgen: permalinks + webpagina's (intern)
 ├── _model.py             # dataclasses (intern)
+├── pyproject.toml        # dependencies (bewaakt door Dependabot)
+├── uv.lock               # vastgezette versies
 ├── templates/
 │   ├── report.html.j2    # hoofdtemplate
 │   └── _rijkslogo.svg    # inline-include

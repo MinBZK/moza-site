@@ -1,10 +1,4 @@
-#!/usr/bin/env -S uv run --quiet
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#     "pyyaml>=6",
-# ]
-# ///
+#!/usr/bin/env python3
 """Schrijf een geanonimiseerde JSON-versie van de fetch.py YAML-output.
 
 De geanonimiseerde JSON is bedoeld als input voor een LLM (MOZa Weekly skill).
@@ -18,7 +12,7 @@ NIET geschrubd. Voor v0.1 is dit een bewuste tradeoff (geen NER). Plain-text
 namen kunnen dus alsnog in de JSON staan.
 
 Usage:
-    uv run scripts/moza-weekly/anonymize.py <input.yaml> [--output PATH]
+    uv run --project scripts/moza-weekly scripts/moza-weekly/anonymize.py <input.yaml> [--output PATH]
 """
 
 from __future__ import annotations
@@ -34,7 +28,7 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
-# Lokale module-imports werken doordat we via uv-script in deze dir starten.
+# De scriptmap staat op sys.path, zodat de _-modules hiernaast importeerbaar zijn.
 sys.path.insert(0, str(Path(__file__).parent))
 
 from _util import MENTION_RE, load_yaml  # noqa: E402

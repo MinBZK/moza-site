@@ -93,6 +93,18 @@ a {
   }
 }
 
+/* WCAG 1.4.1: een link in lopende tekst mag niet alleen aan kleur herkenbaar
+   zijn. `:where()` houdt de specificiteit op die van `a`, zodat componenten met
+   een eigen linkstijl (nav, knoppen, kaarten) blijven winnen. */
+:where(main :is(p, dd, td, blockquote, :is(ul, ol):not([class]) > li)) a:where(:not([class])) {
+  text-decoration: underline;
+}
+
+/* Draagt een class en valt daarmee buiten de regel hierboven. */
+.footnote-backref {
+  text-decoration: underline;
+}
+
 a[rel~="external"]::after {
   content: "";
   display: inline-block;

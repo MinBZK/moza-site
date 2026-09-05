@@ -30,7 +30,9 @@
       {{ $maxLines := 10 }}
       {{ $maxChars := 500 }}
       {{ range $lines }}
-        {{ if and (lt $lineCount $maxLines) (lt $charCount $maxChars) (ne . "") }}
+        {{/* Koppen overslaan: markdownify geeft ze een auto-id, wat hier
+             evenveel dubbele ids oplevert als er weeklies zijn. */}}
+        {{ if and (lt $lineCount $maxLines) (lt $charCount $maxChars) (ne . "") (not (hasPrefix . "#")) }}
           {{ $preview = $preview | append . }}
           {{ $lineCount = add $lineCount 1 }}
           {{ $charCount = add $charCount (len .) }}

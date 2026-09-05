@@ -38,7 +38,8 @@ markup:
       attribute:
         block: true
   highlight:
-    style: onedark
+    # De CSP blokkeert inline styles; palet in assets/css/components/code.css.
+    noClasses: false
   tableOfContents:
     endLevel: 4
 

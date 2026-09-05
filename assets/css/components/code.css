@@ -1,0 +1,51 @@
+/* Syntaxkleuren voor Chroma-classes. Palet uit het NLDD Design System
+   (minbzk/storybook, code-viewer). Elke kleur moet in beide thema's minimaal
+   4,5:1 halen tegen --color-bg-muted. */
+
+.chroma {
+  --code-comment: light-dark(#556273, #9aa5b5);
+  --code-keyword: light-dark(#755000, #c78d00);
+  --code-string: light-dark(#2f6318, #6fa55b);
+  --code-number: light-dark(#8c4200, #e47c2f);
+  --code-name: light-dark(#2c598b, #6c9bd2);
+  --code-error: light-dark(#a22b20, #ee7262);
+}
+
+/* Commentaar */
+.chroma :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+/* Sleutelwoorden en woordoperatoren */
+.chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .ow) {
+  color: var(--code-keyword);
+}
+
+/* Tekst en operatoren */
+.chroma :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .o) {
+  color: var(--code-string);
+}
+
+/* Getallen */
+.chroma :is(.m, .mb, .mf, .mh, .mi, .mo, .il) {
+  color: var(--code-number);
+}
+
+/* Sleutels, tags, functies, attributen, variabelen */
+.chroma :is(.na, .nb, .nc, .nd, .ne, .nf, .fm, .nl, .nt, .nx, .nv, .vc, .vg, .vi, .vm, .py, .bp) {
+  color: var(--code-name);
+}
+
+/* Fouten en verwijderde regels */
+.chroma :is(.err, .gd) {
+  color: var(--code-error);
+}
+
+.chroma :is(.ge) {
+  font-style: italic;
+}
+
+.chroma :is(.gs) {
+  font-weight: bold;
+}

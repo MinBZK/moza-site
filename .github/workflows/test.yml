@@ -25,7 +25,10 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Test moza-weekly scripts
-        run: uv run --project scripts/moza-weekly --locked pytest scripts/moza-weekly/tests/ -q
+        run: >
+          uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py
+          --with httpx --with tenacity --with beautifulsoup4
+          pytest scripts/moza-weekly/tests/ -q
 
   node:
     name: Node-scripts
@@ -107,5 +110,66 @@ jobs:
       - name: Build site
         run: hugo --gc --minify --logLevel warning
 
+      - name: Bouw site voor de controles
+        run: hugo --minify --quiet --baseURL / --destination tmp/public
+
+      - name: Deel de gebouwde site
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: tmp/public
+          retention-days: 1
+
       - name: Test links
-        run: hugo --minify --quiet --baseURL / --destination .htmltest/public && htmltest
+        run: htmltest
+
+  a11y:
+    name: Toegankelijkheid
+    runs-on: ubuntu-latest
+    needs: site
+    if: ${{ !cancelled() }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Haal de gebouwde site op
+        uses: actions/download-artifact@v7
+        with:
+          name: site
+          path: tmp/public
+
+      - name: Toets toegankelijkheid (WCAG 2.1 AA)
+        run: npm run a11y
+
+  csp:
+    name: Content-Security-Policy
+    runs-on: ubuntu-latest
+    needs: site
+    if: ${{ !cancelled() }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Haal de gebouwde site op
+        uses: actions/download-artifact@v7
+        with:
+          name: site
+          path: tmp/public
+
+      # Leest alleen bestanden; node_modules is hier niet nodig.
+      - name: Controleer op door de CSP geblokkeerde constructies
+        run: npm run csp

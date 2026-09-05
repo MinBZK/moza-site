@@ -15,7 +15,7 @@ assets/vendor/         # Vendored JS (Fuse.js, Reveal.js)
 scripts/               # Build scripts (render-mermaid.js)
 static/images/render/  # Pre-gerenderde Mermaid SVGs (gegenereerd, in .gitignore)
 hugo.yaml              # Configuratie
-justfile               # Commands: just up, just build, just check
+justfile               # Commands: just up, just build, just checks
 ```
 
 ## Commando's
@@ -27,7 +27,10 @@ just build              # Render SVGs + build
 just test               # Tests uitvoeren
 just render-mermaid     # Alleen SVGs renderen
 just watch-mermaid      # SVGs herrenderen bij wijzigingen (aparte terminal)
-just check              # Render SVGs + broken links check
+just checks             # Alle controles op één build (tests, csp, a11y, links)
+just links              # Alleen de linkcontrole
+just a11y               # Toegankelijkheidstoets (WCAG 2.1 AA) op de gebouwde site
+just csp                # Controleer op door de CSP geblokkeerde constructies
 just clean              # Verwijder gegenereerde bestanden
 just pre-commit         # Pre-commit checks
 ```
@@ -37,6 +40,8 @@ just pre-commit         # Pre-commit checks
 Diagrammen in Markdown worden vooraf gerenderd als SVG (light + dark) door `scripts/render-mermaid.js`. De render hook (`layouts/_markup/render-codeblock-mermaid.html`) toont de pre-gerenderde SVGs als `<img>`. Als de SVGs ontbreken, faalt de Hugo build.
 
 Elk mermaid-blok moet een `accTitle` hebben voor de bestandsnaam en toegankelijkheid. Zonder `accTitle` wordt een fallback `diagram-N` gebruikt.
+
+Ook `accDescr` is verplicht: die vult het `alt`-attribuut. Zonder `accDescr` krijgt het diagram een lege alt-tekst en faalt `just a11y`.
 
 ## Skills
 

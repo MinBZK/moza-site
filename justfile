@@ -40,10 +40,34 @@ render-downloads:
 check-label:
     npm run check-label
 
+# Draai alle controles op één build, oplopend in kosten
+checks: build-check
+    npm test
+    npm run csp
+    npm run a11y
+    htmltest
+    rm -rf tmp/public
+
 # Controleer op broken links
-check:
+links: build-check
+    htmltest
+    rm -rf tmp/public
+
+# Toets toegankelijkheid (WCAG 2.1 AA) op de gebouwde site
+a11y: build-check
+    npm run a11y
+    rm -rf tmp/public
+
+# Controleer op constructies die de Content-Security-Policy blokkeert
+csp: build-check
+    npm run csp
+    rm -rf tmp/public
+
+# Bouw de site naar tmp/public, waarop links, a11y en csp draaien
+[private]
+build-check:
     npm run render-mermaid
-    rm -rf .htmltest && hugo --minify --quiet --baseURL / --destination .htmltest/public && htmltest && rm -rf .htmltest
+    rm -rf tmp/public && hugo --minify --quiet --baseURL / --destination tmp/public
 
 # Voer pre-commit checks uit
 pre-commit:
@@ -51,7 +75,7 @@ pre-commit:
 
 # Verwijder gegenereerde bestanden
 clean:
-    rm -rf public static/images/render .cache
+    rm -rf public static/images/render .cache tmp/public
 
 # Haal Mattermost-input op voor MOZa Weekly, schrijf geanonimiseerde JSON voor
 # LLM-input, en render HTML-rapport. Vereist MATTERMOST_TOKEN in env;
@@ -59,22 +83,24 @@ clean:
 moza-weekly *FLAGS:
     #!/usr/bin/env bash
     set -euo pipefail
-    uv run --project scripts/moza-weekly scripts/moza-weekly/fetch.py {{FLAGS}}
+    uv run scripts/moza-weekly/fetch.py {{FLAGS}}
     YAML=tmp/moza-weekly/$(date +%Y-%m-%d).yaml
-    uv run --project scripts/moza-weekly scripts/moza-weekly/anonymize.py "$YAML"
-    uv run --project scripts/moza-weekly scripts/moza-weekly/render.py "$YAML"
+    uv run scripts/moza-weekly/anonymize.py "$YAML"
+    uv run scripts/moza-weekly/render.py "$YAML"
 
 # Alleen HTML opnieuw renderen (na handmatige YAML-bewerking)
 moza-weekly-render YAML:
-    uv run --project scripts/moza-weekly scripts/moza-weekly/render.py {{YAML}}
+    uv run scripts/moza-weekly/render.py {{YAML}}
 
 # Alleen geanonimiseerde JSON regenereren (na handmatige YAML-bewerking)
 moza-weekly-anonymize YAML:
-    uv run --project scripts/moza-weekly scripts/moza-weekly/anonymize.py {{YAML}}
+    uv run scripts/moza-weekly/anonymize.py {{YAML}}
 
 # Draai de unit-tests van de moza-weekly-scripts
 moza-weekly-test:
-    uv run --project scripts/moza-weekly pytest scripts/moza-weekly/tests/ -q
+    uv run --with pytest --with pyyaml --with jinja2 --with markdown-it-py \
+        --with httpx --with tenacity --with beautifulsoup4 \
+        pytest scripts/moza-weekly/tests/ -q
 
 # Bouw container image
 cbuild:

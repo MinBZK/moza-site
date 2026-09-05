@@ -168,7 +168,7 @@ body {
 }
 
 .item-number {
-  color: #9ca3af;
+  color: var(--nldd-neutral-700);
   font-size: 0.875rem;
   font-weight: 500;
   flex-shrink: 0;

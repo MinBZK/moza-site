@@ -9,7 +9,11 @@
 {{- $description := .Description -}}
 {{- if not $description -}}
   {{- if .Content -}}
-    {{- $description = .Plain | truncate 160 -}}
+    {{/* Zonder koppen: .Plain begint anders met de eerste kop, waardoor een
+         gedeelde link opent met "Algemeen" in plaats van met de inhoud. */}}
+    {{- $description = .Content
+      | replaceRE `(?s)<h[1-6][^>]*>.*?</h[1-6]>` " "
+      | plainify | replaceRE `\s+` " " | strings.TrimSpace | truncate 160 -}}
   {{- else -}}
     {{- $description = .Site.Params.description -}}
   {{- end -}}

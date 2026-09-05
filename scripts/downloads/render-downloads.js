@@ -18,11 +18,11 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve, extname, normalize, delimiter } from "node:path";
-import { createServer } from "node:http";
+import { join, resolve, delimiter } from "node:path";
 import { execFileSync } from "node:child_process";
 import puppeteer from "puppeteer";
-import { PDFDocument } from "pdf-lib";
+import { startServer } from "../lib/static-server.js";
+import { setPdfMetadata } from "./pdf-metadata.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || "public");
 const MANIFEST = join(OUTPUT_DIR, "download.json");
@@ -40,52 +40,6 @@ const PUPPETEER_ARGS =
   process.env.CI || process.getuid?.() === 0
     ? ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
     : [];
-
-const MIME = {
-  ".html": "text/html; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".md": "text/markdown; charset=utf-8",
-  ".svg": "image/svg+xml",
-  ".woff2": "font/woff2",
-  ".woff": "font/woff",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".webp": "image/webp",
-  ".gif": "image/gif",
-  ".ico": "image/x-icon",
-  ".xml": "application/xml",
-  ".txt": "text/plain; charset=utf-8",
-};
-
-// ── Statische webserver over de outputmap ────────────────────────────────────
-
-function startServer(root) {
-  const server = createServer((req, res) => {
-    try {
-      let urlPath = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
-      if (urlPath.endsWith("/")) urlPath += "index.html";
-      // Voorkom path-traversal buiten de root.
-      const filePath = normalize(join(root, urlPath));
-      if (!filePath.startsWith(root) || !existsSync(filePath)) {
-        res.statusCode = 404;
-        res.end("Not found");
-        return;
-      }
-      const body = readFileSync(filePath);
-      res.setHeader("Content-Type", MIME[extname(filePath)] || "application/octet-stream");
-      res.end(body);
-    } catch (err) {
-      res.statusCode = 500;
-      res.end(String(err));
-    }
-  });
-  return new Promise((res) => {
-    server.listen(0, "127.0.0.1", () => res(server));
-  });
-}
 
 // ── Generatie ────────────────────────────────────────────────────────────────
 
@@ -186,17 +140,6 @@ function rijksoverheidLogoDataUri() {
   return logoDataUri;
 }
 
-// Schrijf documenteigenschappen (titel, beschrijving, url) in de PDF. De url is
-// de gepubliceerde pagina en komt in Keywords.
-async function setPdfMetadata(pdfOut, meta) {
-  const doc = await PDFDocument.load(readFileSync(pdfOut));
-  if (meta.title) doc.setTitle(meta.title);
-  if (meta.description) doc.setSubject(meta.description);
-  if (meta.url) doc.setKeywords([meta.url]);
-  doc.setCreator("MijnOverheid Zakelijk");
-  writeFileSync(pdfOut, await doc.save());
-}
-
 async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "light" },
@@ -217,6 +160,12 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
       <span class="pageNumber"></span>
     </div>`;
 
+  // Chrome neemt de documenttitel over als PDF-titel. Die moet gezet zijn vóór
+  // het afdrukken; achteraf de PDF openen en herschrijven kost de tagging.
+  await page.evaluate((t) => {
+    if (t) document.title = t;
+  }, meta.title);
+
   await page.pdf({
     path: pdfOut,
     format: "A4",
@@ -226,7 +175,13 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
     footerTemplate,
     margin: { top: "30mm", bottom: "20mm", left: "18mm", right: "18mm" },
   });
-  await setPdfMetadata(pdfOut, meta);
+
+  setPdfMetadata(pdfOut, {
+    title: meta.title,
+    description: meta.description,
+    url: meta.url,
+    creator: "MijnOverheid Zakelijk",
+  });
 }
 
 async function main() {

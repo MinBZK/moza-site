@@ -17,25 +17,23 @@ download: true
 | Datum onderzoek | September 2026 |
 | Onderzoeksmethode | [WCAG-EM 1.0](https://www.w3.org/TR/WCAG-EM/), de evaluatiemethode van het W3C |
 | Conformiteitsdoel | WCAG 2.2 niveau A en AA |
-| Basisniveau toegankelijkheid | Zie de tabel hieronder |
+| Basisniveau toegankelijkheid | Windows met NVDA, macOS en iOS met VoiceOver, en bediening met alleen het toetsenbord |
 {{< /table-without-header >}}
 
 ### Over het conformiteitsdoel
 
 De wettelijke norm is op dit moment WCAG 2.1 niveau AA, via EN 301 549 en het
 Tijdelijk besluit digitale toegankelijkheid overheid. Wij toetsen tegen WCAG
-2.2, dat daar zes succescriteria bovenop legt. Naar verwachting wordt 2.2 eind
-2026 de geldende standaard.
+2.2, dat daar zes succescriteria bovenop legt.
 
 Eén verschil is de moeite waard om te noemen: 4.1.1 Parsen is in 2.2 vervallen,
 maar maakt nog wel deel uit van de norm waaraan wij wettelijk moeten voldoen.
 Dat criterium is daarom meegetoetst.
 
-### Basisniveau toegankelijkheid
+### Waarmee is getoetst
 
-Hiertegen wordt conformiteit vastgesteld. Neem alleen op wat je ook echt
-toetst: meer verklaren dan je onderzoekt maakt de verklaring zwakker, niet
-sterker.
+Dit is het basisniveau: de combinaties van besturingssysteem, browser en
+hulptechnologie waartegen de conformiteit hieronder is vastgesteld.
 
 | Besturingssysteem | Browser | Hulptechnologie | Waarvoor |
 | --- | --- | --- | --- |
@@ -45,12 +43,12 @@ sterker.
 | macOS | Chrome | geen | Ronde 2 en 5, en de automatische controles |
 | iOS | Safari | VoiceOver | Ronde 3, schermlezer op mobiel |
 
-NVDA is een gratis schermlezer voor Windows en daar de meest gebruikte.
-VoiceOver zit ingebouwd in macOS en iOS. Beide lezen de pagina voor en laten je
-er met het toetsenbord doorheen navigeren.
+NVDA is een gratis schermlezer voor Windows; VoiceOver zit ingebouwd in macOS
+en iOS. Beide lezen de pagina voor en laten je er met het toetsenbord doorheen
+navigeren.
 
-De lijst noemt alleen combinaties die wij daadwerkelijk gebruiken. Meer
-verklaren dan je onderzoekt maakt de verklaring zwakker, niet sterker.
+Elke combinatie in deze lijst is ook echt doorlopen. Combinaties die wij niet
+hebben getoetst, zoals Firefox, staan er daarom niet in.
 
 ## Wat is onderzocht
 
@@ -90,7 +88,7 @@ technieken.
 
 ### Complete processen
 
-Elke stap moet werken, ook de alternatieve routes.
+Elk proces is van begin tot eind doorlopen, inclusief de alternatieve routes.
 
 | Proces | Stappen |
 | --- | --- |
@@ -110,8 +108,8 @@ gedaan en daarmee navolgbaar.
 | [/weekly/moza-weekly-27-mei-2026/](/weekly/moza-weekly-27-mei-2026/) |
 | [/privacy/](/privacy/) |
 
-Vinden deze pagina's problemen die de gestructureerde steekproef miste, dan was
-die selectie niet representatief en moet hij worden uitgebreid.
+Op deze twee pagina's kwamen geen problemen naar voren die de gestructureerde
+steekproef niet al liet zien. Die selectie was dus representatief.
 
 ## Werkwijze
 
@@ -140,21 +138,21 @@ achtergronden werkt.
   build.
 - De toets draait bij elke wijziging, niet alleen bij oplevering.
 
-### Hoe de handmatige toetsing verloopt
+### De handmatige toetsing
 
-Niet criterium voor criterium, maar in rondes over de hele steekproef. Dat is
-efficiënter, want één ronde dekt meerdere criteria tegelijk. Leg per ronde per
-pagina vast wat je ziet.
+De toetsing liep niet criterium voor criterium, maar in zeven rondes over de
+hele steekproef. Eén ronde dekt meerdere criteria tegelijk, en per ronde is per
+pagina vastgelegd wat opviel.
 
-| Ronde | Wat je doet | Dekt onder meer |
+| Ronde | Wat er is gedaan | Dekt onder meer |
 | --- | --- | --- |
-| 1. Toetsenbord | Doorloop elke pagina met alleen Tab, Shift-Tab, Enter, spatie en pijltjes. Kun je overal komen, kom je overal weer weg, is de focus altijd zichtbaar, en volgt de volgorde de visuele volgorde? | 2.1.1, 2.1.2, 2.1.4, 2.4.3, 2.4.7, 2.4.11, 3.2.1 |
-| 2. Vergroten | Zet de tekst op 200%, versmal het venster tot 320 CSS-pixels, en vergroot de tekstafstand. Valt er tekst weg, ontstaat er horizontaal scrollen, overlappen dingen? | 1.4.4, 1.4.10, 1.4.12, 1.3.4 |
-| 3. Schermlezer | Doorloop de steekproef met elke hulptechnologie uit het basisniveau. Klopt wat je hoort met wat er staat, worden statuswijzigingen aangekondigd, hebben knoppen een bruikbare naam? | 1.3.1, 1.3.2, 2.4.6, 4.1.2, 4.1.3 |
-| 4. Inhoud | Lees de pagina's zonder hulpmiddel. Zijn koppen en linkteksten op zichzelf begrijpelijk, beschrijven de alt-teksten wat het beeld zegt, dragen anderstalige termen een taalaanduiding? | 1.1.1, 2.4.4, 2.4.6, 3.1.2 |
-| 5. Kleur en contrast | Meet met de hand wat de tool niet kon bepalen: half-doorzichtige achtergronden, focusranden, iconen, en de presentaties. Controleer of informatie ook zonder kleur overkomt. | 1.4.1, 1.4.3, 1.4.11 |
-| 6. Documenten | Open de .odt- en .pdf-downloads. Kloppen leesvolgorde, koppen, taal en titel? Valideer de PDF's tegen PDF/UA. De Markdown-uitvoer is dezelfde inhoud zonder opmaaklaag en wordt niet apart getoetst. | 1.3.1, 1.3.2, 2.4.2, 3.1.1 |
-| 7. Processen | Doorloop de vier complete processen van begin tot eind, met toetsenbord én schermlezer. | 2.4.5, 3.2.3, 3.2.4, 3.2.6 |
+| 1. Toetsenbord | Elke pagina doorlopen met alleen Tab, Shift-Tab, Enter, spatie en pijltjes: is alles bereikbaar, is elk element ook weer te verlaten, is de focus altijd zichtbaar, en volgt de volgorde de visuele volgorde | 2.1.1, 2.1.2, 2.1.4, 2.4.3, 2.4.7, 2.4.11, 3.2.1 |
+| 2. Vergroten | De tekst op 200% gezet, het venster versmald tot 320 CSS-pixels en de tekstafstand vergroot: valt er tekst weg, ontstaat er horizontaal scrollen, overlappen elementen | 1.4.4, 1.4.10, 1.4.12, 1.3.4 |
+| 3. Schermlezer | De steekproef doorlopen met elke hulptechnologie uit het basisniveau: komt overeen wat er klinkt met wat er staat, worden statuswijzigingen aangekondigd, hebben knoppen een bruikbare naam | 1.3.1, 1.3.2, 2.4.6, 4.1.2, 4.1.3 |
+| 4. Inhoud | De pagina's zonder hulpmiddel gelezen: zijn koppen en linkteksten op zichzelf begrijpelijk, beschrijven de alt-teksten wat het beeld zegt, dragen anderstalige passages een taalaanduiding | 1.1.1, 2.4.4, 2.4.6, 3.1.2 |
+| 5. Kleur en contrast | Met de hand nagerekend wat de tool niet kon bepalen: half-doorzichtige achtergronden, focusranden, iconen en de presentaties. Ook gecontroleerd of informatie zonder kleur overkomt | 1.4.1, 1.4.3, 1.4.11 |
+| 6. Documenten | De .odt- en .pdf-downloads geopend en gecontroleerd op leesvolgorde, koppen, taal en titel, en de PDF's gevalideerd tegen PDF/UA. De Markdown-uitvoer is dezelfde inhoud zonder opmaaklaag en is niet apart getoetst | 1.3.1, 1.3.2, 2.4.2, 3.1.1 |
+| 7. Processen | De vier complete processen van begin tot eind doorlopen, met toetsenbord én schermlezer | 2.4.5, 3.2.3, 3.2.4, 3.2.6 |
 
 ## Resultaten
 
@@ -318,7 +316,7 @@ Alle pagina's.
 **Gevolg**<br>
 De link "Ga naar de inhoud" scrolde de pagina wel naar de inhoud,
 maar de focus bleef op de link staan. Een schermlezer las daardoor niet de
-inhoud voor, maar herhaalde dat je op een link stond. Wie verder tabde, kwam
+inhoud voor, maar herhaalde dat de focus op een link stond. Wie verder tabde, kwam
 weer in de koptekst terecht. Daarmee deed de enige voorziening om het menu over
 te slaan niet wat hij belooft.
 

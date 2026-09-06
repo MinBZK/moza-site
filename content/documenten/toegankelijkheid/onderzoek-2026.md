@@ -22,8 +22,9 @@ download: true
 
 ### Over het conformiteitsdoel
 
-De wettelijke norm is op dit moment WCAG 2.1 niveau AA, via EN 301 549 en het
-Tijdelijk besluit digitale toegankelijkheid overheid. Wij toetsen tegen WCAG
+De wettelijke norm is op dit moment WCAG 2.1 niveau AA, via
+[EN 301 549](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/) en het
+[Tijdelijk besluit digitale toegankelijkheid overheid](https://wetten.overheid.nl/BWBR0040936). Wij toetsen tegen WCAG
 2.2, dat daar zes succescriteria bovenop legt.
 
 Eén verschil is de moeite waard om te noemen: 4.1.1 Parsen is in 2.2 vervallen,
@@ -113,9 +114,12 @@ steekproef niet al liet zien. Die selectie was dus representatief.
 
 ## Werkwijze
 
-**Geautomatiseerd, bij elke wijziging.** De site draait `just a11y` in de
-CI-straat: pa11y-ci met twee onafhankelijke engines, HTML_CodeSniffer en
-axe-core, tegen elke pagina uit de build. De routelijst komt uit de build zelf,
+**Geautomatiseerd, bij elke wijziging.** Elke wijziging aan de site wordt in de
+CI-straat getoetst met [pa11y-ci](https://github.com/pa11y/pa11y-ci), dat twee
+onafhankelijke engines inzet:
+[HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/) en
+[axe-core](https://github.com/dequelabs/axe-core), tegen elke pagina uit de
+build. De routelijst komt uit de build zelf,
 zodat een nieuwe pagina automatisch meedoet. Daarnaast draaien eigen controles
 op koppenvolgorde, op het tekstalternatief van diagrammen en op de
 bedienbaarheid van de presentaties.
@@ -132,8 +136,11 @@ achtergronden werkt.
 **Hoe we het borgen.** Naast het onderzoek zelf:
 
 - Nieuwe content gaat langs een redactionele review, ondersteund door een
-  taalcontrole die op begrijpelijkheid en taalniveau let. Leesniveau is in WCAG
-  een AAA-criterium en telt dus niet mee voor AA; dit is beleid bovenop de norm.
+  taalcontrole die op begrijpelijkheid en taalniveau let. Dat gaat verder dan de
+  norm vraagt: WCAG kent drie niveaus, A, AA en AAA, en
+  [3.1.5 Leesniveau](https://www.w3.org/WAI/WCAG22/Understanding/reading-level)
+  hoort bij AAA. Dit onderzoek toetst A en AA, dus dit is eigen beleid bovenop
+  de eis.
 - Elk diagram moet een tekstalternatief hebben. Ontbreekt dat, dan faalt de
   build.
 - De toets draait bij elke wijziging, niet alleen bij oplevering.
@@ -146,13 +153,13 @@ pagina vastgelegd wat opviel.
 
 | Ronde | Wat er is gedaan | Dekt onder meer |
 | --- | --- | --- |
-| 1. Toetsenbord | Elke pagina doorlopen met alleen Tab, Shift-Tab, Enter, spatie en pijltjes: is alles bereikbaar, is elk element ook weer te verlaten, is de focus altijd zichtbaar, en volgt de volgorde de visuele volgorde | 2.1.1, 2.1.2, 2.1.4, 2.4.3, 2.4.7, 2.4.11, 3.2.1 |
-| 2. Vergroten | De tekst op 200% gezet, het venster versmald tot 320 CSS-pixels en de tekstafstand vergroot: valt er tekst weg, ontstaat er horizontaal scrollen, overlappen elementen | 1.4.4, 1.4.10, 1.4.12, 1.3.4 |
-| 3. Schermlezer | De steekproef doorlopen met elke hulptechnologie uit het basisniveau: komt overeen wat er klinkt met wat er staat, worden statuswijzigingen aangekondigd, hebben knoppen een bruikbare naam | 1.3.1, 1.3.2, 2.4.6, 4.1.2, 4.1.3 |
-| 4. Inhoud | De pagina's zonder hulpmiddel gelezen: zijn koppen en linkteksten op zichzelf begrijpelijk, beschrijven de alt-teksten wat het beeld zegt, dragen anderstalige passages een taalaanduiding | 1.1.1, 2.4.4, 2.4.6, 3.1.2 |
-| 5. Kleur en contrast | Met de hand nagerekend wat de tool niet kon bepalen: half-doorzichtige achtergronden, focusranden, iconen en de presentaties. Ook gecontroleerd of informatie zonder kleur overkomt | 1.4.1, 1.4.3, 1.4.11 |
-| 6. Documenten | De .odt- en .pdf-downloads geopend en gecontroleerd op leesvolgorde, koppen, taal en titel, en de PDF's gevalideerd tegen PDF/UA. De Markdown-uitvoer is dezelfde inhoud zonder opmaaklaag en is niet apart getoetst | 1.3.1, 1.3.2, 2.4.2, 3.1.1 |
-| 7. Processen | De vier complete processen van begin tot eind doorlopen, met toetsenbord én schermlezer | 2.4.5, 3.2.3, 3.2.4, 3.2.6 |
+| 1. Toetsenbord | Elke pagina doorlopen met alleen Tab, Shift-Tab, Enter, spatie en pijltjes: is alles bereikbaar, is elk element ook weer te verlaten, is de focus altijd zichtbaar, en volgt de volgorde de visuele volgorde | [2.1.1](https://www.w3.org/WAI/WCAG22/Understanding/keyboard), [2.1.2](https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap), [2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts), [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order), [2.4.7](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible), [2.4.11](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum), [3.2.1](https://www.w3.org/WAI/WCAG22/Understanding/on-focus) |
+| 2. Vergroten | De tekst op 200% gezet, het venster versmald tot 320 CSS-pixels en de tekstafstand vergroot: valt er tekst weg, ontstaat er horizontaal scrollen, overlappen elementen | [1.4.4](https://www.w3.org/WAI/WCAG22/Understanding/resize-text), [1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow), [1.4.12](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing), [1.3.4](https://www.w3.org/WAI/WCAG22/Understanding/orientation) |
+| 3. Schermlezer | De steekproef doorlopen met elke hulptechnologie uit het basisniveau: komt overeen wat er klinkt met wat er staat, worden statuswijzigingen aangekondigd, hebben knoppen een bruikbare naam | [1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships), [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence), [2.4.6](https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels), [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value), [4.1.3](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) |
+| 4. Inhoud | De pagina's zonder hulpmiddel gelezen: zijn koppen en linkteksten op zichzelf begrijpelijk, beschrijven de alt-teksten wat het beeld zegt, dragen anderstalige passages een taalaanduiding | [1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content), [2.4.4](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context), [2.4.6](https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels), [3.1.2](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts) |
+| 5. Kleur en contrast | Met de hand nagerekend wat de tool niet kon bepalen: half-doorzichtige achtergronden, focusranden, iconen en de presentaties. Ook gecontroleerd of informatie zonder kleur overkomt | [1.4.1](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color), [1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum), [1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast) |
+| 6. Documenten | De .odt- en .pdf-downloads geopend en gecontroleerd op leesvolgorde, koppen, taal en titel, en de PDF's gevalideerd tegen PDF/UA. De Markdown-uitvoer is dezelfde inhoud zonder opmaaklaag en is niet apart getoetst | [1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships), [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence), [2.4.2](https://www.w3.org/WAI/WCAG22/Understanding/page-titled), [3.1.1](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page) |
+| 7. Processen | De vier complete processen van begin tot eind doorlopen, met toetsenbord én schermlezer | [2.4.5](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways), [3.2.3](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation), [3.2.4](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification), [3.2.6](https://www.w3.org/WAI/WCAG22/Understanding/consistent-help) |
 
 ## Resultaten
 
@@ -163,77 +170,77 @@ pagina's uit de steekproef.
 
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
-| 1.1.1 | A | Niet-tekstuele content | Voldoet | Aanwezigheid van tekstalternatieven wordt automatisch bewaakt, de kwaliteit ervan met de hand. Ronde 4: alle 39 afbeeldingen nagelopen, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie) |
-| 1.2.1 | A | Louter-geluid en louter-videobeeld | Niet van toepassing | De site bevat geen audio of video |
-| 1.2.2 | A | Ondertitels voor doven en slechthorenden | Niet van toepassing | De site bevat geen audio of video |
-| 1.2.3 | A | Audiodescriptie of media-alternatief | Niet van toepassing | De site bevat geen audio of video |
-| 1.2.4 | AA | Ondertitels voor doven en slechthorenden (live) | Niet van toepassing | De site bevat geen audio of video |
-| 1.2.5 | AA | Audiodescriptie | Niet van toepassing | De site bevat geen audio of video |
-| 1.3.1 | A | Info en relaties | Voldoet | Koppenvolgorde wordt automatisch bewaakt. In de ODF- en PDF-downloads kloppen koppen, lijsten en tabelkoppen; de PDF's zijn PDF/UA-conform, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
-| 1.3.2 | A | Betekenisvolle volgorde | Voldoet | Ronde 6: de leesvolgorde in HTML, ODF en PDF volgt de bron. Alle content in de PDF's is gemarkeerd als artefact of als echte inhoud, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
-| 1.3.3 | A | Zintuiglijke eigenschappen | Voldoet | Ronde 4: de content doorzocht op instructies die alleen op vorm, kleur of plek leunen. Eén geval gevonden en opgelost, zie [bevinding 6](#6-een-instructie-leunde-alleen-op-vorm-en-plek) |
-| 1.3.4 | AA | Weergavestand | Voldoet | De stylesheets bevatten geen enkele `orientation`-mediaquery, dus niets legt de weergavestand vast |
-| 1.3.5 | AA | Identificeer het doel van de input | Voldoet | Het zoekveld is het enige invoerveld en verzamelt geen persoonsgegevens; er is geen invoerdoel dat een `autocomplete`-waarde vraagt |
-| 1.4.1 | A | Gebruik van kleur | Voldoet | Automatisch gedekt; links in lopende tekst zijn onderstreept en niet alleen aan kleur te herkennen |
-| 1.4.2 | A | Geluidsbediening | Niet van toepassing | De site bevat geen audio |
-| 1.4.3 | AA | Contrast (minimum) | Voldoet | Ronde 5: de 27 meldingen die de tool niet kon beoordelen zelf nagerekend door de half-doorzichtige lagen samen te stellen. Alle 27 halen de eis, laagste 8,25:1 tegen een eis van 4,5:1 |
-| 1.4.4 | AA | Herschalen van tekst | Voldoet | Ronde 2: geen overloop bij 200% tekst op de steekproef |
-| 1.4.5 | AA | Afbeeldingen van tekst | Voldoet | Ronde 4: twee slides bestonden volledig uit een afbeelding van lopende tekst; opgelost, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie). De overige afbeeldingen zijn diagrammen, foto's of iconen |
-| 1.4.10 | AA | Reflow | Voldoet | Ronde 2: geen horizontale overloop bij 320 CSS-pixels. Zes bevindingen zijn opgelost, zie [bevinding 1](#1-content-steekt-buiten-het-scherm-op-smalle-vensters) |
-| 1.4.11 | AA | Contrast van niet-tekstuele content | Voldoet | Ronde 5: elke focusrand op vijf pagina's gemeten, in beide kleurschema's. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst). Laagste 4,97:1 tegen een eis van 3:1 |
-| 1.4.12 | AA | Tekstafstand | Voldoet | Ronde 2: geen verlies van content bij de voorgeschreven waarden |
-| 1.4.13 | AA | Content bij hover of focus | Voldoet | Ronde 5: er verschijnt nergens content bij hover of focus. De downloadknop bij een diagram staat altijd zichtbaar en wordt alleen minder doorzichtig. De gebouwde site bevat geen enkele `title`-tooltip |
+| [1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content) | A | Niet-tekstuele content | Voldoet | Aanwezigheid van tekstalternatieven wordt automatisch bewaakt, de kwaliteit ervan met de hand. Ronde 4: alle 39 afbeeldingen nagelopen, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie) |
+| [1.2.1](https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded) | A | Louter-geluid en louter-videobeeld | Niet van toepassing | De site bevat geen audio of video |
+| [1.2.2](https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded) | A | Ondertitels voor doven en slechthorenden | Niet van toepassing | De site bevat geen audio of video |
+| [1.2.3](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded) | A | Audiodescriptie of media-alternatief | Niet van toepassing | De site bevat geen audio of video |
+| [1.2.4](https://www.w3.org/WAI/WCAG22/Understanding/captions-live) | AA | Ondertitels voor doven en slechthorenden (live) | Niet van toepassing | De site bevat geen audio of video |
+| [1.2.5](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded) | AA | Audiodescriptie | Niet van toepassing | De site bevat geen audio of video |
+| [1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships) | A | Info en relaties | Voldoet | Koppenvolgorde wordt automatisch bewaakt. In de ODF- en PDF-downloads kloppen koppen, lijsten en tabelkoppen; de PDF's zijn PDF/UA-conform, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
+| [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence) | A | Betekenisvolle volgorde | Voldoet | Ronde 6: de leesvolgorde in HTML, ODF en PDF volgt de bron. Alle content in de PDF's is gemarkeerd als artefact of als echte inhoud, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
+| [1.3.3](https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics) | A | Zintuiglijke eigenschappen | Voldoet | Ronde 4: de content doorzocht op instructies die alleen op vorm, kleur of plek leunen. Eén geval gevonden en opgelost, zie [bevinding 6](#6-een-instructie-leunde-alleen-op-vorm-en-plek) |
+| [1.3.4](https://www.w3.org/WAI/WCAG22/Understanding/orientation) | AA | Weergavestand | Voldoet | De stylesheets bevatten geen enkele `orientation`-mediaquery, dus niets legt de weergavestand vast |
+| [1.3.5](https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose) | AA | Identificeer het doel van de input | Voldoet | Het zoekveld is het enige invoerveld en verzamelt geen persoonsgegevens; er is geen invoerdoel dat een `autocomplete`-waarde vraagt |
+| [1.4.1](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color) | A | Gebruik van kleur | Voldoet | Automatisch gedekt; links in lopende tekst zijn onderstreept en niet alleen aan kleur te herkennen |
+| [1.4.2](https://www.w3.org/WAI/WCAG22/Understanding/audio-control) | A | Geluidsbediening | Niet van toepassing | De site bevat geen audio |
+| [1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum) | AA | Contrast (minimum) | Voldoet | Ronde 5: de 27 meldingen die de tool niet kon beoordelen zelf nagerekend door de half-doorzichtige lagen samen te stellen. Alle 27 halen de eis, laagste 8,25:1 tegen een eis van 4,5:1 |
+| [1.4.4](https://www.w3.org/WAI/WCAG22/Understanding/resize-text) | AA | Herschalen van tekst | Voldoet | Ronde 2: geen overloop bij 200% tekst op de steekproef |
+| [1.4.5](https://www.w3.org/WAI/WCAG22/Understanding/images-of-text) | AA | Afbeeldingen van tekst | Voldoet | Ronde 4: twee slides bestonden volledig uit een afbeelding van lopende tekst; opgelost, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie). De overige afbeeldingen zijn diagrammen, foto's of iconen |
+| [1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow) | AA | Reflow | Voldoet | Ronde 2: geen horizontale overloop bij 320 CSS-pixels. Zes bevindingen zijn opgelost, zie [bevinding 1](#1-content-steekt-buiten-het-scherm-op-smalle-vensters) |
+| [1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast) | AA | Contrast van niet-tekstuele content | Voldoet | Ronde 5: elke focusrand op vijf pagina's gemeten, in beide kleurschema's. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst). Laagste 4,97:1 tegen een eis van 3:1 |
+| [1.4.12](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing) | AA | Tekstafstand | Voldoet | Ronde 2: geen verlies van content bij de voorgeschreven waarden |
+| [1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus) | AA | Content bij hover of focus | Voldoet | Ronde 5: er verschijnt nergens content bij hover of focus. De downloadknop bij een diagram staat altijd zichtbaar en wordt alleen minder doorzichtig. De gebouwde site bevat geen enkele `title`-tooltip |
 
 ### 2 Bedienbaar
 
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
-| 2.1.1 | A | Toetsenbord | Voldoet | Ronde 1: alle bedienbare onderdelen zijn met Tab bereikbaar en met Enter of spatie te bedienen, inclusief de presentaties. Bedienbaarheid van de presentaties wordt daarnaast automatisch bewaakt |
-| 2.1.2 | A | Geen toetsenbordval | Voldoet | Ronde 1: geen val aangetroffen, ook niet in het zoekvenster of de presentatie. Automatisch bewaakt in de presentaties |
-| 2.1.4 | A | Enkel teken sneltoetsen | Voldoet | Ronde 1: de sneltoets `/` voor zoeken greep nooit in tijdens het typen. Reveal.js reageert op losse toetsen, binnen de presentatie |
-| 2.2.1 | A | Timing aanpasbaar | Niet van toepassing | De site kent geen tijdslimieten |
-| 2.2.2 | A | Pauzeren, stoppen, verbergen | Niet van toepassing | Geen bewegende of automatisch bijwerkende content |
-| 2.3.1 | A | Drie flitsen of beneden drempelwaarde | Niet van toepassing | Geen flitsende content |
-| 2.4.1 | A | Blokken omzeilen | Voldoet | De skiplink is de eerste tab-stop. Verplaatste de focus aanvankelijk niet; opgelost, zie [bevinding 3](#3-de-skiplink-verplaatste-de-focus-niet) |
-| 2.4.2 | A | Paginatitel | Voldoet | Alle 80 pagina's hebben een unieke, niet-lege titel. Ronde 6: de ODF- en PDF-downloads dragen dezelfde titel als documenteigenschap |
-| 2.4.3 | A | Focus volgorde | Voldoet | Ronde 1: de focusvolgorde loopt gelijk aan de visuele volgorde, ook in het kaartenraster. Geen onverwachte sprongen |
-| 2.4.4 | A | Linkdoel (in context) | Voldoet | Ronde 3: de linkenlijst uit de rotor doorgenomen. De knoppen "Lees meer" op de lijstpagina noemen de bijbehorende weekly, dus ze zijn uit elkaar te houden |
-| 2.4.5 | AA | Meerdere manieren | Voldoet | Drie manieren om een pagina te bereiken: het hoofdmenu en het zoeken staan op alle 77 sitepagina's, en 66 pagina's dragen daarnaast een kruimelpad |
-| 2.4.6 | AA | Koppen en labels | Voldoet | Ronde 3: de koppenlijst uit de rotor vormt op zichzelf een bruikbare inhoudsopgave. Beschrijvendheid is niet automatisch vast te stellen. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
-| 2.4.7 | AA | Focus zichtbaar | Voldoet | Ronde 5: elke focusrand gemeten. Ronde 1: de twee elementen die focus met een kleurwissel tonen in plaats van met een rand zijn met het oog beoordeeld en voldoen. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst) |
-| 2.4.11 | AA | Focus niet bedekt (minimum) | Voldoet | Ronde 1: de focusrand raakte nergens achter de koptekst of het zoekvenster. Nieuw in WCAG 2.2 |
-| 2.5.1 | A | Aanwijzergebaren | Voldoet | De site gebruikt geen gebaren met een pad of met meerdere aanwijspunten; in de JavaScript komt geen `touchmove`, `pointermove` of sleepafhandeling voor |
-| 2.5.2 | A | Aanwijzerannulering | Voldoet | Geen enkele handeling wordt op `mousedown`, `pointerdown` of `touchstart` uitgevoerd; alles gebeurt pas bij loslaten |
-| 2.5.3 | A | Label in naam | Voldoet | 2827 bedieningselementen nagelopen. Twee patronen weken af en zijn beoordeeld: de zoekknop toont "Zoeken... /", waarin het beletselteken en de sneltoetshint geen label zijn, en de sluitknop van een presentatie toont het teken ✕, dat geen uitspreekbaar label is |
-| 2.5.4 | A | Bewegingsactivering | Niet van toepassing | Geen bediening via beweging |
-| 2.5.7 | AA | Sleepbewegingen | Niet van toepassing | De site kent geen sleepbediening. Nieuw in WCAG 2.2 |
-| 2.5.8 | AA | Grootte van het aanwijsgebied (minimum) | Voldoet | Alle aanwijsgebieden halen 24 bij 24 CSS-pixels, op links in lopende tekst na, waarvoor het criterium een uitzondering maakt. Eén link leek te klein maar omsluit een afbeelding van 692 bij 324 pixels, en dat is het werkelijke aanwijsgebied. Nieuw in WCAG 2.2 |
+| [2.1.1](https://www.w3.org/WAI/WCAG22/Understanding/keyboard) | A | Toetsenbord | Voldoet | Ronde 1: alle bedienbare onderdelen zijn met Tab bereikbaar en met Enter of spatie te bedienen, inclusief de presentaties. Bedienbaarheid van de presentaties wordt daarnaast automatisch bewaakt |
+| [2.1.2](https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap) | A | Geen toetsenbordval | Voldoet | Ronde 1: geen val aangetroffen, ook niet in het zoekvenster of de presentatie. Automatisch bewaakt in de presentaties |
+| [2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts) | A | Enkel teken sneltoetsen | Voldoet | Ronde 1: de sneltoets `/` voor zoeken greep nooit in tijdens het typen. Reveal.js reageert op losse toetsen, binnen de presentatie |
+| [2.2.1](https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable) | A | Timing aanpasbaar | Niet van toepassing | De site kent geen tijdslimieten |
+| [2.2.2](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide) | A | Pauzeren, stoppen, verbergen | Niet van toepassing | Geen bewegende of automatisch bijwerkende content |
+| [2.3.1](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold) | A | Drie flitsen of beneden drempelwaarde | Niet van toepassing | Geen flitsende content |
+| [2.4.1](https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks) | A | Blokken omzeilen | Voldoet | De skiplink is de eerste tab-stop. Verplaatste de focus aanvankelijk niet; opgelost, zie [bevinding 3](#3-de-skiplink-verplaatste-de-focus-niet) |
+| [2.4.2](https://www.w3.org/WAI/WCAG22/Understanding/page-titled) | A | Paginatitel | Voldoet | Alle 80 pagina's hebben een unieke, niet-lege titel. Ronde 6: de ODF- en PDF-downloads dragen dezelfde titel als documenteigenschap |
+| [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order) | A | Focus volgorde | Voldoet | Ronde 1: de focusvolgorde loopt gelijk aan de visuele volgorde, ook in het kaartenraster. Geen onverwachte sprongen |
+| [2.4.4](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context) | A | Linkdoel (in context) | Voldoet | Ronde 3: de linkenlijst uit de rotor doorgenomen. De knoppen "Lees meer" op de lijstpagina noemen de bijbehorende weekly, dus ze zijn uit elkaar te houden |
+| [2.4.5](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways) | AA | Meerdere manieren | Voldoet | Drie manieren om een pagina te bereiken: het hoofdmenu en het zoeken staan op alle 77 sitepagina's, en 66 pagina's dragen daarnaast een kruimelpad |
+| [2.4.6](https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels) | AA | Koppen en labels | Voldoet | Ronde 3: de koppenlijst uit de rotor vormt op zichzelf een bruikbare inhoudsopgave. Beschrijvendheid is niet automatisch vast te stellen. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
+| [2.4.7](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible) | AA | Focus zichtbaar | Voldoet | Ronde 5: elke focusrand gemeten. Ronde 1: de twee elementen die focus met een kleurwissel tonen in plaats van met een rand zijn met het oog beoordeeld en voldoen. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst) |
+| [2.4.11](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum) | AA | Focus niet bedekt (minimum) | Voldoet | Ronde 1: de focusrand raakte nergens achter de koptekst of het zoekvenster. Nieuw in WCAG 2.2 |
+| [2.5.1](https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures) | A | Aanwijzergebaren | Voldoet | De site gebruikt geen gebaren met een pad of met meerdere aanwijspunten; in de JavaScript komt geen `touchmove`, `pointermove` of sleepafhandeling voor |
+| [2.5.2](https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation) | A | Aanwijzerannulering | Voldoet | Geen enkele handeling wordt op `mousedown`, `pointerdown` of `touchstart` uitgevoerd; alles gebeurt pas bij loslaten |
+| [2.5.3](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name) | A | Label in naam | Voldoet | 2827 bedieningselementen nagelopen. Twee patronen weken af en zijn beoordeeld: de zoekknop toont "Zoeken... /", waarin het beletselteken en de sneltoetshint geen label zijn, en de sluitknop van een presentatie toont het teken ✕, dat geen uitspreekbaar label is |
+| [2.5.4](https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation) | A | Bewegingsactivering | Niet van toepassing | Geen bediening via beweging |
+| [2.5.7](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements) | AA | Sleepbewegingen | Niet van toepassing | De site kent geen sleepbediening. Nieuw in WCAG 2.2 |
+| [2.5.8](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum) | AA | Grootte van het aanwijsgebied (minimum) | Voldoet | Alle aanwijsgebieden halen 24 bij 24 CSS-pixels, op links in lopende tekst na, waarvoor het criterium een uitzondering maakt. Eén link leek te klein maar omsluit een afbeelding van 692 bij 324 pixels, en dat is het werkelijke aanwijsgebied. Nieuw in WCAG 2.2 |
 
 ### 3 Begrijpelijk
 
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
-| 3.1.1 | A | Taal van de pagina | Voldoet | Alle 80 pagina's dragen een taalattribuut op `html`. Ronde 6: de ODF-downloads stonden op Engels; opgelost, zie [bevinding 5](#5-de-odf-downloads-stonden-op-engels) |
-| 3.1.2 | AA | Taal van onderdelen | Voldoet | Ronde 4: alle 80 pagina's doorzocht op anderstalige passages. Eén Engelse uitdrukking gemarkeerd; eigennamen en ingeburgerde vaktermen vallen onder de uitzondering. Ronde 7: de Engelse namen van de presentatiebediening zijn vertaald, zie [bevinding 8](#8-de-presentatiebediening-had-engelse-namen) |
-| 3.2.1 | A | Bij focus | Voldoet | Ronde 1: focus krijgen verandert nergens de context; menu's en panelen openen alleen op een handeling |
-| 3.2.2 | A | Bij input | Voldoet | De site heeft één invoerveld, het zoekveld, en nergens een luisteraar op `change`. Het wijzigen van een besturingselement verandert geen context |
-| 3.2.3 | AA | Consistente navigatie | Voldoet | Het hoofdmenu staat op elke pagina in dezelfde volgorde: Home, Over MOZa, Actueel, Onderwerpen, Contact. Handboekpagina's voegen daar een submenu aan toe zonder die volgorde te wijzigen |
-| 3.2.4 | AA | Consistente identificatie | Voldoet | Terugkerende bediening draagt overal dezelfde naam. Gemeten over alle pagina's; alleen de zoekfilters en de submenuknoppen verschillen, en die benoemen per stuk iets anders |
-| 3.2.6 | A | Consistente hulp | Voldoet | De contactpagina is vanaf elke pagina bereikbaar, zowel in het hoofdmenu als in de voettekst, steeds op dezelfde plek. Nieuw in WCAG 2.2 |
-| 3.3.1 | A | Foutidentificatie | Niet van toepassing | De site bevat geen formulieren |
-| 3.3.2 | A | Labels of instructies | Voldoet | De site heeft één invoerveld, het zoekveld, en dat draagt een label. Geen enkel invoerveld op de site is zonder label |
-| 3.3.3 | AA | Foutsuggestie | Niet van toepassing | Geen formulieren |
-| 3.3.4 | AA | Foutpreventie (wettelijk, financieel, gegevens) | Niet van toepassing | Geen transacties |
-| 3.3.7 | A | Overbodige invoer | Niet van toepassing | Geen formulieren. Nieuw in WCAG 2.2 |
-| 3.3.8 | AA | Toegankelijke authenticatie (minimum) | Niet van toepassing | De site kent geen inlog. Nieuw in WCAG 2.2 |
+| [3.1.1](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page) | A | Taal van de pagina | Voldoet | Alle 80 pagina's dragen een taalattribuut op `html`. Ronde 6: de ODF-downloads stonden op Engels; opgelost, zie [bevinding 5](#5-de-odf-downloads-stonden-op-engels) |
+| [3.1.2](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts) | AA | Taal van onderdelen | Voldoet | Ronde 4: alle 80 pagina's doorzocht op anderstalige passages. Eén Engelse uitdrukking gemarkeerd; eigennamen en ingeburgerde vaktermen vallen onder de uitzondering. Ronde 7: de Engelse namen van de presentatiebediening zijn vertaald, zie [bevinding 8](#8-de-presentatiebediening-had-engelse-namen) |
+| [3.2.1](https://www.w3.org/WAI/WCAG22/Understanding/on-focus) | A | Bij focus | Voldoet | Ronde 1: focus krijgen verandert nergens de context; menu's en panelen openen alleen op een handeling |
+| [3.2.2](https://www.w3.org/WAI/WCAG22/Understanding/on-input) | A | Bij input | Voldoet | De site heeft één invoerveld, het zoekveld, en nergens een luisteraar op `change`. Het wijzigen van een besturingselement verandert geen context |
+| [3.2.3](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation) | AA | Consistente navigatie | Voldoet | Het hoofdmenu staat op elke pagina in dezelfde volgorde: Home, Over MOZa, Actueel, Onderwerpen, Contact. Handboekpagina's voegen daar een submenu aan toe zonder die volgorde te wijzigen |
+| [3.2.4](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification) | AA | Consistente identificatie | Voldoet | Terugkerende bediening draagt overal dezelfde naam. Gemeten over alle pagina's; alleen de zoekfilters en de submenuknoppen verschillen, en die benoemen per stuk iets anders |
+| [3.2.6](https://www.w3.org/WAI/WCAG22/Understanding/consistent-help) | A | Consistente hulp | Voldoet | De contactpagina is vanaf elke pagina bereikbaar, zowel in het hoofdmenu als in de voettekst, steeds op dezelfde plek. Nieuw in WCAG 2.2 |
+| [3.3.1](https://www.w3.org/WAI/WCAG22/Understanding/error-identification) | A | Foutidentificatie | Niet van toepassing | De site bevat geen formulieren |
+| [3.3.2](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions) | A | Labels of instructies | Voldoet | De site heeft één invoerveld, het zoekveld, en dat draagt een label. Geen enkel invoerveld op de site is zonder label |
+| [3.3.3](https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion) | AA | Foutsuggestie | Niet van toepassing | Geen formulieren |
+| [3.3.4](https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data) | AA | Foutpreventie (wettelijk, financieel, gegevens) | Niet van toepassing | Geen transacties |
+| [3.3.7](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry) | A | Overbodige invoer | Niet van toepassing | Geen formulieren. Nieuw in WCAG 2.2 |
+| [3.3.8](https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum) | AA | Toegankelijke authenticatie (minimum) | Niet van toepassing | De site kent geen inlog. Nieuw in WCAG 2.2 |
 
 ### 4 Robuust
 
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
-| 4.1.1 | A | Parsen | Voldoet | Automatisch gedekt. Vervallen in WCAG 2.2, maar nog onderdeel van de wettelijke norm 2.1 |
-| 4.1.2 | A | Naam, rol, waarde | Voldoet | Geen enkel bedieningselement zonder toegankelijke naam. Toestanden worden doorgegeven: 308 keer `aria-pressed`, 126 keer `aria-expanded`, 121 keer `aria-current`. Ronde 3: de themawissel en het openklapmenu kondigen hun nieuwe toestand hoorbaar aan. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
-| 4.1.3 | AA | Statusberichten | Voldoet | Ronde 3: de slidewissel in een presentatie wordt aangekondigd. Het zoeken kondigde geen status aan maar de volledige resultaten; opgelost, zie [bevinding 7](#7-zoeken-kondigde-de-resultaten-voor-in-plaats-van-de-status). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
+| [4.1.1](https://www.w3.org/WAI/WCAG22/Understanding/parsing) | A | Parsen | Voldoet | Automatisch gedekt. Vervallen in WCAG 2.2, maar nog onderdeel van de wettelijke norm 2.1 |
+| [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) | A | Naam, rol, waarde | Voldoet | Geen enkel bedieningselement zonder toegankelijke naam. Toestanden worden doorgegeven: 308 keer `aria-pressed`, 126 keer `aria-expanded`, 121 keer `aria-current`. Ronde 3: de themawissel en het openklapmenu kondigen hun nieuwe toestand hoorbaar aan. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
+| [4.1.3](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) | AA | Statusberichten | Voldoet | Ronde 3: de slidewissel in een presentatie wordt aangekondigd. Het zoeken kondigde geen status aan maar de volledige resultaten; opgelost, zie [bevinding 7](#7-zoeken-kondigde-de-resultaten-voor-in-plaats-van-de-status). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
 
 ## Bevindingen
 

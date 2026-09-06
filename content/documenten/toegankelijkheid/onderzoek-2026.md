@@ -4,13 +4,15 @@ card_title: "Onderzoek 2026"
 description: "Onderzoek naar de toegankelijkheid van MijnOverheid Zakelijk volgens WCAG-EM, getoetst aan WCAG 2.2 niveau A en AA."
 date: 2026-09-05
 download: true
+outputs:
+  - HTML
+  - markdown
+  - pandoc
 ---
 
 ## Over dit onderzoek
 
 {{< table-without-header >}}
-| Onderdeel | Waarde |
-| --- | --- |
 | Website | <https://mijnoverheidzakelijk.nl/> |
 | Organisatie | Ministerie van Binnenlandse Zaken en Koninkrijksrelaties |
 | Uitgevoerd door | Team MijnOverheid Zakelijk |

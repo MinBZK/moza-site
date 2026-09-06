@@ -121,6 +121,11 @@ function styleOdtTables(odtOut) {
   let xml = execFileSync("unzip", ["-p", odtOut, "content.xml"]).toString("utf-8");
   let changed = false;
 
+  // Pandoc centreert elke tabel; links uitlijnen leest rustiger.
+  const gecentreerd = xml.replace(/(<style:table-properties[^>]*?)table:align="center"/g, '$1table:align="left"');
+  if (gecentreerd !== xml) changed = true;
+  xml = gecentreerd;
+
   // Een sleutel-waardetabel heeft geen koprij nodig: de eerste kolom is de kop.
   // Markdown kan dat niet uitdrukken, dus staat er in de bron een koprij die
   // hier weer wordt omgezet naar een kopkolom. Het label komt uit de shortcode

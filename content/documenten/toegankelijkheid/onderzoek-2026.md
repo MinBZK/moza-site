@@ -250,10 +250,12 @@ wanneer die klaar is.
 
 ### 1. Content steekt buiten het scherm op smalle vensters
 
-**Criterium**<br>
+**Criterium**
+
 1.4.10 Reflow, en op twee plekken ook 1.4.4 Herschalen van tekst.
 
-**Waar**<br>
+**Waar**
+
 Zes gevallen op vijf pagina's uit de steekproef, gevonden bij 320
 CSS-pixels breed en bij 200% tekstgrootte:
 
@@ -265,98 +267,118 @@ CSS-pixels breed en bij 200% tekstgrootte:
 | [/onderwerpen/profielservice/](/onderwerpen/profielservice/) | Een lang samengesteld woord | 32px |
 | [/onderwerpen/actualiteitenservice/](/onderwerpen/actualiteitenservice/) | Een linktekst bij 200% | 7px |
 
-**Gevolg**<br>
+**Gevolg**
+
 Wie een smal scherm gebruikt of de tekst vergroot, moet horizontaal
 scrollen om de tekst te kunnen lezen. Bij het label verdween een deel van de
 afbeelding buiten beeld.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 Drie verschillende. Er was geen algemene maximumbreedte voor
 afbeeldingen, waardoor een afbeelding met vaste afmetingen het venster oprekte.
 Lange woorden en URL's braken niet af. En de rapportage-opmaak heeft een eigen
 stylesheet die de sitebrede regels niet laadt en pas bij 900 pixels iets
 aanpast.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. Afbeeldingen krijgen een
 maximumbreedte, lange woorden en URL's breken af, en de rapportage-opmaak heeft
 een extra breekpunt gekregen waarin de koptekst onder elkaar valt en de
 kaartinhoud mag krimpen.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: geen overloop meer op de veertien pagina's uit
 de steekproef, in alle drie de metingen.
 
 ### 2. Focusrand onzichtbaar in de voettekst
 
-**Criterium**<br>
+**Criterium**
+
 1.4.11 Contrast van niet-tekstuele content.
 
-**Waar**<br>
+**Waar**
+
 Elke link in de voettekst, op alle pagina's, in het lichte kleurschema.
 
-**Gevolg**<br>
+**Gevolg**
+
 Wie met het toetsenbord navigeert, ziet in de voettekst niet meer
 waar de focus staat. De rand was donkerblauw op de donkerblauwe achtergrond en
 haalde 1,68:1, waar 3:1 de eis is.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De voettekst had geen eigen focusregel en erfde daardoor de
 sitebrede rand, die de linkkleur van het lichte schema gebruikt. De koptekst
 heeft dezelfde donkerblauwe achtergrond en had die regel wel.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. Links in de voettekst krijgen nu
 een witte focusrand, net als in de koptekst.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: 10,2:1.
 
 ### 3. De skiplink verplaatste de focus niet
 
-**Criterium**<br>
+**Criterium**
+
 2.4.1 Blokken omzeilen.
 
-**Waar**<br>
+**Waar**
+
 Alle pagina's.
 
-**Gevolg**<br>
+**Gevolg**
+
 De link "Ga naar de inhoud" scrolde de pagina wel naar de inhoud,
 maar de focus bleef op de link staan. Een schermlezer las daardoor niet de
 inhoud voor, maar herhaalde dat de focus op een link stond. Wie verder tabde, kwam
 weer in de koptekst terecht. Daarmee deed de enige voorziening om het menu over
 te slaan niet wat hij belooft.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 Een sprong naar een fragment verplaatst de focus alleen als het doel
 focusbaar is. `<main>` is dat van zichzelf niet.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. `<main>` heeft `tabindex="-1"`
 gekregen, waardoor de focus wel meeverhuist. De link kwam daarnaast tegen de
 vensterrand te staan, waardoor zijn focusrand buiten beeld viel; die staat nu
 een halve regel naar binnen.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: de focus staat na activeren op
 `main#main-content`.
 
 ### 4. De PDF-downloads haalden PDF/UA niet
 
-**Criterium**<br>
+**Criterium**
+
 1.3.1 Info en relaties, en 1.3.2 Betekenisvolle volgorde.
 
-**Waar**<br>
+**Waar**
+
 Alle 37 gegenereerde PDF-bestanden.
 
-**Gevolg**<br>
+**Gevolg**
+
 Een schermlezer kon de structuur van deze documenten niet betrouwbaar volgen.
 Waar de markering ontbreekt, kan hij niet bepalen of iets inhoud is of
 decoratie, en valt hij terug op de volgorde waarin de tekst toevallig in het
 bestand staat. Lijstitems droegen hun inhoud niet in een `LBody`, waardoor een
 opsomming niet als opsomming overkwam.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De PDF's worden afgedrukt door Chromium. Dat schrijft wel een tagstructuur en
 een taal mee, maar laat vier dingen liggen: het markeert de paginavulling en het
 briefhoofd niet als artefact, het schrijft nooit een `LBody` in een lijstitem,
@@ -364,7 +386,8 @@ het gebruikt structuurtypen die de PDF-standaard niet kent, en het geeft
 linkannotaties geen beschrijving. Daarnaast leverde het externe-linkicoon, een
 CSS-masker, een transparantiegroep op die tweemaal wordt aangeroepen.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. Het icoon wordt niet meer meegeprint: in een
 afdruk is elke link extern, dus het voegt niets toe. De naschrijfstap in
 `scripts/downloads/pdf-metadata.js` vult de rest aan. Gemeten met veraPDF tegen
@@ -381,142 +404,173 @@ ISO 14289-1, over alle 37 documenten:
 | 7.2-43 | 3 | 0 | Tabelrijen met een ongelijk aantal kolommen |
 | 5-1 | 37 | 0 | De PDF/UA-identificatie in de metadata |
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: veraPDF verklaart 37 van de 37 bestanden conform aan
 PDF/UA deel 1. `just pdfua` bewaakt dat en eist nul fouten.
 
 ### 5. De ODF-downloads stonden op Engels
 
-**Criterium**<br>
+**Criterium**
+
 3.1.1 Taal van de pagina.
 
-**Waar**<br>
+**Waar**
+
 Alle 36 gegenereerde ODF-bestanden.
 
-**Gevolg**<br>
+**Gevolg**
+
 Elk Nederlands document bood zichzelf aan als Engelstalig. Een schermlezer die
 dat volgt, leest Nederlandse tekst met een Engelse stem voor, wat vrijwel
 onverstaanbaar is.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De opmaaksjabloon `reference.odt` is afgeleid van de standaard van pandoc, en
 die staat op Engels. Zonder expliciete taal erfde elk document dat.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. De pandoc-aanroep geeft nu `lang=nl` mee.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: `nl` in zowel `meta.xml` als `styles.xml`.
 
 ### 6. Een instructie leunde alleen op vorm en plek
 
-**Criterium**<br>
+**Criterium**
+
 1.3.3 Zintuiglijke eigenschappen.
 
-**Waar**<br>
+**Waar**
+
 De pagina [/handboek/bijdragen/aan-handboek/](/handboek/bijdragen/aan-handboek/),
 in de stappen om een pagina te bewerken.
 
-**Gevolg**<br>
+**Gevolg**
+
 De stap luidde "Klik op het potlood. Rechtsboven zie je een potlood-icoon om te
 editen". Wie het icoon niet ziet, heeft niets om op te zoeken: er stond geen
 naam bij, alleen een vorm en een plek op het scherm.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De knop op GitHub heeft wel een naam, maar die stond niet in de instructie.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. De stap noemt nu de knopnaam, met de vorm en de
 plek als aanvulling in plaats van als enige aanwijzing.
 
-**Status**<br>
+**Status**
+
 Afgerond.
 
 ### 7. Zoeken kondigde de resultaten voor in plaats van de status
 
-**Criterium**<br>
+**Criterium**
+
 4.1.3 Statusberichten.
 
-**Waar**<br>
+**Waar**
+
 Het zoekvenster, op alle pagina's.
 
-**Gevolg**<br>
+**Gevolg**
+
 Bij elke toetsaanslag las de schermlezer de volledige inhoud van alle treffers
 achter elkaar voor, als één doorlopende tekst. Hoeveel resultaten er waren, werd
 niet gemeld. Wie zoekt, krijgt zo bij elke letter een lap tekst te horen en weet
 nog steeds niet of er iets gevonden is.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 `aria-live="polite"` stond op de lijst met resultaten zelf. Die lijst wordt bij
 elke toetsaanslag volledig vervangen, dus kondigde de browser de hele nieuwe
 inhoud aan. Een live-regio wordt bovendien als platte tekst voorgelezen, waardoor
 ook de lijststructuur wegviel.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. De resultatenlijst is geen live-regio meer, zodat
 hij zijn lijststructuur houdt en gewoon te doorlopen is. Daarnaast is er een
 apart, visueel verborgen statusgebied met `role="status"` dat alleen het aantal
 meldt: "4 zoekresultaten", of "Geen resultaten gevonden voor ..." als er niets is.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: bij het zoeken op "handboek" meldt het statusgebied
 "4 zoekresultaten" en draagt de lijst geen `aria-live` meer.
 
 ### 8. De presentatiebediening had Engelse namen
 
-**Criterium**<br>
+**Criterium**
+
 3.1.2 Taal van onderdelen.
 
-**Waar**<br>
+**Waar**
+
 De navigatieknoppen in beide Reveal.js-presentaties.
 
-**Gevolg**<br>
+**Gevolg**
+
 Een schermlezer las "previous slide", "next slide", "above slide", "below slide"
 en "Resume presentation" voor. Op een pagina die zichzelf als Nederlands
 aanbiedt, spreekt een Nederlandse stem die woorden fonetisch uit, wat
 onverstaanbaar wordt. Een taalaanduiding is hier geen oplossing, want een
 `aria-label` kan er geen dragen.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De namen staan hardgecodeerd in de meegeleverde Reveal.js-bundel, die geen
 instelling voor taal kent.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. De namen worden na het initialiseren
 overschreven met Nederlandse. Dat gebeurt in onze eigen code en niet in de
 bundel, zodat een toekomstige update van Reveal.js mogelijk blijft.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: "Vorige slide", "Volgende slide", "Slide hierboven",
 "Slide hieronder" en "Presentatie hervatten".
 
 ### 9. Tekst als afbeelding in een presentatie
 
-**Criterium**<br>
+**Criterium**
+
 1.1.1 Niet-tekstuele content, en 1.4.5 Afbeeldingen van tekst.
 
-**Waar**<br>
+**Waar**
+
 Twee slides in
 [/documenten/presentaties/moza-pulse-7-oktober/](/documenten/presentaties/moza-pulse-7-oktober/),
 met de conclusies uit het gebruikersonderzoek van fase 1.
 
-**Gevolg**<br>
+**Gevolg**
+
 Beide slides bestonden uit niets anders dan een schermafdruk van een slide:
 twee kolommen lopende tekst, met kopjes en aanbevelingen, als pixels. De
 alt-tekst luidde "Conclusie 1 uit gebruikersonderzoek fase 1" en gaf de inhoud
 dus niet weer. Wie de afbeelding niet ziet, miste de hele conclusie. Wie
 inzoomt of het lettertype aanpast, hield een wazig beeld.
 
-**Oorzaak**<br>
+**Oorzaak**
+
 De slides kwamen uit een presentatie die in een ander programma was gemaakt en
 zijn als afbeelding overgenomen.
 
-**Maatregel**<br>
+**Maatregel**
+
 Opgelost tijdens het onderzoek. De inhoud staat nu als echte tekst op vier
 slides, met dezelfde kopjes en aanbeveling. Voor toekomstige presentaties geldt
 dat tekst als tekst wordt opgenomen; dat staat in de reviewinstructies.
 
-**Status**<br>
+**Status**
+
 Afgerond. Nagemeten: de presentatie bevat geen afbeeldingen van tekst meer.
 
 ## Wat buiten dit onderzoek viel

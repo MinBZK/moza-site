@@ -5,7 +5,7 @@
  *
  * Draait NA de Hugo-build op de outputmap (standaard `public`). Leest het
  * manifest `downloads.json` (door Hugo gegenereerd) en maakt per pagina:
- *   - <naam>.odt  via pandoc, uit de door Hugo gegenereerde index.md
+ *   - <naam>.odt  via pandoc, uit de door Hugo gegenereerde index.pandoc.md
  *   - <naam>.pdf  via Puppeteer, door de gebouwde HTML-pagina af te drukken
  *
  * De PDF gebruikt de echte sitestijl: een tijdelijke webserver serveert de
@@ -54,7 +54,7 @@ function checkPandoc() {
 }
 
 // Documenttitel (H1) + bron-URL en beschrijving uit de front matter van de
-// gegenereerde index.md — voor onzichtbare documenteigenschappen in ODF en PDF.
+// gegenereerde markdown - voor onzichtbare documenteigenschappen in ODF en PDF.
 function parseDocMeta(mdFile) {
   const raw = readFileSync(mdFile, "utf-8");
   const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -96,6 +96,95 @@ function setOdtMetadata(odtOut, meta) {
   }
 }
 
+/**
+ * Randen en een achtergrond voor de tabellen in het ODT.
+ *
+ * Pandoc schrijft `fo:border="none"` als automatische stijl in content.xml, dus
+ * `reference.odt` kan er niet bij. Kleuren komen uit assets/css/tokens.css.
+ */
+function styleOdtTables(odtOut) {
+  const RAND = "0.5pt solid #e2e8f0";
+  const celStijlen = {
+    TableHeaderRowCell:
+      `<style:table-cell-properties fo:border="none" fo:border-top="${RAND}" ` +
+      `fo:border-bottom="${RAND}" fo:background-color="#eff7fc" fo:padding="0.06in" />`,
+    TableRowCell:
+      `<style:table-cell-properties fo:border="none" fo:border-bottom="${RAND}" ` +
+      `fo:padding="0.06in" />`,
+  };
+  const BOVENSTE_RIJ = "TableTopRowCell";
+  const bovensteRijStijl =
+    `<style:style style:name="${BOVENSTE_RIJ}" style:family="table-cell">` +
+    `<style:table-cell-properties fo:border="none" fo:border-top="${RAND}" ` +
+    `fo:border-bottom="${RAND}" fo:padding="0.06in" /></style:style>`;
+
+  let xml = execFileSync("unzip", ["-p", odtOut, "content.xml"]).toString("utf-8");
+  let changed = false;
+
+  // Pandoc centreert elke tabel; links uitlijnen leest rustiger.
+  const gecentreerd = xml.replace(/(<style:table-properties[^>]*?)table:align="center"/g, '$1table:align="left"');
+  if (gecentreerd !== xml) changed = true;
+  xml = gecentreerd;
+
+  // Een sleutel-waardetabel heeft geen koprij nodig: de eerste kolom is de kop.
+  // De uitvoer voor pandoc geeft zo'n tabel een lege koprij, waarop pandoc geen
+  // table:table-header-rows schrijft. Dat is hier het kenmerk; zie
+  // layouts/_partials/markdown-body.html.
+  const zonderKoprij = xml.replace(
+    /<table:table\b[\s\S]*?<\/table:table>/g,
+    (tabel) => {
+      if (/<table:table-header-rows>/.test(tabel)) return tabel;
+      return tabel
+        .replace(
+          /<table:table-column\b[^>]*\/>/,
+          (kolom) => `<table:table-header-columns>${kolom}</table:table-header-columns>`
+        )
+        // De eerste cel van elke rij is de kop; die krijgt de opmaak die pandoc
+        // ook voor een koprij gebruikt.
+        .replace(
+          /<table:table-row>\s*<table:table-cell[^>]*>\s*<text:p text:style-name="Table_20_Contents"/g,
+          (rij) => rij.replace('Table_20_Contents', "Table_20_Heading")
+        )
+        .replace(
+          /<table:table-row>[\s\S]*?<\/table:table-row>/,
+          (rij) => rij.replaceAll('table:style-name="TableRowCell"', `table:style-name="${BOVENSTE_RIJ}"`)
+        );
+    }
+  );
+  if (zonderKoprij !== xml) {
+    changed = true;
+    xml = zonderKoprij.replace(
+      /(<style:style style:name="TableRowCell"[\s\S]*?<\/style:style>)/,
+      `$1${bovensteRijStijl}`
+    );
+  }
+
+  for (const [naam, eigenschappen] of Object.entries(celStijlen)) {
+    const patroon = new RegExp(
+      `(<style:style style:name="${naam}" style:family="table-cell">)[\\s\\S]*?(</style:style>)`,
+      "g"
+    );
+    const nieuw = xml.replace(patroon, `$1${eigenschappen}$2`);
+    if (nieuw !== xml) changed = true;
+    xml = nieuw;
+  }
+  if (!changed) return;
+  writeOdtContent(odtOut, xml);
+}
+
+function writeOdtContent(odtOut, xml) {
+  const tmp = mkdtempSync(join(tmpdir(), "odt-content-"));
+  try {
+    writeFileSync(join(tmp, "content.xml"), xml);
+    execFileSync("zip", ["-q", odtOut, "content.xml"], {
+      cwd: tmp,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 function flattenOdtQuotations(odtOut) {
   let xml = execFileSync("unzip", ["-p", odtOut, "content.xml"]).toString("utf-8");
   let changed = false;
@@ -110,24 +199,16 @@ function flattenOdtQuotations(odtOut) {
     }
   );
   if (!changed) return;
-  const tmp = mkdtempSync(join(tmpdir(), "odt-quote-"));
-  try {
-    writeFileSync(join(tmp, "content.xml"), xml);
-    execFileSync("zip", ["-q", odtOut, "content.xml"], {
-      cwd: tmp,
-      stdio: ["pipe", "pipe", "pipe"],
-    });
-  } finally {
-    rmSync(tmp, { recursive: true, force: true });
-  }
+  writeOdtContent(odtOut, xml);
 }
 
 function renderOdt(mdFile, odtOut, pageDir, meta) {
-  const args = [mdFile, "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
+  const args = [mdFile, "--metadata", "lang=nl", "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
   if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
   args.push("-o", odtOut);
   execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
   flattenOdtQuotations(odtOut);
+  styleOdtTables(odtOut);
   setOdtMetadata(odtOut, meta);
 }
 
@@ -207,9 +288,9 @@ async function main() {
     const page = await browser.newPage();
     for (const { relPermalink, name } of entries) {
       const pageDir = join(OUTPUT_DIR, relPermalink);
-      const mdFile = join(pageDir, "index.md");
+      const mdFile = join(pageDir, "index.pandoc.md");
       if (!existsSync(mdFile)) {
-        console.warn(`  ⚠ ${relPermalink}: index.md ontbreekt, overgeslagen`);
+        console.warn(`  ⚠ ${relPermalink}: index.pandoc.md ontbreekt, overgeslagen`);
         continue;
       }
       const odtOut = join(pageDir, `${name}.odt`);

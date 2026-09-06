@@ -22,6 +22,13 @@ up:
     npm run render-mermaid
     hugo server
 
+# Preview mét de .odt- en .pdf-downloads (statisch, dus zonder live herladen)
+up-downloads:
+    npm run render-mermaid
+    rm -rf tmp/preview && hugo --minify --quiet --baseURL / --destination tmp/preview
+    npm run render-downloads -- tmp/preview
+    python3 -m http.server 1313 --directory tmp/preview
+
 # Watch mermaid-bestanden en herrender bij wijzigingen (apart terminal)
 watch-mermaid:
     npm run render-mermaid -- --watch
@@ -61,6 +68,12 @@ a11y: build-check
 # Controleer op constructies die de Content-Security-Policy blokkeert
 csp: build-check
     npm run csp
+    rm -rf tmp/public
+
+# Toets de gegenereerde PDF's tegen PDF/UA (vereist: brew install verapdf)
+pdfua: build-check
+    npm run render-downloads -- tmp/public
+    npm run pdfua -- tmp/public
     rm -rf tmp/public
 
 # Bouw de site naar tmp/public, waarop links, a11y en csp draaien

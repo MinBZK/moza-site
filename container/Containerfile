@@ -30,6 +30,11 @@ RUN if [ -n "$BASE_URL" ]; then \
 
 RUN npm run render-downloads
 
+RUN npm run og-cards
+
+# Bouwsteiger voor de twee stappen hierboven; niets in het image leest ze.
+RUN rm public/download.json public/og.json
+
 
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 

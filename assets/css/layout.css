@@ -54,7 +54,8 @@ main > .content {
   padding-top: 0;
 }
 
-main > article > * {
+main > article > *,
+main > article > .artikel-tekst > * {
   max-width: var(--article-max-width);
 }
 
@@ -65,7 +66,7 @@ main > article > * {
 }
 
 
-article > footer {
+.artikel-tekst > footer {
   margin-top: 2.5rem;
 }
 

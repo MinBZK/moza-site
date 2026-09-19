@@ -60,13 +60,19 @@
   }
 
   /* Inhoud over de volledige breedte */
-  main:has(.page-aside) {
+  article:has(> .page-aside) {
     display: block;
-    max-width: none;
+  }
+
+  /* Weghalen kost PDF/UA: als box breekt de wrapper de tekst anders over
+     pagina's en blijft er ongetagde inhoud achter. */
+  .artikel-tekst {
+    display: contents;
   }
 
   main > article,
-  main > article > * {
+  main > article > *,
+  main > article > .artikel-tekst > * {
     max-width: none;
   }
 

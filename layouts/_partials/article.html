@@ -31,6 +31,8 @@
     <p class="tag tag-status">Status: {{ . }}</p>
     {{- end }}
   </header>
+  {{- partial "page-aside.html" (dict "page" . "showToc" true) }}
+  <div class="artikel-tekst">
   {{ partial "lead-image.html" . }}
   {{ .Content }}
   {{- if gt $navCount 1 -}}
@@ -61,5 +63,5 @@
     </nav>
   </footer>
   {{- end -}}
+  </div>
 </article>
-{{- partial "page-aside.html" (dict "page" . "showToc" true) -}}

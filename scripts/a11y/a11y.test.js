@@ -63,6 +63,16 @@ test("diagram-alt: afbeeldingen buiten een diagram blijven buiten beschouwing", 
   assert.deepEqual(checkDiagramAlt('<img class="logo" src="/logo.svg" alt="">'), []);
 });
 
+test("koppenstructuur: de rechterkolom maskeert een sprong niet", () => {
+  const html =
+    '<h1>Titel</h1><aside class="page-aside"><nav id="toc" class="toc">' +
+    "<h2>Op deze pagina</h2></nav><h2>Download deze pagina</h2></aside>" +
+    "<h3>Te diep</h3>";
+  const findings = checkHeadingOrder(html);
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /h1 naar h3/);
+});
+
 test("diagram-beschrijving: een gevulde beschrijving levert geen bevindingen", () => {
   const html =
     '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +

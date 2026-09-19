@@ -12,17 +12,21 @@ const ARTICLE = /<article\b[^>]*>([\s\S]*?)<\/article>/gi;
 const IMG = /<img\b[^>]*>/gi;
 const MERMAID_CLASS = /\bclass="[^"]*\bmermaid-img\b[^"]*"/i;
 const DECORATIEF = /\brole="presentation"|\baria-hidden="true"/i;
+const ZIJKOLOM = /<aside\b[^>]*\bclass="[^"]*\bpage-aside\b[^"]*"[\s\S]*?<\/aside>/gi;
 const MERMAID_DIAGRAM = /<div\b[^>]*\bclass="[^"]*\bmermaid-diagram\b[^"]*"[\s\S]*?<\/div>/gi;
 const BESCHRIJVING = /<p\b[^>]*\bclass="[^"]*\bmermaid-beschrijving\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i;
 
 /**
  * Koppenstructuur (WCAG 1.3.1). Axe rekent `heading-order` tot best-practice
  * en zet die regel uit bij WCAG2AA; HTML_CodeSniffer dekt het niet.
-
+ *
+ * De rechterkolom staat tussen de h1 en de tekst; zijn koppen ("Op deze
+ * pagina", "Download deze pagina") zouden een sprong van h1 naar h3 in de
+ * tekst maskeren.
  */
 function checkHeadingOrder(html) {
   const findings = [];
-  const levels = [...html.matchAll(HEADING)].map((match) => Number(match[1]));
+  const levels = [...html.replace(ZIJKOLOM, "").matchAll(HEADING)].map((match) => Number(match[1]));
 
   if (levels.length === 0) return findings;
   if (levels[0] !== 1) {

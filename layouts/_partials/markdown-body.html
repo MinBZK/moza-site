@@ -2,13 +2,17 @@
   Schoont RawContent op en herschrijft interne links naar hun .md-variant.
   Aanroepen met de oorsprongpagina als context (niet met een string): .GetPage
   resolvet relatieve paden t.o.v. die pagina. Wie de tabellen ongemoeid wil
-  laten, roept aan met (dict "page" . "tabellen" true).
+  laten, roept aan met (dict "page" . "tabellen" true). Met "html" true wijzen
+  interne links naar de absolute URL van de HTML-pagina, voor losse documenten
+  zoals de .odt.
 */ -}}
 {{- $p := . -}}
 {{- $tabellen := false -}}
+{{- $html := false -}}
 {{- if reflect.IsMap . -}}
   {{- $p = .page -}}
   {{- $tabellen = .tabellen -}}
+  {{- $html = .html -}}
 {{- end -}}
 {{- $content := $p.RawContent -}}
 
@@ -70,16 +74,20 @@
     {{- $isMd := false -}}
     {{- with .File }}{{ if eq .Ext "md" }}{{ $isMd = true }}{{ end }}{{ end -}}
     {{- $mdOut := .OutputFormats.Get "markdown" -}}
-    {{- if and $isMd $mdOut -}}
+    {{- if $html -}}
+      {{- $new = .Permalink -}}
+    {{- else if and $isMd $mdOut -}}
       {{- $new = $mdOut.RelPermalink -}}
     {{- else -}}
       {{- $new = .RelPermalink -}}
     {{- end -}}
   {{- else -}}
     {{- with or ($p.Resources.Get $path) (resources.Get $path) -}}
-      {{- $new = .RelPermalink -}}
+      {{- $new = cond $html .Permalink .RelPermalink -}}
     {{- end -}}
   {{- end -}}
+  {{- /* Bijvoorbeeld een alias: GetPage vindt die niet, de site stuurt wel door. */ -}}
+  {{- if and $html (not $new) (hasPrefix $path "/") }}{{ $new = absURL $path }}{{ end -}}
   {{- if $new -}}
     {{- with $u.RawQuery }}{{ $new = printf "%s?%s" $new . }}{{ end -}}
     {{- with $u.Fragment }}{{ $new = printf "%s#%s" $new . }}{{ end -}}

@@ -191,7 +191,7 @@ pagina's uit de steekproef.
 | [1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow) | AA | Reflow | Voldoet | Ronde 2: geen horizontale overloop bij 320 CSS-pixels. Zes bevindingen zijn opgelost, zie [bevinding 1](#1-content-steekt-buiten-het-scherm-op-smalle-vensters) |
 | [1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast) | AA | Contrast van niet-tekstuele content | Voldoet | Ronde 5: elke focusrand op vijf pagina's gemeten, in beide kleurschema's. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst). Laagste 4,97:1 tegen een eis van 3:1 |
 | [1.4.12](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing) | AA | Tekstafstand | Voldoet | Ronde 2: geen verlies van content bij de voorgeschreven waarden |
-| [1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus) | AA | Content bij hover of focus | Voldoet | Ronde 5: er verschijnt nergens content bij hover of focus. De downloadknop bij een diagram staat altijd zichtbaar en wordt alleen minder doorzichtig. De gebouwde site bevat geen enkele `title`-tooltip |
+| [1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus) | AA | Content bij hover of focus | Voldoet | Ronde 5: de site toont zelf nergens content bij hover of focus. De downloadknop bij een diagram staat altijd zichtbaar en wordt alleen minder doorzichtig. Die knop had een `title`-tooltip; zo'n tooltip toont de browser zelf, en dat valt buiten dit criterium. Hij is inmiddels vervangen door verborgen tekst |
 
 ### 2 Bedienbaar
 

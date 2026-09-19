@@ -12,13 +12,14 @@
 {{- $svg := resources.FromString "images/diagrammen/notificatiedienst.svg" $bestand -}}
 
 <figure class="diagram">
-  <a class="diagram-download button-ghost" href="{{ $svg.RelPermalink }}" download="notificatiedienst.svg" title="Download als afbeelding" aria-label="Download als afbeelding">
-    {{- partial "icon.html" "download" -}}
-  </a>
   <div class="diagram-panel">
     {{ partial "diagram-notificatiedienst.html" (dict "css" "") }}
   </div>
   <p class="diagram-scroll-hint">Veeg opzij om de hele plaat te zien.</p>
+  <a class="diagram-download button-ghost" href="{{ $svg.RelPermalink }}" download="notificatiedienst.svg">
+    {{- partial "icon.html" "download" -}}
+    <span class="visually-hidden">Download als afbeelding</span>
+  </a>
   {{- with .Get "caption" }}
   <figcaption>{{ . | $.Page.RenderString }}</figcaption>
   {{- end }}

@@ -66,11 +66,12 @@
 {{- $breedte := int (math.Ceil (index (index $viewBox 0) 1)) -}}
 {{- $hoogte := int (math.Ceil (index (index $viewBox 0) 2)) -}}
 <div class="mermaid-diagram">
-  <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" title="Download als afbeelding" aria-label="Download als afbeelding">
-    {{- partial "icon.html" "download" -}}
-  </a>
   <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $accDescr }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
   <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $accDescr }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
+  <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg">
+    {{- partial "icon.html" "download" -}}
+    <span class="visually-hidden">Download als afbeelding</span>
+  </a>
 </div>
 {{- else -}}
 {{- errorf "Mermaid SVGs ontbreken voor '%s' op pagina %s. Voer 'npm run render-mermaid' uit." $slug .Page.File.Path -}}

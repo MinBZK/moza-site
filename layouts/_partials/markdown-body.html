@@ -54,6 +54,8 @@
   {{- $content = replace $content . (delimit $regels "\n") -}}
 {{- end -}}
 
+{{- /* Moet vóór het strippen hieronder, anders verdwijnt de emoji mee. */ -}}
+{{- $content = replaceRE `\{\{<\s*emoji\s[^>]*?teken="([^"]+)"[^>]*>\}\}` "$1" $content -}}
 {{- $content = replaceRE `\{\{<[^>]+>\}\}` "" $content -}}
 {{- $content = replaceRE `\{\{%[^%]+%\}\}` "" $content -}}
 {{- $content = replaceRE `>\s*\[!(NOTE|WARNING|TIP|IMPORTANT|INFO|CAUTION)\]` "" $content -}}

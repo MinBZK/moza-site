@@ -31,6 +31,8 @@ succescriteria; de checklist hieronder gaat over de rest. De `.odt`- en
 
 ### Media
 - Alt-teksten beschrijvend, niet "afbeelding van..."
+- Emoji die voor een schermlezer iets anders zeggen dan bedoeld: shortcode
+  `emoji` met `aria-label` of `aria-hidden=true` (zie de skill `content-review`)
 - Geen tekst als afbeelding. Een schermafdruk van een slide of document zakt op
   1.4.5: neem de tekst als tekst op. Diagrammen, foto's en logo's mogen wel
 - Captions bij video's

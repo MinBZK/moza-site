@@ -4,7 +4,13 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { collectRoutes } from "./routes.js";
-import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt, presentatieSoort } from "./checks.js";
+import {
+  checkHeadingOrder,
+  checkDiagramAlt,
+  checkContentImageAlt,
+  checkDiagramBeschrijving,
+  presentatieSoort,
+} from "./checks.js";
 
 test("koppenstructuur: een oplopende hiërarchie levert geen bevindingen", () => {
   const html = "<h1>Titel</h1><h2>Deel</h2><h3>Subdeel</h3><h2>Ander deel</h2>";
@@ -55,6 +61,28 @@ test("diagram-alt: een ontbrekend alt-attribuut wordt gemeld", () => {
 
 test("diagram-alt: afbeeldingen buiten een diagram blijven buiten beschouwing", () => {
   assert.deepEqual(checkDiagramAlt('<img class="logo" src="/logo.svg" alt="">'), []);
+});
+
+test("diagram-beschrijving: een gevulde beschrijving levert geen bevindingen", () => {
+  const html =
+    '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +
+    '<p class="mermaid-beschrijving visually-hidden">Wat er te zien is.</p></div>';
+  assert.deepEqual(checkDiagramBeschrijving(html), []);
+});
+
+test("diagram-beschrijving: een ontbrekende beschrijving wordt gemeld", () => {
+  const html =
+    '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam"></div>';
+  const findings = checkDiagramBeschrijving(html);
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /accDescr/);
+});
+
+test("diagram-beschrijving: een lege beschrijving wordt gemeld", () => {
+  const html =
+    '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +
+    '<p class="mermaid-beschrijving visually-hidden"> </p></div>';
+  assert.match(checkDiagramBeschrijving(html)[0], /lege beschrijving/);
 });
 
 test("collectRoutes vindt elke map met index.html, plus losse HTML in de root", () => {

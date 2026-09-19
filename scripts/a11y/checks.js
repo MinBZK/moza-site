@@ -12,10 +12,13 @@ const ARTICLE = /<article\b[^>]*>([\s\S]*?)<\/article>/gi;
 const IMG = /<img\b[^>]*>/gi;
 const MERMAID_CLASS = /\bclass="[^"]*\bmermaid-img\b[^"]*"/i;
 const DECORATIEF = /\brole="presentation"|\baria-hidden="true"/i;
+const MERMAID_DIAGRAM = /<div\b[^>]*\bclass="[^"]*\bmermaid-diagram\b[^"]*"[\s\S]*?<\/div>/gi;
+const BESCHRIJVING = /<p\b[^>]*\bclass="[^"]*\bmermaid-beschrijving\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i;
 
 /**
  * Koppenstructuur (WCAG 1.3.1). Axe rekent `heading-order` tot best-practice
  * en zet die regel uit bij WCAG2AA; HTML_CodeSniffer dekt het niet.
+
  */
 function checkHeadingOrder(html) {
   const findings = [];
@@ -42,8 +45,9 @@ function checkHeadingOrder(html) {
 
 /**
  * Tekstalternatief van Mermaid-diagrammen (WCAG 1.1.1). De render hook vult
- * `alt` met `accDescr`; ontbreekt die, dan geeft `alt=""` een geldig maar
- * onterecht "decoratief" diagram waar geen scanner iets van zegt.
+ * `alt` met `accTitle`, of met `accDescr` als de titel ontbreekt; ontbreken
+ * beide, dan geeft `alt=""` een geldig maar onterecht "decoratief" diagram
+ * waar geen scanner iets van zegt.
  */
 function checkDiagramAlt(html) {
   const findings = [];
@@ -53,7 +57,7 @@ function checkDiagramAlt(html) {
     if (alt === null) {
       findings.push("diagram zonder alt-attribuut");
     } else if (alt.trim() === "") {
-      findings.push("diagram met lege alt-tekst; voeg accDescr toe aan het Mermaid-blok");
+      findings.push("diagram met lege alt-tekst; voeg accTitle en accDescr toe aan het Mermaid-blok");
     }
   }
 
@@ -111,4 +115,30 @@ function presentatieSoort(html) {
   return null;
 }
 
-export { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt, presentatieSoort };
+/**
+ * Beschrijving van Mermaid-diagrammen (WCAG 1.1.1). De alt draagt alleen de
+ * korte `accTitle`; de uitgebreide `accDescr` staat als verborgen tekst na het
+ * diagram en is het enige volledige tekstalternatief, ook in de PDF-download.
+ */
+function checkDiagramBeschrijving(html) {
+  const findings = [];
+
+  for (const [diagram] of html.matchAll(MERMAID_DIAGRAM)) {
+    const tekst = diagram.match(BESCHRIJVING)?.[1] ?? null;
+    if (tekst === null) {
+      findings.push("diagram zonder beschrijving; voeg accDescr toe aan het Mermaid-blok");
+    } else if (tekst.trim() === "") {
+      findings.push("diagram met lege beschrijving; vul accDescr in het Mermaid-blok");
+    }
+  }
+
+  return findings;
+}
+
+export {
+  checkHeadingOrder,
+  checkDiagramAlt,
+  checkContentImageAlt,
+  checkDiagramBeschrijving,
+  presentatieSoort,
+};

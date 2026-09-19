@@ -65,9 +65,15 @@
 {{- end -}}
 {{- $breedte := int (math.Ceil (index (index $viewBox 0) 1)) -}}
 {{- $hoogte := int (math.Ceil (index (index $viewBox 0) 2)) -}}
+{{- $alt := $accTitle | default $accDescr -}}
+{{- $beschrijving := "" -}}
+{{- if $accTitle -}}{{ $beschrijving = $accDescr }}{{- end -}}
 <div class="mermaid-diagram">
-  <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $accDescr }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
-  <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $accDescr }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
+  <img class="mermaid-img mermaid-img--light" src="{{ $lightUrl }}" alt="{{ $alt }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
+  <img class="mermaid-img mermaid-img--dark" src="{{ $darkUrl }}" alt="{{ $alt }}" width="{{ $breedte }}" height="{{ $hoogte }}" loading="lazy">
+  {{- with $beschrijving }}
+  <p class="mermaid-beschrijving visually-hidden">{{ . }}</p>
+  {{- end }}
   <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg">
     {{- partial "icon.html" "download" -}}
     <span class="visually-hidden">Download als afbeelding</span>

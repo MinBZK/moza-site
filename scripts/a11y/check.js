@@ -10,7 +10,12 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { collectRoutes } from "./routes.js";
-import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt } from "./checks.js";
+import {
+  checkHeadingOrder,
+  checkDiagramAlt,
+  checkContentImageAlt,
+  checkDiagramBeschrijving,
+} from "./checks.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
 
@@ -35,6 +40,7 @@ function main() {
         ...checkHeadingOrder(html),
         ...checkDiagramAlt(html),
         ...checkContentImageAlt(html),
+        ...checkDiagramBeschrijving(html),
       ]),
     ];
 

@@ -35,6 +35,7 @@ Secties sluiten vaak aan op bestaande onderwerpen (zie `content/onderwerpen/`) o
 - B1 Nederlands, actieve zinnen (zie `.claude/rules/taal-en-stijl.md`)
 - "profielservice", "notificatieservice" (één woord)
 - **Geen persoonlijke namen** en geen persoonlijk nieuws (ziek zijn, verjaardagen, etc.)
+- Emoji: kijk per emoji of de schermlezer iets zinnigs voorleest. Zo niet, gebruik de shortcode `emoji` met `aria-label` of `aria-hidden=true` (zie de sectie Emoji in de skill `content-review`)
 
 ## Agenda
 

@@ -5,7 +5,7 @@ description: MijnOverheid Zakelijk zet ondernemers centraal. We zorgen voor over
 
 hero:
   image: images/hero/ondernemer-tablet.webp
-  image_alt: Ondernemer bekijkt telefoon in zijn keuken
+  image_alt: ""
   title: MijnOverheid Zakelijk
   text: Bij MOZa staan ondernemers centraal. Elk uur minder aan gedoe, is een uur meer ondernemen. We zorgen voor overzicht en makkelijk zakendoen. Met elkaar bouwen we zo aan nieuwe digitale snelwegen.
 ---

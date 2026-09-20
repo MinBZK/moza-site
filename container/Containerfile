@@ -1,13 +1,17 @@
-FROM alpine:3.24 AS builder
+FROM alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6 AS builder
 
-ARG HUGO_VERSION=0.163.1
-ARG PANDOC_VERSION=3.10
+ARG HUGO_VERSION=0.166.0
+ARG HUGO_SHA256=45228f5a52eb118b0ca168068f01d7df0447314a24056f1d29667ed9fc368308
+ARG PANDOC_VERSION=3.11
+ARG PANDOC_SHA256=37edb3bbcf722f921a009941bf5874e2e0c09263226c9b4a2d980788cb062ab6
 
-RUN apk add --no-cache wget git nodejs npm chromium font-noto-emoji zip unzip \
+RUN apk add --no-cache wget git nodejs npm chromium font-noto-emoji zip unzip coreutils \
     && wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz \
+    && echo "${HUGO_SHA256}  hugo.tar.gz" | sha256sum -c - \
     && tar -xzf hugo.tar.gz -C /usr/local/bin \
     && rm hugo.tar.gz \
     && wget -O pandoc.tar.gz https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
+    && echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c - \
     && tar -xzf pandoc.tar.gz --strip-components=2 -C /usr/local/bin pandoc-${PANDOC_VERSION}/bin/pandoc \
     && rm pandoc.tar.gz
 
@@ -36,7 +40,7 @@ RUN npm run og-cards
 RUN rm public/download.json public/og.json
 
 
-FROM nginxinc/nginx-unprivileged:stable-alpine-slim
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:c2c3905bda3dc8de80023e19bed0a45745279d26e5586cdee64370c8f9b12348
 
 COPY --from=builder /app/public /usr/share/nginx/html
 COPY container/nginx.conf /etc/nginx/nginx.conf

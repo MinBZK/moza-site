@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { collectRoutes } from "./routes.js";
-import { checkHeadingOrder, checkDiagramAlt } from "./checks.js";
+import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt } from "./checks.js";
 
 test("koppenstructuur: een oplopende hiërarchie levert geen bevindingen", () => {
   const html = "<h1>Titel</h1><h2>Deel</h2><h3>Subdeel</h3><h2>Ander deel</h2>";
@@ -88,4 +88,35 @@ test("collectRoutes slaat Hugo-aliassen over", () => {
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+test("contentafbeelding: een beschreven afbeelding levert geen bevindingen", () => {
+  const html = '<article><img src="foto.jpg" alt="Twee mensen ondertekenen een verklaring"></article>';
+  assert.deepEqual(checkContentImageAlt(html), []);
+});
+
+test("contentafbeelding: een lege alt-tekst wordt gemeld", () => {
+  const findings = checkContentImageAlt('<article><img src="diagram.svg" alt=""></article>');
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /diagram\.svg/);
+});
+
+test("contentafbeelding: een ontbrekend alt-attribuut wordt gemeld", () => {
+  const findings = checkContentImageAlt('<article><img src="foto.jpg"></article>');
+  assert.match(findings[0], /zonder alt-attribuut/);
+});
+
+test("contentafbeelding: een decoratieve afbeelding mag een lege alt hebben", () => {
+  const html = '<article><img src="streep.svg" alt="" role="presentation"></article>';
+  assert.deepEqual(checkContentImageAlt(html), []);
+});
+
+test("contentafbeelding: Mermaid-diagrammen blijven aan checkDiagramAlt", () => {
+  const html = '<article><img class="mermaid-img" src="d.svg" alt=""></article>';
+  assert.deepEqual(checkContentImageAlt(html), []);
+});
+
+test("contentafbeelding: afbeeldingen buiten het artikel tellen niet mee", () => {
+  const html = '<header><img src="logo.svg" alt=""></header><article><p>Tekst</p></article>';
+  assert.deepEqual(checkContentImageAlt(html), []);
 });

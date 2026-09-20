@@ -8,6 +8,10 @@
 const HEADING = /<h([1-6])\b[^>]*>/gi;
 const MERMAID_IMG = /<img\b[^>]*\bclass="[^"]*\bmermaid-img\b[^"]*"[^>]*>/gi;
 const ALT = /\balt="([^"]*)"/i;
+const ARTICLE = /<article\b[^>]*>([\s\S]*?)<\/article>/gi;
+const IMG = /<img\b[^>]*>/gi;
+const MERMAID_CLASS = /\bclass="[^"]*\bmermaid-img\b[^"]*"/i;
+const DECORATIEF = /\brole="presentation"|\baria-hidden="true"/i;
 
 /**
  * Koppenstructuur (WCAG 1.3.1). Axe rekent `heading-order` tot best-practice
@@ -56,4 +60,36 @@ function checkDiagramAlt(html) {
   return findings;
 }
 
-export { checkHeadingOrder, checkDiagramAlt };
+/**
+ * Tekstalternatief van afbeeldingen in de content (WCAG 1.1.1). `alt=""` is
+ * geldige HTML voor een decoratieve afbeelding, dus scanners melden niets bij
+ * een inhoudelijke afbeelding zonder alt-tekst. Alleen het artikel wordt
+ * gecontroleerd; de rest van de pagina komt uit onze eigen templates.
+ *
+ * Is een afbeelding wél decoratief, markeer dat dan met `role="presentation"`
+ * of `aria-hidden="true"`.
+ */
+function checkContentImageAlt(html) {
+  const findings = [];
+
+  for (const [, inhoud] of html.matchAll(ARTICLE)) {
+    for (const [tag] of inhoud.matchAll(IMG)) {
+      if (MERMAID_CLASS.test(tag)) continue;
+
+      const alt = tag.match(ALT)?.[1] ?? null;
+      const src = tag.match(/\bsrc="([^"]*)"/i)?.[1] ?? "afbeelding";
+
+      if (alt === null) {
+        findings.push(`${src} zonder alt-attribuut`);
+      } else if (alt.trim() === "" && !DECORATIEF.test(tag)) {
+        findings.push(
+          `${src} met lege alt-tekst; beschrijf de afbeelding of markeer haar als decoratief`,
+        );
+      }
+    }
+  }
+
+  return findings;
+}
+
+export { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt };

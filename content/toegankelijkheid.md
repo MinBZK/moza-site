@@ -8,7 +8,7 @@ Iedereen moet MijnOverheid Zakelijk kunnen gebruiken. Ook als je een schermlezer
 
 MijnOverheid Zakelijk is nog in ontwikkeling. We hebben nog geen toegankelijkheidsonderzoek uitgevoerd.
 
-Onze status is daarom C: eerste maatregelen genomen. Dat betekent dat we [de verklaring hebben gepubliceerd](https://www.toegankelijkheidsverklaring.nl/register/29880) en het onderzoek hebben ingepland, maar dat het nog niet is uitgevoerd.
+Onze status is nu tijdelijk D: voldoet niet. De geldigheid van [onze verklaring](https://www.toegankelijkheidsverklaring.nl/register/28557) is verlopen, waardoor de status vanzelf terugviel. We werken aan een nieuwe verklaring en aan de hoogste status A: voldoet volledig.
 
 {{< toegankelijkheidslabel >}}
 
@@ -44,4 +44,4 @@ Zodra de onderzoeksresultaten er zijn, werken we de verklaring bij en zetten we 
 
 ## De officiële verklaring
 
-De volledige toegankelijkheidsverklaring staat in [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/29880).
+De volledige toegankelijkheidsverklaring staat in [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/28557).

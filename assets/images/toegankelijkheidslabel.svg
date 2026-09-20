@@ -49,7 +49,7 @@
   <title id="summary-title">Toegankelijkheidslabel van https://www.mijnoverheidzakelijk.nl/</title>
   <desc id="explanation-text">
     Status toegankelijkheid: https://www.mijnoverheidzakelijk.nl/. Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht om deze website te laten voldoenaan het Besluit digitale toegankelijkheid overheid.
-    De status van deze website is: Eerste maatregelen genomen. Deze status is toegekend op basis van een eigen verklaring.Deze is voor het laatst bijgewerkt op 26-08-2026.
+    De status van deze website is: Voldoet niet. Deze status is toegekend op basis van een eigen verklaring.Deze is voor het laatst bijgewerkt op 09-03-2026.
   </desc>
   <g id="Compliance_Text" data-name="Compliance Text">
     <rect id="Background" class="cls-1" width="692" height="344"/>
@@ -59,9 +59,9 @@
     <text transform="translate(146.3 84.2)" class="st4 st5">is wettelijk verplicht om deze website te laten voldoen</text>
     <text transform="translate(145.3 100)" class="st4 st5">aan het Besluit digitale toegankelijkheid overheid.</text>
     <text transform="translate(145.3 125.1)" class="st4 st5">De status van deze website is:</text>
-    <text transform="translate(145.3 142.5)" class="st6 st7">Eerste maatregelen genomen</text>
+    <text transform="translate(145.3 142.5)" class="st6 st7">Voldoet niet</text>
     <text transform="translate(145.3 169.4)" class="st4 st5">Deze status is toegekend op basis van een eigen verklaring.</text>
-    <text transform="translate(145.3 186.2)" class="st4 st5">Deze is voor het laatst bijgewerkt op 26-08-2026.</text>
+    <text transform="translate(145.3 186.2)" class="st4 st5">Deze is voor het laatst bijgewerkt op 09-03-2026.</text>
     <text transform="translate(145.4 213.2)" class="st4 st5">Ga naar de</text>
     <text transform="translate(219.4 213.2)" class="st4 st5" style="text-decoration: underline;">toegankelijkheidsverklaring</text>
     <text transform="translate(387.5 213.2)" class="st4 st5">:</text>
@@ -106,10 +106,10 @@
     </g>
   </g>
   <g id="Compliance_Indicator" data-name="Compliance Indicator">
-   <g id="C-indicator">
-          <path id="Combined-Shape-3" data-name="Combined-Shape" class="cls-26" d="M95.48,144.35A17.55,17.55,0,1,1,77.93,161.9,17.55,17.55,0,0,1,95.48,144.35Zm-16.23,9.33a17.69,17.69,0,0,0-2.4,8.76,17,17,0,0,0,2.6,9.28L54,162.8Z"/>
-          <circle id="Oval-3" data-name="Oval" class="cls-27" cx="95.85" cy="161.9" r="17.55"/>
-          <text class="cls-23" transform="translate(90 168.35)">C</text></g>
+   <g id="D-indicator">
+          <path id="Combined-Shape-2" data-name="Combined-Shape" class="cls-24" d="M95.48,208.85A17.55,17.55,0,1,1,77.93,226.4,17.55,17.55,0,0,1,95.48,208.85Zm-16.23,9.33a17.69,17.69,0,0,0-2.4,8.76,17,17,0,0,0,2.6,9.28L54,227.3Z"/>
+          <circle id="Oval-2" data-name="Oval" class="cls-25" cx="95.85" cy="226.4" r="17.55"/>
+          <text class="cls-23" transform="translate(90 232.85)">D</text></g>
   </g>
   
 </svg>

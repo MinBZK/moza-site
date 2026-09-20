@@ -27,3 +27,5 @@ Wilhelmina van Pruisenweg 52
 2595 AN Den Haag
 
 Ook werken we op THT
+
+![test](/images/diagram-1.png "test")

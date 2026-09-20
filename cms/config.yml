@@ -1,0 +1,132 @@
+# Lokaal testen: `just cms`, dan http://localhost:1314/ openen in Chrome of
+# Edge en "Work with Local Repository" kiezen. Sveltia bewerkt de bestanden
+# dan rechtstreeks; committen en pushen doe je zelf met git.
+
+backend:
+  name: github
+  repo: MinBZK/moza-site
+  branch: main
+  # `oauth` vraagt een eigen OAuth-proxy als base_url; zonder die proxy stuurt
+  # Sveltia je naar Netlify, dat deze repo niet kent.
+  auth_methods: [token]
+
+site_url: https://mijnoverheidzakelijk.nl
+
+# Elke wijziging wordt een branch cms/<collectie>/<slug> plus een pull request,
+# in plaats van een commit rechtstreeks op main.
+publish_mode: editorial_workflow
+
+# De preview van de CMS kent geen Hugo: mermaid-blokken en shortcodes komen er
+# als ruwe tekst uit. De preview-deployment op de PR toont de echte pagina.
+editor:
+  preview: false
+
+# Laat een leeg optioneel veld weg uit de front matter, in plaats van het als
+# lege waarde weg te schrijven.
+output:
+  omit_empty_optional_fields: true
+
+# Alleen wat redacteuren zelf uploaden. De rest van static/images wordt door
+# `just nldd` en de mermaid-render beheerd en hoort niet in de mediabibliotheek.
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: handboek
+    label: Handboek
+    label_singular: Handboekpagina
+    folder: content/handboek
+    create: true
+    publish: false
+    extension: md
+    format: yaml-frontmatter
+    # Geen index_file: de _index.md's van de secties blijven buiten het CMS.
+    # Die van het handboek zelf draagt een cascade die hier verloren zou gaan.
+    nested:
+      depth: 2
+      subfolders: false
+      summary: '{{title}}'
+    # Een nieuwe map hier aanmaken werkt, maar komt niet in het menu: dat staat
+    # in hugo.yaml onder menus.
+    meta:
+      path:
+        label: Categorie
+        widget: string
+    reorder:
+      key: weight
+    fields:
+      - { name: title, label: Titel, widget: string }
+      - { name: description, label: Omschrijving, widget: string, hint: Maximaal 160 tekens }
+      - { name: weight, widget: hidden }
+      - { name: body, label: Inhoud, widget: markdown }
+
+  - name: weekly
+    label: Weekly
+    label_singular: Weekly
+    folder: content/weekly
+    create: true
+    publish: false
+    extension: md
+    format: yaml-frontmatter
+    # Uit het datumveld, niet uit {{year}}: die tag gebruikt de aanmaakdatum,
+    # dus een vooruit geplande weekly zou in het verkeerde bestand landen.
+    path: "{{date | date('YYYY')}}/{{slug}}"
+    slug: "{{date | date('YYYY-MM-DD')}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    fields:
+      - { name: title, label: Titel, widget: string }
+      - { name: date, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD-MM-YYYY', time_format: false }
+      - { name: summary, label: Samenvatting, widget: text, required: false }
+      - { name: body, label: Inhoud, widget: markdown }
+
+  - name: onderwerpen
+    label: Onderwerpen
+    label_singular: Onderwerp
+    folder: content/onderwerpen
+    create: true
+    publish: false
+    extension: md
+    format: yaml-frontmatter
+    nested:
+      depth: 2
+      subfolders: false
+      summary: '{{title}}'
+    # Een nieuwe map hier aanmaken werkt, maar komt niet in het menu: dat staat
+    # in hugo.yaml onder menus.
+    meta:
+      path:
+        label: Categorie
+        widget: string
+    reorder:
+      key: weight
+    fields:
+      - { name: title, label: Titel, widget: string }
+      - { name: description, label: Omschrijving, widget: string, hint: Maximaal 160 tekens }
+      - name: status
+        label: Status
+        widget: select
+        required: false
+        options: ['In ontwikkeling', 'Gepauzeerd']
+        hint: Wordt als label boven de pagina getoond. Leeg laten als er geen status is.
+      - name: card_title
+        label: Titel op tegel
+        widget: string
+        required: false
+        hint: Korte titel voor het overzicht. Leeg laten om de gewone titel te gebruiken.
+      # Verborgen, maar wel gedefinieerd: wat hier niet staat, schrijft Sveltia
+      # niet terug en verdwijnt dus bij het opslaan.
+      - { name: weight, widget: hidden }
+      - { name: page_title, widget: hidden }
+      - { name: hide_tiles, widget: hidden }
+      - { name: prev_next, widget: hidden }
+      - { name: aliases, widget: hidden }
+      # Raw eerst: deze pagina's bevatten mermaid-blokken met accTitle/accDescr
+      # en de shortcode diagram-notificatiedienst, die de WYSIWYG kan herschrijven.
+      - name: body
+        label: Inhoud
+        widget: markdown
+        modes: [raw, rich_text]

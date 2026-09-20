@@ -1,5 +1,8 @@
 # Image naam en tag op basis van git branch
 image := "moza-site:" + `git branch --show-current`
+# Op de commit, niet op de branch: een branchnaam met een schuine streep is
+# geen geldige tag, en een verschoven tag laat het cluster de oude laag houden.
+cms_image := "moza-site-cms:" + `git rev-parse --short HEAD`
 
 [private]
 default:
@@ -143,6 +146,20 @@ moza-weekly-namencheck JSON:
 # Draai de unit-tests van de moza-weekly-scripts
 moza-weekly-test:
     uv run --project scripts/moza-weekly pytest scripts/moza-weekly/tests/ -q
+
+# Serveer de CMS lokaal op localhost:1314 (Chromium-browser vereist)
+cms: cms-vendor
+    python3 -m http.server 1314 --directory cms
+
+# Haal de CMS-bundel uit node_modules
+[private]
+cms-vendor: node-deps
+    cp node_modules/@sveltia/cms/dist/sveltia-cms.js cms/sveltia-cms.js
+
+# Bouw en start de CMS-host op localhost:8451 (ZAD draait op amd64)
+cms-container: cms-vendor
+    podman build --platform linux/amd64 -t {{cms_image}} -f cms/container/Containerfile .
+    podman run --rm --replace --name moza-site-cms -p 8451:8080 {{cms_image}}
 
 # Bouw container image
 cbuild:

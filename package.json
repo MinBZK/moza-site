@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@nldd/design-system": "^0.8.88",
+    "@sveltia/cms": "^0.217.0",
     "mermaid": "^11",
     "pa11y-ci": "^4.1.1",
     "puppeteer": "^25"

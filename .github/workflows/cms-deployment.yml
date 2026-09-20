@@ -1,0 +1,90 @@
+name: CMS deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - cms/**
+      - .github/workflows/cms-deployment.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/moza-site-cms
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      # De bundel staat niet in de repo; het Containerfile verwacht haar wel in
+      # de build-context.
+      - name: Haal de CMS-bundel op
+        run: cp node_modules/@sveltia/cms/dist/sveltia-cms.js cms/sveltia-cms.js
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: type=sha,format=short
+
+      - name: Build and push container image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./cms/container/Containerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: cms
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Deploy to ZAD
+        id: deploy
+        uses: RijksICTGilde/zad-actions/deploy@v4
+        with:
+          api-key: ${{ secrets.ZAD_API_KEY }}
+          project-id: mzs-3ik
+          deployment-name: site-admin
+          component: admin
+          image: ${{ needs.build.outputs.image }}
+          wait-for-ready: true

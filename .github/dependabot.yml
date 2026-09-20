@@ -9,6 +9,12 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # Mermaid 12 verandert de standaard-layout (ELK), de look (neo) en
+      # flowchart.wrappingWidth, waardoor elk gerenderd diagram verschuift.
+      # Zie issue #179; tot die tijd blijven we op 11.
+      - dependency-name: "mermaid"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "docker"
     directory: "/container"

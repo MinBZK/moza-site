@@ -236,6 +236,18 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
       <span class="pageNumber"></span>
     </div>`;
 
+  // Chromium lost elke href op tegen de tijdelijke printserver, dus zonder dit
+  // wijzen interne links in de PDF naar 127.0.0.1.
+  if (meta.url) {
+    await page.evaluate((site) => {
+      for (const anker of document.querySelectorAll("a[href]")) {
+        const url = new URL(anker.href);
+        if (url.origin !== location.origin) continue;
+        anker.href = new URL(url.pathname + url.search + url.hash, site).href;
+      }
+    }, new URL(meta.url).origin);
+  }
+
   // Chrome neemt de documenttitel over als PDF-titel. Die moet gezet zijn vóór
   // het afdrukken; achteraf de PDF openen en herschrijven kost de tagging.
   await page.evaluate((t) => {

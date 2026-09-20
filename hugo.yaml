@@ -145,6 +145,14 @@ outputFormats:
     mediaType: text/markdown
     isPlainText: true
     notAlternative: true
+  # De markdown-download: los te lezen, dus met absolute links naar de site.
+  # De markdown-uitvoer hierboven blijft relatief, voor taalmodellen die van
+  # .md naar .md doorlopen.
+  export:
+    baseName: index.export
+    mediaType: text/markdown
+    isPlainText: true
+    notAlternative: true
   download:
     baseName: download
     mediaType: application/json

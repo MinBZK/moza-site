@@ -7,7 +7,9 @@
        opslaat. De verborgen tekst maakt het linkdoel zelfstandig duidelijk
        voor schermlezers (WCAG 2.4.4 / 2.4.9). */ -}}
 {{- $slug := path.Base .RelPermalink -}}
-{{- $md := .OutputFormats.Get "markdown" -}}
+{{- /* De export-variant, niet de markdown-uitvoer: die laatste linkt intern
+       naar .md-bestanden op de site en werkt dus niet als los bestand. */ -}}
+{{- $md := .OutputFormats.Get "export" -}}
 <nav class="downloads" aria-label="Download deze pagina">
   <h2>Download deze pagina</h2>
   <ul>

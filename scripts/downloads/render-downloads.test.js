@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -28,11 +28,13 @@ test(
       writeFileSync(
         join(pageDir, "index.html"),
         "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Test</title></head>" +
-          "<body><main><article><h1>Testdocument</h1><p>Hallo wereld.</p></article></main></body></html>"
+          "<body><main><article><h1>Testdocument</h1><p>Hallo wereld.</p>" +
+          '<p><a href="/onderwerpen/test/">Interne link</a></p></article></main></body></html>'
       );
       writeFileSync(
         join(pageDir, "index.pandoc.md"),
-        "---\ntitle: Testdocument\n---\n\n# Testdocument\n\nHallo wereld.\n"
+        "---\nurl: https://mijnoverheidzakelijk.nl/documenten/test/\n---\n\n" +
+          "# Testdocument\n\nHallo wereld.\n"
       );
       writeFileSync(
         join(root, "download.json"),
@@ -47,6 +49,15 @@ test(
 
       assert.ok(existsSync(join(pageDir, "test.odt")), "test.odt moet bestaan");
       assert.ok(existsSync(join(pageDir, "test.pdf")), "test.pdf moet bestaan");
+
+      // De PDF wordt van een tijdelijke printserver gedrukt; interne links
+      // moeten naar de site wijzen, niet naar die server.
+      const pdf = readFileSync(join(pageDir, "test.pdf")).toString("latin1");
+      assert.ok(
+        pdf.includes("https://mijnoverheidzakelijk.nl/onderwerpen/test/"),
+        "interne link moet naar de site wijzen"
+      );
+      assert.ok(!pdf.includes("127.0.0.1"), "geen link naar de printserver");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

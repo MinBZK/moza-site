@@ -10,7 +10,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { collectRoutes } from "./routes.js";
-import { checkHeadingOrder, checkDiagramAlt } from "./checks.js";
+import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt } from "./checks.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
 
@@ -30,7 +30,13 @@ function main() {
   for (const route of routes) {
     const html = readFileSync(pageFile(route), "utf-8");
     // Licht- en donkervariant delen dezelfde alt-tekst.
-    const findings = [...new Set([...checkHeadingOrder(html), ...checkDiagramAlt(html)])];
+    const findings = [
+      ...new Set([
+        ...checkHeadingOrder(html),
+        ...checkDiagramAlt(html),
+        ...checkContentImageAlt(html),
+      ]),
+    ];
 
     if (findings.length > 0) {
       console.error(`\n${route}`);
@@ -44,7 +50,7 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`Koppenstructuur en diagram-alt in orde op ${routes.length} pagina('s).`);
+  console.log(`Koppenstructuur en alt-teksten in orde op ${routes.length} pagina('s).`);
 }
 
 main();

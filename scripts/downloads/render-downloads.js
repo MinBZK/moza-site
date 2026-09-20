@@ -216,6 +216,14 @@ function rijksoverheidLogoDataUri() {
   return logoDataUri;
 }
 
+function siteOrigin(url) {
+  try {
+    return new URL(url).origin;
+  } catch {
+    return null;
+  }
+}
+
 async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "light" },
@@ -237,15 +245,17 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
     </div>`;
 
   // Chromium lost elke href op tegen de tijdelijke printserver, dus zonder dit
-  // wijzen interne links in de PDF naar 127.0.0.1.
-  if (meta.url) {
-    await page.evaluate((site) => {
+  // wijzen interne links in de PDF naar 127.0.0.1. Een build met `--baseURL /`
+  // levert geen origin op; dan valt er niets te herschrijven.
+  const site = siteOrigin(meta.url);
+  if (site) {
+    await page.evaluate((origin) => {
       for (const anker of document.querySelectorAll("a[href]")) {
         const url = new URL(anker.href);
         if (url.origin !== location.origin) continue;
-        anker.href = new URL(url.pathname + url.search + url.hash, site).href;
+        anker.href = origin + url.pathname + url.search + url.hash;
       }
-    }, new URL(meta.url).origin);
+    }, site);
   }
 
   // Chrome neemt de documenttitel over als PDF-titel. Die moet gezet zijn vóór

@@ -14,38 +14,46 @@ function hasPandoc() {
   }
 }
 
-// Integratietest: bouwt een minimale "gebouwde" pagina + manifest en controleert
-// dat render-downloads er zowel een .odt (pandoc) als .pdf (Chromium) van maakt.
+// Bouwt een minimale "gebouwde" pagina + manifest en draait render-downloads.
+// `url` is wat Hugo in de front matter zet: absoluut, of root-relatief bij een
+// build met `--baseURL /`.
+function renderFixture(root, url) {
+  const pageDir = join(root, "documenten", "test");
+  mkdirSync(pageDir, { recursive: true });
+
+  writeFileSync(
+    join(pageDir, "index.html"),
+    "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Test</title></head>" +
+      "<body><main><article><h1>Testdocument</h1><p>Hallo wereld.</p>" +
+      '<p><a href="/onderwerpen/test/">Interne link</a></p></article></main></body></html>'
+  );
+  writeFileSync(
+    join(pageDir, "index.pandoc.md"),
+    `---\nurl: ${url}\n---\n\n# Testdocument\n\nHallo wereld.\n`
+  );
+  writeFileSync(
+    join(root, "download.json"),
+    JSON.stringify([
+      { relPermalink: "/documenten/test/", name: "test", title: "Testdocument" },
+    ])
+  );
+
+  execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], {
+    stdio: "pipe",
+  });
+
+  return pageDir;
+}
+
+// Integratietest: controleert dat render-downloads zowel een .odt (pandoc) als
+// een .pdf (Chromium) maakt.
 test(
   "render-downloads genereert .odt en .pdf uit het manifest",
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
     try {
-      const pageDir = join(root, "documenten", "test");
-      mkdirSync(pageDir, { recursive: true });
-
-      writeFileSync(
-        join(pageDir, "index.html"),
-        "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Test</title></head>" +
-          "<body><main><article><h1>Testdocument</h1><p>Hallo wereld.</p>" +
-          '<p><a href="/onderwerpen/test/">Interne link</a></p></article></main></body></html>'
-      );
-      writeFileSync(
-        join(pageDir, "index.pandoc.md"),
-        "---\nurl: https://mijnoverheidzakelijk.nl/documenten/test/\n---\n\n" +
-          "# Testdocument\n\nHallo wereld.\n"
-      );
-      writeFileSync(
-        join(root, "download.json"),
-        JSON.stringify([
-          { relPermalink: "/documenten/test/", name: "test", title: "Testdocument" },
-        ])
-      );
-
-      execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], {
-        stdio: "pipe",
-      });
+      const pageDir = renderFixture(root, "https://mijnoverheidzakelijk.nl/documenten/test/");
 
       assert.ok(existsSync(join(pageDir, "test.odt")), "test.odt moet bestaan");
       assert.ok(existsSync(join(pageDir, "test.pdf")), "test.pdf moet bestaan");
@@ -58,6 +66,24 @@ test(
         "interne link moet naar de site wijzen"
       );
       assert.ok(!pdf.includes("127.0.0.1"), "geen link naar de printserver");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+);
+
+// De controlebuild draait `hugo --baseURL /`, dus dan is er geen site-URL om
+// links naar te herschrijven. Dat mag de generatie niet breken.
+test(
+  "render-downloads werkt ook zonder absolute site-URL",
+  { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
+  () => {
+    const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    try {
+      const pageDir = renderFixture(root, "/documenten/test/");
+
+      assert.ok(existsSync(join(pageDir, "test.odt")), "test.odt moet bestaan");
+      assert.ok(existsSync(join(pageDir, "test.pdf")), "test.pdf moet bestaan");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

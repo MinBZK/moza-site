@@ -13,6 +13,7 @@ cascade:
     - HTML
     - markdown
     - pandoc
+    - export
 ---
 
 Wil je updates ontvangen? Gebruik de [RSS feed](index.xml).

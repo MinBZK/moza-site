@@ -9,6 +9,7 @@ outputs:
   - HTML
   - markdown
   - pandoc
+  - export
 ---
 
 > [!NOTE]

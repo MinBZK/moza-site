@@ -234,6 +234,18 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
   // PDF heeft al een doorlopende logo-header via Puppeteer.
   await page.evaluate(() => document.documentElement.classList.add("pdf-export"));
 
+  // Chrome neemt verborgen tekst niet op in de PDF; de beschrijving van een
+  // diagram moet daar in de Alt van de figuur staan.
+  await page.evaluate(() => {
+    for (const diagram of document.querySelectorAll(".mermaid-diagram")) {
+      const beschrijving = diagram.querySelector(".mermaid-beschrijving")?.textContent.trim();
+      if (!beschrijving) continue;
+      for (const img of diagram.querySelectorAll("img.mermaid-img")) {
+        img.alt = `${img.alt}. ${beschrijving}`;
+      }
+    }
+  });
+
   const headerTemplate = `
     <div style="width:100%; margin:-6mm 0 6mm 0; text-align:center;">
       <img src="${rijksoverheidLogoDataUri()}" style="height:23mm; width:auto;" alt="" />

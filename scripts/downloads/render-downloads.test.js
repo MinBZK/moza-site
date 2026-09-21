@@ -89,3 +89,51 @@ test(
     }
   }
 );
+
+// De beschrijving van een diagram staat op de site als verborgen tekst. Chrome
+// neemt die niet op in de PDF, dus de export plakt hem achter de alt.
+test(
+  "render-downloads zet de diagrambeschrijving in de alt van de PDF",
+  { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
+  () => {
+    const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    try {
+      const pageDir = join(root, "onderwerpen", "diagram");
+      mkdirSync(pageDir, { recursive: true });
+
+      writeFileSync(
+        join(pageDir, "diagram.svg"),
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 10" width="40" height="10">' +
+          '<rect width="40" height="10" fill="#123" /></svg>'
+      );
+      writeFileSync(
+        join(pageDir, "index.html"),
+        "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Diagram</title></head>" +
+          "<body><main><article><h1>Diagram</h1>" +
+          '<div class="mermaid-diagram">' +
+          '<img class="mermaid-img" src="diagram.svg" alt="Korte naam" width="40" height="10">' +
+          '<p class="mermaid-beschrijving visually-hidden">Lange beschrijving van het diagram.</p>' +
+          "</div></article></main></body></html>"
+      );
+      writeFileSync(
+        join(pageDir, "index.pandoc.md"),
+        "---\ntitle: Diagram\n---\n\n# Diagram\n"
+      );
+      writeFileSync(
+        join(root, "download.json"),
+        JSON.stringify([
+          { relPermalink: "/onderwerpen/diagram/", name: "diagram", title: "Diagram" },
+        ])
+      );
+
+      execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], {
+        stdio: "pipe",
+      });
+
+      const pdf = readFileSync(join(pageDir, "diagram.pdf")).toString("latin1");
+      assert.match(pdf, /\/Alt \(Korte naam\. Lange beschrijving van het diagram\.\)/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+);

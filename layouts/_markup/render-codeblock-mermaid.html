@@ -65,6 +65,8 @@
 {{- end -}}
 {{- $breedte := int (math.Ceil (index (index $viewBox 0) 1)) -}}
 {{- $hoogte := int (math.Ceil (index (index $viewBox 0) 2)) -}}
+{{- /* De PDF-export plakt deze verborgen tekst achter de alt
+     (render-downloads.js): verborgen tekst komt niet in een PDF. */ -}}
 {{- $alt := $accTitle | default $accDescr -}}
 {{- $beschrijving := "" -}}
 {{- if $accTitle -}}{{ $beschrijving = $accDescr }}{{- end -}}

@@ -42,7 +42,7 @@ Diagrammen in Markdown worden vooraf gerenderd als SVG (light + dark) door `scri
 
 Elk mermaid-blok moet een `accTitle` hebben voor de bestandsnaam en toegankelijkheid. Zonder `accTitle` wordt een fallback `diagram-N` gebruikt.
 
-`accTitle` is de `alt`-tekst: kort, een naam. Ook `accDescr` is verplicht: dat is de uitgebreide beschrijving, als verborgen tekst direct na het diagram.
+`accTitle` is de `alt`-tekst: kort, een naam. Ook `accDescr` is verplicht: dat is de uitgebreide beschrijving, als verborgen tekst direct na het diagram. In de PDF-download staat hij achter de `alt`.
 
 Kleuren in een diagram (bijvoorbeeld in `classDef`) nooit hardcoden: gebruik `var(--token)` uit `tokens.css`, zoals `color:var(--color-text)`. Het renderscript vult per variant de light- of dark-waarde in.
 

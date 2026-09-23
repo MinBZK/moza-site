@@ -31,6 +31,9 @@ IgnoreURLs:
   # gestrand zonder dat er iets aan de links mankeerde.
   - zoek.officielebekendmakingen.nl
   - wetten.overheid.nl
+  # kcbr.nl antwoordt lokaal binnen een seconde, maar loopt vanaf de CI-runner
+  # over de ExternalTimeout van 30 seconden heen.
+  - kcbr.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

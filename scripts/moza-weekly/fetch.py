@@ -57,7 +57,7 @@ GENERATOR = "moza-weekly fetch.py v0.2.0"
 NL_TZ = ZoneInfo("Europe/Amsterdam")
 DEFAULT_SERVER = "https://digilab.overheid.nl/chat"
 DEFAULT_TEAM = "mijnoverheid-zakelijk"
-DEFAULT_CHANNELS = "check-in,agenda,sprint-faq"
+DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving"
 DEFAULT_DOCS_URL = "https://docs.rijksapp.nl"
 
 # Exit-codes

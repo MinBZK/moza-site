@@ -5,7 +5,7 @@ from datetime import date, timedelta
 import pytest
 
 from _mattermost import RawPost
-from fetch import _build_period, _is_bot
+from fetch import _build_period, _is_bot, _split_channel
 
 
 def test_build_period_explicit_bounds():
@@ -53,3 +53,17 @@ def _raw(props):
 )
 def test_is_bot(props, expected):
     assert _is_bot(_raw(props)) is expected
+
+
+def test_split_channel_zonder_team_gebruikt_de_standaard():
+    assert _split_channel("check-in", "mijnoverheid-zakelijk") == (
+        "mijnoverheid-zakelijk",
+        "check-in",
+    )
+
+
+def test_split_channel_met_team_prefix():
+    assert _split_channel("regelrecht/moza", "mijnoverheid-zakelijk") == (
+        "regelrecht",
+        "moza",
+    )

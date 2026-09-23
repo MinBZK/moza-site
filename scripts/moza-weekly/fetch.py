@@ -57,7 +57,7 @@ GENERATOR = "moza-weekly fetch.py v0.2.0"
 NL_TZ = ZoneInfo("Europe/Amsterdam")
 DEFAULT_SERVER = "https://digilab.overheid.nl/chat"
 DEFAULT_TEAM = "mijnoverheid-zakelijk"
-DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving"
+DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving,regelrecht/moza"
 DEFAULT_DOCS_URL = "https://docs.rijksapp.nl"
 
 # Exit-codes
@@ -119,6 +119,12 @@ def _build_period(date_from: str | None, date_to: str | None) -> Period:
     start = datetime.combine(start_date, time(0, 0, 0), tzinfo=NL_TZ)
     end = datetime.combine(end_date, time(23, 59, 59), tzinfo=NL_TZ)
     return Period(start=start, end=end)
+
+
+def _split_channel(spec: str, default_team: str) -> tuple[str, str]:
+    """Splits 'team/kanaal' in een team en een kanaal; zonder / geldt het standaardteam."""
+    team, _, channel = spec.rpartition("/")
+    return (team or default_team, channel)
 
 
 def _channel_url(server: str, team: str, channel: str) -> str:
@@ -461,28 +467,35 @@ def main(argv: list[str] | None = None) -> int:
     references: list[Reference] = []
     try:
         with MattermostClient(server, token) as client:
-            try:
-                team_id = client.get_team_id(team)
-            except TeamNotFoundError as e:
-                log.error("%s", e)
-                return EXIT_TEAM_NOT_FOUND
-            except AuthError as e:
-                log.error("%s", e)
-                return EXIT_AUTH
-
-
-            for ch_name in channels:
+            team_ids: dict[str, str] = {}
+            for spec in channels:
+                ch_team, ch_name = _split_channel(spec, team)
+                if ch_team not in team_ids:
+                    try:
+                        team_ids[ch_team] = client.get_team_id(ch_team)
+                    except TeamNotFoundError as e:
+                        log.error("%s", e)
+                        return EXIT_TEAM_NOT_FOUND
+                    except AuthError as e:
+                        log.error("%s", e)
+                        return EXIT_AUTH
                 try:
                     ch = _fetch_channel(
-                        client, team_id, ch_name, period, server, team, args.no_bots
+                        client,
+                        team_ids[ch_team],
+                        ch_name,
+                        period,
+                        server,
+                        ch_team,
+                        args.no_bots,
                     )
                 except AuthError as e:
-                    log.error("✗ %s: %s", ch_name, e)
+                    log.error("✗ %s: %s", spec, e)
                     fetched_channels.append(
                         Channel(
                             name=ch_name,
                             id="",
-                            url=_channel_url(server, team, ch_name),
+                            url=_channel_url(server, ch_team, ch_name),
                             error=str(e),
                         )
                     )

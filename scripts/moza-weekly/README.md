@@ -2,7 +2,7 @@
 
 Drie-staps Python-pipeline die input verzamelt voor de wekelijkse MOZa Weekly-publicatie.
 
-1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`, `sprint-faq`, `business-wallet`, `wie-mag-wat`, `berichtenservice`, `notificatiedienst`, `profielservice`, `mijnomgeving`), volgt de verwijzingen in die berichten (permalinks naar andere threads, publieke webpagina's) en schrijft een gestructureerd YAML-bestand.
+1. **`fetch.py`** haalt berichten en threads op uit Mattermost-kanalen (default: `check-in`, `agenda`, `sprint-faq`, `business-wallet`, `wie-mag-wat`, `berichtenservice`, `notificatiedienst`, `profielservice`, `mijnomgeving`, `regelrecht/moza`), volgt de verwijzingen in die berichten (permalinks naar andere threads, publieke webpagina's) en schrijft een gestructureerd YAML-bestand.
 2. **`anonymize.py`** schrijft een geanonimiseerde JSON-variant van die YAML — bedoeld als veilige LLM-input voor de MOZa Weekly skill.
 3. **`render.py`** rendert het YAML-bestand naar een single-file HTML-rapport in de nldd-stijl (voor menselijke lezers).
 
@@ -80,6 +80,15 @@ just moza-weekly --from 2026-05-13
 
 # Beide
 just moza-weekly --from 2026-05-13 --to 2026-05-20
+```
+
+### Kanaal uit een ander team
+
+Een kanaal hoort bij het team uit `MOZA_WEEKLY_TEAM`. Staat het in een ander
+team, schrijf het dan als `team/kanaal`:
+
+```bash
+just moza-weekly --channel regelrecht/moza
 ```
 
 ### Specifieke kanalen

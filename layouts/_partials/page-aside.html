@@ -11,6 +11,8 @@
 {{- $hasLinks := $p.Params.relevante_links -}}
 {{- if or $hasToc $hasDownload $hasLinks -}}
 <aside class="page-aside">
+  {{- /* Chevron voor de uitklapknoppen op smal scherm (toc.js). */}}
+  <template id="page-aside-chevron">{{ partial "icon.html" "chevron-down" }}</template>
   {{- if $hasToc -}}
   <nav id="toc" class="toc" aria-label="Inhoudsopgave">
     <h2>Op deze pagina</h2>

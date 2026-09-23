@@ -47,8 +47,64 @@ article:has(> .page-aside) {
   font-size: 1rem;
 
   @media (max-width: 949px) {
-    padding-top: 1.5rem;
-    margin-bottom: 2.5rem;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* De knoppen komen uit toc.js; zonder JavaScript blijven de blokken open. */
+.page-aside:has(.page-aside-toggle) {
+  --chevron: 1.25rem;
+  --chevron-ruimte: 0.25rem;
+
+  > nav + nav {
+    margin-top: 0.25rem;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  /* Springt in tot waar de tekst van het label begint, na de chevron. */
+  h2 + * {
+    padding: 0.25rem 0 0.75rem calc(var(--chevron) + var(--chevron-ruimte));
+  }
+}
+
+.page-aside-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chevron-ruimte);
+  padding: 0.5rem 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+    border: none;
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: var(--chevron);
+    height: var(--chevron);
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded="true"] svg {
+    transform: none;
   }
 }
 
@@ -88,7 +144,7 @@ article:has(> .page-aside) {
   }
 }
 
-/* Inhoudsopgave: zichtbaar in de rechterkolom; verborgen op smal scherm */
+/* Inhoudsopgave */
 .toc {
   ul ul {
     padding-left: 0.5rem;
@@ -106,10 +162,6 @@ article:has(> .page-aside) {
     color: var(--color-primary);
     font-weight: 600;
   }
-
-  @media (max-width: 949px) {
-    display: none;
-  }
 }
 
 /* Downloadblok: bestandstype-icoon + label */
@@ -123,7 +175,7 @@ article:has(> .page-aside) {
   gap: 0.5rem;
 }
 
-.downloads svg {
+.downloads a svg {
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;

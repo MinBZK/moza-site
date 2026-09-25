@@ -1,14 +1,23 @@
 ---
-title:
+title: "{{ replace .File.ContentBaseName "-" " " | strings.FirstUpper }}"
+description:
 date: {{ time.Now.Format "2006-01-02" }}
+layout: nldd-deck
+# Optioneel: tekst in de footer van elke dia, na "MijnOverheid Zakelijk"
+disclaimer:
 ---
-
-<section class="show-controls">
-  <h1>{{ .Title }}</h1>
-  <p>Ondertitel</p>
+<section class="slide" aria-roledescription="dia" aria-label="Titel">
+  <p class="overline">MijnOverheid Zakelijk · {{ time.Now | time.Format ":date_long" }}</p>
+  <h1 class="title title-hero">{{ replace .File.ContentBaseName "-" " " | strings.FirstUpper }}</h1>
+  <p class="lead lead-hero">Ondertitel</p>
 </section>
 
-<section>
-  <h2>Slide titel</h2>
-  <p>Inhoud</p>
+<section class="slide" aria-roledescription="dia" aria-label="Kern">
+  <p class="overline">Onderwerp</p>
+  <h2 class="title statement">
+    <span>Eerste zin met een <strong>accent</strong></span>
+    <span>Tweede zin met een <strong>accent</strong></span>
+    <span>Derde zin met een <strong>accent</strong></span>
+  </h2>
+  <p class="footnote">Toelichting in één of twee regels.</p>
 </section>

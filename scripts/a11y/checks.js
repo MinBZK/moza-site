@@ -92,4 +92,23 @@ function checkContentImageAlt(html) {
   return findings;
 }
 
-export { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt };
+// Class-attributen met en zonder aanhalingstekens: de minifier laat die weg
+const CLASS_ATTR = /\bclass=(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+
+/**
+ * Welk soort presentatie een pagina is: "reveal", "nldd-deck" of null. Leest
+ * de class-attributen, zodat het ook werkt op geminificeerde HTML.
+ */
+function presentatieSoort(html) {
+  const classes = new Set();
+  for (const [tag] of html.matchAll(/<[a-z][^>]*>/gi)) {
+    for (const match of tag.matchAll(CLASS_ATTR)) {
+      for (const name of (match[1] ?? match[2] ?? match[3]).split(/\s+/)) classes.add(name);
+    }
+  }
+  if (classes.has("reveal")) return "reveal";
+  if (classes.has("deck")) return "nldd-deck";
+  return null;
+}
+
+export { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt, presentatieSoort };

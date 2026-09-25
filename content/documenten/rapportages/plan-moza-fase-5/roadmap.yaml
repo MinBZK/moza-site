@@ -1,0 +1,128 @@
+intro: >-
+  De roadmap laat per onderdeel zien wat we verkennen en realiseren. Hij
+  sluit aan op de eerder opgestelde roadmap van MOZa. Die is daarna
+  uitgewerkt in de roadmap van MijnOverheid, die elk kwartaal in het
+  Routekaartoverleg wordt gedeeld. Het is geen vastgestelde planning, maar
+  de roadmap helpt bij het prioriteren en plannen. Bij onderdelen met
+  (Logius) ligt de realisatie bij Logius en draagt MOZa bij, bijvoorbeeld
+  aan het deel voor ondernemers. Fase 5 van MOZa loopt van oktober 2026
+  t/m januari 2027.
+caption: "Roadmap MOZa per kwartaal, van het vierde kwartaal van 2026 t/m het derde kwartaal van 2027"
+kolommen:
+  - kolom: q4-2026
+    label: "Q4 2026"
+    fase_label: "fase 5"
+    klasse: rm-fase
+  - kolom: q1-2027
+    label: "Q1 2027"
+    fase_label: "fase 5 t/m januari"
+    klasse: rm-fase-deel
+  - kolom: q2-2027
+    label: "Q2 2027"
+  - kolom: q3-2027
+    label: "Q3 2027"
+groepen:
+  - id: g1
+    naam: "Notificatiedienst"
+    rijen:
+      - id: r1
+        naam: "Notificatie Management Component (NMC)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027]
+            type: doorbouwen
+      - id: r2
+        naam: "NotifyNL (Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027]
+            type: doorbouwen
+      - id: r3
+        naam: "Contactherstel (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+            detail: "Aanpassingen voor ondernemers"
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027]
+            type: doorbouwen
+  - id: g2
+    naam: "Profieldienst"
+    rijen:
+      - id: r4
+        naam: "Profielservice"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: realisatie
+            detail: "Inclusief juridisch proces"
+          - kolommen: [q3-2027]
+            type: doorbouwen
+      - id: r5
+        naam: "Positionering (met KVK)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027, q3-2027]
+            type: leeg
+  - id: g3
+    naam: "Berichten"
+    rijen:
+      - id: r6
+        naam: "Berichtenstelsel"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+            detail: "Proof of concept beproeven"
+          - kolommen: [q1-2027]
+            type: verkenning
+            label: "Verkenning / realisatie"
+          - kolommen: [q2-2027, q3-2027]
+            type: realisatie
+      - id: r7
+        naam: "Berichtenbox voor Burgers en Ondernemers (BBO, Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: leeg
+          - kolommen: [q3-2027]
+            type: realisatie
+  - id: g4
+    naam: "Inzicht en overzicht"
+    rijen:
+      - id: r8
+        naam: "Portaal zakelijk op MijnOverheid (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027]
+            type: verkenning
+            label: "Verkenning / realisatie"
+          - kolommen: [q2-2027, q3-2027]
+            type: realisatie
+      - id: r9
+        naam: "Inzage bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027]
+            type: realisatie
+  - id: g5
+    naam: "Handelingsperspectief"
+    rijen:
+      - id: r12
+        naam: "Delen bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: verkenning
+            detail: "Via de European Business Wallet"
+          - kolommen: [q3-2027]
+            type: realisatie
+      - id: r13
+        naam: "Digitale Assistent 2.0 (machine-uitvoerbare wetgeving)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027]
+            type: leeg

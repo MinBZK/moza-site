@@ -3,7 +3,8 @@
 /**
  * Genereert assets/css/nldd-primitives.css uit het NLDD Design System.
  *
- * Neemt de kleurschalen over die de site gebruikt en voegt een eigen
+ * Neemt de kleurschalen en de typografieschaal (font-size, line-height)
+ * over die de site gebruikt en voegt een eigen
  * neutral-schaal toe: dezelfde lichtheid en tint als NLDD's coolgray,
  * maar met meer verzadiging aan de donkere kant, zodat de donkere
  * achtergrond blauw blijft in plaats van grijs.
@@ -53,6 +54,14 @@ function parseReferences(css) {
   return refs;
 }
 
+// Typografieschaal: font-size- en line-height-stappen, niet themagevoelig
+function parseTypography(css) {
+  const typography = [];
+  const re = /--primitives-(font-size-\d+|line-height-[a-z]+):\s*([^;]+);/g;
+  for (const [, name, value] of css.matchAll(re)) typography.push([name, value.trim()]);
+  return typography;
+}
+
 function boostChroma(value) {
   return value.replace(/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/g, (m, l, c, h) => {
     const L = Number(l);
@@ -62,7 +71,7 @@ function boostChroma(value) {
   });
 }
 
-function buildCSS(scales, references = {}) {
+function buildCSS(scales, references = {}, typography = []) {
   const lines = [
     "/* Gegenereerd door scripts/nldd-tokens.js uit @nldd/design-system.",
     "   Niet handmatig bewerken: draai `just nldd`. */",
@@ -95,6 +104,11 @@ function buildCSS(scales, references = {}) {
       lines.push(`  --primitives-color-${alias}-${step}: var(--primitives-color-${scale}-${step});`);
     }
   }
+  if (typography.length) {
+    lines.push("");
+    lines.push("  /* typografie */");
+    for (const [name, value] of typography) lines.push(`  --primitives-${name}: ${value};`);
+  }
   lines.push("}", "");
   return lines.join("\n");
 }
@@ -103,10 +117,10 @@ function buildCSS(scales, references = {}) {
 function generate() {
   const variables = readFileSync(VARIABLES, "utf-8");
   const scales = parsePalettes(readFileSync(PALETTES, "utf-8"));
-  return { [OUTPUT]: buildCSS(scales, parseReferences(variables)) };
+  return { [OUTPUT]: buildCSS(scales, parseReferences(variables), parseTypography(variables)) };
 }
 
-export { parsePalettes, parseReferences, boostChroma, buildCSS, generate };
+export { parsePalettes, parseReferences, parseTypography, boostChroma, buildCSS, generate };
 
 const isCLI = process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.dirname, "nldd-tokens.js");
 

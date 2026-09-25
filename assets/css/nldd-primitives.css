@@ -353,4 +353,23 @@
   --primitives-color-mark-950: var(--primitives-color-donkergeel-950);
   --primitives-color-mark-975: var(--primitives-color-donkergeel-975);
   --primitives-color-mark-1000: var(--primitives-color-donkergeel-1000);
+
+  /* typografie */
+  --primitives-font-size-70: 0.79rem;
+  --primitives-font-size-80: 0.889rem;
+  --primitives-font-size-90: 1rem;
+  --primitives-font-size-100: 1.125rem;
+  --primitives-font-size-200: 1.266rem;
+  --primitives-font-size-300: 1.424rem;
+  --primitives-font-size-400: 1.602rem;
+  --primitives-font-size-500: 1.802rem;
+  --primitives-font-size-600: 2.027rem;
+  --primitives-font-size-700: 2.280rem;
+  --primitives-font-size-800: 2.566rem;
+  --primitives-font-size-900: 2.887rem;
+  --primitives-font-size-1000: 3.247rem;
+  --primitives-line-height-loose: 1.75;
+  --primitives-line-height-snug: 1.5;
+  --primitives-line-height-tight: 1.25;
+  --primitives-line-height-flat: 1.125;
 }

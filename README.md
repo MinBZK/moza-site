@@ -52,26 +52,27 @@ Voor het ophalen van Mattermost-input als basis voor een Weekly, zie [`scripts/m
 
 ### Presentatie
 
-Presentaties gebruiken [Reveal.js](https://revealjs.com/) en wijken daarmee af van de overige pagina's.
+Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Design System](https://nederlandsedigitaledienst.github.io/design-system/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).
 
 Maak een nieuwe presentatie:
 
 ```bash
-hugo new content presentaties/moza-pulse-x
+hugo new content --kind presentaties documenten/presentaties/naam-van-presentatie
 ```
 
-#### Slide syntax
+#### Dia's
 
-Elke slide is een `<section>` element:
+Elke dia is een `<section class="slide">` met een `aria-label`:
 
 ```html
-<section>
-  <h2>Slide titel</h2>
-  <p>Inhoud van de slide</p>
+<section class="slide" aria-roledescription="dia" aria-label="Korte naam">
+  <p class="overline">Onderwerp</p>
+  <h2 class="title">Titel van de dia</h2>
+  <p class="lead">Eén of twee korte zinnen.</p>
 </section>
 ```
 
-Geneste sections maken verticale slides (navigeer met pijltje omlaag). Zie [Reveal.js](https://revealjs.com/) voor meer informatie.
+De bouwstenen en de opbouw per klik staan in [`.claude/skills/nieuwe-presentatie/SKILL.md`](.claude/skills/nieuwe-presentatie/SKILL.md).
 
 ### Diagrammen
 
@@ -174,7 +175,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 ├── assets/              # CSS, JavaScript en image bestanden (worden o.a. geminimaliseerd door Hugo)
 ├── content/             # Markdown en HTML content
 │   ├── onderwerpen/     # Onderwerpen pagina's
-│   ├── presentaties/    # Reveal.js presentaties
+│   ├── documenten/      # Rapportages en presentaties
 │   └── weekly/          # Weekly updates
 ├── layouts/             # Templates voor pagina's en componenten
 │   ├── _partials/       # Herbruikbare template onderdelen

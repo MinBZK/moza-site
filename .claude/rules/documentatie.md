@@ -11,13 +11,11 @@ Raadpleeg bij twijfel altijd de officiële documentatie.
 
 Dit project gebruikt Hugo v0.162.1+ met de nieuwe template structuur.
 
-## Reveal.js
+## Presentaties
 
-- **Documentatie**: https://revealjs.com/
-- **Markup**: https://revealjs.com/markup/
-- **Configuratie**: https://revealjs.com/config/
+Presentaties staan in `content/documenten/presentaties/` als HTML page bundles. Nieuwe presentaties gebruiken de layout `nldd-deck` met NLDD-componenten; zie de skill `/nieuwe-presentatie`. Voor de componenten zelf: de `nldd`-skill en https://nederlandsedigitaledienst.github.io/design-system/.
 
-Presentaties staan in `content/presentaties/` als HTML page bundles.
+De oudere MOZa Pulse-presentaties draaien op Reveal.js (https://revealjs.com/). Die laten we zoals ze zijn.
 
 ## Mermaid
 
@@ -32,7 +30,7 @@ Elk mermaid-blok heeft een `accTitle` nodig voor de bestandsnaam en toegankelijk
 
 ## Aanpak
 
-Bij Hugo of Reveal.js vragen:
+Bij Hugo- of NLDD-vragen:
 1. Raadpleeg eerst de officiële documentatie via WebFetch
 2. Controleer of de oplossing past bij de projectconventies
 3. Test lokaal met `hugo server`

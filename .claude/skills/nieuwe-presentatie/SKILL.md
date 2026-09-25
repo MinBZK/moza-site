@@ -22,7 +22,9 @@ Voorbeeld om van te leren: `content/documenten/presentaties/beproeving-federatie
 - Layout: `layouts/documenten/presentaties/nldd-deck.html`, met de footer in `layouts/_partials/nldd-deck-footer.html`.
 - Opmaak: `assets/css/nldd-deck.css`. Bediening: `assets/js/nldd-deck.js`.
 - De dia's schalen mee met de breedte (16:9, eenheid `cqw`). Maak afmetingen in eigen CSS dus ook in `cqw`.
-- **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Een link met `?presentatie` opent direct in presentatiemodus.
+- **Kleine schermen** (tot 900px breed of 500px hoog) tonen alle dia's onder elkaar met een scheidingslijn, en de footer alleen onderaan. Elke dia houdt zijn 16:9-vorm en schaalt mee; voor details zoom je in. Bouw geen aparte mobiele opmaak: een herschikte dia verliest het verhaal. Wat wel moet: alles in `cqw` houden, want vaste maten schalen niet mee. NLDD-componenten hebben vaste maten; het script zet `nldd-button` in een dia daarom op kleine schermen op `size="xs"`.
+- **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Daarin zie je alleen de dia, de disclaimer en de voortgangsbalk; vorige en volgende verschijnen bij muisbeweging. Een link met `?presentatie` opent direct in presentatiemodus en toont de toetsen tot de eerste toets.
+- Op een aanraakscherm blader je door horizontaal te vegen.
 - Het adres van een dia is `#/0`, `#/1`, enzovoort (telt vanaf 0, net als de zoekindex).
 
 ## Een dia

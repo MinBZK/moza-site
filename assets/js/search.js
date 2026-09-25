@@ -9,6 +9,15 @@
   var searchStatus;
   var searchTriggers;
   var activeFilter = '';
+  // Voorkeur per sectie: lager telt als betere score, dus eerder in de lijst.
+  // Een onderwerp-pagina is meestal wat je zoekt, een weekly noemt het terloops.
+  var SECTIE_VOORKEUR = {
+    onderwerpen: 0.5,
+    documenten: 0.9,
+    handboek: 1,
+    actueel: 1,
+    weekly: 1.1
+  };
 
   var fuseOptions = {
     keys: [
@@ -103,13 +112,21 @@
         return true;
       });
 
+      results.forEach(function (result) {
+        var voorkeur = SECTIE_VOORKEUR[result.item.section];
+        result.score = result.score * (voorkeur || 1);
+      });
+      results.sort(function (a, b) {
+        return a.score - b.score;
+      });
+
       if (activeFilter) {
         results = results.filter(function (result) {
           return result.item.section === activeFilter;
         });
       }
 
-      displayResults(results.slice(0, 10), query);
+      displayResults(results, query);
     });
   }
 

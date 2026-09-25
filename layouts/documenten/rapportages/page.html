@@ -12,14 +12,14 @@
       | resources.Concat "css/rapportage-bundle.css" | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{- /* Zelfde thema-keuze als op de rest van de site (data-scheme uit localStorage). */ -}}
-{{- with resources.Get "js/theme-init.js" }}
+{{- with resources.Get "js/theme-init.js" | fingerprint "md5" }}
 <script src="{{ .RelPermalink }}"></script>
 {{- end }}
 </head>
 <body>
 {{ .Content }}
 <button id="moza-nav" class="moza-nav" type="button" aria-label="Terug">{{ partial "icon.html" "x" }}</button>
-{{- with resources.Get "js/rapportage-nav.js" }}
+{{- with resources.Get "js/rapportage-nav.js" | fingerprint "md5" }}
 <script src="{{ .RelPermalink }}"></script>
 {{- end }}
 </body>

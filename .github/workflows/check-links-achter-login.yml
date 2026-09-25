@@ -1,0 +1,31 @@
+name: Check links achter login
+
+# Links die achter een login zitten, geven in htmltest een 403 en staan daar op
+# de negeerlijst. Deze workflow vraagt per link een openbaar statusendpoint op,
+# zodat we merken wanneer de omgeving verdwijnt. Voeg hier een regel toe als je
+# zo'n link op de negeerlijst zet. Faalt hij, haal dan de link weg of vervang
+# hem.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    name: Bereikbaar
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # content/documenten/presentaties/beproeving-federatief-berichtenstelsel/
+          - name: Democonsole federatief berichtenstelsel
+            url: https://democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl/ping
+    steps:
+      - name: ${{ matrix.name }}
+        env:
+          URL: ${{ matrix.url }}
+        run: curl --fail --silent --show-error --max-time 30 --retry 2 --retry-delay 10 --output /dev/null "$URL"

@@ -31,6 +31,7 @@ just checks             # Alle controles op één build (tests, csp, a11y, links
 just links              # Alleen de linkcontrole
 just a11y               # Toegankelijkheidstoets (WCAG 2.1 AA) op de gebouwde site
 just csp                # Controleer op door de CSP geblokkeerde constructies
+just fuse               # Werk de vendored Fuse.js bij (zoeken)
 just clean              # Verwijder gegenereerde bestanden
 just pre-commit         # Pre-commit checks
 ```

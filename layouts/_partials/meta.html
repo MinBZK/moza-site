@@ -1,0 +1,60 @@
+{{- /* Titel, beschrijving, favicons en deelgegevens (Open Graph, Twitter).
+       Gedeeld door head.html en layouts die een eigen <head> hebben. */ -}}
+{{- $pageTitle := .Site.Title -}}
+{{- $metaTitle := or .Params.page_title .Title -}}
+{{- if .IsHome -}}
+  {{- with .Site.Params.tagline -}}
+    {{- $pageTitle = printf "%s: %s" $.Site.Title . -}}
+  {{- end -}}
+{{- else if $metaTitle -}}
+  {{- $pageTitle = printf "%s · %s" $metaTitle .Site.Title -}}
+{{- end -}}
+<title>{{ $pageTitle }}</title>
+{{- $description := .Description -}}
+{{- if not $description -}}
+  {{- if .Content -}}
+    {{/* Zonder koppen: .Plain begint anders met de eerste kop, waardoor een
+         gedeelde link opent met "Algemeen" in plaats van met de inhoud. */}}
+    {{- $description = .Content
+      | replaceRE `(?s)<h[1-6][^>]*>.*?</h[1-6]>` " "
+      | plainify | replaceRE `\s+` " " | strings.TrimSpace | truncate 160 -}}
+  {{- else -}}
+    {{- $description = .Site.Params.description -}}
+  {{- end -}}
+{{- else if gt (len $description) 160 -}}
+  {{- warnf "Description te lang (%d tekens) op pagina: %s - max 160 tekens aanbevolen" (len $description) .RelPermalink -}}
+{{- end -}}
+<meta name="description" content="{{ $description }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+{{- with .OutputFormats.Get "markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Deze pagina als Markdown" />
+{{- end }}
+
+{{/* Favicons */}}
+{{/* Safari kent geen SVG-favicons en valt terug op de ICO */}}
+<link rel="icon" href="{{ relURL "favicon.ico" }}" sizes="16x16 32x32 48x48" />
+<link rel="icon" href="{{ relURL "favicon-192x192.png" }}" type="image/png" sizes="192x192" />
+<link rel="icon" href="{{ relURL "favicon.svg" }}" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href="{{ relURL "touch-icon.png" }}" />
+
+{{/* Open Graph */}}
+<meta property="og:title" content="{{ $pageTitle }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:locale" content="nl_NL" />
+{{- $ogImage := absURL (partial "og-image.html" .) -}}
+<meta property="og:image" content="{{ $ogImage }}" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="{{ or .Params.page_title .Title }}, {{ .Site.Title }}" />
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $pageTitle }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+<meta name="twitter:image" content="{{ $ogImage }}" />
+<meta name="twitter:image:width" content="1200" />
+<meta name="twitter:image:height" content="630" />

@@ -1,0 +1,17 @@
+<nav class="deck-footer" aria-label="Presentatie">
+  <span class="disclaimer"><strong>MijnOverheid Zakelijk</strong>{{ with .Params.disclaimer }} · {{ . }}{{ end }}</span>
+  <span class="hints">
+    <nldd-keyboard-shortcut keys="←" size="sm" color="inherit"></nldd-keyboard-shortcut>
+    <nldd-keyboard-shortcut keys="→" size="sm" color="inherit"></nldd-keyboard-shortcut>
+    bladeren
+    <nldd-keyboard-shortcut keys="F" size="sm" color="inherit"></nldd-keyboard-shortcut>
+    volledig scherm
+    <nldd-keyboard-shortcut keys="P" size="sm" color="inherit"></nldd-keyboard-shortcut>
+    presentatiemodus
+  </span>
+  <span class="counter" id="counter" aria-hidden="true">1 / 1</span>
+  <nldd-icon-button variant="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
+  <nldd-icon-button variant="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
+</nav>
+<div class="progress" aria-hidden="true"><div class="progress-fill" id="progress"></div></div>
+<p class="sr-only" aria-live="polite" id="announce"></p>

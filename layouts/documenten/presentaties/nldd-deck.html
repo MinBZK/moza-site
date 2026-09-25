@@ -1,0 +1,40 @@
+{{- /* Presentatie met NLDD-componenten in plaats van Reveal.js. Kies met
+   `layout: nldd-deck` in de front matter. Alles via externe <link>/<script>,
+   zodat de strikte CSP (geen inline style/script) werkt. */ -}}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{ partial "meta.html" . }}
+{{- /* fonts.css bevat relURL-aanroepen en moet daarom als template worden uitgevoerd.
+   De NLDD-componenten lezen hun kleuren uit variables.css van het pakket. Die
+   importeert colors.generated.css; een @import werkt niet midden in een
+   samengevoegde bundel, dus die gaat er los en vooraan in. */ -}}
+{{- $fonts := resources.Get "css/fonts.css" | resources.ExecuteAsTemplate "css/nldd-deck-fonts.css" . -}}
+{{- $nlddDir := "node_modules/@nldd/design-system/dist/css/" -}}
+{{- $colors := os.ReadFile (print $nlddDir "colors.generated.css") | resources.FromString "css/nldd-colors.css" -}}
+{{- $variables := os.ReadFile (print $nlddDir "variables.css") | replaceRE `@import[^;]*;` "" | resources.FromString "css/nldd-variables.css" -}}
+{{- $css := slice $fonts $colors $variables (resources.Get "css/nldd-deck.css") | resources.Concat "css/nldd-deck-bundle.css" | minify | fingerprint "md5" }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- /* Opmaak die alleen voor deze presentatie is, naast index.html in de bundle.
+   Een eigen link in plaats van in de bundle hierboven: die heeft één vaste
+   naam voor alle presentaties. */ -}}
+{{- with .Resources.Get "presentatie.css" }}
+{{- with . | minify | fingerprint "md5" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+{{- end }}
+</head>
+<body>
+<main class="deck">
+  <div class="stage">
+{{ .Content }}
+  </div>
+</main>
+<nldd-icon-button class="deck-close" variant="inherit-tinted" icon="dismiss" text="Sluit presentatie" data-close></nldd-icon-button>
+{{ partial "nldd-deck-footer.html" . }}
+{{- $js := resources.Get "js/nldd-deck.js" | js.Build (dict "targetPath" "js/nldd-deck.js" "minify" true) | fingerprint "md5" }}
+<script src="{{ $js.RelPermalink }}"></script>
+</body>
+</html>

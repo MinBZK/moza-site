@@ -34,6 +34,9 @@ IgnoreURLs:
   # kcbr.nl antwoordt lokaal binnen een seconde, maar loopt vanaf de CI-runner
   # over de ExternalTimeout van 30 seconden heen.
   - kcbr.nl
+  # De democonsole van het berichtenstelsel zit achter een login en geeft
+  # buiten het netwerk 403.
+  - democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

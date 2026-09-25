@@ -85,6 +85,32 @@
           {{- end -}}
         {{- end -}}
       {{- end -}}
+    {{- else if eq .File.Ext "html" -}}
+      {{- /* HTML-content (rapportages) heeft geen "## "-koppen: knip op de
+             h2- en h3-koppen, zodat elk blok apart vindbaar is. */ -}}
+      {{- $inhoud := partial "koppen-ids.html" .Content -}}
+      {{- $stukken := split (replaceRE `<h([23]) id="` "|||KOP|||<h${1} id=\"" $inhoud) "|||KOP|||" -}}
+      {{- $index = $index | append (dict "title" $pageTitle "url" $pageUrl "content" (partial "clean-content" (index $stukken 0 | plainify)) "section" $pageSection) -}}
+      {{- range $i, $stuk := $stukken -}}
+        {{- if gt $i 0 -}}
+          {{- $id := replaceRE `(?s)^<h[23] id="([^"]+)".*` "$1" $stuk -}}
+          {{- $kop := $stuk | replaceRE `(?s)^<h[23][^>]*>(.*?)</h[23]>.*` "$1" | plainify | htmlUnescape | strings.TrimSpace -}}
+          {{- $tekst := partial "clean-content" (replaceRE `(?s)^<h[23][^>]*>.*?</h[23]>` "" $stuk | plainify) -}}
+          {{- if gt (len $tekst) 10 -}}
+            {{- $index = $index | append (dict "title" (printf "%s: %s" $pageTitle $kop) "url" (printf "%s#%s" $pageUrl $id) "content" $tekst "section" $pageSection) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- /* Uitklapblokken (roadmap, componentenoverzicht) apart indexeren:
+             hun summary is geen kop, maar wel waar mensen op zoeken. */ -}}
+      {{- range $blok := findRE `(?s)<details id="[^"]+"[^>]*>.*?</details>` $inhoud -}}
+        {{- $id := replaceRE `(?s)^<details id="([^"]+)".*` "$1" $blok -}}
+        {{- $kop := $blok | replaceRE `(?s)^.*?<summary>(.*?)</summary>.*` "$1" | plainify | htmlUnescape | strings.TrimSpace -}}
+        {{- $tekst := partial "clean-content" ($blok | replaceRE `(?s)<summary>.*?</summary>` "" | plainify) -}}
+        {{- if gt (len $tekst) 10 -}}
+          {{- $index = $index | append (dict "title" (printf "%s: %s" $pageTitle $kop) "url" (printf "%s#%s" $pageUrl $id) "content" $tekst "section" $pageSection) -}}
+        {{- end -}}
+      {{- end -}}
     {{- else -}}
       {{- $rawContent := .RawContent -}}
       {{- $sections := split $rawContent "\n## " -}}

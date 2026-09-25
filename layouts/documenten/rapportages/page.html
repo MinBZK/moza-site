@@ -17,7 +17,7 @@
 {{- end }}
 </head>
 <body>
-{{ .Content }}
+{{ partial "koppen-ids.html" .Content | safeHTML }}
 <button id="moza-nav" class="moza-nav" type="button" aria-label="Terug">{{ partial "icon.html" "x" }}</button>
 {{- with resources.Get "js/rapportage-nav.js" }}
 <script src="{{ .RelPermalink }}"></script>

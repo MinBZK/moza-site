@@ -1,0 +1,41 @@
+{{- /* Geeft h2- en h3-koppen in HTML-content een id, zodat je ernaar kunt
+       linken. Markdown-content krijgt die ids van Hugo zelf; HTML-content
+       (rapportages) niet. Gebruikt door de rapportage-layout en door
+       index.json, zodat de zoekresultaten dezelfde ankers gebruiken. */ -}}
+{{- $inhoud := . -}}
+{{- $gezien := slice -}}
+{{- range $kop := findRE `(?s)<h[23][^>]*>.*?</h[23]>` $inhoud -}}
+  {{- if not (strings.Contains $kop " id=") -}}
+    {{- $tekst := $kop | replaceRE `<[^>]+>` "" | htmlUnescape | strings.TrimSpace -}}
+    {{- $basis := anchorize $tekst -}}
+    {{- $id := $basis -}}
+    {{- $nummer := 1 -}}
+    {{- /* Bij dezelfde koptekst een oplopend nummer, anders botsen de ids */ -}}
+    {{- range $gezien -}}
+      {{- if eq . $id -}}
+        {{- $nummer = add $nummer 1 -}}
+        {{- $id = printf "%s-%d" $basis $nummer -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $gezien = $gezien | append $id -}}
+    {{- $nieuw := replaceRE `^<h([23])` (printf `<h${1} id="%s"` $id) $kop -}}
+    {{- $inhoud = strings.Replace $inhoud $kop $nieuw 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Uitklapblokken krijgen een id uit hun summary, zodat ook die vindbaar
+       zijn en een eigen anker hebben. */ -}}
+{{- range $blok := findRE `<details[^>]*>\s*<summary>.*?</summary>` $inhoud -}}
+  {{- if not (strings.Contains (index (split $blok "<summary>") 0) " id=") -}}
+    {{- /* De klasse geeft een kort anker (#roadmap); anders de summary-tekst */ -}}
+    {{- $klasse := $blok | replaceRE `(?s)^<details[^>]*class="([^" ]+).*` "$1" -}}
+    {{- $id := "" -}}
+    {{- if ne $klasse $blok -}}
+      {{- $id = $klasse -}}
+    {{- else -}}
+      {{- $id = index (split $blok "<summary>") 1 | replaceRE `<[^>]+>` "" | htmlUnescape | strings.TrimSpace | anchorize -}}
+    {{- end -}}
+    {{- $nieuw := replaceRE `^<details` (printf `<details id="%s"` $id) $blok -}}
+    {{- $inhoud = strings.Replace $inhoud $blok $nieuw 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- return $inhoud -}}

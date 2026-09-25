@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "nldd-tokens": "node scripts/nldd-tokens.js",
+    "vendor-fuse": "node scripts/vendor-fuse.js",
     "nldd-iconen": "node scripts/nldd-iconen.js",
     "og-cards": "node scripts/og-cards.js",
     "render-mermaid": "node scripts/render-mermaid.js",

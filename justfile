@@ -31,6 +31,10 @@ nldd-tokens: node-deps
 nldd-iconen: node-deps
     npm run nldd-iconen
 
+# Werk de vendored Fuse.js bij (zoeken); zonder versie de nieuwste
+fuse versie="latest": node-deps
+    npm run vendor-fuse -- {{versie}}
+
 # Genereer de afbeeldingen die bij een gedeelde link worden getoond, op een
 # bestaande build
 og-cards: node-deps

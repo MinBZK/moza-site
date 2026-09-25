@@ -8,7 +8,7 @@ Iedereen moet MijnOverheid Zakelijk kunnen gebruiken. Ook als je een schermlezer
 
 MijnOverheid Zakelijk is nog in ontwikkeling. We hebben nog geen toegankelijkheidsonderzoek uitgevoerd.
 
-Onze status is nu tijdelijk D: voldoet niet. De geldigheid van [onze verklaring](https://www.toegankelijkheidsverklaring.nl/register/28557) is verlopen, waardoor de status vanzelf terugviel. We werken aan een nieuwe verklaring en aan de hoogste status A: voldoet volledig.
+Onze status is nu C: eerste maatregelen genomen. Dat betekent dat we [onze verklaring](https://www.toegankelijkheidsverklaring.nl/register/28557) hebben gepubliceerd en het onderzoek hebben ingepland, maar dat het nog niet is uitgevoerd. Het onderzoek staat gepland voor 27 november 2026. We werken toe naar de hoogste status A: voldoet volledig.
 
 {{< toegankelijkheidslabel >}}
 

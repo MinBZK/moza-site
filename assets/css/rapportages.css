@@ -79,7 +79,7 @@ body {
 
 .header .subtitle {
   margin: 0;
-  color: var(--rapport-text-muted);
+  color: var(--rapport-text);
   font-size: 1rem;
   /* 2px visueel naar beneden: zonder dit valt de descender van "januari" net
    * boven de onderkant van het logo. */
@@ -87,7 +87,7 @@ body {
 }
 
 .header-meta {
-  color: var(--rapport-text-muted);
+  color: var(--rapport-text);
   font-size: 1.75rem;
   font-weight: 400;
   text-align: right;
@@ -113,7 +113,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  body { padding: 24px 12px; }
+  body { padding: 12px 8px; }
 
   .header {
     flex-direction: column;
@@ -138,8 +138,6 @@ body {
     padding-bottom: 0;
   }
 
-  .card { padding: 16px; }
-
   .card-header,
   .item,
   .item-line,
@@ -155,6 +153,10 @@ body {
   padding: 24px;
   box-shadow: var(--rapport-shadow);
 }
+/* Na de basisregel, anders wint de padding van 24px */
+@media (max-width: 600px) {
+  .card { padding: 12px; }
+}
 
 .card-header {
   display: flex;
@@ -163,6 +165,57 @@ body {
   padding-bottom: 14px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--rapport-border);
+}
+
+/* Grid-items mogen smaller worden dan hun brede inhoud (roadmap, plaat, tijdlijn); die scrollt dan zelf */
+.grid > .card,
+.componenten { min-width: 0; }
+
+/* Visueel verborgen labels (position: absolute) binnen de scrollvlakken blijven daarbinnen */
+.rm-wrap,
+.cp-diagram-wrap,
+.cp-roadmap-wrap { position: relative; }
+
+.card-parkeerlijst { align-self: start; }
+
+/* Alleen tonen als roadmap, plaat of tijdlijn breder is dan het scherm */
+.scroll-hint { display: none; }
+
+@media (max-width: 800px) {
+  .scroll-hint {
+    display: block;
+    margin: 0 0 0.5rem;
+    font-size: var(--primitives-font-size-80);
+    color: var(--rapport-text-muted);
+  }
+}
+
+.grid-heading {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 16px 24px;
+  background: var(--rapport-surface);
+  border-radius: 14px;
+  box-shadow: var(--rapport-shadow);
+  font-size: var(--primitives-font-size-200);
+  font-weight: 700;
+  color: var(--rapport-text);
+}
+
+/* Lopende tekst op leesbare breedte; roadmap, plaat en tijdlijnen houden de volle breedte */
+.card-context > .summary,
+.cp-intro p,
+.cp-timeline-intro,
+.cp-timeline-onderdelen,
+.cp-waarde p,
+.cp-timeline-afnemers p { max-width: 50rem; }
+
+.grid-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid var(--rapport-border);
 }
 
 .card-number {
@@ -243,19 +296,15 @@ body {
   min-width: 110px;
 }
 
-.badge-marker {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-  display: inline-block;
-}
-
 /* Badges: gevuld (stap 500, in beide thema's gelijk, dus vaste witte tekst)
    of getint (stap 100 met tekst op 700). Getint krijgt in dark stap 200:
    stap 100 is daar even licht als de card en valt weg. */
-.badge-bouwen { background: var(--primitives-color-success-500); color: #ffffff; }
-.badge-verkennen { background: light-dark(var(--primitives-color-accent-100), var(--primitives-color-accent-200)); color: var(--primitives-color-accent-700); }
-.badge-onderzoek { background: light-dark(var(--primitives-color-accent-100), var(--primitives-color-accent-200)); color: var(--primitives-color-accent-700); }
+/* Bouwen en beproeven in hetzelfde blauw als "realisatie" in de roadmap */
+.badge-bouwen,
+.badge-beproeven { background: var(--primitives-color-accent-700); color: var(--primitives-color-accent-0); }
+/* Verkennen en onderzoek in hetzelfde geel als "verkenning" in de roadmap */
+.badge-verkennen { background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200)); color: var(--primitives-color-mark-800); }
+.badge-onderzoek { background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200)); color: var(--primitives-color-mark-800); }
 .badge-afspraken { background: light-dark(var(--primitives-color-violet-100), var(--primitives-color-violet-200)); color: var(--primitives-color-violet-700); }
 .badge-risico { background: var(--primitives-color-critical-500); color: #ffffff; }
 .badge-afhankelijkheid { background: var(--primitives-color-warning-500); color: #ffffff; }
@@ -267,7 +316,8 @@ body {
 .badge-progress { background: light-dark(var(--primitives-color-accent-100), var(--primitives-color-accent-200)); color: var(--primitives-color-accent-700); }
 .badge-blocked { background: var(--primitives-color-critical-500); color: #ffffff; }
 .badge-notstarted { background: light-dark(var(--primitives-color-neutral-100), var(--primitives-color-neutral-200)); color: var(--primitives-color-neutral-700); }
-.badge-paused { background: light-dark(var(--primitives-color-success-100), var(--primitives-color-success-200)); color: var(--primitives-color-success-800); }
+/* Grijs: groen staat elders voor beschikbaar en doorbouwen */
+.badge-paused { background: light-dark(var(--primitives-color-neutral-100), var(--primitives-color-neutral-200)); color: var(--primitives-color-neutral-700); }
 
 /* Utility: card over beide grid-kolommen voor blokken met meer gewicht */
 .card-wide { grid-column: 1 / -1; }
@@ -280,7 +330,380 @@ body {
   margin: 0;
 }
 
+.summary + .summary {
+  margin-top: 0.75rem;
+}
+
+/* NLDD body-md-regular-snug */
+.card-context .summary {
+  font-size: var(--primitives-font-size-100);
+  line-height: var(--primitives-line-height-snug);
+}
+
+/* ============================================================
+   Roadmap (ingeklapte sectie op de fase 5-pagina)
+   ============================================================ */
+.roadmap {
+  display: block;
+  margin-top: 1.5rem;
+  min-width: 0;
+}
+
+.roadmap > summary,
+.componenten > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--primitives-font-size-100);
+  line-height: var(--primitives-line-height-tight);
+  font-weight: 700;
+  color: var(--rapport-text);
+  padding: 0.75rem 0;
+}
+
+.roadmap > summary::-webkit-details-marker,
+.componenten > summary::-webkit-details-marker { display: none; }
+
+.details-chevron {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  transform: rotate(-90deg);
+  transition: transform 0.15s ease;
+}
+.roadmap[open] > summary .details-chevron,
+.componenten[open] > summary .details-chevron { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .details-chevron { transition: none; }
+}
+
+.rm-intro {
+  font-size: var(--primitives-font-size-100);
+  line-height: var(--primitives-line-height-snug);
+  color: var(--rapport-text);
+  margin: 0 0 1rem;
+}
+
+.rm-wrap { min-width: 0; }
+
+/* Alleen scrollen waar de tabel niet past: een scrollcontainer zou de vaste kopregel breken */
+@media (max-width: 900px) {
+  .rm-wrap { overflow-x: auto; }
+}
+
+.rm-table {
+  width: 100%;
+  min-width: 48rem;
+  border-collapse: separate;
+  border-spacing: 4px;
+  table-layout: fixed;
+  font-size: var(--primitives-font-size-90);
+  line-height: var(--primitives-line-height-tight);
+  color: var(--rapport-text);
+}
+
+.rm-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Kopregel blijft staan tot de tabel voorbij is; de schaduw dekt de ruimte tussen de cellen af */
+.rm-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  font-weight: 700;
+  padding: 0.5rem;
+  background: var(--rapport-divider);
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px var(--rapport-surface);
+}
+
+.rm-table thead th:first-child { width: 22%; }
+
+.rm-table thead th.rm-fase {
+  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-700), 0 0 0 4px var(--rapport-surface);
+}
+
+/* Fase 5 loopt door in januari: lichtere streep onder het eerste kwartaal van 2027 */
+.rm-table thead th.rm-fase-deel {
+  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-400), 0 0 0 4px var(--rapport-surface);
+}
+
+.rm-fase-label {
+  display: block;
+  font-weight: 400;
+  color: var(--rapport-text-muted);
+}
+
+.rm-group th {
+  text-align: left;
+  font-size: var(--primitives-font-size-100);
+  font-weight: 700;
+  padding: 1.25rem 0.5rem 0.375rem;
+  position: relative;
+}
+
+/* Streep alleen onder de kolom "Onderdeel" (die is 22% breed) */
+.rm-group th::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 22%;
+  height: 2px;
+  background: var(--rapport-border);
+}
+
+.rm-table tbody th[scope="row"] {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  vertical-align: middle;
+}
+
+/* height: 1px op de cel laat height: 100% op het blok werken */
+.rm-table td {
+  height: 1px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.rm-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  box-sizing: border-box;
+  height: 100%;
+  /* Ruimte voor het label plus twee regels tekst, zodat alle blokken even hoog zijn */
+  min-height: 4.625rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 6px;
+}
+
+.rm-type { font-weight: 700; }
+
+/* Zelfde kleuren als "verkenning" en "in aanbouw" in de plaat van het componentenoverzicht */
+.rm-verkenning {
+  background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200));
+  color: var(--primitives-color-mark-800);
+}
+
+.rm-realisatie {
+  background: var(--primitives-color-accent-700);
+  color: var(--primitives-color-accent-0);
+}
+
+/* Doorbouwen na de eerste livegang; groen, zoals "beschikbaar" in de plaat */
+.rm-doorbouwen {
+  background: var(--primitives-color-success-500);
+  color: #ffffff;
+}
+
+/* ============================================================
+   Componentenoverzicht (ingeklapte sectie op de fase 5-pagina).
+   Alle selectors onder .componenten: voorkomt botsing met .card,
+   .card-title, .item en .badge hierboven, vandaar de cp-prefix
+   op alle klassen uit de geporte bron.
+   ============================================================ */
+.componenten {
+  --cp-fs-lg: var(--primitives-font-size-200);
+  --cp-fs-md: var(--primitives-font-size-100);
+  --cp-fs-body: var(--primitives-font-size-90);
+  --cp-fs-sm: var(--primitives-font-size-80);
+  --cp-fs-xs: var(--primitives-font-size-70);
+  --cp-lh-snug: var(--primitives-line-height-snug);
+  --cp-lh-tight: var(--primitives-line-height-tight);
+  --cp-lh-flat: var(--primitives-line-height-flat);
+
+  display: block;
+  margin-top: 1.5rem;
+}
+
+
+.componenten h3 {
+  font-size: var(--cp-fs-lg);
+  line-height: var(--cp-lh-tight);
+  font-weight: 700;
+  color: var(--rapport-text);
+  margin: 2rem 0 1rem;
+}
+.componenten > h3:first-of-type { margin-top: 0.5rem; }
+
+.componenten h4 {
+  font-size: var(--cp-fs-md);
+  line-height: var(--cp-lh-snug);
+  font-weight: 700;
+  color: var(--rapport-text);
+  margin: 1.25rem 0 0.375rem;
+}
+
+.cp-intro p {
+  font-size: var(--cp-fs-md);
+  line-height: var(--cp-lh-snug);
+  color: var(--rapport-text);
+  margin: 0;
+}
+.cp-intro p + p { margin-top: 0.75rem; }
+
+.cp-nowrap { white-space: nowrap; }
+
+/* === Diagram === */
+.cp-diagram-card {
+  background: var(--rapport-surface);
+  border: 1px solid var(--rapport-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: var(--rapport-shadow);
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 600px) {
+  .cp-diagram-card { padding: 0; border: 0; box-shadow: none; }
+}
+.cp-diagram-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.cp-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  font-size: var(--cp-fs-sm);
+  color: var(--rapport-text-muted);
+}
+.cp-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.cp-legend-swatch { width: 18px; height: 14px; border-radius: 3px; border: 2px solid; background: var(--rapport-surface); flex-shrink: 0; }
+.cp-legend-aanbouw { border-color: var(--primitives-color-accent-700); }
+.cp-legend-verkenning { border-color: var(--primitives-color-mark-500); }
+.cp-legend-beschikbaar { border-color: var(--primitives-color-success-500); }
+.cp-legend-aandacht { border-color: var(--primitives-color-critical-500); }
+.cp-legend-buitenscope { border-color: var(--rapport-border); }
+.cp-diagram-wrap { width: 100%; min-width: 0; overflow-x: auto; }
+.cp-diagram-wrap svg { width: 100%; height: auto; min-width: 820px; display: block; }
+
+/* SVG-diagram: kleuren via klassen i.p.v. hardcoded hex, zodat dark mode meegaat */
+.cp-dg-container { fill: none; stroke: var(--rapport-border); stroke-width: 1.5; stroke-dasharray: 6 6; }
+.cp-dg-zone-label { fill: var(--rapport-text); font-size: 17px; font-weight: 600; }
+.cp-dg-sub-container { fill: var(--color-bg-muted); stroke: var(--rapport-border); stroke-width: 1.5; }
+.cp-dg-block-label { fill: var(--rapport-text-muted); font-size: 15px; font-weight: 600; font-style: italic; text-anchor: middle; }
+.cp-dg-node { fill: var(--rapport-surface); stroke: var(--rapport-border); stroke-width: 1.5; }
+.cp-dg-node.cp-beschikbaar { stroke: var(--primitives-color-success-500); stroke-width: 2.5; }
+.cp-dg-node.cp-aanbouw { stroke: var(--primitives-color-accent-700); stroke-width: 2.5; }
+.cp-dg-node.cp-verkenning { stroke: var(--primitives-color-mark-500); stroke-width: 2.5; }
+.cp-dg-node.cp-aandacht { stroke: var(--primitives-color-critical-500); stroke-width: 2.5; }
+.cp-dg-node.cp-buitenscope { stroke: var(--rapport-border); stroke-width: 2.5; }
+.cp-dg-title { fill: var(--rapport-text); font-size: 15px; font-weight: 600; text-anchor: middle; }
+.cp-dg-team-bg { fill: var(--color-bg-muted); stroke: var(--rapport-border); stroke-width: 1; }
+.cp-dg-team { fill: var(--rapport-text-muted); font-size: 11px; font-weight: 600; }
+.cp-dg-arrow { fill: none; stroke: var(--rapport-text-muted); stroke-width: 1.6; }
+.cp-dg-arrow-head { fill: var(--rapport-text-muted); }
+.cp-dg-icon-label { fill: var(--rapport-text); font-size: 12px; text-anchor: middle; }
+.cp-dg-glyph { fill: none; stroke: var(--rapport-text-muted); stroke-width: 1.6; }
+.cp-dg-person { fill: none; stroke: var(--rapport-text-muted); stroke-width: 1.8; }
+.cp-dg-at { fill: var(--rapport-text-muted); }
+
+/* === Tijdlijn per dienst === */
+.cp-timeline-intro { font-size: var(--cp-fs-md); line-height: var(--cp-lh-snug); color: var(--rapport-text); margin: 0 0 0.5rem; }
+.cp-timeline-onderdelen { margin: 0 0 1rem; padding-left: 1.25rem; font-size: var(--cp-fs-md); line-height: var(--cp-lh-tight); color: var(--rapport-text); }
+.cp-timeline-onderdelen li { margin-bottom: 0.2rem; }
+.cp-timeline-onderdelen li:last-child { margin-bottom: 0; }
+
+.cp-timeline-afnemers { margin: 0 0 1.25rem; }
+.cp-timeline-afnemers p { margin: 0; font-size: var(--cp-fs-md); line-height: var(--cp-lh-snug); color: var(--rapport-text); }
+.cp-timeline-afnemers p + p { margin-top: 0.5rem; }
+
+.cp-waarde { margin: 0 0 1.25rem; }
+.cp-waarde p { margin: 0; font-size: var(--cp-fs-md); line-height: var(--cp-lh-snug); color: var(--rapport-text); }
+
+.cp-roadmap-kop { margin-bottom: 0.75rem; }
+.cp-roadmap-wrap { overflow-x: auto; min-width: 0; max-width: 100%; padding-bottom: 0.375rem; }
+.cp-roadmap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 900px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(210px, 1fr);
+  grid-template-rows: repeat(8, auto);
+  column-gap: 0;
+}
+.cp-rm-lane { display: grid; grid-template-rows: subgrid; grid-row: 1 / -1; }
+.cp-rm-node { grid-row: 1; position: relative; text-align: center; padding-top: 2.25rem; padding-bottom: 0.875rem; }
+.cp-rm-node::before { content: ""; position: absolute; top: 13px; left: 0; right: 0; height: 2px; background: var(--rapport-border); }
+.cp-rm-lane:first-child .cp-rm-node::before { left: 50%; }
+.cp-rm-lane:last-child .cp-rm-node::before { right: 50%; }
+.cp-rm-dot {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--rapport-border); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 800; line-height: 1;
+  box-shadow: 0 0 0 4px var(--rapport-surface); z-index: 1;
+}
+.cp-h-onzeker .cp-rm-dot { background: var(--primitives-color-warning-700); color: #fff; }
+.cp-h-niet .cp-rm-dot { background: var(--primitives-color-critical-500); }
+.cp-h-onzeker .cp-rm-dot::after { content: "!"; }
+.cp-h-niet .cp-rm-dot::after { content: "!"; }
+.cp-rm-date { display: inline-block; font-size: var(--cp-fs-sm); font-weight: 700; color: var(--rapport-text); background: var(--color-bg-muted); border-radius: 999px; padding: 0.1875rem 0.75rem; }
+
+.cp-rm-col {
+  grid-row: 2 / -1; display: grid; grid-template-rows: subgrid; align-items: start;
+  margin: 0 0.5rem; background: var(--rapport-surface); border: 1px solid var(--rapport-border);
+  border-top: 3px solid var(--rapport-border); border-radius: 10px; padding: 0.875rem 0.9375rem 0.5rem;
+}
+.cp-h-onzeker .cp-rm-col { border-top-color: var(--primitives-color-warning-700); }
+.cp-h-niet .cp-rm-col { border-top-color: var(--primitives-color-critical-500); }
+
+.cp-rm-status, .cp-sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.cp-rm-func { font-size: var(--cp-fs-sm); font-weight: 700; color: var(--rapport-text); margin: 0 0 0.375rem; }
+.cp-rm-item { padding: 0.5rem 0; border-top: 1px solid var(--rapport-divider); }
+.cp-rm-label { display: block; font-size: var(--cp-fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--rapport-text); margin-bottom: 0.25rem; }
+.cp-rm-val { display: block; font-size: var(--cp-fs-sm); color: var(--rapport-text); }
+.cp-rm-val ul { margin: 0; padding-left: 1.125rem; }
+.cp-rm-val ul li { margin-bottom: 0.1875rem; }
+.cp-rm-val ul li:last-child { margin-bottom: 0; }
+
+.cp-rm-obstakels { padding: 0.5rem 0; border-top: 1px solid var(--rapport-divider); }
+.cp-rm-obstakels-label { display: block; font-size: var(--cp-fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.25rem; }
+.cp-rm-obstakels ol { margin: 0; padding-left: 1.125rem; font-size: var(--cp-fs-sm); font-weight: 600; }
+.cp-rm-obstakels li { margin-bottom: 0.25rem; }
+.cp-rm-obstakels li:last-child { margin-bottom: 0; }
+.cp-h-niet .cp-rm-obstakels-label, .cp-h-niet .cp-rm-obstakels ol { color: var(--primitives-color-critical-500); }
+.cp-h-onzeker .cp-rm-obstakels-label, .cp-h-onzeker .cp-rm-obstakels ol { color: var(--primitives-color-warning-700); }
+.cp-rm-item-leeg { border-top: none; padding: 0; }
+.cp-wijziging { background: var(--color-highlight); color: var(--color-highlight-text); border-radius: 3px; padding: 0 0.25rem; font-weight: 600; }
+
 /* Print */
 @media print {
   body { padding: 0; background: white; }
+
+  /* Ingeklapte details tonen hun inhoud niet vanzelf: forceren voor de afdruk */
+  .roadmap:not([open]) > :not(summary),
+  .componenten:not([open]) > :not(summary) {
+    display: block;
+  }
+  .cp-roadmap { min-width: 0; }
+  .cp-rm-lane { break-inside: avoid; }
 }

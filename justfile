@@ -48,7 +48,7 @@ up: node-deps
 # Preview mét de .odt- en .pdf-downloads (statisch, dus zonder live herladen)
 up-downloads: node-deps
     npm run render-mermaid
-    rm -rf tmp/preview && hugo --minify --quiet --baseURL / --destination tmp/preview
+    just wis tmp/preview && hugo --minify --quiet --baseURL / --destination tmp/preview
     npm run render-downloads -- tmp/preview
     npm run og-cards -- tmp/preview
     python3 -m http.server 1313 --directory tmp/preview
@@ -60,7 +60,7 @@ watch-mermaid: node-deps
 # Bouw de site
 build: node-deps
     npm run render-mermaid
-    rm -rf public && hugo --minify --gc --logLevel warn
+    just wis public && hugo --minify --gc --logLevel warn
     npm run render-downloads
     npm run og-cards
 
@@ -78,34 +78,41 @@ checks: build-check
     npm run csp
     npm run a11y
     htmltest
-    rm -rf tmp/public
+    just wis tmp/public
 
 # Controleer op broken links
 links: build-check
     htmltest
-    rm -rf tmp/public
+    just wis tmp/public
 
 # Toets toegankelijkheid (WCAG 2.1 AA) op de gebouwde site
 a11y: build-check
     npm run a11y
-    rm -rf tmp/public
+    just wis tmp/public
 
 # Controleer op constructies die de Content-Security-Policy blokkeert
 csp: build-check
     npm run csp
-    rm -rf tmp/public
+    just wis tmp/public
 
 # Toets de gegenereerde PDF's tegen PDF/UA (vereist: brew install verapdf)
 pdfua: build-check
     npm run render-downloads -- tmp/public
     npm run pdfua -- tmp/public
-    rm -rf tmp/public
+    just wis tmp/public
 
 # Bouw de site naar tmp/public, waarop links, a11y en csp draaien
 [private]
 build-check: node-deps
     npm run render-mermaid
-    rm -rf tmp/public && hugo --minify --quiet --baseURL / --destination tmp/public
+    just wis tmp/public && hugo --minify --quiet --baseURL / --destination tmp/public
+
+# Verplaats paden naar de prullenbak; paden die niet bestaan worden overgeslagen
+[private]
+wis +paden:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    for pad in {{paden}}; do [ ! -e "$pad" ] || trash "$pad"; done
 
 # Voer pre-commit checks uit
 pre-commit:
@@ -113,7 +120,7 @@ pre-commit:
 
 # Verwijder gegenereerde bestanden
 clean:
-    rm -rf public static/images/render .cache tmp/public
+    just wis public static/images/render .cache tmp/public
 
 # Haal Mattermost-input op voor MOZa Weekly, schrijf geanonimiseerde JSON voor
 # LLM-input, en render HTML-rapport. Vereist MATTERMOST_TOKEN in env;

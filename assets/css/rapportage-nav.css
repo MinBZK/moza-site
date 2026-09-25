@@ -14,10 +14,13 @@
   border: 1px solid var(--rapport-border);
   border-radius: 999px;
   box-shadow: var(--rapport-shadow);
-  font-size: 1.5rem;
-  line-height: 1;
   padding: 0;
   cursor: pointer;
+}
+
+.moza-nav svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .moza-nav:hover {

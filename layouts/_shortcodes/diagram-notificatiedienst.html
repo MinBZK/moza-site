@@ -18,6 +18,7 @@
   <div class="diagram-panel">
     {{ partial "diagram-notificatiedienst.html" (dict "css" "") }}
   </div>
+  <p class="diagram-scroll-hint">Veeg opzij om de hele plaat te zien.</p>
   {{- with .Get "caption" }}
   <figcaption>{{ . | $.Page.RenderString }}</figcaption>
   {{- end }}

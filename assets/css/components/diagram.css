@@ -11,6 +11,17 @@
   overflow-x: auto;
 }
 
+/* Alleen nodig zolang de plaat (min-width 620px) breder is dan het scherm */
+.diagram-scroll-hint {
+  margin: 0.5rem 0 0;
+  font-size: var(--primitives-font-size-80);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 700px) {
+  .diagram-scroll-hint { display: none; }
+}
+
 .diagram-download {
   position: absolute;
   top: 0.5rem;

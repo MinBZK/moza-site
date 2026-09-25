@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { collectRoutes } from "./routes.js";
-import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt } from "./checks.js";
+import { checkHeadingOrder, checkDiagramAlt, checkContentImageAlt, presentatieSoort } from "./checks.js";
 
 test("koppenstructuur: een oplopende hiërarchie levert geen bevindingen", () => {
   const html = "<h1>Titel</h1><h2>Deel</h2><h3>Subdeel</h3><h2>Ander deel</h2>";
@@ -119,4 +119,20 @@ test("contentafbeelding: Mermaid-diagrammen blijven aan checkDiagramAlt", () => 
 test("contentafbeelding: afbeeldingen buiten het artikel tellen niet mee", () => {
   const html = '<header><img src="logo.svg" alt=""></header><article><p>Tekst</p></article>';
   assert.deepEqual(checkContentImageAlt(html), []);
+});
+
+test("presentatiesoort: Reveal.js, ook als de minifier de aanhalingstekens weghaalt", () => {
+  assert.equal(presentatieSoort('<div class="reveal">'), "reveal");
+  assert.equal(presentatieSoort("<div class=reveal><div class=slides>"), "reveal");
+});
+
+test("presentatiesoort: nldd-deck, ook tussen andere klassen", () => {
+  assert.equal(presentatieSoort('<main class="deck">'), "nldd-deck");
+  assert.equal(presentatieSoort("<main class=deck>"), "nldd-deck");
+  assert.equal(presentatieSoort('<main class="x deck y">'), "nldd-deck");
+});
+
+test("presentatiesoort: een klasse die er alleen op lijkt telt niet", () => {
+  assert.equal(presentatieSoort('<div class="deck-close revealed">'), null);
+  assert.equal(presentatieSoort("<p>class=deck staat hier als tekst</p>"), null);
 });

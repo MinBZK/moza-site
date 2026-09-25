@@ -1,5 +1,5 @@
 ---
-name: new-weekly
+name: nieuwe-weekly
 description: Gebruik bij het maken van een nieuwe MOZa Weekly.
 ---
 

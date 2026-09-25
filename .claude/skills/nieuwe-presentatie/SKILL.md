@@ -1,5 +1,5 @@
 ---
-name: new-presentatie
+name: nieuwe-presentatie
 description: Maak een nieuwe Reveal.js presentatie aan. Gebruik wanneer de gebruiker een nieuwe presentatie wil maken.
 ---
 

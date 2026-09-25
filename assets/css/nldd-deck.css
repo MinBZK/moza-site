@@ -36,7 +36,8 @@ body {
 
 /* ---------- Toneel: 16:9, alles schaalt met de breedte (cqw) ---------- */
 
-.deck { position: fixed; inset: 0; display: grid; place-items: center; }
+/* Horizontaal vegen is voor bladeren; verticaal schuiven en inzoomen blijven van de browser */
+.deck { position: fixed; inset: 0; display: grid; place-items: center; touch-action: pan-y pinch-zoom; }
 
 .stage {
   position: relative;
@@ -213,6 +214,56 @@ strong { font-weight: 700; color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
+}
+
+/* ---------- Presentatiemodus: alleen de dia, de disclaimer en de voortgangsbalk ---------- */
+
+.is-presenting .deck-close,
+.is-presenting .deck-footer .hints,
+.is-presenting .deck-footer .counter { display: none; }
+
+/* Vorige en volgende verschijnen als de muis beweegt (show-controls) */
+.is-presenting .deck-footer nldd-icon-button {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.is-presenting.show-controls .deck-footer nldd-icon-button,
+.is-presenting.show-mode-hint .deck-footer nldd-icon-button,
+.is-presenting .deck-footer:focus-within nldd-icon-button { visibility: visible; opacity: 1; }
+/* De opacity hierboven overschrijft anders de uitgeschakelde stijl van NLDD */
+.is-presenting.show-controls .deck-footer nldd-icon-button[disabled],
+.is-presenting.show-mode-hint .deck-footer nldd-icon-button[disabled] { opacity: var(--primitives-opacity-disabled); }
+
+/* Wie via ?presentatie binnenkomt, ziet tot de eerste handeling de hele bediening */
+.is-presenting.show-mode-hint .deck-footer .hints { display: flex; }
+.is-presenting.show-mode-hint .deck-footer .counter,
+.is-presenting.show-controls .deck-footer .counter { display: block; }
+
+/* ---------- Kleine schermen: dia's onder elkaar ----------
+   Zelfde mediaquery als in assets/js/nldd-deck.js. Elke dia houdt zijn 16:9-vorm
+   en schaalt mee met de schermbreedte; voor details zoom je in. De footer staat
+   alleen onderaan, zodat hij niet over een dia valt. */
+
+@media (max-width: 900px), (max-height: 500px) {
+  html, body { height: auto; overflow: visible; }
+  .deck { position: static; display: block; }
+  .stage { width: 100%; aspect-ratio: auto; }
+
+  .slide, .slide[hidden] {
+    position: relative;
+    display: flex;
+    inset: auto;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--ink-35);
+  }
+
+  [data-step] { opacity: 1 !important; }
+  .flow-step.is-current { border-color: var(--ink-18); background: var(--ink-06); }
+
+  .deck-close { position: absolute; }
+  .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
+  .deck-footer .hints, .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
 }
 
 /* ---------- Print: één dia per pagina, alle stappen zichtbaar ---------- */

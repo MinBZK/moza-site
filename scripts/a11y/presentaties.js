@@ -178,6 +178,21 @@ async function toetsNlddDeck(page, baseUrl, route) {
     for (const o of overtredingen) findings.push(`dia ${n + 1}: ${o}`);
   }
 
+  // Reflow (WCAG 1.4.10): op 320px breed geen horizontaal scrollen
+  const viewport = page.viewport();
+  await page.setViewport({ width: 320, height: 640 });
+  await page.goto(baseUrl + route, { waitUntil: "networkidle0" });
+  const breed = await page.evaluate(() => {
+    const w = document.documentElement.clientWidth;
+    return [...document.querySelectorAll(".slide *")]
+      .filter((el) => el.getBoundingClientRect().right > w + 1)
+      .map((el) => `${el.tagName.toLowerCase()}.${[...el.classList].join(".")}`);
+  });
+  if (breed.length > 0) {
+    findings.push(`op 320px breed vallen ${breed.length} element(en) buiten beeld, bijvoorbeeld ${breed[0]}`);
+  }
+  await page.setViewport(viewport);
+
   return findings;
 }
 

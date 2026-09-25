@@ -11,8 +11,13 @@ import "@nldd/design-system/keyboard-shortcut";
   const progress = document.getElementById("progress");
   const announce = document.getElementById("announce");
 
+  // Kleine schermen tonen alle dia's onder elkaar om door te scrollen. Zelfde
+  // mediaquery als in nldd-deck.css.
+  const scrollMode = matchMedia("(max-width: 900px), (max-height: 500px)");
+
   // Leesmodus (standaard) toont elke dia volledig; presentatiemodus bouwt dia's op per klik
   let presenting = new URLSearchParams(location.search).has("presentatie");
+  if (presenting) document.body.classList.add("show-mode-hint");
 
   const maxStep = (slide) =>
     Math.max(0, ...[...slide.querySelectorAll("[data-step]")].map((el) => Number(el.dataset.step)));
@@ -29,7 +34,30 @@ import "@nldd/design-system/keyboard-shortcut";
   let index = slides[indexFromHash()] ? indexFromHash() : 0;
   let step = minStep(slides[index]);
 
+  // NLDD-knoppen hebben vaste maten en schalen niet mee met een dia. In de
+  // scrollmodus is de dia klein, dus krijgen ze daar de kleinste maat.
+  const slideButtons = [...document.querySelectorAll(".slide nldd-button")];
+  slideButtons.forEach((b) => { b.dataset.size = b.getAttribute("size") ?? ""; });
+  function sizeButtons() {
+    slideButtons.forEach((b) => {
+      const size = scrollMode.matches ? "xs" : b.dataset.size;
+      if (size) b.setAttribute("size", size);
+      else b.removeAttribute("size");
+    });
+  }
+
   function render() {
+    sizeButtons();
+    document.body.classList.toggle("is-presenting", presenting && !scrollMode.matches);
+    if (scrollMode.matches) {
+      slides.forEach((s) => { s.hidden = false; });
+      document.querySelectorAll("[data-step]").forEach((el) => {
+        el.classList.add("is-shown");
+        el.classList.remove("is-current");
+      });
+      return;
+    }
+
     const slide = slides[index];
     slides.forEach((s, k) => { s.hidden = k !== index; });
 
@@ -71,9 +99,12 @@ import "@nldd/design-system/keyboard-shortcut";
   }
 
   document.addEventListener("keydown", (e) => {
+    // Bij scrollen horen de pijltoetsen en spatie bij de browser
+    if (scrollMode.matches) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     // Spatie en Enter horen bij een knop of link die focus heeft
     if ((e.key === " " || e.key === "Enter") && e.target.closest?.("a, button, nldd-button, nldd-icon-button")) return;
+    document.body.classList.remove("show-mode-hint");
     switch (e.key) {
       case "ArrowRight": case "PageDown": case " ": e.preventDefault(); next(); break;
       case "ArrowLeft": case "PageUp": e.preventDefault(); prev(); break;
@@ -89,8 +120,38 @@ import "@nldd/design-system/keyboard-shortcut";
     }
   });
 
-  document.querySelectorAll("[data-next]").forEach((b) => b.addEventListener("click", next));
-  document.querySelectorAll("[data-prev]").forEach((b) => b.addEventListener("click", prev));
+  const hideModeHint = () => document.body.classList.remove("show-mode-hint");
+  document.querySelectorAll("[data-next]").forEach((b) => b.addEventListener("click", () => { hideModeHint(); next(); }));
+  document.querySelectorAll("[data-prev]").forEach((b) => b.addEventListener("click", () => { hideModeHint(); prev(); }));
+
+  // Vegen op een aanraakscherm: horizontaal en minstens 50px, anders is het scrollen of tikken
+  let swipe = null;
+  document.querySelector(".deck").addEventListener("pointerdown", (e) => {
+    if (scrollMode.matches || e.pointerType === "mouse") return;
+    if (e.target.closest("a, button, nldd-button, nldd-icon-button")) return;
+    swipe = { x: e.clientX, y: e.clientY };
+  });
+  document.addEventListener("pointerup", (e) => {
+    if (!swipe) return;
+    const dx = e.clientX - swipe.x;
+    const dy = e.clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    document.body.classList.remove("show-mode-hint");
+    if (dx < 0) next(); else prev();
+  });
+  document.addEventListener("pointercancel", () => { swipe = null; });
+
+  // Presentatiemodus: vorige en volgende verschijnen bij muisbeweging en
+  // verdwijnen na 2 seconden stilstand. Alleen bij een muis: een tik op een
+  // aanraakscherm geeft ook een pointermove.
+  let controlsTimer;
+  document.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse" || !presenting) return;
+    document.body.classList.add("show-controls");
+    clearTimeout(controlsTimer);
+    controlsTimer = setTimeout(() => document.body.classList.remove("show-controls"), 2000);
+  });
 
   // Sluitknop (alleen op de site): terug als je van de site komt, anders naar de homepage
   const close = document.querySelector("[data-close]");
@@ -102,8 +163,14 @@ import "@nldd/design-system/keyboard-shortcut";
     });
   }
 
+  scrollMode.addEventListener("change", () => {
+    step = minStep(slides[index]);
+    render();
+  });
+
   window.addEventListener("hashchange", () => {
     const to = indexFromHash();
+    if (scrollMode.matches) { slides[to]?.scrollIntoView(); return; }
     if (to !== index && slides[to]) go(to);
   });
 
@@ -113,4 +180,5 @@ import "@nldd/design-system/keyboard-shortcut";
   window.addEventListener("afterprint", render);
 
   render();
+  if (scrollMode.matches && indexFromHash() > 0) slides[indexFromHash()]?.scrollIntoView();
 })();

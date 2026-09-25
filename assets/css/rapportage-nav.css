@@ -1,23 +1,32 @@
-/* Terug-knop op rapportage-pagina's (rechtsonderin) */
+/* Sluitknop op rapportage-pagina's (rechtsboven, blijft staan bij het scrollen) */
 .moza-nav {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  top: 1rem;
+  right: 1rem;
   z-index: 1001;
-  background: var(--primitives-color-accent-700);
-  color: var(--primitives-color-accent-0);
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font: inherit;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rapport-surface);
+  color: var(--rapport-text);
+  border: 1px solid var(--rapport-border);
+  border-radius: 999px;
+  box-shadow: var(--rapport-shadow);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
 }
 
-.moza-nav:hover,
+.moza-nav:hover {
+  background: var(--color-bg-muted);
+}
+
 .moza-nav:focus-visible {
-  background: var(--primitives-color-accent-800);
-  outline: none;
+  outline: 2px solid var(--primitives-color-accent-700);
+  outline-offset: 2px;
 }
 
 @media print {

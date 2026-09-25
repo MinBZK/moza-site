@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ .Title }} · {{ .Site.Title }}</title>
+{{ partial "meta.html" . }}
 {{- /* fonts.css bevat relURL-aanroepen en moet daarom als template worden uitgevoerd. */ -}}
 {{- $fonts := resources.Get "css/fonts.css" | resources.ExecuteAsTemplate "css/rapportage-fonts.css" . -}}
 {{- $css := slice $fonts (resources.Get "css/nldd-primitives.css") (resources.Get "css/tokens.css") (resources.Get "css/rapportages.css") (resources.Get "css/roadmap.css") (resources.Get "css/componentenoverzicht.css") (resources.Get "css/rapportage-nav.css")

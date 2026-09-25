@@ -1,7 +1,8 @@
 {{/* JavaScript bundling via Hugo's asset pipeline */}}
 {{- $baseJs := resources.Get "js/base.js" -}}
 {{- $tocJs := resources.Get "js/toc.js" -}}
-{{- $fuseJs := resources.Get "vendor/fuse/fuse.min.js" -}}
+{{- /* Fuse is ESM; esbuild maakt er een klassiek script van (zet window.Fuse) */ -}}
+{{- $fuseJs := resources.Get "js/fuse-global.js" | js.Build (dict "minify" true "format" "iife" "target" "es2020") -}}
 {{- $searchJs := resources.Get "js/search.js" -}}
 {{- $js := slice $baseJs $tocJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" -}}
 <script src="{{ $js.RelPermalink }}"></script>

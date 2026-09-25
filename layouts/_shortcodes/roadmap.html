@@ -1,0 +1,37 @@
+{{- /* Roadmap-tabel uit een YAML-bestand naast de pagina (page bundle). Gebruik:
+   {{< roadmap >}} of {{< roadmap "roadmap.yaml" >}}
+   Rendert alleen de intro en de tabel; de <details>/<summary>-wrapper
+   staat in het content-bestand zelf. */ -}}
+{{- $naam := .Get 0 | default "roadmap.yaml" -}}
+{{- $bron := .Page.Resources.GetMatch $naam -}}
+{{- with $bron -}}{{- else -}}{{- errorf "Roadmap: %q niet gevonden bij %s" $naam $.Page.File.Path -}}{{- end -}}
+{{- $data := $bron | transform.Unmarshal -}}
+<p class="rm-intro">{{ $data.intro }}</p>
+
+<p class="scroll-hint">Veeg opzij om de hele roadmap te zien.</p>
+<div class="rm-wrap">
+  <table class="rm-table">
+    <caption class="rm-caption">{{ $data.caption }}</caption>
+    <thead>
+      <tr>
+        <th id="rm-onderdeel" scope="col">Onderdeel</th>
+        {{- range $data.kolommen }}
+        <th id="rm-{{ .kolom }}" scope="col"{{ with .klasse }} class="{{ . }}"{{ end }}>{{ .label }}{{ with .fase_label }} <span class="rm-fase-label">{{ . }}</span>{{ end }}</th>
+        {{- end }}
+      </tr>
+    </thead>
+    {{- range $groep := $data.groepen }}
+    <tbody>
+      <tr class="rm-group"><th id="rm-{{ $groep.id }}" scope="rowgroup" colspan="{{ len $data.kolommen | add 1 }}">{{ $groep.naam }}</th></tr>
+      {{- range $rij := $groep.rijen }}
+      <tr>
+        <th id="rm-{{ $rij.id }}" headers="rm-{{ $groep.id }} rm-onderdeel" scope="row">{{ $rij.naam }}</th>
+        {{- range $cel := $rij.cellen }}
+        <td headers="rm-{{ $groep.id }} rm-{{ $rij.id }}{{ range $cel.kolommen }} rm-{{ . }}{{ end }}"{{ if gt (len $cel.kolommen) 1 }} colspan="{{ len $cel.kolommen }}"{{ end }}>{{ if ne $cel.type "leeg" }}<span class="rm-bar rm-{{ $cel.type }}"><span class="rm-type">{{ $cel.label | default (title $cel.type) }}</span>{{ with $cel.detail }}<span class="rm-detail">{{ . }}</span>{{ end }}</span>{{ end }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+    {{- end }}
+  </table>
+</div>

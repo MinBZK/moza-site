@@ -80,6 +80,7 @@ check-label: node-deps
 checks: build-check
     npm test
     npm run csp
+    npm run urls
     npm run a11y
     htmltest
     just wis tmp/public
@@ -97,6 +98,11 @@ a11y: build-check
 # Controleer op constructies die de Content-Security-Policy blokkeert
 csp: build-check
     npm run csp
+    just wis tmp/public
+
+# Controleer op URL's die te lang zijn voor documenten
+urls: build-check
+    npm run urls
     just wis tmp/public
 
 # Toets de gegenereerde PDF's tegen PDF/UA (vereist: brew install verapdf)

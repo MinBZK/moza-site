@@ -232,3 +232,6 @@ jobs:
       # Leest alleen bestanden; node_modules is hier niet nodig.
       - name: Controleer op door de CSP geblokkeerde constructies
         run: npm run csp
+
+      - name: Controleer op te lange URL's
+        run: npm run urls

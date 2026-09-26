@@ -8,12 +8,12 @@
  * als die policy verandert.
  *
  * Gebruik:
- *   node scripts/csp/check.js [outputmap]
+ *   node scripts/csp/controleer.js [outputmap]
  */
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join, resolve, relative, sep } from "node:path";
-import { parseCsp, blockedSources, findViolations } from "./checks.js";
+import { parseCsp, blockedSources, findViolations } from "./regels.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
 const CONF_DIR = resolve(import.meta.dirname, "..", "..", "container");

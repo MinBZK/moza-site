@@ -11,10 +11,10 @@
     "render-downloads": "node scripts/downloads/render-downloads.js",
     "check-label": "node scripts/check-toegankelijkheidslabel.js",
     "test": "node --test scripts/render-mermaid.test.js scripts/tokens.test.js scripts/nldd.test.js scripts/downloads/render-downloads.test.js scripts/downloads/pdf-metadata.test.js scripts/a11y/a11y.test.js scripts/links/links.test.js scripts/csp/csp.test.js",
-    "a11y": "node scripts/a11y/check.js && node scripts/a11y/presentaties.js && node scripts/a11y/run.js",
-    "csp": "node scripts/csp/check.js",
-    "urls": "node scripts/links/check.js",
-    "pdfua": "node scripts/pdfua/check.js"
+    "a11y": "node scripts/a11y/controleer.js && node scripts/a11y/presentaties.js && node scripts/a11y/run.js",
+    "csp": "node scripts/csp/controleer.js",
+    "urls": "node scripts/links/controleer.js",
+    "pdfua": "node scripts/pdfua/controleer.js"
   },
   "devDependencies": {
     "@nldd/design-system": "^0.8.88",

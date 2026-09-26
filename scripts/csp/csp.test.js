@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { parseCsp, blockedSources, findViolations } from "./checks.js";
+import { parseCsp, blockedSources, findViolations } from "./regels.js";
 
 const CONF = join(import.meta.dirname, "..", "..", "container", "security-headers.conf");
 

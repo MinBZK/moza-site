@@ -2,7 +2,7 @@
  * Toetst de gegenereerde PDF's tegen PDF/UA (ISO 14289-1) met veraPDF.
  *
  * Gebruik:
- *   node scripts/pdfua/check.js [map]      # standaard: tmp/public
+ *   node scripts/pdfua/controleer.js [map]      # standaard: tmp/public
  */
 import { execFileSync } from "node:child_process";
 import { readdirSync, existsSync } from "node:fs";

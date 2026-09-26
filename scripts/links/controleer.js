@@ -6,13 +6,13 @@
  * Draait NA de Hugo-build op de outputmap (standaard `tmp/public`).
  *
  * Gebruik:
- *   node scripts/links/check.js [outputmap]
+ *   node scripts/links/controleer.js [outputmap]
  */
 
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { collectRoutes } from "../a11y/routes.js";
-import { checkUrlLengte, MAX_URL } from "./checks.js";
+import { checkUrlLengte, MAX_URL } from "./regels.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
 
@@ -41,7 +41,7 @@ function main() {
     console.error(
       `\n${total} te lange URL('s). Word kapt een link af op ${MAX_URL} tekens en meldt het document dan als beschadigd.`
     );
-    console.error("Kort de link in, of zet het domein in scripts/links/checks.js op de lijst met uitzonderingen.");
+    console.error("Kort de link in, of zet het domein in scripts/links/regels.js op de lijst met uitzonderingen.");
     process.exit(1);
   }
 

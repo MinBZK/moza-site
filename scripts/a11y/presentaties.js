@@ -20,7 +20,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 import { collectRoutes } from "./routes.js";
-import { presentatieSoort } from "./checks.js";
+import { presentatieSoort } from "./regels.js";
 import { startServer } from "../lib/static-server.js";
 import { PUPPETEER_ARGS } from "../lib/puppeteer-args.js";
 

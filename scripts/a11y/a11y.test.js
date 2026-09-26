@@ -10,7 +10,7 @@ import {
   checkContentImageAlt,
   checkDiagramBeschrijving,
   presentatieSoort,
-} from "./checks.js";
+} from "./regels.js";
 
 test("koppenstructuur: een oplopende hiërarchie levert geen bevindingen", () => {
   const html = "<h1>Titel</h1><h2>Deel</h2><h3>Subdeel</h3><h2>Ander deel</h2>";

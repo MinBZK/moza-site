@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Draai de controles uit checks.js over de gebouwde site.
+ * Draai de controles uit regels.js over de gebouwde site.
  *
  * Gebruik:
- *   node scripts/a11y/check.js [outputmap]
+ *   node scripts/a11y/controleer.js [outputmap]
  */
 
 import { readFileSync, existsSync } from "node:fs";
@@ -15,7 +15,7 @@ import {
   checkDiagramAlt,
   checkContentImageAlt,
   checkDiagramBeschrijving,
-} from "./checks.js";
+} from "./regels.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
 

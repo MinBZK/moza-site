@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { checkUrlLengte, MAX_URL } from "./checks.js";
+import { checkUrlLengte, MAX_URL } from "./regels.js";
 
 const lang = (lengte) => "https://voorbeeld.nl/" + "a".repeat(lengte);
 

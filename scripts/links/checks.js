@@ -12,6 +12,9 @@ const HREF = /\bhref=("([^"]*)"|'([^']*)'|([^\s>]+))/gi;
  * Domeinen waar een lange URL bij hoort. Voeg er alleen iets aan toe als de
  * lengte daar een functie heeft; de download vervangt zo'n link door een
  * verwijzing naar de webpagina (partial markdown-body).
+ *
+ * Dit gaat alleen over de lengte. Of een link bereikbaar hoeft te zijn, staat
+ * in IgnoreURLs in .htmltest.yml.
  */
 const TOEGESTAAN = [
   // De tekening van een sequence diagram zit in de URL zelf, zodat de editor

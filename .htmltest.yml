@@ -34,6 +34,10 @@ IgnoreURLs:
   # kcbr.nl antwoordt lokaal binnen een seconde, maar loopt vanaf de CI-runner
   # over de ExternalTimeout van 30 seconden heen.
   - kcbr.nl
+  # De tekening zit in de URL zelf, waardoor die 4455 tekens telt. De server
+  # verbreekt zo'n verzoek met tussenpozen. Dat dit domein lange URL's mag,
+  # staat apart in scripts/links/checks.js.
+  - sequencediagram.org
   # De democonsole van het berichtenstelsel zit achter een login en geeft
   # buiten het netwerk 403.
   - democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl

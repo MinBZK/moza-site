@@ -49,8 +49,17 @@
   body > footer,
   .page-aside,
   .toc-toggle,
-  .search-modal {
+  .search-modal,
+  .diagram-download,
+  .mermaid-download,
+  .diagram-scroll-hint {
     display: none !important;
+  }
+
+  /* De plaat heeft op het scherm een minimumbreedte om leesbaar te blijven;
+     op papier moet hij juist binnen de marge passen. */
+  .diagram-panel > svg {
+    min-width: 0;
   }
 
   /* In een print is elke link extern, dus dit icoon voegt niets toe. */

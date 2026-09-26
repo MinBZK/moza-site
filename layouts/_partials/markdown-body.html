@@ -66,6 +66,18 @@
 {{- $content = replaceRE `\{\{%[^%]+%\}\}` "" $content -}}
 {{- $content = replaceRE `>\s*\[!(NOTE|WARNING|TIP|IMPORTANT|INFO|CAUTION)\]` "" $content -}}
 
+{{- /* Word en Windows kappen een hyperlink af op 2083 tekens en melden het
+       document daarna als beschadigd. In de uitvoer voor buiten de site wijst
+       zo'n link daarom naar de webpagina, waar hij wel werkt. */ -}}
+{{- if $html -}}
+  {{- range findRESubmatch `\[([^\]]*)\]\((https?://[^)\s]+)\)` $content -}}
+    {{- $geheel := index . 0 -}}
+    {{- if gt (len (index . 2)) 2083 -}}
+      {{- $content = replace $content $geheel (printf "%s (deze URL is te lang voor dit document, maar op [de site van MijnOverheid Zakelijk](%s) vind je die wel)" (index . 1) $p.Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{- /* findRESubmatch-groepen: 0=geheel, 1='!', 2=tekst, 3=doel */ -}}
 {{- range findRESubmatch `(!?)\[([^\]]*)\]\(([^)\s]+)\)` $content -}}
   {{- $whole := index . 0 -}}

@@ -193,3 +193,54 @@ test(
     }
   }
 );
+
+// Een getekend diagram staat inline in de pagina; de shortcode laat in de
+// pandoc-bron een verwijzing naar hetzelfde beeld als los bestand achter.
+test(
+  "render-downloads neemt ook een getekend diagram mee in de .odt",
+  { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
+  () => {
+    const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    try {
+      const pageDir = join(root, "onderwerpen", "plaat");
+      mkdirSync(pageDir, { recursive: true });
+      mkdirSync(join(root, "images", "diagrammen"), { recursive: true });
+
+      const svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200" role="img">' +
+        "<title>Naam van de plaat</title><desc>Wat er op de plaat staat.</desc>" +
+        '<rect width="300" height="200" fill="#dde" /></svg>';
+      writeFileSync(join(root, "images", "diagrammen", "proef.svg"), svg);
+      writeFileSync(
+        join(pageDir, "index.html"),
+        "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Plaat</title></head>" +
+          "<body><main><article><h1>Plaat</h1>" +
+          '<figure class="diagram"><div class="diagram-panel">' +
+          svg +
+          "</div>" +
+          '<a class="diagram-download" href="/images/diagrammen/proef.svg" download="proef.svg">Download</a>' +
+          "</figure></article></main></body></html>"
+      );
+      writeFileSync(
+        join(pageDir, "index.pandoc.md"),
+        "---\ntitle: Plaat\n---\n\n# Plaat\n\n![](/images/diagrammen/proef.svg)\n"
+      );
+      writeFileSync(
+        join(root, "download.json"),
+        JSON.stringify([{ relPermalink: "/onderwerpen/plaat/", name: "plaat", title: "Plaat" }])
+      );
+
+      execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], {
+        stdio: "pipe",
+      });
+
+      const inhoud = execFileSync("unzip", ["-p", join(pageDir, "plaat.odt"), "content.xml"]).toString(
+        "utf-8"
+      );
+      assert.match(inhoud, /<svg:title>Naam van de plaat<\/svg:title>/);
+      assert.match(inhoud, /<svg:desc>Wat er op de plaat staat\.<\/svg:desc>/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+);

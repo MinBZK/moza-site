@@ -55,6 +55,10 @@
 {{- end -}}
 
 {{- /* Moet vóór het strippen hieronder, anders verdwijnt de emoji mee. */ -}}
+{{- /* Een getekend diagram staat als shortcode in de tekst; in de download
+       hoort de plaat zelf. De shortcode bewaart hem als
+       /images/diagrammen/<naam>.svg. */ -}}
+{{- $content = replaceRE `\{\{<\s*diagram-([a-z0-9-]+)[^>]*>\}\}` "![](/images/diagrammen/$1.svg)" $content -}}
 {{- $content = replaceRE `\{\{<\s*emoji\s[^>]*?teken="([^"]+)"[^>]*>\}\}` "$1" $content -}}
 {{- $content = replaceRE `\{\{<[^>]+>\}\}` "" $content -}}
 {{- $content = replaceRE `\{\{%[^%]+%\}\}` "" $content -}}

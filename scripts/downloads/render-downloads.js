@@ -197,13 +197,156 @@ function flattenOdtQuotations(odtOut) {
   writeOdtContent(odtOut, xml);
 }
 
-function renderOdt(mdFile, odtOut, pageDir, meta) {
-  const args = [mdFile, "--metadata", "lang=nl", "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
-  if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
-  args.push("-o", odtOut);
-  execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
+/**
+ * Diagrammen uit de gebouwde pagina: de gerenderde SVG, de korte naam uit de
+ * alt en de uitgebreide beschrijving die eronder verborgen staat. De HTML is
+ * geminificeerd, dus attributen staan er met en zonder aanhalingstekens.
+ */
+const DIAGRAM = /<div\b[^>]*\bclass=["']?[^"'>]*\bmermaid-diagram\b[^"'>]*["']?[^>]*>([\s\S]*?)<\/div>/gi;
+const LICHTE_AFBEELDING = /<img\b[^>]*\bmermaid-img--light\b[^>]*>/i;
+const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-beschrijving\b[^>]*>([\s\S]*?)<\/p>/i;
+const MERMAID_BLOK = /^```mermaid\n[\s\S]*?^```$/gm;
+
+function attribuut(tag, naam) {
+  const match = tag.match(new RegExp(`\\b${naam}=("([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"));
+  if (!match) return "";
+  return ontsnapHtml(match[2] ?? match[3] ?? match[4] ?? "");
+}
+
+function ontsnapHtml(tekst) {
+  return tekst
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#3[49];/g, "'")
+    .replace(/&amp;/g, "&");
+}
+
+function escapeXml(tekst) {
+  return tekst
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function diagrammenUitPagina(pageDir) {
+  const htmlFile = join(pageDir, "index.html");
+  if (!existsSync(htmlFile)) return [];
+  const html = readFileSync(htmlFile, "utf-8");
+  const diagrammen = [];
+
+  for (const [, blok] of html.matchAll(DIAGRAM)) {
+    const img = blok.match(LICHTE_AFBEELDING)?.[0];
+    if (!img) continue;
+    const bron = attribuut(img, "src").split("?")[0];
+    if (!bron) continue;
+    diagrammen.push({
+      bron: bron.replace(/^\//, ""),
+      naam: attribuut(img, "alt"),
+      beschrijving: ontsnapHtml((blok.match(BESCHRIJVING_P)?.[1] ?? "").trim()),
+      breedte: Number(attribuut(img, "width")) || 0,
+      hoogte: Number(attribuut(img, "height")) || 0,
+    });
+  }
+
+  return diagrammen;
+}
+
+/**
+ * Een diagram als PNG. De SVG zelf kan niet: Mermaid zet de labels in een
+ * foreignObject, en LibreOffice en Word renderen die niet, waardoor de tekst
+ * in de plaat wegvalt. Twee keer zo groot renderen houdt hem scherp in print.
+ */
+async function diagramAlsPng(page, baseUrl, diagram, map, index) {
+  const pad = join(map, `diagram-${index}.png`);
+  await page.setViewport({
+    width: Math.max(1, diagram.breedte),
+    height: Math.max(1, diagram.hoogte),
+    deviceScaleFactor: 2,
+  });
+  await page.goto(`${baseUrl}/${diagram.bron}`, { waitUntil: "networkidle0" });
+  await page.screenshot({ path: pad, omitBackground: true });
+  return pad;
+}
+
+/**
+ * Zet de mermaid-broncode in de pandoc-bron om naar de gerenderde afbeelding.
+ * Zonder alt-tekst, want pandoc maakt van een alt een zichtbaar onderschrift;
+ * naam en beschrijving komen na pandoc in de ODF-metadata te staan. De maten
+ * moeten mee: onze SVG's dragen geen hoogte, en dan maakt pandoc er een
+ * vierkant van.
+ */
+function metDiagrammen(markdown, diagrammen) {
+  let i = 0;
+  return markdown.replace(MERMAID_BLOK, (blok) => {
+    const diagram = diagrammen[i++];
+    if (!diagram) return blok;
+    return `![](${diagram.png ?? diagram.bron})${afmeting(diagram)}`;
+  });
+}
+
+// Breedte van de tekstkolom in reference.odt: A4 minus twee marges van een inch.
+const MAX_BREEDTE_INCH = 6.2;
+const CSS_PIXELS_PER_INCH = 96;
+
+function afmeting({ breedte, hoogte }) {
+  if (!breedte || !hoogte) return "";
+  const schaal = Math.min(1, MAX_BREEDTE_INCH / (breedte / CSS_PIXELS_PER_INCH));
+  const inch = (px) => ((px / CSS_PIXELS_PER_INCH) * schaal).toFixed(2);
+  return `{width=${inch(breedte)}in height=${inch(hoogte)}in}`;
+}
+
+/**
+ * ODF kent geen alt-tekst: een afbeelding draagt een naam in `svg:title` en een
+ * beschrijving in `svg:desc`. Pandoc schrijft geen van beide.
+ */
+function beschrijfOdtAfbeeldingen(odtOut, diagrammen) {
+  if (diagrammen.length === 0) return;
+  let xml = execFileSync("unzip", ["-p", odtOut, "content.xml"]).toString("utf-8");
+  let i = 0;
+  let changed = false;
+
+  xml = xml.replace(/<draw:frame\b[^>]*>([\s\S]*?)<\/draw:frame>/g, (frame, inhoud) => {
+    const diagram = diagrammen[i++];
+    if (!diagram || frame.includes("<svg:title>")) return frame;
+    const titel = diagram.naam ? `<svg:title>${escapeXml(diagram.naam)}</svg:title>` : "";
+    const desc = diagram.beschrijving
+      ? `<svg:desc>${escapeXml(diagram.beschrijving)}</svg:desc>`
+      : "";
+    if (!titel && !desc) return frame;
+    changed = true;
+    return frame.replace(inhoud, `${inhoud}${titel}${desc}`);
+  });
+
+  if (changed) writeOdtContent(odtOut, xml);
+}
+
+async function renderOdt(mdFile, odtOut, pageDir, meta, page, baseUrl) {
+  const diagrammen = diagrammenUitPagina(pageDir);
+  let bron = mdFile;
+  let tmp;
+
+  if (diagrammen.length > 0) {
+    tmp = mkdtempSync(join(tmpdir(), "odt-bron-"));
+    for (const [i, diagram] of diagrammen.entries()) {
+      diagram.png = await diagramAlsPng(page, baseUrl, diagram, tmp, i + 1);
+    }
+    bron = join(tmp, "index.pandoc.md");
+    writeFileSync(bron, metDiagrammen(readFileSync(mdFile, "utf-8"), diagrammen));
+  }
+
+  try {
+    const args = [bron, "--metadata", "lang=nl", "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
+    if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
+    args.push("-o", odtOut);
+    execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
+  } finally {
+    if (tmp) rmSync(tmp, { recursive: true, force: true });
+  }
+
   flattenOdtQuotations(odtOut);
   styleOdtTables(odtOut);
+  beschrijfOdtAfbeeldingen(odtOut, diagrammen);
   setOdtMetadata(odtOut, meta);
 }
 
@@ -326,7 +469,7 @@ async function main() {
       const pdfOut = join(pageDir, `${name}.pdf`);
 
       const docMeta = parseDocMeta(mdFile);
-      renderOdt(mdFile, odtOut, pageDir, docMeta);
+      await renderOdt(mdFile, odtOut, pageDir, docMeta, page, baseUrl);
       console.log(`  ✓ ${relPermalink}${name}.odt`);
 
       await renderPdf(page, baseUrl, relPermalink, pdfOut, docMeta);

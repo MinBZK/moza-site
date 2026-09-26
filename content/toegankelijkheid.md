@@ -8,13 +8,13 @@ Iedereen moet MijnOverheid Zakelijk kunnen gebruiken. Ook als je een schermlezer
 
 {{< toegankelijkheidslabel >}}
 
-Het label komt uit [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/29880) en toont nog status C: nog niet alles onderzocht. Die verklaring wordt bijgewerkt naar status A, de status voor een site die volledig is onderzocht en aan alle eisen voldoet.
+Het label komt uit [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/28557). Status A betekent: de site is volledig onderzocht en voldoet aan alle eisen.
 
 Deze verklaring gaat over de website mijnoverheidzakelijk.nl. De wettelijke norm is [WCAG](https://www.digitoegankelijk.nl/toegankelijkheid/en-301-549-en-wcag) 2.1 niveau AA, via de Europese norm EN 301 549 en het Tijdelijk besluit digitale toegankelijkheid overheid. Wij toetsen tegen [WCAG 2.2](https://www.w3.org/Translations/WCAG22-nl/), dat daar zes criteria bovenop legt.
 
-In september 2026 hebben we de site onderzocht volgens WCAG-EM, de evaluatiemethode van het W3C. Alle 56 succescriteria van niveau A en AA zijn beoordeeld. Daarvan voldoen er 40; de overige 16 gaan over zaken die op deze site niet voorkomen, zoals audio en video.
+In september 2026 hebben we de site onderzocht volgens WCAG-EM, de evaluatiemethode van het W3C. Alle 56 succescriteria van niveau A en AA zijn beoordeeld. Daarvan voldoen er 40; de overige 16 gaan over zaken die op deze site niet voorkomen, zoals audio en video. Daarna heeft een tweede beoordelaar de tekstalternatieven nog eens getoetst, met JAWS en NVDA op Windows en met VoiceOver op macOS.
 
-Er kwamen negen bevindingen uit, en die zijn alle negen tijdens het onderzoek opgelost. Wat er per bevinding aan de hand was, wie er last van had en wat we eraan gedaan hebben, staat in het [toegankelijkheidsonderzoek 2026](/documenten/toegankelijkheid/onderzoek-2026/).
+Er kwamen vijftien bevindingen uit, en die zijn alle vijftien opgelost. Wat er per bevinding aan de hand was, wie er last van had en wat we eraan gedaan hebben, staat in het [toegankelijkheidsonderzoek 2026](/documenten/toegankelijkheid/onderzoek-2026/).
 
 ## Hoe we het houden zoals het is
 

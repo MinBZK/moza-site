@@ -45,13 +45,17 @@ hulptechnologie waartegen de conformiteit hieronder is vastgesteld.
 | macOS | Chrome | geen | Ronde 1 op de steekproef, alleen het toetsenbord |
 | macOS | Chrome | geen | Ronde 2 en 5, en de automatische controles |
 | iOS | Safari | VoiceOver | Ronde 3, schermlezer op mobiel |
+| Windows 11 | Edge 153 | JAWS 2026 | Ronde 8, tweede beoordelaar |
+| Windows 11 | Firefox 156 | NVDA 2026 | Ronde 8, tweede beoordelaar |
+| macOS | Safari 26 | VoiceOver | Ronde 8, tweede beoordelaar |
 
 NVDA is een gratis schermlezer voor Windows; VoiceOver zit ingebouwd in macOS
 en iOS. Beide lezen de pagina voor en laten je er met het toetsenbord doorheen
-navigeren.
+navigeren. JAWS is de meestgebruikte betaalde schermlezer op Windows.
 
-Elke combinatie in deze lijst is ook echt doorlopen. Combinaties die wij niet
-hebben getoetst, zoals Firefox, staan er daarom niet in.
+Elke combinatie in deze lijst is ook echt doorlopen. De drie onderste
+combinaties zijn alleen in ronde 8 gebruikt, en daar is richtlijn 1.1
+Tekstalternatieven mee getoetst, niet de hele norm.
 
 ## Wat is onderzocht
 
@@ -149,7 +153,7 @@ achtergronden werkt.
 
 ### De handmatige toetsing
 
-De toetsing liep niet criterium voor criterium, maar in zeven rondes over de
+De toetsing liep niet criterium voor criterium, maar in acht rondes over de
 hele steekproef. Eén ronde dekt meerdere criteria tegelijk, en per ronde is per
 pagina vastgelegd wat opviel.
 
@@ -162,6 +166,7 @@ pagina vastgelegd wat opviel.
 | 5. Kleur en contrast | Met de hand nagerekend wat de tool niet kon bepalen: half-doorzichtige achtergronden, focusranden, iconen en de presentaties. Ook gecontroleerd of informatie zonder kleur overkomt | [1.4.1](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color), [1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum), [1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast) |
 | 6. Documenten | De .odt- en .pdf-downloads geopend en gecontroleerd op leesvolgorde, koppen, taal en titel, en de PDF's gevalideerd tegen PDF/UA. De Markdown-uitvoer is dezelfde inhoud zonder opmaaklaag en is niet apart getoetst | [1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships), [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence), [2.4.2](https://www.w3.org/WAI/WCAG22/Understanding/page-titled), [3.1.1](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page) |
 | 7. Processen | De vier complete processen van begin tot eind doorlopen, met toetsenbord én schermlezer | [2.4.5](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways), [3.2.3](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation), [3.2.4](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification), [3.2.6](https://www.w3.org/WAI/WCAG22/Understanding/consistent-help) |
+| 8. Tweede beoordelaar | Een tweede beoordelaar heeft richtlijn 1.1 Tekstalternatieven opnieuw getoetst op de aangepaste site, met JAWS en NVDA op Windows en met VoiceOver op macOS. Onderweg viel ook een aantal zaken op die bij andere criteria horen | [1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content), [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence), [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order), [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) |
 
 ## Resultaten
 
@@ -172,14 +177,14 @@ pagina's uit de steekproef.
 
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
-| [1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content) | A | Niet-tekstuele content | Voldoet | Aanwezigheid van tekstalternatieven wordt automatisch bewaakt, de kwaliteit ervan met de hand. Ronde 4: alle 39 afbeeldingen nagelopen, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie) |
+| [1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content) | A | Niet-tekstuele content | Voldoet | Aanwezigheid van tekstalternatieven wordt automatisch bewaakt, de kwaliteit ervan met de hand. Ronde 4: alle 39 afbeeldingen nagelopen, zie [bevinding 9](#9-tekst-als-afbeelding-in-een-presentatie). Ronde 8: de tekstalternatieven opnieuw beoordeeld met JAWS, NVDA en VoiceOver; drie bevindingen, alle opgelost, zie [bevinding 10](#10-decoratieve-afbeeldingen-droegen-een-tekstalternatief), [11](#11-de-beschrijving-van-een-diagram-zat-in-de-naam) en [12](#12-de-downloadknop-bij-een-diagram-had-twee-namen-en-stond-te-vroeg) |
 | [1.2.1](https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded) | A | Louter-geluid en louter-videobeeld | Niet van toepassing | De site bevat geen audio of video |
 | [1.2.2](https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded) | A | Ondertitels voor doven en slechthorenden | Niet van toepassing | De site bevat geen audio of video |
 | [1.2.3](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded) | A | Audiodescriptie of media-alternatief | Niet van toepassing | De site bevat geen audio of video |
 | [1.2.4](https://www.w3.org/WAI/WCAG22/Understanding/captions-live) | AA | Ondertitels voor doven en slechthorenden (live) | Niet van toepassing | De site bevat geen audio of video |
 | [1.2.5](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded) | AA | Audiodescriptie | Niet van toepassing | De site bevat geen audio of video |
 | [1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships) | A | Info en relaties | Voldoet | Koppenvolgorde wordt automatisch bewaakt. In de ODF- en PDF-downloads kloppen koppen, lijsten en tabelkoppen; de PDF's zijn PDF/UA-conform, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
-| [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence) | A | Betekenisvolle volgorde | Voldoet | Ronde 6: de leesvolgorde in HTML, ODF en PDF volgt de bron. Alle content in de PDF's is gemarkeerd als artefact of als echte inhoud, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet) |
+| [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence) | A | Betekenisvolle volgorde | Voldoet | Ronde 6: de leesvolgorde in HTML, ODF en PDF volgt de bron. Alle content in de PDF's is gemarkeerd als artefact of als echte inhoud, zie [bevinding 4](#4-de-pdf-downloads-haalden-pdfua-niet). Ronde 8: de rechterkolom en de downloadknop bij een diagram stonden in de broncode op een andere plek dan in beeld; opgelost, zie [bevinding 12](#12-de-downloadknop-bij-een-diagram-had-twee-namen-en-stond-te-vroeg) en [13](#13-de-rechterkolom-kwam-pas-na-de-hele-tekst) |
 | [1.3.3](https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics) | A | Zintuiglijke eigenschappen | Voldoet | Ronde 4: de content doorzocht op instructies die alleen op vorm, kleur of plek leunen. Eén geval gevonden en opgelost, zie [bevinding 6](#6-een-instructie-leunde-alleen-op-vorm-en-plek) |
 | [1.3.4](https://www.w3.org/WAI/WCAG22/Understanding/orientation) | AA | Weergavestand | Voldoet | De stylesheets bevatten geen enkele `orientation`-mediaquery, dus niets legt de weergavestand vast |
 | [1.3.5](https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose) | AA | Identificeer het doel van de input | Voldoet | Het zoekveld is het enige invoerveld en verzamelt geen persoonsgegevens; er is geen invoerdoel dat een `autocomplete`-waarde vraagt |
@@ -205,7 +210,7 @@ pagina's uit de steekproef.
 | [2.3.1](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold) | A | Drie flitsen of beneden drempelwaarde | Niet van toepassing | Geen flitsende content |
 | [2.4.1](https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks) | A | Blokken omzeilen | Voldoet | De skiplink is de eerste tab-stop. Verplaatste de focus aanvankelijk niet; opgelost, zie [bevinding 3](#3-de-skiplink-verplaatste-de-focus-niet) |
 | [2.4.2](https://www.w3.org/WAI/WCAG22/Understanding/page-titled) | A | Paginatitel | Voldoet | Alle 80 pagina's hebben een unieke, niet-lege titel. Ronde 6: de ODF- en PDF-downloads dragen dezelfde titel als documenteigenschap |
-| [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order) | A | Focus volgorde | Voldoet | Ronde 1: de focusvolgorde loopt gelijk aan de visuele volgorde, ook in het kaartenraster. Geen onverwachte sprongen |
+| [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order) | A | Focus volgorde | Voldoet | Ronde 1: de focusvolgorde loopt gelijk aan de visuele volgorde, ook in het kaartenraster. Geen onverwachte sprongen. Ronde 8: de rechterkolom vormde hierop een uitzondering, want die werd pas na de hele tekst bereikt; opgelost, zie [bevinding 13](#13-de-rechterkolom-kwam-pas-na-de-hele-tekst) |
 | [2.4.4](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context) | A | Linkdoel (in context) | Voldoet | Ronde 3: de linkenlijst uit de rotor doorgenomen. De knoppen "Lees meer" op de lijstpagina noemen de bijbehorende weekly, dus ze zijn uit elkaar te houden |
 | [2.4.5](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways) | AA | Meerdere manieren | Voldoet | Drie manieren om een pagina te bereiken: het hoofdmenu en het zoeken staan op alle 77 sitepagina's, en 66 pagina's dragen daarnaast een kruimelpad |
 | [2.4.6](https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels) | AA | Koppen en labels | Voldoet | Ronde 3: de koppenlijst uit de rotor vormt op zichzelf een bruikbare inhoudsopgave. Beschrijvendheid is niet automatisch vast te stellen. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
@@ -226,7 +231,7 @@ pagina's uit de steekproef.
 | [3.1.2](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts) | AA | Taal van onderdelen | Voldoet | Ronde 4: alle 80 pagina's doorzocht op anderstalige passages. Eén Engelse uitdrukking gemarkeerd; eigennamen en ingeburgerde vaktermen vallen onder de uitzondering. Ronde 7: de Engelse namen van de presentatiebediening zijn vertaald, zie [bevinding 8](#8-de-presentatiebediening-had-engelse-namen) |
 | [3.2.1](https://www.w3.org/WAI/WCAG22/Understanding/on-focus) | A | Bij focus | Voldoet | Ronde 1: focus krijgen verandert nergens de context; menu's en panelen openen alleen op een handeling |
 | [3.2.2](https://www.w3.org/WAI/WCAG22/Understanding/on-input) | A | Bij input | Voldoet | De site heeft één invoerveld, het zoekveld, en nergens een luisteraar op `change`. Het wijzigen van een besturingselement verandert geen context |
-| [3.2.3](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation) | AA | Consistente navigatie | Voldoet | Het hoofdmenu staat op elke pagina in dezelfde volgorde: Home, Over MOZa, Actueel, Onderwerpen, Contact. Handboekpagina's voegen daar een submenu aan toe zonder die volgorde te wijzigen |
+| [3.2.3](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation) | AA | Consistente navigatie | Voldoet | Het hoofdmenu staat op elke pagina in dezelfde volgorde: Home, Over MOZa, Actueel, Onderwerpen, Contact. Handboekpagina's voegen daar een submenu aan toe zonder die volgorde te wijzigen. Ronde 8: op de startpagina ontbrak de sitetitel als eerste stop; opgelost, zie [bevinding 14](#14-de-sitetitel-was-op-de-startpagina-geen-link) |
 | [3.2.4](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification) | AA | Consistente identificatie | Voldoet | Terugkerende bediening draagt overal dezelfde naam. Gemeten over alle pagina's; alleen de zoekfilters en de submenuknoppen verschillen, en die benoemen per stuk iets anders |
 | [3.2.6](https://www.w3.org/WAI/WCAG22/Understanding/consistent-help) | A | Consistente hulp | Voldoet | De contactpagina is vanaf elke pagina bereikbaar, zowel in het hoofdmenu als in de voettekst, steeds op dezelfde plek. Nieuw in WCAG 2.2 |
 | [3.3.1](https://www.w3.org/WAI/WCAG22/Understanding/error-identification) | A | Foutidentificatie | Niet van toepassing | De site bevat geen formulieren |
@@ -241,7 +246,7 @@ pagina's uit de steekproef.
 | Criterium | Niveau | Naam | Oordeel | Toelichting |
 | --- | --- | --- | --- | --- |
 | [4.1.1](https://www.w3.org/WAI/WCAG22/Understanding/parsing) | A | Parsen | Voldoet | Automatisch gedekt. Vervallen in WCAG 2.2, maar nog onderdeel van de wettelijke norm 2.1 |
-| [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) | A | Naam, rol, waarde | Voldoet | Geen enkel bedieningselement zonder toegankelijke naam. Toestanden worden doorgegeven: 308 keer `aria-pressed`, 126 keer `aria-expanded`, 121 keer `aria-current`. Ronde 3: de themawissel en het openklapmenu kondigen hun nieuwe toestand hoorbaar aan. Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
+| [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) | A | Naam, rol, waarde | Voldoet | Geen enkel bedieningselement zonder toegankelijke naam. Toestanden worden doorgegeven: 308 keer `aria-pressed`, 126 keer `aria-expanded`, 121 keer `aria-current`. Ronde 3: de themawissel en het openklapmenu kondigen hun nieuwe toestand hoorbaar aan. Ronde 8: de downloadknop bij een diagram droeg twee namen tegelijk; opgelost, zie [bevinding 12](#12-de-downloadknop-bij-een-diagram-had-twee-namen-en-stond-te-vroeg). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
 | [4.1.3](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) | AA | Statusberichten | Voldoet | Ronde 3: de slidewissel in een presentatie wordt aangekondigd. Het zoeken kondigde geen status aan maar de volledige resultaten; opgelost, zie [bevinding 7](#7-zoeken-kondigde-de-resultaten-voor-in-plaats-van-de-status). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
 
 ## Bevindingen
@@ -575,6 +580,211 @@ dat tekst als tekst wordt opgenomen; dat staat in de reviewinstructies.
 
 Afgerond. Nagemeten: de presentatie bevat geen afbeeldingen van tekst meer.
 
+### 10. Decoratieve afbeeldingen droegen een tekstalternatief
+
+**Criterium**
+
+1.1.1 Niet-tekstuele content.
+
+**Waar**
+
+Het Rijksoverheid-logo in de kop, en de sfeerfoto bovenaan de
+startpagina.
+
+**Gevolg**
+
+NVDA las bovenaan de startpagina "banner oriëntatiepunt, Logo
+Rijksoverheid, afbeelding" voor, gevolgd door een beschrijving van een
+sfeerfoto. Beide zeggen niets wat er niet al als tekst staat: de sitenaam
+staat ernaast en de titel staat over de foto heen. Het is ruis vóór de
+eigenlijke inhoud.
+
+**Oorzaak**
+
+Beide afbeeldingen hadden een alt-tekst terwijl ze decoratief zijn.
+De alt van de foto klopte bovendien niet: er stond "telefoon", terwijl het om
+een tablet gaat.
+
+**Maatregel**
+
+Opgelost. Beide krijgen een lege alt, waarmee hulptechnologie ze
+overslaat. Op de overige pagina's stond het logo al buiten de
+toegankelijkheidsboom.
+
+**Status**
+
+Afgerond. Nagemeten: geen van beide komt nog in de
+toegankelijkheidsboom voor.
+
+### 11. De beschrijving van een diagram zat in de naam
+
+**Criterium**
+
+1.1.1 Niet-tekstuele content.
+
+**Waar**
+
+De vier onderwerpenpagina's met Mermaid-diagrammen, en de getekende
+plaat bij de notificatiedienst.
+
+**Gevolg**
+
+De alt-tekst was de volledige beschrijving, tot ruim 350 tekens als
+één zin. Een schermlezer leest dat in één keer voor, zonder dat je kunt
+terugbladeren zoals bij gewone tekst. In de afbeeldingenlijst van een
+schermlezer kreeg je die hele tekst te zien in plaats van een naam.
+
+**Oorzaak**
+
+De render hook zette `accDescr` in de alt. Bij de plaat van de
+notificatiedienst wees `aria-labelledby` naar de titel én de beschrijving, die
+daardoor samen de naam vormden.
+
+**Maatregel**
+
+Opgelost. `accTitle` is nu de naam, `accDescr` volgt als
+verborgen tekst direct na het diagram, en is daarmee gewone tekst die je regel
+voor regel kunt teruglezen. Bij de notificatiedienst is de beschrijving
+losgetrokken met `aria-describedby`. In de PDF-download komt de beschrijving
+achter de naam in het tekstalternatief van de figuur, omdat verborgen tekst
+niet in een PDF terechtkomt. Een controle in de build eist voortaan dat de
+beschrijving er is.
+
+**Status**
+
+Afgerond. Nagemeten: de langste naam is 58 tekens, de beschrijving
+volgt als tekst, en in de PDF draagt de figuur naam en beschrijving samen.
+
+### 12. De downloadknop bij een diagram had twee namen en stond te vroeg
+
+**Criterium**
+
+4.1.2 Naam, rol, waarde, en 1.3.2 Betekenisvolle volgorde.
+
+**Waar**
+
+De downloadknop bij elk diagram.
+
+**Gevolg**
+
+De knop droeg zowel `title` als `aria-label` met dezelfde tekst.
+Dat is niet fout, maar wel dubbel onderhoud, en de `title` leverde een
+muis-tooltip op die verder niets toevoegde. Daarnaast kwam de knop vóór het
+diagram in de leesvolgorde, dus wie met het toetsenbord werkt kreeg eerst de
+download aangeboden en pas daarna de tekening.
+
+**Oorzaak**
+
+De knop was met ARIA benoemd in plaats van met tekst, en stond in
+de broncode boven de afbeelding omdat hij rechtsboven wordt getoond.
+
+**Maatregel**
+
+Opgelost. De naam komt nu uit verborgen tekst in de knop zelf,
+`title` en `aria-label` zijn weg, en de knop staat na het diagram. De weergave
+verandert niet, want de knop is absoluut gepositioneerd.
+
+**Status**
+
+Afgerond. Nagemeten: één toegankelijke naam, geen tooltip meer, en
+de focus bereikt de knop pas na het diagram.
+
+### 13. De rechterkolom kwam pas na de hele tekst
+
+**Criterium**
+
+1.3.2 Betekenisvolle volgorde en 2.4.3 Focus volgorde.
+
+**Waar**
+
+Alle tekstpagina's met een inhoudsopgave, downloads of relevante
+links.
+
+**Gevolg**
+
+Op een breed scherm staat die kolom rechtsboven, maar toetsenbord
+en schermlezer bereikten hem pas na de hele tekst. Op een smal scherm was de
+inhoudsopgave helemaal verborgen en stonden de downloads onderaan de pagina.
+
+**Oorzaak**
+
+De kolom stond in de broncode na het artikel, en werd met CSS naar
+rechtsboven gehaald.
+
+**Maatregel**
+
+Opgelost. De kolom staat nu in de broncode direct na de titel, dus
+de leesvolgorde volgt het beeld. Op een smal scherm klapt elk blok in achter
+een knop in zijn eigen kop, zodat de inhoudsopgave daar ook beschikbaar is
+zonder de pagina lang te maken.
+
+**Status**
+
+Afgerond. Nagemeten: op breed scherm staat alles op dezelfde plek
+als voorheen, en de focus loopt nu inhoudsopgave, downloads, tekst, voettekst.
+
+### 14. De sitetitel was op de startpagina geen link
+
+**Criterium**
+
+3.2.3 Consistente navigatie.
+
+**Waar**
+
+De koptekst, op de startpagina.
+
+**Gevolg**
+
+Op elke andere pagina is de sitetitel de eerste stop na de
+skiplink; op de startpagina ontbrak die stop, waardoor de tab-volgorde daar
+anders begon dan overal elders.
+
+**Oorzaak**
+
+De link werd weggelaten op de pagina waar hij naartoe wijst.
+
+**Maatregel**
+
+Opgelost. De sitetitel is overal een link; op de startpagina
+draagt hij `aria-current="page"`, zodat hulptechnologie meldt dat je er al
+bent.
+
+**Status**
+
+Afgerond. Nagemeten: de tab-volgorde begint op elke pagina en op
+elke schermbreedte gelijk.
+
+### 15. Kleine punten uit de tweede toets
+
+**Criterium**
+
+Geen succescriterium; dit zijn hygiënepunten die de tweede
+beoordelaar onderweg noteerde.
+
+**Waar**
+
+Het zoekveld en emoji in lopende tekst.
+
+**Gevolg**
+
+De placeholder was "Zoeken..." met drie losse punten. Bij een hoge
+interpunctie-instelling kan een schermlezer die als "punt punt punt"
+voorlezen. Emoji in lopende tekst worden voorgelezen met hun eigen naam, wat
+soms precies goed is en soms niet, bijvoorbeeld bij een gloeilamp die alleen
+een tip markeert.
+
+**Maatregel**
+
+De placeholder is "Waar zoek je naar?" geworden. Voor emoji is
+een shortcode toegevoegd waarmee je per geval kunt kiezen: een eigen label
+voor hulptechnologie, of helemaal overslaan. Een kale emoji blijft de
+standaard, en de bestaande content is niet gewijzigd.
+
+**Status**
+
+Afgerond voor het zoekveld. De keuze per emoji maken we bij
+redactie van nieuwe content.
+
 ## Wat buiten dit onderzoek viel
 
 Twee soorten inhoud vallen buiten dit onderzoek. Ten eerste wat het Besluit zelf
@@ -584,4 +794,18 @@ wij bewust niet hebben getoetst.
 
 - Documenten van derden waarnaar de site verwijst, en de externe diensten die
   vanaf de site bereikbaar zijn. Die vallen buiten ons beheer.
-- Firefox. Wij toetsen met Edge, Chrome en Safari.
+- Firefox, behalve in ronde 8. Daar is met Firefox en NVDA richtlijn 1.1
+  getoetst; de overige criteria zijn met Edge, Chrome en Safari beoordeeld.
+
+Twee beperkingen kwamen tijdens ronde 8 aan het licht. Ze raken de conformiteit
+nu niet, omdat de betreffende combinatie op geen enkele pagina voorkomt, maar we
+noemen ze omdat ze dat wel zouden doen zodra die combinatie ontstaat:
+
+- Een diagram komt in de ODF-download terecht als de broncode van dat diagram,
+  niet als afbeelding met tekstalternatief. Geen pagina met een diagram biedt op
+  dit moment downloads aan.
+- Het pictogram in een uitgelicht tekstblok komt ongetagd in een PDF-download.
+  Ook die combinatie komt nu nergens voor; de PDF's die we wel genereren voldoen
+  alle aan PDF/UA.
+
+Beide worden apart opgepakt.

@@ -202,9 +202,14 @@ function flattenOdtQuotations(odtOut) {
  * alt en de uitgebreide beschrijving die eronder verborgen staat. De HTML is
  * geminificeerd, dus attributen staan er met en zonder aanhalingstekens.
  */
-const DIAGRAM = /<div\b[^>]*\bclass=["']?[^"'>]*\bmermaid-diagram\b[^"'>]*["']?[^>]*>([\s\S]*?)<\/div>/gi;
+const DIAGRAM =
+  /<div\b[^>]*\bclass=["']?[^"'>]*\bmermaid-diagram\b[\s\S]*?<\/div>|<figure\b[^>]*\bclass=["']?[^"'>]*\bdiagram\b[\s\S]*?<\/figure>/gi;
 const LICHTE_AFBEELDING = /<img\b[^>]*\bmermaid-img--light\b[^>]*>/i;
 const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-beschrijving\b[^>]*>([\s\S]*?)<\/p>/i;
+const GETEKEND = /<a\b[^>]*\bdiagram-download\b[^>]*>/i;
+const SVG_TAG = /<svg\b[^>]*>/i;
+const SVG_TITEL = /<title\b[^>]*>([\s\S]*?)<\/title>/i;
+const SVG_BESCHRIJVING = /<desc\b[^>]*>([\s\S]*?)<\/desc>/i;
 const MERMAID_BLOK = /^```mermaid\n[\s\S]*?^```$/gm;
 
 function attribuut(tag, naam) {
@@ -235,17 +240,36 @@ function diagrammenUitPagina(pageDir) {
   const html = readFileSync(htmlFile, "utf-8");
   const diagrammen = [];
 
-  for (const [, blok] of html.matchAll(DIAGRAM)) {
+  for (const [blok] of html.matchAll(DIAGRAM)) {
     const img = blok.match(LICHTE_AFBEELDING)?.[0];
-    if (!img) continue;
-    const bron = attribuut(img, "src").split("?")[0];
-    if (!bron) continue;
+    if (img) {
+      const bron = attribuut(img, "src").split("?")[0];
+      if (!bron) continue;
+      diagrammen.push({
+        soort: "mermaid",
+        bron: bron.replace(/^\//, ""),
+        naam: attribuut(img, "alt"),
+        beschrijving: ontsnapHtml((blok.match(BESCHRIJVING_P)?.[1] ?? "").trim()),
+        breedte: Number(attribuut(img, "width")) || 0,
+        hoogte: Number(attribuut(img, "height")) || 0,
+      });
+      continue;
+    }
+
+    // Een getekend diagram staat inline in de pagina; de downloadknop wijst
+    // naar hetzelfde beeld als los bestand, en naam en beschrijving staan in
+    // de SVG zelf.
+    const knop = blok.match(GETEKEND)?.[0];
+    const svg = blok.match(SVG_TAG)?.[0];
+    const bron = knop ? attribuut(knop, "href").split("?")[0] : "";
+    if (!bron || !svg) continue;
     diagrammen.push({
+      soort: "getekend",
       bron: bron.replace(/^\//, ""),
-      naam: attribuut(img, "alt"),
-      beschrijving: ontsnapHtml((blok.match(BESCHRIJVING_P)?.[1] ?? "").trim()),
-      breedte: Number(attribuut(img, "width")) || 0,
-      hoogte: Number(attribuut(img, "height")) || 0,
+      naam: ontsnapHtml((blok.match(SVG_TITEL)?.[1] ?? "").trim()),
+      beschrijving: ontsnapHtml((blok.match(SVG_BESCHRIJVING)?.[1] ?? "").trim()),
+      breedte: Number(attribuut(svg, "width")) || 0,
+      hoogte: Number(attribuut(svg, "height")) || 0,
     });
   }
 
@@ -264,6 +288,9 @@ async function diagramAlsPng(page, baseUrl, diagram, map, index) {
     height: Math.max(1, diagram.hoogte),
     deviceScaleFactor: 2,
   });
+  // Een getekend diagram draagt zijn eigen stijlen; zonder deze regel rendert
+  // het in de donkere weergave als de machine daarop staat.
+  await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
   await page.goto(`${baseUrl}/${diagram.bron}`, { waitUntil: "networkidle0" });
   await page.screenshot({ path: pad, omitBackground: true });
   return pad;
@@ -277,12 +304,24 @@ async function diagramAlsPng(page, baseUrl, diagram, map, index) {
  * vierkant van.
  */
 function metDiagrammen(markdown, diagrammen) {
+  const mermaid = diagrammen.filter((diagram) => diagram.soort === "mermaid");
   let i = 0;
-  return markdown.replace(MERMAID_BLOK, (blok) => {
-    const diagram = diagrammen[i++];
+
+  let uit = markdown.replace(MERMAID_BLOK, (blok) => {
+    const diagram = mermaid[i++];
     if (!diagram) return blok;
     return `![](${diagram.png ?? diagram.bron})${afmeting(diagram)}`;
   });
+
+  for (const diagram of diagrammen) {
+    if (diagram.soort !== "getekend") continue;
+    uit = uit.replace(
+      `![](/${diagram.bron})`,
+      `![](${diagram.png ?? diagram.bron})${afmeting(diagram)}`
+    );
+  }
+
+  return uit;
 }
 
 // Breedte van de tekstkolom in reference.odt: A4 minus twee marges van een inch.

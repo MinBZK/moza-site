@@ -5,6 +5,9 @@ node_modules
 static/images/render
 .cache
 
+# Uit node_modules, zie `just cms-vendor`
+cms/sveltia-cms.js
+
 # Hugo
 public
 resources
@@ -12,8 +15,8 @@ tmp
 .hugo_build.lock
 
 # Secrets / environment
-.env
-.env.local
+.env*
+!.env.example
 
 # Python (moza-weekly script)
 __pycache__/

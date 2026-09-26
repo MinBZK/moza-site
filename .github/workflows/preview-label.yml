@@ -1,0 +1,23 @@
+name: Preview-label voor CMS
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  label:
+    # Sveltia CMS opent zijn pull requests op cms/<collectie>/<slug>. Het label
+    # laat de bestaande preview-workflow draaien, inclusief de opruiming.
+    if: startsWith(github.head_ref, 'cms/')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Zet het preview-label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMMER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: gh pr edit "$NUMMER" --repo "$REPO" --add-label preview

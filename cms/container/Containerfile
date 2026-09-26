@@ -1,0 +1,10 @@
+# Bouwen vanuit de repositoryroot:
+#   podman build -f cms/container/Containerfile -t moza-site-cms .
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:c2c3905bda3dc8de80023e19bed0a45745279d26e5586cdee64370c8f9b12348
+
+COPY cms/config.yml cms/index.html cms/sveltia-cms.js /usr/share/nginx/html/
+COPY container/nginx.conf /etc/nginx/nginx.conf
+COPY cms/container/default.conf /etc/nginx/conf.d/default.conf
+COPY cms/container/security-headers.conf /etc/nginx/security-headers.conf
+
+EXPOSE 8080

@@ -1,15 +1,15 @@
 {{- /* De tekening van de notificatiedienst. Eén bron voor twee doelen: inline in
        de pagina (zonder css) en als los te downloaden bestand (met css, zodat
        het bestand zelfstandig te openen is). */ -}}
-<svg viewBox="0 12 960 842" width="960" height="842" role="img" aria-labelledby="dgNotifTitle" aria-describedby="dgNotifDesc" xmlns="http://www.w3.org/2000/svg">
-  <title id="dgNotifTitle">Componenten van de notificatiedienst in samenhang</title>
-  <desc id="dgNotifDesc">Bovenaan staat een ondernemer of burger, verbonden met een overheidsportaal. Bij de dienstverlener staan een procesapplicatie en een outputmanagementcomponent (OMC), die in twee richtingen informatie uitwisselen. Boven het OMC staat het decentrale profiel, waaruit het OMC de contactvoorkeuren ophaalt en waaraan het die levert. De procesapplicatie geeft de notificatie door aan het OMC, dat het verzoek naar de centraal georganiseerde notificatiedienst stuurt. Ook het OMC en de Notificatie Management Component (NMC) wisselen in twee richtingen informatie uit. De notificatiedienst haalt de kanaalvoorkeur en contactgegevens op uit de profielservice. De notificatiedienst bestaat uit de NMC, Notify, contactherstel en de printstraat. De NMC organiseert de processen binnen de notificatiedienst: het stuurt Notify aan, dat de e-mail verstuurt, en bewaakt de status van het verzenden. Is contactherstel nodig, dan start de NMC ook dat proces, waarbij de printstraat een brief per post kan versturen. Contactherstel wisselt daarvoor gegevens uit met de basisregistraties, die buiten de notificatiedienst vallen maar wel centraal georganiseerd zijn. Deze e-mails en brieven bereiken de ondernemer of burger.</desc>
+<svg viewBox="0 12 960 842" width="960" height="842" role="img" aria-labelledby="diagram-notificatiedienst-titel" aria-describedby="diagram-notificatiedienst-beschrijving" xmlns="http://www.w3.org/2000/svg">
+  <title id="diagram-notificatiedienst-titel">Componenten van de notificatiedienst in samenhang</title>
+  <desc id="diagram-notificatiedienst-beschrijving">Bovenaan staat een ondernemer of burger, verbonden met een overheidsportaal. Bij de dienstverlener staan een procesapplicatie en een outputmanagementcomponent (OMC), die in twee richtingen informatie uitwisselen. Boven het OMC staat het decentrale profiel, waaruit het OMC de contactvoorkeuren ophaalt en waaraan het die levert. De procesapplicatie geeft de notificatie door aan het OMC, dat het verzoek naar de centraal georganiseerde notificatiedienst stuurt. Ook het OMC en de Notificatie Management Component (NMC) wisselen in twee richtingen informatie uit. De notificatiedienst haalt de kanaalvoorkeur en contactgegevens op uit de profielservice. De notificatiedienst bestaat uit de NMC, Notify, contactherstel en de printstraat. De NMC organiseert de processen binnen de notificatiedienst: het stuurt Notify aan, dat de e-mail verstuurt, en bewaakt de status van het verzenden. Is contactherstel nodig, dan start de NMC ook dat proces, waarbij de printstraat een brief per post kan versturen. Contactherstel wisselt daarvoor gegevens uit met de basisregistraties, die buiten de notificatiedienst vallen maar wel centraal georganiseerd zijn. Deze e-mails en brieven bereiken de ondernemer of burger.</desc>
 {{- with .css }}
   <style>{{ . | safeCSS }}</style>
 {{- end }}
 
   <defs>
-    <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="diagram-notificatiedienst-pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-marker" d="M0 0 L10 5 L0 10 z" />
     </marker>
   </defs>
@@ -27,21 +27,21 @@
   <text class="dg-block-label" x="540" y="416">Notificatiedienst</text>
 
   <!-- Verbindingen -->
-  <path class="dg-arrow" d="M480 100 L480 128" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M432 192 L432 292" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M432 362 L432 440" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M525 480 L555 480" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M432 520 L432 592" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M525 632 L555 632" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow optioneel" d="M140 362 L140 440" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M140 526 L140 592" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M432 672 L432 750" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M232 480 L336 480" marker-start="url(#dgArrow)" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M740 480 L788 480" marker-end="url(#dgArrow)" />
-  <path class="dg-arrow" d="M740 632 L788 632" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M480 100 L480 128" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M432 192 L432 292" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M432 362 L432 440" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M525 480 L555 480" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M432 520 L432 592" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M525 632 L555 632" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow optioneel" d="M140 362 L140 440" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M140 526 L140 592" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M432 672 L432 750" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M232 480 L336 480" marker-start="url(#diagram-notificatiedienst-pijl)" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M740 480 L788 480" marker-end="url(#diagram-notificatiedienst-pijl)" />
+  <path class="dg-arrow" d="M740 632 L788 632" marker-end="url(#diagram-notificatiedienst-pijl)" />
   <path class="dg-arrow" d="M842 480 L900 480 L900 484" />
   <path class="dg-arrow" d="M842 632 L900 632 L900 480" />
-  <path class="dg-arrow" d="M900 484 C900 200 760 60 528 62" marker-end="url(#dgArrow)" />
+  <path class="dg-arrow" d="M900 484 C900 200 760 60 528 62" marker-end="url(#diagram-notificatiedienst-pijl)" />
 
   <!-- Ondernemer of burger -->
   <g>

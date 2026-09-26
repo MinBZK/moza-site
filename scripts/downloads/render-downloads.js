@@ -315,10 +315,11 @@ function metDiagrammen(markdown, diagrammen) {
 
   for (const diagram of diagrammen) {
     if (diagram.soort !== "getekend") continue;
-    uit = uit.replace(
-      `![](/${diagram.bron})`,
-      `![](${diagram.png ?? diagram.bron})${afmeting(diagram)}`
+    // De verwijzing is een pad of een volledige URL, afhankelijk van de uitvoer.
+    const verwijzing = new RegExp(
+      `!\\[\\]\\([^)]*${diagram.bron.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\)`
     );
+    uit = uit.replace(verwijzing, `![](${diagram.png ?? diagram.bron})${afmeting(diagram)}`);
   }
 
   return uit;

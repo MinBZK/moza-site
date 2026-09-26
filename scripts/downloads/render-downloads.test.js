@@ -137,3 +137,59 @@ test(
     }
   }
 );
+
+// Een diagram staat in de Markdown als mermaid-broncode. In de ODT hoort de
+// gerenderde plaat te staan, met naam en beschrijving in de ODF-metadata.
+test(
+  "render-downloads zet een diagram als afbeelding met naam en beschrijving in de .odt",
+  { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
+  () => {
+    const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    try {
+      const pageDir = join(root, "onderwerpen", "diagram");
+      mkdirSync(pageDir, { recursive: true });
+      mkdirSync(join(root, "images", "render"), { recursive: true });
+
+      writeFileSync(
+        join(root, "images", "render", "proef-light.svg"),
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">' +
+          '<rect width="400" height="100" fill="#eef" /></svg>'
+      );
+      writeFileSync(
+        join(pageDir, "index.html"),
+        "<!doctype html><html lang=nl><head><meta charset=utf-8><title>Diagram</title></head>" +
+          "<body><main><article><h1>Diagram</h1>" +
+          '<div class="mermaid-diagram">' +
+          '<img class="mermaid-img mermaid-img--light" src="/images/render/proef-light.svg?v=1"' +
+          ' alt="Korte naam" width="400" height="100">' +
+          '<p class="mermaid-beschrijving visually-hidden">Lange beschrijving van het diagram.</p>' +
+          "</div></article></main></body></html>"
+      );
+      writeFileSync(
+        join(pageDir, "index.pandoc.md"),
+        "---\ntitle: Diagram\n---\n\n# Diagram\n\n```mermaid\nflowchart LR\n  accTitle: Korte naam\n  A --> B\n```\n"
+      );
+      writeFileSync(
+        join(root, "download.json"),
+        JSON.stringify([
+          { relPermalink: "/onderwerpen/diagram/", name: "diagram", title: "Diagram" },
+        ])
+      );
+
+      execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], {
+        stdio: "pipe",
+      });
+
+      const odt = join(pageDir, "diagram.odt");
+      const inhoud = execFileSync("unzip", ["-p", odt, "content.xml"]).toString("utf-8");
+      const bestanden = execFileSync("unzip", ["-l", odt]).toString("utf-8");
+
+      assert.match(inhoud, /<svg:title>Korte naam<\/svg:title>/);
+      assert.match(inhoud, /<svg:desc>Lange beschrijving van het diagram\.<\/svg:desc>/);
+      assert.doesNotMatch(inhoud, /flowchart LR/, "de mermaid-broncode hoort eruit te zijn");
+      assert.match(bestanden, /Pictures\/0\.png/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+);

@@ -13,7 +13,8 @@ tmp
 
 # Secrets / environment
 .env
-.env.local
+.env.*
+!.env.example
 
 # Python (moza-weekly script)
 __pycache__/

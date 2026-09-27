@@ -9,6 +9,7 @@ import {
   checkDiagramAlt,
   checkContentImageAlt,
   checkDiagramBeschrijving,
+  checkVoetnootRol,
   presentatieSoort,
 } from "./regels.js";
 
@@ -93,6 +94,24 @@ test("diagram-beschrijving: een lege beschrijving wordt gemeld", () => {
     '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +
     '<p class="mermaid-beschrijving visually-hidden"> </p></div>';
   assert.match(checkDiagramBeschrijving(html)[0], /lege beschrijving/);
+});
+
+test("voetnoten: een blok zonder doc-endnotes-rol levert geen bevindingen", () => {
+  const html = '<div class="footnotes"><hr><ol><li id="fn:1"><p>Noot.</p></li></ol></div>';
+  assert.deepEqual(checkVoetnootRol(html), []);
+});
+
+test("voetnoten: de rol wordt ook zonder aanhalingstekens gemeld (geminificeerd)", () => {
+  const html = '<div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>Noot.</p></li></ol></div>';
+  assert.equal(checkVoetnootRol(html).length, 1);
+});
+
+test("voetnoten: de doc-endnotes-rol van Goldmark wordt gemeld", () => {
+  const html =
+    '<div class="footnotes" role="doc-endnotes"><hr><ol><li id="fn:1"><p>Noot.</p></li></ol></div>';
+  const findings = checkVoetnootRol(html);
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /inhoud\.html/);
 });
 
 test("collectRoutes vindt elke map met index.html, plus losse HTML in de root", () => {

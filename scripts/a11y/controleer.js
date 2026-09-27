@@ -15,6 +15,7 @@ import {
   checkDiagramAlt,
   checkContentImageAlt,
   checkDiagramBeschrijving,
+  checkVoetnootRol,
 } from "./regels.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || join("tmp", "public"));
@@ -41,6 +42,7 @@ function main() {
         ...checkDiagramAlt(html),
         ...checkContentImageAlt(html),
         ...checkDiagramBeschrijving(html),
+        ...checkVoetnootRol(html),
       ]),
     ];
 

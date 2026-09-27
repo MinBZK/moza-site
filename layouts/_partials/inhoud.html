@@ -1,0 +1,8 @@
+{{- /* De gerenderde paginainhoud, met de correcties die Goldmark zelf niet
+       toelaat: er is geen render hook voor voetnoten, en de opmaak van dat blok
+       is in Goldmark hardgecodeerd.
+
+       Voetnoten: role="doc-endnotes" erft van list en eist lijstitems, terwijl
+       er een <hr> en een <ol> in staan. De rol op de <ol> zetten helpt niet,
+       want dan gelden de <li>'s niet meer als lijstitem. */ -}}
+{{- . | replaceRE `(<div class="footnotes")\s+role="doc-endnotes"` "$1" | safeHTML -}}

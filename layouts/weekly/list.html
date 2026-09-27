@@ -14,7 +14,7 @@
 
 <section class="article-layout">
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ partial "inhoud.html" .Content }}
 
   {{ range .RegularPagesRecursive.ByDate.Reverse }}
   <article class="box">

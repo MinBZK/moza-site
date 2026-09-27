@@ -2,7 +2,7 @@
 
 /**
  * Schrijft de site-iconen als SVG-bestanden uit de icoonregistry van het NLDD
- * Design System naar static/images/icons/, en bouwt daaruit de favicon en het
+ * Designsysteem naar static/images/icons/, en bouwt daaruit de favicon en het
  * touch-icon. De partial icon.html en de CSS blijven op de bestandsnamen
  * werken.
  *

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Genereert assets/css/nldd-primitives.css uit het NLDD Design System.
+ * Genereert assets/css/nldd-primitives.css uit het NLDD Designsysteem.
  *
  * Neemt de kleurschalen en de typografieschaal (font-size, line-height)
  * over die de site gebruikt en voegt een eigen

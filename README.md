@@ -52,7 +52,7 @@ Voor het ophalen van Mattermost-input als basis voor een Weekly, zie [`scripts/m
 
 ### Presentatie
 
-Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Design System](https://nederlandsedigitaledienst.github.io/design-system/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).
+Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Designsysteem](https://nederlandsedigitaledienst.github.io/design-system/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).
 
 Maak een nieuwe presentatie:
 
@@ -99,7 +99,7 @@ Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
 
 ### Kleuren
 
-Kleuren, iconen, de favicon en het touch-icon komen uit het [NLDD Design System](https://github.com/NederlandseDigitaleDienst/design-system), uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
+Kleuren, iconen, de favicon en het touch-icon komen uit het [NLDD Designsysteem](https://github.com/NederlandseDigitaleDienst/design-system), uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
 
 ```bash
 just nldd
@@ -191,7 +191,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 
 ## Credits
 
-- Kleuren, font en iconen: [NLDD Design System](https://github.com/NederlandseDigitaleDienst/design-system) (EUPL-1.2 licentie)
+- Kleuren, font en iconen: [NLDD Designsysteem](https://github.com/NederlandseDigitaleDienst/design-system) (EUPL-1.2 licentie)
 - Font: RijksSans is auteursrechtelijk beschermd door de Staat der Nederlanden en valt niet onder de licentie van deze repository. Het is uitsluitend bestemd voor publicaties van de Rijksoverheid of voor werk in opdracht van de Rijksoverheid; zie de [gebruiksvoorwaarden typografie](https://www.rijkshuisstijl.nl/basiselementen/typografie/gebruiksvoorwaarden-typografie). RijksSans komt uit het NLDD-pakket, zie daar [NOTICES.md](https://github.com/NederlandseDigitaleDienst/design-system/blob/main/NOTICES.md).
 - Diagrammen: [Mermaid](https://mermaid.js.org/) (MIT licentie)
 - Zoeken: [Fuse.js](https://www.fusejs.io/) (Apache 2.0 licentie)

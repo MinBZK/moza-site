@@ -18,7 +18,7 @@ node-deps:
 test: node-deps
     npm test
 
-# Schrijf alles wat uit het NLDD Design System komt opnieuw weg (na een upgrade van het pakket)
+# Schrijf alles wat uit het NLDD Designsysteem komt opnieuw weg (na een upgrade van het pakket)
 nldd: nldd-tokens nldd-iconen
 
 # Genereer alleen de kleurprimitives

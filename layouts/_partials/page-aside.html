@@ -6,6 +6,11 @@
          (dict "page" . "showToc" false)   bv. nieuwsbericht (geen inhoudsopgave) */ -}}
 {{- $p := .page -}}
 {{- $toc := $p.TableOfContents -}}
+{{- /* De voetnotenkop komt uit inhoud.html en zit dus niet in de
+       inhoudsopgave die Hugo uit de Markdown bouwt. */ -}}
+{{- if strings.Contains $p.Content `class="footnotes"` -}}
+  {{- $toc = $toc | replaceRE `(?s)</ul>\s*</nav>` "<li><a href=\"#voetnoten\">Voetnoten</a></li>\n  </ul>\n</nav>" | safeHTML -}}
+{{- end -}}
 {{- $hasToc := and .showToc $toc (ne $p.Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
 {{- $hasDownload := eq $p.Params.download true -}}
 {{- $hasLinks := $p.Params.relevante_links -}}

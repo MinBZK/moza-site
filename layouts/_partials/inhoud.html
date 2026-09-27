@@ -2,7 +2,10 @@
        toelaat: er is geen render hook voor voetnoten, en de opmaak van dat blok
        is in Goldmark hardgecodeerd.
 
-       Voetnoten: role="doc-endnotes" erft van list en eist lijstitems, terwijl
-       er een <hr> en een <ol> in staan. De rol op de <ol> zetten helpt niet,
-       want dan gelden de <li>'s niet meer als lijstitem. */ -}}
-{{- . | replaceRE `(<div class="footnotes")\s+role="doc-endnotes"` "$1" | safeHTML -}}
+       role="doc-endnotes" erft van list en eist lijstitems, terwijl er een <hr>
+       en een <ol> in staan. De rol op de <ol> zetten helpt niet, want dan
+       gelden de <li>'s niet meer als lijstitem. In plaats daarvan krijgt het
+       blok een kop, zodat het ook een naam heeft. De kop staat hier en niet in
+       de Markdown, dus page-aside.html moet hem apart aan de inhoudsopgave
+       toevoegen. */ -}}
+{{- . | replaceRE `(<div class="footnotes")\s+role="doc-endnotes"(>\s*<hr\s*/?>)` `${1}${2}<h2 id="voetnoten">Voetnoten</h2>` | safeHTML -}}

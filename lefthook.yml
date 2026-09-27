@@ -1,5 +1,7 @@
 pre-commit:
   commands:
+    rapport-versie:
+      run: npm run --silent rapport-versie
     hugo-build:
       run: rm -rf public && hugo --minify --logLevel warn
     htmltest:

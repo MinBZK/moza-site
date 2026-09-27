@@ -37,7 +37,7 @@ body {
 /* Header — drie kolommen: titel links, logo midden, meta rechts. Logo zit
  * ín het witte vlak met de bovenkant rakend aan de bovenkant van de card
  * (padding-top: 0); tekst staat top-aligned naast het logo. Rijkslogo bron:
- * github.com/MinBZK/storybook → src/components/navigation/top-navigation-bar/logo.svg */
+ * github.com/NederlandseDigitaleDienst/design-system → src/components/navigation/top-navigation-bar/logo.svg */
 .header {
   background: var(--rapport-surface);
   border-radius: 14px;

@@ -76,7 +76,7 @@
   {{- with $beschrijving }}
   <p class="mermaid-beschrijving visually-hidden">{{ . }}</p>
   {{- end }}
-  <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg">
+  <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" data-tooltip="Download als afbeelding">
     {{- partial "icon.html" "download" -}}
     <span class="visually-hidden">Download als afbeelding</span>
   </a>

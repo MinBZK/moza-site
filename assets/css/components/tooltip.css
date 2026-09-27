@@ -1,0 +1,34 @@
+/* Eigen tooltip (tooltip.js). De browser-tooltip uit `title` is niet met het
+   toetsenbord te bereiken, niet aanwijsbaar en niet te sluiten; deze wel, zoals
+   1.4.13 vraagt. */
+.tooltip {
+  position: fixed;
+  z-index: 40;
+  max-width: 16rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  /* Overbrugt de ruimte tussen knop en ballon, zodat de aanwijzer er zonder
+     tussenstap naartoe kan. */
+  margin-top: 0;
+}
+
+.tooltip[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tooltip {
+    animation: tooltip-in 120ms ease-out;
+  }
+}
+
+@keyframes tooltip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

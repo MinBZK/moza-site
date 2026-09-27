@@ -34,7 +34,7 @@
   {{- partial "page-aside.html" (dict "page" . "showToc" true) }}
   <div class="artikel-tekst">
   {{ partial "lead-image.html" . }}
-  {{ .Content }}
+  {{ partial "inhoud.html" .Content }}
   {{- if gt $navCount 1 -}}
   <footer>
     {{- $isFirst := eq $currentIdx 0 -}}

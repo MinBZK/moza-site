@@ -2,7 +2,7 @@
 <section class="sidebar-layout-right">
   <div>
     <h1>{{ .Title }}</h1>
-    {{ .Content }}
+    {{ partial "inhoud.html" .Content }}
 
     {{/* Nieuwsberichten */}}
     {{ with .RegularPages }}
@@ -44,7 +44,7 @@
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
       </header>
       <div class="content">
-        {{ .Content }}
+        {{ partial "inhoud.html" .Content }}
       </div>
     </article>
     {{ end }}

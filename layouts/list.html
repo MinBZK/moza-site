@@ -4,7 +4,7 @@
 {{ else }}
 <section>
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ partial "inhoud.html" .Content }}
   {{ with .Pages.ByWeight }}
   {{ partial "card-grid.html" . }}
   {{ end }}

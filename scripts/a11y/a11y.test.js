@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { collectRoutes } from "./routes.js";
+import { checkLayouts } from "./layouts.js";
 import {
   checkHeadingOrder,
   checkDiagramAlt,
@@ -112,6 +114,48 @@ test("voetnoten: de doc-endnotes-rol van Goldmark wordt gemeld", () => {
   const findings = checkVoetnootRol(html);
   assert.equal(findings.length, 1);
   assert.match(findings[0], /inhoud\.html/);
+});
+
+test("layouts: elke paginatemplate stuurt .Content door inhoud.html", () => {
+  const layouts = fileURLToPath(new URL("../../layouts", import.meta.url));
+  assert.deepEqual(checkLayouts(layouts), []);
+});
+
+test("layouts: een template die .Content rechtstreeks uitvoert wordt gemeld", () => {
+  const root = mkdtempSync(join(tmpdir(), "moza-layouts-"));
+  writeFileSync(join(root, "list.html"), '{{ define "main" }}{{ .Content }}{{ end }}');
+  const findings = checkLayouts(root);
+  rmSync(root, { recursive: true, force: true });
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /inhoud\.html/);
+});
+
+test("layouts: een template die de partial gebruikt levert geen bevinding", () => {
+  const root = mkdtempSync(join(tmpdir(), "moza-layouts-"));
+  writeFileSync(join(root, "list.html"), '{{ partial "inhoud.html" .Content }}');
+  const findings = checkLayouts(root);
+  rmSync(root, { recursive: true, force: true });
+  assert.deepEqual(findings, []);
+});
+
+test("layouts: .Content in een voorwaarde wordt gelezen, niet uitgevoerd", () => {
+  const root = mkdtempSync(join(tmpdir(), "moza-layouts-"));
+  writeFileSync(
+    join(root, "aside.html"),
+    '{{ if strings.Contains $p.Content `class="footnotes"` }}{{ end }}',
+  );
+  const findings = checkLayouts(root);
+  rmSync(root, { recursive: true, force: true });
+  assert.deepEqual(findings, []);
+});
+
+test("layouts: .Content in een shortcode telt niet als paginainhoud", () => {
+  const root = mkdtempSync(join(tmpdir(), "moza-layouts-"));
+  mkdirSync(join(root, "_shortcodes"));
+  writeFileSync(join(root, "_shortcodes", "label.html"), "{{ $svg.Content }}");
+  const findings = checkLayouts(root);
+  rmSync(root, { recursive: true, force: true });
+  assert.deepEqual(findings, []);
 });
 
 test("collectRoutes vindt elke map met index.html, plus losse HTML in de root", () => {

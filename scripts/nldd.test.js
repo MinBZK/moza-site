@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { relative, resolve } from "node:path";
 import { generate as generateTokens } from "./nldd-tokens.js";
-import { generate as generateIconen, generateRaster, copies, FAVICON_ICO } from "./nldd-iconen.js";
+import { generate as generateIconen, generateRaster, FAVICON_ICO } from "./nldd-iconen.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const kort = (path) => relative(ROOT, path);
@@ -22,12 +22,6 @@ describe("gegenereerde NLDD-bestanden zijn bijgewerkt", () => {
   for (const [path, verwacht] of Object.entries(tekstbestanden)) {
     it(kort(path), () => {
       assert.equal(readFileSync(path, "utf-8"), verwacht, `${kort(path)} is verouderd, draai \`just nldd\``);
-    });
-  }
-
-  for (const [target, source] of Object.entries(copies())) {
-    it(kort(target), () => {
-      assert.deepEqual(readFileSync(target), readFileSync(source), `${kort(target)} is verouderd, draai \`just nldd\``);
     });
   }
 

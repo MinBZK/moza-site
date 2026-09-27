@@ -2,8 +2,8 @@
 
 /**
  * Schrijft de site-iconen als SVG-bestanden uit de icoonregistry van het NLDD
- * Design System naar static/images/icons/, en kopieert favicon en touch-icon
- * uit het pakket. De partial icon.html en de CSS blijven op de bestandsnamen
+ * Design System naar static/images/icons/, en bouwt daaruit de favicon en het
+ * touch-icon. De partial icon.html en de CSS blijven op de bestandsnamen
  * werken.
  *
  * Bestanden die niet in ICONS staan (zoals de bestandstype-iconen waar NLDD
@@ -12,7 +12,7 @@
  * Gebruik: just nldd
  */
 
-import { copyFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import puppeteer from "puppeteer";
@@ -33,11 +33,6 @@ const ICONS = {
   "chevron-down": { name: "chevron-down", class: "icon-expand" },
 };
 
-// Bestanden die het pakket kant-en-klaar meelevert
-const FILES = {
-  "touch-icon.png": join(ROOT, "static", "touch-icon.png"),
-};
-
 // Afronding zoals regelrecht.rijks.app: scheidt de tegel van de tabbladbalk
 const FAVICON = { name: "centralized-structure", fill: 72, radius: 200 };
 const FAVICON_TILE = 1024;
@@ -47,6 +42,8 @@ const FAVICON_PNG = [192];
 // Browsers vragen /favicon.ico ook op zonder link in de pagina; zonder bestand
 // geeft dat een 404 en houdt Safari het tabblad leeg.
 const FAVICON_ICO = [16, 32, 48];
+// iOS rondt de hoeken van een touch-icon zelf af, dus een vol vierkant
+const TOUCH_ICON = { radius: 0, maat: 180 };
 
 async function loadRegistry() {
   const iconDir = dirname(fileURLToPath(import.meta.resolve("@nldd/design-system/icon")));
@@ -143,11 +140,6 @@ function toIco(pngs) {
   return Buffer.concat([kop, ...index, ...maten.map((maat) => pngs[maat])]);
 }
 
-// dist/ ligt drie mappen boven de icon-map; package.json zelf is niet geëxporteerd
-function distDir() {
-  return resolve(dirname(fileURLToPath(import.meta.resolve("@nldd/design-system/icon"))), "..", "..", "..");
-}
-
 // Pad -> inhoud, zodat de test kan vergelijken zonder te schrijven
 async function generate() {
   const registry = await loadRegistry();
@@ -157,28 +149,30 @@ async function generate() {
     if (!svg) throw new Error(`NLDD-icoon "${name}" niet gevonden (voor ${file}.svg)`);
     files[join(OUTPUT_DIR, `${file}.svg`)] = toFile(svg, cls);
   }
-  const mark = registry.get(FAVICON.name);
-  if (!mark) throw new Error(`NLDD-icoon "${FAVICON.name}" niet gevonden (voor favicon.svg)`);
-  files[join(ROOT, "static", "favicon.svg")] = toFavicon(mark, await inktvlak(mark), FAVICON);
+  const mark = await favicon(registry);
+  files[join(ROOT, "static", "favicon.svg")] = toFavicon(mark.svg, mark.box, FAVICON);
   return files;
+}
+
+async function favicon(registry) {
+  const svg = registry.get(FAVICON.name);
+  if (!svg) throw new Error(`NLDD-icoon "${FAVICON.name}" niet gevonden (voor favicon.svg)`);
+  return { svg, box: await inktvlak(svg) };
 }
 
 // Pad -> binaire inhoud; los van generate() omdat de bytes per Chromium-versie
 // kunnen verschillen en de test ze daarom alleen op maat controleert.
 async function generateRaster() {
-  const svg = (await generate())[join(ROOT, "static", "favicon.svg")];
-  const png = await toPng(svg, [...new Set([...FAVICON_PNG, ...FAVICON_ICO])]);
+  const mark = await favicon(await loadRegistry());
+  const png = await toPng(toFavicon(mark.svg, mark.box, FAVICON), [...new Set([...FAVICON_PNG, ...FAVICON_ICO])]);
   const files = Object.fromEntries(FAVICON_PNG.map((maat) => [join(ROOT, "static", `favicon-${maat}x${maat}.png`), png[maat]]));
   files[join(ROOT, "static", "favicon.ico")] = toIco(Object.fromEntries(FAVICON_ICO.map((maat) => [maat, png[maat]])));
+  const touch = toFavicon(mark.svg, mark.box, { ...FAVICON, radius: TOUCH_ICON.radius });
+  files[join(ROOT, "static", "touch-icon.png")] = (await toPng(touch, [TOUCH_ICON.maat]))[TOUCH_ICON.maat];
   return files;
 }
 
-// Pad -> bronbestand in het pakket, gekopieerd zoals het is
-function copies() {
-  return Object.fromEntries(Object.entries(FILES).map(([file, target]) => [target, join(distDir(), file)]));
-}
-
-export { ICONS, FAVICON_PNG, FAVICON_ICO, toFile, toFavicon, toIco, generate, generateRaster, copies };
+export { ICONS, FAVICON_PNG, FAVICON_ICO, toFile, toFavicon, toIco, generate, generateRaster };
 
 const isCLI = process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.dirname, "nldd-iconen.js");
 
@@ -190,9 +184,5 @@ if (isCLI) {
   for (const [path, content] of Object.entries(await generateRaster())) {
     writeFileSync(path, content);
     console.log(`  ${relative(ROOT, path)}`);
-  }
-  for (const [target, source] of Object.entries(copies())) {
-    copyFileSync(source, target);
-    console.log(`  ${relative(ROOT, target)}`);
   }
 }

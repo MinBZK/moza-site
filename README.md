@@ -99,7 +99,7 @@ Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
 
 ### Kleuren
 
-Kleuren, iconen, de favicon en het touch-icon komen uit het [NLDD Design System](https://github.com/MinBZK/storybook), uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
+Kleuren, iconen, de favicon en het touch-icon komen uit het [NLDD Design System](https://github.com/NederlandseDigitaleDienst/design-system), uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
 
 ```bash
 just nldd
@@ -191,7 +191,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 
 ## Credits
 
-- Kleuren, font en iconen: [NLDD Design System](https://github.com/MinBZK/storybook) (EUPL-1.2 licentie)
-- Font: RijksSans is auteursrechtelijk beschermd door de Staat der Nederlanden en valt niet onder de licentie van deze repository. Het is uitsluitend bestemd voor publicaties van de Rijksoverheid of voor werk in opdracht van de Rijksoverheid; zie de [gebruiksvoorwaarden typografie](https://www.rijkshuisstijl.nl/basiselementen/typografie/gebruiksvoorwaarden-typografie). RijksSans komt uit het NLDD-pakket, zie daar [NOTICES.md](https://github.com/MinBZK/storybook/blob/main/NOTICES.md).
+- Kleuren, font en iconen: [NLDD Design System](https://github.com/NederlandseDigitaleDienst/design-system) (EUPL-1.2 licentie)
+- Font: RijksSans is auteursrechtelijk beschermd door de Staat der Nederlanden en valt niet onder de licentie van deze repository. Het is uitsluitend bestemd voor publicaties van de Rijksoverheid of voor werk in opdracht van de Rijksoverheid; zie de [gebruiksvoorwaarden typografie](https://www.rijkshuisstijl.nl/basiselementen/typografie/gebruiksvoorwaarden-typografie). RijksSans komt uit het NLDD-pakket, zie daar [NOTICES.md](https://github.com/NederlandseDigitaleDienst/design-system/blob/main/NOTICES.md).
 - Diagrammen: [Mermaid](https://mermaid.js.org/) (MIT licentie)
 - Zoeken: [Fuse.js](https://www.fusejs.io/) (Apache 2.0 licentie)

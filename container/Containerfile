@@ -40,7 +40,7 @@ RUN npm run og-cards
 RUN rm public/download.json public/og.json
 
 
-FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:307ca0bded4dda86dade6f5bd2a2551601bec9bac3fd73a21613fabcd9eca66a
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:e28dcf0a161ddcbf228c7364b4a14f9bad4763ae8f5317c437b896afa3df4b84
 
 COPY --from=builder /app/public /usr/share/nginx/html
 COPY container/nginx.conf /etc/nginx/nginx.conf

@@ -1,0 +1,50 @@
+/* Opmaak die alleen voor deze presentatie geldt: de demodia, de navigatiestappen en de lessen.
+   De algemene opmaak staat in assets/css/nldd-deck.css. */
+
+/* ---------- Demo: screenshot die de demo opent ---------- */
+
+.demo { display: grid; grid-template-columns: 1fr 34cqw; gap: 3cqw; align-items: center; }
+.demo-shot { display: block; border-radius: 1cqw; outline-offset: 0.4cqw; }
+.demo-shot img { display: block; width: 100%; height: auto; }
+.demo-shot:focus-visible { outline: 0.3cqw solid var(--accent); }
+.demo-side { display: flex; flex-direction: column; gap: 1.8cqw; align-items: flex-start; }
+.demo-side .lead { margin: 0; font-size: 1.55cqw; }
+.demo-steps { display: grid; gap: 1.2cqw; margin: 0; padding: 0; list-style: none; font-size: 1.35cqw; line-height: 1.45; }
+.demo-steps li { display: flex; align-items: flex-start; gap: 1cqw; }
+.demo-steps .ic { font-size: 2cqw; flex: none; }
+.demo-note { font-size: 1.1cqw; color: var(--ink-55); margin: 0; }
+
+/* ---------- Navigeren: de stap waar we nu staan ---------- */
+
+.flow-step-now { border-color: var(--accent); background: var(--ink-10); }
+/* Stap die we nog onderzoeken: gestippeld, want die staat nog niet vast */
+.flow-step-maybe { border-style: dashed; background: transparent; }
+/* In presentatiemodus kleurt de deck de stap waar je bent geel. Hier betekent
+   geel "waar we nu staan", dus alleen stap 2 houdt de rand. */
+.flow-step.is-current:not(.flow-step-now) { border-color: var(--ink-18); background: var(--ink-06); }
+/* Ruimte voor een kop over twee regels, zodat de punten in alle stappen op één lijn beginnen */
+.flow-step h3 { min-height: 2.3em; }
+.flow-points { display: grid; gap: 0.5cqw; margin: 0; padding-left: 1.4cqw; font-size: 1.4cqw; line-height: 1.4; }
+.flow-points li::marker { color: var(--accent); }
+/* Label met datum in de kleur van de overline: in grijs was het te slecht leesbaar */
+.flow-kicker { font-size: 1.05cqw; color: var(--accent); }
+
+/* ---------- Geleerde lessen: zes kaarten, drie per rij ---------- */
+
+.lessons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4cqw 1.6cqw; margin: 2cqw 0 0; padding: 0; list-style: none; }
+.lessons .card { display: grid; grid-template-columns: 2.4cqw 1fr; column-gap: 1cqw; align-content: start; padding: 1.5cqw 1.8cqw; }
+.lesson-num { grid-row: 1 / 3; font-size: 2.4cqw; font-weight: 700; line-height: 1; color: var(--accent); }
+/* Ruimte voor een kop over twee regels, zodat de tekst in alle kaarten op dezelfde hoogte begint */
+.lessons h3 { margin: 0 0 0.5cqw; font-size: 1.6cqw; line-height: 1.15; min-height: 2.3em; }
+.lessons p { font-size: 1.2cqw; }
+/* Presentatiemodus: alleen de les die net verschijnt staat vol in beeld. De lege
+   stap 7 (step-marker) is de slotstap waarin geen les actief is en alles weer
+   vol zichtbaar staat. */
+.is-presenting .lessons:has(.is-current) .card.is-shown:not(.is-current) { opacity: 0.35; }
+
+/* Probleemdia: net kleiner dan een gewone statement, zodat de zin over de
+   Mijn-omgevingen op één regel past */
+.statement-compact { font-size: 4cqw; }
+
+/* Houdt een woord met streepje bij elkaar op één regel */
+.nowrap { white-space: nowrap; }

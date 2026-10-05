@@ -204,6 +204,7 @@ strong { font-weight: 700; color: var(--ink); }
 .deck-footer .disclaimer strong { color: var(--ink-72); font-weight: 600; }
 .deck-footer .hints { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
 .deck-footer .counter { font-variant-numeric: tabular-nums; }
+.print-footer { display: none; }
 
 .deck-close { position: fixed; top: 0.75rem; right: 1rem; z-index: 10; color: var(--ink-72); }
 
@@ -284,4 +285,6 @@ strong { font-weight: 700; color: var(--ink); }
   }
   [data-step] { opacity: 1 !important; }
   .deck-footer, .progress, .deck-close { display: none !important; }
+  .print-footer { position: absolute; bottom: 0.8cqw; left: 1.3cqw; display: block; font-size: 0.9cqw; color: var(--ink-55); }
+  .print-footer strong { color: var(--ink-72); font-weight: 600; }
 }

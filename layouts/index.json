@@ -46,7 +46,8 @@
     {{- if hasPrefix .RelPermalink "/documenten/presentaties/" -}}
       {{- $rawContent := .RawContent -}}
       {{- $parts := split $rawContent "<section" -}}
-      {{- $hIndex := 0 -}}
+      {{- /* Reveal.js telt dia's vanaf 0 (#/0), nldd-deck vanaf 1, gelijk aan de teller */ -}}
+      {{- $hIndex := cond (eq .Layout "nldd-deck") 1 0 -}}
       {{- $vIndex := -1 -}}
       {{- $depth := 0 -}}
       {{- range $i, $part := $parts -}}

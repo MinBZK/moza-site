@@ -25,7 +25,7 @@ Voorbeeld om van te leren: `content/documenten/presentaties/beproeving-federatie
 - **Kleine schermen** (tot 900px breed of 500px hoog) tonen alle dia's onder elkaar met een scheidingslijn, en de footer alleen onderaan. Elke dia houdt zijn 16:9-vorm en schaalt mee; voor details zoom je in. Bouw geen aparte mobiele opmaak: een herschikte dia verliest het verhaal. Wat wel moet: alles in `cqw` houden, want vaste maten schalen niet mee. NLDD-componenten hebben vaste maten; het script zet `nldd-button` in een dia daarom op kleine schermen op `size="xs"`.
 - **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Daarin zie je alleen de dia, de disclaimer en de voortgangsbalk; vorige en volgende verschijnen bij muisbeweging. Een link met `?presentatie` opent direct in presentatiemodus en toont de toetsen tot de eerste toets.
 - Op een aanraakscherm blader je door horizontaal te vegen.
-- Het adres van een dia is `#/0`, `#/1`, enzovoort (telt vanaf 0, net als de zoekindex).
+- Het adres van een dia is `#/1`, `#/2`, enzovoort, gelijk aan de teller. De oudere Reveal.js-presentaties tellen vanaf `#/0`; de zoekindex houdt daar rekening mee.
 
 ## Een dia
 

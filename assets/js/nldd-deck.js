@@ -7,6 +7,18 @@ import "@nldd/design-system/keyboard-shortcut";
 
 (() => {
   const slides = [...document.querySelectorAll(".slide")];
+
+  // Een fixed footer zet de browser bij printen maar op één pagina. Daarom krijgt
+  // elke dia een eigen kopie, die alleen in de printweergave zichtbaar is.
+  const disclaimer = document.querySelector(".deck-footer .disclaimer");
+  if (disclaimer) {
+    slides.forEach((slide) => {
+      const copy = disclaimer.cloneNode(true);
+      copy.className = "print-footer";
+      copy.setAttribute("aria-hidden", "true");
+      slide.append(copy);
+    });
+  }
   const counter = document.getElementById("counter");
   const progress = document.getElementById("progress");
   const announce = document.getElementById("announce");

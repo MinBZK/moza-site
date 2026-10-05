@@ -163,7 +163,7 @@ async function toetsNlddDeck(page, baseUrl, route) {
   await page.addScriptTag({ path: AXE });
   const aantal = await page.evaluate(() => document.querySelectorAll(".slide").length);
   for (let n = 0; n < aantal; n++) {
-    await page.evaluate((i) => { location.hash = `#/${i}`; }, n);
+    await page.evaluate((i) => { location.hash = `#/${i + 1}`; }, n);
     await page.waitForFunction((i) => !document.querySelectorAll(".slide")[i].hidden, { timeout: 5000 }, n);
     const overtredingen = await page.evaluate(
       async (i, tags) => {

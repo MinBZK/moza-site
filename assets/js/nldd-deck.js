@@ -37,10 +37,11 @@ import "@nldd/design-system/keyboard-shortcut";
   // data-start: met welke stap een dia opent in presentatiemodus
   const minStep = (slide) => (presenting ? Number(slide.dataset.start ?? 0) : maxStep(slide));
 
-  // #/3 telt vanaf 0, net als Reveal.js en de zoekindex van de site
+  // #/1 is de eerste dia, gelijk aan de teller. Reveal.js telt vanaf 0; de
+  // zoekindex (layouts/index.json) houdt per layout rekening met dat verschil.
   const indexFromHash = () => {
     const match = location.hash.match(/^#\/(\d+)/);
-    return match ? Number(match[1]) : -1;
+    return match ? Number(match[1]) - 1 : -1;
   };
 
   let index = slides[indexFromHash()] ? indexFromHash() : 0;
@@ -83,7 +84,7 @@ import "@nldd/design-system/keyboard-shortcut";
     progress.style.width = `${((index + 1) / slides.length) * 100}%`;
     document.querySelectorAll("[data-prev]").forEach((b) => { b.disabled = index === 0 && step === minStep(slide); });
     document.querySelectorAll("[data-next]").forEach((b) => { b.disabled = index === slides.length - 1 && step === maxStep(slide); });
-    history.replaceState(null, "", `${presenting ? "?presentatie" : location.pathname}#/${index}`);
+    history.replaceState(null, "", `${presenting ? "?presentatie" : location.pathname}#/${index + 1}`);
   }
 
   function setMode(on) {

@@ -1,0 +1,121 @@
+---
+title: "Van demo naar realisatie"
+description: "Een demo van het federatief berichtenstelsel, hoe MOZa met Logius de notificatiedienst naar productie brengt, en zes lessen die we hebben opgedaan."
+date: 2026-10-01
+layout: nldd-deck
+disclaimer: Het federatief berichtenstelsel en de notificatiedienst zijn in ontwikkeling.
+---
+<!-- 1. Titel -->
+<section class="slide" aria-roledescription="dia" aria-label="Titel">
+  <p class="overline">MijnOverheid Zakelijk · 1 oktober 2026</p>
+  <h1 class="title title-hero">Van demo naar realisatie</h1>
+  <p class="lead lead-hero">Wat we leren, en hoe we het willen aanpakken</p>
+</section>
+
+<!-- 2. Het probleem -->
+<section class="slide" aria-roledescription="dia" aria-label="Hoe het nu gaat">
+  <p class="overline">Voor de ondernemer: nu</p>
+  <h2 class="title statement statement-compact">
+    <span>Veel gaat nog per <strong>post</strong></span>
+    <span>Ondernemers worden <strong>onvoldoende</strong> digitaal geïnformeerd over belangrijke zaken</span>
+    <span>Wie niet in <strong class="nowrap">tientallen Mijn-omgevingen</strong> kijkt, mist iets</span>
+  </h2>
+</section>
+
+<!-- 3. Demo -->
+<section class="slide" aria-roledescription="dia" aria-label="Demo">
+  <p class="overline">Demo's, geen memo's</p>
+  <h2 class="title">Het federatief berichtenstelsel in actie</h2>
+  <div class="demo">
+    <a class="demo-shot" href="https://democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl/" target="_blank">
+      <img src="images/demo-berichtenbox.png" alt="De democonsole: links de Berichtenbox op MijnOverheid Zakelijk met 127 berichten uit 14 bronnen, rechts de demo-bediening met magazijnen, persona's en storingen.">
+    </a>
+    <div class="demo-side">
+      <p class="lead">Links het portaal zoals de ondernemer het ziet. Rechts de bediening van de demo.</p>
+      <ul class="demo-steps">
+        <li><span class="ic"><nldd-icon name="tray"></nldd-icon></span><span>Berichten uit echte en gesimuleerde magazijnen</span></li>
+        <li><span class="ic"><nldd-icon name="bell"></nldd-icon></span><span>Een nieuw bericht tijdens het inloggen, inclusief een seintje via een e-mail</span></li>
+        <li><span class="ic"><nldd-icon name="cylinder-split-slash"></nldd-icon></span><span>Is een magazijn traag of valt het uit? Dan krijgt de ondernemer een melding en ziet de rest van de berichten gewoon.</span></li>
+      </ul>
+      <nldd-button variant="inherit-filled" size="lg" text="Open de demo" end-icon="square-arrow-right-top" href="https://democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl/" target="_blank"></nldd-button>
+      <p class="demo-note">De demo opent in een nieuw tabblad. Sluit dat tabblad om terug te gaan naar de presentatie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Hoe we erdoorheen navigeren -->
+<section class="slide" data-start="1" aria-roledescription="dia" aria-label="Hoe we erdoorheen navigeren">
+  <p class="overline">Notificatiedienst</p>
+  <h2 class="title">Hoe we erdoorheen navigeren</h2>
+  <ol class="flow">
+    <li class="flow-step" data-step="1">
+      <div class="flow-top"><span class="ic"><nldd-icon name="point-bottom-left-to-point-top-right-s-curve-path"></nldd-icon></span><span class="flow-num">1</span></div>
+      <span class="ic flow-arrow" aria-hidden="true"><nldd-icon name="arrow-right"></nldd-icon></span>
+      <span class="flow-kicker">De gewone weg · 2025</span>
+      <h3>Logius realiseert, MOZa helpt</h3>
+      <ul class="flow-points">
+        <li>Logius bouwt en beheert</li>
+        <li>MOZa helpt op de achtergrond, met prototypes</li>
+        <li>Het lukt, maar het kost jaren</li>
+      </ul>
+    </li>
+    <li class="flow-step flow-step-now" data-step="2">
+      <div class="flow-top"><span class="ic"><nldd-icon name="screwdriver-wrench"></nldd-icon></span><span class="flow-num">2</span></div>
+      <span class="flow-kicker">Wat we nu doen · januari 2026</span>
+      <h3>Logius realiseert, MOZa ontwikkelt onderdelen</h3>
+      <ul class="flow-points">
+        <li>Samen met het Logius-team</li>
+        <li>Nieuwe componenten in productie brengen kost veel tijd</li>
+        <li>Nog veel onbekenden: risico op de valley of death</li>
+      </ul>
+    </li>
+    <li class="flow-step flow-step-maybe" data-step="3">
+      <div class="flow-top"><span class="ic"><nldd-icon name="puzzle-piece"></nldd-icon></span><span class="flow-num">3</span></div>
+      <span class="flow-kicker">Wat we onderzoeken · september 2026</span>
+      <h3>MOZa realiseert de Notificatie Management Component</h3>
+      <ul class="flow-points">
+        <li>Betrouwbaar, veilig en binnen de kaders</li>
+        <li>Mogelijk op Fundament</li>
+        <li>Met Logius werken we uit hoe we dit samenbrengen</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<!-- 5. Geleerde lessen -->
+<section class="slide" data-start="1" aria-roledescription="dia" aria-label="Geleerde lessen">
+  <h2 class="title">Wat we hebben geleerd</h2>
+  <ol class="lessons">
+    <li class="card" data-step="1">
+      <span class="lesson-num">1</span>
+      <h3>Het team maakt het tempo</h3>
+      <p>Kleine teams met een product owner en een techlead. Een eigen aanpak per fase en moderne tools, waaronder AI bij het programmeren. Ingericht om snel en iteratief samen te werken met overheden.</p>
+    </li>
+    <li class="card" data-step="2">
+      <span class="lesson-num">2</span>
+      <h3>Prototypes versnellen het gesprek</h3>
+      <p>Door te laten zien, praten we sneller over de inhoud en halen we kinderziektes er vroeg uit. Maar een prototype is nog geen realisatie.</p>
+    </li>
+    <li class="card" data-step="3">
+      <span class="lesson-num">3</span>
+      <h3>Wat openbaar is, gaat snel</h3>
+      <p>FSC en LDV hadden we zo ingebouwd. Voor de afspraken uit 2018 over het federatief berichtenstelsel duurde het drie maanden, omdat de kennis bij mensen zit.</p>
+    </li>
+    <li class="card" data-step="4">
+      <span class="lesson-num">4</span>
+      <h3>De bestuurder moet aan het werk</h3>
+      <p>Commitment op papier is niet genoeg. Bestuurders moeten de organisatie echt aanjagen om een verandering voor elkaar te krijgen.</p>
+    </li>
+    <li class="card" data-step="5">
+      <span class="lesson-num">5</span>
+      <h3>Gebaande paden helpen</h3>
+      <p>Deze demo stond snel, omdat we zelf een gebaand pad naar ODC-Noord hebben gemaakt. Initieel kostte dat veel tijd, maar nu helpt het ons te versnellen.</p>
+    </li>
+    <li class="card" data-step="6">
+      <span class="lesson-num">6</span>
+      <h3>Anders durven werken, stap voor stap</h3>
+      <p>Wat eerder werkte, werkt nu niet meer. Dat vraagt lef om het echt anders te doen. Stap voor stap, samen met andere overheden.</p>
+    </li>
+  </ol>
+  <span class="step-marker" data-step="7" aria-hidden="true"></span>
+</section>

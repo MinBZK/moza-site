@@ -2,6 +2,8 @@
 title: "Berichten/FBS"
 description: "Alle berichten van de overheid lezen op de plek die op dat moment voor jou logisch is, als burger of ondernemer."
 weight: 6
+hide_tiles: true
+prev_next: true
 ---
 
 ## Waar werken we aan?
@@ -103,7 +105,7 @@ In de pilot doen we twee dingen:
 1. **Onze PoC testen.** We beproeven met de afnemers of de werking van de PoC standhoudt in de praktijk. Werken de afspraken in het stelsel? En wat is er nodig om aan te sluiten?
 2. **Route 2 verkennen: FSC voor burgers.** In deze route haalt het portaal de berichten rechtstreeks op bij de magazijnen, zonder uitvraagsysteem. De route is geïnspireerd op het [Vorderingenoverzicht Rijk](https://vorijk.nl/docs/introductie/). Dat stelsel is gemaakt voor burgers. Met dezelfde afnemers verkennen we of het ook werkt voor ondernemers.
 
-Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot.
+Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot. Meer over de opzet lees je op de pagina [Pilot Federatief Berichtenstelsel](/onderwerpen/berichten-fbs/pilot/).
 
 ## Doe mee
 

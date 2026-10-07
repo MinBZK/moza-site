@@ -96,7 +96,7 @@ Eind dit jaar starten we met een pilot. Samen met overheidsorganisaties die beri
 In de pilot doen we twee dingen:
 
 1. **Onze PoC testen.** We beproeven met de afnemers of de werking van de PoC standhoudt in de praktijk. Werken de afspraken in het stelsel? En wat is er nodig om aan te sluiten?
-2. **Route 2 verkennen.** Met dezelfde afnemers verkennen we een tweede route: berichten via FSC ook beschikbaar maken voor burgers. Zo kijken we of dezelfde federatieve aanpak werkt voor zowel ondernemers als burgers.
+2. **Route 2 verkennen: FSC voor burgers.** Deze route is geïnspireerd op het [Vorderingenoverzicht Rijk](https://vorijk.nl/docs/introductie/). Dat stelsel is gemaakt voor burgers. Met dezelfde afnemers verkennen we of het ook werkt voor ondernemers.
 
 Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot.
 

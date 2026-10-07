@@ -49,29 +49,6 @@ flowchart LR
 
 Achter de schermen blijft de beschikking in het berichtenmagazijn van de Belastingdienst. Het Berichten Uitvraag Systeem haalt het bericht op zodra de ondernemer het wil lezen.
 
-```mermaid
----
-title: Berichtenstroom Federatief Berichtenstelsel
----
-flowchart LR
-  accTitle: Berichtenstroom Federatief Berichtenstelsel
-  accDescr: De Belastingdienst verstuurt een beschikking naar het Berichtenmagazijn. Het Berichtenmagazijn verstuurt een notificatie en wisselt gegevens uit met het Berichten Uitvraag Systeem. Het Berichten Uitvraag Systeem communiceert met het MOZa portaal, waar de ondernemer het bericht bekijkt.
-  BD@{ icon: "nldd:apartment-building-2", label: "Belastingdienst verstuurt beschikking" }
-  O@{ icon: "nldd:person", label: "Ondernemer gaat bericht bekijken" }
-  MOZa@{ icon: "nldd:display", label: "MOZa portaal" }
-  subgraph FBS["Federatief Berichtenstelsel"]
-    direction LR
-    BM[(Berichtenmagazijn)]
-    BUS[(Berichten Uitvraag Systeem)]
-  end
-  N@{ icon: "nldd:bell", label: "Verstuurt notificatie" }
-  BD --> BM
-  O --> MOZa
-  BM <--> BUS
-  BUS <--> MOZa
-  BM --> N
-```
-
 ## Wat hebben we gedaan? De Proof of Concept
 
 We bouwden een [Proof of Concept (PoC)](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/): een proefopstelling die laat zien dat een federatief berichtenstelsel werkt. De PoC bestaat uit deze onderdelen:
@@ -83,7 +60,35 @@ We bouwden een [Proof of Concept (PoC)](https://minbzk.github.io/moza-poc-fbs-be
 5. **Berichtenbox:** een eenvoudige schermweergave die laat zien hoe het stelsel er voor de gebruiker uitziet.
 6. **Demo-omgeving:** hier bootsen we lastige situaties na, zoals honderd magazijnen tegelijk, een magazijn dat uitvalt of berichten die traag binnenkomen.
 
-De onderdelen praten veilig met elkaar via [Federated Service Connectivity (FSC)](https://fsc-standaard.nl/hoe-werkt-fsc/). Dat is een standaard voor het federatief koppelen van diensten.
+### De bouwblokken van de PoC
+
+```mermaid
+---
+title: De bouwblokken van de PoC
+---
+flowchart LR
+  accTitle: De bouwblokken van de PoC
+  accDescr: De ondernemer leest berichten in een portaal of applicatie, zoals MijnOverheid Zakelijk, een app of bedrijfssoftware. Het portaal vraagt de berichten op bij het Berichten Uitvraag Systeem. Dat onderdeel testen we in de pilot. Het Berichten Uitvraag Systeem bevraagt alle berichtenmagazijnen en bundelt de berichten, maar bewaart zelf niets. Het praat via FSC met de magazijnen van afnemer A en afnemer B, die een eigen magazijn hebben, en met afnemer C, waarvan het magazijn door Logius wordt gehost. Route 2, later in het traject, gaat direct van het portaal naar de berichtenmagazijnen, zonder uitvraagsysteem.
+  O@{ icon: "nldd:business-suitcase", label: "Ondernemer" }
+  P@{ icon: "nldd:display", label: "Portaal of applicatie: MijnOverheid Zakelijk, een app of bedrijfssoftware" }
+  BUS@{ icon: "nldd:tray", label: "Berichten Uitvraag Systeem (in de pilot): bevraagt alle magazijnen, bewaart zelf niets" }
+  subgraph M["Berichtenmagazijnen, aangesloten via FSC"]
+    direction TB
+    A[(Afnemer A, eigen magazijn)]
+    B[(Afnemer B, eigen magazijn)]
+    C[(Afnemer C, gehost door Logius)]
+  end
+  O <--> P <--> BUS
+  BUS <--> A & B & C
+  P -.->|"Route 2, later: direct, zonder uitvraagsysteem"| M
+
+  classDef inzicht fill:var(--color-bg-light),stroke:var(--color-rijks-oranje),color:var(--color-text);
+  class BUS inzicht
+```
+
+* **Berichten Uitvraag Systeem:** dit onderdeel staat centraal in de pilot. Het bevraagt alle magazijnen en bundelt de berichten. Zelf bewaart het niets.
+* **Federated Service Connectivity ([FSC](https://fsc-standaard.nl/hoe-werkt-fsc/)):** vaste afspraken tussen het uitvraagsysteem en de magazijnen. Daarin staat wie welke dienst mag aanroepen.
+* **Ondersteunende diensten:** de [profielservice](/onderwerpen/profielservice/) voor voorkeuren en toestemming, de [notificatiedienst](/onderwerpen/notificatiedienst/) en straks BSNk, voor het veilig gebruiken van het burgerservicenummer.
 
 De PoC is inmiddels gekoppeld aan onze [proeftuin](/onderwerpen/proeftuin/). De Berichtenbox in de proeftuin toont dus geen vaste voorbeelden meer, maar berichten die echt uit het stelsel komen.
 
@@ -96,7 +101,7 @@ Eind dit jaar starten we met een pilot. Samen met overheidsorganisaties die beri
 In de pilot doen we twee dingen:
 
 1. **Onze PoC testen.** We beproeven met de afnemers of de werking van de PoC standhoudt in de praktijk. Werken de afspraken in het stelsel? En wat is er nodig om aan te sluiten?
-2. **Route 2 verkennen: FSC voor burgers.** Deze route is geïnspireerd op het [Vorderingenoverzicht Rijk](https://vorijk.nl/docs/introductie/). Dat stelsel is gemaakt voor burgers. Met dezelfde afnemers verkennen we of het ook werkt voor ondernemers.
+2. **Route 2 verkennen: FSC voor burgers.** In deze route haalt het portaal de berichten rechtstreeks op bij de magazijnen, zonder uitvraagsysteem. De route is geïnspireerd op het [Vorderingenoverzicht Rijk](https://vorijk.nl/docs/introductie/). Dat stelsel is gemaakt voor burgers. Met dezelfde afnemers verkennen we of het ook werkt voor ondernemers.
 
 Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot.
 

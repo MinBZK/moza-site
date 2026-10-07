@@ -1,25 +1,38 @@
 ---
 title: "Berichten/FBS"
-description: "Alle berichten voor jou (als burger of ondernemer) kunnen lezen op de plek die op dat moment voor jou logisch is."
+description: "Alle berichten van de overheid lezen op de plek die op dat moment voor jou logisch is, als burger of ondernemer."
 weight: 6
 ---
 
-## Een Proof of Concept (PoC) van het federatieve berichtenstelsel
-We werken aan een stelsel waarmee je berichten uit de berichtenmagazijnen van organisaties kan ophalen. In het federatieve stelsel werken overheidsorganisaties, centrale diensten en burgers en ondernemers samen via gestandaardiseerde koppelingen. Iedereen heeft een duidelijke rol:
-- Verzenders: overheidsorganisaties die berichten versturen naar ondernemers of burgers.
-- Stelsel: de centrale laag die verzenders en ontvangers met elkaar verbindt; zonder dat berichten centraal worden opgeslagen.​
-- Ontvangers: ondernemers en burgers die berichten ontvangen en lezen via één centrale interface.
+## Waar werken we aan?
 
-***"Er is géén centrale plek waar alle berichten worden opgeslagen. Elke (overheids)organisatie beheert zijn eigen berichten; het federatieve stelsel zorgt ervoor dat de burger of ondernemer ze altijd op de plek die op dat moment logisch is kan vinden".***
+We werken aan een Federatief Berichtenstelsel (FBS). Daarmee lees je als burger of ondernemer al je berichten van de overheid op de plek die voor jou logisch is. Dat kan het portaal van MijnOverheid Zakelijk zijn, maar ook de MijnOmgeving van een organisatie, je eigen bedrijfssoftware of een app.
 
-## Waarom is dit nodig?
-Overheidsorganisaties communiceren nu elk op hun eigen manier met burgers en ondernemers. Dit leidt tot versnippering: berichten komen via verschillende kanalen binnen, zijn moeilijk terug te vinden en bieden geen eenduidig overzicht. Het Berichten/FBS lost dit op voor alle betrokken partijen:
+## Waarom federatief?
 
-* Burgers en ondernemers: de berichten kunnen uit de berichtenmagazijnen van organisaties opgehaald worden, op de plek daar waar het logisch is (een MijnOmgeving van de organisaties zijn, maar ook bijv. op het portaal MijnOverheid (Zakelijk), of de bedrijfssoftware van een onderneming, een eigen mobile app, etc.
-* Overheidsorganisaties: versturen berichten vanuit het eigen berichtenmagazijn, of versturen berichten via een berichtenmagazijn dat door Logius wordt gehost (specifiek voor die organisatie).
-* Digitale overheid: een herbruikbaar stelselcomponent binnen de Generieke Digitale Infrastructuur, gebouwd op open standaarden
+Overheidsorganisaties communiceren nu elk op hun eigen manier. Berichten komen via verschillende kanalen binnen en zijn moeilijk terug te vinden. Je hebt geen overzicht.
 
-## Hoe werkt het federatieve stelsel? Het verhaal van een beschikking van de Belastingdienst aan de ondernemer
+Eén grote centrale berichtenbox lijkt dan een logische oplossing. Toch kiezen we daar bewust niet voor. In een federatief stelsel blijft elk bericht bij de organisatie die het verstuurt. Het stelsel zorgt er alleen voor dat je het kunt vinden en lezen.
+
+***"Er is géén centrale plek waar alle berichten worden opgeslagen. Elke organisatie beheert haar eigen berichten. Het stelsel zorgt ervoor dat je ze vindt op de plek die voor jou logisch is."***
+
+Dat levert veel op:
+
+* **De bron blijft bij de eigenaar.** De organisatie die het bericht stuurt, blijft er verantwoordelijk voor. Er ontstaat geen centrale kopie van gevoelige gegevens.
+* **Minder kwetsbaar.** Valt één berichtenmagazijn uit, dan werkt de rest gewoon door. Er is geen centraal punt dat alles plat kan leggen.
+* **Lezen waar het logisch is.** Omdat berichten niet aan één portaal vastzitten, kun je ze op verschillende plekken tonen.
+* **Organisaties houden de regie.** Een organisatie verstuurt berichten vanuit haar eigen berichtenmagazijn. Of ze gebruikt een magazijn dat Logius voor haar host.
+* **Herbruikbaar voor de hele overheid.** Het stelsel is een bouwsteen binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/), gebouwd op open standaarden.
+
+In het stelsel heeft iedereen een duidelijke rol:
+
+* **Verzenders:** overheidsorganisaties die berichten versturen naar burgers en ondernemers.
+* **Het stelsel:** de laag die verzenders en ontvangers met elkaar verbindt, zonder berichten centraal op te slaan.
+* **Ontvangers:** burgers en ondernemers die hun berichten lezen.
+
+## Hoe werkt het? Een beschikking van de Belastingdienst
+
+Neem een ondernemer die een beschikking krijgt van de Belastingdienst. De ondernemer krijgt een melding, logt in en leest de beschikking in de Berichtenbox.
 
 ```mermaid
 ---
@@ -33,6 +46,8 @@ flowchart LR
   C@{ icon: "nldd:file-text-badge-check-mark", label: "Leest beschikking in zijn Berichtenbox" }
   A --> B --> C
 ```
+
+Achter de schermen blijft de beschikking in het berichtenmagazijn van de Belastingdienst. Het Berichten Uitvraag Systeem haalt het bericht op zodra de ondernemer het wil lezen.
 
 ```mermaid
 ---
@@ -57,23 +72,40 @@ flowchart LR
   BM --> N
 ```
 
-## De PoC in meer details
-Binnen het [MOZa PoC Federatief Berichtenstelsel](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/) zijn de volgende onderdelen in scope:
-1. Aanlever API: waarmee instanties berichten aanmelden nadat zij die in hun eigen magazijn hebben geplaatst en versturen naar de burger of ondernemer
-2. Validatie: elk bericht wordt gecontroleerd op technische eisen en toestemming van de ontvanger.​
-3. Publiceren (Publicatie Stream): op de publicatiedatum meldt het berichtenmagazijn het bericht aan bij het Berichten Uitvraag Systeem (BUS).​
-4. Ophaal- en Beheer API (vanuit BUS): waarmee berichten worden opgehaald en beheerd vanuit het perspectief van de ontvanger, zodat de burger of ondernemer deze kan lezen daar waar het logisch is (na ingelogd te zijn)
-5. UI: een eenvoudige interface die laat zien hoe het stelsel er voor de gebruiker uitziet​​​.
-6. Demo omgeving: een testomgeving voor het simuleren van verschillende situaties (nieuw bericht tonen tijdens inlog sessie van de ondernemer, uitvallende berichtenmagazijnen, te traag berichten ophalen, etc)
-  
-We verwachten na de zomer deze PoC afgerond te hebben. Het stelsel is gebouwd op open standaarden en open source principes: [MinBZK/moza-poc-fbs-berichtenbox: PoC voor de berichtenbox van het Federatief Berichtenstelsel](https://github.com/MinBZK/moza-poc-fbs-berichtenbox/)
-Als vervolgstap willen we kleine pilots gaan starten zodat we de stelselafspraken in de praktijk kunnen gaan testen. 
+## Wat hebben we gedaan? De Proof of Concept
 
-## Doe mee en help ons met openstaande vraagstukken
-Wil je als overheidsorganisatie aansluiten op het federatieve stelsel met een pilot, of bijdragen aan de doorontwikkeling hiervan? We werken samen op het gebied van beleid, design, juridische kaders en techniek.
+We bouwden een [Proof of Concept (PoC)](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/): een proefopstelling die laat zien dat een federatief berichtenstelsel werkt. De PoC bestaat uit deze onderdelen:
 
-Vraagstukken die open staan en waar we jouw input bij kunnen gebruiken:
+1. **Aanleveren:** organisaties melden een bericht aan nadat ze het in hun eigen magazijn hebben gezet.
+2. **Controleren:** het stelsel controleert elk bericht op technische eisen en op toestemming van de ontvanger.
+3. **Publiceren:** op de publicatiedatum meldt het magazijn het bericht aan bij het Berichten Uitvraag Systeem.
+4. **Ophalen en beheren:** na het inloggen haalt de ontvanger zijn berichten op, waar hij ze ook wil lezen.
+5. **Berichtenbox:** een eenvoudige schermweergave die laat zien hoe het stelsel er voor de gebruiker uitziet.
+6. **Demo-omgeving:** hier bootsen we lastige situaties na, zoals honderd magazijnen tegelijk, een magazijn dat uitvalt of berichten die traag binnenkomen.
 
-- Hoe zorgen we ervoor dat berichten enkel worden getoond aan de personen die ook gemachtigd zijn om de berichten in te zien?
-- Wat is er anders qua interactie tussen het berichtenmagazijn van de eigen organisatie versus het gemeenschappelijk berichtenmagazijn?
-- Is een aparte 'Berichten' invalshoek wel de toekomst, aangezien berichten (en notificaties) vaak gekoppeld zijn aan een 'zaak'?
+De onderdelen praten veilig met elkaar via [Federated Service Connectivity (FSC)](https://fsc-standaard.nl/hoe-werkt-fsc/). Dat is een standaard voor het federatief koppelen van diensten.
+
+De PoC is inmiddels gekoppeld aan onze [proeftuin](/onderwerpen/proeftuin/). De Berichtenbox in de proeftuin toont dus geen vaste voorbeelden meer, maar berichten die echt uit het stelsel komen.
+
+Alles is open source. Je vindt de code op GitHub: [MinBZK/moza-poc-fbs-berichtenbox](https://github.com/MinBZK/moza-poc-fbs-berichtenbox/).
+
+## Wat gaan we doen? Een pilot met afnemers
+
+Eind dit jaar starten we met een pilot. Samen met overheidsorganisaties die berichten versturen, de afnemers, testen we het stelsel in de praktijk. Dat doen we samen met Logius in de werkgroep Berichten, onder het programma OBIS.
+
+In de pilot doen we twee dingen:
+
+1. **Onze PoC testen.** We beproeven met de afnemers of de werking van de PoC standhoudt in de praktijk. Werken de afspraken in het stelsel? En wat is er nodig om aan te sluiten?
+2. **Route 2 verkennen.** Met dezelfde afnemers verkennen we een tweede route: berichten via FSC ook beschikbaar maken voor burgers. Zo kijken we of dezelfde federatieve aanpak werkt voor zowel ondernemers als burgers.
+
+Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot.
+
+## Doe mee
+
+Wil je als overheidsorganisatie meedoen aan de pilot? Of wil je meedenken over de doorontwikkeling van het stelsel? [Neem contact met ons op](/contact/).
+
+Bij deze vragen kunnen we jouw input goed gebruiken:
+
+* Hoe zorgen we ervoor dat alleen mensen die daartoe gemachtigd zijn een bericht te zien krijgen?
+* Wat is het verschil in werking tussen een eigen berichtenmagazijn en een gezamenlijk magazijn?
+* Is een aparte plek voor berichten wel de toekomst? Berichten en notificaties horen vaak bij een zaak. Misschien moeten berichten, zaken en taken via hetzelfde mechanisme lopen.

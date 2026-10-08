@@ -34,7 +34,7 @@ Elke week versturen we een **[MOZa Weekly](../../weekly/)** voor iedereen die vo
 
 We hebben twee vaste samenwerkdagen per week:
 
-- **Maandag** - DigiVloer Den Haag (naast NS station Den Haag Laan van NOI)
+- **Maandag** - The Hague Tech Den Haag (naast station Den Haag HS)
 - **Woensdag** - Dev.loer Utrecht (deze locatie is tijdelijk gesloten, een nieuwe locatie volgt)
 
 Meer informatie over de locaties waar we samenwerken en hoe je een werkplek reserveert, vind je op de pagina [hybride samenwerken](hybride-samenwerken).

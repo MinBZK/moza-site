@@ -8,12 +8,12 @@ We werken hybride bij MOZa. Dat betekent dat je zowel thuis als op locatie kunt 
 
 ## Vaste dagen
 
-### Maandag - Digi Vloer Den Haag
+### Maandag - The Hague Tech Den Haag
 
-Op maandagen komen we samen in Den Haag bij Digi Vloer, naast NS station Den Haag Laan van NOI.
+Op maandagen komen we samen in Den Haag bij The Hague Tech (THT), in het Stationspostgebouw naast station Den Haag HS.
 
 - **Wanneer**: Elke maandag
-- **Waar**: Digi Vloer Den Haag (naast NS station Den Haag Laan van NOI)
+- **Waar**: The Hague Tech, Stationspostgebouw, Waldorpstraat 5, 2521 CA Den Haag
 
 ### Woensdag - Dev.loer Utrecht
 
@@ -25,7 +25,7 @@ Op woensdagen komen we samen bij Dev.loer in Utrecht.
 
 ## Werkplek reserveren
 
-Reserveer altijd van tevoren een werkplek. Je vindt het reserveringssysteem in [Mattermost](accounts-en-tools#mattermost) onder Digilab. Geen toegang? Vraag een collega om je toe te voegen.
+Reserveer altijd van tevoren een werkplek. Dat doe je met de Reservation Bot in [Mattermost](accounts-en-tools#mattermost), in het kanaal ~reserveringen van Digilab. Geen toegang? Vraag een collega om je toe te voegen. Hoe je binnenkomt bij THT en hoe de bot werkt, lees je in het [Digi Handboek](https://digihandboek.rijks.app/onboarding/hybride-werken/).
 
 **Tip**: Reserveer tijdig, vooral voor drukke dagen.
 

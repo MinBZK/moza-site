@@ -429,6 +429,15 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
     }
   });
 
+  // Chrome laat tekst met aria-hidden zichtbaar in de PDF, maar zonder tag. Dat
+  // is ongetagde inhoud en faalt PDF/UA (7.1-3). In de PDF lezen we zo'n
+  // decoratief teken, zoals de emoji uit de shortcode, dus gewoon mee.
+  await page.evaluate(() => {
+    for (const el of document.querySelectorAll('span[aria-hidden="true"]')) {
+      if (el.children.length === 0 && el.textContent.trim()) el.removeAttribute("aria-hidden");
+    }
+  });
+
   const headerTemplate = `
     <div style="width:100%; margin:-6mm 0 6mm 0; text-align:center;">
       <img src="${rijksoverheidLogoDataUri()}" style="height:23mm; width:auto;" alt="" />

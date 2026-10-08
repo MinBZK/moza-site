@@ -57,8 +57,8 @@
 {{- /* De bestandsnaam verandert niet bij een nieuwe render; de inhoudshash in de
      URL voorkomt dat browser of CDN een oude SVG blijft tonen. */ -}}
 {{- $lightSVG := os.ReadFile $lightFile -}}
-{{- $lightUrl := printf "/%s?v=%s" (path.Join "images/render" $subdir (printf "%s-light.svg" $slug)) (substr ($lightSVG | md5) 0 8) -}}
-{{- $darkUrl := printf "/%s?v=%s" (path.Join "images/render" $subdir (printf "%s-dark.svg" $slug)) (substr (os.ReadFile $darkFile | md5) 0 8) -}}
+{{- $lightUrl := printf "%s?v=%s" (path.Join "images/render" $subdir (printf "%s-light.svg" $slug)) (substr ($lightSVG | md5) 0 8) | relURL -}}
+{{- $darkUrl := printf "%s?v=%s" (path.Join "images/render" $subdir (printf "%s-dark.svg" $slug)) (substr (os.ReadFile $darkFile | md5) 0 8) | relURL -}}
 {{- $viewBox := findRESubmatch `viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"` $lightSVG 1 -}}
 {{- if not $viewBox -}}
   {{- errorf "Diagram '%s' op pagina %s heeft geen leesbare viewBox." $slug .Page.File.Path -}}

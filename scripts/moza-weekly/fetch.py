@@ -57,7 +57,7 @@ GENERATOR = "moza-weekly fetch.py v0.2.0"
 NL_TZ = ZoneInfo("Europe/Amsterdam")
 DEFAULT_SERVER = "https://digilab.overheid.nl/chat"
 DEFAULT_TEAM = "mijnoverheid-zakelijk"
-DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving,regelrecht/moza"
+DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving,in-de-kamer,in-de-media,regelrecht/moza,nldd/traject-moza"
 DEFAULT_DOCS_URL = "https://docs.rijksapp.nl"
 
 # Exit-codes
@@ -232,6 +232,38 @@ def _is_bot(raw: RawPost) -> bool:
     return bool(raw.props.get("from_bot") or raw.props.get("from_webhook"))
 
 
+def _message_attachments_text(props: dict) -> str:
+    """Zet de message attachments van een bot of webhook om naar Markdown.
+
+    Zulke berichten hebben vaak een lege `message`: de inhoud staat in
+    `props.attachments`, met titel, link, tekst en velden."""
+    blokken: list[str] = []
+    for a in props.get("attachments") or []:
+        if not isinstance(a, dict):
+            continue
+        regels: list[str] = []
+        titel = (a.get("title") or "").strip()
+        link = (a.get("title_link") or "").strip()
+        if titel:
+            regels.append(f"**[{titel}]({link})**" if link else f"**{titel}**")
+        for sleutel in ("pretext", "text"):
+            tekst = (a.get(sleutel) or "").strip()
+            if tekst:
+                regels.append(tekst)
+        for veld in a.get("fields") or []:
+            naam = str(veld.get("title") or "").strip()
+            waarde = str(veld.get("value") or "").strip()
+            if naam or waarde:
+                regels.append(f"- {naam}: {waarde}" if naam else f"- {waarde}")
+        if not regels:
+            fallback = (a.get("fallback") or "").strip()
+            if fallback:
+                regels.append(fallback)
+        if regels:
+            blokken.append("\n\n".join(regels))
+    return "\n\n".join(blokken)
+
+
 def _build_post(
     client: MattermostClient,
     raw: RawPost,
@@ -256,7 +288,9 @@ def _build_post(
         edited=raw.edit_at > 0,
         bot=_is_bot(raw),
         attachments=attachments,
-        message=raw.message,
+        message="\n\n".join(
+            t for t in (raw.message, _message_attachments_text(raw.props)) if t
+        ),
         context_only=force_context_only,
     )
 

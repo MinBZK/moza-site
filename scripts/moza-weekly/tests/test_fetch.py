@@ -1,11 +1,11 @@
-"""Tests voor fetch: periode-afbakening en bot-detectie."""
+"""Tests voor fetch: periode-afbakening, bot-detectie en bot-inhoud."""
 
 from datetime import date, timedelta
 
 import pytest
 
 from _mattermost import RawPost
-from fetch import _build_period, _is_bot, _split_channel
+from fetch import _build_period, _is_bot, _message_attachments_text, _split_channel
 
 
 def test_build_period_explicit_bounds():
@@ -67,3 +67,36 @@ def test_split_channel_met_team_prefix():
         "regelrecht",
         "moza",
     )
+
+
+def test_message_attachments_text_zonder_attachments_is_leeg():
+    assert _message_attachments_text({}) == ""
+    assert _message_attachments_text({"attachments": None}) == ""
+
+
+def test_message_attachments_text_titel_link_tekst_en_velden():
+    props = {
+        "attachments": [
+            {
+                "title": "Verzamelbesluit digitale overheid",
+                "title_link": "https://example.org/doc",
+                "text": "De bewaartermijn gaat naar zeven jaar.",
+                "fields": [{"title": "Gevonden op", "value": "MijnOverheid"}],
+            }
+        ]
+    }
+    assert _message_attachments_text(props) == (
+        "**[Verzamelbesluit digitale overheid](https://example.org/doc)**\n\n"
+        "De bewaartermijn gaat naar zeven jaar.\n\n"
+        "- Gevonden op: MijnOverheid"
+    )
+
+
+def test_message_attachments_text_valt_terug_op_fallback():
+    props = {"attachments": [{"fallback": "Alleen een samenvatting"}]}
+    assert _message_attachments_text(props) == "Alleen een samenvatting"
+
+
+def test_message_attachments_text_meerdere_attachments():
+    props = {"attachments": [{"title": "Een"}, {"text": "Twee"}, "geen dict"]}
+    assert _message_attachments_text(props) == "**Een**\n\nTwee"

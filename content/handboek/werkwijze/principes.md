@@ -41,7 +41,7 @@ Uiteraard kunnen we niet altijd open werken. Sommige informatie is vertrouwelijk
 
 ## NeRDS principes
 
-We werken volgens de **[NeRDS](https://minbzk.github.io/NeRDS/)** (Nederlandse Richtlijn Digitale Systemen) principes. Dit zijn richtlijnen voor digitale overheidsdiensten. Als er iets essentieels ontbreekt in de NeRDS, dragen we daar actief aan bij. We zijn niet alleen gebruikers, maar ook mede-eigenaren van deze standaarden.
+We werken volgens de **[NeRDS](https://nerds.digitaledienst.overheid.nl/)** (Nederlandse Richtlijn Digitale Systemen) principes. Dit zijn richtlijnen voor digitale overheidsdiensten. Als er iets essentieels ontbreekt in de NeRDS, dragen we daar actief aan bij. We zijn niet alleen gebruikers, maar ook mede-eigenaren van deze standaarden.
 
 ### Gebruikersgericht
 

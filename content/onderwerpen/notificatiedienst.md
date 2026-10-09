@@ -154,7 +154,7 @@ De NMC heeft uitdrukkelijk niet de bedoeling om decentrale OMC's te vervangen. D
 
 ### Moderne overheidsstandaarden
 
-De notificatiedienst gebruikt moderne overheidsstandaarden, waaronder [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/), [Logboek Dataverwerkingen](https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/logboek-dataverwerkingen), de [NeRDS-principes](https://minbzk.github.io/NeRDS/) en de [API-standaarden](https://developer.overheid.nl/kennisbank/api-ontwikkeling/standaarden/). Daardoor kunnen overheidsorganisaties hun bestaande systemen eenvoudig aansluiten. De dienst ondersteunt niet alleen het versturen van berichten, maar ook het terugkoppelen van bezorginformatie en het uitvoeren van vervolgacties zoals contactherstel.
+De notificatiedienst gebruikt moderne overheidsstandaarden, waaronder [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/), [Logboek Dataverwerkingen](https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/logboek-dataverwerkingen), de [NeRDS-principes](https://nerds.digitaledienst.overheid.nl/) en de [API-standaarden](https://developer.overheid.nl/kennisbank/api-ontwikkeling/standaarden/). Daardoor kunnen overheidsorganisaties hun bestaande systemen eenvoudig aansluiten. De dienst ondersteunt niet alleen het versturen van berichten, maar ook het terugkoppelen van bezorginformatie en het uitvoeren van vervolgacties zoals contactherstel.
 
 ### Afsprakenstelsel
 

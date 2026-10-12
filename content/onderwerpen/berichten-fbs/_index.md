@@ -8,7 +8,7 @@ prev_next: true
 
 ## Waar werken we aan?
 
-We werken aan een Federatief Berichtenstelsel (FBS). Daarmee lees je als burger of ondernemer al je berichten van de overheid op de plek die voor jou logisch is. Dat kan het portaal van MijnOverheid Zakelijk zijn, maar ook de MijnOmgeving van een organisatie, je eigen bedrijfssoftware of een app.
+We werken aan een Federatief Berichtenstelsel (FBS). Daarmee lees je als burger of ondernemer je berichten van de overheid op de plek die voor jou logisch is. Op een portaal als MijnOverheid Zakelijk, in je bedrijfssoftware of in een app zie je je berichten van verschillende organisaties bij elkaar. In de MijnOmgeving van een organisatie lees je de berichten van die organisatie.
 
 ## Waarom federatief?
 
@@ -53,12 +53,20 @@ Achter de schermen blijft de beschikking in het berichtenmagazijn van de Belasti
 
 ## Wat hebben we gedaan? De Proof of Concept
 
-We bouwden een [Proof of Concept (PoC)](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/): een proefopstelling die laat zien dat een federatief berichtenstelsel werkt. De PoC bestaat uit deze onderdelen:
+We bouwden een [Proof of Concept (PoC)](https://minbzk.github.io/moza-poc-fbs-berichtenbox/master/): een proefopstelling die laat zien dat een federatief berichtenstelsel werkt. De PoC bestaat uit deze onderdelen.
 
-1. **Aanleveren:** organisaties melden een bericht aan nadat ze het in hun eigen magazijn hebben gezet.
-2. **Controleren:** het stelsel controleert elk bericht op technische eisen en op toestemming van de ontvanger.
-3. **Publiceren:** op de publicatiedatum meldt het magazijn het bericht aan bij het Berichten Uitvraag Systeem.
-4. **Ophalen en beheren:** na het inloggen haalt de ontvanger zijn berichten op, waar hij ze ook wil lezen.
+**In het berichtenmagazijn van de organisatie:**
+
+1. **Aanleveren:** de organisatie zet een bericht in haar berichtenmagazijn.
+2. **Controleren:** het magazijn controleert het bericht op technische eisen en op toestemming van de ontvanger.
+3. **Publiceren:** op de publicatiedatum maakt het magazijn het bericht beschikbaar. Het meldt het bericht aan bij het Berichten Uitvraag Systeem.
+
+**In het Berichten Uitvraag Systeem:**
+
+4. **Ophalen:** na het inloggen haalt het uitvraagsysteem de gepubliceerde berichten op bij alle magazijnen. Het uitvraagsysteem ziet een bericht dus pas nadat het is gepubliceerd.
+
+**Daaromheen:**
+
 5. **Berichtenbox:** een eenvoudige schermweergave die laat zien hoe het stelsel er voor de gebruiker uitziet.
 6. **Demo-omgeving:** hier bootsen we lastige situaties na, zoals honderd magazijnen tegelijk, een magazijn dat uitvalt of berichten die traag binnenkomen.
 

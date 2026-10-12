@@ -64,6 +64,7 @@
           {{- $slideContent := replaceRE `(?s)^[^>]*>(.*)$` "$1" $part -}}
           {{- $slideContent = replaceRE `(?s)<section.*` "" $slideContent -}}
           {{- $slideContent = replaceRE `(?s)</section>.*` "" $slideContent -}}
+          {{- $slideContent = replaceRE `(?s)<aside class="notes">.*?</aside>` "" $slideContent -}}
           {{- $heading := "" -}}
           {{- if findRE `<h[123][^>]*>([^<]+)</h[123]>` $slideContent -}}
             {{- $heading = replaceRE `(?s).*<h[123][^>]*>([^<]+)</h[123]>.*` "$1" $slideContent -}}

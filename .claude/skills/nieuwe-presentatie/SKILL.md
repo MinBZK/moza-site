@@ -14,7 +14,7 @@ Voorbeeld om van te leren: `content/documenten/presentaties/beproeving-federatie
    ```bash
    hugo new content --kind presentaties documenten/presentaties/naam-van-presentatie
    ```
-3. Vul `description` in de front matter en schrijf de dia's. Hoort er een kanttekening bij de hele presentatie (bijvoorbeeld "is in ontwikkeling"), zet die dan in `disclaimer`: de footer toont hem op elke dia.
+3. Vul `description` in de front matter en schrijf de dia's. De footer toont op elke dia "MijnOverheid Zakelijk" met de tagline van de site (`tagline` in `hugo.yaml`). Hoort er een kanttekening bij de hele presentatie (bijvoorbeeld "is in ontwikkeling"), zet die dan in `disclaimer`: die vervangt de tagline. Een eigen `tagline` in de front matter kan ook; `tagline: ""` laat alleen de naam staan.
 4. Draai `just checks` (tests, CSP, toegankelijkheid, links).
 
 ## Hoe het werkt
@@ -23,7 +23,7 @@ Voorbeeld om van te leren: `content/documenten/presentaties/beproeving-federatie
 - Opmaak: `assets/css/nldd-deck.css`. Bediening: `assets/js/nldd-deck.js`.
 - De dia's schalen mee met de breedte (16:9, eenheid `cqw`). Maak afmetingen in eigen CSS dus ook in `cqw`.
 - **Kleine schermen** (tot 900px breed of 500px hoog) tonen alle dia's onder elkaar met een scheidingslijn, en de footer alleen onderaan. Elke dia houdt zijn 16:9-vorm en schaalt mee; voor details zoom je in. Bouw geen aparte mobiele opmaak: een herschikte dia verliest het verhaal. Wat wel moet: alles in `cqw` houden, want vaste maten schalen niet mee. NLDD-componenten hebben vaste maten; het script zet `nldd-button` in een dia daarom op kleine schermen op `size="xs"`.
-- **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Daarin zie je alleen de dia, de disclaimer en de voortgangsbalk; vorige en volgende verschijnen bij muisbeweging. Een link met `?presentatie` opent direct in presentatiemodus en toont de toetsen tot de eerste toets.
+- **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Daarin zie je alleen de dia, de footertekst en de voortgangsbalk; vorige en volgende verschijnen bij muisbeweging. Een link met `?presentatie` opent direct in presentatiemodus en toont de toetsen tot de eerste toets.
 - Op een aanraakscherm blader je door horizontaal te vegen.
 - Het adres van een dia is `#/1`, `#/2`, enzovoort, gelijk aan de teller. De oudere Reveal.js-presentaties tellen vanaf `#/0`; de zoekindex houdt daar rekening mee.
 
@@ -60,6 +60,21 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 - `data-step="n"` op een onderdeel: verschijnt bij stap n. Nog niet getoonde onderdelen staan gedimd.
 - `class="step-reveal"` erbij: helemaal onzichtbaar tot de stap, in plaats van gedimd.
 - `data-start="1"` op de `<section>`: de dia opent met stap 1 al actief.
+- `data-overgang` op de `<section>`: van en naar deze dia blijft de oude dia even staan en vervaagt (`is-leaving`), terwijl de nieuwe erover opkomt (`is-entering`); een foto kan via `.is-leaving .cover` langzamer vervagen. Bedoeld voor een titeldia met foto. Niet bij `prefers-reduced-motion`, in de sprekersweergave of in de scrollmodus.
+
+## Sprekersnotities en sprekersweergave
+
+- Notities staan per dia in `<aside class="notes">`, als gewone alinea's. Ze zijn nooit zichtbaar op de dia en komen niet in de zoekindex. Ze staan wel in de HTML-bron: wat niet openbaar mag, hoort niet in een presentatie die live gaat.
+- <kbd>S</kbd> opent de **sprekersweergave** in een eigen venster (`?spreker`): de dia van nu, de volgende stap of dia, de notities, een klok en de verstreken tijd. Zet `duur: 10` (minuten) in de front matter om de tijd af te zetten tegen het plan; daarna kleurt hij geel.
+- Beide vensters volgen elkaar, wie er ook bladert. Sleep het publieksvenster naar de beamer en druk daar op <kbd>F</kbd>. Werkt binnen dezelfde browser, ook in een sandbox (zoals op Plak) zolang je de sprekersweergave met <kbd>S</kbd> opent.
+
+## Losstaande versie (Plak, offline)
+
+- `just presentatie-los <slug>` bouwt de site (ook drafts) en maakt van de presentatie één HTML-bestand in `tmp/los/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-los.js`.
+- Publiceren op Plak: `plak publish tmp/los/<slug> --site <groep>/<site> --preview <ref>`, zie de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `nldd`, met toegang SSO Rijk.
+- De sluitknop en links naar de site vallen weg. De notities gaan wel mee: wie de bron bekijkt, kan ze lezen.
+- Materiaal dat niet publiek mag (zoals video uit gebruikersonderzoek) zet je in de map `lokaal/` van de bundle, die je via `.git/info/exclude` buiten git houdt. Zet de dia zelf ook daar, in een eigen HTML-bestand, en voeg hem in met `{{< lokaal "video-dia.html" >}}reservedia{{< /lokaal >}}`. Ontbreekt het bestand (zoals bij anderen), dan komt de reservedia in de plaats, bijvoorbeeld een vervaagd beeld zonder mensen met een titel. Geef de lokale dia `data-lokaal`: de losse versie zet er dan ook de reservedia voor in de plaats.
+- `<video data-step="1">` op een dia staat stil op het eerste beeld en start bij die stap (volgende, spatie of klikker, ook vanuit de sprekersweergave). Daarna pauzeren spatie en een klik op de video; volgende gaat door naar de volgende dia. Speelt alleen in presentatiemodus, niet in de sprekersweergave of de scrollmodus.
 
 ## Iconen en componenten
 

@@ -1,5 +1,10 @@
 <nav class="deck-footer" aria-label="Presentatie">
-  <span class="disclaimer"><strong>MijnOverheid Zakelijk</strong>{{ with .Params.disclaimer }} · {{ . }}{{ end }}</span>
+  {{- /* Na de naam: de tagline van de site. Een eigen `tagline` (ook leeg) of een
+     `disclaimer` in de front matter vervangt die. */ -}}
+  {{- $onderregel := site.Params.tagline -}}
+  {{- if isset .Params "tagline" }}{{ $onderregel = .Params.tagline }}{{ end -}}
+  {{- with .Params.disclaimer }}{{ $onderregel = . }}{{ end }}
+  <span class="footer-text"><strong>MijnOverheid Zakelijk</strong>{{ with $onderregel }} · {{ . }}{{ end }}</span>
   <span class="hints">
     <nldd-keyboard-shortcut keys="←" size="sm" color="inherit"></nldd-keyboard-shortcut>
     <nldd-keyboard-shortcut keys="→" size="sm" color="inherit"></nldd-keyboard-shortcut>
@@ -8,6 +13,8 @@
     volledig scherm
     <nldd-keyboard-shortcut keys="P" size="sm" color="inherit"></nldd-keyboard-shortcut>
     presentatiemodus
+    <nldd-keyboard-shortcut keys="S" size="sm" color="inherit"></nldd-keyboard-shortcut>
+    sprekersweergave
   </span>
   <span class="counter" id="counter" aria-hidden="true">1 / 1</span>
   <nldd-icon-button variant="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>

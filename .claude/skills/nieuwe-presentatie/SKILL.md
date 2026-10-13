@@ -125,7 +125,10 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 ## Exporteren (Plak, offline)
 
 - `just presentatie-export <slug>` bouwt de site (ook drafts) en exporteert de presentatie als één HTML-bestand in `tmp/export/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-export.js`.
-- Publiceren op Plak: `plak publish tmp/export/<slug> --site <groep>/<site> --preview <ref>`, zie de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `nldd`, met toegang SSO Rijk.
+- Publiceren op Plak, zie ook de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:
+  - eenmalig een site aanmaken: `plak site create moza/<slug> --title "<titel>" --access sso`;
+  - live zetten: `plak publish tmp/export/<slug> --site moza/<slug>`; met `--preview <ref>` wordt het een preview.
+- Een site mag 200 MB gebruiken, en oude live versies tellen mee tot Plak ze 's nachts opruimt. Een grote video in elke versie loopt dus snel vast. Comprimeer zo'n video eerst, bijvoorbeeld met `ffmpeg -i in.mp4 -c:v libx264 -crf 20 -preset slow -c:a copy -movflags +faststart uit.mp4` (31 naar 3,6 MB zonder zichtbaar verschil), of laat hem weg.
 - De sluitknop en links naar de site vallen weg. De notities gaan wel mee: wie de bron bekijkt, kan ze lezen.
 - Materiaal dat niet publiek mag (zoals video uit gebruikersonderzoek) zet je in de map `lokaal/` van de bundle; `.gitignore` houdt elke `lokaal/`-map onder `content/` buiten git. Zet de dia zelf ook daar, in een eigen HTML-bestand, en voeg hem in met `{{< lokaal "video-dia.html" >}}reservedia{{< /lokaal >}}`. Ontbreekt het bestand (zoals bij anderen), dan komt de reservedia in de plaats, bijvoorbeeld een vervaagd beeld zonder mensen met een titel. Geef de lokale dia `data-lokaal`: de export zet er dan ook de reservedia voor in de plaats.
 

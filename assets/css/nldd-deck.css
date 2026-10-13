@@ -184,6 +184,118 @@ strong { font-weight: 700; color: var(--ink); }
 }
 .flow-fallback .ic { font-size: 1.6cqw; color: var(--ink-72); }
 
+/* ---------- Video over de hele dia ---------- */
+
+.slide-video { padding: 0; }
+.slide-video .deck-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--bg-end); cursor: pointer; }
+/* Vóór de start staat de video op het eerste beeld, niet gedimd zoals andere stappen */
+.slide-video .deck-video[data-step] { opacity: 1; }
+.slide-video .deck-video::cue { font-family: var(--primitives-font-family-sans-serif); font-size: 1.8cqw; }
+/* De footer zou over de ondertitels vallen */
+body:has(.slide-video:not([hidden])) .deck-footer,
+body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
+
+/* ---------- Reservedia voor de video (vervaagd beeld, tekst in het midden) ---------- */
+
+.slide-reserve { align-items: center; text-align: center; }
+.slide-reserve .reserve-beeld { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slide-reserve::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg-end) 72%, transparent);
+}
+.slide-reserve .reserve-tekst { position: relative; z-index: 1; }
+.slide-reserve .title-hero { max-width: none; }
+.slide-reserve .overline { color: var(--ink); font-size: 2.6cqw; }
+.title-accent { color: var(--accent); }
+
+/* ---------- Titeldia en slotdia met foto ---------- */
+
+/* Foto over de hele dia; het verloop houdt de titel links leesbaar */
+.slide-cover .cover { position: absolute; inset: 0; }
+.slide-cover .cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.slide-cover .cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    var(--bg-start) 0%,
+    color-mix(in srgb, var(--bg-start) 88%, transparent) 40%,
+    color-mix(in srgb, var(--bg-end) 35%, transparent) 100%);
+}
+.slide-cover > :is(.overline, .title, .lead) { position: relative; z-index: 1; }
+/* Slotdia: een h2 in plaats van de h1 van de titeldia, op twee regels */
+.slide-cover h2.title-hero { font-size: 5cqw; max-width: none; }
+.slide-cover .lead a { color: var(--ink); text-underline-offset: 0.2em; }
+.slide-cover .lead a:focus-visible { outline: 0.2cqw solid var(--accent); outline-offset: 0.2cqw; }
+
+/* Op een scherm dat niet 16:9 is (zoals 16:10) loopt de foto door tot de rand,
+   in plaats van een blauwe balk boven en onder de dia */
+@media screen and (min-width: 901px) and (min-height: 501px) {
+  .deck .slide-cover .cover {
+    top: min(0px, (56.25cqw - 100vh) / 2);
+    left: min(0px, (100cqw - 100vw) / 2);
+    width: max(100cqw, 100vw);
+    height: max(56.25cqw, 100vh);
+  }
+}
+
+/* Bij de overgang naar dia 2 vervaagt de foto iets langzamer dan de tekst, maar
+   is grotendeels weg als dia 2 opkomt (0.45s), zodat die niet over de foto verschijnt */
+.slide-cover.is-leaving .cover { animation-duration: 0.65s; animation-timing-function: ease-in-out; }
+
+/* ---------- Citaten ---------- */
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2cqw;
+  margin: 3cqw 0 0;
+  padding: 0;
+  list-style: none;
+}
+.quotes .card { font-size: 1.75cqw; line-height: 1.4; font-style: italic; }
+
+/* ---------- Tekst links, beeld rechts ---------- */
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 5cqw; align-items: center; }
+.split .lead { max-width: none; }
+
+.mission { font-size: 3.4cqw; line-height: 1.15; }
+.mission strong { color: var(--accent); }
+.split-wide { grid-template-columns: 1fr 1.25fr; }
+
+/* Demo: titel, een lijst met diensten en een knop naast de schermafbeelding */
+.demo-side { display: flex; flex-direction: column; align-items: flex-start; gap: 2.2cqw; }
+.demo-side .title { margin-bottom: 0.4cqw; font-size: 3.6cqw; line-height: 1.1; }
+.services { display: grid; gap: 1.2cqw; margin: 0; padding: 0; list-style: none; font-size: 1.4cqw; line-height: 1.4; }
+.services li { display: flex; align-items: flex-start; gap: 1.1cqw; }
+.services .ic { font-size: 2.2cqw; }
+.services strong { display: block; font-size: 1.6cqw; }
+.services-intro { margin: 0 0 -1cqw; font-size: 1.5cqw; }
+.photo, .screenshot { margin: 0; }
+.photo img, .screenshot img { display: block; width: 100%; height: auto; border-radius: 1.2cqw; }
+.photo img { aspect-ratio: 4 / 3; object-fit: cover; }
+.screenshot img { max-height: 38cqw; object-fit: cover; object-position: top left; border: 0.1cqw solid var(--ink-18); }
+
+/* ---------- Drie blokken ---------- */
+
+.blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; margin: 2.6cqw 0 0; padding: 0; list-style: none; }
+.blocks .card { padding: 2.6cqw 2.6cqw 3cqw; }
+.blocks .card-head { gap: 1.2cqw; margin-bottom: 1.2cqw; }
+.blocks .card-head .ic { font-size: 3cqw; }
+.blocks h3 { font-size: 2.4cqw; }
+.blocks p { font-size: 1.75cqw; line-height: 1.4; text-wrap: pretty; }
+
+/* ---------- Kaarten in twee kolommen (bijvoorbeeld context) ---------- */
+
+.context { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6cqw 2cqw; margin: 2.4cqw 0 0; padding: 0; list-style: none; }
+.context .card { padding: 2cqw 2.4cqw; }
+.context h3 { font-size: 2.4cqw; line-height: 1.1; color: var(--accent); }
+.context .context-name { margin: 0.3cqw 0 0.8cqw; font-size: 1.3cqw; font-weight: 600; }
+.context p { font-size: 1.5cqw; line-height: 1.4; text-wrap: pretty; }
+
 /* ---------- Opbouw per stap ---------- */
 
 [data-step] { transition: opacity 0.35s ease, border-color 0.35s ease, background-color 0.35s ease; }

@@ -1,0 +1,9 @@
+{{- /* Adres van een afbeelding uit de beeldbank (assets/images/beeldbank/), voor
+   beeld dat in meer dan één presentatie terugkomt, zoals logo's en foto's.
+   Gebruik: <img src="{{< beeld "logos/kvk.png" >}}" alt="KVK">
+   Het adres volgt de baseURL; een vast pad als /images/... doet dat niet. */ -}}
+{{- with resources.Get (printf "images/beeldbank/%s" (.Get 0)) -}}
+{{ .RelPermalink }}
+{{- else -}}
+{{ errorf "beeld: %q staat niet in assets/images/beeldbank (%s)" (.Get 0) .Position }}
+{{- end -}}

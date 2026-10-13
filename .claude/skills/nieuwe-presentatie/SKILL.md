@@ -104,7 +104,10 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 ## Losstaande versie (Plak, offline)
 
 - `just presentatie-los <slug>` bouwt de site (ook drafts) en maakt van de presentatie één HTML-bestand in `tmp/los/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-los.js`.
-- Publiceren op Plak: `plak publish tmp/los/<slug> --site <groep>/<site> --preview <ref>`, zie de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `nldd`, met toegang SSO Rijk.
+- Publiceren op Plak, zie ook de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:
+  - eenmalig een site aanmaken: `plak site create moza/<slug> --title "<titel>" --access sso`;
+  - live zetten: `plak publish tmp/los/<slug> --site moza/<slug>`; met `--preview <ref>` wordt het een preview.
+- Een site mag 200 MB gebruiken, en oude live versies tellen mee tot Plak ze 's nachts opruimt. Een grote video in elke versie loopt dus snel vast. Comprimeer zo'n video eerst, bijvoorbeeld met `ffmpeg -i in.mp4 -c:v libx264 -crf 20 -preset slow -c:a copy -movflags +faststart uit.mp4` (31 naar 3,6 MB zonder zichtbaar verschil), of laat hem weg.
 - De sluitknop en links naar de site vallen weg. De notities gaan wel mee: wie de bron bekijkt, kan ze lezen.
 - Materiaal dat niet publiek mag (zoals video uit gebruikersonderzoek) zet je in de map `lokaal/` van de bundle, die je via `.git/info/exclude` buiten git houdt. Zet de dia zelf ook daar, in een eigen HTML-bestand, en voeg hem in met `{{< lokaal "video-dia.html" >}}reservedia{{< /lokaal >}}`. Ontbreekt het bestand (zoals bij anderen), dan komt de reservedia in de plaats, bijvoorbeeld een vervaagd beeld zonder mensen met een titel. Geef de lokale dia `data-lokaal`: de losse versie zet er dan ook de reservedia voor in de plaats.
 - `<video data-step="1">` op een dia staat stil op het eerste beeld en start bij die stap (volgende, spatie of klikker, ook vanuit de sprekersweergave). Daarna pauzeren spatie en een klik op de video; volgende gaat door naar de volgende dia. Speelt alleen in presentatiemodus, niet in de sprekersweergave of de scrollmodus.
@@ -117,8 +120,8 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 
 ## Regels
 
-- Geen inline `style` of `<script>` in de content: de CSP blokkeert die. Opmaak hoort in `nldd-deck.css` (algemeen) of `presentatie.css` in de bundle (alleen voor deze presentatie).
-- Afbeeldingen in de page bundle, met een `alt` die zegt wat er te zien is.
+- Geen inline `style` of `<script>` in de content: de CSP blokkeert die. Opmaak hoort in `nldd-deck.css` (algemeen), `nldd-deck-moza.css` (MOZa-dia's) of `presentatie.css` in de bundle (alleen voor deze presentatie).
+- Afbeeldingen in de page bundle, of in de beeldbank als ze in meer presentaties terugkomen, met een `alt` die zegt wat er te zien is.
 - Tekst volgens `.claude/rules/taal-en-stijl.md`: B1, korte zinnen. Een dia is geen document.
 - Externe links die achter een login zitten (zoals een democonsole) geven in de linkcontrole een 403. Zet ze dan op de negeerlijst in `.htmltest.yml`, met een regel uitleg.
 

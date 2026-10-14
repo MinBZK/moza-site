@@ -52,6 +52,9 @@ jobs:
       - name: Controleer het toegankelijkheidslabel
         run: npm run check-label
 
+      - name: Controleer op ongebruikt beeld
+        run: npm run beeld
+
   site:
     name: Site en links
     runs-on: ubuntu-latest

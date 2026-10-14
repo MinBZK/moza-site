@@ -21,6 +21,7 @@ Begin bij de **dia-bibliotheek**: `content/documenten/presentaties/dia-bibliothe
 | Opmaak voor één presentatie | `presentatie.css` in de page bundle; laat hem weg als er niets in hoeft |
 
 - **Komt iets in een tweede presentatie terug, verplaats het dan in plaats van het te kopiëren**: beeld naar de beeldbank, opmaak naar `nldd-deck.css` of `nldd-deck-moza.css`, de dia naar de bibliotheek.
+- **Beeld waar niets meer naar verwijst** laat `just checks` en de CI falen, bijvoorbeeld na het weghalen van een dia. Verwijder het bestand, of zet het met een reden op `NEGEREN` in `scripts/beeld/regels.js`.
 - **Commentaar** in HTML en CSS alleen voor een beperking die niet uit de code blijkt. Geen uitleg van een keuze of van hoe het zo gekomen is: dat hoort in de commit.
 
 ## Stappen

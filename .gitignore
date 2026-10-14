@@ -16,6 +16,9 @@ tmp
 .env.*
 !.env.example
 
+# Niet-publiek materiaal bij een presentatie (shortcode lokaal), zoals video uit gebruikersonderzoek
+content/**/lokaal/
+
 # Python (moza-weekly script)
 __pycache__/
 *.pyc

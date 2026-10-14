@@ -1,0 +1,15 @@
+{{- /* Voegt een bestand uit de map lokaal/ van de page bundle in, als het er is.
+   Gebruik: {{< lokaal "video-dia.html" >}}reservedia{{< /lokaal >}}
+   Voor materiaal dat niet in git of online mag (zoals video uit gebruikersonderzoek):
+   .gitignore houdt elke lokaal/-map buiten git. Ontbreekt het bestand, dan komt de reservedia.
+   Is het er wel, dan staat de reservedia in een <template>, zodat
+   scripts/presentatie-export.js hem in de geëxporteerde versie kan terugzetten. */ -}}
+{{- $reserve := .Inner | strings.TrimSpace -}}
+{{- with .Page.Resources.Get (printf "lokaal/%s" (.Get 0)) -}}
+{{ .Content | safeHTML }}
+{{- with $reserve }}
+<template data-lokaal-reserve>{{ . | safeHTML }}</template>
+{{- end -}}
+{{- else -}}
+{{ $reserve | safeHTML }}
+{{- end -}}

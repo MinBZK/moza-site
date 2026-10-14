@@ -50,6 +50,11 @@ function dataUri(file) {
 
 let html = readFileSync(pageFile, "utf8");
 
+// Dia's met data-lokaal (zoals een video uit gebruikersonderzoek) gaan nooit mee naar buiten.
+// Staat er een reservedia bij (shortcode lokaal), dan komt die ervoor in de plaats.
+html = html.replace(/<section\b[^>]*\bdata-lokaal\b[^>]*>[\s\S]*?<\/section>\s*(?:<template\b[^>]*\bdata-lokaal-reserve\b[^>]*>([\s\S]*?)<\/template>)?/g,
+  (_, reserve) => reserve ?? "");
+
 // Stylesheets inline, met fonts en afbeeldingen als data-URI
 html = html.replace(/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*>/g, (tag) => {
   const href = unquote(tag.match(/\bhref=("[^"]*"|'[^']*'|[^\s>]+)/)[1]);
@@ -77,6 +82,11 @@ html = html.replace(/<link\b[^>]*\brel=["']?(canonical|alternate|icon|apple-touc
 
 // De sluitknop leidt naar de site; in de export heeft die geen doel
 html = html.replace(/<nldd-icon-button\b[^>]*\bdata-close\b[^>]*><\/nldd-icon-button>/g, "");
+
+if (/data-lokaal|lokaal\//.test(html)) {
+  console.error("Er staat nog een verwijzing naar lokale bestanden in de pagina; die mag niet naar buiten.");
+  process.exit(1);
+}
 
 const leftovers = [...html.matchAll(/<(?:img|script|link)\b[^>]*\b(?:src|href)=["']?(\/[^"'\s>]*)/g)].map((m) => m[1]);
 if (leftovers.length) {

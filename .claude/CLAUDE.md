@@ -5,17 +5,18 @@ Hugo static site (v0.162.1) | Nederlands | Rijkshuisstijl
 ## Structuur
 
 ```
-content/               # Markdown content
-content/documenten/presentaties/  # Presentaties (HTML page bundles, layout nldd-deck)
-layouts/               # Go templates
-layouts/_partials/     # Partials (underscore prefix)
-layouts/_shortcodes/   # Shortcodes
-assets/css/            # CSS, tokens in tokens.css
-assets/vendor/         # Vendored JS (Fuse.js, Reveal.js)
-scripts/               # Build scripts (render-mermaid.js)
-static/images/render/  # Pre-gerenderde Mermaid SVGs (gegenereerd, in .gitignore)
-hugo.yaml              # Configuratie
-justfile               # Commands: just up, just build, just checks
+content/                          # Markdown content
+content/documenten/presentaties/  # Presentaties (HTML page bundles, layout nldd-deck); begin bij dia-bibliotheek/
+layouts/                          # Go templates
+layouts/_partials/                # Partials (underscore prefix)
+layouts/_shortcodes/              # Shortcodes
+assets/css/                       # CSS, tokens in tokens.css
+assets/images/beeldbank/          # Beeld en logo's die in meer presentaties terugkomen
+assets/vendor/                    # Vendored JS (Fuse.js, Reveal.js)
+scripts/                          # Build scripts (render-mermaid.js)
+static/images/render/             # Pre-gerenderde Mermaid SVGs (gegenereerd, in .gitignore)
+hugo.yaml                         # Configuratie
+justfile                          # Commands: just up, just build, just checks
 ```
 
 ## Commando's

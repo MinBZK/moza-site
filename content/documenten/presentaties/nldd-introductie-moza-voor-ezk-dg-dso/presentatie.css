@@ -89,6 +89,8 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
    lijntje eronder recht naar die kaart loopt. */
 .timeline { position: relative; height: 3cqw; margin-top: 3cqw; }
 .timeline + .flow { margin-top: 2cqw; }
+/* Koppen van twee regels, ook als ze op één passen, zodat de tekst eronder in elke kaart even hoog begint */
+.timeline + .flow h3 { min-height: 2.3em; }
 /* De jaren tussen de pogingen: een stippellijn, niet onder de balken door (die zijn doorschijnend) */
 .tl-gat { position: absolute; bottom: -0.06cqw; border-top: 0.15cqw dashed var(--ink-55); }
 .tl-gat-1 { left: calc(100% * 5 / 19); width: calc(100% * 3 / 19); }

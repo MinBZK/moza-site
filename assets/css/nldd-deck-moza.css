@@ -1,7 +1,8 @@
-/* MOZa-dia's voor NLDD-presentaties: de historie van MOZa, het klavertje vier
-   en de ringen om het MOZa-team. Komt in de bundel direct na nldd-deck.css en
-   vóór de eigen presentatie.css van een presentatie, die dus alles hier kan
-   bijstellen. Voorbeelden: moza-introductie-kvk en nldd-introductie-moza-voor-dg. */
+/* De basis van het MOZa-verhaal: de historie, het klavertje vier en de ringen
+   om het MOZa-team. Voor presentaties met de layout nldd-deck; komt in de
+   bundel direct na nldd-deck.css en vóór de eigen presentatie.css van een
+   presentatie, die dus alles hier kan bijstellen. Voorbeelden: de
+   dia-bibliotheek (content/documenten/presentaties/dia-bibliotheek). */
 
 /* ---------- Historie van MOZa: tijdlijn boven drie pogingen ---------- */
 
@@ -119,8 +120,8 @@
 /* Ruimte rechts voor de organisaties die buiten de ringen staan */
 .split-rings { grid-template-columns: 34cqw 1fr; }
 
-/* --orgs: het aantal logo's; --straal: hun afstand tot het midden. Standaard
-   dertien logo's; een ander aantal stel je bij op .rings. */
+/* --orgs: het aantal logo's; --straal: hun afstand tot het midden. Standaard de
+   dertien logo's van de dia-bibliotheek; een ander aantal stel je bij op .rings. */
 .rings { --orgs: 13; --straal: 76%; position: relative; justify-self: center; width: 26cqw; aspect-ratio: 1; }
 .ring {
   position: absolute;
@@ -192,7 +193,7 @@
 .logo-rdw img { height: 50%; }
 .logo-amsterdam img { height: 48%; }
 .logo-vng img { height: 62%; }
-/* Vaste plek, alleen juist als Amsterdam de negende van dertien logo's is */
+/* Vaste plek, alleen juist in de volgorde van de dia-bibliotheek (Amsterdam als negende) */
 .rings .logo-amsterdam { left: -1.5%; top: 104%; }
 
 /* Het publiek van de presentatie: tegel in het geel van MOZa */

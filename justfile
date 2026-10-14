@@ -76,9 +76,14 @@ render-downloads: node-deps
 check-label: node-deps
     npm run check-label
 
+# Controleer of elk beeldbestand ergens gebruikt wordt
+beeld: node-deps
+    npm run beeld
+
 # Draai alle controles op één build, oplopend in kosten
 checks: build-check
     npm test
+    npm run beeld
     npm run csp
     npm run urls
     npm run a11y

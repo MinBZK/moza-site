@@ -2,22 +2,6 @@
    assets/css/nldd-deck.css, de MOZa-dia's (historie, klavertje vier, ringen) in
    assets/css/nldd-deck-moza.css. */
 
-/* ---------- Open samenwerken: een lage band onder alle stappen ---------- */
-
-.open-band {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.4cqw;
-  margin-top: 1.6cqw;
-  padding: 1.3cqw 1.8cqw;
-  border: 0.1cqw solid var(--ink-18);
-  border-radius: 1.2cqw;
-  background: var(--ink-10);
-}
-.open-band .ic { font-size: 2.4cqw; margin-top: 0.1cqw; }
-.open-band h3 { margin: 0 0 0.6cqw; font-size: 1.8cqw; line-height: 1.15; }
-.open-band p { margin: 0; font-size: 1.35cqw; line-height: 1.4; }
-
 /* ---------- Stappen ---------- */
 
 /* Geel is voor MOZa; de stap die aan de beurt is krijgt een witte rand */

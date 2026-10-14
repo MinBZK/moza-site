@@ -41,6 +41,10 @@ IgnoreURLs:
   # De democonsole van het berichtenstelsel zit achter een login en geeft
   # buiten het netwerk 403.
   - democonsole-test-mpfm-w3h.rig.prd1.gn2.quattro.rijksapps.nl
+  # Deze twee sturen een bot een challenge (202) in plaats van de pagina: eur-lex
+  # via AWS WAF, fides.community via een captcha van SiteGround.
+  - eur-lex.europa.eu
+  - fides.community
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

@@ -52,7 +52,7 @@ Kleurtokens in `assets/css/tokens.css` verwijzen naar NLDD-primitives in het geg
 
 ## Skills
 
-Workflow: `/check`, `/nieuwe-weekly`, `/nieuwe-presentatie`
+Workflow: `/check`, `/nieuwe-weekly`, `/nieuwe-presentatie`, `/herzie-onderzoek`
 Review: `/content-review`, `/a11y-review`, `/seo-check`
 Hulp: `/hugo`
 
@@ -63,4 +63,5 @@ Zie `.claude/rules/` voor:
 - `code-conventies.md` - Hugo templates, CSS, content
 - `documentatie.md` - Hugo, NLDD en Mermaid docs
 - `git.md` - Commit conventies
+- `toegankelijkheidsrapport.md` - Onderzoek en verklaring, versie en checklist
 - `browser-testing.md` - Playwright MCP voor browser tests

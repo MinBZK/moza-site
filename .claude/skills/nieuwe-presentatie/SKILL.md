@@ -60,6 +60,14 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 - `data-step="n"` op een onderdeel: verschijnt bij stap n. Nog niet getoonde onderdelen staan gedimd.
 - `class="step-reveal"` erbij: helemaal onzichtbaar tot de stap, in plaats van gedimd.
 - `data-start="1"` op de `<section>`: de dia opent met stap 1 al actief.
+- `data-overgang` op de `<section>`: van en naar deze dia blijft de oude dia even staan en vervaagt (`is-leaving`), terwijl de nieuwe erover opkomt (`is-entering`); een foto kan via `.is-leaving .cover` langzamer vervagen. Bedoeld voor een titeldia met foto. Niet bij `prefers-reduced-motion`, in de sprekersweergave of in de scrollmodus.
+- `<video data-step="1">` op een dia staat stil op het eerste beeld en start bij die stap (volgende, spatie of klikker, ook vanuit de sprekersweergave). Daarna pauzeren spatie en een klik op de video; volgende gaat door naar de volgende dia. Speelt alleen in presentatiemodus, niet in de sprekersweergave of de scrollmodus.
+
+## Sprekersnotities en sprekersweergave
+
+- Notities staan per dia in `<aside class="notes">`, als gewone alinea's. Ze zijn nooit zichtbaar op de dia en komen niet in de zoekindex. Ze staan wel in de HTML-bron: wat niet openbaar mag, hoort niet in een presentatie die live gaat.
+- <kbd>S</kbd> opent de **sprekersweergave** in een eigen venster (`?spreker`): de dia van nu, de volgende stap of dia, de notities, een klok en de verstreken tijd. Zet `duur: 10` (minuten) in de front matter om de tijd af te zetten tegen het plan; daarna kleurt hij geel.
+- Beide vensters volgen elkaar, wie er ook bladert. Sleep het publieksvenster naar de beamer en druk daar op <kbd>F</kbd>. Werkt binnen dezelfde browser, ook in een sandbox (zoals op Plak) zolang je de sprekersweergave met <kbd>S</kbd> opent.
 
 ## Iconen en componenten
 

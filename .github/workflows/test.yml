@@ -117,8 +117,10 @@ jobs:
           path: tmp/public
           retention-days: 1
 
+      # De refcache van htmltest bewaart alleen geslaagde links, dus de tweede
+      # ronde controleert alleen wat de eerste keer faalde (vaak een losse 503).
       - name: Test links
-        run: htmltest
+        run: htmltest || { sleep 60; htmltest; }
 
   a11y:
     name: Toegankelijkheid

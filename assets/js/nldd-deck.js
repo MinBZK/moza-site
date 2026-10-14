@@ -10,10 +10,10 @@ import "@nldd/design-system/keyboard-shortcut";
 
   // Een fixed footer zet de browser bij printen maar op één pagina. Daarom krijgt
   // elke dia een eigen kopie, die alleen in de printweergave zichtbaar is.
-  const disclaimer = document.querySelector(".deck-footer .disclaimer");
-  if (disclaimer) {
+  const footerText = document.querySelector(".deck-footer .footer-text");
+  if (footerText) {
     slides.forEach((slide) => {
-      const copy = disclaimer.cloneNode(true);
+      const copy = footerText.cloneNode(true);
       copy.className = "print-footer";
       copy.setAttribute("aria-hidden", "true");
       slide.append(copy);

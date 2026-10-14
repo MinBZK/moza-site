@@ -200,8 +200,8 @@ strong { font-weight: 700; color: var(--ink); }
   color: var(--ink-55);
   z-index: 10;
 }
-.deck-footer .disclaimer { flex: 1; min-width: 0; }
-.deck-footer .disclaimer strong { color: var(--ink-72); font-weight: 600; }
+.deck-footer .footer-text { flex: 1; min-width: 0; color: var(--ink); }
+.footer-text strong, .print-footer strong { font-weight: 600; }
 .deck-footer .hints { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
 .deck-footer .counter { font-variant-numeric: tabular-nums; }
 .print-footer { display: none; }
@@ -217,7 +217,7 @@ strong { font-weight: 700; color: var(--ink); }
   *, *::before, *::after { transition: none !important; }
 }
 
-/* ---------- Presentatiemodus: alleen de dia, de disclaimer en de voortgangsbalk ---------- */
+/* ---------- Presentatiemodus: alleen de dia, de footertekst en de voortgangsbalk ---------- */
 
 .is-presenting .deck-close,
 .is-presenting .deck-footer .hints,
@@ -285,6 +285,5 @@ strong { font-weight: 700; color: var(--ink); }
   }
   [data-step] { opacity: 1 !important; }
   .deck-footer, .progress, .deck-close { display: none !important; }
-  .print-footer { position: absolute; bottom: 0.8cqw; left: 1.3cqw; display: block; font-size: 0.9cqw; color: var(--ink-55); }
-  .print-footer strong { color: var(--ink-72); font-weight: 600; }
+  .print-footer { position: absolute; bottom: 0.8cqw; left: 1.3cqw; display: block; font-size: 0.9cqw; color: var(--ink); }
 }

@@ -3,7 +3,8 @@ title: "{{ replace .File.ContentBaseName "-" " " | strings.FirstUpper }}"
 description:
 date: {{ time.Now.Format "2006-01-02" }}
 layout: nldd-deck
-# Optioneel: tekst in de footer van elke dia, na "MijnOverheid Zakelijk"
+# Optioneel: de footer toont na "MijnOverheid Zakelijk" de tagline van de site.
+# Vervang die met een kanttekening (disclaimer) of een eigen tagline (mag leeg).
 disclaimer:
 ---
 <section class="slide" aria-roledescription="dia" aria-label="Titel">

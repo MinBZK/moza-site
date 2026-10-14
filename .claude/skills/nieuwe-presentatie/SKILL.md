@@ -53,6 +53,18 @@ Bouwstenen, allemaal in `nldd-deck.css`:
 
 Opmaak die alleen voor jouw presentatie is, zoals een eigen plaat of diagram, zet je in `presentatie.css` in de page bundle, naast `index.html`. De layout laadt dat bestand vanzelf als het er is. Voorbeeld: de bouwblokkenplaat (`bb-*`) in de berichtenpresentatie.
 
+### Beeldbank
+
+Beeld dat in meer dan één presentatie terugkomt (logo's, foto's, schermafbeeldingen van MOZa) staat in `assets/images/beeldbank/`, logo's in `logos/`. Gebruik de shortcode `beeld`, die het adres laat meegaan met de baseURL:
+
+```html
+<img src="{{< beeld "logos/kvk.png" >}}" alt="KVK">
+```
+
+Beeld dat maar in één presentatie staat, blijft in de page bundle (`images/`). Komt het later in een tweede presentatie terug, verplaats het dan naar de beeldbank in plaats van het te kopiëren.
+
+Beeld dat al bij een pagina van de site hoort, zoals de foto in een nieuwsbericht, kopieer je niet: haal het op met `{{< afbeelding-url pagina="/actueel/…" bestand="foto.jpg" >}}`.
+
 ## Opbouwen per klik
 
 Alleen in presentatiemodus; in leesmodus staat alles er meteen.
@@ -85,7 +97,7 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 ## Regels
 
 - Geen inline `style` of `<script>` in de content: de CSP blokkeert die. Opmaak hoort in `nldd-deck.css` (algemeen) of `presentatie.css` in de bundle (alleen voor deze presentatie).
-- Afbeeldingen in de page bundle, met een `alt` die zegt wat er te zien is.
+- Afbeeldingen in de page bundle, of in de beeldbank als ze in meer presentaties terugkomen, met een `alt` die zegt wat er te zien is.
 - Tekst volgens `.claude/rules/taal-en-stijl.md`: B1, korte zinnen. Een dia is geen document.
 - Externe links die achter een login zitten (zoals een democonsole) geven in de linkcontrole een 403. Zet ze dan op de negeerlijst in `.htmltest.yml`, met een regel uitleg.
 

@@ -194,3 +194,8 @@
 .logo-vng img { height: 62%; }
 /* Vaste plek, alleen juist als Amsterdam de negende van dertien logo's is */
 .rings .logo-amsterdam { left: -1.5%; top: 104%; }
+
+/* Het publiek van de presentatie: tegel in het geel van MOZa */
+.org-publiek { background: var(--accent); box-shadow: 0 0 0 0.3cqw var(--accent); }
+/* Hoort bij het publiek: alleen de gele rand */
+.org-uitgelicht { box-shadow: 0 0 0 0.3cqw var(--accent); }

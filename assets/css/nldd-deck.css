@@ -216,7 +216,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 .slide-reserve .overline { color: var(--ink); font-size: 2.6cqw; }
 .title-accent { color: var(--accent); }
 
-/* ---------- Titeldia met foto ---------- */
+/* ---------- Titeldia en slotdia met foto ---------- */
 
 /* Foto over de hele dia; het verloop houdt de titel links leesbaar */
 .slide-cover .cover { position: absolute; inset: 0; }
@@ -231,6 +231,10 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
     color-mix(in srgb, var(--bg-end) 35%, transparent) 100%);
 }
 .slide-cover > :is(.overline, .title, .lead) { position: relative; z-index: 1; }
+/* Slotdia met foto (h2; de titeldia heeft een h1) */
+.slide-cover h2.title-hero { font-size: 5cqw; max-width: none; }
+.slide-cover .lead a { color: var(--ink); text-underline-offset: 0.2em; }
+.slide-cover .lead a:focus-visible { outline: 0.2cqw solid var(--accent); outline-offset: 0.2cqw; }
 
 /* Op een scherm dat niet 16:9 is (zoals 16:10) loopt de foto door tot de rand,
    in plaats van een blauwe balk boven en onder de dia */
@@ -268,10 +272,35 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 .mission strong { color: var(--accent); }
 .split-wide { grid-template-columns: 1fr 1.25fr; }
 
+/* Demo: titel, een lijst met diensten en een knop naast de schermafbeelding */
+.demo-side { display: flex; flex-direction: column; align-items: flex-start; gap: 2.2cqw; }
+.demo-side .title { margin-bottom: 0.4cqw; font-size: 3.6cqw; line-height: 1.1; }
+.services { display: grid; gap: 1.2cqw; margin: 0; padding: 0; list-style: none; font-size: 1.4cqw; line-height: 1.4; }
+.services li { display: flex; align-items: flex-start; gap: 1.1cqw; }
+.services .ic { font-size: 2.2cqw; }
+.services strong { display: block; font-size: 1.6cqw; }
+.services-intro { margin: 0 0 -1cqw; font-size: 1.5cqw; }
 .photo, .screenshot { margin: 0; }
 .photo img, .screenshot img { display: block; width: 100%; height: auto; border-radius: 1.2cqw; }
 .photo img { aspect-ratio: 4 / 3; object-fit: cover; }
 .screenshot img { max-height: 38cqw; object-fit: cover; object-position: top left; border: 0.1cqw solid var(--ink-18); }
+
+/* ---------- Drie blokken ---------- */
+
+.blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; margin: 2.6cqw 0 0; padding: 0; list-style: none; }
+.blocks .card { padding: 2.6cqw 2.6cqw 3cqw; }
+.blocks .card-head { gap: 1.2cqw; margin-bottom: 1.2cqw; }
+.blocks .card-head .ic { font-size: 3cqw; }
+.blocks h3 { font-size: 2.4cqw; }
+.blocks p { font-size: 1.75cqw; line-height: 1.4; text-wrap: pretty; }
+
+/* ---------- Kaarten in twee kolommen (bijvoorbeeld context) ---------- */
+
+.context { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6cqw 2cqw; margin: 2.4cqw 0 0; padding: 0; list-style: none; }
+.context .card { padding: 2cqw 2.4cqw; }
+.context h3 { font-size: 2.4cqw; line-height: 1.1; color: var(--accent); }
+.context .context-name { margin: 0.3cqw 0 0.8cqw; font-size: 1.3cqw; font-weight: 600; }
+.context p { font-size: 1.5cqw; line-height: 1.4; text-wrap: pretty; }
 
 /* ---------- Band onder een rij stappen (bijvoorbeeld open samenwerken) ---------- */
 

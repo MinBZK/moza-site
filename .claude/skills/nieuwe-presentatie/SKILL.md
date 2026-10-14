@@ -54,6 +54,9 @@ De basis, in `nldd-deck.css`:
 | `slide-video`, `slide-reserve` | Video over de hele dia (via de shortcode `lokaal`), met een reservedia voor online |
 | `quotes` | Drie citaten naast elkaar |
 | `split`, `split-wide`, `mission`, `photo`, `screenshot` | Tekst links, beeld rechts |
+| `demo-side`, `services` | Titel, diensten met icoon en een knop naast een schermafbeelding |
+| `blocks` | Drie blokken met icoon, titel en tekst |
+| `context` | Kaarten in twee kolommen met een gele afkorting als kop |
 | `open-band` | Band onder een rij stappen, bijvoorbeeld over open werken |
 
 Kopieer de HTML van zo'n dia uit een bestaande presentatie (zoals `nldd-introductie-moza-voor-ezk-dg-dso`), niet de CSS.
@@ -68,7 +71,7 @@ Dia's over MOZa zelf, in `assets/css/nldd-deck-moza.css`. Voorbeeld in `nldd-int
 | `clover` | Klavertje vier: de vier overheidsbrede portalen |
 | `rings`, `levels`, `org` | Ringen om het MOZa-team met logo's eromheen |
 
-Ringen met logo's: elk logo is een `<span class="org logo-<naam>">`, op volgorde rond de ring vanaf boven met de klok mee. De posities rekent de CSS uit. Standaard zijn het dertien logo's; bij een ander aantal stel je in `presentatie.css` het aantal en de afstand bij, zoals `.rings { --orgs: 9; --straal: 73%; }`.
+Ringen met logo's: elk logo is een `<span class="org logo-<naam>">`, op volgorde rond de ring vanaf boven met de klok mee. De posities rekent de CSS uit. Standaard zijn het dertien logo's; bij een ander aantal stel je in `presentatie.css` het aantal en de afstand bij, zoals `.rings { --orgs: 9; --straal: 73%; }`. Is een organisatie het publiek, geef de tegel dan `org-publiek` (geel), en wat erbij hoort `org-uitgelicht` (gele rand).
 
 ### Beeldbank
 

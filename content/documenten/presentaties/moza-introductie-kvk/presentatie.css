@@ -1,9 +1,0 @@
-/* Opmaak die alleen voor deze presentatie geldt. Algemene dia-vormen staan
-   in assets/css/nldd-deck.css, de MOZa-dia's (historie, klavertje vier, ringen) in
-   assets/css/nldd-deck-moza.css. */
-
-/* Dertien logo's: kleinere tegels, iets verder van het midden */
-.rings { --orgs: 13; --straal: 76%; }
-.org { height: 4.8cqw; }
-/* Amsterdam schuift wat op, anders staat het te dicht bij Rotterdam */
-.rings .logo-amsterdam { left: -1.5%; top: 104%; }

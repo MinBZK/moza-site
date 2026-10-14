@@ -119,9 +119,9 @@
 /* Ruimte rechts voor de organisaties die buiten de ringen staan */
 .split-rings { grid-template-columns: 34cqw 1fr; }
 
-/* --orgs: het aantal logo's; --straal: hun afstand tot het midden. Stel ze per
-   presentatie bij in presentatie.css, op .rings. */
-.rings { --orgs: 9; --straal: 73%; position: relative; justify-self: center; width: 26cqw; aspect-ratio: 1; }
+/* --orgs: het aantal logo's; --straal: hun afstand tot het midden. Standaard
+   dertien logo's; een ander aantal stel je bij op .rings. */
+.rings { --orgs: 13; --straal: 76%; position: relative; justify-self: center; width: 26cqw; aspect-ratio: 1; }
 .ring {
   position: absolute;
   top: 50%;
@@ -163,7 +163,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 5.6cqw;
+  height: 4.8cqw;
   padding: 0.35cqw 0.5cqw;
   border-radius: 0.6cqw;
   background: var(--ink);
@@ -192,6 +192,8 @@
 .logo-rdw img { height: 50%; }
 .logo-amsterdam img { height: 48%; }
 .logo-vng img { height: 62%; }
+/* Vaste plek, alleen juist als Amsterdam de negende van dertien logo's is */
+.rings .logo-amsterdam { left: -1.5%; top: 104%; }
 
 /* Het publiek van de presentatie: tegel in het geel van MOZa */
 .org-publiek { background: var(--accent); box-shadow: 0 0 0 0.3cqw var(--accent); }

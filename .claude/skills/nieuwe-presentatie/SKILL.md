@@ -68,7 +68,7 @@ Dia's over MOZa zelf, in `assets/css/nldd-deck-moza.css`. Voorbeeld in `nldd-int
 | `clover` | Klavertje vier: de vier overheidsbrede portalen |
 | `rings`, `levels`, `org` | Ringen om het MOZa-team met logo's eromheen |
 
-Ringen met logo's: elk logo is een `<span class="org logo-<naam>">`, op volgorde rond de ring vanaf boven met de klok mee. De posities rekent de CSS uit; stel bij een ander aantal dan negen in `presentatie.css` het aantal en de afstand in, zoals `.rings { --orgs: 13; --straal: 76%; }`.
+Ringen met logo's: elk logo is een `<span class="org logo-<naam>">`, op volgorde rond de ring vanaf boven met de klok mee. De posities rekent de CSS uit. Standaard zijn het dertien logo's; bij een ander aantal stel je in `presentatie.css` het aantal en de afstand bij, zoals `.rings { --orgs: 9; --straal: 73%; }`.
 
 ### Beeldbank
 

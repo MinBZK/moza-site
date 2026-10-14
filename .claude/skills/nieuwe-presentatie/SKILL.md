@@ -69,6 +69,12 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 - <kbd>S</kbd> opent de **sprekersweergave** in een eigen venster (`?spreker`): de dia van nu, de volgende stap of dia, de notities, een klok en de verstreken tijd. Zet `duur: 10` (minuten) in de front matter om de tijd af te zetten tegen het plan; daarna kleurt hij geel.
 - Beide vensters volgen elkaar, wie er ook bladert. Sleep het publieksvenster naar de beamer en druk daar op <kbd>F</kbd>. Werkt binnen dezelfde browser, ook in een sandbox (zoals op Plak) zolang je de sprekersweergave met <kbd>S</kbd> opent.
 
+## Exporteren (Plak, offline)
+
+- `just presentatie-export <slug>` bouwt de site (ook drafts) en exporteert de presentatie als één HTML-bestand in `tmp/export/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-export.js`.
+- Publiceren op Plak: `plak publish tmp/export/<slug> --site <groep>/<site> --preview <ref>`, zie de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `nldd`, met toegang SSO Rijk.
+- De sluitknop en links naar de site vallen weg. De notities gaan wel mee: wie de bron bekijkt, kan ze lezen.
+
 ## Iconen en componenten
 
 - Iconen: `<span class="ic"><nldd-icon name="bell"></nldd-icon></span>`. De `span` bepaalt grootte en kleur. Gebruik alleen namen uit de NLDD-icoonset (zie de `nldd`-skill of `node_modules/@nldd/design-system/dist/components/content/icon/icon-registry.js`).

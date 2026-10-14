@@ -111,6 +111,15 @@ pdfua: build-check
     npm run pdfua -- tmp/public
     just wis tmp/public
 
+# Exporteer een presentatie (ook een draft) als één HTML-bestand in
+# tmp/export/<slug>/, klaar om te publiceren met: plak publish tmp/export/<slug> ...
+presentatie-export slug: node-deps
+    npm run render-mermaid
+    just wis tmp/presentatie
+    hugo -D -F --minify --quiet --baseURL / --destination tmp/presentatie
+    node scripts/presentatie-export.js tmp/presentatie {{slug}} tmp/export/{{slug}}/index.html
+    just wis tmp/presentatie
+
 # Bouw de site naar tmp/public, waarop links, a11y en csp draaien
 [private]
 build-check: node-deps

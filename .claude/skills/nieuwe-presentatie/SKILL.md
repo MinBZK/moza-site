@@ -39,7 +39,7 @@ Elke dia is een `<section class="slide">` op het hoogste niveau, met een `aria-l
 </section>
 ```
 
-Bouwstenen, allemaal in `nldd-deck.css`:
+De basis, in `nldd-deck.css`:
 
 | Klasse | Waarvoor |
 | --- | --- |
@@ -50,8 +50,25 @@ Bouwstenen, allemaal in `nldd-deck.css`:
 | `footnote` | Toelichting met gele streep, max. twee regels |
 | `compare`, `card` | Twee kaarten naast elkaar (bijvoorbeeld nu en straks) |
 | `flow`, `flow-step` | Stappen in een rij met pijlen ertussen; het aantal kolommen volgt het aantal stappen |
+| `slide-cover` met `cover` | Titel- of slotdia met foto over de hele dia; met `data-overgang` vervaagt de foto |
+| `slide-video`, `slide-reserve` | Video over de hele dia (via de shortcode `lokaal`), met een reservedia voor online |
+| `quotes` | Drie citaten naast elkaar |
+| `split`, `split-wide`, `mission`, `photo`, `screenshot` | Tekst links, beeld rechts |
+| `open-band` | Band onder een rij stappen, bijvoorbeeld over open werken |
 
-Opmaak die alleen voor jouw presentatie is, zoals een eigen plaat of diagram, zet je in `presentatie.css` in de page bundle, naast `index.html`. De layout laadt dat bestand vanzelf als het er is. Voorbeeld: de bouwblokkenplaat (`bb-*`) in de berichtenpresentatie.
+Kopieer de HTML van zo'n dia uit een bestaande presentatie (zoals `nldd-introductie-moza-voor-ezk-dg-dso`), niet de CSS.
+
+### MOZa-dia's
+
+Dia's over MOZa zelf, in `assets/css/nldd-deck-moza.css`. Voorbeeld in `nldd-introductie-moza-voor-ezk-dg-dso`.
+
+| Klasse | Waarvoor |
+| --- | --- |
+| `timeline` + `flow` | De historie van MOZa: tijdlijn 2007 tot nu boven drie pogingen, `flow-step-nu` is MOZa |
+| `clover` | Klavertje vier: de vier overheidsbrede portalen |
+| `rings`, `levels`, `org` | Ringen om het MOZa-team met logo's eromheen |
+
+Ringen met logo's: elk logo is een `<span class="org logo-<naam>">`, op volgorde rond de ring vanaf boven met de klok mee. De posities rekent de CSS uit; stel bij een ander aantal dan negen in `presentatie.css` het aantal en de afstand in, zoals `.rings { --orgs: 13; --straal: 76%; }`.
 
 ### Beeldbank
 
@@ -61,9 +78,13 @@ Beeld dat in meer dan één presentatie terugkomt (logo's, foto's, schermafbeeld
 <img src="{{< beeld "logos/kvk.png" >}}" alt="KVK">
 ```
 
-Beeld dat maar in één presentatie staat, blijft in de page bundle (`images/`). Komt het later in een tweede presentatie terug, verplaats het dan naar de beeldbank in plaats van het te kopiëren.
+Beeld dat maar in één presentatie staat, blijft in de page bundle (`images/`). Komt het later in een tweede presentatie terug, verplaats het dan naar de beeldbank in plaats van het te kopiëren. Een nieuw logo dat zonder witruimte zwaar oogt, krijgt een hoogte in `nldd-deck-moza.css` (`.logo-<naam> img`).
 
 Beeld dat al bij een pagina van de site hoort, zoals de foto in een nieuwsbericht, kopieer je niet: haal het op met `{{< afbeelding-url pagina="/actueel/…" bestand="foto.jpg" >}}`.
+
+### Eigen opmaak
+
+Opmaak die alleen voor jouw presentatie is, zoals een eigen plaat of diagram, zet je in `presentatie.css` in de page bundle, naast `index.html`. De layout laadt dat bestand vanzelf als het er is, na `nldd-deck.css` en `nldd-deck-moza.css`. Voorbeeld: de bouwblokkenplaat (`bb-*`) in de berichtenpresentatie.
 
 ## Opbouwen per klik
 
@@ -96,7 +117,7 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 
 ## Regels
 
-- Geen inline `style` of `<script>` in de content: de CSP blokkeert die. Opmaak hoort in `nldd-deck.css` (algemeen) of `presentatie.css` in de bundle (alleen voor deze presentatie).
+- Geen inline `style` of `<script>` in de content: de CSP blokkeert die. Opmaak hoort in `nldd-deck.css` (algemeen), `nldd-deck-moza.css` (MOZa-dia's) of `presentatie.css` in de bundle (alleen voor deze presentatie).
 - Afbeeldingen in de page bundle, of in de beeldbank als ze in meer presentaties terugkomen, met een `alt` die zegt wat er te zien is.
 - Tekst volgens `.claude/rules/taal-en-stijl.md`: B1, korte zinnen. Een dia is geen document.
 - Externe links die achter een login zitten (zoals een democonsole) geven in de linkcontrole een 403. Zet ze dan op de negeerlijst in `.htmltest.yml`, met een regel uitleg.

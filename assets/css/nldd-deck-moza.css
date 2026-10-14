@@ -1,0 +1,191 @@
+/* De basis van het MOZa-verhaal: de historie, het klavertje vier en de ringen
+   om het MOZa-team. Voor presentaties met de layout nldd-deck; komt in de
+   bundel direct na nldd-deck.css en vóór de eigen presentatie.css van een
+   presentatie, die dus alles hier kan bijstellen. */
+
+/* ---------- Historie van MOZa: tijdlijn boven drie pogingen ---------- */
+
+/* MOZa zelf, altijd gemarkeerd: ook in leesmodus en print */
+.flow-step-nu { border-color: var(--accent); background: var(--ink-10); }
+/* Geel is voor MOZa; de stap die aan de beurt is krijgt een witte rand */
+.timeline + .flow .flow-step.is-current:not(.flow-step-nu) { border-color: var(--ink); }
+
+/* Tijdlijn op ware schaal: 2007 tot nu (2026) is 19 jaar over de volle breedte
+   van de kaarten. Elke periode valt binnen de breedte van zijn kaart, zodat het
+   lijntje eronder recht naar die kaart loopt. */
+.timeline { position: relative; height: 3cqw; margin-top: 3cqw; }
+.timeline + .flow { margin-top: 2cqw; }
+/* Koppen van twee regels, ook als ze op één passen, zodat de tekst eronder in elke kaart even hoog begint */
+.timeline + .flow h3 { min-height: 2.3em; }
+/* De jaren tussen de pogingen: een stippellijn, niet onder de balken door (die zijn doorschijnend) */
+.tl-gat { position: absolute; bottom: -0.06cqw; border-top: 0.15cqw dashed var(--ink-55); }
+.tl-gat-1 { left: calc(100% * 5 / 19); width: calc(100% * 3 / 19); }
+.tl-gat-2 { left: calc(100% * 12 / 19); width: calc(100% * 5 / 19); }
+.tl-periode {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1cqw;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+.tl-periode::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.25cqw;
+  left: 0;
+  height: 0.6cqw;
+  border-radius: 0.3cqw;
+  background: var(--ink-55);
+}
+.tl-periode::after {
+  content: "";
+  position: absolute;
+  /* Begint onder de balk: die is half doorzichtig en zou de lijn laten doorschijnen */
+  top: calc(100% + 0.25cqw);
+  left: 50%;
+  width: 0.12cqw;
+  height: 1.75cqw;
+  background: var(--ink-35);
+}
+.tl-1 { left: 0; width: calc(100% * 5 / 19); }
+.tl-2 { left: calc(100% * 8 / 19); width: calc(100% * 4 / 19); }
+.tl-3 { left: calc(100% * 17 / 19); width: calc(100% * 2 / 19); }
+.tl-3::before, .tl-3::after { background: var(--accent); }
+
+/* ---------- Klavertje vier ---------- */
+
+.title-clover { font-size: 6cqw; }
+/* Titel op de hoogte van de bovenste bladen, niet in het midden */
+/* Smalle titelkolom, zodat het klavertje naar het midden van de dia schuift */
+.split-top { align-items: start; grid-template-columns: 33cqw 1fr; }
+.split-top > div:first-child { padding-top: 2.8cqw; }
+
+/* .clover-art schaalt zijn viewBox (32.8) naar de twee bladcellen */
+.clover {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11cqw 15cqw 15cqw;
+  grid-template-rows: 3cqw 15cqw 15cqw;
+  justify-self: center;
+  align-items: center;
+  justify-items: center;
+  padding-bottom: 5.8cqw;
+}
+.clover-art {
+  position: absolute;
+  grid-area: 2 / 2 / 4 / 4;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.clover-blad { fill: var(--ink-06); stroke: var(--ink-18); stroke-width: 0.1; }
+.clover-blad-moza { fill: var(--ink-10); stroke: var(--accent); stroke-width: 0.2; }
+.clover-stem { fill: var(--ink-35); }
+.clover-col { align-self: start; font-size: 1.2cqw; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-55); }
+.clover-row { justify-self: end; padding-right: 1.2cqw; font-size: 1.2cqw; font-weight: 600; color: var(--ink-55); text-align: right; }
+.leaf {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.45cqw;
+  font-weight: 600;
+  text-align: center;
+}
+/* Tekst op het zwaartepunt van het blad, 0.35cqw naar het midden van het klavertje */
+.leaf-tl { padding: 1.55cqw 1.35cqw 0.85cqw 2.05cqw; }
+.leaf-tr { padding: 1.55cqw 2.05cqw 0.85cqw 1.35cqw; }
+.leaf-bl { padding: 0.85cqw 1.35cqw 1.55cqw 2.05cqw; }
+.leaf-br { padding: 0.85cqw 2.05cqw 1.55cqw 1.35cqw; }
+.clover-row:has(+ .leaf-tl) { padding-top: 0.7cqw; }
+.clover-row:has(+ .leaf-bl) { padding-bottom: 0.7cqw; }
+
+/* ---------- Ringen om het team, met logo's eromheen ---------- */
+
+.levels { display: grid; gap: 1.1cqw; margin: 2.4cqw 0 0; }
+.levels div { display: grid; grid-template-columns: 13cqw 1fr; gap: 1.2cqw; align-items: baseline; }
+.levels dt { font-size: 1.15cqw; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.levels dd { margin: 0; font-size: 1.55cqw; line-height: 1.35; }
+
+/* Ruimte rechts voor de organisaties die buiten de ringen staan */
+.split-rings { grid-template-columns: 34cqw 1fr; }
+
+/* --orgs: het aantal logo's; --straal: hun afstand tot het midden. Standaard
+   negen logo's; een ander aantal stel je bij op .rings. */
+.rings { --orgs: 9; --straal: 73%; position: relative; justify-self: center; width: 26cqw; aspect-ratio: 1; }
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 0.12cqw solid var(--ink-35);
+  border-radius: 50%;
+  background: var(--ink-06);
+  transform: translate(-50%, -50%);
+}
+.ring > span {
+  position: absolute;
+  top: 1.1cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1cqw;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ring-core { width: 30%; height: 30%; border-color: var(--accent); background: var(--ink-10); }
+.ring-1 { width: 53%; height: 53%; }
+.ring-2 { width: 76.5%; height: 76.5%; }
+.ring-3 { width: 100%; height: 100%; }
+.ring-core > span { top: 50%; transform: translate(-50%, -50%); font-size: 1.5cqw; line-height: 1.1; letter-spacing: 0; text-transform: none; text-align: center; color: var(--accent); }
+/* De ringen staan er vanaf het begin, iets vager dan gewone stappen; per klik wordt er een helder */
+.ring[data-step]:not(.is-shown) { opacity: 0.4; }
+/* Wit, want geel is voor het MOZa-team in het midden */
+.ring.is-current { border-color: var(--ink); }
+
+/* Logo's op gelijke afstand rond de buitenste ring, vanaf boven met de klok mee,
+   in de volgorde van de HTML. Witte tegels: de logo's zijn gemaakt voor een
+   lichte achtergrond. */
+.org {
+  --hoek: calc(var(--i, 0) * 1turn / var(--orgs));
+  position: absolute;
+  left: calc(50% + var(--straal) * sin(var(--hoek)));
+  top: calc(50% - var(--straal) * cos(var(--hoek)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5.6cqw;
+  padding: 0.35cqw 0.5cqw;
+  border-radius: 0.6cqw;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+}
+.org:nth-child(2 of .org) { --i: 1; }
+.org:nth-child(3 of .org) { --i: 2; }
+.org:nth-child(4 of .org) { --i: 3; }
+.org:nth-child(5 of .org) { --i: 4; }
+.org:nth-child(6 of .org) { --i: 5; }
+.org:nth-child(7 of .org) { --i: 6; }
+.org:nth-child(8 of .org) { --i: 7; }
+.org:nth-child(9 of .org) { --i: 8; }
+.org:nth-child(10 of .org) { --i: 9; }
+.org:nth-child(11 of .org) { --i: 10; }
+.org:nth-child(12 of .org) { --i: 11; }
+.org:nth-child(13 of .org) { --i: 12; }
+.org:nth-child(14 of .org) { --i: 13; }
+.org:nth-child(15 of .org) { --i: 14; }
+.org:nth-child(16 of .org) { --i: 15; }
+.org img { display: block; height: 100%; width: auto; }
+/* Logo's zonder eigen witruimte zouden anders zwaarder ogen dan de Rijkslogo's.
+   Logo's staan in assets/images/beeldbank/logos/; de klasse is logo-<bestandsnaam>. */
+.logo-kvk img, .logo-uwv img { height: 80%; }
+.logo-vng img { height: 62%; }

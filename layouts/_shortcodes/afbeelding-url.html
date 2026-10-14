@@ -1,0 +1,13 @@
+{{- /* Geeft de URL van een afbeelding die al op de site staat, zodat een presentatie
+   hem hergebruikt in plaats van te kopiëren. Gebruik in een src-attribuut:
+   {{< afbeelding-url asset="images/hero/ondernemer-tablet.webp" >}}
+   {{< afbeelding-url pagina="/actueel/mijn-artikel" bestand="foto.jpg" >}} */ -}}
+{{- $bron := "" -}}
+{{- with .Get "asset" -}}
+  {{- $bron = resources.Get . -}}
+{{- else -}}
+  {{- with site.GetPage (.Get "pagina") -}}
+    {{- $bron = .Resources.Get ($.Get "bestand") -}}
+  {{- end -}}
+{{- end -}}
+{{- with $bron -}}{{ .RelPermalink }}{{- else -}}{{ errorf "afbeelding-url: afbeelding niet gevonden (%s) bij %s" .Params .Page.File.Path }}{{- end -}}

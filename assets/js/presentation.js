@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', () => {
     Reveal.initialize({
       embedded: true,
       controls: true,
+      controlsTutorial: false,
+      controlsBackArrows: 'visible',
       progress: true,
       overview: true,
       hash: true
@@ -26,13 +28,17 @@ window.addEventListener('DOMContentLoaded', () => {
         '.navigate-left': 'Vorige slide',
         '.navigate-right': 'Volgende slide',
         '.navigate-up': 'Slide hierboven',
-        '.navigate-down': 'Slide hieronder',
-        '.resume-button': 'Presentatie hervatten'
+        '.navigate-down': 'Slide hieronder'
       };
       for (const [selector, label] of Object.entries(labels)) {
         for (const el of document.querySelectorAll(selector)) {
           el.setAttribute('aria-label', label);
         }
+      }
+
+      const hervatten = document.querySelector('.resume-button');
+      if (hervatten) {
+        hervatten.textContent = 'Presentatie hervatten';
       }
     }
 

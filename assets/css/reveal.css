@@ -128,7 +128,6 @@ body {
 /* Presentation utility classes */
 .reveal .dimmed {
   color: var(--rijksoverheid-grijs-donker);
-  opacity: 0.5;
 }
 
 .reveal .large-image {
@@ -168,6 +167,19 @@ body {
 
 .close-button:hover {
   opacity: 0.7;
+}
+
+body:has(.reveal.paused) .close-button {
+  color: var(--rijksoverheid-wit);
+}
+
+.reveal .controls button:focus-visible {
+  outline: 2px solid var(--rijksoverheid-blauw);
+  outline-offset: 2px;
+}
+
+.reveal .slides a:not(:has(img)) {
+  text-decoration: underline;
 }
 
 .reveal .controls {

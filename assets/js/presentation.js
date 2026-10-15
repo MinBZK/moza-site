@@ -19,6 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
       // Check logo visibility on initial load
       updateLogoVisibility(Reveal.getCurrentSlide());
       vertaalBediening();
+      maakVoortgangsbalkDecoratief();
+      volgDiaStaten();
     });
 
     // Reveal.js zet Engelse aria-labels op zijn knoppen. Ze staan hardgecodeerd
@@ -40,6 +42,50 @@ window.addEventListener('DOMContentLoaded', () => {
       if (hervatten) {
         hervatten.textContent = 'Presentatie hervatten';
       }
+    }
+
+    function maakVoortgangsbalkDecoratief() {
+      const balk = document.querySelector('.reveal .progress');
+      if (balk) {
+        balk.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function werkDiaStatenBij() {
+      const secties = document.querySelectorAll('.slides section');
+      const scrollweergave = Reveal.isScrollView();
+      const huidige = Reveal.getCurrentSlide();
+      for (const sectie of secties) {
+        if (scrollweergave) {
+          sectie.inert = false;
+          if (sectie.getBoundingClientRect().height > 10) {
+            sectie.removeAttribute('aria-hidden');
+            sectie.removeAttribute('hidden');
+          }
+        } else {
+          sectie.inert = !(sectie === huidige || sectie.contains(huidige));
+        }
+      }
+    }
+
+    function volgDiaStaten() {
+      const slides = document.querySelector('.slides');
+      if (!slides) return;
+      let gepland = false;
+      const waarnemer = new MutationObserver(() => {
+        if (gepland) return;
+        gepland = true;
+        requestAnimationFrame(() => {
+          gepland = false;
+          waarnemer.disconnect();
+          werkDiaStatenBij();
+          waarnemer.observe(slides, opties);
+        });
+      });
+      const opties = { subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'hidden', 'class'] };
+      werkDiaStatenBij();
+      waarnemer.observe(slides, opties);
+      window.addEventListener('resize', werkDiaStatenBij);
     }
 
     function updateLogoVisibility(slide) {

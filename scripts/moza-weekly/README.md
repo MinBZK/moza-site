@@ -120,6 +120,22 @@ Idem, wanneer je YAML hebt bijgewerkt en de JSON moet bijwerken:
 just moza-weekly-anonymize tmp/moza-weekly/2026-05-27.yaml
 ```
 
+### Docs-mappen en extra links
+
+Een map in Docs waarvan de documenten in de periode zijn bijgewerkt, komt mee, ook als niemand ze in Mattermost linkt. Zet de uuid's (komma-gescheiden) in `MOZA_WEEKLY_DOCS_FOLDERS`, of geef ze per run mee. Dit vereist `DOCS_SESSION`; zonder sessie slaat `fetch.py` de mappen over en zegt dat.
+
+```bash
+just moza-weekly --docs-folder 00000000-0000-0000-0000-000000000000
+```
+
+Een link die niet in de opgehaalde kanalen staat, voeg je toe met `--extra-url`. Dat kan een Mattermost-permalink, een Docs-document of een webpagina zijn.
+
+```bash
+just moza-weekly --extra-url https://docs.rijksapp.nl/docs/<uuid>/ --extra-url https://example.nl/pagina
+```
+
+Beide komen in het top-level `references:`-blok, zonder dat een post ernaar verwijst. Het veld `bron` zegt waar ze vandaan komen: `docs-map` of `extra`. Een document dat ook in een bericht staat, blijft één referentie zonder `bron`. Een permalink naar een post die al in het rapport staat, wordt overgeslagen.
+
 ### Bots uitsluiten
 
 ```bash

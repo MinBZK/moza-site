@@ -255,6 +255,15 @@ def test_webtekst_wordt_geredigeerd():
     assert ref["site"] == "example.org"
 
 
+def test_referentie_zonder_post_behoudt_bron_en_wordt_geschrubd():
+    data = _sample_data_met_references()
+    data["references"][1]["bron"] = "docs-map"
+    out = _build_anonymized(data)
+    ref = out["references"][1]
+    assert ref["bron"] == "docs-map"
+    assert ref["text"] == "[collega] schreef dit. Mail [@collega] voor vragen."
+
+
 def test_post_behoudt_verwijzing_naar_ref_ids():
     out = _build_anonymized(_sample_data_met_references())
     assert out["channels"][0]["threads"][0]["root"]["references"] == ["ref_1", "ref_2"]

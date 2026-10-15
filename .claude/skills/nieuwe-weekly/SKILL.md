@@ -11,6 +11,7 @@ description: Gebruik bij het maken van een nieuwe MOZa Weekly.
 2. **Lees de laatste 3-5 weeklies** in `content/weekly/YYYY/`. Hieruit volgen: huidige sectie-indeling, toon, linkpatronen en de lopende agenda. Kopieer het patroon, schrijf niet vanaf nul.
 3. Run: `hugo new content weekly/YYYY/YYYY-MM-DD.md`.
 4. Verzamel input (sla over als de input al gegeven is):
+   - **Controleer vooraf de Docs-mappen**: kijk met `grep '^MOZA_WEEKLY_DOCS_FOLDERS=' .env` welke mappen in Docs worden doorgelopen. Is de variabele leeg of ontbreekt hij, dan neemt de pipeline geen enkele map mee. Meld welke mappen erin staan, of dat hij leeg is, en vraag of er een map bij moet of af kan. Pas `.env` alleen aan na bevestiging.
    - Standaardbron is de Mattermost-pipeline: run `just moza-weekly` (zie `scripts/moza-weekly/README.md`). Dat levert drie bestanden op in `tmp/moza-weekly/`.
    - Gebruik `tmp/moza-weekly/<datum>.anonymized.json` als input. Nooit de `.yaml` of `.html` gebruiken: die bevatten namen.
    - De gebruiker cureert eventueel de YAML; run daarna `just moza-weekly-anonymize tmp/moza-weekly/<datum>.yaml` om de JSON te verversen.

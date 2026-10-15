@@ -4,6 +4,7 @@
 Usage:
     uv run --project scripts/moza-weekly scripts/moza-weekly/fetch.py
         [--from YYYY-MM-DD] [--to YYYY-MM-DD] [--channel NAME ...]
+        [--docs-folder UUID ...] [--extra-url URL ...]
         [--output PATH] [--no-bots] [--force]
         [--no-references | --no-external] [--verbose | --quiet]
 """
@@ -84,6 +85,22 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
     )
     p.add_argument("--to", dest="date_to", help="YYYY-MM-DD (default: vandaag)")
     p.add_argument("--channel", action="append", default=None, dest="channels")
+    p.add_argument(
+        "--docs-folder",
+        action="append",
+        default=None,
+        dest="docs_folders",
+        metavar="UUID",
+        help="Docs-map waarvan de documenten uit de periode worden meegenomen (herhaalbaar)",
+    )
+    p.add_argument(
+        "--extra-url",
+        action="append",
+        default=[],
+        dest="extra_urls",
+        metavar="URL",
+        help="Extra link (Mattermost-permalink, Docs of webpagina) om mee te nemen (herhaalbaar)",
+    )
     p.add_argument("--output", type=Path, default=None)
     p.add_argument("--no-bots", action="store_true")
     p.add_argument(
@@ -137,6 +154,19 @@ def _permalink(server: str, team: str, post_id: str) -> str:
 
 def _to_dt(ms: int) -> datetime:
     return datetime.fromtimestamp(ms / 1000, tz=NL_TZ)
+
+
+def _bijgewerkt_in_periode(updated_at: str | None, period: Period) -> bool:
+    """True als de ISO-tijdstempel van Docs binnen de periode valt."""
+    if not updated_at:
+        return False
+    try:
+        moment = datetime.fromisoformat(updated_at.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=NL_TZ)
+    return period.start <= moment <= period.end
 
 
 # --------------------------------------------------------------------------- channel fetch
@@ -339,6 +369,54 @@ def _fetch_channel(
 # --------------------------------------------------------------------------- references
 
 
+BRON_DOCS_MAP = "docs-map"
+BRON_EXTRA = "extra"
+
+
+def _collect_docs_folders(
+    collector: ReferenceCollector,
+    docs_client: DocsClient | None,
+    folders: list[str],
+    period: Period,
+    docs_url: str,
+) -> None:
+    """Neem documenten uit Docs-mappen mee die in de periode zijn bijgewerkt."""
+    if docs_client is None:
+        log.warning(
+            docs_cookie_instructie(
+                f"{len(folders)} Docs-map(pen) overgeslagen: DOCS_SESSION ontbreekt.",
+                docs_url,
+            )
+        )
+        return
+    for folder in folders:
+        listing = docs_client.list_children(folder)
+        if listing.status == STATUS_GEEN_TOEGANG:
+            log.warning(
+                docs_cookie_instructie(
+                    f"Docs-map {folder} niet opgehaald: de sessiecookie is verlopen "
+                    "of geeft geen toegang.",
+                    docs_url,
+                )
+            )
+            continue
+        if listing.status != STATUS_OK:
+            log.warning("⚠ Docs-map %s (%s): %s", folder, listing.status, listing.error)
+            continue
+        recent = [
+            d for d in listing.items
+            if d.get("id") and _bijgewerkt_in_periode(d.get("updated_at"), period)
+        ]
+        log.info(
+            "Docs-map %s: %d documenten, %d bijgewerkt in de periode",
+            folder, len(listing.items), len(recent),
+        )
+        for doc in recent:
+            collector.resolve_extra(
+                f"{docs_url.rstrip('/')}/docs/{doc['id']}/", BRON_DOCS_MAP
+            )
+
+
 def _collect_references(
     client: MattermostClient,
     channels: list[Channel],
@@ -348,6 +426,8 @@ def _collect_references(
     follow_external: bool,
     docs_url: str,
     docs_session: str,
+    docs_folders: list[str] = (),
+    extra_urls: list[str] = (),
 ) -> list[Reference]:
     """Volg verwijzingen in alle opgehaalde berichten en log wat niet lukte."""
     known_post_ids = {
@@ -369,6 +449,10 @@ def _collect_references(
             for th in ch.threads:
                 for post in (th.root, *th.replies):
                     post.references = collector.collect_from(post.message)
+        if docs_folders:
+            _collect_docs_folders(collector, docs_client, docs_folders, period, docs_url)
+        for url in extra_urls:
+            collector.resolve_extra(url, BRON_EXTRA)
     finally:
         if fetcher is not None:
             fetcher.close()
@@ -469,6 +553,12 @@ def main(argv: list[str] | None = None) -> int:
     server = os.environ.get("MOZA_WEEKLY_SERVER_URL", DEFAULT_SERVER)
     team = os.environ.get("MOZA_WEEKLY_TEAM", DEFAULT_TEAM)
 
+    if args.docs_folders:
+        docs_folders = args.docs_folders
+    else:
+        raw = os.environ.get("MOZA_WEEKLY_DOCS_FOLDERS", "")
+        docs_folders = [f.strip() for f in raw.split(",") if f.strip()]
+
     channels: list[str]
     if args.channels:
         channels = args.channels
@@ -551,6 +641,8 @@ def main(argv: list[str] | None = None) -> int:
                     follow_external=not args.no_external,
                     docs_url=os.environ.get("MOZA_WEEKLY_DOCS_URL", DEFAULT_DOCS_URL),
                     docs_session=os.environ.get("DOCS_SESSION", "").strip(),
+                    docs_folders=docs_folders,
+                    extra_urls=args.extra_urls,
                 )
     except MattermostError as e:
         log.error("Netwerk/server-fout: %s", e)

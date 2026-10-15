@@ -271,6 +271,8 @@ body {
   font-weight: 600;
   color: var(--rapport-text);
   font-size: 1rem;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .item-description {

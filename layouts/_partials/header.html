@@ -112,7 +112,7 @@
         {{- $inSection := and $showExpand (or $isActive $isChildActive) -}}
         {{- $liClass := cond $showToggle "has-subnav" (cond $inSection "in-section" "") -}}
         <li{{ with $liClass }} class="{{ . }}"{{ end }}>
-          <a href="{{ .URL }}" data-text="{{ .Name }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
+          <a href="{{ .URL }}" data-text="{{ .Name }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isActive }} aria-current="page"{{ else if $inSection }} aria-current="true"{{ end }}>{{ .Name }}</a>
           {{- if $showToggle -}}
           <button class="subnav-toggle" aria-expanded="false" aria-controls="subnav-panel-{{ $index }}" aria-label="Toon submenu voor {{ .Name }}">
             {{- partial "icon.html" "chevron-down" -}}
@@ -134,7 +134,7 @@
   <div class="subnav-panel" id="subnav-panel-{{ $index }}"{{ if not $showPanel }} hidden{{ end }}>
     <ul>
       {{- range $children.ByWeight -}}
-      <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="current"{{ end }}>{{ .Title }}</a></li>
+      <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="current" aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end -}}
     </ul>
   </div>

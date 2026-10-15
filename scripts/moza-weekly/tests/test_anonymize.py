@@ -143,6 +143,40 @@ def test_zin_die_na_een_naam_begint_blijft_heel():
     )
 
 
+def test_losse_achternaam_van_de_server_alleen_met_hoofdletter():
+    name_re = _build_name_redactor(_authors(), server_names=[("Truus", "Bakker")])
+    assert _redact_message("met Bakker gebeld", name_re) == "met [collega] gebeld"
+    assert _redact_message("langs de bakker", name_re) == "langs de bakker"
+    assert _redact_message("overleg met truus", name_re) == "overleg met [collega]"
+
+
+def test_achternaam_die_een_gewoon_woord_is_blijft_los_staan():
+    # Gemeten op echte input: "in de vorm van" werd "in de [collega] van".
+    name_re = _build_name_redactor(_authors(), server_names=[("Truus", "Vorm"), ("Henk", "Digital")])
+    assert _redact_message("in de vorm van beheer", name_re) == "in de vorm van beheer"
+    assert _redact_message("Vorm volgt functie", name_re) == "Vorm volgt functie"
+    assert _redact_message("de Digital Credentials API", name_re) == "de Digital Credentials API"
+    assert _redact_message("met Truus Vorm gesproken", name_re) == "met [collega] gesproken"
+
+
+def test_achternaam_van_een_auteur_alleen_met_hoofdletter():
+    name_re = _build_name_redactor(_authors(("m", "Klaas Jansen", False)))
+    assert _redact_message("Jansen belde", name_re) == "[collega] belde"
+    assert _redact_message("jansen-straat", name_re) == "jansen-straat"
+
+
+def test_hoofdletter_met_accent_in_achternaam():
+    name_re = _build_name_redactor(_authors(), server_names=[("Truus", "Éénhoorn")])
+    assert _redact_message("met Eenhoorn gesproken", name_re) == "met [collega] gesproken"
+    assert _redact_message("met Éénhoorn gesproken", name_re) == "met [collega] gesproken"
+
+
+def test_extra_namen_kennen_geen_uitzonderingen():
+    # Met de hand gekozen: dan ook geschrapt als het een gewoon woord is.
+    name_re = _build_name_redactor(_authors(), ["Piet Meer"])
+    assert _redact_message("niet meer nodig", name_re) == "niet [collega] nodig"
+
+
 def test_non_author_name_is_not_redacted():
     # Gedocumenteerde beperking: namen buiten de auteur-set blijven staan (geen NER).
     name_re = _build_name_redactor(_authors(("ppuk", "Pietje Puk", False)))

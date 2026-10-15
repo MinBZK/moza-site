@@ -43,6 +43,16 @@ log = logging.getLogger("moza-weekly.anonymize")
 
 _MIN_FIRSTNAME_LEN = 4  # voornamen <4 letters skippen (zoals "Ed", "Tim") om vals-positieven te voorkomen
 
+# Naamdelen van iemand op de server die ook een gewoon woord zijn. Los blijven
+# ze staan; in de volledige naam gaan ze er wel uit. Gemeten op echte input:
+# zonder deze lijst werd "in de vorm van" "in de [collega] van".
+_GEWONE_WOORDEN = frozenset({
+    "bron", "digitaal", "digital", "geel", "geluk", "groen", "groot", "hamer",
+    "heer", "hoeven", "klein", "kleine", "lange", "leest", "ligt", "link",
+    "meer", "middag", "mooi", "onrust", "oude", "projectleider", "rest", "said",
+    "sloten", "steen", "test", "velden", "verloop", "vorm", "wens",
+})
+
 
 def _parse_args(argv: list[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(prog="moza-weekly-anonymize", description=__doc__)
@@ -112,7 +122,9 @@ def _naam_patroon(naam: str) -> str:
     for teken in naam:
         basis = _OMGEKEERD.get(teken.lower())
         if basis:
-            delen.append(f"[{_ACCENTEN[basis]}]")
+            # Hoofdletter bewaren: een achternaam matcht hoofdlettergevoelig.
+            varianten = _ACCENTEN[basis]
+            delen.append(f"[{varianten.upper() if teken.isupper() else varianten}]")
         else:
             delen.append(re.escape(teken))
     return "".join(delen)
@@ -121,38 +133,60 @@ def _naam_patroon(naam: str) -> str:
 def _build_name_redactor(
     authors: "OrderedDict[str, dict[str, Any]]",
     extra_names: "list[str] | None" = None,
+    server_names: "list[tuple[str, str]] | None" = None,
 ) -> "re.Pattern[str] | None":
     """Bouw een regex die alle bekende namen matched. Langere matches eerst zodat
     `Pietje Puk` matcht vóór `Pietje` of `Puk`.
 
-    Toegevoegd worden:
-    - de volledige display_name (`Pietje Puk`)
-    - elk afzonderlijk naamdeel van >= 4 letters (voornaam, achternaam, behalve
-      Nederlandse tussenvoegsels als 'de', 'van', 'der').
+    Per bron:
+    - auteurs en server (voornaam, achternaam): de volledige naam en losse
+      voornamen van >= 4 letters, zonder op hoofdletters te letten. Een losse
+      achternaam alleen met hoofdletter: achternamen als "Meer" of "Vorm" zijn
+      ook gewone woorden. Woorden uit `_GEWONE_WOORDEN` blijven los staan.
+    - extra namen: elk naamdeel, zonder uitzonderingen, want die lijst is met
+      de hand gekozen.
     """
-    fragments: list[str] = []
-    namen = [info["display_name"].strip() for info in authors.values()]
-    namen += [n.strip() for n in (extra_names or [])]
-    for display in namen:
-        if not display:
+    # fragment -> hoofdletterongevoelig?
+    fragments: dict[str, bool] = {}
+
+    def _voeg_toe(naam: str, ongevoelig: bool) -> None:
+        fragment = _naam_patroon(naam)
+        fragments[fragment] = fragments.get(fragment, False) or ongevoelig
+
+    def _persoon(voornaam: str, achternaam: str) -> None:
+        volledig = f"{voornaam} {achternaam}".strip()
+        if volledig:
+            _voeg_toe(volledig, True)
+        for deel, ongevoelig in [(d, True) for d in voornaam.split()] + [
+            (d, False) for d in achternaam.split()
+        ]:
+            if len(deel) >= _MIN_FIRSTNAME_LEN and deel.lower() not in _GEWONE_WOORDEN:
+                _voeg_toe(deel, ongevoelig)
+
+    for info in authors.values():
+        # Een display_name is "Voornaam Achternaam"; het eerste woord is de voornaam.
+        voornaam, _, achternaam = info["display_name"].strip().partition(" ")
+        _persoon(voornaam, achternaam)
+    for voornaam, achternaam in server_names or []:
+        _persoon(voornaam.strip(), achternaam.strip())
+    for naam in (n.strip() for n in extra_names or []):
+        if not naam:
             continue
-        fragments.append(_naam_patroon(display))
-        for part in display.split():
-            if len(part) >= _MIN_FIRSTNAME_LEN:
-                fragments.append(_naam_patroon(part))
-    # Een handmatig opgegeven losse naam is een bewuste keuze, dus die nemen we
-    # ook op als hij korter is dan de drempel (denk aan "Luc" of "Leo").
-    for naam in extra_names or []:
-        naam = naam.strip()
-        if naam and len(naam.split()) == 1:
-            fragments.append(_naam_patroon(naam))
+        _voeg_toe(naam, True)
+        for deel in naam.split():
+            # Een losse extra naam is een bewuste keuze, dus ook als hij korter
+            # is dan de drempel (denk aan "Luc" of "Leo").
+            if len(deel) >= _MIN_FIRSTNAME_LEN or len(naam.split()) == 1:
+                _voeg_toe(deel, True)
     if not fragments:
         return None
-    fragments = sorted(set(fragments), key=len, reverse=True)
-    # Bezitsvorm meepakken ("Jans voorstel"), en hoofdletters negeren omdat
-    # namen in chat net zo vaak zonder hoofdletter worden geschreven.
-    pattern = r"\b(?:" + "|".join(fragments) + r")(?:['’]?s)?\b"
-    return re.compile(pattern, re.IGNORECASE)
+    alternatieven = [
+        f"(?i:{f})" if ongevoelig else f
+        for f, ongevoelig in sorted(fragments.items(), key=lambda x: len(x[0]), reverse=True)
+    ]
+    # Bezitsvorm meepakken ("Jans voorstel").
+    pattern = r"\b(?:" + "|".join(alternatieven) + r")(?:['’]?s)?\b"
+    return re.compile(pattern)
 
 
 # GitHub zet de auteur in de paginatitel: "… by jjansen · Pull Request #240 …".
@@ -255,7 +289,7 @@ def _anonymize_references(
     return out
 
 
-def _namen_uit_mattermost(server: str) -> list[str]:
+def _namen_uit_mattermost(server: str) -> list[tuple[str, str]]:
     """Namen van iedereen op de Mattermost-server, live opgehaald.
 
     Bewust niet opgeslagen: een namenlijst op schijf is zelf een lek.
@@ -266,7 +300,7 @@ def _namen_uit_mattermost(server: str) -> list[str]:
         return []
     try:
         with MattermostClient(server, token) as client:
-            namen = [u.display_name for u in client.iter_people()]
+            namen = [(u.first_name, u.last_name) for u in client.iter_people()]
     except MattermostError as e:
         log.warning("Namen ophalen faalde (%s); redactie beperkt zich tot de auteurs", e)
         return []
@@ -294,19 +328,13 @@ def _namen_uit_bestand() -> list[str]:
     return namen
 
 
-def _extra_names(data: dict[str, Any], server: str = "") -> list[str]:
-    """Alle namen om te schrubben bovenop de auteurs uit de YAML zelf."""
-    bron = server or data.get("meta", {}).get("server", "")
-    return _namen_uit_mattermost(bron) + _namen_uit_bestand()
-
-
 def _build_anonymized(data: dict[str, Any]) -> dict[str, Any]:
     channels = data.get("channels", [])
     references = data.get("references", []) or []
     authors = _collect_authors(channels, references)
     pseudonyms = _build_pseudonym_map(authors)
-    extra_names = _extra_names(data)
-    name_re = _build_name_redactor(authors, extra_names)
+    server_names = _namen_uit_mattermost(data.get("meta", {}).get("server", ""))
+    name_re = _build_name_redactor(authors, _namen_uit_bestand(), server_names)
 
     humans = sum(1 for info in authors.values() if not info["is_bot"])
     bots = sum(1 for info in authors.values() if info["is_bot"])

@@ -143,4 +143,10 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
+{{- range where .Site.Pages "Kind" "section" -}}
+  {{- if not .Draft -}}
+    {{- $index = $index | append (dict "title" .Title "url" .RelPermalink "content" (partial "clean-content" .Plain) "section" .Section) -}}
+  {{- end -}}
+{{- end -}}
 {{ $index | jsonify }}

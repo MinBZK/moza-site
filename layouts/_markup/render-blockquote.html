@@ -1,17 +1,18 @@
+{{- /* Niveau 3: elk infoblok met titel staat in de content onder een h2. */ -}}
 {{- if eq .Type "alert" -}}
-<blockquote class="callout">
+<div class="callout">
   {{- if or (eq .AlertType "info") .AlertTitle }}
   <header>
     {{- if eq .AlertType "info" }}
     {{- partial "icon.html" "info" -}}
     {{- end }}
-    {{- with .AlertTitle }}<span class="title">{{ . }}</span>{{ end }}
+    {{- with .AlertTitle }}<h3 class="title">{{ . }}</h3>{{ end }}
   </header>
   {{- end }}
   <div class="content">
     {{ .Text }}
   </div>
-</blockquote>
+</div>
 {{- else -}}
 <blockquote class="quote">
   {{ .Text }}

@@ -13,9 +13,10 @@ blockquote.quote {
   font-style: italic;
 }
 
-blockquote.callout {
+.callout {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   padding: 1rem;
   padding-bottom: 0;
@@ -33,6 +34,7 @@ blockquote.callout {
     }
 
     .title {
+      margin: 0;
       font-size: 1.7rem;
       font-weight: 600;
     }

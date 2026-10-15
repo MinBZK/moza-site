@@ -367,11 +367,19 @@ import "@nldd/design-system/keyboard-shortcut";
   // verdwijnen na 2 seconden stilstand. Alleen bij een muis: een tik op een
   // aanraakscherm geeft ook een pointermove.
   let controlsTimer;
+  const voet = document.querySelector(".deck-footer");
+  const verbergControls = () => {
+    if (voet && voet.matches(":hover")) {
+      controlsTimer = setTimeout(verbergControls, 2000);
+      return;
+    }
+    document.body.classList.remove("show-controls");
+  };
   document.addEventListener("pointermove", (e) => {
     if (e.pointerType !== "mouse" || !presenting) return;
     document.body.classList.add("show-controls");
     clearTimeout(controlsTimer);
-    controlsTimer = setTimeout(() => document.body.classList.remove("show-controls"), 2000);
+    controlsTimer = setTimeout(verbergControls, 2000);
   });
 
   // Sluitknop (alleen op de site): terug als je van de site komt, anders naar de homepage

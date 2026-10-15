@@ -173,6 +173,10 @@ body:has(.reveal.paused) .close-button {
   color: var(--rijksoverheid-wit);
 }
 
+.reveal .progress {
+  pointer-events: none;
+}
+
 .reveal .controls button:focus-visible {
   outline: 2px solid var(--rijksoverheid-blauw);
   outline-offset: 2px;

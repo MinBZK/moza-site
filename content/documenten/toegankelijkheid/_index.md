@@ -1,5 +1,5 @@
 ---
-title: "Toegankelijkheid"
+title: "Toegankelijkheidsonderzoeken"
 card_title: "Toegankelijkheidsonderzoek"
 description: "De onderzoeken naar de toegankelijkheid van MijnOverheid Zakelijk, met de bevindingen per WCAG-succescriterium."
 cascade:

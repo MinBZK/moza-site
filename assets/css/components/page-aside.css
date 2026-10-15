@@ -130,6 +130,9 @@ article:has(> .page-aside) {
 .toc a,
 .downloads a,
 .relevante-links a {
+  display: block;
+  min-height: 24px;
+  padding-block: 0.125rem;
   color: var(--color-text-muted);
   text-decoration: none;
 

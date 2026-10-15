@@ -239,7 +239,7 @@ def _anonymize_references(
     out: list[dict[str, Any]] = []
     for ref in references:
         anon: dict[str, Any] = {
-            k: ref[k] for k in ("id", "kind", "url", "status") if k in ref
+            k: ref[k] for k in ("id", "kind", "url", "status", "bron") if k in ref
         }
         for key in ("site", "content_type", "channel", "note", "truncated"):
             if key in ref:

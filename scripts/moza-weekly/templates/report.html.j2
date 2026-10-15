@@ -33,6 +33,7 @@
       {% if ref.site %}<span class="reference-site">{{ ref.site }}</span>{% endif %}
       {% if ref.status != "ok" %}<span class="badge badge--warn">{{ ref.status }}</span>{% endif %}
       {% if ref.truncated %}<span class="badge badge--edited">afgekapt</span>{% endif %}
+      {% if ref.bron %}<span class="badge badge--edited">{{ ref.bron }}</span>{% endif %}
     </header>
     {% if ref.title %}<h3 class="reference-title">{{ ref.title }}</h3>{% endif %}
     <a class="reference-url" href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.url }} ↗</a>

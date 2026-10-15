@@ -102,6 +102,7 @@ class Reference:
     text: str = ""
     truncated: bool = False
     posts: list[Post] = field(default_factory=list)
+    bron: str | None = None  # "docs-map" | "extra"; leeg als een bericht ernaar verwijst
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = _drop_falsy(
@@ -110,6 +111,7 @@ class Reference:
                 "kind": self.kind,
                 "url": self.url,
                 "status": self.status,
+                "bron": self.bron,
                 "title": self.title,
                 "site": self.site,
                 "description": self.description,

@@ -468,6 +468,52 @@ class DocsClient:
             text=(data.get("content") or "").strip(),
         )
 
+    def list_children(self, uuid: str) -> DocsMapResult:
+        """Alle documenten direct onder een map, over alle pagina's."""
+        path = f"/api/v1.0/documents/{uuid}/children/"
+        log.debug("Docs-map ophalen: %s", uuid)
+        items: list[dict] = []
+        for pagina in range(1, MAX_PAGINAS + 1):
+            try:
+                response = self._client.get(f"{self._base}{path}", params={"page": pagina})
+            except httpx.HTTPError as e:
+                return DocsMapResult(STATUS_FOUT, items, f"{type(e).__name__}: {e}")
+            fout = _docs_fout(response)
+            if fout:
+                return fout
+            try:
+                data = response.json()
+            except ValueError:
+                return DocsMapResult(STATUS_FOUT, items, "Antwoord is geen JSON")
+            items.extend(r for r in data.get("results") or [] if isinstance(r, dict))
+            if not data.get("next"):
+                return DocsMapResult(STATUS_OK, items)
+        return DocsMapResult(STATUS_FOUT, items, f"Meer dan {MAX_PAGINAS} pagina's")
+
+
+@dataclass(frozen=True)
+class DocsMapResult:
+    status: str
+    # Elk item: {"id", "title", "updated_at"} zoals de API ze geeft.
+    items: list[dict]
+    error: str = ""
+
+
+MAX_PAGINAS = 50
+
+
+def _docs_fout(response: httpx.Response) -> DocsMapResult | None:
+    if response.status_code in (401, 403):
+        return DocsMapResult(
+            STATUS_GEEN_TOEGANG, [],
+            f"HTTP {response.status_code}: sessiecookie ontbreekt of is verlopen",
+        )
+    if response.status_code == 404:
+        return DocsMapResult(STATUS_NIET_GEVONDEN, [], "Map niet gevonden")
+    if response.status_code >= 400:
+        return DocsMapResult(STATUS_FOUT, [], f"HTTP {response.status_code}")
+    return None
+
 
 # --------------------------------------------------------------------------- collector
 
@@ -524,6 +570,15 @@ class ReferenceCollector:
             if ref is not None and ref.id not in ids:
                 ids.append(ref.id)
         return ids
+
+    def resolve_extra(self, url: str, bron: str) -> Reference | None:
+        """Los een URL op die niet uit een bericht komt. Alleen een nieuwe
+        referentie krijgt `bron`; een bestaande wordt al door een bericht gebruikt."""
+        aantal = len(self._refs)
+        ref = self._resolve(url)
+        if ref is not None and len(self._refs) > aantal and ref in self._refs[aantal:]:
+            ref.bron = bron
+        return ref
 
     def _resolve(self, url: str) -> Reference | None:
         key = normalize_url(url)

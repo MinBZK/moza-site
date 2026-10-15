@@ -130,9 +130,9 @@ Elk proces is van begin tot eind doorlopen, inclusief de alternatieve routes.
 
 ### Willekeurige steekproef
 
-Twee pagina's, tien procent van de gestructureerde steekproef, getrokken uit de
-67 pagina's die daar niet in zitten. De trekking is met een vaste startwaarde
-gedaan en daarmee navolgbaar.
+Twee pagina's: tien procent van de dertien pagina's uit de gestructureerde
+steekproef, naar boven afgerond. Ze zijn willekeurig getrokken uit de 67
+pagina's die nog niet in die steekproef zaten.
 
 | Pagina |
 | --- |

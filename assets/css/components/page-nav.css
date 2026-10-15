@@ -20,6 +20,10 @@
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: var(--color-text-on-primary);
+
+    .page-nav-label {
+      opacity: 1;
+    }
   }
 }
 

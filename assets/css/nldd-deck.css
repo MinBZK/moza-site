@@ -129,7 +129,7 @@ strong { font-weight: 700; color: var(--ink); }
 .card-head .ic { font-size: 2.6cqw; }
 .card h3 { margin: 0; font-size: 1.9cqw; font-weight: 700; }
 .card p { margin: 0; font-size: 1.55cqw; line-height: 1.45; }
-.card-label { font-size: 1cqw; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-55); font-weight: 600; }
+.card-label { font-size: 1cqw; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-85); font-weight: 600; }
 .card-now { background: transparent; border-style: dashed; }
 .card-now .ic { color: var(--ink-72); }
 .card-new { border-color: var(--accent); background: var(--ink-10); }

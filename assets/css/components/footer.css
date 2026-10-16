@@ -209,10 +209,16 @@ body > footer {
           transform: translateY(-0.15em) rotate(-45deg);
         }
 
-        &:hover,
+        &:hover {
+          background-color: var(--color-bg-muted);
+        }
+
+        /* Een rand naar binnen, want het menu is maar iets breder dan de
+           keuzes zelf: een rand naar buiten valt achter de paneelrand. */
         &:focus-visible {
           background-color: var(--color-bg-muted);
-          outline: none;
+          outline: 2px solid var(--color-link);
+          outline-offset: -2px;
         }
       }
     }

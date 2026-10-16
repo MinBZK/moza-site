@@ -21,7 +21,12 @@ button,
     background-color: var(--color-rijks-blauw);
     border-color: var(--color-rijks-blauw);
     color: var(--color-text-inverse);
-    outline: none;
+  }
+
+  /* Moet ná het blok hierboven staan, anders wint die de outline. */
+  &:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
   }
 
   flex-shrink: 0;

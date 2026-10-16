@@ -154,7 +154,13 @@
 .search-result-item:focus-visible {
   background-color: var(--color-bg-info);
   text-decoration: none;
-  outline: none;
+}
+
+/* Een rand naar binnen: de lijst scrollt, dus een rand naar buiten wordt bij
+   het eerste en laatste resultaat afgesneden. */
+.search-result-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 .search-result-item:hover::after,

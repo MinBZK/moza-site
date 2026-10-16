@@ -600,6 +600,10 @@ class ReferenceCollector:
         self._by_url[key] = ref
         return ref
 
+    def add_reference(self, ref: Reference) -> Reference:
+        """Voeg een zelf opgebouwde referentie toe (krijgt een eigen id)."""
+        return self._add(ref)
+
     def _add(self, ref: Reference) -> Reference:
         ref.id = f"ref_{len(self._refs) + 1}"
         self._refs.append(ref)

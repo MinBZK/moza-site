@@ -22,7 +22,7 @@
     <div class="menu">
       <ul>
         {{- range .Site.Menus.main -}}
-          {{- $isActive := or (eq $.RelPermalink .URL) (and .URL (ne .URL "/") (hasPrefix $.RelPermalink .URL)) -}}
+          {{- $isActive := or (eq $.RelPermalink .URL) (and .URL (ne .URL $.Site.Home.RelPermalink) (hasPrefix $.RelPermalink .URL)) -}}
           <li>
             <a href="{{ .URL }}" data-text="{{ .Name }}"{{ if $isActive }} class="active" aria-current="page"{{ end }}>
               {{- .Name -}}

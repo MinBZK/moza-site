@@ -4,6 +4,16 @@ const themeOptions = document.getElementById('theme-options');
 if (themeButton && themeOptions) {
   const items = themeOptions.querySelectorAll('[role="menuitemradio"]');
 
+  function storeTheme(theme) {
+    try {
+      if (theme) {
+        localStorage.setItem('theme', theme);
+      } else {
+        localStorage.removeItem('theme');
+      }
+    } catch (e) {}
+  }
+
   function markTheme() {
     const current = document.documentElement.getAttribute('data-scheme') || 'system';
     items.forEach(item => item.setAttribute('aria-checked', String(item.dataset.theme === current)));
@@ -25,10 +35,10 @@ if (themeButton && themeOptions) {
       const theme = item.dataset.theme;
       if (theme === 'system') {
         document.documentElement.removeAttribute('data-scheme');
-        localStorage.removeItem('theme');
+        storeTheme(null);
       } else {
         document.documentElement.setAttribute('data-scheme', theme);
-        localStorage.setItem('theme', theme);
+        storeTheme(theme);
       }
       markTheme();
       openThemeMenu(false);

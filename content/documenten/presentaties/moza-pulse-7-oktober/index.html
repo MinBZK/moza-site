@@ -152,21 +152,21 @@ aliases:
 <section>
     <img
             src="images/sequencediagram-zakelijke-gebruiker-profiel-service.png"
-            alt="Sequencediagram zakelijke gebruiker profielservice"
+            alt="Sequencediagram met vier deelnemers: een zakelijke gebruiker, MijnOverheid Zakelijk, de profielservice en het Logboek Dataverwerking. De gebruiker wil zijn profiel bekijken. MijnOverheid Zakelijk haalt daarvoor de profielgegevens op bij de profielservice. De profielservice schrijft een read-logregel weg in het Logboek Dataverwerking en krijgt een bevestiging terug. Daarna stuurt de profielservice de profielgegevens naar MijnOverheid Zakelijk en ziet de gebruiker zijn profiel."
             class="large-image"
     />
 </section>
 <section>
     <img
             src="images/sequencediagram-zakelijke-gebruiker-wijzig-email.png"
-            alt="Sequencediagram zakelijke gebruiker wijzig e-mail"
+            alt="Sequencediagram met vijf deelnemers: een zakelijke gebruiker, MijnOverheid Zakelijk, de profielservice, EventSourcing en de e-mailverificatieservice. De gebruiker geeft via MijnOverheid Zakelijk een nieuw e-mailadres door. De profielservice slaat een log 'Update aangevraagd' op in EventSourcing en laat de e-mailverificatieservice een mail naar de gebruiker sturen. De gebruiker verifieert het adres, MijnOverheid Zakelijk stuurt dat verzoek door naar de profielservice en de e-mailverificatieservice bevestigt de verificatie. Tot slot slaat de profielservice een log 'Update geverifieerd' op en gaan de bijgewerkte profielgegevens terug naar de gebruiker."
             class="large-image"
     />
 </section>
 <section>
     <img
             src="images/sequencediagram-organisatie-medewerker-profiel-service.png"
-            alt="Sequencediagram organisatie medewerker profielservice"
+            alt="Sequencediagram met zes deelnemers: een medewerker, een vakapplicatie, OMC, de profielservice, het Logboek Dataverwerking en de notificatiedienst. De medewerker laat de vakapplicatie een verzoek tot notificatie naar OMC sturen. OMC haalt de contactinformatie op bij de profielservice op basis van het kvk-nummer, waarbij de profielservice een 'Read+Trace'-logregel wegschrijft in het Logboek Dataverwerking. Daarna stuurt OMC het verzoek naar de notificatiedienst en krijgt een callback met de status terug. Is de status mislukt, dan haalt OMC op dezelfde manier de adresgegevens op en vraagt het een brief aan bij de notificatiedienst. De vakapplicatie krijgt aan het eind een optionele callback."
             class="large-image"
     />
 </section>

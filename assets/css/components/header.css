@@ -102,10 +102,6 @@ header {
       font-size: 1.25rem;
       font-weight: 700;
       text-decoration: none;
-      /* De naam loopt door naar een tweede regel als hij niet past, zoals bij
-         ruimere tekstafstand. Afkappen met een beletselteken kostte daar het
-         eind van "Zakelijk" (WCAG 1.4.12). Zoeken en menu blijven op dezelfde
-         regel staan, want de titel groeit alleen in de hoogte. */
       line-height: 1.25;
       padding-block: 0.5rem;
 

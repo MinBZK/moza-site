@@ -81,26 +81,21 @@
   color: var(--rapport-text-muted);
 }
 .cp-legend li { display: flex; align-items: center; gap: 0.5rem; }
-.cp-legend-swatch { width: 18px; height: 14px; border-radius: 3px; border: 2px solid; background: var(--rapport-surface); flex-shrink: 0; }
-.cp-legend-aanbouw { border-color: var(--primitives-color-accent-700); }
-.cp-legend-verkenning { border-color: var(--primitives-color-mark-500); }
-.cp-legend-beschikbaar { border-color: var(--primitives-color-success-500); }
-.cp-legend-aandacht { border-color: var(--primitives-color-critical-500); }
-.cp-legend-buitenscope { border-color: var(--rapport-border); }
+.cp-legend-swatch { width: 78px; height: 18px; flex-shrink: 0; display: block; }
+.cp-legend-swatch svg { display: block; }
 .cp-diagram-wrap { width: 100%; min-width: 0; overflow-x: auto; }
 .cp-diagram-wrap svg { width: 100%; height: auto; min-width: 820px; display: block; }
 
 /* SVG-diagram: kleuren via klassen i.p.v. hardcoded hex, zodat dark mode meegaat */
-.cp-dg-container { fill: none; stroke: var(--rapport-border); stroke-width: 1.5; stroke-dasharray: 6 6; }
+.cp-dg-container { fill: none; stroke: var(--rapport-text-muted); stroke-width: 1.5; stroke-dasharray: 6 6; }
 .cp-dg-zone-label { fill: var(--rapport-text); font-size: 17px; font-weight: 600; }
-.cp-dg-sub-container { fill: var(--color-bg-muted); stroke: var(--rapport-border); stroke-width: 1.5; }
+.cp-dg-sub-container { fill: var(--color-bg-muted); stroke: var(--rapport-text-muted); stroke-width: 1.5; }
 .cp-dg-block-label { fill: var(--rapport-text-muted); font-size: 15px; font-weight: 600; font-style: italic; text-anchor: middle; }
 .cp-dg-node { fill: var(--rapport-surface); stroke: var(--rapport-border); stroke-width: 1.5; }
-.cp-dg-node.cp-beschikbaar { stroke: var(--primitives-color-success-500); stroke-width: 2.5; }
-.cp-dg-node.cp-aanbouw { stroke: var(--primitives-color-accent-700); stroke-width: 2.5; }
-.cp-dg-node.cp-verkenning { stroke: var(--primitives-color-mark-500); stroke-width: 2.5; }
-.cp-dg-node.cp-aandacht { stroke: var(--primitives-color-critical-500); stroke-width: 2.5; }
-.cp-dg-node.cp-buitenscope { stroke: var(--rapport-border); stroke-width: 2.5; }
+.cp-dg-node.cp-beschikbaar { stroke: var(--primitives-color-success-600); stroke-width: 2.5; }
+.cp-dg-node.cp-aanbouw { stroke: var(--primitives-color-accent-600); stroke-width: 2.5; stroke-dasharray: 14 8; }
+.cp-dg-node.cp-verkenning { stroke: var(--primitives-color-mark-600); stroke-width: 2.5; stroke-dasharray: 4 4; }
+.cp-dg-node.cp-aandacht { stroke: var(--primitives-color-critical-600); stroke-width: 2.5; stroke-dasharray: 14 7 0.01 7; stroke-linecap: round; }
 .cp-dg-title { fill: var(--rapport-text); font-size: 15px; font-weight: 600; text-anchor: middle; }
 .cp-dg-team-bg { fill: var(--color-bg-muted); stroke: var(--rapport-border); stroke-width: 1; }
 .cp-dg-team { fill: var(--rapport-text-muted); font-size: 11px; font-weight: 600; }

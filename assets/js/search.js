@@ -24,7 +24,7 @@
       { name: 'title', weight: 2 },
       { name: 'content', weight: 1 }
     ],
-    threshold: 0.3, // 0 = exact match, 1 = alles matcht
+    threshold: 0.2, // 0 = exact match, 1 = alles matcht
     ignoreLocation: true,
     includeScore: true,
     findAllMatches: true,

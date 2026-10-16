@@ -39,6 +39,7 @@
     </nav>
   </div>
   <div class="footer-settings">
+    <p class="afzender">{{ .Site.Title }} is een programma van het {{ partial "render-link" (dict "href" .Site.Params.afzender.url "text" .Site.Params.afzender.naam) }}</p>
     <div class="theme-menu">
       <button type="button" id="theme-button" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-options">
         Weergave

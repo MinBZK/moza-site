@@ -122,11 +122,29 @@ body > footer {
   }
 
   .footer-settings {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     flex-basis: 100%;
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid color-mix(in oklch, var(--color-text-inverse) 30%, transparent);
     font-size: 1rem;
+
+    .afzender {
+      margin: 0;
+
+      a {
+        display: inline;
+        text-decoration: underline;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
 
     .theme-menu {
       position: relative;

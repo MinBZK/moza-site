@@ -64,12 +64,13 @@ async function toetsReveal(page, baseUrl, route) {
   if (voor === null) findings.push("geen live region; een slidewissel wordt niet aangekondigd");
 
   const slideVoor = await page.evaluate(() => window.Reveal.getState());
-  await page.keyboard.press("ArrowRight");
+  await page.evaluate(() => document.querySelector(".navigate-right")?.focus());
+  await page.keyboard.press("Enter");
   await page.waitForFunction(
     (s) => JSON.stringify(window.Reveal.getState()) !== JSON.stringify(s),
     { timeout: 5000 },
     slideVoor
-  ).catch(() => findings.push("pijltje rechts wisselt niet van slide"));
+  ).catch(() => findings.push("de knop Volgende slide wisselt niet van slide"));
 
   // Reveal werkt de live region net ná de state-wissel bij, dus erop wachten.
   if (voor !== null) {

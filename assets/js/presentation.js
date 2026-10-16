@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', () => {
   if (typeof Reveal !== 'undefined') {
     Reveal.initialize({
       embedded: true,
+      // Uit betekent ook geen pijltoetsen; bladeren gaat via de knoppen rechtsonder
+      keyboard: false,
       controls: true,
       controlsTutorial: false,
       controlsBackArrows: 'visible',

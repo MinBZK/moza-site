@@ -150,8 +150,7 @@ import "@nldd/design-system/keyboard-shortcut";
   // een eigen, anonieme origin en bereikt het BroadcastChannel niemand.
   // `synced` voorkomt dat een ontvangen stand weer wordt teruggestuurd.
   const channel = "BroadcastChannel" in window ? new BroadcastChannel(`nldd-deck:${location.pathname}`) : null;
-  let speakerWindow = null;
-  const peers = () => [speakerWindow, window.opener].filter((w) => w && !w.closed);
+  const peers = () => [window.opener].filter((w) => w && !w.closed);
   function send(message) {
     channel?.postMessage(message);
     peers().forEach((w) => w.postMessage(message, "*"));
@@ -253,13 +252,6 @@ import "@nldd/design-system/keyboard-shortcut";
     broadcast();
   }
 
-  function setMode(on) {
-    presenting = on;
-    step = minStep(slides[index]);
-    render();
-    announce.textContent = presenting ? "Presentatiemodus aan" : "Presentatiemodus uit";
-  }
-
   // data-overgang op een dia: de oude dia blijft even staan en vervaagt
   // (is-leaving), de nieuwe komt erover op (is-entering)
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -326,18 +318,6 @@ import "@nldd/design-system/keyboard-shortcut";
       case "ArrowLeft": case "PageUp": e.preventDefault(); prev(); break;
       case "Home": e.preventDefault(); go(0); break;
       case "End": e.preventDefault(); go(slides.length - 1, maxStep(slides.at(-1))); break;
-      case "f": case "F":
-        if (document.fullscreenElement) document.exitFullscreen();
-        else document.documentElement.requestFullscreen?.();
-        break;
-      case "p": case "P":
-        if (!speaker) setMode(!presenting);
-        break;
-      case "s": case "S":
-        if (speaker) break;
-        speakerWindow = window.open(`${location.pathname}?spreker#/${index + 1}`, "nldd-deck-spreker", "popup,width=1280,height=800");
-        if (!presenting) setMode(true);
-        break;
     }
   });
 

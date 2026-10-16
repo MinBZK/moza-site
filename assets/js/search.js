@@ -317,18 +317,6 @@
       }
     });
 
-    document.addEventListener('keydown', function (e) {
-      var activeElement = document.activeElement;
-      var isTyping = activeElement.tagName === 'INPUT' ||
-                     activeElement.tagName === 'TEXTAREA' ||
-                     activeElement.isContentEditable;
-
-      if (e.key === '/' && !isTyping && !searchModal.open) {
-        e.preventDefault();
-        openModal();
-      }
-    });
-
     searchInput.addEventListener('keydown', function (e) {
       var items = searchResults.querySelectorAll('.search-result-item');
 

@@ -166,11 +166,26 @@ body {
 }
 
 .close-button:hover {
-  opacity: 0.7;
+  background-color: color-mix(in oklch, var(--rijksoverheid-blauw) 12%, transparent);
+  color: var(--rijksoverheid-text-donker);
+}
+
+.close-button:focus-visible {
+  outline: 2px solid var(--rijksoverheid-blauw);
+  outline-offset: 2px;
 }
 
 body:has(.reveal.paused) .close-button {
   color: var(--rijksoverheid-wit);
+}
+
+body:has(.reveal.paused) .close-button:hover {
+  background-color: color-mix(in oklch, var(--rijksoverheid-wit) 12%, transparent);
+  color: var(--rijksoverheid-wit);
+}
+
+body:has(.reveal.paused) .close-button:focus-visible {
+  outline-color: var(--rijksoverheid-wit);
 }
 
 .reveal .progress {

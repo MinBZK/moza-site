@@ -27,9 +27,9 @@ Je kunt een [issue aanmaken](https://github.com/minbzk/moza-site/issues/new) met
 De snelste manier om een wijziging door te voeren:
 
 1. **Ga naar de pagina** - Navigeer naar het bestand op [GitHub](https://github.com/minbzk/moza-site/tree/main/content/handboek)
-2. **Klik op "Edit this file"** - De knop heet "Edit this file" en heeft een potlood als icoon, rechtsboven het bestand
+2. **Klik op <span lang="en">"Edit this file"</span>** - De knop heet <span lang="en">"Edit this file"</span> en heeft een potlood als icoon, rechtsboven het bestand
 3. **Bewerk de tekst** - Pas de markdown aan
-4. **Commit wijziging** - Vul een beschrijving in en klik op "Propose changes"
+4. **Commit wijziging** - Vul een beschrijving in en klik op <span lang="en">"Propose changes"</span>
 5. **Maak pull request** - GitHub maakt automatisch een pull request aan
 
 ### Gevorderd: via lokale clone

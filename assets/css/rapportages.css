@@ -139,11 +139,11 @@ body {
   }
 
   .card-header,
-  .item,
+  .item-row,
   .item-line,
   .item-content { min-width: 0; }
 
-  .item { flex-wrap: wrap; }
+  .item-row { flex-wrap: wrap; }
 }
 
 /* Card */
@@ -241,15 +241,26 @@ body {
 }
 
 /* Items */
+/* role="list" op de <ol>: Safari laat de lijstsemantiek anders vallen bij
+   list-style: none. Flex staat op .item-row, niet op de <li>, om dezelfde reden. */
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .item {
+  border-bottom: 1px solid var(--rapport-divider);
+}
+.item:last-child { border-bottom: none; }
+
+.item-row {
   padding: 14px 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  border-bottom: 1px solid var(--rapport-divider);
 }
-.item:last-child { border-bottom: none; }
 .item-content { flex: 1; min-width: 0; }
 
 .item-line {
@@ -258,7 +269,9 @@ body {
   align-items: baseline;
 }
 
-.item-number {
+/* De ingebouwde list-item-counter, zodat start="6" op een vervolglijst klopt. */
+.item-line::before {
+  content: counter(list-item) ".";
   color: var(--rapport-text);
   font-size: 0.875rem;
   font-weight: 500;

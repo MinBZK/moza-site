@@ -20,4 +20,10 @@ date: {{ $date.Format "2006-01-02" }}
 
 Wist je dat we (bijna) elke maandag samenwerken op het Beatrixpark in Den Haag? Wil je een keer aanhaken, dan ben je van harte welkom.
 
+### MOZa
+
+- ...
+
+### Evenementen
+
 - ...

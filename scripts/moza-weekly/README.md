@@ -136,6 +136,10 @@ just moza-weekly --extra-url https://docs.rijksapp.nl/docs/<uuid>/ --extra-url h
 
 Beide komen in het top-level `references:`-blok, zonder dat een post ernaar verwijst. Het veld `bron` zegt waar ze vandaan komen: `docs-map` of `extra`. Een document dat ook in een bericht staat, blijft één referentie zonder `bron`. Een permalink naar een post die al in het rapport staat, wordt overgeslagen.
 
+### Walletbrief
+
+De Walletbrief (publieke nieuwsbrief over EUDI en European Business Wallet) komt standaard mee als één referentie met `bron: walletbrief`: de berichten uit de periode, nieuwste eerst, en de komende evenementen. `fetch.py` leest de JSON naast de pagina (`data/items.json` en `data/agenda.json`); de pagina zelf is een lege JavaScript-shell. Een andere locatie zet je in `MOZA_WEEKLY_WALLETBRIEF_URL`; een lege waarde schakelt de bron uit, net als `--no-walletbrief`. Bij `--no-references` wordt hij ook overgeslagen. Lukt het ophalen niet, dan waarschuwt `fetch.py` en gaat de run door.
+
 ### Bots uitsluiten
 
 ```bash

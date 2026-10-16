@@ -44,6 +44,7 @@ from _model import (  # noqa: E402
     Thread,
 )
 from _util import load_dotenv  # noqa: E402
+from _walletbrief import collect_walletbrief  # noqa: E402
 
 from _references import (  # noqa: E402
     STATUS_GEEN_TOEGANG,
@@ -60,6 +61,7 @@ DEFAULT_SERVER = "https://digilab.overheid.nl/chat"
 DEFAULT_TEAM = "mijnoverheid-zakelijk"
 DEFAULT_CHANNELS = "check-in,agenda,sprint-faq,business-wallet,wie-mag-wat,berichtenservice,notificatiedienst,profielservice,mijnomgeving,digitale-assistent,fbs,in-de-kamer,in-de-media,regelrecht/moza,nldd/traject-moza"
 DEFAULT_DOCS_URL = "https://docs.rijksapp.nl"
+DEFAULT_WALLETBRIEF_URL = "https://mcdrizzle-prod.github.io/Nieuwsbrief/"
 
 # Exit-codes
 EXIT_OK = 0
@@ -100,6 +102,11 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
         dest="extra_urls",
         metavar="URL",
         help="Extra link (Mattermost-permalink, Docs of webpagina) om mee te nemen (herhaalbaar)",
+    )
+    p.add_argument(
+        "--no-walletbrief",
+        action="store_true",
+        help="Neem de Walletbrief (publieke nieuwsbrief over wallets) niet mee",
     )
     p.add_argument("--output", type=Path, default=None)
     p.add_argument("--no-bots", action="store_true")
@@ -371,6 +378,14 @@ def _fetch_channel(
 
 BRON_DOCS_MAP = "docs-map"
 BRON_EXTRA = "extra"
+BRON_WALLETBRIEF = "walletbrief"
+
+
+def _walletbrief_url(uitgezet: bool) -> str:
+    """De Walletbrief-URL, of "" als de bron uit staat (flag of lege env)."""
+    if uitgezet:
+        return ""
+    return os.environ.get("MOZA_WEEKLY_WALLETBRIEF_URL", DEFAULT_WALLETBRIEF_URL).strip()
 
 
 def _collect_docs_folders(
@@ -428,6 +443,7 @@ def _collect_references(
     docs_session: str,
     docs_folders: list[str] = (),
     extra_urls: list[str] = (),
+    walletbrief_url: str = "",
 ) -> list[Reference]:
     """Volg verwijzingen in alle opgehaalde berichten en log wat niet lukte."""
     known_post_ids = {
@@ -453,6 +469,11 @@ def _collect_references(
             _collect_docs_folders(collector, docs_client, docs_folders, period, docs_url)
         for url in extra_urls:
             collector.resolve_extra(url, BRON_EXTRA)
+        if walletbrief_url:
+            brief = collect_walletbrief(walletbrief_url, period)
+            if brief is not None:
+                brief.bron = BRON_WALLETBRIEF
+                collector.add_reference(brief)
     finally:
         if fetcher is not None:
             fetcher.close()
@@ -559,6 +580,8 @@ def main(argv: list[str] | None = None) -> int:
         raw = os.environ.get("MOZA_WEEKLY_DOCS_FOLDERS", "")
         docs_folders = [f.strip() for f in raw.split(",") if f.strip()]
 
+    walletbrief_url = _walletbrief_url(args.no_walletbrief)
+
     channels: list[str]
     if args.channels:
         channels = args.channels
@@ -643,6 +666,7 @@ def main(argv: list[str] | None = None) -> int:
                     docs_session=os.environ.get("DOCS_SESSION", "").strip(),
                     docs_folders=docs_folders,
                     extra_urls=args.extra_urls,
+                    walletbrief_url=walletbrief_url,
                 )
     except MattermostError as e:
         log.error("Netwerk/server-fout: %s", e)

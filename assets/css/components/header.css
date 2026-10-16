@@ -113,10 +113,12 @@ header {
     .menu {
       display: none;
       flex: 1;
+      min-width: 0;
       align-items: center;
 
       ul {
         display: flex;
+        flex-wrap: wrap;
         font-size: 1.25rem;
         margin: 0;
         padding: 0;

@@ -314,6 +314,11 @@ import "@nldd/design-system/button";
     go(index - 1, before.querySelector("video[data-step]") ? minStep(before) : maxStep(before));
   }
 
+  // Is de dia breder dan het venster, dan schuiven de pijltoetsen; bladeren
+  // blijft met PageUp/PageDown, spatie en de knoppen.
+  const kanSchuiven = () =>
+    document.documentElement.scrollWidth > document.documentElement.clientWidth;
+
   document.addEventListener("keydown", (e) => {
     // Bij scrollen horen de pijltoetsen en spatie bij de browser
     if (scrolling()) return;
@@ -328,8 +333,10 @@ import "@nldd/design-system/button";
         if (currentVideo() && step >= Number(currentVideo().dataset.step)) toggleVideo();
         else next();
         break;
-      case "ArrowRight": case "PageDown": e.preventDefault(); next(); break;
-      case "ArrowLeft": case "PageUp": e.preventDefault(); prev(); break;
+      case "ArrowRight": if (kanSchuiven()) break; e.preventDefault(); next(); break;
+      case "ArrowLeft": if (kanSchuiven()) break; e.preventDefault(); prev(); break;
+      case "PageDown": e.preventDefault(); next(); break;
+      case "PageUp": e.preventDefault(); prev(); break;
       case "Home": e.preventDefault(); go(0); break;
       case "End": e.preventDefault(); go(slides.length - 1, maxStep(slides.at(-1))); break;
     }

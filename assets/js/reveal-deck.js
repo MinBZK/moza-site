@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // Check logo visibility on initial load
       updateLogoVisibility(Reveal.getCurrentSlide());
       vertaalBediening();
+      haalApplicatierolWeg();
       maakVoortgangsbalkDecoratief();
       volgDiaStaten();
       regelPresentatiefuncties();
@@ -150,6 +151,12 @@ window.addEventListener('DOMContentLoaded', () => {
       if (hervatten) {
         hervatten.textContent = 'Presentatie hervatten';
       }
+    }
+
+    // Reveal zet role="application" op zijn wrapper, zonder naam. Dat schakelt
+    // de leesnavigatie van een schermlezer uit.
+    function haalApplicatierolWeg() {
+      Reveal.getRevealElement().removeAttribute('role');
     }
 
     function maakVoortgangsbalkDecoratief() {

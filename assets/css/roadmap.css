@@ -15,11 +15,25 @@
   --rm-vlak: var(--color-bg-page);
   --rm-kop-bg: var(--color-bg-muted);
   min-width: 0;
+  container-type: inline-size;
 }
 
-/* Alleen scrollen waar de tabel niet past: een scrollcontainer zou de vaste kopregel breken */
-@media (max-width: 900px) {
-  .rm-wrap { overflow-x: auto; }
+.rm-wrap .scroll-hint {
+  display: none;
+  margin: 0 0 0.5rem;
+  font-size: var(--primitives-font-size-80);
+  color: var(--rapport-text-muted);
+}
+
+/* Containerquery, zodat dit meeschaalt met de breedte en met de basislettergrootte. */
+@container (max-width: 48rem) {
+  .rm-scroll { overflow-x: auto; }
+  .rm-wrap .scroll-hint { display: block; }
+}
+
+.rm-scroll:focus-visible {
+  outline: 3px solid var(--color-link);
+  outline-offset: 2px;
 }
 
 .rm-table {

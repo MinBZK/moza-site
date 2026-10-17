@@ -15,6 +15,11 @@
   --bg-start: var(--primitives-color-lintblauw-750);
   --bg-end: var(--primitives-color-lintblauw-850);
   --accent: var(--primitives-color-donkergeel-200);
+  /* Verhoogt de gebruiker de basislettergrootte, dan groeit de dia mee: nul bij
+     16px, plus 2560px bij 32px. De dia is in verhouding opgemaakt (cqw), dus
+     alleen een grotere dia maakt de tekst groter. De groei is bij .stage
+     afgetopt op de breedte van de dia zelf, dus op het dubbele. */
+  --tekstgroei: max(0px, calc(160rem - 2560px));
 }
 
 * { box-sizing: border-box; }
@@ -26,7 +31,6 @@ html, ::backdrop { background: var(--bg-end); }
 
 body {
   margin: 0;
-  overflow: hidden;
   background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
   color: var(--ink);
   font-family: var(--primitives-font-family-sans-serif);
@@ -39,14 +43,17 @@ body {
 
 /* ---------- Toneel: 16:9, alles schaalt met de breedte (cqw) ---------- */
 
-/* Horizontaal vegen is voor bladeren; verticaal schuiven en inzoomen blijven van de browser */
-.deck { position: fixed; inset: 0; display: grid; place-items: center; touch-action: pan-y pinch-zoom; }
+/* Horizontaal vegen is voor bladeren, zolang er niets te schuiven valt; verticaal
+   schuiven en inzoomen blijven van de browser. Met `safe` blijft de linkerbovenhoek
+   bereikbaar zodra de dia groter is dan het venster. */
+.deck { min-height: 100%; display: grid; place-items: safe center; touch-action: pan-x pan-y pinch-zoom; }
 /* Focusbaar gemaakt via tabindex in nldd-deck.html. */
 .deck:focus { outline: none; }
 
 .stage {
+  --toneel: min(100%, 177.78vh);
   position: relative;
-  width: min(100vw, 177.78vh);
+  width: calc(var(--toneel) + min(var(--tekstgroei), var(--toneel)));
   aspect-ratio: 16 / 9;
   container-type: inline-size;
 }
@@ -459,8 +466,8 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
   html:not(.deck-ready) .stage,
   html:not(.deck-ready) .slide:not(:first-child) { visibility: visible; animation: none; }
   html, body { height: auto; overflow: visible; }
-  .deck { position: static; display: block; }
-  .stage { width: 100%; aspect-ratio: auto; }
+  .deck { display: block; }
+  .stage { width: calc(100% + min(var(--tekstgroei), 100%)); aspect-ratio: auto; }
 
   .slide, .slide[hidden] {
     position: relative;

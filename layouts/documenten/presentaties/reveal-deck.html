@@ -53,8 +53,8 @@
 
   {{/* Reveal.js JavaScript */}}
   {{ $revealJs := resources.Get "vendor/reveal/reveal.js" }}
-  {{ $presentationJs := resources.Get "js/presentation.js" }}
-  {{ $js := slice $revealJs $presentationJs | resources.Concat "js/presentation-bundle.js" | fingerprint "md5" }}
+  {{ $revealDeckJs := resources.Get "js/reveal-deck.js" }}
+  {{ $js := slice $revealJs $revealDeckJs | resources.Concat "js/reveal-deck-bundle.js" | fingerprint "md5" }}
   <script src="{{ $js.RelPermalink }}"></script>
 </body>
 </html>

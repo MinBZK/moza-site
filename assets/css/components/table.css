@@ -1,13 +1,23 @@
-/* Tabel: boxed surface met afgeronde hoeken en rij-dividers. */
-article table {
-  width: 100%;
+/* Tabel: boxed surface met afgeronde hoeken en rij-dividers. De wikkel draagt
+   de rand en schuift horizontaal. */
+article .tabel-wrap {
+  min-width: 0;
+  overflow-x: auto;
   margin: 1.5rem 0;
-  border-collapse: separate; /* zodat border-radius de hoeken clipt */
-  border-spacing: 0;
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
-  overflow: hidden;
   background: var(--color-bg-page);
+}
+
+article .tabel-wrap:focus-visible {
+  outline: 3px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+article table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 article table th,
@@ -16,6 +26,16 @@ article table td {
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid var(--color-border);
+}
+
+article table th.uitlijning-center,
+article table td.uitlijning-center {
+  text-align: center;
+}
+
+article table th.uitlijning-right,
+article table td.uitlijning-right {
+  text-align: right;
 }
 
 article table thead th {
@@ -33,9 +53,9 @@ article table tbody tr:last-child td {
   border-bottom: 0;
 }
 
-@media (max-width: 40rem) {
-  article table {
-    display: block;
-    overflow-x: auto;
+@media print {
+  /* Zonder dit valt brede tabelinhoud weg uit de afdruk en de PDF. */
+  article .tabel-wrap {
+    overflow-x: visible;
   }
 }

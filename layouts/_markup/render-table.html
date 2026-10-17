@@ -1,0 +1,29 @@
+{{- /* "Tabel" zonder nummer: inhoud.html nummert de wikkels in documentvolgorde,
+       want een shortcode en een render hook draaien niet in die volgorde. */ -}}
+{{- $label := or (index .Attributes "aria-label") "Tabel" -}}
+<div class="tabel-wrap" role="region" tabindex="0" aria-label="{{ $label }}">
+<table>
+  {{- with .THead }}
+  <thead>
+    {{- range . }}
+    <tr>
+      {{- range . }}
+      <th{{ with .Alignment }} class="uitlijning-{{ . }}"{{ end }}>{{ .Text }}</th>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </thead>
+  {{- end }}
+  {{- with .TBody }}
+  <tbody>
+    {{- range . }}
+    <tr>
+      {{- range . }}
+      <td{{ with .Alignment }} class="uitlijning-{{ . }}"{{ end }}>{{ .Text }}</td>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </tbody>
+  {{- end }}
+</table>
+</div>

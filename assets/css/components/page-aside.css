@@ -39,7 +39,11 @@ article:has(> .page-aside) {
       position: sticky;
       top: 1rem;
       align-self: start;
+      max-height: calc(100vh - 2rem);
+      margin-inline: -0.25rem;
       padding-top: 1rem;
+      padding-inline: 0.25rem;
+      overflow-y: auto;
     }
   }
 }
@@ -135,6 +139,7 @@ article:has(> .page-aside) {
   display: block;
   min-height: 24px;
   padding-block: 0.125rem;
+  scroll-margin-block: 0.5rem;
   color: var(--color-text-muted);
   text-decoration: none;
 

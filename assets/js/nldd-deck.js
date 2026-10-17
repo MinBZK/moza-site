@@ -441,8 +441,10 @@ import "@nldd/design-system/button";
   // aanraakscherm geeft ook een pointermove.
   let controlsTimer;
   const voet = document.querySelector(".deck-footer");
+  const popoverOpen = (root) =>
+    [...root.querySelectorAll("*")].some((el) => el.matches(":popover-open") || (el.shadowRoot && popoverOpen(el.shadowRoot)));
   const verbergControls = () => {
-    if (voet && voet.matches(":hover")) {
+    if (voet && (voet.matches(":hover") || popoverOpen(voet))) {
       controlsTimer = setTimeout(verbergControls, 2000);
       return;
     }

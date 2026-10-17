@@ -3,9 +3,10 @@
    vóór de tekst te staan. */
 
 article:has(> .page-aside) {
-  @media (min-width: 950px) {
+  /* In rem, zodat de kolom ook stapelt als de tekst groter staat. */
+  @media (width >= 59.375rem) {
     display: grid;
-    grid-template-columns: var(--article-max-width) 1fr;
+    grid-template-columns: var(--article-max-width) minmax(0, 1fr);
     grid-template-rows: auto 1fr;
     column-gap: 2rem;
     padding-right: 0;
@@ -45,8 +46,9 @@ article:has(> .page-aside) {
 
 .page-aside {
   font-size: 1rem;
+  overflow-wrap: break-word;
 
-  @media (max-width: 949px) {
+  @media (width < 59.375rem) {
     padding-top: 1rem;
     margin-bottom: 1.5rem;
   }

@@ -1,5 +1,5 @@
-<div class="card-grid">
+<ul class="card-grid" role="list">
   {{- range . -}}
-  {{- partial "card.html" . -}}
+  <li>{{- partial "card.html" . -}}</li>
   {{- end -}}
-</div>
+</ul>

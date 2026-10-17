@@ -2,8 +2,16 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+  margin: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-inline: 0;
+  list-style: none;
+
+  > li {
+    display: grid;
+    margin: 0;
+  }
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);

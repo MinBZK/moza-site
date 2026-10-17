@@ -7,6 +7,23 @@
 
   if (!headings.length || !tocLinks.length) return;
 
+  let vorigeActieve = null;
+
+  function toonInSchuifvlak(link) {
+    const vlak = link.closest(".page-aside");
+
+    if (!vlak || vlak.scrollHeight <= vlak.clientHeight) return;
+
+    const l = link.getBoundingClientRect();
+    const v = vlak.getBoundingClientRect();
+
+    if (l.top < v.top) {
+      vlak.scrollTop -= v.top - l.top;
+    } else if (l.bottom > v.bottom) {
+      vlak.scrollTop += l.bottom - v.bottom;
+    }
+  }
+
   function updateActiveLink() {
     const scrollPos = window.scrollY + window.innerHeight * 0.2;
 
@@ -22,7 +39,11 @@
     tocLinks.forEach((link) => link.classList.remove("active"));
     if (current) {
       const activeLink = document.querySelector(`.toc a[href="#${current.id}"]`);
-      if (activeLink) activeLink.classList.add("active");
+      if (activeLink) {
+        activeLink.classList.add("active");
+        if (activeLink !== vorigeActieve) toonInSchuifvlak(activeLink);
+        vorigeActieve = activeLink;
+      }
     }
   }
 

@@ -43,18 +43,16 @@ async function toetsReveal(page, baseUrl, route) {
   await page.goto(baseUrl + route, { waitUntil: "networkidle0" });
   await page.waitForFunction(() => window.Reveal?.isReady?.(), { timeout: 15000 });
 
-  const knop = await page.$(".close-button");
-  if (!knop) {
-    findings.push("geen sluitknop gevonden");
-  } else {
+  if (!(await page.$(".close-button"))) findings.push("geen sluitknop gevonden");
+  for (const knop of await page.$$(".presentatie-bediening button")) {
     const tabIndex = await knop.evaluate((b) => b.tabIndex);
     // De naam uit de toegankelijkheidsboom, niet uit het attribuut: zo telt
     // ook de terugval op tekstinhoud mee zoals de browser die berekent.
     const naam = (await page.accessibility.snapshot({ root: knop }))?.name ?? "";
-    if (tabIndex < 0) findings.push("sluitknop is niet met het toetsenbord bereikbaar");
+    if (tabIndex < 0) findings.push(`knop "${naam}" is niet met het toetsenbord bereikbaar`);
     // Een icoon als ✕ levert wel een naam op, maar geen die iets zegt.
     else if (!/\p{L}/u.test(naam)) {
-      findings.push(`sluitknop heeft geen tekstuele naam (nu: "${naam}")`);
+      findings.push(`een bedieningsknop heeft geen tekstuele naam (nu: "${naam}")`);
     }
   }
 
@@ -63,13 +61,24 @@ async function toetsReveal(page, baseUrl, route) {
   const voor = await lees();
   if (voor === null) findings.push("geen live region; een slidewissel wordt niet aangekondigd");
 
-  const slideVoor = await page.evaluate(() => window.Reveal.getState());
-  await page.keyboard.press("ArrowRight");
-  await page.waitForFunction(
-    (s) => JSON.stringify(window.Reveal.getState()) !== JSON.stringify(s),
-    { timeout: 5000 },
-    slideVoor
-  ).catch(() => findings.push("pijltje rechts wisselt niet van slide"));
+  for (const [naam, ga] of [
+    ["de knop Volgende slide", async () => {
+      await page.evaluate(() => document.querySelector(".navigate-right")?.focus());
+      await page.keyboard.press("Enter");
+    }],
+    ["pijltje rechts", async () => {
+      await page.evaluate(() => document.body.focus());
+      await page.keyboard.press("ArrowRight");
+    }],
+  ]) {
+    const slideVoor = await page.evaluate(() => window.Reveal.getState());
+    await ga();
+    await page.waitForFunction(
+      (s) => JSON.stringify(window.Reveal.getState()) !== JSON.stringify(s),
+      { timeout: 5000 },
+      slideVoor
+    ).catch(() => findings.push(`${naam} wisselt niet van slide`));
+  }
 
   // Reveal werkt de live region net ná de state-wissel bij, dus erop wachten.
   if (voor !== null) {

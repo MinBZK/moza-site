@@ -5,20 +5,13 @@
   {{- if isset .Params "tagline" }}{{ $onderregel = .Params.tagline }}{{ end -}}
   {{- with .Params.disclaimer }}{{ $onderregel = . }}{{ end }}
   <span class="footer-text"><strong>MijnOverheid Zakelijk</strong>{{ with $onderregel }} · {{ . }}{{ end }}</span>
-  <span class="hints">
-    <nldd-keyboard-shortcut keys="←" size="sm" color="inherit"></nldd-keyboard-shortcut>
-    <nldd-keyboard-shortcut keys="→" size="sm" color="inherit"></nldd-keyboard-shortcut>
-    bladeren
-    <nldd-keyboard-shortcut keys="F" size="sm" color="inherit"></nldd-keyboard-shortcut>
-    volledig scherm
-    <nldd-keyboard-shortcut keys="P" size="sm" color="inherit"></nldd-keyboard-shortcut>
-    presentatiemodus
-    <nldd-keyboard-shortcut keys="S" size="sm" color="inherit"></nldd-keyboard-shortcut>
-    sprekersweergave
-  </span>
   <span class="counter" id="counter" aria-hidden="true">1 / 1</span>
+  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-down-left-arrow-up-right" text="Volledig scherm" data-fullscreen></nldd-icon-button>
+  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="display" text="Presentatiemodus" data-modus></nldd-icon-button>
+  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="note" text="Sprekersweergave" data-spreker></nldd-icon-button>
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
 </nav>
 <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress"></div></div>
+<p class="deck-melding" id="melding" role="status" hidden></p>
 <p class="sr-only" aria-live="polite" id="announce"></p>

@@ -27,7 +27,7 @@
 {{- end }}
 </head>
 <body{{ with .Params.duur }} data-duur="{{ . }}"{{ end }}>
-<main class="deck">
+<main class="deck" tabindex="-1">
   <div class="stage">
 {{ .Content }}
   </div>

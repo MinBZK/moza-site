@@ -3,7 +3,6 @@
 import "@nldd/design-system/icon";
 import "@nldd/design-system/icon-button";
 import "@nldd/design-system/button";
-import "@nldd/design-system/keyboard-shortcut";
 
 (() => {
   const slides = [...document.querySelectorAll(".slide")];
@@ -22,6 +21,7 @@ import "@nldd/design-system/keyboard-shortcut";
   const counter = document.getElementById("counter");
   const progress = document.getElementById("progress");
   const announce = document.getElementById("announce");
+  const deck = document.querySelector("main.deck");
 
   // Kleine schermen tonen alle dia's onder elkaar om door te scrollen. Zelfde
   // mediaquery als in nldd-deck.css.
@@ -224,6 +224,10 @@ import "@nldd/design-system/keyboard-shortcut";
   function render() {
     sizeButtons();
     document.body.classList.toggle("is-presenting", presenting && !scrolling());
+    if (modusKnop) {
+      modusKnop.setAttribute("icon", presenting ? "book" : "display");
+      modusKnop.setAttribute("text", tooltip(presenting ? "Presentatiemodus verlaten" : "Presentatiemodus", "P"));
+    }
     if (scrolling()) {
       slides.forEach((s) => { s.hidden = false; });
       document.querySelectorAll("[data-step]").forEach((el) => {
@@ -257,6 +261,8 @@ import "@nldd/design-system/keyboard-shortcut";
     presenting = on;
     step = minStep(slides[index]);
     render();
+    // Zonder dit houdt een aangeklikte knop focus en blijft :focus-within de balk tonen
+    if (presenting && voet?.contains(document.activeElement)) deck?.focus();
     announce.textContent = presenting ? "Presentatiemodus aan" : "Presentatiemodus uit";
   }
 
@@ -326,24 +332,84 @@ import "@nldd/design-system/keyboard-shortcut";
       case "ArrowLeft": case "PageUp": e.preventDefault(); prev(); break;
       case "Home": e.preventDefault(); go(0); break;
       case "End": e.preventDefault(); go(slides.length - 1, maxStep(slides.at(-1))); break;
-      case "f": case "F":
-        if (document.fullscreenElement) document.exitFullscreen();
-        else document.documentElement.requestFullscreen?.();
-        break;
-      case "p": case "P":
-        if (!speaker) setMode(!presenting);
-        break;
-      case "s": case "S":
-        if (speaker) break;
-        speakerWindow = window.open(`${location.pathname}?spreker#/${index + 1}`, "nldd-deck-spreker", "popup,width=1280,height=800");
-        if (!presenting) setMode(true);
-        break;
     }
   });
 
   const hideModeHint = () => document.body.classList.remove("show-mode-hint");
   document.querySelectorAll("[data-next]").forEach((b) => b.addEventListener("click", () => { hideModeHint(); next(); }));
   document.querySelectorAll("[data-prev]").forEach((b) => b.addEventListener("click", () => { hideModeHint(); prev(); }));
+
+  const fullscreenKnop = document.querySelector("[data-fullscreen]");
+  const modusKnop = document.querySelector("[data-modus]");
+  const sprekerKnop = document.querySelector("[data-spreker]");
+  const melding = document.getElementById("melding");
+  let meldingTimer;
+
+  const macOS = /mac|iphone|ipad|ipod/i.test(
+    navigator.userAgentData?.platform || navigator.platform || ""
+  );
+  const tooltip = (tekst, letter) => `${tekst} (${macOS ? "\u2325" : "Alt"} + ${letter})`;
+
+  function meld(tekst) {
+    if (!melding) return;
+    melding.textContent = tekst;
+    melding.hidden = false;
+    clearTimeout(meldingTimer);
+    meldingTimer = setTimeout(() => { melding.hidden = true; }, 10000);
+  }
+
+  function toonFullscreen() {
+    const aan = Boolean(document.fullscreenElement);
+    fullscreenKnop.setAttribute("icon", aan ? "arrow-up-right-arrow-down-left" : "arrow-down-left-arrow-up-right");
+    fullscreenKnop.setAttribute("text", tooltip(aan ? "Volledig scherm verlaten" : "Volledig scherm", "F"));
+  }
+
+  function wisselFullscreen() {
+    hideModeHint();
+    if (document.fullscreenElement) document.exitFullscreen();
+    else {
+      const gaan = document.documentElement.requestFullscreen?.();
+      if (gaan) gaan.catch(() => meld("Volledig scherm lukt niet in dit venster. Gebruik de knop van je browser."));
+      else meld("Deze browser kent geen volledig scherm.");
+    }
+  }
+
+  function wisselModus() {
+    hideModeHint();
+    setMode(!presenting);
+  }
+
+  function openSpreker() {
+    hideModeHint();
+    speakerWindow = window.open(`${location.pathname}?spreker#/${index + 1}`, "nldd-deck-spreker", "popup,width=1280,height=800");
+    if (!speakerWindow) {
+      meld("De sprekersweergave kon niet openen. Sta pop-ups toe voor deze site en probeer het opnieuw.");
+      return;
+    }
+    if (!presenting) setMode(true);
+  }
+
+  if (fullscreenKnop) {
+    fullscreenKnop.addEventListener("click", wisselFullscreen);
+    document.addEventListener("fullscreenchange", toonFullscreen);
+    toonFullscreen();
+  }
+
+  modusKnop?.addEventListener("click", wisselModus);
+  if (sprekerKnop) {
+    sprekerKnop.setAttribute("text", tooltip("Sprekersweergave", "S"));
+    sprekerKnop.addEventListener("click", openSpreker);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (!e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    // Option maakt op macOS een ander teken van e.key (Option+P geeft π), dus e.code
+    switch (e.code) {
+      case "KeyF": e.preventDefault(); wisselFullscreen(); break;
+      case "KeyP": if (speaker) break; e.preventDefault(); wisselModus(); break;
+      case "KeyS": if (speaker) break; e.preventDefault(); openSpreker(); break;
+    }
+  });
 
   // Vegen op een aanraakscherm: horizontaal en minstens 50px, anders is het scrollen of tikken
   let swipe = null;

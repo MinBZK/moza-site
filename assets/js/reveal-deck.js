@@ -32,6 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
       maakVoortgangsbalkDecoratief();
       volgDiaStaten();
       regelPresentatiefuncties();
+      volgTekstgrootte();
     });
 
     const macOS = /mac|iphone|ipad|ipod/i.test(
@@ -82,6 +83,54 @@ window.addEventListener('DOMContentLoaded', () => {
           case 'KeyO': e.preventDefault(); Reveal.toggleOverview(); break;
         }
       });
+    }
+
+    let scrollBreedte;
+
+    // De maat die de dia in de leesmodus krijgt: de 32px van .reveal, maal de
+    // schaal die Reveal anders op de dia zou zetten (zelfde rekensom als daar),
+    // maal de vergroting die de gebruiker heeft ingesteld.
+    function leesmaat(wortel) {
+      const config = Reveal.getConfig();
+      const marge = 1 - config.margin;
+      const schaal = Math.min(
+        (window.innerWidth * marge) / config.width,
+        (window.innerHeight * marge) / config.height
+      );
+      const begrensd = Math.min(Math.max(schaal, config.minScale), config.maxScale);
+      return 32 * begrensd * (wortel / 16);
+    }
+
+    // De tekstgrootte van de gebruiker valt weg in de schaal waarmee Reveal elke
+    // dia passend in het venster zet. Boven de 16px loopt de dia daarom als
+    // gewone tekst door de pagina (zie reveal.css) en laat Reveal de toetsen
+    // los, zodat de pijltoetsen schuiven; bladeren blijft met de knoppen.
+    function pasTekstgrootteToe() {
+      const wortel = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const vergroot = wortel > 16.5;
+      if (vergroot) document.documentElement.style.setProperty('--leesmaat', leesmaat(wortel) + 'px');
+      else document.documentElement.style.removeProperty('--leesmaat');
+      document.documentElement.classList.toggle('tekst-vergroot', vergroot);
+      // De scrollweergave van Reveal schaalt elke dia opnieuw passend; op een
+      // smal scherm zou die over de leesmodus heen komen.
+      Reveal.configure({
+        keyboard: !vergroot,
+        scrollActivationWidth: vergroot ? null : scrollBreedte
+      });
+      if (vergroot && Reveal.isScrollView()) Reveal.toggleScrollView(false);
+      Reveal.layout();
+    }
+
+    // Een wijziging van de basislettergrootte geeft geen event; de maat van een
+    // element in rem wel.
+    function volgTekstgrootte() {
+      scrollBreedte = Reveal.getConfig().scrollActivationWidth;
+      const meter = document.createElement('div');
+      meter.className = 'tekstmeter';
+      meter.setAttribute('aria-hidden', 'true');
+      document.body.append(meter);
+      new ResizeObserver(pasTekstgrootteToe).observe(meter);
+      window.addEventListener('resize', pasTekstgrootteToe);
     }
 
     // Reveal.js zet Engelse aria-labels op zijn knoppen. Ze staan hardgecodeerd

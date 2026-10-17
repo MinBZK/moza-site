@@ -23,6 +23,7 @@
 {{- if not $regels -}}
   {{- errorf "table-without-header: verwacht rijen in de vorm `| a | b |`, op pagina %s" .Page.File.Path -}}
 {{- end -}}
+<div class="tabel-wrap" role="region" tabindex="0" aria-label="{{ .Get "label" | default "Tabel" }}">
 <table>
   <tbody>
     {{- range $regels }}
@@ -36,3 +37,4 @@
     {{- end }}
   </tbody>
 </table>
+</div>

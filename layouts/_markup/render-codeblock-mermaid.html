@@ -78,7 +78,7 @@
   {{- end }}
   <a class="mermaid-download button-ghost" href="{{ $lightUrl }}" download="{{ $slug }}.svg" data-tooltip="Download als afbeelding">
     {{- partial "icon.html" "download" -}}
-    <span class="visually-hidden">Download als afbeelding</span>
+    <span class="visually-hidden">Download als afbeelding: {{ $alt }}</span>
   </a>
 </div>
 {{- else -}}

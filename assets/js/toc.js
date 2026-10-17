@@ -7,6 +7,39 @@
 
   if (!headings.length || !tocLinks.length) return;
 
+  let vorigeActieve = null;
+
+  const vlak = document.querySelector(".page-aside");
+  // Het breekpunt moet gelijk zijn aan dat in components/page-aside.css.
+  const breed = window.matchMedia("(width >= 59.375rem)");
+  let vorigeHoogte = "";
+
+  // De CSS kent alleen de hoogte van het blok zoals het geplakt staat. Bovenaan
+  // de pagina staat het lager, onder de sitekop, en zou de onderkant buiten
+  // beeld vallen.
+  function pasHoogteAan() {
+    if (!vlak) return;
+    const rand = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const ruimte = window.innerHeight - vlak.getBoundingClientRect().top - rand;
+    const hoogte = breed.matches ? Math.max(ruimte, 0) + "px" : "";
+    if (hoogte === vorigeHoogte) return;
+    vlak.style.maxHeight = hoogte;
+    vorigeHoogte = hoogte;
+  }
+
+  function toonInSchuifvlak(link) {
+    if (!vlak || vlak.scrollHeight <= vlak.clientHeight) return;
+
+    const l = link.getBoundingClientRect();
+    const v = vlak.getBoundingClientRect();
+
+    if (l.top < v.top) {
+      vlak.scrollTop -= v.top - l.top;
+    } else if (l.bottom > v.bottom) {
+      vlak.scrollTop += l.bottom - v.bottom;
+    }
+  }
+
   function updateActiveLink() {
     const scrollPos = window.scrollY + window.innerHeight * 0.2;
 
@@ -22,12 +55,23 @@
     tocLinks.forEach((link) => link.classList.remove("active"));
     if (current) {
       const activeLink = document.querySelector(`.toc a[href="#${current.id}"]`);
-      if (activeLink) activeLink.classList.add("active");
+      if (activeLink) {
+        activeLink.classList.add("active");
+        if (activeLink !== vorigeActieve) toonInSchuifvlak(activeLink);
+        vorigeActieve = activeLink;
+      }
     }
   }
 
-  window.addEventListener("scroll", updateActiveLink, { passive: true });
-  updateActiveLink();
+  function bijScrollen() {
+    pasHoogteAan();
+    updateActiveLink();
+  }
+
+  window.addEventListener("scroll", bijScrollen, { passive: true });
+  window.addEventListener("resize", pasHoogteAan);
+  breed.addEventListener("change", pasHoogteAan);
+  bijScrollen();
 })();
 
 (function () {

@@ -73,7 +73,7 @@
     blok.inhoud.hidden = false;
   }
 
-  const smal = window.matchMedia("(max-width: 949px)");
+  const smal = window.matchMedia("(width < 59.375rem)");
 
   function pasAan() {
     blokken.forEach(smal.matches ? maakKnop : haalKnopWeg);

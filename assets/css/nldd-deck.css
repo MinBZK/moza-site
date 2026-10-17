@@ -41,6 +41,8 @@ body {
 
 /* Horizontaal vegen is voor bladeren; verticaal schuiven en inzoomen blijven van de browser */
 .deck { position: fixed; inset: 0; display: grid; place-items: center; touch-action: pan-y pinch-zoom; }
+/* Focusbaar gemaakt via tabindex in nldd-deck.html. */
+.deck:focus { outline: none; }
 
 .stage {
   position: relative;
@@ -342,11 +344,25 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 }
 .deck-footer .footer-text { flex: 1; min-width: 0; color: var(--ink); }
 .footer-text strong, .print-footer strong { font-weight: 600; }
-.deck-footer .hints { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
 .deck-footer .counter { font-variant-numeric: tabular-nums; }
 .print-footer { display: none; }
 
 .deck-close { position: fixed; top: 0.75rem; right: 1rem; z-index: 10; color: var(--ink-72); }
+
+.deck-melding {
+  position: fixed;
+  right: 1rem;
+  bottom: 3.25rem;
+  z-index: 11;
+  max-width: min(32rem, calc(100vw - 2rem));
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+  background: var(--bg-end);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
 
 .progress { position: fixed; right: 0; bottom: 0; left: 0; height: 3px; background: var(--ink-10); z-index: 10; }
 .progress-fill { height: 100%; width: 0; background: var(--accent); transition: width 0.3s ease; }
@@ -371,26 +387,25 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 /* ---------- Presentatiemodus: alleen de dia, de footertekst en de voortgangsbalk ---------- */
 
 .is-presenting .deck-close,
-.is-presenting .deck-footer .hints,
 .is-presenting .deck-footer .counter { display: none; }
 
-/* Vorige en volgende verschijnen als de muis beweegt (show-controls) */
 .is-presenting .deck-footer nldd-icon-button {
-  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 .is-presenting.show-controls .deck-footer nldd-icon-button,
 .is-presenting.show-mode-hint .deck-footer nldd-icon-button,
-.is-presenting .deck-footer:focus-within nldd-icon-button { visibility: visible; opacity: 1; }
+.is-presenting .deck-footer:focus-within nldd-icon-button { opacity: 1; pointer-events: auto; }
 /* De opacity hierboven overschrijft anders de uitgeschakelde stijl van NLDD */
 .is-presenting.show-controls .deck-footer nldd-icon-button[disabled],
-.is-presenting.show-mode-hint .deck-footer nldd-icon-button[disabled] { opacity: var(--primitives-opacity-disabled); }
+.is-presenting.show-mode-hint .deck-footer nldd-icon-button[disabled],
+.is-presenting .deck-footer:focus-within nldd-icon-button[disabled] { opacity: var(--primitives-opacity-disabled); }
 
 /* Wie via ?presentatie binnenkomt, ziet tot de eerste handeling de hele bediening */
-.is-presenting.show-mode-hint .deck-footer .hints { display: flex; }
 .is-presenting.show-mode-hint .deck-footer .counter,
-.is-presenting.show-controls .deck-footer .counter { display: block; }
+.is-presenting.show-controls .deck-footer .counter,
+.is-presenting .deck-footer:focus-within .counter { display: block; }
 
 /* ---------- Sprekersnotities en sprekersweergave (?spreker) ---------- */
 
@@ -399,7 +414,8 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 .is-speaker .deck,
 .is-speaker .deck-footer,
 .is-speaker .progress,
-.is-speaker .deck-close { display: none; }
+.is-speaker .deck-close,
+.is-speaker .deck-melding { display: none; }
 
 .speaker {
   position: fixed;
@@ -459,7 +475,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 
   .deck-close { position: absolute; }
   .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
-  .deck-footer .hints, .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
+  .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
 }
 
 /* ---------- Print: één dia per pagina, alle stappen zichtbaar ---------- */
@@ -481,6 +497,6 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
     background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
   }
   [data-step] { opacity: 1 !important; }
-  .deck-footer, .progress, .deck-close { display: none !important; }
+  .deck-footer, .progress, .deck-close, .deck-melding { display: none !important; }
   .print-footer { position: absolute; bottom: 0.8cqw; left: 1.3cqw; display: block; font-size: 0.9cqw; color: var(--ink); }
 }

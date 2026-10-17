@@ -12,10 +12,33 @@
   <link rel="stylesheet" href="{{ $revealCss.RelPermalink }}">
 </head>
 <body>
-  <button
-    class="close-button"
-    aria-label="Sluit presentatie"
-  >&#10005;</button>
+  <div class="presentatie-bediening">
+    <button
+      class="presentatie-knop"
+      data-volledig-scherm
+      aria-label="Volledig scherm"
+    >
+      <svg class="icoon icoon-uit" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M11 14.4 5.4 20H9v2H2v-7h2v3.593L9.6 13zM22 10h-2V5.407L14.4 11 13 9.36 18.6 4H14V2h8z" />
+      </svg>
+      <svg class="icoon icoon-aan" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M11 21H9v-4.593L3.4 22 2 20.36 7.6 15H3v-2h8zM22 3.4 16.4 9H20v2h-7V4h2v3.593L20.6 2z" />
+      </svg>
+    </button>
+    <button
+      class="presentatie-knop"
+      data-overzicht
+      aria-label="Dia-overzicht"
+    >
+      <svg class="icoon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
+      </svg>
+    </button>
+    <button
+      class="presentatie-knop close-button"
+      aria-label="Sluit presentatie"
+    >&#10005;</button>
+  </div>
 
   <div class="reveal">
     <img

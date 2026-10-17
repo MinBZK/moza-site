@@ -124,28 +124,18 @@
           </button>
           {{- end -}}
         </li>
+        {{- if $showExpand -}}
+        <li class="subnav-panel" id="subnav-panel-{{ $index }}"{{ if not (or $isActive $isChildActive) }} hidden{{ end }}>
+          <ul>
+            {{- range $children.ByWeight -}}
+            <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="current" aria-current="page"{{ end }}>{{ .Title }}</a></li>
+            {{- end -}}
+          </ul>
+        </li>
+        {{- end -}}
       {{- end -}}
     </ul>
   </nav>
-  {{- range $index, $item := index .Site.Menus $secondNav -}}
-    {{- if gt $index 0 -}}
-    {{- $page := .Page -}}
-    {{- $children := $page.Sections -}}
-    {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
-    {{- $isActive := eq $.RelPermalink .URL -}}
-    {{- $isChildActive := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
-    {{- $showPanel := or $isActive $isChildActive -}}
-    {{- if gt (len $children) 0 -}}
-  <div class="subnav-panel" id="subnav-panel-{{ $index }}"{{ if not $showPanel }} hidden{{ end }}>
-    <ul>
-      {{- range $children.ByWeight -}}
-      <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="current" aria-current="page"{{ end }}>{{ .Title }}</a></li>
-      {{- end -}}
-    </ul>
-  </div>
-    {{- end -}}
-    {{- end -}}
-  {{- end -}}
   {{- end -}}
 
 </header>

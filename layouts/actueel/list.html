@@ -44,7 +44,11 @@
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
       </header>
       <div class="content">
-        {{ partial "inhoud.html" .Content }}
+        {{ $inhoud := partial "inhoud.html" .Content }}
+        {{ range $niveau := slice 4 3 2 }}
+          {{ $inhoud = replaceRE (printf `<(/?)h%d([ >])` $niveau) (printf `<${1}h%d${2}` (add $niveau 2)) $inhoud }}
+        {{ end }}
+        {{ $inhoud | safeHTML }}
       </div>
     </article>
     {{ end }}

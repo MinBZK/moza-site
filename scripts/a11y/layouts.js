@@ -18,7 +18,7 @@ const UITZONDERINGEN = {
   "_partials/meta.html": "leest tekst voor de description",
   "documenten/rapportages/page.html": "HTML-content, geen Markdown met voetnoten",
   "documenten/presentaties/nldd-deck.html": "HTML page bundle",
-  "documenten/presentaties/page.html": "HTML page bundle",
+  "documenten/presentaties/reveal-deck.html": "HTML page bundle",
 };
 
 const PAGINA_INHOUD = /(?<!"inhoud\.html" )\.Content\b/;

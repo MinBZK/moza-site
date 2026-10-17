@@ -426,3 +426,62 @@ body:has(.reveal.paused) .presentatie-knop:focus-visible {
   padding: 10px 15px;
   border-bottom: 1px solid #e0e0e0;
 }
+
+/* ---------- Leesmodus bij een vergrote basislettergrootte ----------
+   De schaal waarmee Reveal een dia passend maakt, heft een grotere
+   basislettergrootte precies weer op. In het dia-overzicht (.overview) rekent
+   Reveal met de dia-maten, dus daar blijft alles zoals het is. */
+
+html.tekst-vergroot,
+html.tekst-vergroot body {
+  height: auto;
+}
+
+html.tekst-vergroot .reveal:not(.overview) {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+  font-size: var(--leesmaat, 2rem);
+}
+
+/* Reveal zet de maten, de plaats en de schaal als stijl op het element zelf */
+html.tekst-vergroot .reveal:not(.overview) .slides {
+  position: static;
+  width: auto !important;
+  height: auto !important;
+  inset: auto !important;
+  transform: none !important;
+  padding: 4.5rem 1.25rem 4rem;
+}
+
+html.tekst-vergroot .reveal:not(.overview) .slides section {
+  position: relative !important;
+  top: auto !important;
+  height: auto !important;
+  padding-top: 0 !important;
+}
+
+/* Alleen de dia die aan de beurt is: de andere staan in Reveal ernaast */
+html.tekst-vergroot .reveal:not(.overview) .slides section:not(.present):not(:has(.present)) {
+  display: none !important;
+}
+
+html.tekst-vergroot .reveal:not(.overview) .backgrounds {
+  display: none;
+}
+
+html.tekst-vergroot .reveal:not(.overview) .controls,
+html.tekst-vergroot .reveal:not(.overview) .progress {
+  position: fixed;
+}
+
+/* Geeft reveal-deck.js een maat die met de basislettergrootte meebeweegt */
+.tekstmeter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  visibility: hidden;
+  pointer-events: none;
+}

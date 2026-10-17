@@ -280,6 +280,11 @@
       trigger.addEventListener('click', openModal);
     });
 
+    var titelTrigger = document.querySelector('.search-trigger[title]');
+    if (titelTrigger && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      titelTrigger.title = 'Zoeken (\u2318 + K)';
+    }
+
     var closeButton = document.getElementById('search-close');
     if (closeButton) {
       closeButton.addEventListener('click', closeModal);
@@ -318,15 +323,18 @@
     });
 
     document.addEventListener('keydown', function (e) {
+      if (e.key !== 'k' && e.key !== 'K') return;
+      if (e.metaKey === e.ctrlKey || e.altKey || e.shiftKey) return;
+      if (searchModal.open) return;
+
       var activeElement = document.activeElement;
       var isTyping = activeElement.tagName === 'INPUT' ||
                      activeElement.tagName === 'TEXTAREA' ||
                      activeElement.isContentEditable;
+      if (isTyping) return;
 
-      if (e.key === '/' && !isTyping && !searchModal.open) {
-        e.preventDefault();
-        openModal();
-      }
+      e.preventDefault();
+      openModal();
     });
 
     searchInput.addEventListener('keydown', function (e) {

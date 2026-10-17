@@ -178,7 +178,7 @@
 .cp-rm-obstakels ol { margin: 0; padding-left: 1.125rem; font-size: var(--cp-fs-sm); font-weight: 600; }
 .cp-rm-obstakels li { margin-bottom: 0.25rem; }
 .cp-rm-obstakels li:last-child { margin-bottom: 0; }
-.cp-h-niet .cp-rm-obstakels-label, .cp-h-niet .cp-rm-obstakels ol { color: var(--primitives-color-critical-500); }
+.cp-h-niet .cp-rm-obstakels-label, .cp-h-niet .cp-rm-obstakels ol { color: var(--primitives-color-critical-600); }
 .cp-h-onzeker .cp-rm-obstakels-label, .cp-h-onzeker .cp-rm-obstakels ol { color: var(--primitives-color-warning-700); }
 .cp-rm-item-leeg { border-top: none; padding: 0; }
 .cp-wijziging { background: var(--color-highlight); color: var(--color-highlight-text); border-radius: 3px; padding: 0 0.25rem; font-weight: 600; }

@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{- /* Zonder deze markering kan de opmaak niet zien of JavaScript ontbreekt of
+   alleen nog niet klaar is. Moet vóór het renderen draaien, dus geen defer. */ -}}
+{{- with resources.Get "js/js-markering.js" | fingerprint "md5" }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end }}
 {{ partial "meta.html" . }}
 {{- /* fonts.css bevat relURL-aanroepen en moet daarom als template worden uitgevoerd.
    De NLDD-componenten lezen hun kleuren uit variables.css van het pakket. Die

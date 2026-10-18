@@ -32,7 +32,7 @@
 {{ .Content }}
   </div>
 </main>
-<nldd-icon-button class="deck-close" appearance="inherit-tinted" icon="dismiss" text="Sluit presentatie" data-close></nldd-icon-button>
+<nldd-icon-button class="deck-close" appearance="inherit-tinted" icon="dismiss" text="Sluiten" data-close></nldd-icon-button>
 {{ partial "nldd-deck-footer.html" . }}
 {{- $js := resources.Get "js/nldd-deck.js" | js.Build (dict "targetPath" "js/nldd-deck.js" "minify" true) | fingerprint "md5" }}
 <script src="{{ $js.RelPermalink }}"></script>

@@ -1,8 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
   const closeButton = document.querySelector('.close-button');
   if (closeButton) {
+    const fromSite = document.referrer.startsWith(location.origin);
     closeButton.addEventListener('click', () => {
-      history.back();
+      if (fromSite) history.back();
+      else location.href = '/';
     });
   }
 

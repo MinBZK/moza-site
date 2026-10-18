@@ -91,7 +91,7 @@
 .cp-dg-zone-label { fill: var(--rapport-text); font-size: 17px; font-weight: 600; }
 .cp-dg-sub-container { fill: var(--color-bg-muted); stroke: var(--rapport-text-muted); stroke-width: 1.5; }
 .cp-dg-block-label { fill: var(--rapport-text-muted); font-size: 15px; font-weight: 600; font-style: italic; text-anchor: middle; }
-.cp-dg-node { fill: var(--rapport-surface); stroke: var(--rapport-border); stroke-width: 1.5; }
+.cp-dg-node { fill: var(--rapport-surface); stroke: var(--primitives-color-neutral-500); stroke-width: 1.5; }
 .cp-dg-node.cp-beschikbaar { stroke: var(--primitives-color-success-600); stroke-width: 2.5; }
 .cp-dg-node.cp-aanbouw { stroke: var(--primitives-color-accent-600); stroke-width: 2.5; stroke-dasharray: 14 8; }
 .cp-dg-node.cp-verkenning { stroke: var(--primitives-color-mark-600); stroke-width: 2.5; stroke-dasharray: 4 4; }

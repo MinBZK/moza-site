@@ -337,9 +337,185 @@ function buildPaginaParts(text, objecten) {
   return parts;
 }
 
+/** Tekst vergelijkbaar maken: Chromium schrijft ligaturen (de "ff" in "Kick-off") als één teken. */
+function normaliseer(tekst) {
+  return tekst.normalize("NFKC").replace(/\s+/g, " ").trim();
+}
+
+function leesCmap(perNummer, text, fontNummer) {
+  const toUni = perNummer.get(fontNummer)?.dict.match(/\/ToUnicode\s+(\d+)\s+0\s+R/)?.[1];
+  const tabel = new Map();
+  if (!toUni) return { tabel, breedte: 1 };
+  const stroom = readStream(text, perNummer.get(Number(toUni)))?.toString("latin1");
+  if (!stroom) return { tabel, breedte: 1 };
+  const breedte = (stroom.match(/begincodespacerange\s*<([0-9a-fA-F]+)>/)?.[1].length ?? 4) / 2;
+  const utf16 = (hex) => Buffer.from(hex, "hex").swap16().toString("utf16le");
+  for (const blok of stroom.matchAll(/beginbfchar(.*?)endbfchar/gs)) {
+    for (const [, a, b] of blok[1].matchAll(/<([0-9a-fA-F]+)>\s*<([0-9a-fA-F]+)>/g)) {
+      tabel.set(parseInt(a, 16), utf16(b));
+    }
+  }
+  for (const blok of stroom.matchAll(/beginbfrange(.*?)endbfrange/gs)) {
+    for (const [, a, b, c] of blok[1].matchAll(
+      /<([0-9a-fA-F]+)>\s*<([0-9a-fA-F]+)>\s*<([0-9a-fA-F]+)>/g
+    )) {
+      const basis = utf16(c);
+      for (let k = parseInt(a, 16); k <= parseInt(b, 16); k++) {
+        tabel.set(k, String.fromCodePoint(basis.codePointAt(0) + k - parseInt(a, 16)));
+      }
+    }
+  }
+  return { tabel, breedte };
+}
+
+/** MCID naar tekst voor één pagina, via de ToUnicode-tabel van elk lettertype. */
+function paginaTeksten(text, perNummer, pagina) {
+  const verwijzing = pagina.dict.match(/\/Contents\s+(\d+)\s+0\s+R/);
+  const stroom = verwijzing && perNummer.get(Number(verwijzing[1]));
+  const inhoud = stroom && readStream(text, stroom)?.toString("latin1");
+  const lettertypen = {};
+  const blok = pagina.dict.match(/\/Font\s*<<(.*?)>>/s)?.[1];
+  if (!inhoud || !blok) return new Map();
+  for (const [, naam, nummer] of blok.matchAll(/\/(\w+)\s+(\d+)\s+0\s+R/g)) {
+    lettertypen[naam] = leesCmap(perNummer, text, Number(nummer));
+  }
+
+  const teksten = new Map();
+  const stapel = [];
+  let font = { tabel: new Map(), breedte: 1 };
+  const token =
+    /\/\w+\s*<<\s*\/MCID\s+(\d+)\s*>>\s*BDC|\/\w+\s*<<[^>]*>>\s*BDC|\/\w+\s+BMC|\bEMC\b|\/(\w+)\s+[\d.]+\s+Tf|\[((?:<[0-9a-fA-F]*>|[-\d.]+|\s)*)\]\s*TJ|<([0-9a-fA-F]*)>\s*Tj/g;
+  for (const m of inhoud.matchAll(token)) {
+    if (m[1] !== undefined) stapel.push(Number(m[1]));
+    else if (m[0].endsWith("BDC") || m[0].endsWith("BMC")) stapel.push(null);
+    else if (m[0] === "EMC") stapel.pop();
+    else if (m[2] !== undefined) font = lettertypen[m[2]] ?? font;
+    else {
+      const mcid = [...stapel].reverse().find((x) => x !== null);
+      if (mcid === undefined) continue;
+      for (const [, hex] of (m[3] ?? `<${m[4]}>`).matchAll(/<([0-9a-fA-F]*)>/g)) {
+        const bytes = Buffer.from(hex, "hex");
+        for (let k = 0; k < bytes.length; k += font.breedte) {
+          const teken = font.tabel.get(bytes.readUIntBE(k, font.breedte)) ?? "�";
+          teksten.set(mcid, (teksten.get(mcid) ?? "") + teken);
+        }
+      }
+    }
+  }
+  return teksten;
+}
+
+/** Alle structuurelementen in documentvolgorde, met de tekst die eronder valt. */
+function structuurElementen(text, objecten, structNummer) {
+  const perNummer = new Map(objecten.map((o) => [o.nummer, o]));
+  const paginas = new Map(
+    objecten
+      .filter((o) => /\/Type\s*\/Page\b/.test(o.dict))
+      .map((o) => [o.nummer, paginaTeksten(text, perNummer, o)])
+  );
+  const elementen = [];
+  const loop = (nummer, diepte, erfPagina) => {
+    const { dict } = perNummer.get(nummer);
+    const pagina = Number(dict.match(/\/Pg\s+(\d+)\s+0\s+R/)?.[1] ?? erfPagina);
+    const kinderen = dict.match(/\/K\s*(\[[^\]]*\]|\d+\s+0\s+R|\d+)/s)?.[1] ?? "";
+    const element = { nummer, diepte, tekst: "" };
+    elementen.push(element);
+    for (const t of kinderen.matchAll(/<<.*?>>|(\d+)\s+0\s+R|(\d+)/gs)) {
+      if (t[1]) {
+        element.tekst += loop(Number(t[1]), diepte + 1, pagina);
+        continue;
+      }
+      const object = t[0].startsWith("<<");
+      const mcid = object ? Number(t[0].match(/\/MCID\s+(\d+)/)?.[1]) : Number(t[2]);
+      const op = object ? Number(t[0].match(/\/Pg\s+(\d+)/)?.[1] ?? pagina) : pagina;
+      if (!Number.isNaN(mcid)) element.tekst += paginas.get(op)?.get(mcid) ?? "";
+    }
+    return element.tekst;
+  };
+  const wortel = perNummer.get(structNummer).dict.match(/\/K\s*(\[[^\]]*\]|\d+\s+0\s+R)/)?.[1] ?? "";
+  for (const m of wortel.matchAll(/(\d+)\s+0\s+R/g)) loop(Number(m[1]), 0, NaN);
+  return elementen;
+}
+
+/**
+ * WCAG 3.1.2: Chromium neemt `lang` van een span niet over in de PDF. Elk
+ * fragment krijgt `/Lang` op het structuurelement waarvan de tekst er precies mee
+ * overeenkomt. Op een groter element zou de taal naar alle kinderen erven.
+ *
+ * Fragmenten staan in documentvolgorde. Wat niet te vinden is, of alleen als
+ * onderdeel van een groter element (een fragment met een kindelement erin),
+ * laat de build falen.
+ */
+function buildTaalParts(text, objecten, structNummer, fragmenten) {
+  const elementen = structuurElementen(text, objecten, structNummer);
+  const perNummer = new Map(objecten.map((o) => [o.nummer, o]));
+  const taalPerObject = new Map();
+  const ontbrekend = [];
+  let cursor = 0;
+
+  for (const fragment of fragmenten) {
+    const gezocht = normaliseer(fragment.text);
+    let index = -1;
+    for (let i = cursor; i < elementen.length; i++) {
+      if (normaliseer(elementen[i].tekst) !== gezocht) continue;
+      index = i;
+      while (
+        elementen[index + 1] &&
+        elementen[index + 1].diepte > elementen[index].diepte &&
+        normaliseer(elementen[index + 1].tekst) === gezocht
+      ) {
+        index++;
+      }
+      break;
+    }
+    if (index === -1) {
+      ontbrekend.push(fragment);
+      continue;
+    }
+    taalPerObject.set(elementen[index].nummer, fragment.lang);
+    cursor = index + 1;
+  }
+
+  if (ontbrekend.length) {
+    const lijst = ontbrekend.map((f) => `"${f.text}" (${f.lang})`).join(", ");
+    throw new Error(
+      `${ontbrekend.length} taalfragment(en) niet als eigen element in de PDF-structuur gevonden: ` +
+        `${lijst}. Een fragment met een kindelement erin kan niet gemarkeerd worden.`
+    );
+  }
+
+  return [...taalPerObject].map(([nummer, taal]) => ({
+    number: nummer,
+    dict: perNummer.get(nummer).dict,
+    taal,
+  }));
+}
+
+/** Zet /Lang op de objecten; een object dat al herschreven wordt, krijgt het erbij. */
+function pasTaalToe(parts, taalParts) {
+  for (const { number, dict, taal } of taalParts) {
+    const bestaand = parts.find((p) => p.number === number);
+    if (bestaand) {
+      const tekst = bestaand.bytes.toString("latin1");
+      bestaand.bytes = Buffer.from(
+        tekst.replace(/\s*>>\s*endobj\s*$/, ` /Lang (${taal}) >>\nendobj\n`),
+        "latin1"
+      );
+    } else {
+      parts.push({
+        number,
+        bytes: Buffer.from(`${number} 0 obj\n${dict.slice(0, -2)} /Lang (${taal}) >>\nendobj\n`, "latin1"),
+      });
+    }
+  }
+}
+
 /** Bouwt de bytes die achter de bestaande PDF geplakt worden. */
 function buildIncrementalUpdate(buffer, meta) {
-  if (!meta.title && !meta.description && !meta.url && !meta.creator) return null;
+  const fragmenten = meta.taalFragmenten ?? [];
+  if (!meta.title && !meta.description && !meta.url && !meta.creator && !fragmenten.length) {
+    return null;
+  }
 
   const { xrefOffset, size, root, id } = readTrailer(buffer);
   const text = buffer.toString("latin1");
@@ -455,6 +631,11 @@ function buildIncrementalUpdate(buffer, meta) {
     ...paginaParts,
   ];
 
+  if (fragmenten.length) {
+    if (!structNumber) throw new Error("Geen StructTreeRoot; de taalfragmenten kunnen nergens heen.");
+    pasTaalToe(parts, buildTaalParts(text, objecten, structNumber, fragmenten));
+  }
+
   const prefix = buffer.subarray(-1).toString("latin1") === "\n" ? "" : "\n";
   let offset = buffer.length + prefix.length;
   for (const part of parts) {
@@ -517,6 +698,7 @@ export {
   buildIncrementalUpdate,
   buildLijstParts,
   buildPaginaParts,
+  buildTaalParts,
   objectDictionaries,
   readPdfMetadata,
   readXmp,

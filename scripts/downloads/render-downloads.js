@@ -468,6 +468,12 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
     if (t) document.title = t;
   }, meta.title);
 
+  const taalFragmenten = await page.evaluate(() =>
+    [...document.querySelectorAll("[lang]:not(html)")]
+      .filter((el) => el.getClientRects().length > 0 && el.textContent.trim())
+      .map((el) => ({ lang: el.lang, text: el.textContent }))
+  );
+
   await page.pdf({
     path: pdfOut,
     format: "A4",
@@ -483,6 +489,7 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
     description: meta.description,
     url: meta.url,
     creator: "MijnOverheid Zakelijk",
+    taalFragmenten,
   });
 }
 

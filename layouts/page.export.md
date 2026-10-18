@@ -1,4 +1,5 @@
 ---
+title: {{ .Title | jsonify }}
 {{- with .OutputFormats.Get "html" }}
 url: {{ .Permalink }}
 {{- end }}

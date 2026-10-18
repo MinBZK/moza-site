@@ -59,28 +59,40 @@
       {{- partial "icon.html" "menu" -}}
     </button>
 
-    <div id="mobile-menu" class="mobile" role="navigation" aria-label="Mobiel menu">
+    <nav id="mobile-menu" class="mobile" aria-label="Mobiel menu">
       <ul>
         {{- range .Site.Menus.main -}}
         <li><a href="{{ .URL }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
         {{- end -}}
       </ul>
-      {{- if $hasSecondNav -}}
+      {{- with and $hasSecondNav (index .Site.Menus $secondNav) -}}
+      {{- $items := . -}}
+      {{- $root := index $items 0 -}}
+      {{- $mainNames := slice -}}
+      {{- range $.Site.Menus.main -}}{{ $mainNames = $mainNames | append .Name }}{{- end -}}
+      {{- $rootExact := eq $.RelPermalink $root.URL -}}
       <ul class="mobile-second-nav">
-        {{- range $index, $item := index .Site.Menus $secondNav -}}
-        {{- $isExact := eq $.RelPermalink .URL -}}
-        {{- $isChild := and (hasPrefix $.RelPermalink .URL) (ne $.RelPermalink .URL) -}}
-        {{- $class := cond $isExact "active" (cond .Params.bold "bold" "") -}}
-        <li><a href="{{ .URL }}"{{ with $class }} class="{{ . }}"{{ end }}{{ if $isExact }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-        {{- if and (gt $index 0) (or $isExact $isChild) -}}
-          {{- $page := .Page -}}
-          {{- $children := $page.Sections -}}
-          {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
-          {{- range $children.ByWeight -}}
-          <li class="mobile-subnav-child"><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="active" aria-current="page"{{ end }}>{{ .Title }}</a></li>
-          {{- end -}}
-        {{- end -}}
-        {{- end -}}
+        <li>
+          <a href="{{ $root.URL }}"{{ if $rootExact }} class="active" aria-current="page"{{ else if $root.Params.bold }} class="bold"{{ end }}>{{ $root.Name }}</a>
+          <ul>
+            {{- range after 1 $items -}}
+            {{- $isExact := eq $.RelPermalink .URL -}}
+            {{- $page := .Page -}}
+            {{- $children := $page.Sections -}}
+            {{- if not $children -}}{{ $children = $page.RegularPages }}{{- end -}}
+            <li>
+              <a href="{{ .URL }}"{{ if $isExact }} class="active" aria-current="page"{{ else if .Params.bold }} class="bold"{{ end }}>{{ .Name }}{{ if in $mainNames .Name }}<span class="visually-hidden"> ({{ $root.Name }})</span>{{ end }}</a>
+              {{- with $children -}}
+              <ul>
+                {{- range .ByWeight -}}
+                <li><a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="active" aria-current="page"{{ end }}>{{ .Title }}{{ if in $mainNames .Title }}<span class="visually-hidden"> ({{ $root.Name }})</span>{{ end }}</a></li>
+                {{- end -}}
+              </ul>
+              {{- end -}}
+            </li>
+            {{- end -}}
+          </ul>
+        </li>
       </ul>
       {{- end -}}
       {{- if .Site.Menus.secondary -}}
@@ -90,7 +102,7 @@
         {{- end -}}
       </ul>
       {{- end -}}
-    </div>
+    </nav>
   </nav>
 
   {{- $hasPanelOpen := false -}}

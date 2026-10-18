@@ -249,10 +249,10 @@ header {
         position: relative;
         padding: 0.75rem 0;
 
-        &::after {
+        &::before {
           content: "";
           position: absolute;
-          bottom: 0;
+          top: 0;
           left: 0;
           right: 0;
           height: 1px;
@@ -261,34 +261,24 @@ header {
         }
       }
 
-      li:first-child a::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background-color: color-mix(in oklch, var(--color-text-inverse) 20%, transparent);
-        box-shadow: -100vw 0 0 color-mix(in oklch, var(--color-text-inverse) 20%, transparent), 100vw 0 0 color-mix(in oklch, var(--color-text-inverse) 20%, transparent);
-      }
-
-      li:last-child a::after {
-        display: none;
-      }
-
       .mobile-second-nav {
         margin-top: 0.25rem;
 
-        li:first-child a::before {
+        > li:first-child > a::before {
           display: none;
         }
 
-        li:not(:first-child) a {
+        ul {
+          margin: 0;
+          padding-left: 0;
+        }
+
+        ul a {
           padding-left: 1rem;
         }
 
-        .mobile-subnav-child {
-          margin-left: 1rem;
+        ul ul a {
+          padding-left: 2rem;
         }
 
         a.bold {

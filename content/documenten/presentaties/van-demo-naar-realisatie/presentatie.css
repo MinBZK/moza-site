@@ -12,7 +12,7 @@
 .demo-steps { display: grid; gap: 1.2cqw; margin: 0; padding: 0; list-style: none; font-size: 1.35cqw; line-height: 1.45; }
 .demo-steps li { display: flex; align-items: flex-start; gap: 1cqw; }
 .demo-steps .ic { font-size: 2cqw; flex: none; }
-.demo-note { font-size: 1.1cqw; color: var(--ink-55); margin: 0; }
+.demo-note { font-size: 1.1cqw; color: var(--ink-65); margin: 0; }
 
 /* ---------- Navigeren: de stap waar we nu staan ---------- */
 

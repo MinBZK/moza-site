@@ -26,7 +26,7 @@
 .demo-side { display: flex; flex-direction: column; gap: 1.6cqw; align-items: flex-start; }
 .demo-side .lead { margin: 0; font-size: 1.55cqw; }
 .demo-side ul { margin: 0; padding-left: 1.4cqw; font-size: 1.35cqw; line-height: 1.5; }
-.demo-note { font-size: 1.1cqw; color: var(--ink-55); margin: 0; }
+.demo-note { font-size: 1.1cqw; color: var(--ink-65); margin: 0; }
 
 /* ---------- Bouwblokken ---------- */
 

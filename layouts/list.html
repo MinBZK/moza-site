@@ -6,7 +6,12 @@
   <h1>{{ .Title }}</h1>
   {{ partial "inhoud.html" .Content }}
   {{ with .Pages.ByWeight }}
-  {{ partial "card-grid.html" . }}
+  {{- $inhoud := index (split $.Content `<div class="footnotes"`) 0 -}}
+  {{- $niveau := 2 -}}
+  {{- with findRE `<h[1-6][ >]` $inhoud -}}
+    {{- $niveau = int (math.Min 6 (add 1 (int (substr (index . (sub (len .) 1)) 2 1)))) -}}
+  {{- end -}}
+  {{ partial "card-grid.html" (dict "paginas" . "niveau" $niveau) }}
   {{ end }}
 </section>
 {{ end }}

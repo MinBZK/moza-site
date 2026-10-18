@@ -4,7 +4,7 @@
 {{- end -}}
 {{- with site.GetPage $section -}}
 <section>
-  {{ partial "card-grid.html" .Pages.ByWeight }}
+  {{ partial "card-grid.html" (dict "paginas" .Pages.ByWeight) }}
 </section>
 {{- else -}}
   {{- errorf "card-grid shortcode: sectie %q niet gevonden" $section -}}

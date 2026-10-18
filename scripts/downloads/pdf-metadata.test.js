@@ -277,6 +277,82 @@ function uitStreamPart(part) {
 }
 
 /** Kleinste PDF met een catalogus en een klassieke xref-tabel. */
+async function chromePdf(body) {
+  const dir = mkdtempSync(join(tmpdir(), "moza-pdftaal-"));
+  const browser = await puppeteer.launch({ args: PUPPETEER_ARGS });
+  try {
+    const file = join(dir, "taal.pdf");
+    const page = await browser.newPage();
+    await page.setContent(
+      '<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Bron</title></head>' +
+        `<body>${body}</body></html>`
+    );
+    await page.pdf({ path: file, format: "A4" });
+    return readFileSync(file);
+  } finally {
+    await browser.close();
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+/** Objectnummers waarvan de laatste definitie /Lang (taal) bevat. */
+function metTaal(buffer, taal) {
+  const laatste = new Map();
+  for (const m of buffer.toString("latin1").matchAll(/(?:^|\n)(\d+) 0 obj\n(<<(?:(?!endobj)[\s\S])*?>>)\nendobj/g)) {
+    laatste.set(m[1], m[2]);
+  }
+  return [...laatste].filter(([, dict]) => dict.includes(`/Lang (${taal})`)).map(([n]) => n);
+}
+
+test("een taalfragment krijgt /Lang op een eigen element, ook binnen een link en lijstitem", async () => {
+  const bron = await chromePdf(
+    '<p>Een <span lang="en">trusted party</span> in een zin.</p>' +
+      '<p><a href="https://example.org/"><span lang="en">Europe goes Once-Only: the Netherlands</span></a></p>' +
+      '<ul><li>Punt met <span lang="en">Kick-off meeting</span></li></ul>'
+  );
+  const update = buildIncrementalUpdate(bron, {
+    title: "T",
+    taalFragmenten: [
+      { lang: "en", text: "trusted party" },
+      { lang: "en", text: "Europe goes Once-Only: the Netherlands" },
+      { lang: "en", text: "Kick-off meeting" },
+    ],
+  });
+  const eind = Buffer.concat([bron, update]);
+  assert.equal(metTaal(eind, "en").length, 3);
+  assert.ok(eind.subarray(0, bron.length).equals(bron), "de oorspronkelijke bytes zijn gewijzigd");
+
+  const tekst = eind.toString("latin1");
+  for (const nummer of metTaal(eind, "en")) {
+    const dict = tekst.match(new RegExp(`(?:^|\\n)${nummer} 0 obj\\n(<<[\\s\\S]*?>>)\\nendobj`, "g")).at(-1);
+    assert.match(dict, /\/S \/NonStruct/, "de taal staat niet op de binnenste run");
+  }
+});
+
+test("een taalfragment zonder eigen element laat de build falen", async () => {
+  const bron = await chromePdf('<p>Een <span lang="en">foo <em>bar</em></span> in een zin.</p>');
+  assert.throws(
+    () =>
+      buildIncrementalUpdate(bron, {
+        title: "T",
+        taalFragmenten: [{ lang: "en", text: "foo bar" }],
+      }),
+    /foo bar/
+  );
+});
+
+test("een taalfragment dat in de PDF ontbreekt laat de build falen", async () => {
+  const bron = await chromePdf("<p>Alleen Nederlands.</p>");
+  assert.throws(
+    () =>
+      buildIncrementalUpdate(bron, {
+        title: "T",
+        taalFragmenten: [{ lang: "en", text: "niet aanwezig" }],
+      }),
+    /niet aanwezig/
+  );
+});
+
 function minimalPdf() {
   const head = "%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n";
   const xref =

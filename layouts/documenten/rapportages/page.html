@@ -18,7 +18,7 @@
 </head>
 <body>
 {{ partial "koppen-ids.html" .Content | safeHTML }}
-<button id="moza-nav" class="moza-nav" type="button" aria-label="Terug">{{ partial "icon.html" "x" }}</button>
+<button id="moza-nav" class="moza-nav" type="button" aria-label="Sluiten">{{ partial "icon.html" "x" }}</button>
 {{- with resources.Get "js/rapportage-nav.js" | fingerprint "md5" }}
 <script src="{{ .RelPermalink }}"></script>
 {{- end }}

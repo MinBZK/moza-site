@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const back = document.getElementById('moza-nav');
   if (!back) return;
   const sameOriginRef = document.referrer && document.referrer.startsWith(location.origin);
-  back.setAttribute('aria-label', sameOriginRef ? 'Terug' : 'Naar MOZa site');
+  back.setAttribute('aria-label', 'Sluiten');
   back.addEventListener('click', () => {
     if (sameOriginRef) history.back();
     else location.href = '/';

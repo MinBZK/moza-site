@@ -68,6 +68,11 @@
     display: none !important;
   }
 
+  /* Chrome schrijft een decoratieve SVG ongetagd in de PDF (PDF/UA 7.1-3). */
+  .callout header svg {
+    display: none;
+  }
+
   /* Inhoud over de volledige breedte */
   article:has(> .page-aside) {
     display: block;

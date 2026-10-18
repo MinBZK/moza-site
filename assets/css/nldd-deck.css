@@ -75,8 +75,8 @@ body {
    dia met een korte fade. Laadt het script niet, dan verschijnt na 3 seconden toch de
    eerste dia. */
 @keyframes deck-vangnet { to { visibility: visible; } }
-html:not(.deck-ready) .stage { visibility: hidden; animation: deck-vangnet 0s 3s forwards; }
-html:not(.deck-ready) .slide:not(:first-child) { visibility: hidden; }
+html.js:not(.deck-ready) .stage { visibility: hidden; animation: deck-vangnet 0s 3s forwards; }
+html.js:not(.deck-ready) .slide:not(:first-child) { visibility: hidden; }
 html.deck-ready .stage { animation: deck-in 0.25s ease-out; }
 
 .overline {
@@ -464,9 +464,33 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
    alleen onderaan, zodat hij niet over een dia valt. */
 
 @media (max-width: 900px), (max-height: 500px) {
-  html:not(.deck-ready) .stage,
-  html:not(.deck-ready) .slide:not(:first-child) { visibility: visible; animation: none; }
+  html.js:not(.deck-ready) .stage,
+  html.js:not(.deck-ready) .slide:not(:first-child) { visibility: visible; animation: none; }
   html, body { height: auto; overflow: visible; }
+  .deck { display: block; }
+  .stage { width: calc(100% + min(var(--tekstgroei), 100%)); aspect-ratio: auto; }
+
+  .slide, .slide[hidden] {
+    position: relative;
+    display: flex;
+    inset: auto;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--ink-35);
+  }
+
+  [data-step] { opacity: 1 !important; }
+  .flow-step.is-current { border-color: var(--ink-18); background: var(--ink-06); }
+
+  .deck-close { position: absolute; }
+  .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
+  .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
+}
+
+/* ---------- Zonder JavaScript: dezelfde stapeling, op elke breedte ----------
+   Houd deze regels gelijk aan die van de kleine schermen hierboven. */
+
+html:not(.js) {
+  &, body { height: auto; overflow: visible; }
   .deck { display: block; }
   .stage { width: calc(100% + min(var(--tekstgroei), 100%)); aspect-ratio: auto; }
 
@@ -489,8 +513,8 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 /* ---------- Print: één dia per pagina, alle stappen zichtbaar ---------- */
 
 @media print {
-  html:not(.deck-ready) .stage,
-  html:not(.deck-ready) .slide:not(:first-child) { visibility: visible; animation: none; }
+  html.js:not(.deck-ready) .stage,
+  html.js:not(.deck-ready) .slide:not(:first-child) { visibility: visible; animation: none; }
   @page { size: 16in 9in; margin: 0; }
   html, body { height: auto; overflow: visible; }
   body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }

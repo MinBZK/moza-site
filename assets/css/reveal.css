@@ -161,6 +161,34 @@ body {
   gap: 0.25rem;
 }
 
+.presentatie-navigatie {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1001;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.presentatie-navigatie[data-stapels] {
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, auto);
+}
+
+.presentatie-navigatie[data-stapels] [data-omhoog] { grid-area: 1 / 2; }
+.presentatie-navigatie[data-stapels] [data-links] { grid-area: 2 / 1; }
+.presentatie-navigatie[data-stapels] [data-rechts] { grid-area: 2 / 3; }
+.presentatie-navigatie[data-stapels] [data-omlaag] { grid-area: 3 / 2; }
+
+.presentatie-knop[hidden] {
+  display: none;
+}
+
+body:has(.reveal-scroll) .presentatie-navigatie,
+body:has(.reveal.overview) .presentatie-navigatie {
+  display: none;
+}
+
 .presentatie-knop {
   display: flex;
   align-items: center;
@@ -180,6 +208,17 @@ body {
   height: 24px;
 }
 
+.presentatie-navigatie .presentatie-knop {
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0.25rem;
+}
+
+.presentatie-navigatie .icoon {
+  width: 28px;
+  height: 28px;
+}
+
 .presentatie-knop .icoon-aan,
 .presentatie-knop[data-aan] .icoon-uit {
   display: none;
@@ -192,6 +231,10 @@ body {
 .presentatie-knop:hover {
   background-color: color-mix(in oklch, var(--rijksoverheid-blauw) 12%, transparent);
   color: var(--rijksoverheid-text-donker);
+}
+
+.presentatie-knop:disabled {
+  opacity: 0.35;
 }
 
 .presentatie-knop:focus-visible {

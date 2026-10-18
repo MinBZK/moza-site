@@ -19,9 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // op een knop door in plaats van die knop te bedienen.
       keyboardCondition: e =>
         !(e.key === ' ' || e.key === 'Enter') || !e.target.closest?.('a, button'),
-      controls: true,
-      controlsTutorial: false,
-      controlsBackArrows: 'visible',
+      controls: false,
       progress: true,
       overview: true,
       hash: true
@@ -33,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
       maakVoortgangsbalkDecoratief();
       volgDiaStaten();
       regelPresentatiefuncties();
+      regelNavigatieknoppen();
       volgTekstgrootte();
     });
 
@@ -86,6 +85,47 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    function regelNavigatieknoppen() {
+      const wortel = document.querySelector('.presentatie-navigatie');
+      const knoppen = {
+        omhoog: wortel.querySelector('[data-omhoog]'),
+        links: wortel.querySelector('[data-links]'),
+        rechts: wortel.querySelector('[data-rechts]'),
+        omlaag: wortel.querySelector('[data-omlaag]')
+      };
+      const stapels = Boolean(document.querySelector('.slides > section > section'));
+      wortel.toggleAttribute('data-stapels', stapels);
+      knoppen.omhoog.hidden = knoppen.omlaag.hidden = !stapels;
+
+      // Zelfde regels als Reveal: fragmenten horen bij omhoog en omlaag in een
+      // stapel, anders bij links en rechts.
+      function werkNavigatieBij() {
+        const routes = Reveal.availableRoutes();
+        const fragmenten = Reveal.availableFragments();
+        const huidige = Reveal.getCurrentSlide();
+        const inStapel = Reveal.isVerticalSlide(huidige) &&
+          huidige.parentElement.querySelectorAll(':scope > section').length > 1;
+        const zet = (naam, aan) => { knoppen[naam].disabled = !aan; };
+        zet('links', routes.left || (!inStapel && fragmenten.prev));
+        zet('rechts', routes.right || (!inStapel && fragmenten.next));
+        zet('omhoog', routes.up || (inStapel && fragmenten.prev));
+        zet('omlaag', routes.down || (inStapel && fragmenten.next));
+        const focus = document.activeElement;
+        if (focus?.disabled && wortel.contains(focus)) {
+          Object.values(knoppen).find(k => !k.hidden && !k.disabled)?.focus();
+        }
+      }
+
+      knoppen.omhoog.addEventListener('click', () => Reveal.up());
+      knoppen.links.addEventListener('click', () => Reveal.left());
+      knoppen.rechts.addEventListener('click', () => Reveal.right());
+      knoppen.omlaag.addEventListener('click', () => Reveal.down());
+      for (const gebeurtenis of ['slidechanged', 'fragmentshown', 'fragmenthidden', 'ready']) {
+        Reveal.on(gebeurtenis, werkNavigatieBij);
+      }
+      werkNavigatieBij();
+    }
+
     let scrollBreedte;
 
     // De maat die de dia in de leesmodus krijgt: de 32px van .reveal, maal de
@@ -135,18 +175,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // Reveal.js zet Engelse aria-labels op zijn knoppen. Ze staan hardgecodeerd
     // in de bundel en kennen geen taalinstelling.
     function vertaalBediening() {
-      const labels = {
-        '.navigate-left': 'Vorige slide',
-        '.navigate-right': 'Volgende slide',
-        '.navigate-up': 'Slide hierboven',
-        '.navigate-down': 'Slide hieronder'
-      };
-      for (const [selector, label] of Object.entries(labels)) {
-        for (const el of document.querySelectorAll(selector)) {
-          el.setAttribute('aria-label', label);
-        }
-      }
-
       const hervatten = document.querySelector('.resume-button');
       if (hervatten) {
         hervatten.textContent = 'Presentatie hervatten';

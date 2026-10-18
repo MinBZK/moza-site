@@ -44,7 +44,8 @@ async function toetsReveal(page, baseUrl, route) {
   await page.waitForFunction(() => window.Reveal?.isReady?.(), { timeout: 15000 });
 
   if (!(await page.$(".close-button"))) findings.push("geen sluitknop gevonden");
-  for (const knop of await page.$$(".presentatie-bediening button")) {
+  for (const knop of await page.$$(".presentatie-bediening button, .presentatie-navigatie button")) {
+    if (await knop.evaluate((b) => b.hidden)) continue;
     const tabIndex = await knop.evaluate((b) => b.tabIndex);
     // De naam uit de toegankelijkheidsboom, niet uit het attribuut: zo telt
     // ook de terugval op tekstinhoud mee zoals de browser die berekent.
@@ -62,8 +63,8 @@ async function toetsReveal(page, baseUrl, route) {
   if (voor === null) findings.push("geen live region; een slidewissel wordt niet aangekondigd");
 
   for (const [naam, ga] of [
-    ["de knop Volgende slide", async () => {
-      await page.evaluate(() => document.querySelector(".navigate-right")?.focus());
+    ["de knop Dia rechts", async () => {
+      await page.evaluate(() => document.querySelector("[data-rechts]")?.focus());
       await page.keyboard.press("Enter");
     }],
     ["pijltje rechts", async () => {

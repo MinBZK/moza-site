@@ -33,7 +33,7 @@
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-55);
+  color: var(--ink-65);
 }
 .tl-periode::before {
   content: "";
@@ -90,8 +90,8 @@
 .clover-blad { fill: var(--ink-06); stroke: var(--ink-18); stroke-width: 0.1; }
 .clover-blad-moza { fill: var(--ink-10); stroke: var(--accent); stroke-width: 0.2; }
 .clover-stem { fill: var(--ink-35); }
-.clover-col { align-self: start; font-size: 1.2cqw; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-55); }
-.clover-row { justify-self: end; padding-right: 1.2cqw; font-size: 1.2cqw; font-weight: 600; color: var(--ink-55); text-align: right; }
+.clover-col { align-self: start; font-size: 1.2cqw; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-65); }
+.clover-row { justify-self: end; padding-right: 1.2cqw; font-size: 1.2cqw; font-weight: 600; color: var(--ink-65); text-align: right; }
 .leaf {
   position: relative;
   display: grid;
@@ -143,7 +143,7 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
-.ring-core { width: 30%; height: 30%; border-color: var(--accent); background: var(--ink-10); }
+.ring-core { width: 30%; height: 30%; border-color: var(--accent); background: var(--bg-end); }
 .ring-1 { width: 53%; height: 53%; }
 .ring-2 { width: 76.5%; height: 76.5%; }
 .ring-3 { width: 100%; height: 100%; }

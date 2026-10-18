@@ -7,6 +7,9 @@
   --ink: var(--primitives-color-coolgray-0);
   --ink-85: color-mix(in srgb, var(--ink) 85%, transparent);
   --ink-72: color-mix(in srgb, var(--ink) 72%, transparent);
+  /* Onder 65% haalt tekst de contrasteis niet op het lichtste deel van het
+     verloop; --ink-55 is daarom alleen voor lijnen en vlakken. */
+  --ink-65: color-mix(in srgb, var(--ink) 65%, transparent);
   --ink-55: color-mix(in srgb, var(--ink) 55%, transparent);
   --ink-35: color-mix(in srgb, var(--ink) 35%, transparent);
   --ink-18: color-mix(in srgb, var(--ink) 18%, transparent);
@@ -181,7 +184,7 @@ strong { font-weight: 700; color: var(--ink); }
   font-weight: 700;
   color: var(--ink-85);
 }
-.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-55); }
+.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-65); }
 .flow-step h3 { margin: 0; font-size: 1.8cqw; line-height: 1.15; }
 .flow-step p { margin: 0; font-size: 1.35cqw; line-height: 1.4; }
 
@@ -344,7 +347,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
   align-items: center;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: var(--ink-55);
+  color: var(--ink-65);
   z-index: 10;
 }
 .deck-footer .footer-text { flex: 1; min-width: 0; color: var(--ink); }
@@ -433,7 +436,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 }
 .speaker-bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; color: var(--ink-72); }
 .speaker-timer { font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink); }
-.speaker-timer [data-duration] { font-weight: 400; color: var(--ink-55); }
+.speaker-timer [data-duration] { font-weight: 400; color: var(--ink-65); }
 .speaker-timer.is-over [data-elapsed] { color: var(--accent); }
 .speaker-clock { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
 .speaker-counter { flex: 1; text-align: right; font-variant-numeric: tabular-nums; }

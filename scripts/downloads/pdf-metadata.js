@@ -272,11 +272,116 @@ function buildLijstParts(text, objecten, eersteVrijeNummer) {
   return { parts, volgendNummer: volgend };
 }
 
+const WITRUIMTE = " \t\r\n\f\0";
+const SCHEIDINGSTEKENS = `${WITRUIMTE}()<>[]{}/%`;
+
+/** Operatoren die inkt op de pagina zetten; `n` sluit een pad zonder te tekenen. */
+const INKTOPERATOREN = new Set([
+  "S", "s", "f", "F", "f*", "B", "B*", "b", "b*", "sh", "Do", "Tj", "TJ", "'", '"', "EI",
+]);
+
+/** Einde van de literale string die op `i` met een haakje opent. */
+function naLiteraleString(tekst, i) {
+  let diepte = 0;
+  for (; i < tekst.length; i++) {
+    if (tekst[i] === "\\") i++;
+    else if (tekst[i] === "(") diepte++;
+    else if (tekst[i] === ")" && --diepte === 0) return i + 1;
+  }
+  return tekst.length;
+}
+
+/**
+ * De operatoren van een contentstroom, met hun positie.
+ *
+ * Strings, namen en commentaar worden overgeslagen, zodat `(EMC) Tj` niet als
+ * tag telt. De bytes van een inline afbeelding zijn geen tokens: na `ID` loopt
+ * de scanner door naar de eerstvolgende `EI`.
+ */
+function* operatoren(tekst) {
+  let i = 0;
+  while (i < tekst.length) {
+    const teken = tekst[i];
+    if (WITRUIMTE.includes(teken)) {
+      i++;
+    } else if (teken === "%") {
+      const regeleinde = tekst.indexOf("\n", i);
+      i = regeleinde === -1 ? tekst.length : regeleinde + 1;
+    } else if (teken === "(") {
+      i = naLiteraleString(tekst, i);
+    } else if (tekst.startsWith("<<", i) || tekst.startsWith(">>", i)) {
+      i += 2;
+    } else if (teken === "<") {
+      const sluiting = tekst.indexOf(">", i);
+      i = sluiting === -1 ? tekst.length : sluiting + 1;
+    } else if (teken === ">" || "[]{}".includes(teken) || teken === "/") {
+      i++;
+      while (i < tekst.length && !SCHEIDINGSTEKENS.includes(tekst[i])) i++;
+    } else {
+      const begin = i;
+      while (i < tekst.length && !SCHEIDINGSTEKENS.includes(tekst[i])) i++;
+      const naam = tekst.slice(begin, i);
+      if (naam === "ID") {
+        const eind = tekst.slice(i).search(/\sEI\s|\sEI$/);
+        i = eind === -1 ? tekst.length : i + eind + 4;
+        yield { naam: "EI", begin, einde: i };
+      } else if (/^[A-Za-z'"*]/.test(naam)) {
+        yield { naam, begin, einde: i };
+      }
+    }
+  }
+}
+
+function eersteNietWit(tekst, i) {
+  while (i < tekst.length && WITRUIMTE.includes(tekst[i])) i++;
+  return i;
+}
+
+/**
+ * De stukken inhoud die buiten elke marked-content-reeks vallen en inkt zetten.
+ *
+ * Een gat loopt tot waar de operanden van de volgende tag beginnen, niet tot de
+ * tag zelf: `/NonStruct << /MCID 2 >> BDC` hoort in zijn geheel buiten het
+ * artefact te blijven.
+ */
+function gatenBuitenTags(tekst) {
+  const gaten = [];
+  let diepte = 0;
+  let tags = 0;
+  let gatBegin = 0;
+  let inkt = false;
+  let xobject = false;
+  let vorigEinde = 0;
+
+  for (const operator of operatoren(tekst)) {
+    if (operator.naam === "BDC" || operator.naam === "BMC") {
+      if (diepte === 0) {
+        tags++;
+        if (inkt) gaten.push({ begin: gatBegin, einde: eersteNietWit(tekst, vorigEinde), xobject });
+        inkt = false;
+        xobject = false;
+      }
+      diepte++;
+    } else if (operator.naam === "EMC") {
+      diepte = Math.max(0, diepte - 1);
+      if (diepte === 0) gatBegin = operator.einde;
+    } else if (diepte === 0 && INKTOPERATOREN.has(operator.naam)) {
+      inkt = true;
+      if (operator.naam === "Do") xobject = true;
+    }
+    vorigEinde = operator.einde;
+  }
+  if (inkt) gaten.push({ begin: gatBegin, einde: tekst.length, xobject });
+
+  return { gaten, tags };
+}
+
 /**
  * PDF/UA 7.1-3: elk stukje inkt moet getagde inhoud zijn of een artefact.
- * Chromium laat de paginavulling vóór de eerste tag en het briefhoofd erna
- * ongemarkeerd staan. Alleen die kop en staart worden omsloten; de getagde
- * inhoud ertussen blijft byte voor byte gelijk.
+ * Chromium markeert wat niet in de toegankelijkheidsboom staat als niets: de
+ * paginavulling vóór de eerste tag, het briefhoofd erna, en een pictogram met
+ * `aria-hidden` ertussen. Elk zo'n gat wordt omsloten; de getagde inhoud blijft
+ * byte voor byte gelijk.
  */
 function buildPaginaParts(text, objecten) {
   const perNummer = new Map(objecten.map((o) => [o.nummer, o]));
@@ -292,36 +397,40 @@ function buildPaginaParts(text, objecten) {
     if (!inhoud) continue;
 
     const tekst = inhoud.toString("latin1");
-    const eersteTag = tekst.indexOf("BDC");
-    const laatsteTag = tekst.lastIndexOf("EMC");
-    if (eersteTag === -1 || laatsteTag === -1) continue;
+    const { gaten, tags } = gatenBuitenTags(tekst);
+    if (!tags || !gaten.length) continue;
 
-    const kopEinde = tekst.lastIndexOf("\n", eersteTag) + 1;
-    const staartBegin = laatsteTag + 3;
-    const staart = tekst.slice(staartBegin);
-    // Een XObject in de staart hoort bij de structuurboom en mag dus niet in
-    // een artefact belanden; dat zou regel 7.1-2 breken.
-    if (/\bDo\b/.test(staart)) {
-      throw new Error(
-        `Pagina-object ${object.nummer} heeft een XObject na de laatste tag; ` +
-          `dat kan niet als artefact gemarkeerd worden.`
-      );
+    const invoegingen = [];
+    for (const gat of gaten) {
+      // Een XObject hoort bij de structuurboom en mag dus niet in een artefact
+      // belanden; dat zou regel 7.1-2 breken.
+      if (gat.xobject) {
+        throw new Error(
+          `Pagina-object ${object.nummer} heeft een XObject buiten de getagde inhoud; ` +
+            `dat kan niet als artefact gemarkeerd worden.`
+        );
+      }
+      const staart = gat.einde === tekst.length;
+      if (gat.begin === 0) {
+        invoegingen.push({ positie: tekst.indexOf("\n") + 1, tekst: "/Artifact BMC\n" });
+      } else {
+        invoegingen.push({
+          positie: gat.begin,
+          tekst: staart ? "\n/Artifact << /Type /Pagination >> BDC" : "\n/Artifact BMC",
+        });
+      }
+      invoegingen.push({ positie: gat.einde, tekst: staart ? "\nEMC\n" : "EMC\n" });
     }
 
-    const kop = tekst.slice(0, kopEinde);
-    const naTransformatie = kop.indexOf("\n") + 1;
-    const nieuw = Buffer.from(
-      kop.slice(0, naTransformatie) +
-        "/Artifact BMC\n" +
-        kop.slice(naTransformatie) +
-        "EMC\n" +
-        tekst.slice(kopEinde, staartBegin) +
-        "\n/Artifact << /Type /Pagination >> BDC" +
-        staart +
-        "\nEMC\n",
-      "latin1"
-    );
-    const ingepakt = deflateSync(nieuw);
+    const stukken = [];
+    let cursor = 0;
+    for (const invoeging of invoegingen) {
+      stukken.push(tekst.slice(cursor, invoeging.positie), invoeging.tekst);
+      cursor = invoeging.positie;
+    }
+    stukken.push(tekst.slice(cursor));
+
+    const ingepakt = deflateSync(Buffer.from(stukken.join(""), "latin1"));
     parts.push({
       number: stroom.nummer,
       bytes: Buffer.concat([

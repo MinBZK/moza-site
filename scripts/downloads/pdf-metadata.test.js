@@ -131,7 +131,10 @@ test("een echte Chrome-PDF houdt zijn tagstructuur en krijgt een XMP-stroom", as
     const page = await browser.newPage();
     await page.setContent(
       '<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Bron</title></head>' +
-        "<body><h1>Kop</h1><p>Tekst.</p><ul><li>Eerste <b>punt</b></li></ul></body></html>"
+        "<body><h1>Kop</h1>" +
+        '<p>Tekst met <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16">' +
+        '<circle cx="8" cy="8" r="7" fill="red"/></svg> pictogram.</p>' +
+        "<ul><li>Eerste <b>punt</b></li></ul></body></html>"
     );
     await page.pdf({ path: file, format: "A4" });
 
@@ -171,7 +174,11 @@ test("een echte Chrome-PDF houdt zijn tagstructuur en krijgt een XMP-stroom", as
     const ruw = before.toString("latin1");
     const paginas = buildPaginaParts(ruw, objectDictionaries(ruw));
     assert.equal(paginas.length, 1, "de pagina is niet herschreven");
-    assert.match(uitStreamPart(paginas[0]), /\/Artifact BMC\n/);
+    const stroom = uitStreamPart(paginas[0]);
+    // Het pictogram met aria-hidden staat midden in de pagina, buiten elke tag.
+    assert.match(stroom, /EMC\n\/Artifact BMC\n[\s\S]*?\bf\nEMC\n\/NonStruct/);
+    // En het staat er nog: de cirkel wordt nog steeds gevuld.
+    assert.match(stroom, /15 8 m\n/);
   } finally {
     await browser.close();
     rmSync(dir, { recursive: true, force: true });
@@ -225,7 +232,40 @@ test("de kop en de staart van een pagina worden als artefact gemarkeerd", () => 
   assert.match(nieuw, /\/Artifact << \/Type \/Pagination >> BDC\n\(voetnummer\) Tj\n\nEMC\n$/);
 });
 
-test("een XObject na de laatste tag laat de artefactstap hard falen", () => {
+test("inhoud tussen twee tags wordt als artefact gemarkeerd", () => {
+  // Een pictogram met aria-hidden belandt hier: Chromium tagt het niet en
+  // markeert het ook niet als artefact.
+  const stroom =
+    "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\n" +
+    "q\n5 5 10 10 re\nf\nQ\n/P << /MCID 1 >> BDC\n(meer tekst) Tj\nEMC\n";
+  const text = paginaMetStroom(stroom);
+
+  const parts = buildPaginaParts(text, objectDictionaries(text));
+  assert.equal(parts.length, 1);
+  const nieuw = uitStreamPart(parts[0]);
+
+  assert.match(nieuw, /EMC\n\/Artifact BMC\nq\n5 5 10 10 re\nf\nQ\nEMC\n\/P << \/MCID 1 >> BDC/);
+  // De kop bevat geen inkt, dus daar valt niets te markeren.
+  assert.doesNotMatch(nieuw, /^1 0 0 1 0 0 cm\n\/Artifact/);
+});
+
+test("een gat zonder inkt blijft ongemarkeerd", () => {
+  const stroom =
+    "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\n" +
+    "q\n5 5 10 10 re\nW* n\nQ\n/P << /MCID 1 >> BDC\n(meer) Tj\nEMC\n";
+  const text = paginaMetStroom(stroom);
+  assert.deepEqual(buildPaginaParts(text, objectDictionaries(text)), []);
+});
+
+test("een tagnaam in een tekststring telt niet als tag", () => {
+  const stroom = "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(EMC en BDC) Tj\nEMC\n(voetnummer) Tj\n";
+  const text = paginaMetStroom(stroom);
+
+  const nieuw = uitStreamPart(buildPaginaParts(text, objectDictionaries(text))[0]);
+  assert.match(nieuw, /\(EMC en BDC\) Tj\nEMC\n\/Artifact << \/Type \/Pagination >> BDC/);
+});
+
+test("een XObject buiten de tags laat de artefactstap hard falen", () => {
   // Zo'n XObject hoort bij de structuurboom; in een artefact zou het regel
   // 7.1-2 breken, dus liever een gefaalde build dan een stille fout.
   const stroom = "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\n/X0 Do\n";
@@ -233,7 +273,7 @@ test("een XObject na de laatste tag laat de artefactstap hard falen", () => {
 
   assert.throws(
     () => buildPaginaParts(text, objectDictionaries(text)),
-    /XObject na de laatste tag/
+    /XObject buiten de getagde inhoud/
   );
 });
 

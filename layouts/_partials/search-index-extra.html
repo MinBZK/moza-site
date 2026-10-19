@@ -1,0 +1,53 @@
+{{- /* Hook van het theme: een item per dia van elke presentatie, met een link
+       naar die dia. */ -}}
+{{- $index := slice -}}
+{{- range where site.RegularPages "Section" "documenten" -}}
+  {{- if and (not .Draft) (hasPrefix .RelPermalink "/documenten/presentaties/") -}}
+    {{- $pageTitle := .Title -}}
+    {{- $pageUrl := .RelPermalink -}}
+    {{- $pageSection := .Section -}}
+    {{- $parts := split .RawContent "<section" -}}
+    {{- /* Reveal.js telt dia's vanaf 0 (#/0), nldd-deck vanaf 1, gelijk aan de teller */ -}}
+    {{- $hIndex := cond (eq .Layout "nldd-deck") 1 0 -}}
+    {{- $vIndex := -1 -}}
+    {{- $depth := 0 -}}
+    {{- range $i, $part := $parts -}}
+      {{- if gt $i 0 -}}
+        {{- $closeTags := len (findRE `</section>` $part) -}}
+        {{- if gt $depth 0 -}}
+          {{- $vIndex = add $vIndex 1 -}}
+        {{- else -}}
+          {{- if gt $i 1 -}}{{- $hIndex = add $hIndex 1 -}}{{- end -}}
+          {{- $vIndex = -1 -}}
+        {{- end -}}
+        {{- $depth = add (sub $depth $closeTags) 1 -}}
+        {{- if lt $depth 0 -}}{{- $depth = 0 -}}{{- end -}}
+        {{- $slideContent := replaceRE `(?s)^[^>]*>(.*)$` "$1" $part -}}
+        {{- $slideContent = replaceRE `(?s)<section.*` "" $slideContent -}}
+        {{- $slideContent = replaceRE `(?s)</section>.*` "" $slideContent -}}
+        {{- $slideContent = replaceRE `(?s)<aside class="notes">.*?</aside>` "" $slideContent -}}
+        {{- $heading := "" -}}
+        {{- if findRE `<h[123][^>]*>([^<]+)</h[123]>` $slideContent -}}
+          {{- $heading = replaceRE `(?s).*<h[123][^>]*>([^<]+)</h[123]>.*` "$1" $slideContent -}}
+        {{- end -}}
+        {{- $content := replaceRE `<[^>]+>` " " $slideContent -}}
+        {{- $content = replaceRE `\s+` " " $content -}}
+        {{- $content = $content | strings.TrimSpace -}}
+        {{- if gt (len $content) 5 -}}
+          {{- $url := "" -}}
+          {{- if eq $vIndex -1 -}}
+            {{- $url = printf "%s#/%d" $pageUrl $hIndex -}}
+          {{- else -}}
+            {{- $url = printf "%s#/%d/%d" $pageUrl $hIndex $vIndex -}}
+          {{- end -}}
+          {{- $title := $pageTitle -}}
+          {{- if $heading -}}
+            {{- $title = printf "%s: %s" $pageTitle $heading -}}
+          {{- end -}}
+          {{- $index = $index | append (dict "title" $title "url" $url "content" $content "section" $pageSection) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $index -}}

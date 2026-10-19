@@ -2,16 +2,56 @@ baseURL: https://mijnoverheidzakelijk.nl/
 title: MijnOverheid Zakelijk
 defaultContentLanguage: nl
 
+module:
+  imports:
+    - path: github.com/RijksICTGilde/hugo-theme-rijksoverheid
+
 params:
   tagline: Makkelijk zakendoen met de overheid
   description: MijnOverheid Zakelijk zet ondernemers centraal. We zorgen voor overzicht en makkelijk zakendoen met de overheid. Een uur minder gedoe, een uur meer ondernemen.
   afzender:
     naam: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties
     url: https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties
+    tekst: MijnOverheid Zakelijk is een programma van het
   footer:
     tagline: Eén Overheid. Voor iedereen!
     links: Zie ook
     rechts: Over deze site
+  search:
+    filters:
+      - label: Alles
+        section: ""
+      - label: MOZa Weekly
+        section: weekly
+      - label: Onderwerpen
+        section: onderwerpen
+      - label: Handboek
+        section: handboek
+      - label: Documenten
+        section: documenten
+    threshold: 0.2
+    max_results: 0
+    # Factor op de score van Fuse: lager dan 1 komt eerder, hoger later.
+    section_weights:
+      onderwerpen: 0.5
+      documenten: 0.9
+      handboek: 1
+      actueel: 1
+      weekly: 1.1
+  llms:
+    secties:
+      - sectie: onderwerpen
+        kop: Onderwerpen
+      - sectie: weekly
+        kop: Weekly updates
+        limiet: 10
+      - sectie: documenten
+        kop: Documenten
+        # Eigen sleutel van moza (layouts/home.llmsfull.txt): wel in llms.txt,
+        # niet in llms-full.txt.
+        volledig: false
+      - sectie: handboek
+        kop: Handboek
 
 disableKinds:
   - taxonomy

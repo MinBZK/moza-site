@@ -17,8 +17,6 @@ env:
   PLAK_ORIGIN: https://plak.rijks.app
   PREVIEW_REF: pr-${{ github.event.pull_request.number }}
   SITE_PATH: moza/website/_preview/pr-${{ github.event.pull_request.number }}
-  HUGO_VERSION: 0.166.0
-  HUGO_SHA256: 45228f5a52eb118b0ca168068f01d7df0447314a24056f1d29667ed9fc368308
   PANDOC_VERSION: "3.11"
   PANDOC_SHA256: 37edb3bbcf722f921a009941bf5874e2e0c09263226c9b4a2d980788cb062ab6
 
@@ -47,15 +45,15 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Install Hugo en pandoc
+      - name: Install Hugo
+        uses: ./.github/actions/setup-hugo
+
+      - name: Install pandoc
         working-directory: ${{ runner.temp }}
         run: |
-          curl -sLo hugo.tar.gz "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
-          echo "${HUGO_SHA256}  hugo.tar.gz" | sha256sum -c -
           curl -sLo pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz"
           echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c -
           mkdir -p "${HOME}/.local/bin"
-          tar -xzf hugo.tar.gz -C "${HOME}/.local/bin" hugo
           tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
           echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 

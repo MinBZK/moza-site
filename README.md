@@ -7,14 +7,14 @@ De site wordt gegenereerd met [Hugo](https://gohugo.io/).
 
 ### Vereisten 
 
-Installeer Hugo, just, Node.js en uv:
+Installeer Hugo, Go, just, Node.js en uv:
 
 ```bash
 # macOS
-brew install hugo just node uv
+brew install hugo go just node uv
 ```
 
-Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/), [just](https://just.systems/man/en/), [Node.js](https://nodejs.org/) en [uv](https://docs.astral.sh/uv/). `uv` is nodig voor de Python-scripts die Mattermost-input voor de Weekly ophalen.
+Of volg de installatie-instructies voor [Hugo](https://gohugo.io/installation/), [Go](https://go.dev/doc/install), [just](https://just.systems/man/en/), [Node.js](https://nodejs.org/) en [uv](https://docs.astral.sh/uv/). Hugo gebruikt Go om het theme op te halen (zie [Theme](#theme)). `uv` is nodig voor de Python-scripts die Mattermost-input voor de Weekly ophalen.
 
 Installeer daarna de Node dependencies (eenmalig):
 
@@ -99,7 +99,7 @@ Zie [Mermaid](https://mermaid.js.org/) voor de volledige syntax.
 
 ### Kleuren
 
-Kleuren, iconen, de favicon en het touch-icon komen uit het [NLDD Designsysteem](https://github.com/NederlandseDigitaleDienst/design-system), uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
+Kleuren, het lettertype en de iconen van de site komen uit het theme (zie [Theme](#theme)), dat ze uit het [NLDD Designsysteem](https://github.com/NederlandseDigitaleDienst/design-system) haalt. Moza's eigen bestandstype-icoon voor Markdown, de favicon en het touch-icon komen uit het npm-pakket `@nldd/design-system`. De gegenereerde bestanden staan in git; na een upgrade van het pakket schrijf je ze opnieuw weg:
 
 ```bash
 just nldd
@@ -108,6 +108,36 @@ just nldd
 `npm test` bewaakt dat die bestanden bij het geïnstalleerde pakket passen. De bestandstype-iconen voor ODT en PDF blijven handgemaakt, NLDD heeft die niet.
 
 Elke pagina krijgt een eigen afbeelding voor een gedeelde link, met de paginatitel erop. Die komen uit `just og-cards`, dat na de Hugo-build draait op het manifest `og.json` en per pagina een JPEG in `images/og/` schrijft. `just build` doet dat zelf al. De foto is de hero van de homepage.
+
+## Theme
+
+De site gebruikt [hugo-theme-rijksoverheid](https://github.com/RijksICTGilde/hugo-theme-rijksoverheid) als Hugo Module; de versie staat in `go.mod`. Bijwerken:
+
+```bash
+hugo mod get -u github.com/RijksICTGilde/hugo-theme-rijksoverheid
+```
+
+Dependabot doet dat ook (ecosysteem `gomod`); `tools.go` zorgt dat het theme daarvoor in `go.mod` blijft staan.
+
+Kop, voet, pagina-opmaak, zoeken, de CSS-basis, iconen en het lettertype komen uit het theme. Een bestand met hetzelfde pad in deze repo gaat voor dat van het theme, dus kopieer er geen. Instellingen staan onder `params` in `hugo.yaml` (zoeken, afzender, `llms.secties`).
+
+Deze bestanden houdt moza bewust zelf:
+
+| Bestand | Waarom |
+|---|---|
+| `layouts/_partials/favicons.html` | Hook: moza's eigen favicons (`favicon.svg`, `touch-icon.png`). |
+| `layouts/_partials/og-image.html` | Hook: een deelafbeelding per pagina, gemaakt door `just og-cards`. |
+| `layouts/_partials/page-aside-extra.html` | Hook: het downloadblok (`downloads.html`) in de rechterkolom bij `download: true`. |
+| `layouts/_partials/search-index-extra.html` | Hook: een zoekresultaat per dia van een presentatie. |
+| `layouts/_partials/llm-instructies.html` | Hook: de instructies voor taalmodellen in `llms.txt` en `llms-full.txt`. |
+| `layouts/_partials/head.html` | Versie van het theme plus `print-kolombreedtes.html`: het theme heeft nog geen hook in `<head>`. |
+| `layouts/_markup/render-table.html` | Versie van het theme plus de afdrukattributen `print-kolombreedtes` en `print-bijeen`. |
+| `layouts/_partials/markdown-body.html` | Zet de shortcode `diagram-...` om in de plaat, voor de Markdown-, ODT- en PDF-downloads. |
+| `layouts/home.llmsfull.txt` | Versie van het theme plus `volledig: false` in `llms.secties`: de presentaties staan wel in `llms.txt`, maar hun HTML niet in `llms-full.txt`. |
+| `static/favicon.ico`, `static/favicon-192x192.png` | Moza's eigen favicon, met dezelfde naam als die van het theme. |
+| `assets/css/components/downloads.css`, `afdruk.css` | Opmaak van het downloadblok en afdrukregels voor wat alleen moza heeft. |
+
+Alles wat verder in `layouts/`, `assets/` en `static/` staat, heeft het theme niet: presentaties, rapportages, downloads, weekly, actueel, diagrammen en de shortcodes van moza.
 
 ## Code kwaliteit
 
@@ -184,6 +214,7 @@ De site is dan beschikbaar op [http://localhost:8080/](http://localhost:8080/).
 ├── static/              # Statische bestanden (worden 1-op-1 gekopieerd)
 ├── .claude/             # Claude Code configuratie
 ├── .github/             # GitHub Actions workflows
+├── go.mod               # Versie van het theme (Hugo Module)
 ├── hugo.yaml            # Hugo configuratie
 ├── justfile             # Command runner (just up, just build, etc.)
 └── README.md            # Deze documentatie

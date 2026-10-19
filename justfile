@@ -18,22 +18,10 @@ node-deps:
 test: node-deps
     npm test
 
-# Schrijf alles wat uit het NLDD Designsysteem komt opnieuw weg (na een upgrade van het pakket)
-nldd: nldd-tokens nldd-iconen
-
-# Genereer alleen de kleurprimitives
-[private]
-nldd-tokens: node-deps
-    npm run nldd-tokens
-
-# Genereer alleen de iconen, de favicon en het touch-icon
-[private]
-nldd-iconen: node-deps
+# Schrijf moza's eigen iconen, de favicon en het touch-icon opnieuw weg uit het
+# NLDD Designsysteem (na een upgrade van het pakket)
+nldd: node-deps
     npm run nldd-iconen
-
-# Werk de vendored Fuse.js bij (zoeken); zonder versie de nieuwste
-fuse versie="latest": node-deps
-    npm run vendor-fuse -- {{versie}}
 
 # Genereer de afbeeldingen die bij een gedeelde link worden getoond, op een
 # bestaande build

@@ -1,48 +1,36 @@
-{{- $description := .Site.Params.description -}}
+{{- /* Versie van het theme, plus volledig: false in params.llms.secties: die
+       sectie staat dan wel in llms.txt, maar niet in llms-full.txt. De
+       presentaties in documenten zijn HTML en geven hier alleen opmaak. */ -}}
 # {{ .Site.Title }}
 
-> {{ $description }}
+> {{ .Site.Params.description | default .Site.Title }}
+{{- with partial "llm-instructies.html" . | strings.TrimSpace }}
 
-{{ partial "llm-instructies" . }}
----
-{{- /* Hoofdpagina's (alleen over-moza en contact, skip homepage) */ -}}
-{{- range .Site.Menus.main }}
-{{- with site.GetPage .PageRef }}
-{{- if and .Title .RawContent (ne .RelPermalink "/") }}
-
-## {{ .Title }}
-
-{{ partial "markdown-body" . }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- /* Onderwerpen */ -}}
-{{- range where .Site.RegularPages "Section" "onderwerpen" }}
-
-## {{ .Title }}
-
-{{ partial "markdown-body" . }}
-{{- end }}
-
-# Handboek
-
-Interne documentatie voor het MOZa team.
-{{- range where .Site.RegularPages "Section" "handboek" }}
-
-## {{ .Title }}
-
-{{ partial "markdown-body" . }}
-{{- end }}
-
-# Weekly Updates
-
-De laatste 10 updates. Voor alle updates, zie [/weekly/llms-full.txt](/weekly/llms-full.txt).
-{{- range first 10 (where .Site.RegularPages "Section" "weekly") }}
-
-## {{ .Title }} ({{ .Date | time.Format "2 January 2006" }})
-
-{{ partial "markdown-body" . }}
+{{ . }}
 {{- end }}
 
 ---
-Gegenereerd op {{ now.Format "2006-01-02" }} | {{ .Site.BaseURL }}
+{{- range site.Menus.main }}
+{{- with .Page }}
+{{- if and .Title .RawContent (not .IsHome) }}
+
+## {{ .Title }}
+
+{{ partial "markdown-body" . }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- range site.Params.llms.secties }}
+{{- if ne .volledig false }}
+{{- $paginas := where site.RegularPages "Section" .sectie }}
+{{- with .limiet }}{{ $paginas = first . $paginas }}{{ end }}
+
+# {{ .kop | default .sectie }}
+{{- range $paginas }}
+
+## {{ .Title }}
+
+{{ partial "markdown-body" . }}
+{{- end }}
+{{- end }}
+{{- end }}

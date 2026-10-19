@@ -16,8 +16,8 @@ Begin bij de **dia-bibliotheek**: `content/documenten/presentaties/dia-bibliothe
 | Beeld voor meer presentaties, en alle logo's | `assets/images/beeldbank/` (logo's in `logos/`), met `src="{{< beeld "naam.png" >}}"` |
 | Beeld dat al bij een pagina van de site hoort, zoals een foto in een nieuwsbericht | Niet kopiëren: `src="{{< afbeelding-url pagina="/actueel/…" bestand="foto.jpg" >}}"` |
 | Materiaal dat niet openbaar mag, zoals video uit gebruikersonderzoek | `lokaal/` in de page bundle, buiten git (zie Exporteren) |
-| Opmaak die elke presentatie kan gebruiken | `assets/css/nldd-deck.css` |
-| Opmaak van de MOZa-dia's: historie, klavertje vier, ringen, logo-formaten | `assets/css/nldd-deck-moza.css` |
+| Opmaak die elke presentatie kan gebruiken | `assets/css/pagina/nldd-deck.css` |
+| Opmaak van de MOZa-dia's: historie, klavertje vier, ringen, logo-formaten | `assets/css/pagina/nldd-deck-moza.css` |
 | Opmaak voor één presentatie | `presentatie.css` in de page bundle; laat hem weg als er niets in hoeft |
 
 - **Komt iets in een tweede presentatie terug, verplaats het dan in plaats van het te kopiëren**: beeld naar de beeldbank, opmaak naar `nldd-deck.css` of `nldd-deck-moza.css`, de dia naar de bibliotheek.
@@ -38,7 +38,7 @@ Begin bij de **dia-bibliotheek**: `content/documenten/presentaties/dia-bibliothe
 ## Hoe het werkt
 
 - Layout: `layouts/documenten/presentaties/nldd-deck.html`, met de footer in `layouts/_partials/nldd-deck-footer.html`.
-- Opmaak: `assets/css/nldd-deck.css` en `nldd-deck-moza.css`. Bediening: `assets/js/nldd-deck.js`.
+- Opmaak: `assets/css/pagina/nldd-deck.css` en `nldd-deck-moza.css`. Bediening: `assets/js/nldd-deck.js`.
 - De dia's schalen mee met de breedte (16:9, eenheid `cqw`). Maak afmetingen in eigen CSS dus ook in `cqw`.
 - **Kleine schermen** (tot 900px breed of 500px hoog) tonen alle dia's onder elkaar met een scheidingslijn, en de footer alleen onderaan. Elke dia houdt zijn 16:9-vorm en schaalt mee; voor details zoom je in. Bouw geen aparte mobiele opmaak: een herschikte dia verliest het verhaal. Wat wel moet: alles in `cqw` houden, want vaste maten schalen niet mee. NLDD-componenten hebben vaste maten; het script zet `nldd-button` in een dia daarom op kleine schermen op `size="xs"`.
 - **Leesmodus** is de standaard: elke dia staat volledig op het scherm. Met <kbd>P</kbd> gaat de **presentatiemodus** aan, die dia's per klik opbouwt. Daarin zie je alleen de dia, de footertekst en de voortgangsbalk; vorige en volgende verschijnen bij muisbeweging. Een link met `?presentatie` opent direct in presentatiemodus en toont de toetsen tot de eerste toets.
@@ -81,7 +81,7 @@ Kopieer de HTML van zo'n dia uit de dia-bibliotheek, niet de CSS.
 
 ### MOZa-dia's
 
-Dia's over MOZa zelf, in `assets/css/nldd-deck-moza.css`. Voorbeelden in de dia-bibliotheek.
+Dia's over MOZa zelf, in `assets/css/pagina/nldd-deck-moza.css`. Voorbeelden in de dia-bibliotheek.
 
 | Klasse | Waarvoor |
 | --- | --- |

@@ -1,6 +1,6 @@
 .page-nav {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem;
 }
 
@@ -51,11 +51,12 @@
 
 .page-nav-title {
   font-weight: 600;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 640px) {
   .page-nav {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .page-nav-next {

@@ -22,6 +22,9 @@ body > footer {
 
   .page-meta {
     flex-basis: 100%;
+    /* break-word breekt de regel wel, maar verlaagt de min-content-breedte
+       niet, en die bepaalt hier de breedte van de flexregel. */
+    overflow-wrap: anywhere;
     margin-bottom: 1.5rem;
     font-size: var(--text-base);
     line-height: 1.6;
@@ -39,6 +42,9 @@ body > footer {
     }
 
     a {
+      /* Als inline-block neemt de link zijn max-content-breedte en kan een
+         lang woord niet afbreken. */
+      display: inline;
       color: var(--color-text-inverse);
 
       &::before {

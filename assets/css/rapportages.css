@@ -55,6 +55,11 @@ body {
  * subtitle / meta-tekst uitkomt op de onderkant van het Rijkslogo. */
 .header-title {
   flex: 1 1 0;
+  min-width: 0;
+  /* break-word breekt de regel wel, maar verlaagt de min-content-breedte niet,
+     en die bepaalt de breedte van dit flexitem. Geldt ook voor de titels
+     hieronder. */
+  overflow-wrap: anywhere;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -235,6 +240,7 @@ body {
 
 .card-title {
   font-size: 1.0625rem;
+  overflow-wrap: anywhere;
   font-weight: 600;
   color: var(--rapport-text);
   margin: 0;
@@ -379,6 +385,12 @@ body {
   font-weight: 700;
   color: var(--rapport-text);
   padding: 0.75rem 0;
+}
+
+.roadmap > summary > span,
+.componenten > summary > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .roadmap > summary::-webkit-details-marker,

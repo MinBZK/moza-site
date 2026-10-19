@@ -2,8 +2,6 @@
 title: "Berichten/FBS"
 description: "Alle berichten van de overheid lezen op de plek die op dat moment voor jou logisch is, als burger of ondernemer."
 weight: 6
-hide_tiles: true
-prev_next: true
 ---
 
 ## Waar werken we aan?
@@ -31,25 +29,6 @@ In het stelsel heeft iedereen een duidelijke rol:
 * **Verzenders:** overheidsorganisaties die berichten versturen naar burgers en ondernemers.
 * **Het stelsel:** de laag die verzenders en ontvangers met elkaar verbindt, zonder berichten centraal op te slaan.
 * **Ontvangers:** burgers en ondernemers die hun berichten lezen.
-
-## Hoe werkt het? Een beschikking van de Belastingdienst
-
-Neem een ondernemer die een beschikking krijgt van de Belastingdienst. De ondernemer krijgt een melding, logt in en leest de beschikking in de Berichtenbox.
-
-```mermaid
----
-title: Klantreis ondernemer
----
-flowchart LR
-  accTitle: Gebruikersreis ondernemer
-  accDescr: De ondernemer ontvangt een notificatie over een beschikking, logt vervolgens in met DigiD, eHerkenning of eIDAS, en leest tot slot de beschikking in zijn Berichtenbox.
-  A@{ icon: "nldd:bell", label: "Ontvangt notificatie over beschikking" }
-  B@{ icon: "nldd:arrow-right-in-bucket", label: "Logt in met DigiD, eHerkenning of eIDAS" }
-  C@{ icon: "nldd:file-text-badge-check-mark", label: "Leest beschikking in zijn Berichtenbox" }
-  A --> B --> C
-```
-
-Achter de schermen blijft de beschikking in het berichtenmagazijn van de Belastingdienst. Het Berichten Uitvraag Systeem haalt het bericht op zodra de ondernemer het wil lezen.
 
 ## Wat hebben we gedaan? De Proof of Concept
 
@@ -113,7 +92,7 @@ In de pilot doen we twee dingen:
 1. **Onze PoC testen.** We beproeven met de afnemers of de werking van de PoC standhoudt in de praktijk. Werken de afspraken in het stelsel? En wat is er nodig om aan te sluiten?
 2. **Route 2 verkennen: FSC voor burgers.** In deze route haalt het portaal de berichten rechtstreeks op bij de magazijnen, zonder uitvraagsysteem. De route is geïnspireerd op het [Vorderingenoverzicht Rijk](https://vorijk.nl/docs/introductie/). Dat stelsel is gemaakt voor burgers. Met dezelfde afnemers verkennen we of het ook werkt voor ondernemers.
 
-Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot. Waarom we deze routes beproeven en wat we willen leren, lees je op de pagina [Pilot federatieve routes voor ondernemers](/onderwerpen/berichten-fbs/pilot/).
+Van begin af aan werken beleid, ontwerp, juridische zaken en techniek samen in de pilot.
 
 ## Doe mee
 

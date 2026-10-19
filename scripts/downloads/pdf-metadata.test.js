@@ -369,6 +369,18 @@ test("een taalfragment krijgt /Lang op een eigen element, ook binnen een link en
   }
 });
 
+test("een taalfragment dat over twee regels breekt krijgt toch /Lang", async () => {
+  // Op een regelovergang schrijft Chromium geen spatie tussen de twee woorden.
+  const bron = await chromePdf(
+    '<p style="width:4em">Tekst <span lang="en">trusted party</span> verder.</p>'
+  );
+  const update = buildIncrementalUpdate(bron, {
+    title: "T",
+    taalFragmenten: [{ lang: "en", text: "trusted party" }],
+  });
+  assert.equal(metTaal(Buffer.concat([bron, update]), "en").length, 1);
+});
+
 test("een taalfragment zonder eigen element laat de build falen", async () => {
   const bron = await chromePdf('<p>Een <span lang="en">foo <em>bar</em></span> in een zin.</p>');
   assert.throws(

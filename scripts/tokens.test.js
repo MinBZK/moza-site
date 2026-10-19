@@ -9,7 +9,7 @@ const ROOT = join(import.meta.dirname, "..");
 // Tokenbestanden die naar NLDD-primitives verwijzen. Een hernoemde primitive
 // (bijvoorbeeld na een upgrade van @nldd/design-system) valt anders stil terug
 // op niets: de browser negeert de declaratie en de kleur verdwijnt.
-const TOKEN_FILES = ["assets/css/tokens.css", "assets/css/rapportages.css", "assets/css/rapportage-nav.css"];
+const TOKEN_FILES = ["assets/css/tokens.css", "assets/css/pagina/rapportages.css", "assets/css/pagina/rapportage-nav.css"];
 const PRIMITIVES_FILE = "assets/css/nldd-primitives.css";
 
 function definedNames(css) {

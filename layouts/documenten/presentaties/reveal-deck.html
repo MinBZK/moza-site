@@ -7,7 +7,7 @@
   {{/* Reveal.js CSS bundelen */}}
   {{ $revealCore := resources.Get "vendor/reveal/reveal.css" }}
   {{ $revealTheme := resources.Get "vendor/reveal/white.css" }}
-  {{ $revealCustom := resources.Get "css/reveal.css" }}
+  {{ $revealCustom := resources.Get "css/pagina/reveal.css" }}
   {{ $revealCss := slice $revealCore $revealTheme $revealCustom | resources.Concat "css/reveal-bundle.css" | fingerprint "md5" }}
   <link rel="stylesheet" href="{{ $revealCss.RelPermalink }}">
 </head>

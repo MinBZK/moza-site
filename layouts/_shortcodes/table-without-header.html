@@ -4,7 +4,10 @@
 
        De inhoud is één rij per regel, met pijpen als scheiding, net als in een
        Markdown-tabel maar zonder koprij en zonder scheidingsregel. Staat er
-       toch een scheidingsregel, dan wordt die met de koprij erboven genegeerd. */ -}}
+       toch een scheidingsregel, dan wordt die met de koprij erboven genegeerd.
+
+       print-bijeen="ja" houdt de tabel in de afdruk op één pagina, net als het
+       gelijknamige attribuut op een Markdown-tabel. */ -}}
 {{- $regels := slice -}}
 {{- $koprij := "" -}}
 {{- range split (trim .Inner "\n ") "\n" -}}
@@ -24,7 +27,7 @@
   {{- errorf "table-without-header: verwacht rijen in de vorm `| a | b |`, op pagina %s" .Page.File.Path -}}
 {{- end -}}
 <div class="tabel-wrap" role="region" tabindex="0" aria-label="{{ .Get "label" | default "Tabel" }}">
-<table>
+<table{{ with .Get "print-bijeen" }} data-print-bijeen{{ end }}>
   <tbody>
     {{- range $regels }}
     {{- $cellen := split (trim . "|") "|" }}

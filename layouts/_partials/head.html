@@ -35,5 +35,7 @@
 {{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
+{{ partial "print-kolombreedtes.html" . }}
+
 {{- $themeInit := resources.Get "js/theme-init.js" | fingerprint "md5" -}}
 <script src="{{ $themeInit.RelPermalink }}"></script>

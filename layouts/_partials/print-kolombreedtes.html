@@ -1,0 +1,22 @@
+{{- /* Stylesheet met de kolombreedtes die de tabellen op deze pagina in hun
+       Markdown meekregen; zie de render hook voor tabellen. Een eigen bestand,
+       want de CSP laat geen inline stijl toe. De hook vult de store tijdens
+       het renderen van de content, dus die moet hier eerst opgevraagd. */ -}}
+{{- $gerenderd := .Content -}}
+{{- with .Store.Get "print-kolombreedtes" }}
+{{- $cssRegels := slice }}
+{{- range . }}
+{{- $selector := printf "article table[data-print=\"%s\"]" .naam }}
+{{- $cssRegels = $cssRegels | append (printf "%s{table-layout:fixed}%s th,%s td{padding:0.6rem 0.5rem;overflow-wrap:normal;hyphens:auto}" $selector $selector $selector) }}
+{{- range $i, $breedte := .breedtes }}
+{{- if ne $breedte "-" }}
+{{- $cssRegels = $cssRegels | append (printf "%s th:nth-child(%d){width:%s}" $selector (add $i 1) $breedte) }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- $pad := or (replaceRE "/" "-" (strings.Trim $.RelPermalink "/")) "home" }}
+{{- $bestandsnaam := printf "css/print/kolombreedtes-%s.css" $pad }}
+{{- with delimit $cssRegels "" | resources.FromString $bestandsnaam | minify | fingerprint "md5" }}
+<link rel="stylesheet" media="print" href="{{ .RelPermalink }}" />
+{{- end }}
+{{- end }}

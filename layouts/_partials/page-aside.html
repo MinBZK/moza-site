@@ -5,7 +5,11 @@
          (dict "page" . "showToc" true)    standaard tekstpagina (met inhoudsopgave)
          (dict "page" . "showToc" false)   bv. nieuwsbericht (geen inhoudsopgave) */ -}}
 {{- $p := .page -}}
+{{- /* toc_tot_en_met begrenst de inhoudsopgave op een pagina waar diepere
+       koppen de lijst onbruikbaar lang maken; zonder dat param geldt
+       hugo.yaml. */ -}}
 {{- $toc := $p.TableOfContents -}}
+{{- with $p.Params.toc_tot_en_met }}{{ $toc = $p.Fragments.ToHTML 2 (int .) false }}{{ end -}}
 {{- /* De voetnotenkop komt uit inhoud.html en zit dus niet in de
        inhoudsopgave die Hugo uit de Markdown bouwt. */ -}}
 {{- if strings.Contains $p.Content `class="footnotes"` -}}

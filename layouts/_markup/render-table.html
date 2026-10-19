@@ -1,8 +1,23 @@
 {{- /* "Tabel" zonder nummer: inhoud.html nummert de wikkels in documentvolgorde,
        want een shortcode en een render hook draaien niet in die volgorde. */ -}}
 {{- $label := or (index .Attributes "aria-label") "Tabel" -}}
+{{- /* Attributen op de regel direct onder de tabel in de Markdown sturen de
+       afdruk. Hierboven de tabel zetten werkt niet: goldmark hangt zo'n regel
+       dan aan het blok ervoor.
+
+         print-kolombreedtes="15% - - - 45%"  breedte per kolom, een streepje
+                                              deelt mee in wat overblijft
+         print-bijeen="ja"                    houd de tabel op één pagina
+
+       De breedtes gaan via de store naar print-kolombreedtes.html. */ -}}
+{{- $printnaam := "" -}}
+{{- with index .Attributes "print-kolombreedtes" -}}
+  {{- $eerdereTabellen := or ($.Page.Store.Get "print-kolombreedtes") slice -}}
+  {{- $printnaam = printf "tabel-%d" (add (len $eerdereTabellen) 1) -}}
+  {{- $.Page.Store.Set "print-kolombreedtes" ($eerdereTabellen | append (dict "naam" $printnaam "breedtes" (split . " "))) -}}
+{{- end -}}
 <div class="tabel-wrap" role="region" tabindex="0" aria-label="{{ $label }}">
-<table>
+<table{{ with $printnaam }} data-print="{{ . }}"{{ end }}{{ with index .Attributes "print-bijeen" }} data-print-bijeen{{ end }}>
   {{- with .THead }}
   <thead>
     {{- range . }}

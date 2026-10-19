@@ -4,6 +4,7 @@ card_title: "Onderzoek 2026"
 description: "Onderzoek naar de toegankelijkheid van MijnOverheid Zakelijk volgens WCAG-EM, getoetst aan WCAG 2.2 niveau A en AA."
 date: 2026-09-05
 download: true
+toc_tot_en_met: 3
 outputs:
   - HTML
   - markdown
@@ -46,7 +47,7 @@ bevinding aan de hand was in [Bevindingen](#bevindingen).
 
 ## Over dit onderzoek
 
-{{< table-without-header >}}
+{{< table-without-header print-bijeen="ja" >}}
 | Website | <https://mijnoverheidzakelijk.nl/> |
 | Organisatie | Ministerie van Binnenlandse Zaken en Koninkrijksrelaties |
 | Uitgevoerd door | Team MijnOverheid Zakelijk |
@@ -122,6 +123,7 @@ hulptechnologie waartegen de conformiteit hieronder is vastgesteld.
 | macOS Tahoe 26.6.2 | Chrome for Testing 148.0.7778.97, headless | geen | Ronde 9, tweede automatische engine |
 | macOS Tahoe 26.6.2 | Chromium (Chrome for Testing) 153.0.8010.12 | geen | Ronde 10, het doorlopen met loep |
 | macOS Tahoe 26.6.2 | Chrome for Testing 154.0.8037.57, headless | geen | Ronde 11, het nameten |
+{print-bijeen="ja"}
 
 De versienummers van de rondes 1 tot en met 5 zijn die van 5 september 2026, de
 peildatum van dat deel van het onderzoek. De rondes 9 tot en met 11 zijn in
@@ -193,6 +195,7 @@ Elk proces is van begin tot eind doorlopen, inclusief de alternatieve routes.
 | Document downloaden | Pagina openen, downloadknop bedienen, bestand openen in .odt en in .pdf |
 | Presentatie bekijken | Openen, door de slides navigeren, presentatie sluiten |
 | Thema wisselen | Wisselen tussen licht en donker, en terug |
+{print-bijeen="ja"}
 
 ### Willekeurige steekproef
 
@@ -207,6 +210,7 @@ tachtig pagina's en inmiddels negentig.
 | --- |
 | [/weekly/moza-weekly-27-mei-2026/](/weekly/moza-weekly-27-mei-2026/) |
 | [/privacy/](/privacy/) |
+{print-bijeen="ja"}
 
 Op deze twee pagina's kwamen geen problemen naar voren die de gestructureerde
 steekproef niet al liet zien. Die selectie was dus representatief.
@@ -293,6 +297,7 @@ niet voorkomen, zoals audio, video, formulieren en inloggen.
 | Voldoet niet | 0 |
 | Niet van toepassing | 16 |
 | Niet onderzocht | 0 |
+{print-bijeen="ja"}
 
 Het onderzoek leverde negenenveertig bevindingen op. Die zijn alle opgelost en
 nagemeten; wat er per bevinding aan de hand was staat verderop.
@@ -358,6 +363,7 @@ pagina's uit de steekproef.
 | [1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast) | AA | Contrast van niet-tekstuele content | Voldoet | Ronde 5: elke focusrand op vijf pagina's gemeten, in beide kleurschema's. Eén bevinding, opgelost, zie [bevinding 2](#2-focusrand-onzichtbaar-in-de-voettekst). Laagste 4,97:1 tegen een eis van 3:1. Ronde 10: de sluitknop in de presentaties werd bij aanwijzen juist vager; opgelost, zie [bevinding 21](#21-de-sluitknop-werd-vager-als-je-hem-aanwees). Ronde 11: in de componentenplaat vertelt de rand van een vak de status van dat onderdeel, en de rand van een vak zonder status haalde 1,25:1; opgelost, zie [bevinding 44](#44-de-rand-van-een-vak-zonder-status-had-te-weinig-contrast). De overige randen in die plaat dragen geen betekenis en vallen buiten het criterium |
 | [1.4.12](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing) | AA | Tekstafstand | Voldoet | Ronde 2: geen verlies van content bij de voorgeschreven waarden. Ronde 10: de sitenaam in de balk viel bij ruimere tekstafstand weg; opgelost, zie [bevinding 17](#17-content-liep-over-bij-vergrote-tekst) |
 | [1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus) | AA | Content bij hover of focus | Voldoet | De downloadknop bij een diagram toont bij hover en bij focus een tooltip met zijn naam. Die is te sluiten met Escape, blijft staan als je er met de aanwijzer naartoe gaat, en verdwijnt niet vanzelf. Eerder deed een `title`-tooltip dit werk; die toont de browser zelf en valt daarmee buiten dit criterium, maar hij was ook niet met het toetsenbord of op een aanraakscherm te bereiken, zie [bevinding 12](#12-de-downloadknop-bij-een-diagram-had-twee-namen-en-stond-te-vroeg). Ronde 11: in presentatiemodus verdween de tooltip terwijl je hem aanwees; opgelost, zie [bevinding 41](#41-de-tooltip-verdween-terwijl-je-hem-aanwees) |
+{print-kolombreedtes="15% - - - 45%"}
 
 ### 2 Bedienbaar
 
@@ -383,6 +389,7 @@ pagina's uit de steekproef.
 | [2.5.4](https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation) | A | Bewegingsactivering | Niet van toepassing | Geen enkele functie reageert op het kantelen of schudden van het apparaat; er zijn nul luisteraars voor `devicemotion` en `deviceorientation` |
 | [2.5.7](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements) | AA | Sleepbewegingen | Niet van toepassing | Geen enkele functie vraagt een sleepbeweging; er zijn nul luisteraars voor `dragstart` en nul schuifregelaars. Vegen in een presentatie heeft een knop en een toets naast zich. Nieuw in WCAG 2.2 |
 | [2.5.8](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum) | AA | Grootte van het aanwijsgebied (minimum) | Voldoet | Alle aanwijsgebieden halen 24 bij 24 CSS-pixels, op links in lopende tekst na, waarvoor het criterium een uitzondering maakt. Eén link leek te klein maar omsluit een afbeelding van 692 bij 324 pixels, en dat is het werkelijke aanwijsgebied. Nieuw in WCAG 2.2. Ronde 10: de links in de rechterkolom raakten elkaar; opgelost, zie [bevinding 27](#27-aanwijsgebieden-raakten-elkaar-in-de-rechterkolom) |
+{print-kolombreedtes="15% - - - 45%"}
 
 ### 3 Begrijpelijk
 
@@ -401,6 +408,7 @@ pagina's uit de steekproef.
 | [3.3.4](https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data) | AA | Foutpreventie (wettelijk, financieel, gegevens) | Niet van toepassing | De site kent geen transactie, bestelling, aanvraag of wijziging van gegevens. Er wordt niets verstuurd en niets bewaard |
 | [3.3.7](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry) | A | Overbodige invoer | Niet van toepassing | Geteld op de build van 17 oktober 2026 over 90 pagina's: nul `form`-elementen, dus wordt nergens twee keer om dezelfde gegevens gevraagd. Nieuw in WCAG 2.2 |
 | [3.3.8](https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum) | AA | Toegankelijke authenticatie (minimum) | Niet van toepassing | De site kent geen inlog, account of afgeschermd deel. Alles is zonder aanmelden te lezen. Nieuw in WCAG 2.2 |
+{print-kolombreedtes="15% - - - 45%"}
 
 ### 4 Robuust
 
@@ -409,6 +417,7 @@ pagina's uit de steekproef.
 | [4.1.1](https://www.w3.org/WAI/WCAG22/Understanding/parsing) | A | Parsen | Voldoet | Automatisch gedekt. Vervallen in WCAG 2.2, maar nog onderdeel van de wettelijke norm 2.1. Het criterium gaat over de HTML. De Markdown-uitvoer is een export van diezelfde inhoud, bedoeld om te lezen en te hergebruiken, en geen apart document met een eigen opmaaktaal die geparseerd moet worden |
 | [4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) | A | Naam, rol, waarde | Voldoet | Geen enkel bedieningselement zonder toegankelijke naam. Toestanden worden doorgegeven: 308 keer `aria-pressed`, 126 keer `aria-expanded`, 121 keer `aria-current`. Ronde 3: de themawissel en het openklapmenu kondigen hun nieuwe toestand hoorbaar aan. Ronde 8: de downloadknop bij een diagram droeg twee namen tegelijk; opgelost, zie [bevinding 12](#12-de-downloadknop-bij-een-diagram-had-twee-namen-en-stond-te-vroeg). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen. Ronde 10 vond vijf plekken zonder naam of met een tegenstrijdige toestand; opgelost, zie [bevinding 30](#30-namen-en-rollen-ontbraken-of-spraken-elkaar-tegen). Ronde 11: de oudere presentaties droegen een applicatierol zonder naam; opgelost, zie [bevinding 39](#39-de-presentaties-droegen-een-rol-zonder-naam) |
 | [4.1.3](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) | AA | Statusberichten | Voldoet | Ronde 3: de slidewissel in een presentatie wordt aangekondigd. Het zoeken kondigde geen status aan maar de volledige resultaten; opgelost, zie [bevinding 7](#7-zoeken-kondigde-de-resultaten-voor-in-plaats-van-de-status). Na de aanpassingen herhaald met VoiceOver op iOS en met NVDA op Windows 11, zonder nieuwe bevindingen |
+{print-kolombreedtes="15% - - - 45%"}
 
 ## Bevindingen
 
@@ -418,11 +427,11 @@ wanneer die klaar is.
 
 ### 1. Content steekt buiten het scherm op smalle vensters
 
-**Criterium**
+#### Criterium
 
 1.4.10 Reflow, en op twee plekken ook 1.4.4 Herschalen van tekst.
 
-**Waar**
+#### Waar
 
 Zes gevallen op vijf pagina's uit de steekproef, gevonden bij 320
 CSS-pixels breed en bij 200% tekstgrootte:
@@ -434,14 +443,15 @@ CSS-pixels breed en bij 200% tekstgrootte:
 | [/contact/](/contact/) | Een URL in een codefragment | 88px |
 | [/onderwerpen/profielservice/](/onderwerpen/profielservice/) | Een lang samengesteld woord | 32px |
 | [/onderwerpen/actualiteitenservice/](/onderwerpen/actualiteitenservice/) | Een linktekst bij 200% | 7px |
+{print-bijeen="ja"}
 
-**Gevolg**
+#### Gevolg
 
 Wie een smal scherm gebruikt of de tekst vergroot, moet horizontaal
 scrollen om de tekst te kunnen lezen. Bij het label verdween een deel van de
 afbeelding buiten beeld.
 
-**Oorzaak**
+#### Oorzaak
 
 Drie verschillende. Er was geen algemene maximumbreedte voor
 afbeeldingen, waardoor een afbeelding met vaste afmetingen het venster oprekte.
@@ -449,60 +459,60 @@ Lange woorden en URL's braken niet af. En de rapportage-opmaak heeft een eigen
 stylesheet die de sitebrede regels niet laadt en pas bij 900 pixels iets
 aanpast.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. Afbeeldingen krijgen een
 maximumbreedte, lange woorden en URL's breken af, en de rapportage-opmaak heeft
 een extra breekpunt gekregen waarin de koptekst onder elkaar valt en de
 kaartinhoud mag krimpen.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: geen overloop meer op de veertien pagina's uit
 de steekproef, in alle drie de metingen.
 
 ### 2. Focusrand onzichtbaar in de voettekst
 
-**Criterium**
+#### Criterium
 
 1.4.11 Contrast van niet-tekstuele content.
 
-**Waar**
+#### Waar
 
 Elke link in de voettekst, op alle pagina's, in het lichte kleurschema.
 
-**Gevolg**
+#### Gevolg
 
 Wie met het toetsenbord navigeert, ziet in de voettekst niet meer
 waar de focus staat. De rand was donkerblauw op de donkerblauwe achtergrond en
 haalde 1,68:1, waar 3:1 de eis is.
 
-**Oorzaak**
+#### Oorzaak
 
 De voettekst had geen eigen focusregel en erfde daardoor de
 sitebrede rand, die de linkkleur van het lichte schema gebruikt. De koptekst
 heeft dezelfde donkerblauwe achtergrond en had die regel wel.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. Links in de voettekst krijgen nu
 een witte focusrand, net als in de koptekst.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: 10,2:1.
 
 ### 3. De skiplink verplaatste de focus niet
 
-**Criterium**
+#### Criterium
 
 2.4.1 Blokken omzeilen.
 
-**Waar**
+#### Waar
 
 Alle pagina's.
 
-**Gevolg**
+#### Gevolg
 
 De link "Ga naar de inhoud" scrolde de pagina wel naar de inhoud,
 maar de focus bleef op de link staan. Een schermlezer las daardoor niet de
@@ -510,34 +520,34 @@ inhoud voor, maar herhaalde dat de focus op een link stond. Wie verder tabde, kw
 weer in de koptekst terecht. Daarmee deed de enige voorziening om het menu over
 te slaan niet wat hij belooft.
 
-**Oorzaak**
+#### Oorzaak
 
 Een sprong naar een fragment verplaatst de focus alleen als het doel
 focusbaar is. `<main>` is dat van zichzelf niet.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. `<main>` heeft `tabindex="-1"`
 gekregen, waardoor de focus wel meeverhuist. De link kwam daarnaast tegen de
 vensterrand te staan, waardoor zijn focusrand buiten beeld viel; die staat nu
 een halve regel naar binnen.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: de focus staat na activeren op
 `main#main-content`.
 
 ### 4. De PDF-downloads haalden PDF/UA niet
 
-**Criterium**
+#### Criterium
 
 1.3.1 Info en relaties, en 1.3.2 Betekenisvolle volgorde.
 
-**Waar**
+#### Waar
 
 Alle 37 gegenereerde PDF-bestanden.
 
-**Gevolg**
+#### Gevolg
 
 Een schermlezer kon de structuur van deze documenten niet betrouwbaar volgen.
 Waar de markering ontbreekt, kan hij niet bepalen of iets inhoud is of
@@ -545,7 +555,7 @@ decoratie, en valt hij terug op de volgorde waarin de tekst toevallig in het
 bestand staat. Lijstitems droegen hun inhoud niet in een `LBody`, waardoor een
 opsomming niet als opsomming overkwam.
 
-**Oorzaak**
+#### Oorzaak
 
 De PDF's worden afgedrukt door Chromium. Dat schrijft wel een tagstructuur en
 een taal mee, maar laat vier dingen liggen: het markeert de paginavulling en het
@@ -554,7 +564,7 @@ het gebruikt structuurtypen die de PDF-standaard niet kent, en het geeft
 linkannotaties geen beschrijving. Daarnaast leverde het externe-linkicoon, een
 CSS-masker, een transparantiegroep op die tweemaal wordt aangeroepen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. Het icoon wordt niet meer meegeprint: in een
 afdruk is elke link extern, dus het voegt niets toe. De naschrijfstap in
@@ -571,8 +581,9 @@ ISO 14289-1, over alle 37 documenten die de site toen telde:
 | 7.20-2 | 357 | 0 | Het externe-linkicoon als transparantiegroep |
 | 7.2-43 | 3 | 0 | Tabelrijen met een ongelijk aantal kolommen |
 | 5-1 | 37 | 0 | De PDF/UA-identificatie in de metadata |
+{print-bijeen="ja"}
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: veraPDF verklaart 37 van de 37 bestanden conform aan
 PDF/UA deel 1. `just pdfua` bewaakt dat en eist nul fouten.
@@ -586,110 +597,110 @@ mensenwerk; ronde 11 vond daar een fout, zie
 
 ### 5. De ODF-downloads stonden op Engels
 
-**Criterium**
+#### Criterium
 
 3.1.1 Taal van de pagina.
 
-**Waar**
+#### Waar
 
 Alle 36 gegenereerde ODF-bestanden.
 
-**Gevolg**
+#### Gevolg
 
 Elk Nederlands document bood zichzelf aan als Engelstalig. Een schermlezer die
 dat volgt, leest Nederlandse tekst met een Engelse stem voor, wat vrijwel
 onverstaanbaar is.
 
-**Oorzaak**
+#### Oorzaak
 
 De opmaaksjabloon `reference.odt` is afgeleid van de standaard van pandoc, en
 die staat op Engels. Zonder expliciete taal erfde elk document dat.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. De pandoc-aanroep geeft nu `lang=nl` mee.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: `nl` in zowel `meta.xml` als `styles.xml`.
 
 ### 6. Een instructie leunde alleen op vorm en plek
 
-**Criterium**
+#### Criterium
 
 1.3.3 Zintuiglijke eigenschappen.
 
-**Waar**
+#### Waar
 
 De pagina [/handboek/bijdragen/aan-handboek/](/handboek/bijdragen/aan-handboek/),
 in de stappen om een pagina te bewerken.
 
-**Gevolg**
+#### Gevolg
 
 De stap luidde "Klik op het potlood. Rechtsboven zie je een potlood-icoon om te
 editen". Wie het icoon niet ziet, heeft niets om op te zoeken: er stond geen
 naam bij, alleen een vorm en een plek op het scherm.
 
-**Oorzaak**
+#### Oorzaak
 
 De knop op GitHub heeft wel een naam, maar die stond niet in de instructie.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. De stap noemt nu de knopnaam, met de vorm en de
 plek als aanvulling in plaats van als enige aanwijzing.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 7. Zoeken kondigde de resultaten voor in plaats van de status
 
-**Criterium**
+#### Criterium
 
 4.1.3 Statusberichten.
 
-**Waar**
+#### Waar
 
 Het zoekvenster, op alle pagina's.
 
-**Gevolg**
+#### Gevolg
 
 Bij elke toetsaanslag las de schermlezer de volledige inhoud van alle treffers
 achter elkaar voor, als één doorlopende tekst. Hoeveel resultaten er waren, werd
 niet gemeld. Wie zoekt, krijgt zo bij elke letter een lap tekst te horen en weet
 nog steeds niet of er iets gevonden is.
 
-**Oorzaak**
+#### Oorzaak
 
 `aria-live="polite"` stond op de lijst met resultaten zelf. Die lijst wordt bij
 elke toetsaanslag volledig vervangen, dus kondigde de browser de hele nieuwe
 inhoud aan. Een live-regio wordt bovendien als platte tekst voorgelezen, waardoor
 ook de lijststructuur wegviel.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. De resultatenlijst is geen live-regio meer, zodat
 hij zijn lijststructuur houdt en gewoon te doorlopen is. Daarnaast is er een
 apart, visueel verborgen statusgebied met `role="status"` dat alleen het aantal
 meldt: "4 zoekresultaten", of "Geen resultaten gevonden voor ..." als er niets is.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: bij het zoeken op "handboek" meldt het statusgebied
 "4 zoekresultaten" en draagt de lijst geen `aria-live` meer.
 
 ### 8. De presentatiebediening had Engelse namen
 
-**Criterium**
+#### Criterium
 
 3.1.2 Taal van onderdelen.
 
-**Waar**
+#### Waar
 
 De navigatieknoppen in beide Reveal.js-presentaties.
 
-**Gevolg**
+#### Gevolg
 
 Een schermlezer las <span lang="en">"previous slide"</span>,
 <span lang="en">"next slide"</span>, <span lang="en">"above slide"</span>,
@@ -699,35 +710,35 @@ aanbiedt, spreekt een Nederlandse stem die woorden fonetisch uit, wat
 onverstaanbaar wordt. Een taalaanduiding is hier geen oplossing, want een
 `aria-label` kan er geen dragen.
 
-**Oorzaak**
+#### Oorzaak
 
 De namen staan hardgecodeerd in de meegeleverde Reveal.js-bundel, die geen
 instelling voor taal kent.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. De namen worden na het initialiseren
 overschreven met Nederlandse. Dat gebeurt in onze eigen code en niet in de
 bundel, zodat een toekomstige update van Reveal.js mogelijk blijft.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: "Vorige slide", "Volgende slide", "Slide hierboven",
 "Slide hieronder" en "Presentatie hervatten".
 
 ### 9. Tekst als afbeelding in een presentatie
 
-**Criterium**
+#### Criterium
 
 1.1.1 Niet-tekstuele content, en 1.4.5 Afbeeldingen van tekst.
 
-**Waar**
+#### Waar
 
 Twee slides in
 [/documenten/presentaties/moza-pulse-7-oktober/](/documenten/presentaties/moza-pulse-7-oktober/),
 met de conclusies uit het gebruikersonderzoek van fase 1.
 
-**Gevolg**
+#### Gevolg
 
 Beide slides bestonden uit niets anders dan een schermafdruk van een slide:
 twee kolommen lopende tekst, met kopjes en aanbevelingen, als pixels. De
@@ -735,33 +746,33 @@ alt-tekst luidde "Conclusie 1 uit gebruikersonderzoek fase 1" en gaf de inhoud
 dus niet weer. Wie de afbeelding niet ziet, miste de hele conclusie. Wie
 inzoomt of het lettertype aanpast, hield een wazig beeld.
 
-**Oorzaak**
+#### Oorzaak
 
 De slides kwamen uit een presentatie die in een ander programma was gemaakt en
 zijn als afbeelding overgenomen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost tijdens het onderzoek. De inhoud staat nu als echte tekst op vier
 slides, met dezelfde kopjes en aanbeveling. Voor toekomstige presentaties geldt
 dat tekst als tekst wordt opgenomen; dat staat in de reviewinstructies.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: de presentatie bevat geen afbeeldingen van tekst meer.
 
 ### 10. Decoratieve afbeeldingen droegen een tekstalternatief
 
-**Criterium**
+#### Criterium
 
 1.1.1 Niet-tekstuele content.
 
-**Waar**
+#### Waar
 
 Het Rijksoverheid-logo in de kop, en de sfeerfoto bovenaan de
 startpagina.
 
-**Gevolg**
+#### Gevolg
 
 NVDA las bovenaan de startpagina "banner oriëntatiepunt, Logo
 Rijksoverheid, afbeelding" voor, gevolgd door een beschrijving van een
@@ -769,48 +780,48 @@ sfeerfoto. Beide zeggen niets wat er niet al als tekst staat: de sitenaam
 staat ernaast en de titel staat over de foto heen. Het is ruis vóór de
 eigenlijke inhoud.
 
-**Oorzaak**
+#### Oorzaak
 
 Beide afbeeldingen hadden een alt-tekst terwijl ze decoratief zijn.
 De alt van de foto klopte bovendien niet: er stond "telefoon", terwijl het om
 een tablet gaat.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Beide krijgen een lege alt, waarmee hulptechnologie ze
 overslaat. Op de overige pagina's stond het logo al buiten de
 toegankelijkheidsboom.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: geen van beide komt nog in de
 toegankelijkheidsboom voor.
 
 ### 11. De beschrijving van een diagram zat in de naam
 
-**Criterium**
+#### Criterium
 
 1.1.1 Niet-tekstuele content.
 
-**Waar**
+#### Waar
 
 De vier onderwerpenpagina's met Mermaid-diagrammen, en de getekende
 plaat bij de notificatiedienst.
 
-**Gevolg**
+#### Gevolg
 
 De alt-tekst was de volledige beschrijving, tot ruim 350 tekens als
 één zin. Een schermlezer leest dat in één keer voor, zonder dat je kunt
 terugbladeren zoals bij gewone tekst. In de afbeeldingenlijst van een
 schermlezer kreeg je die hele tekst te zien in plaats van een naam.
 
-**Oorzaak**
+#### Oorzaak
 
 De render hook zette `accDescr` in de alt. Bij de plaat van de
 notificatiedienst wees `aria-labelledby` naar de titel én de beschrijving, die
 daardoor samen de naam vormden.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. `accTitle` is nu de naam, `accDescr` volgt als
 verborgen tekst direct na het diagram, en is daarmee gewone tekst die je regel
@@ -820,22 +831,22 @@ achter de naam in het tekstalternatief van de figuur, omdat verborgen tekst
 niet in een PDF terechtkomt. Een controle in de build eist voortaan dat de
 beschrijving er is.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: de langste naam is 58 tekens, de beschrijving
 volgt als tekst, en in de PDF draagt de figuur naam en beschrijving samen.
 
 ### 12. De downloadknop bij een diagram had twee namen en stond te vroeg
 
-**Criterium**
+#### Criterium
 
 4.1.2 Naam, rol, waarde, en 1.3.2 Betekenisvolle volgorde.
 
-**Waar**
+#### Waar
 
 De downloadknop bij elk diagram.
 
-**Gevolg**
+#### Gevolg
 
 De knop droeg zowel `title` als `aria-label` met dezelfde tekst.
 Dat is niet fout, maar wel dubbel onderhoud, en de `title` leverde een
@@ -843,12 +854,12 @@ muis-tooltip op die verder niets toevoegde. Daarnaast kwam de knop vóór het
 diagram in de leesvolgorde, dus wie met het toetsenbord werkt kreeg eerst de
 download aangeboden en pas daarna de tekening.
 
-**Oorzaak**
+#### Oorzaak
 
 De knop was met ARIA benoemd in plaats van met tekst, en stond in
 de broncode boven de afbeelding omdat hij rechtsboven wordt getoond.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De naam komt nu uit verborgen tekst in de knop zelf,
 `title` en `aria-label` zijn weg, en de knop staat na het diagram. De weergave
@@ -864,88 +875,88 @@ onder
 hij gaat dicht met Escape, blijft staan als je er met de aanwijzer naartoe
 beweegt, en kent geen tijdslimiet.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: één toegankelijke naam, de focus bereikt de knop
 pas na het diagram, en de tooltip voldoet aan alle drie de eisen van 1.4.13.
 
 ### 13. De rechterkolom kwam pas na de hele tekst
 
-**Criterium**
+#### Criterium
 
 1.3.2 Betekenisvolle volgorde en 2.4.3 Focus volgorde.
 
-**Waar**
+#### Waar
 
 Alle tekstpagina's met een inhoudsopgave, downloads of relevante
 links.
 
-**Gevolg**
+#### Gevolg
 
 Op een breed scherm staat die kolom rechtsboven, maar toetsenbord
 en schermlezer bereikten hem pas na de hele tekst. Op een smal scherm was de
 inhoudsopgave helemaal verborgen en stonden de downloads onderaan de pagina.
 
-**Oorzaak**
+#### Oorzaak
 
 De kolom stond in de broncode na het artikel, en werd met CSS naar
 rechtsboven gehaald.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De kolom staat nu in de broncode direct na de titel, dus
 de leesvolgorde volgt het beeld. Op een smal scherm klapt elk blok in achter
 een knop in zijn eigen kop, zodat de inhoudsopgave daar ook beschikbaar is
 zonder de pagina lang te maken.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: op breed scherm staat alles op dezelfde plek
 als voorheen, en de focus loopt nu inhoudsopgave, downloads, tekst, voettekst.
 
 ### 14. De sitetitel was op de startpagina geen link
 
-**Criterium**
+#### Criterium
 
 3.2.3 Consistente navigatie.
 
-**Waar**
+#### Waar
 
 De koptekst, op de startpagina.
 
-**Gevolg**
+#### Gevolg
 
 Op elke andere pagina is de sitetitel de eerste stop na de
 skiplink; op de startpagina ontbrak die stop, waardoor de tab-volgorde daar
 anders begon dan overal elders.
 
-**Oorzaak**
+#### Oorzaak
 
 De link werd weggelaten op de pagina waar hij naartoe wijst.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De sitetitel is overal een link; op de startpagina
 draagt hij `aria-current="page"`, zodat hulptechnologie meldt dat je er al
 bent.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten: de tab-volgorde begint op elke pagina en op
 elke schermbreedte gelijk.
 
 ### 15. Kleine punten uit de tweede toets
 
-**Criterium**
+#### Criterium
 
 Geen succescriterium; dit zijn hygiënepunten die de tweede
 beoordelaar onderweg noteerde.
 
-**Waar**
+#### Waar
 
 Het zoekveld en emoji in lopende tekst.
 
-**Gevolg**
+#### Gevolg
 
 De placeholder was "Zoeken..." met drie losse punten. Bij een hoge
 interpunctie-instelling kan een schermlezer die als "punt punt punt"
@@ -953,38 +964,38 @@ voorlezen. Emoji in lopende tekst worden voorgelezen met hun eigen naam, wat
 soms precies goed is en soms niet, bijvoorbeeld bij een gloeilamp die alleen
 een tip markeert.
 
-**Maatregel**
+#### Maatregel
 
 De placeholder is "Waar zoek je naar?" geworden. Voor emoji is
 een shortcode toegevoegd waarmee je per geval kunt kiezen: een eigen label
 voor hulptechnologie, of helemaal overslaan. Een kale emoji blijft de
 standaard, en de bestaande content is niet gewijzigd.
 
-**Status**
+#### Status
 
 Afgerond voor het zoekveld. De keuze per emoji maken we bij
 redactie van nieuwe content.
 
 ### 16. Het voetnotenblok droeg een rol die niet bij de inhoud paste
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A).
 
-**Waar**
+#### Waar
 
 [/onderwerpen/profielservice/](/onderwerpen/profielservice/), de enige pagina
 met voetnoten.
 
-**Gevolg**
+#### Gevolg
 
 Hugo zet het voetnotenblok in een `div` met `role="doc-endnotes"`. Die rol erft
 van `list` en eist daarom items als directe inhoud, maar in het blok staan een
 scheidingslijn en een genummerde lijst. Hulptechnologie die de rol volgt,
 kondigt een lijst aan die geen items bevat.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De rol wordt uit het voetnotenblok gehaald voordat de pagina wordt
 opgebouwd. De rol naar de lijst zelf verplaatsen is gemeten en werkt niet: dan
@@ -1003,14 +1014,14 @@ rol nog draagt, en één meldt een layout die de paginainhoud niet langs de
 correctie stuurt. Die tweede is nodig omdat de eerste pas aanslaat als er ook
 echt een pagina met voetnoten door zo'n layout gaat.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten met Alfa op de gebouwde pagina: de bevinding is weg. De kop
 staat in de toegankelijkheidsboom en in de inhoudsopgave.
 
 ### 17. Content liep over bij vergrote tekst
 
-**Criterium**
+#### Criterium
 
 [1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow) (niveau AA),
 op twee plekken ook
@@ -1019,14 +1030,14 @@ op twee plekken ook
 [1.4.12 Afstand in tekst](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Negen plekken, verspreid over de hele site: de sitenaam in de balk, de hero op
 de startpagina, de kop van een infoblok, de subnavigatie van het handboek, de
 kaart in het kaartenraster, [/actueel/](/actueel/), de inhoudsopgave in de
 rechterkolom, de roadmaptabel en de brede tabellen in de rapportages.
 
-**Gevolg**
+#### Gevolg
 
 Bij 200 procent tekst, op een venster van 320 pixels of bij een vergrote
 basislettergrootte liep content buiten het scherm. Soms viel tekst weg achter
@@ -1046,7 +1057,7 @@ de min-content-breedte niet. En een mediaquery in `em` helpt niet, want daar
 gelden relatieve eenheden tegen de begingrootte van de browser en niet tegen de
 ingestelde basislettergrootte.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Overal waar het kon staat `min-width: 0` of `minmax(0, 1fr)`, zodat
 het item mag krimpen, met `overflow-wrap` om een lang woord af te breken. De
@@ -1058,7 +1069,7 @@ tabellen staan in een schuifvlak dat met Tab bereikbaar is en een eigen naam
 draagt; dat vervangt een eerdere oplossing die de tabel onder 40rem op `display:
 block` zette en daarmee de tabelsemantiek brak.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op 320, 360, 390, 480, 768 en 1024 pixels bij 16, 20, 24 en
 32 pixels basislettergrootte: overal nul overloop. Bij 16 pixels zijn de
@@ -1067,18 +1078,18 @@ veranderd.
 
 ### 18. Opmaak droeg betekenis die niet in de structuur stond
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A), waaronder
 [faalcriterium F2](https://www.w3.org/WAI/WCAG22/Techniques/failures/F2).
 
-**Waar**
+#### Waar
 
 De infoblokken met een titel, de agendalabels in 26 weeklies, en de genummerde
 reeksen in de drie rapportages.
 
-**Gevolg**
+#### Gevolg
 
 Drie keer stond betekenis alleen in de opmaak. Het infoblok was een
 `blockquote`, een rol die zegt dat iemand anders aan het woord is, terwijl het
@@ -1089,7 +1100,7 @@ de rapportages stonden als losse `div`-elementen met het nummer hard in de
 tekst, zodat een schermlezer niet aankondigde hoeveel items er waren of het
 hoeveelste je hoorde.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het infoblok is een `div` met een echte kop geworden, op het juiste
 niveau onder de omringende kop. De agendalabels zijn `h3` onder de `h2` Agenda,
@@ -1097,7 +1108,7 @@ op 52 plekken. De reeksen zijn 25 genummerde lijsten geworden, waarbij het
 nummer uit de lijst zelf komt; losse cijfers naast een kaarttitel zijn voor
 hulptechnologie verborgen.
 
-**Status**
+#### Status
 
 Afgerond. De koppencontrole in de build bevestigt de koppenvolgorde, en het
 archetype en de redactieskill voor een nieuwe weekly schrijven de nieuwe vorm
@@ -1105,18 +1116,18 @@ voortaan voor.
 
 ### 19. Informatie werd alleen met kleur overgebracht
 
-**Criterium**
+#### Criterium
 
 [1.4.1 Gebruik van kleur](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De componentenplaat in
 [het plan voor fase 5](/documenten/rapportages/plan-moza-fase-5/), en links in
 de presentaties.
 
-**Gevolg**
+#### Gevolg
 
 De status van een onderdeel in de componentenplaat werd uitsluitend door de
 randkleur gedragen. Met een deuteranopie-filter vallen Beschikbaar, Verkenning
@@ -1124,7 +1135,7 @@ en Aandachtspunt samen in vrijwel dezelfde olijftint: van de vier statussen
 waren er dan nog twee te onderscheiden. In de presentaties waren links in
 lopende tekst alleen aan hun kleur te herkennen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De lijnstijl draagt de status nu mee, met een eigen betekenis: hoe
 doorlopender de lijn, hoe verder het onderdeel is. Beschikbaar is doorgetrokken,
@@ -1133,7 +1144,7 @@ eigen streep-punt-patroon. Alleen wat echt onaf is krijgt een onderbroken lijn,
 zodat niets wat bestaat eruitziet als een concept. De links in de presentaties
 zijn onderstreept.
 
-**Status**
+#### Status
 
 Afgerond. De vier statussen zijn ook met een kleurenblindheidsfilter uit elkaar
 te houden, en de randkleuren halen 5,76 tot 5,79 in licht en 4,57 tot 4,60 in
@@ -1141,72 +1152,72 @@ donker.
 
 ### 20. Te weinig contrast op vier plekken
 
-**Criterium**
+#### Criterium
 
 [1.4.3 Contrast (minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De links Vorige en Volgende onder een reeks, de keuzes in het Weergave-menu, en
 twee plekken in de presentaties.
 
-**Gevolg**
+#### Gevolg
 
 Het label van de reekslinks haalde in het donkere schema 3,8:1, doordat er een
 dekking van 0,7 overheen lag. De keuzes in het Weergave-menu kwamen in donker
 niet verder dan 1,1:1. In de presentaties waren gedimde punten 2,3:1 en stond
 het kruisje op zwart. De eis is 4,5:1 voor gewone tekst.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De dekking is weggehaald, waarmee de reekslinks op 7,25:1 komen, en de
 kleuren in het Weergave-menu en in de presentaties zijn vervangen door tokens
 die de eis halen.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten in de browser op de gebouwde site, in licht en in donker.
 
 ### 21. De sluitknop werd vager als je hem aanwees
 
-**Criterium**
+#### Criterium
 
 [1.4.11 Contrast van niet-tekstuele content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Het kruisje rechtsboven in de presentaties.
 
-**Gevolg**
+#### Gevolg
 
 Bij aanwijzen kreeg de knop een lagere dekking. Hij werd dus minder zichtbaar op
 het moment dat je hem wilde gebruiken, precies omgekeerd aan wat aanwijzen
 hoort te doen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De knop wordt bij aanwijzen juist beter zichtbaar.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 22. Het tekstalternatief beschreef het beeld niet
 
-**Criterium**
+#### Criterium
 
 [1.1.1 Niet-tekstuele content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De drie sequencediagrammen en de FSC-plaat in de Pulse-presentaties, de
 stockfoto bij Demo, en de tekstbeschrijving van de componentenplaat in
 [het plan voor fase 5](/documenten/rapportages/plan-moza-fase-5/).
 
-**Gevolg**
+#### Gevolg
 
 De diagrammen in de presentaties droegen een alt die alleen de titel herhaalde.
 Wie het beeld niet ziet, hoorde dus wel hoe het plaatje heet maar niet wat het
@@ -1215,31 +1226,31 @@ tekstbeschrijving van de componentenplaat noemde twee statussen verkeerd, liet
 er vier weg, en noemde de zones en de teamlabels niet; dat is erger dan een
 ontbrekende beschrijving, want de tekst sprak de plaat tegen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De diagrammen beschrijven nu de actoren en de stappen. De stockfoto
 heeft een lege alt gekregen. De beschrijving van de componentenplaat volgt de
 plaat weer, inclusief de zones en de teamlabels.
 
-**Status**
+#### Status
 
 Afgerond. Een controle in de build laat de build falen als een diagram geen
 tekstalternatief heeft.
 
 ### 23. Sneltoetsen bestonden uit losse tekens
 
-**Criterium**
+#### Criterium
 
 [2.1.4 Sneltoetsen voor één teken](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De schuine streep voor zoeken op de hele site, de letters f, p en s in de
 NLDD-presentaties, en de reeks letters die Reveal.js zelf bindt in de
 Pulse-presentaties.
 
-**Gevolg**
+#### Gevolg
 
 Het criterium kent drie ontsnappingsroutes: de sneltoets uit kunnen zetten, hem
 opnieuw kunnen toewijzen, of hem alleen laten werken als het onderdeel focus
@@ -1252,7 +1263,7 @@ Dit stond in versie 1.0 van dit rapport als "voldoet". Die beoordeling was
 onjuist: de onderbouwing beschreef precies de redenering die het criterium
 afwijst.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Zoeken gaat nu met Ctrl plus K, of Cmd plus K op een Mac. De
 presentatiefuncties luisteren naar Alt plus F, P en S, op macOS Option plus die
@@ -1266,23 +1277,23 @@ functies ook een knop gekregen: drie in de balk van de NLDD-presentaties, twee
 naast het kruisje in de Pulse-presentaties. De sneltoets staat in de naam van de
 knop, die ook als tooltip verschijnt.
 
-**Status**
+#### Status
 
 Afgerond. Welke toetsen een binding hadden is vastgesteld door ze een voor een
 in te drukken en de staat van de presentatie te meten.
 
 ### 24. De focus bleef achter bij een dia die niet in beeld stond
 
-**Criterium**
+#### Criterium
 
 [2.4.3 Focus volgorde](https://www.w3.org/WAI/WCAG22/Understanding/focus-order)
 (niveau A).
 
-**Waar**
+#### Waar
 
 Beide soorten presentaties.
 
-**Gevolg**
+#### Gevolg
 
 In de gewone weergave kon een link in een onzichtbare dia focus krijgen. Je
 tabde dan naar iets wat je niet zag. In de scrollweergave hielden elf dia's die
@@ -1294,7 +1305,7 @@ een fout, bijvoorbeeld in een privévenster of met geblokkeerde site-data, dan
 liep de afhandeling vast na het opslaan en bleven het sluiten van het menu en
 het terugzetten van de focus achterwege.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Dia's die niet in beeld staan zijn `inert`, waarmee ze zowel uit de
 tabvolgorde als uit de toegankelijkheidsboom verdwijnen. In de scrollweergave
@@ -1302,158 +1313,158 @@ wordt `aria-hidden` weggehaald. De themakeuze vangt de fout op en gaat verder,
 zodat het menu sluit en de focus terugkeert, ook als er niets opgeslagen kan
 worden.
 
-**Status**
+#### Status
 
 Afgerond. De bedienbaarheid van de presentaties wordt bij elke wijziging
 automatisch getoetst, langs twee routes: de knop en de pijltoets.
 
 ### 25. Overzichtspagina's waren niet te vinden met zoeken
 
-**Criterium**
+#### Criterium
 
 [2.4.5 Meerdere manieren](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De overzichtspagina's, zoals
 [/documenten/presentaties/](/documenten/presentaties/).
 
-**Gevolg**
+#### Gevolg
 
 Overzichtspagina's stonden niet in de zoekindex. Zoeken en navigeren zijn de
 twee manieren waarop je deze site doorkomt; voor die pagina's bleef er dus maar
 één over.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De overzichtspagina's staan nu in de index. De sectie met de
 onderzoeken heet voortaan Toegankelijkheidsonderzoeken, zodat hij niet dezelfde
 titel draagt als de verklaring zelf.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 26. De focus was op vier plekken niet te zien
 
-**Criterium**
+#### Criterium
 
 [2.4.7 Focus zichtbaar](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Het zoekvenster, het Weergave-menu, en de knoppen in beide soorten
 presentaties.
 
-**Gevolg**
+#### Gevolg
 
 In het zoekvenster werd focus aangeduid met een andere achtergrondkleur. Dat
 werkt niet, want het actieve zoekfilter heeft die kleur al: bij het aantabben
 veranderde er niets zichtbaars. In het Weergave-menu en bij de knoppen in de
 presentaties ontbrak een focusrand helemaal.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Alle vier de plekken hebben een echte focusrand gekregen, die ook in
 het donkere schema voldoende contrast haalt.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op de gebouwde site in licht en in donker.
 
 ### 27. Aanwijsgebieden raakten elkaar in de rechterkolom
 
-**Criterium**
+#### Criterium
 
 [2.5.8 Grootte van aanwijsgebied (minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De inhoudsopgave in de rechterkolom.
 
-**Gevolg**
+#### Gevolg
 
 De ingesprongen links waren 19 pixels hoog met 3 pixels ertussen. Daarmee
 raakten de aanwijsgebieden elkaar en was de eis van 24 pixels niet gehaald. Wie
 minder precies kan aanwijzen, raakt dan makkelijk de verkeerde link.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De links zijn 26,4 pixels hoog geworden.
 
-**Status**
+#### Status
 
 Afgerond. Gemeten op de onderzoekspagina: 37 links, alle 26,4 pixels, op 1280 en
 op 360 pixels breed.
 
 ### 28. De Markdown-uitvoer gaf geen taal mee
 
-**Criterium**
+#### Criterium
 
 [3.1.1 Taal van de pagina](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De Markdown-versie van elke pagina.
 
-**Gevolg**
+#### Gevolg
 
 Platte tekst kent geen `lang`-attribuut, dus de taal moet uit de HTTP-kop komen.
 Die ontbrak. Ook de tekensetregel werkte niet, doordat `text/markdown` niet in
 de lijst stond waarop de server die regel toepast.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De server geeft taal en tekenset mee bij de Markdown-uitvoer.
 
-**Status**
+#### Status
 
 Afgerond. Getest tegen de echte server met de gebouwde site eronder, niet alleen
 tegen de configuratie.
 
 ### 29. Engelse woordgroepen stonden onder een Nederlandse taalaanduiding
 
-**Criterium**
+#### Criterium
 
 [3.1.2 Taal van onderdelen](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Engelse woordgroepen in Nederlandse lopende tekst, verspreid over de site.
 
-**Gevolg**
+#### Gevolg
 
 Een Nederlandse schermlezerstem spreekt Engelse woorden fonetisch uit als er
 geen andere taal is aangegeven. Het resultaat is vaak onverstaanbaar.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De fragmenten staan in een `span` met `lang="en"`, in de vorm die het
 weekly-archief al gebruikte.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 30. Namen en rollen ontbraken of spraken elkaar tegen
 
-**Criterium**
+#### Criterium
 
 [4.1.2 Naam, rol, waarde](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De voetnootlinks op
 [/onderwerpen/profielservice/](/onderwerpen/profielservice/), het codeblok, de
 sectienavigatie, het hoofdmenu, en de voortgangsbalk in de presentaties.
 
-**Gevolg**
+#### Gevolg
 
 Voetnootverwijzingen heetten alleen een cijfer en de weg terug alleen een
 pijltje. Het codeblok kan focus krijgen en schuift op een smal scherm, maar
@@ -1463,28 +1474,28 @@ het hoofdmenu `aria-current="page"` en noemde een schermlezer dus twee pagina's
 de huidige. De voortgangsbalk in de presentaties sprong bij een klik naar een
 andere dia, zonder rol, zonder naam en zonder toetsenbordbediening.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De voetnootlinks, het codeblok en de huidige sectie hebben een naam en
 waar nodig een rol gekregen. Het hoofdmenu vergelijkt nu met de werkelijke URL
 van de startpagina in plaats van met de letterlijke schuine streep. De
 voortgangsbalk is een weergave geworden, zonder bediening.
 
-**Status**
+#### Status
 
 Afgerond. Naam en rol zijn nagemeten in de toegankelijkheidsboom.
 
 ### 31. Kleine punten uit deze ronde
 
-**Criterium**
+#### Criterium
 
 Geen succescriterium; dit zijn punten die onderweg opvielen.
 
-**Waar**
+#### Waar
 
 Het zoekveld en de voettekst.
 
-**Gevolg**
+#### Gevolg
 
 Zoeken werkte met een drempel die te ruim stond: het onzinwoord "plak" leverde
 71 treffers op. Een resultatenlijst die altijd iets teruggeeft, helpt niemand
@@ -1492,31 +1503,31 @@ verder. En de voettekst noemde geen organisatie, terwijl de Rijkshuisstijl
 vraagt dat een bezoeker ziet wie de site uitgeeft; het beeldmerk in de kop zegt
 dat niet in woorden.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De zoekdrempel staat op 0,2, waarmee hetzelfde onzinwoord nul treffers
 geeft terwijl echte termen en termen met een typefout blijven werken. De
 afzender staat in de voettekst, uit één instelling, zodat een herindeling maar
 op één plek hoeft te landen.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 32. Het toegankelijkheidslabel vertelde maar een deel van wat er staat
 
-**Criterium**
+#### Criterium
 
 [1.1.1 Niet-tekstuele content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content)
 (niveau A) en
 [2.4.4 Linkdoel (in context)](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context)
 (niveau A).
 
-**Waar**
+#### Waar
 
 Het toegankelijkheidslabel op [/toegankelijkheid/](/toegankelijkheid/).
 
-**Gevolg**
+#### Gevolg
 
 In het beeld staat meer dan de alt vertelde: dat het ministerie wettelijk
 verplicht is de site toegankelijk te maken, dat de status op een eigen
@@ -1526,7 +1537,7 @@ Alles in de alt zetten kon niet: het beeld is het enige dat in de link staat,
 dus de alt is ook de naam van die link, en een linknaam van vijftig woorden is
 onbruikbaar in een lijst met links.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De alt is kort gebleven en dient als linknaam. De volledige tekst
 staat als verborgen alinea naast het beeld, buiten de link, want daarbinnen zou
@@ -1535,47 +1546,47 @@ diagrammen. De bijwerkdatum komt bij het bouwen uit het bestand zelf; ontbreekt
 hij, dan faalt de build. Zo kan een nieuw label geen verouderde datum in de
 beschrijving achterlaten.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten met de schermlezer.
 
 ### 33. De naam van het zoekveld begon niet met de zichtbare tekst
 
-**Criterium**
+#### Criterium
 
 [2.5.3 Label in naam](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name)
 (niveau A).
 
-**Waar**
+#### Waar
 
 Het zoekveld in het zoekvenster.
 
-**Gevolg**
+#### Gevolg
 
 In beeld stond "Waar zoek je naar?", terwijl de naam voor hulptechnologie "Zoek
 op de website" was. Wie met spraak bedient en zegt wat hij ziet staan, wordt dan
 niet begrepen.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De naam is gelijkgetrokken met de zichtbare tekst.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 34. De inhoudsopgave schoof de gefocuste link uit beeld
 
-**Criterium**
+#### Criterium
 
 [2.4.7 Focus zichtbaar](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De rechterkolom op lange documenten, zoals dit rapport.
 
-**Gevolg**
+#### Gevolg
 
 De inhoudsopgave van een lang document is hoger dan het venster. Omdat de kolom
 met de pagina meebewoog, viel een link die focus kreeg buiten beeld: in een
@@ -1583,7 +1594,7 @@ venster van 1280 bij 800 stonden dertien van de vijfendertig links na het
 aantabben niet in zicht. Wie met het toetsenbord bedient, ziet dan niet waar hij
 is.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De kolom blijft staan en heeft een eigen schuifvlak gekregen, met een
 hoogte die meebeweegt met de ruimte die er werkelijk is. Alleen in CSS kon dat
@@ -1594,78 +1605,78 @@ blijft. Dat verzet alleen de schuifpositie van de kolom, nooit die van de
 pagina. Van de vierenzestig pagina's met een rechterkolom houdt alleen dit
 rapport een schuifvlak over; op de rest past de inhoudsopgave gewoon.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten bij verschillende venstergroottes en bij vergrote tekst.
 
 ### 35. Het kaartenraster was geen lijst
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De kaartenrasters op onder meer de startpagina en de sectiepagina's, en de
 koppen van de weeklies op [/actueel/](/actueel/).
 
-**Gevolg**
+#### Gevolg
 
 De kaarten stonden als losse blokken naast elkaar. Een schermlezer kondigt dan
 niet aan hoeveel er zijn en waar je in de reeks bent; in beeld is dat wel te
 zien. Op Actueel stonden de koppen uit de weekly zelf op hetzelfde niveau als de
 kaarttitels, waardoor de hiërarchie niet klopte met wat je ziet.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het raster is een echte lijst geworden, met elke kaart als
 lijstonderdeel. De koppen uit een weekly schuiven op Actueel twee niveaus op,
 zodat ze onder hun eigen kaarttitel vallen.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 36. Het submenupaneel stond los van zijn knop in de broncode
 
-**Criterium**
+#### Criterium
 
 [2.4.3 Focus volgorde](https://www.w3.org/WAI/WCAG22/Understanding/focus-order)
 (niveau A).
 
-**Waar**
+#### Waar
 
 Het uitklapbare submenu in de sectienavigatie.
 
-**Gevolg**
+#### Gevolg
 
 Het paneel stond in beeld direct onder de knop die het opent, maar in de
 broncode pas na de hele navigatie. Wie het paneel met het toetsenbord opende,
 kwam met de volgende Tab niet in het paneel terecht maar verderop in het menu.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het paneel staat nu in de broncode direct achter het onderdeel waar
 het bij hoort, zodat de focusvolgorde de visuele volgorde volgt.
 
-**Status**
+#### Status
 
 Afgerond.
 
 ### 37. De presentaties groeiden niet mee met de ingestelde tekstgrootte
 
-**Criterium**
+#### Criterium
 
 [1.4.4 Herschalen van tekst](https://www.w3.org/WAI/WCAG22/Understanding/resize-text)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Alle presentaties onder
 [/documenten/presentaties/](/documenten/presentaties/).
 
-**Gevolg**
+#### Gevolg
 
 Een dia wordt passend in het venster geschaald. Die schaal hief een grotere
 basislettergrootte precies weer op: zette je in je browser de letters twee keer
@@ -1676,7 +1687,7 @@ Zoom helpt hier niet: een dia die zich naar het venster voegt, wordt daar even
 hard door verkleind als vergroot. Het criterium vraagt dat minstens één manier
 om tekst te vergroten werkt, en geen van beide deed dat.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost, voor beide soorten presentaties afzonderlijk. De nieuwere dia's laten
 het toneel meegroeien met de basislettergrootte, zodat de tekst meeschaalt en je
@@ -1685,57 +1696,57 @@ los zodra de letters groter staan dan standaard: de dia loopt dan als gewone
 tekst door de pagina. Dezelfde meting geeft nu 173 en 198 pixels, dus ruim het
 dubbele.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten bij vier venstergroottes.
 
 ### 38. De downloadlinks onder de diagrammen heetten allemaal hetzelfde
 
-**Criterium**
+#### Criterium
 
 [2.4.4 Linkdoel (in context)](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De pagina's met meerdere diagrammen, onder meer
 [/onderwerpen/profielservice/](/onderwerpen/profielservice/) met vier stuks.
 
-**Gevolg**
+#### Gevolg
 
 Elke downloadlink heette "Download als afbeelding". In een lijst met links
 stonden daardoor vier identieke regels die naar een ander bestand wijzen, zonder
 iets om ze uit elkaar te houden.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De naam noemt nu het diagram: "Download als afbeelding: Klantreis
 burger of ondernemer". Die naam komt uit het verplichte tekstalternatief van het
 diagram, dus hij kan niet vergeten worden. Het zichtbare ontwerp blijft gelijk.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten in de toegankelijkheidsboom van de browser.
 
 ### 39. De presentaties droegen een rol zonder naam
 
-**Criterium**
+#### Criterium
 
 [4.1.2 Naam, rol, waarde](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De twee oudere presentaties, die op Reveal.js draaien.
 
-**Gevolg**
+#### Gevolg
 
 De presentatiesoftware zet zelf `role="application"` op de dia's, zonder naam.
 Die rol zet een schermlezer in applicatiemodus: de gewone leesnavigatie gaat
 uit en alle toetsen gaan naar de pagina. Een naamloos gebied waar dat gebeurt,
 is voor wie een schermlezer gebruikt een gat zonder uitleg.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De rol is weggehaald in plaats van voorzien van een naam. Dia's zijn
 leesbare tekst en de bediening gaat al met gewone knoppen en met de pijltoetsen,
@@ -1743,51 +1754,51 @@ dus applicatiemodus hoort hier niet. De documentatie van de norm waarschuwt
 daar ook voor: verkeerd gebruik van deze rol neemt ongemerkt toegang tot
 informatie weg. Het bestand van de presentatiesoftware zelf is niet aangepast.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten in de toegankelijkheidsboom, voor en na, op beide
 presentaties.
 
 ### 40. Te weinig contrast in het donkere kleurschema
 
-**Criterium**
+#### Criterium
 
 [1.4.3 Contrast (minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De uitklapbare sectie met componenten in
 [het plan voor fase 5](/documenten/rapportages/plan-moza-fase-5/).
 
-**Gevolg**
+#### Gevolg
 
 De kop "Uitdagingen" en de lijst eronder stonden in rood. In het lichte schema
 haalt dat 4,57:1, net boven de eis van 4,5:1. In het donkere schema bleef
 diezelfde kleur staan op een donkerblauwe achtergrond, en dan is het 3,38:1.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De tekst gebruikt nu een kleurtoken dat zelf per schema wisselt. Dat
 geeft 4,57:1 in het donker en 6,19:1 in het licht.
 
-**Status**
+#### Status
 
 Afgerond. Twee keer onafhankelijk nagemeten, met echte pixels en met een eigen
 omrekening uit de kleurtokens.
 
 ### 41. De tooltip verdween terwijl je hem aanwees
 
-**Criterium**
+#### Criterium
 
 [1.4.13 Content bij hover of focus](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De bedieningsknoppen in de nieuwere presentaties, in presentatiemodus.
 
-**Gevolg**
+#### Gevolg
 
 In presentatiemodus verdwijnt de bedieningsbalk vanzelf zodra je de muis
 stilhoudt. Bewoog je de muis van de knop naar de tooltip zelf, dan telde dat
@@ -1795,36 +1806,36 @@ niet als aanwijzen en verdween na ongeveer twee seconden zowel de balk als de
 tooltip. Het criterium vraagt juist dat zulke tekst blijft staan tot je de
 aanwijzer weghaalt of hem zelf wegneemt.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De balk blijft staan zolang er een tooltip open staat. Dat is niet met
 een eenvoudige selector te zien, want de tooltip zit in een geneste schaduwboom
 van het component; de controle loopt die boom door. Het automatisch verbergen
 werkt verder zoals het was.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op nul, drie en zes seconden met de muis op de tooltip.
 
 ### 42. De PDF-downloads gaven de taal van een fragment niet door
 
-**Criterium**
+#### Criterium
 
 [3.1.2 Taal van onderdelen](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Veertien van de eenenveertig PDF-downloads.
 
-**Gevolg**
+#### Gevolg
 
 In de pagina staan Engelse woordgroepen met een taalaanduiding, en in de
 ODF-downloads komt die mee. In de PDF niet: daar stond alleen de taal van het
 document als geheel. Een schermlezer leest "trusted party" dan met Nederlandse
 uitspraak voor. Het gaat om zestien fragmenten.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Bij het maken van de PDF worden de gemarkeerde fragmenten
 meegegeven, en de taal komt op het kleinste onderdeel dat precies die tekst
@@ -1833,7 +1844,7 @@ Nederlandse zin als Engels worden voorgelezen. Een fragment dat niet
 teruggevonden wordt, laat de build falen, zodat deze fout niet stilletjes kan
 terugkomen.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten over alle eenenveertig PDF's die de site op dat moment
 telde: zestien gemarkeerde fragmenten, evenveel als in de pagina's, en de tekst
@@ -1841,23 +1852,23 @@ is ongewijzigd.
 
 ### 43. De presentatie bladerde al bij het neerzetten van een vinger
 
-**Criterium**
+#### Criterium
 
 [2.5.2 Aanwijzerannulering](https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De navigatiepijlen in de twee oudere presentaties.
 
-**Gevolg**
+#### Gevolg
 
 De presentatiesoftware koppelt die pijlen aan het neerzetten van een vinger, op
 Android zelfs uitsluitend daaraan. Zette je je vinger op een pijl en schoof je
 weg voordat je losliet, dan was er al gebladerd. Het criterium vraagt dat een
 handeling pas bij het loslaten gebeurt, of dat je hem kunt afbreken.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De eigen pijlen van de presentatiesoftware staan uit en zijn
 vervangen door vier knoppen die alleen op loslaten reageren. Vier, omdat een
@@ -1866,24 +1877,24 @@ slaat die over. Met twee knoppen zou die tweede route verdwijnen. Welke knop
 bruikbaar is volgt de beschikbare routes, en in een presentatie zonder stapels
 blijven omhoog en omlaag weg.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten dat geen enkele handeling meer bij het neerzetten gebeurt,
 en dat alle routes door een presentatie met stapels bereikbaar blijven.
 
 ### 44. De rand van een vak zonder status had te weinig contrast
 
-**Criterium**
+#### Criterium
 
 [1.4.11 Contrast van niet-tekstuele content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De plaat "Componenten in samenhang", in de uitklapbare sectie met componenten in
 [het plan voor fase 5](/documenten/rapportages/plan-moza-fase-5/).
 
-**Gevolg**
+#### Gevolg
 
 In die plaat vertelt de rand van een vak wat de status van dat onderdeel is: een
 doorlopende rand is beschikbaar, een onderbroken rand is in aanbouw, en zo
@@ -1893,7 +1904,7 @@ niet ziet, ziet het vak zelf niet, en mist daarmee ook dat juist dit onderdeel
 geen status heeft terwijl de andere die wel hebben. Het vakje in de legenda had
 dezelfde kleur en daarmee hetzelfde probleem.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De rand van een vak zonder status gebruikt nu een middentint uit
 dezelfde reeks: 4,57:1 in het lichte schema en 3,39:1 in het donkere. De randen
@@ -1905,7 +1916,7 @@ team en een lege stip. Die blijven staan. Het criterium vraagt 3:1 voor wat je
 moet kunnen zien om een onderdeel of een status te herkennen, en deze vier
 dragen geen betekenis: de informatie staat er als tekst naast.
 
-**Status**
+#### Status
 
 Afgerond. In beide kleurschema's nagemeten, en de uitkomst is twee keer
 onafhankelijk vastgesteld: met de kleur zoals de browser hem uiteindelijk
@@ -1913,16 +1924,16 @@ oplevert, en met een eigen omrekening uit de kleurtokens.
 
 ### 45. De sluitknop heette niet overal hetzelfde
 
-**Criterium**
+#### Criterium
 
 [3.2.4 Consistente identificatie](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De knop rechtsboven in de presentaties en in de rapportages, op zes pagina's.
 
-**Gevolg**
+#### Gevolg
 
 Dezelfde knop, op dezelfde plek, met dezelfde functie, heette in de
 presentaties "Sluit presentatie" en in de rapportages "Naar MOZa site". De ene
@@ -1930,7 +1941,7 @@ naam zegt wat de knop doet, de andere noemt een bestemming. Wie de site met een
 schermlezer of met spraakbesturing gebruikt, moet dan per pagina opnieuw
 uitzoeken hoe de knop heet om hem te kunnen gebruiken.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. De knop heet overal "Sluiten". Ook het gedrag is gelijkgetrokken: kwam
 je van deze site, dan gaat de knop een stap terug; kwam je rechtstreeks binnen,
@@ -1938,24 +1949,24 @@ dan gaat hij naar de startpagina. Daarvoor stond in de rapportages nog "Terug"
 in de broncode, voor het geval JavaScript uitvalt; die naam is meeveranderd,
 zodat de knop ook zonder JavaScript hetzelfde heet als met.
 
-**Status**
+#### Status
 
 Afgerond. De naam gemeten zoals een schermlezer hem krijgt, op alle drie de
 soorten pagina's, en nagegaan dat de knop in de broncode dezelfde naam draagt.
 
 ### 46. Kaarttitels stonden naast hun kop in plaats van eronder
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A).
 
-**Waar**
+#### Waar
 
 De overzichtspagina's van [het handboek](/handboek/), en de dia "Bouwblokken" in
 de presentatie over de beproeving van het federatief berichtenstelsel.
 
-**Gevolg**
+#### Gevolg
 
 Op de overzichtspagina's stonden tien kaarttitels op niveau 2, net als de kop
 waar ze onder hangen. Op [/handboek/](/handboek/) staan vier kaarten onder "Wat
@@ -1968,7 +1979,7 @@ ernaast, vet en op bijna negentien pixels, maar het was een gewone alinea. De
 drie organisaties eronder stonden niet in een lijst. Beide keren stond de
 samenhang alleen in de opmaak en niet in de structuur.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het kopniveau van een kaart volgt nu de laatste kop in de tekst boven
 het raster, plus één. Staat er geen kop boven, zoals bij het raster op de
@@ -1980,7 +1991,7 @@ De opmaak hing aan het element en niet aan een klasse, dus die is meeverhuisd:
 titelgrootte en het aanwijsgebied van de hele kaart gelden nu voor elk
 kopniveau. Het beeld verandert daardoor niet.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op de gebouwde site: op de vijf handboekpagina's staan de
 kaarttitels een niveau lager, en de rasters zonder kop erboven, zoals op de
@@ -1990,7 +2001,7 @@ een niveau te hoog.
 
 ### 47. Het uitklapmenu toonde op smalle schermen niet de structuur die het liet zien
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A),
@@ -1999,11 +2010,11 @@ een niveau te hoog.
 [1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 Het uitklapmenu op smalle schermen, op de negen pagina's van het handboek.
 
-**Gevolg**
+#### Gevolg
 
 Drie dingen gingen daar mis. De sectienavigatie stond in beeld als een boom, met
 de secties ingesprongen onder het handboek, maar in de code was het één platte
@@ -2019,7 +2030,7 @@ daaronder. Tien links tegen de eenentwintig die op een breed scherm bereikbaar
 zijn. Reflow vraagt dat een smal venster inhoud of functie niet laat verdwijnen,
 en hier verdween een deel van de navigatie.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het menu is nu een geneste lijst van drie niveaus: het handboek,
 daaronder de secties, daaronder hun pagina's. De pagina's van elke sectie staan
@@ -2031,7 +2042,7 @@ bestemming is. De pagina waar je bent is op elk niveau als zodanig gemarkeerd.
 
 Het brede menu is niet aangeraakt.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op 320 pixels: eenentwintig links waar er tien stonden, de
 niveaus 1, 2 en 3 komen alle drie in de toegankelijkheidsboom terug, en er zijn
@@ -2040,18 +2051,18 @@ alle 95 gebouwde HTML-bestanden regel voor regel vergeleken en ongewijzigd.
 
 ### 48. Secundaire tekst in de presentaties haalde het contrast niet
 
-**Criterium**
+#### Criterium
 
 [1.4.3 Contrast (minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
 (niveau AA).
 
-**Waar**
+#### Waar
 
 De NLDD-presentaties: opschriften boven een stap, de kolom- en rijlabels bij het
 klaverblad, de voettekst, de tijdmeter in het sprekersvenster, de notities bij
 een demo, en het label in het midden van de ringen.
 
-**Gevolg**
+#### Gevolg
 
 Tekst die een tweede rang heeft, zoals een opschrift boven een stap, stond wit
 op 55 procent dekking. Op het donkerste deel van een dia haalt dat 4,91:1, maar
@@ -2065,7 +2076,7 @@ zag: in een presentatie staat alleen de dia die je bekijkt in beeld, en de
 andere zijn voor een meetinstrument onzichtbaar. Daardoor kwam versie 1.0 uit op
 148 gemeten tekstelementen, terwijl het er 461 zijn.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Er is een apart token voor secundaire tekst, op 65 procent. Daarmee
 haalt de slechtste plek 4,64:1. De oude waarde van 55 procent blijft in gebruik
@@ -2074,23 +2085,23 @@ een eis van 3:1. Het ringvlak in het midden heeft geen doorzichtige vulling meer
 maar de donkere kleur van de dia zelf, waarmee het accentgeel op 7,16:1 komt
 zonder dat de huisstijlkleur verandert.
 
-**Status**
+#### Status
 
 Afgerond. Alle 461 tekstelementen zijn opnieuw gemeten, en ze halen nu alle hun
 eis. De laagste uitkomst is 4,50:1 voor gewone tekst en 3,04:1 voor grote tekst.
 
 ### 49. Het pictogram in een uitgelicht tekstblok kwam ongetagd in de PDF
 
-**Criterium**
+#### Criterium
 
 [1.3.1 Info en relaties](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
 (niveau A), via PDF/UA.
 
-**Waar**
+#### Waar
 
 De PDF-download van een pagina met een uitgelicht tekstblok.
 
-**Gevolg**
+#### Gevolg
 
 Zo'n blok begint met een pictogram. In de pagina is dat voor hulpsoftware
 verborgen, want het herhaalt alleen wat het blok zelf al zegt. De PDF wordt
@@ -2103,7 +2114,7 @@ Dit raakte tot nu toe geen enkele gepubliceerde download, omdat de combinatie
 van zo'n blok met een pagina die ook als PDF verschijnt nergens voorkwam. Het
 rapport noemde het daarom eerst als beperking in plaats van als bevinding.
 
-**Maatregel**
+#### Maatregel
 
 Opgelost. Het pictogram blijft in de PDF staan en wordt daar gemarkeerd als
 versiering. Dat kan niet vanuit de opmaak van de pagina: de browser bepaalt zelf
@@ -2117,7 +2128,7 @@ Een tekstalternatief was het alternatief geweest, maar dat zou een leeshulp een
 woord laten voorlezen dat niets toevoegt: het pictogram herhaalt wat het blok al
 zegt. Versiering is dus de juiste van de twee mogelijkheden die PDF/UA kent.
 
-**Status**
+#### Status
 
 Afgerond. Nagemeten op een pagina met zo'n blok, buiten de gepubliceerde site
 om: de validator meldde eerst twee keer regel 7.1-3 ("inhoud is niet gemarkeerd

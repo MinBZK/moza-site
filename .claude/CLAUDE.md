@@ -1,6 +1,10 @@
 # MijnOverheid Zakelijk Site
 
-Hugo static site (v0.166.0) | Nederlands | Rijkshuisstijl
+Hugo static site (v0.166.0) | Nederlands | Rijkshuisstijl | theme `hugo-theme-rijksoverheid` als Hugo Module
+
+## Theme
+
+Kop, voet, pagina-opmaak, zoeken, de CSS-basis (tokens, NLDD-primitives), iconen en het lettertype komen uit het theme ([RijksICTGilde/hugo-theme-rijksoverheid](https://github.com/RijksICTGilde/hugo-theme-rijksoverheid), versie in `go.mod`). Een bestand met hetzelfde pad in deze repo gaat voor dat van het theme: kopieer er dus geen. Wat moza bewust zelf houdt en waarom staat in de README onder "Theme". Gedrag stel je in met `params` in `hugo.yaml` of met de hooks van het theme.
 
 ## Structuur
 
@@ -10,9 +14,10 @@ content/documenten/presentaties/  # Presentaties (HTML page bundles, layout nldd
 layouts/                          # Go templates
 layouts/_partials/                # Partials (underscore prefix)
 layouts/_shortcodes/              # Shortcodes
-assets/css/                       # CSS, tokens in tokens.css
+assets/css/                       # Eigen CSS van moza; tokens.css komt uit het theme
 assets/images/beeldbank/          # Beeld en logo's die in meer presentaties terugkomen
-assets/vendor/                    # Vendored JS (Fuse.js, Reveal.js)
+assets/vendor/                    # Vendored JS (Reveal.js)
+go.mod                            # Versie van het theme (Hugo Module)
 scripts/                          # Build scripts (render-mermaid.js)
 static/images/render/             # Pre-gerenderde Mermaid SVGs (gegenereerd, in .gitignore)
 hugo.yaml                         # Configuratie
@@ -34,14 +39,13 @@ just a11y               # Toegankelijkheidstoets (WCAG 2.1 AA) op de gebouwde si
 just reflow             # Horizontale overloop bij kleine vensters en grote tekst
 just csp                # Controleer op door de CSP geblokkeerde constructies
 just beeld              # Controleer of elk beeldbestand ergens gebruikt wordt
-just fuse               # Werk de vendored Fuse.js bij (zoeken)
 just clean              # Verwijder gegenereerde bestanden
 just pre-commit         # Pre-commit checks
 ```
 
 ## Mermaid-diagrammen
 
-Diagrammen in Markdown worden vooraf gerenderd als SVG (light + dark) door `scripts/render-mermaid.js`. De render hook (`layouts/_markup/render-codeblock-mermaid.html`) toont de pre-gerenderde SVGs als `<img>`. Als de SVGs ontbreken, faalt de Hugo build.
+Diagrammen in Markdown worden vooraf gerenderd als SVG (light + dark) door `scripts/render-mermaid.js`. De render hook van het theme (`layouts/_markup/render-codeblock-mermaid.html`) toont de pre-gerenderde SVGs als `<img>`. Als de SVGs ontbreken, faalt de Hugo build.
 
 Elk mermaid-blok moet een `accTitle` hebben voor de bestandsnaam en toegankelijkheid. Zonder `accTitle` wordt een fallback `diagram-N` gebruikt.
 
@@ -51,7 +55,7 @@ Kleuren in een diagram (bijvoorbeeld in `classDef`) nooit hardcoden: gebruik `va
 
 ## Kleuren
 
-Kleurtokens in `assets/css/tokens.css` verwijzen naar NLDD-primitives in het gegenereerde `assets/css/nldd-primitives.css` (`just nldd`, opnieuw draaien na een upgrade van `@nldd/design-system`). Lees het commentaar bovenin `tokens.css` voordat je een token toevoegt. De iconen in `static/images/icons/` komen uit dezelfde bron via `just nldd` (mapping in `scripts/nldd-iconen.js`); in diagrammen gebruik je `nldd:<naam>`.
+Kleurtokens (`tokens.css`) en NLDD-primitives (`nldd-primitives.css`) komen uit het theme; een nieuw algemeen token hoort daar. Moza's verzadigde neutrale schaal heet `--theme-neutral-<stap>`; `--primitives-color-neutral-*` is die van NLDD. Moza's eigen iconen in `static/images/icons/` (bestandstypen), de favicon en het touch-icon komen uit `@nldd/design-system` via `just nldd` (mapping in `scripts/nldd-iconen.js`); in diagrammen gebruik je `nldd:<naam>`.
 
 ## Skills
 

@@ -117,6 +117,8 @@ De site gebruikt [hugo-theme-rijksoverheid](https://github.com/RijksICTGilde/hug
 hugo mod get -u github.com/RijksICTGilde/hugo-theme-rijksoverheid
 ```
 
+Dependabot doet dat ook (ecosysteem `gomod`); `tools.go` zorgt dat het theme daarvoor in `go.mod` blijft staan.
+
 Kop, voet, pagina-opmaak, zoeken, de CSS-basis, iconen en het lettertype komen uit het theme. Een bestand met hetzelfde pad in deze repo gaat voor dat van het theme, dus kopieer er geen. Instellingen staan onder `params` in `hugo.yaml` (zoeken, afzender, `llms.secties`).
 
 Deze bestanden houdt moza bewust zelf:

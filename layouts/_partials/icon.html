@@ -1,7 +1,0 @@
-{{- $name := . -}}
-{{- $path := printf "static/images/icons/%s.svg" $name -}}
-{{- if fileExists $path -}}
-  {{- os.ReadFile $path | safeHTML -}}
-{{- else -}}
-  {{- errorf "Icon niet gevonden: %s" $name -}}
-{{- end -}}

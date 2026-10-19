@@ -35,7 +35,7 @@ graph LR
   G -->|informeren| D
   G -->|handelen, na bevestiging| E
 
-  classDef inzicht fill:var(--color-bg-light),stroke:var(--color-rijks-oranje),color:var(--color-text);
+  classDef inzicht fill:var(--color-bg-light),stroke:var(--color-rijksoranje),color:var(--color-text);
   class G inzicht
 ```
 
@@ -90,7 +90,7 @@ graph LR
 
   V --> T --> R --> A
 
-  classDef inzicht fill:var(--color-bg-light),stroke:var(--color-rijks-oranje),color:var(--color-text);
+  classDef inzicht fill:var(--color-bg-light),stroke:var(--color-rijksoranje),color:var(--color-text);
   class A inzicht
 ```
 

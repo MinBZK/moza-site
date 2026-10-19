@@ -7,13 +7,13 @@
 /* Kleuren uit de NLDD-primitives (assets/css/nldd-primitives.css), zie het
    commentaar in tokens.css. Deze tokens gelden alleen voor de rapportages. */
 :root {
-  --rapport-bg: light-dark(var(--primitives-color-neutral-25), var(--primitives-color-neutral-50));
-  --rapport-surface: light-dark(var(--primitives-color-neutral-0), var(--primitives-color-neutral-100));
-  --rapport-border: light-dark(var(--primitives-color-neutral-75), var(--primitives-color-neutral-200));
-  --rapport-divider: light-dark(var(--primitives-color-neutral-25), var(--primitives-color-neutral-150));
-  --rapport-text: var(--primitives-color-neutral-950);
+  --rapport-bg: light-dark(var(--theme-neutral-25), var(--theme-neutral-50));
+  --rapport-surface: light-dark(var(--theme-neutral-0), var(--theme-neutral-100));
+  --rapport-border: light-dark(var(--theme-neutral-75), var(--theme-neutral-200));
+  --rapport-divider: light-dark(var(--theme-neutral-25), var(--theme-neutral-150));
+  --rapport-text: var(--theme-neutral-950);
   /* In dark een donkerder stap dan gespiegeld: 700 is daar te licht om als gedempt te lezen */
-  --rapport-text-muted: light-dark(var(--primitives-color-neutral-700), var(--primitives-color-neutral-600));
+  --rapport-text-muted: light-dark(var(--theme-neutral-700), var(--theme-neutral-600));
   --rapport-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -337,9 +337,9 @@ body {
 .badge-continuing { background: light-dark(var(--primitives-color-success-100), var(--primitives-color-success-200)); color: var(--primitives-color-success-800); }
 .badge-progress { background: light-dark(var(--primitives-color-accent-100), var(--primitives-color-accent-200)); color: var(--primitives-color-accent-700); }
 .badge-blocked { background: var(--primitives-color-critical-500); color: #ffffff; }
-.badge-notstarted { background: light-dark(var(--primitives-color-neutral-100), var(--primitives-color-neutral-200)); color: var(--primitives-color-neutral-700); }
+.badge-notstarted { background: light-dark(var(--theme-neutral-100), var(--theme-neutral-200)); color: var(--theme-neutral-700); }
 /* Grijs: groen staat elders voor beschikbaar en doorbouwen */
-.badge-paused { background: light-dark(var(--primitives-color-neutral-100), var(--primitives-color-neutral-200)); color: var(--primitives-color-neutral-700); }
+.badge-paused { background: light-dark(var(--theme-neutral-100), var(--theme-neutral-200)); color: var(--theme-neutral-700); }
 
 /* Utility: card over beide grid-kolommen voor blokken met meer gewicht */
 .card-wide { grid-column: 1 / -1; }

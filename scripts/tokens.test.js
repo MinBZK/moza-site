@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parseTokens, resolveToken } from "./render-mermaid.js";
 import { resolveThemeFile } from "./lib/theme.js";
@@ -36,6 +36,28 @@ describe("tokens verwijzen naar bestaande primitives", () => {
       assert.deepEqual([...new Set(missing)], [], `onbekende primitives in ${file}`);
     });
   }
+});
+
+// Een token dat nergens bestaat maakt de declaratie ongeldig, zodat de
+// eigenschap stil terugvalt op zijn beginwaarde (bijvoorbeeld een doorzichtige
+// achtergrond).
+describe("kleurtokens die de CSS gebruikt bestaan", () => {
+  it("elke var(--color-*) heeft een definitie", () => {
+    const cssDir = join(ROOT, "assets", "css");
+    const bestanden = readdirSync(cssDir, { recursive: true })
+      .filter((f) => f.endsWith(".css"))
+      .map((f) => join(cssDir, f));
+    bestanden.push(resolveThemeFile("assets/css/tokens.css"));
+    const defined = new Set();
+    const used = new Map();
+    for (const file of bestanden) {
+      const css = readFileSync(file, "utf-8");
+      for (const name of definedNames(css)) defined.add(name);
+      for (const name of referencedNames(css)) if (name.startsWith("--color-")) used.set(name, relative(ROOT, file));
+    }
+    const missing = [...used].filter(([name]) => !defined.has(name)).map(([name, file]) => `${name} (${file})`);
+    assert.deepEqual(missing, []);
+  });
 });
 
 describe("kleurtokens van de site resolven naar een kleur", () => {

@@ -1,5 +1,5 @@
 name: Setup Hugo
-description: Installeert Hugo (linux-amd64) met een sha256-controle.
+description: Installeert Go (voor Hugo Modules) en Hugo (linux-amd64) met een sha256-controle.
 
 inputs:
   version:
@@ -12,6 +12,13 @@ inputs:
 runs:
   using: composite
   steps:
+    # Hugo haalt het theme (een Hugo Module) op met de go-opdracht.
+    - name: Install Go
+      uses: actions/setup-go@v7
+      with:
+        go-version-file: go.mod
+        cache: false
+
     - name: Install Hugo
       shell: bash
       working-directory: ${{ runner.temp }}

@@ -46,6 +46,10 @@ jobs:
       - name: Install pandoc (voor ODF-downloads)
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
+      # De tests lezen tokens.css en het lettertype uit het theme (scripts/lib/theme.js).
+      - name: Install Hugo
+        uses: ./.github/actions/setup-hugo
+
       - name: Run tests
         run: npm test
 
@@ -73,6 +77,10 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      # Voor render-mermaid: tokens.css en het lettertype komen uit het theme.
+      - name: Install Hugo
+        uses: ./.github/actions/setup-hugo
+
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
 
@@ -84,9 +92,6 @@ jobs:
             echo "::error::Geen SVGs gegenereerd — controleer render-mermaid script"
             exit 1
           fi
-
-      - name: Install Hugo
-        uses: ./.github/actions/setup-hugo
 
       - name: Install htmltest
         run: |

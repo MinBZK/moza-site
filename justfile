@@ -100,6 +100,11 @@ a11y: build-check
     npm run a11y
     just wis tmp/public
 
+# Toets op horizontale overloop bij kleine vensters en grote tekst
+reflow: build-check
+    npm run reflow -- tmp/public
+    just wis tmp/public
+
 # Controleer op constructies die de Content-Security-Policy blokkeert
 csp: build-check
     npm run csp

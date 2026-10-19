@@ -12,6 +12,12 @@
     color-scheme: light !important;
   }
 
+  /* De koptekstgroottes hieronder verhouden zich tot deze maat. */
+  body {
+    background: #fff;
+    font-size: 1rem;
+  }
+
   /* Documentpassende koptekstgroottes; de webgroottes zijn voor het scherm. */
   h1 {
     font-size: 1.7rem;
@@ -23,6 +29,16 @@
 
   h3 {
     font-size: 1.2rem;
+  }
+
+  /* Niet verder omlaag: onder 1rem wordt een kop kleiner dan zijn tekst. */
+  h4 {
+    font-size: 1.05rem;
+  }
+
+  h5,
+  h6 {
+    font-size: 1rem;
   }
 
   /* Briefhoofd bij browser-printen (Ctrl/Cmd-P): hergebruik de sitebanner (titel + payoff links, logo gecentreerd).
@@ -56,6 +72,26 @@
     display: none !important;
   }
 
+  /* Op .tabel-wrap zou de rand bij een paginaovergang om de lege ruimte heen
+     vallen die het schuifvenster overhoudt. */
+  article .tabel-wrap {
+    border: 0;
+    border-radius: 0;
+  }
+
+  article table {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    /* Elk deel van een gebroken tabel een eigen rand, niet één om beide. */
+    box-decoration-break: clone;
+  }
+
+  /* print-bijeen="ja" op de tabel in de content. Alleen zinvol voor een tabel
+     die op een pagina past; past hij niet, dan breekt de browser alsnog. */
+  article table[data-print-bijeen] {
+    break-inside: avoid;
+  }
+
   /* De plaat heeft op het scherm een minimumbreedte om leesbaar te blijven;
      op papier moet hij juist binnen de marge passen. */
   .diagram-panel > svg {
@@ -83,10 +119,6 @@
   main > article > *,
   main > article > .artikel-tekst > * {
     max-width: none;
-  }
-
-  body {
-    background: #fff;
   }
 
   /* Houd een kop bij de tekst eronder: nooit een kop als laatste regel

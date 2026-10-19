@@ -34,7 +34,9 @@ Er kwamen negenenveertig bevindingen uit, en die zijn alle opgelost. Wat er per 
 
 [Neem dan contact met ons op](contact). Vertel kort waar je vastliep en welke hulpmiddelen je gebruikt. Dat helpt ons het probleem terug te vinden.
 
-Kom je er met ons niet uit, dan kun je het melden bij [het meldpunt van DigiToegankelijk](https://www.digitoegankelijk.nl/meldpunt).
+Binnen vijf werkdagen krijg je een ontvangstbevestiging. We houden je op de hoogte van de voortgang en de uitkomst. Binnen drie weken is je melding afgehandeld.
+
+Ben je niet tevreden over hoe we je melding behandelen? Dan kun je een [klacht indienen over het ministerie](https://www.rijksoverheid.nl/service/contact/een-klacht-indienen). Kom je er ook dan niet uit, dan kun je naar de Nationale ombudsman.
 
 ## De officiële verklaring
 

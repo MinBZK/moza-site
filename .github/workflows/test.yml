@@ -59,7 +59,6 @@ jobs:
     name: Site en links
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.162.1
       HTMLTEST_VERSION: 0.17.0
     steps:
       - name: Checkout
@@ -87,12 +86,7 @@ jobs:
           fi
 
       - name: Install Hugo
-        run: |
-          curl -sLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
-          mkdir -p "${HOME}/.local/hugo"
-          tar -C "${HOME}/.local/hugo" -xf "hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
-          rm "hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
-          echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
+        uses: ./.github/actions/setup-hugo
 
       - name: Install htmltest
         run: |

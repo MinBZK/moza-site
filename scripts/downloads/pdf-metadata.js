@@ -446,9 +446,13 @@ function buildPaginaParts(text, objecten) {
   return parts;
 }
 
-/** Tekst vergelijkbaar maken: Chromium schrijft ligaturen (de "ff" in "Kick-off") als één teken. */
+/**
+ * Tekst vergelijkbaar maken: Chromium schrijft ligaturen (de "ff" in "Kick-off")
+ * als één teken, en op een regelovergang verdwijnt de spatie tussen twee woorden
+ * uit de tekststroom. Daarom valt alle witruimte weg in plaats van samen.
+ */
 function normaliseer(tekst) {
-  return tekst.normalize("NFKC").replace(/\s+/g, " ").trim();
+  return tekst.normalize("NFKC").replace(/\s+/g, "");
 }
 
 function leesCmap(perNummer, text, fontNummer) {

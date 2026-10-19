@@ -54,6 +54,10 @@ jobs:
           tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
           echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 
+      # De tests lezen tokens.css en het lettertype uit het theme (scripts/lib/theme.js).
+      - name: Install Hugo
+        uses: ./.github/actions/setup-hugo
+
       - name: Run tests
         run: npm test
 
@@ -80,17 +84,21 @@ jobs:
         run: npm ci
 
       # De hash per diagram dekt de code, de kleuren en de fontnamen. De
-      # renderer, de Mermaid-versie (package-lock) en de fontbestanden zitten er
-      # niet in; wijzigt een daarvan, dan matcht de sleutel niet en rendert alles
-      # opnieuw.
+      # renderer, de Mermaid-versie (package-lock) en de fontbestanden (uit het
+      # theme, versie in go.sum) zitten er niet in; wijzigt een daarvan, dan
+      # matcht de sleutel niet en rendert alles opnieuw.
       - name: Haal gerenderde Mermaid-diagrammen op
         uses: actions/cache@v6
         with:
           path: |
             .cache/mermaid
             static/images/render
-          key: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'static/fonts/**') }}-${{ hashFiles('content/**/*.md', 'assets/css/tokens.css', 'assets/css/nldd-primitives.css') }}
-          restore-keys: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'static/fonts/**') }}-
+          key: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'go.sum') }}-${{ hashFiles('content/**/*.md') }}
+          restore-keys: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'go.sum') }}-
+
+      # Voor render-mermaid: tokens.css en het lettertype komen uit het theme.
+      - name: Install Hugo
+        uses: ./.github/actions/setup-hugo
 
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
@@ -103,9 +111,6 @@ jobs:
             echo "::error::Geen SVGs gegenereerd — controleer render-mermaid script"
             exit 1
           fi
-
-      - name: Install Hugo
-        uses: ./.github/actions/setup-hugo
 
       - name: Verify installations
         run: |

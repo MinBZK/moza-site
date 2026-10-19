@@ -31,6 +31,8 @@ Wil je het zelf proberen? Druk op de inlogpagina op **Shift+P**. Je krijgt dan s
 
 ## We werken samen met
 
+Onder andere met:
+
 * het ministerie van Binnenlandse Zaken en Koninkrijksrelaties (BZK)
 * KVK
 * DICTU

@@ -17,8 +17,18 @@
   {{- end -}}
   {{- $delen := split (index $datum 0 1) "-" -}}
   {{- $datumNL := time.Format "2 January 2006" (printf "%s-%s-%s" (index $delen 2) (index $delen 1) (index $delen 0)) -}}
-  {{- $beschrijving := printf "Status toegankelijkheid van deze website. Het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht deze website toegankelijk te maken. De status van deze website is: eerste maatregelen genomen, niveau C op een schaal van A tot en met E. Deze status is toegekend op basis van een eigen verklaring. Voor het laatst bijgewerkt op %s." $datumNL -}}
-  <a href="{{ $register }}"><img src="{{ $label.RelPermalink }}" alt="Toegankelijkheidslabel: status C van A tot en met E" width="{{ index $maten 0 1 }}" height="{{ index $maten 0 2 }}" /></a>
+  {{- /* Letter en omschrijving komen uit de SVG, zodat ze niet achterlopen als
+         de status in het register verandert. */ -}}
+  {{- $letter := findRESubmatch `id="([A-E])-indicator"` .Content 1 -}}
+  {{- if not $letter -}}
+    {{- errorf "toegankelijkheidslabel: geen statusletter in de SVG gevonden" -}}
+  {{- end -}}
+  {{- $status := findRESubmatch `De status van deze website is: ([^.<]+)\.` .Content 1 -}}
+  {{- if not $status -}}
+    {{- errorf "toegankelijkheidslabel: geen statusomschrijving in de SVG gevonden" -}}
+  {{- end -}}
+  {{- $beschrijving := printf "Status toegankelijkheid van deze website. Het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht deze website toegankelijk te maken. De status van deze website is: %s, niveau %s op een schaal van A tot en met E. Deze status is toegekend op basis van een eigen verklaring. Voor het laatst bijgewerkt op %s." (lower (index $status 0 1)) (index $letter 0 1) $datumNL -}}
+  <a href="{{ $register }}"><img src="{{ $label.RelPermalink }}" alt="Toegankelijkheidslabel: status {{ index $letter 0 1 }} van A tot en met E" width="{{ index $maten 0 1 }}" height="{{ index $maten 0 2 }}" /></a>
   <p class="visually-hidden">{{ $beschrijving }}</p>
 {{- else -}}
   {{- errorf "toegankelijkheidslabel: assets/images/toegankelijkheidslabel.svg ontbreekt" -}}

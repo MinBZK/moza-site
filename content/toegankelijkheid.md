@@ -8,7 +8,7 @@ Iedereen moet MijnOverheid Zakelijk kunnen gebruiken. Ook als je een schermlezer
 
 {{< toegankelijkheidslabel >}}
 
-Het label komt uit [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/28557). Status C betekent: we hebben de eerste maatregelen genomen. Het label hoort bij de verklaring die nu in het register staat. We werken aan een nieuwe verklaring op basis van het onderzoek hieronder; zodra die is ingediend en goedgekeurd, verandert het label mee.
+Het label komt uit [het landelijke register](https://www.toegankelijkheidsverklaring.nl/register/28557). Status A betekent: de site is volledig onderzocht en voldoet aan alle eisen. Die status is voorlopig en wordt definitief zodra Logius heeft vastgesteld dat de onderbouwing aan alle controlekenmerken voldoet.
 
 Deze verklaring gaat over de website mijnoverheidzakelijk.nl. De wettelijke norm is [WCAG](https://www.digitoegankelijk.nl/toegankelijkheid/en-301-549-en-wcag) 2.1 niveau AA, via de Europese norm EN 301 549 en het Tijdelijk besluit digitale toegankelijkheid overheid. Wij toetsen tegen [WCAG 2.2](https://www.w3.org/Translations/WCAG22-nl/), dat daar zes criteria bovenop legt.
 

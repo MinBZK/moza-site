@@ -25,6 +25,7 @@
   --color-bg-info: light-dark(var(--primitives-color-lintblauw-75), var(--primitives-color-lintblauw-200));
   --color-bg-muted: light-dark(var(--primitives-color-neutral-25), var(--primitives-color-neutral-100));
   --color-bg-light: light-dark(var(--primitives-color-lintblauw-25), var(--primitives-color-neutral-100));
+  --color-surface: light-dark(var(--primitives-color-neutral-0), var(--primitives-color-neutral-100));
 
   /* Tekstkleuren */
   --color-text: var(--primitives-color-neutral-950);

@@ -9,7 +9,8 @@ import { join, relative, sep } from "node:path";
 
 /** Hugo-aliassen zijn doorverwijzingen zonder inhoud; die toetsen we niet. */
 function isAlias(file) {
-  return readFileSync(file, "utf-8").includes('http-equiv="refresh"');
+  // De productiebuild minificeert en laat de aanhalingstekens weg.
+  return /http-equiv=["']?refresh/i.test(readFileSync(file, "utf-8"));
 }
 
 /** Geeft gesorteerde routes ("/", "/handboek/", "/404.html") uit `root`. */

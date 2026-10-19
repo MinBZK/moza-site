@@ -29,7 +29,7 @@ We leren door te bouwen. Een eerste beproeving voor [inloggen met een wallet](ht
 
 Wil je het zelf proberen? Druk op de inlogpagina op **Shift+P**. Je krijgt dan stap voor stap uitleg: de app installeren op een Android-telefoon, testgegevens in je wallet zetten en inloggen met de QR-code. De beproeving draait op een testomgeving met fictieve gegevens. De officiële NL Wallet werkt hier (nog) niet.
 
-## We werken onder andere samen met
+## We werken samen met
 
 * het ministerie van Binnenlandse Zaken en Koninkrijksrelaties (BZK)
 * KVK

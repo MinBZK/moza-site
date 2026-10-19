@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Schrijft de site-iconen als SVG-bestanden uit de icoonregistry van het NLDD
- * Designsysteem naar static/images/icons/, en bouwt daaruit de favicon en het
- * touch-icon. De partial icon.html en de CSS blijven op de bestandsnamen
+ * Schrijft moza's eigen iconen als SVG-bestanden uit de icoonregistry van het
+ * NLDD Designsysteem naar static/images/icons/, en bouwt daaruit de favicon en
+ * het touch-icon. De partial icon.html en de CSS blijven op de bestandsnamen
  * werken.
  *
+ * De iconen van de kop, het zoeken en de rechterkolom komen uit het theme;
+ * zet die niet in ICONS, want een kopie hier gaat voor die van het theme.
  * Bestanden die niet in ICONS staan (zoals de bestandstype-iconen waar NLDD
  * geen tegenhanger voor heeft) blijven ongemoeid.
  *
@@ -23,14 +25,7 @@ const OUTPUT_DIR = join(ROOT, "static", "images", "icons");
 
 // bestandsnaam -> NLDD-icoon (canonieke naam), plus de class die CSS of JS verwacht
 const ICONS = {
-  download: { name: "arrow-down-in-bucket" },
   "file-type-md": { name: "markdown-rectangle" },
-  info: { name: "info-circle" },
-  lock: { name: "lock-closed" },
-  menu: { name: "list", class: "menu-icon" },
-  search: { name: "magnifier", class: "search-icon" },
-  x: { name: "dismiss", class: "x-icon" },
-  "chevron-down": { name: "chevron-down", class: "icon-expand" },
 };
 
 // Afronding zoals regelrecht.rijks.app: scheidt de tegel van de tabbladbalk

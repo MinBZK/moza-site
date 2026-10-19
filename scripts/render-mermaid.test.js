@@ -271,7 +271,7 @@ describe("resolveDiagramTokens", () => {
   });
 
   it("token zonder light-dark krijgt in beide varianten dezelfde waarde", () => {
-    const oranje = "classDef x stroke:var(--color-rijks-oranje);";
+    const oranje = "classDef x stroke:var(--color-rijksoranje);";
     assert.equal(resolveDiagramTokens(oranje, "light"), "classDef x stroke:#e17000;");
     assert.equal(resolveDiagramTokens(oranje, "dark"), "classDef x stroke:#e17000;");
   });

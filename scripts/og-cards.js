@@ -88,7 +88,7 @@ async function render() {
   if (!existsSync(MANIFEST)) throw new Error(`${MANIFEST} ontbreekt. Draai eerst de Hugo-build.`);
   const paginas = JSON.parse(readFileSync(MANIFEST, "utf-8"));
   const logo = readFileSync(zoekInBuild(OUTPUT_DIR, "images/logo-rijksoverheid.svg"), "utf-8");
-  const lint = tokenKleur("--color-rijks-blauw").startsWith("var(") ? "#154273" : tokenKleur("--color-rijks-blauw");
+  const lint = tokenKleur("--color-rijksblauw").startsWith("var(") ? "#154273" : tokenKleur("--color-rijksblauw");
 
   const browser = await puppeteer.launch({ args: PUPPETEER_ARGS });
   try {

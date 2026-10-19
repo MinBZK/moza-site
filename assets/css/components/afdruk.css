@@ -1,0 +1,26 @@
+/* Afdrukregels voor wat alleen moza heeft. De algemene afdrukstijl komt uit
+   print.css van het theme. Niet in diagram.css: dat bestand gaat ook in de
+   losse SVG van de notificatiedienst. */
+@media print {
+  /* print-bijeen="ja" op de tabel in de content. Alleen zinvol voor een tabel
+     die op een pagina past; past hij niet, dan breekt de browser alsnog. */
+  article table[data-print-bijeen] {
+    break-inside: avoid;
+  }
+
+  /* De plaat heeft op het scherm een minimumbreedte om leesbaar te blijven;
+     op papier moet hij juist binnen de marge passen. */
+  .diagram-panel > svg {
+    min-width: 0;
+  }
+
+  .diagram-scroll-hint {
+    display: none !important;
+  }
+
+  /* De PDF-download (scripts/downloads/render-downloads.js) houdt zijn links
+     klikbaar, dus zonder de URL die print.css achter een externe link zet. */
+  html.pdf-export main a[rel~="external"]::after {
+    content: none !important;
+  }
+}

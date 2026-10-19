@@ -1,0 +1,6 @@
+{{- /* Hook van het theme: de eigen favicons van MOZa. Safari kent geen
+       SVG-favicons en valt terug op de ICO. */ -}}
+<link rel="icon" href="{{ relURL "favicon.ico" }}" sizes="16x16 32x32 48x48" />
+<link rel="icon" href="{{ relURL "favicon-192x192.png" }}" type="image/png" sizes="192x192" />
+<link rel="icon" href="{{ relURL "favicon.svg" }}" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href="{{ relURL "touch-icon.png" }}" />

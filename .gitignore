@@ -10,6 +10,8 @@ public
 resources
 tmp
 .hugo_build.lock
+# js.Build schrijft dit met de paden naar de modules (het theme) voor editors
+assets/jsconfig.json
 
 # Secrets / environment
 .env

@@ -13,8 +13,10 @@ outputs:
 
 ## Managementsamenvatting
 
-**De uitkomst.** Alle 56 succescriteria van WCAG 2.2 niveau A en AA zijn
-onderzocht. Van de 40 die op deze site van toepassing zijn, voldoen er 40. De
+**De uitkomst.** Alle 55 succescriteria van WCAG 2.2 niveau A en AA zijn
+onderzocht, plus 4.1.1 Parsen uit WCAG 2.1 dat nog deel uitmaakt van de
+wettelijke norm: 56 in totaal. Van de 40 die op deze site van toepassing zijn,
+voldoen er 40. De
 overige 16 gaan over zaken die hier niet voorkomen, zoals audio, video,
 formulieren en inloggen. Er zijn negenenveertig bevindingen gedaan; die zijn alle
 opgelost en nagemeten.
@@ -57,7 +59,7 @@ bevinding aan de hand was in [Bevindingen](#bevindingen).
 | Basisniveau toegankelijkheid | Windows met Edge en NVDA, macOS met Safari en VoiceOver, iOS met Safari en VoiceOver, Chrome op macOS, en bediening met alleen het toetsenbord. De versies staan in het hoofdstuk [Waarmee is getoetst](/documenten/toegankelijkheid/onderzoek-2026/#waarmee-is-getoetst). |
 | Soort onderzoek | Volledig onderzoek |
 | Geldig tot | 5 september 2029, drie jaar na de oudste meting |
-| Versie van dit rapport | 1.1, 19 oktober 2026 |
+| Versie van dit rapport | 1.2, 19 oktober 2026 |
 {{< /table-without-header >}}
 
 ### Over het conformiteitsdoel
@@ -286,13 +288,17 @@ pagina vastgelegd wat opviel.
 
 ## Samenvatting
 
-Van de 56 onderzochte succescriteria van niveau A en AA voldoet de site aan
-alle 40 die van toepassing zijn. De overige 16 gaan over zaken die op deze site
-niet voorkomen, zoals audio, video, formulieren en inloggen.
+Onderzocht zijn de 55 succescriteria van WCAG 2.2 niveau A en AA, plus 4.1.1
+Parsen uit WCAG 2.1: 56 in totaal. De site voldoet aan alle 40 die van
+toepassing zijn. De overige 16 gaan over zaken die op deze site niet voorkomen,
+zoals audio, video, formulieren en inloggen.
+
+Het landelijke register telt alleen de 55 van WCAG 2.2; 4.1.1 komt daar niet in
+voor. Het aantal in de verklaring is daarom één lager dan het aantal hier.
 
 | | Aantal |
 | --- | --- |
-| Onderzochte succescriteria (A en AA) | 56 |
+| Onderzochte succescriteria (A en AA) | 56, waarvan 55 uit WCAG 2.2 |
 | Voldoet | 40 |
 | Voldoet niet | 0 |
 | Niet van toepassing | 16 |

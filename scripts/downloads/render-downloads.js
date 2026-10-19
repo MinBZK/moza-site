@@ -24,17 +24,14 @@ import puppeteer from "puppeteer";
 import { startServer } from "../lib/static-server.js";
 import { setPdfMetadata } from "./pdf-metadata.js";
 import { PUPPETEER_ARGS } from "../lib/puppeteer-args.js";
+import { zoekInBuild } from "../lib/build-output.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || "public");
 const MANIFEST = join(OUTPUT_DIR, "download.json");
 // Pandoc-stijlsjabloon: Verdana 10pt, passende koppen, opgemaakte note. Zie
 // README.md in deze map voor hoe dit bestand is afgeleid van pandocs default.
 const REFERENCE_ODT = join(import.meta.dirname, "reference.odt");
-// Bronbestand van het logo. Hugo kopieert dit naar public/images, maar we lezen
-// de bron zodat het ook werkt zonder volledige build.
-const LOGO_SVG = join(
-  import.meta.dirname, "..", "..", "static", "images", "logo-rijksoverheid.svg"
-);
+let logoSvg;
 
 // ── Generatie ────────────────────────────────────────────────────────────────
 
@@ -393,7 +390,7 @@ async function renderOdt(mdFile, odtOut, pageDir, meta, page, baseUrl) {
 let logoDataUri;
 function rijksoverheidLogoDataUri() {
   if (!logoDataUri) {
-    const svg = readFileSync(LOGO_SVG);
+    const svg = readFileSync(logoSvg);
     logoDataUri = `data:image/svg+xml;base64,${svg.toString("base64")}`;
   }
   return logoDataUri;
@@ -504,6 +501,8 @@ async function main() {
     console.log("Geen pagina's met downloads — niets te genereren.");
     return;
   }
+
+  logoSvg = zoekInBuild(OUTPUT_DIR, "images/logo-rijksoverheid.svg", join(OUTPUT_DIR, entries[0].relPermalink));
 
   checkPandoc();
 

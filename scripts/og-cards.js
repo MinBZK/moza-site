@@ -16,6 +16,8 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, extname, join, resolve } from "node:path";
 import puppeteer from "puppeteer";
 import { PUPPETEER_ARGS } from "./lib/puppeteer-args.js";
+import { zoekInBuild } from "./lib/build-output.js";
+import { resolveThemeFile } from "./lib/theme.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || "public");
@@ -32,14 +34,14 @@ const KORPS_MIN = 34;
 const VOET_MAX = 300;
 
 function tokenKleur(naam) {
-  const css = readFileSync(join(ROOT, "assets", "css", "tokens.css"), "utf-8");
+  const css = readFileSync(resolveThemeFile("assets/css/tokens.css"), "utf-8");
   const m = css.match(new RegExp(`${naam}:\\s*([^;]+);`));
   if (!m) throw new Error(`${naam} niet gevonden in tokens.css`);
   return m[1].trim();
 }
 
 function fontCSS() {
-  const b64 = readFileSync(join(ROOT, "static", "fonts", "RijksSansWeb-Regular.woff2")).toString("base64");
+  const b64 = readFileSync(zoekInBuild(OUTPUT_DIR, "fonts/RijksSansWeb-Regular.woff2")).toString("base64");
   return `@font-face{font-family:"RijksSans";src:url("data:font/woff2;base64,${b64}") format("woff2-variations");font-weight:200 800}`;
 }
 
@@ -85,7 +87,7 @@ h1 { font-size: ${KORPS_MAX}px; font-weight: 700; line-height: 1.05; letter-spac
 async function render() {
   if (!existsSync(MANIFEST)) throw new Error(`${MANIFEST} ontbreekt. Draai eerst de Hugo-build.`);
   const paginas = JSON.parse(readFileSync(MANIFEST, "utf-8"));
-  const logo = readFileSync(join(ROOT, "static", "images", "logo-rijksoverheid.svg"), "utf-8");
+  const logo = readFileSync(zoekInBuild(OUTPUT_DIR, "images/logo-rijksoverheid.svg"), "utf-8");
   const lint = tokenKleur("--color-rijks-blauw").startsWith("var(") ? "#154273" : tokenKleur("--color-rijks-blauw");
 
   const browser = await puppeteer.launch({ args: PUPPETEER_ARGS });

@@ -25,10 +25,10 @@ opgelost en nagemeten.
 met E. Deze uitkomst onderbouwt **status A, voldoet volledig**: de site is
 aantoonbaar volledig onderzocht en er staan geen fouten meer open.
 
-**Wat er nu in het register staat.** De verklaring die daar nu staat, is nog de
-oude, met status C. Die status zegt dat er eerste maatregelen zijn genomen maar
-dat er nog geen volledig beeld was. Dat beeld is er met dit onderzoek wel. Zodra
-de nieuwe verklaring is ingediend en goedgekeurd, verandert de status mee.
+**Wat er in het register staat.** De verklaring met status A is op 19 oktober
+2026 ingediend en staat in het register. Die status is voorlopig: hij wordt
+definitief zodra Logius heeft vastgesteld dat deze onderbouwing aan alle
+controlekenmerken voldoet.
 
 **Wat de status in stand houdt.** Twee dingen verlopen vanzelf. Een onderzoek
 mag maximaal drie jaar oud zijn, dus dit onderzoek loopt tot september 2029. En

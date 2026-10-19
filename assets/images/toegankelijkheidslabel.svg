@@ -49,7 +49,7 @@
   <title id="summary-title">Toegankelijkheidslabel van https://mijnoverheidzakelijk.nl/</title>
   <desc id="explanation-text">
     Status toegankelijkheid: https://mijnoverheidzakelijk.nl/. Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht om deze website te laten voldoenaan het Besluit digitale toegankelijkheid overheid.
-    De status van deze website is: Eerste maatregelen genomen. Deze status is toegekend op basis van een eigen verklaring.Deze is voor het laatst bijgewerkt op 21-09-2026.
+    De status van deze website is: Voldoet volledig. Deze status is toegekend op basis van een eigen verklaring.Deze is voor het laatst bijgewerkt op 19-10-2026.
   </desc>
   <g id="Compliance_Text" data-name="Compliance Text">
     <rect id="Background" class="cls-1" width="692" height="344"/>
@@ -59,9 +59,9 @@
     <text transform="translate(146.3 84.2)" class="st4 st5">is wettelijk verplicht om deze website te laten voldoen</text>
     <text transform="translate(145.3 100)" class="st4 st5">aan het Besluit digitale toegankelijkheid overheid.</text>
     <text transform="translate(145.3 125.1)" class="st4 st5">De status van deze website is:</text>
-    <text transform="translate(145.3 142.5)" class="st6 st7">Eerste maatregelen genomen</text>
+    <text transform="translate(145.3 142.5)" class="st6 st7">Voldoet volledig</text>
     <text transform="translate(145.3 169.4)" class="st4 st5">Deze status is toegekend op basis van een eigen verklaring.</text>
-    <text transform="translate(145.3 186.2)" class="st4 st5">Deze is voor het laatst bijgewerkt op 21-09-2026.</text>
+    <text transform="translate(145.3 186.2)" class="st4 st5">Deze is voor het laatst bijgewerkt op 19-10-2026.</text>
     <text transform="translate(145.4 213.2)" class="st4 st5">Ga naar de</text>
     <text transform="translate(219.4 213.2)" class="st4 st5" style="text-decoration: underline;">toegankelijkheidsverklaring</text>
     <text transform="translate(387.5 213.2)" class="st4 st5">:</text>
@@ -106,10 +106,33 @@
     </g>
   </g>
   <g id="Compliance_Indicator" data-name="Compliance Indicator">
-   <g id="C-indicator">
-          <path id="Combined-Shape-3" data-name="Combined-Shape" class="cls-26" d="M95.48,144.35A17.55,17.55,0,1,1,77.93,161.9,17.55,17.55,0,0,1,95.48,144.35Zm-16.23,9.33a17.69,17.69,0,0,0-2.4,8.76,17,17,0,0,0,2.6,9.28L54,162.8Z"/>
-          <circle id="Oval-3" data-name="Oval" class="cls-27" cx="95.85" cy="161.9" r="17.55"/>
-          <text class="cls-23" transform="translate(90 168.35)">C</text></g>
+   <g id="A-indicator">
+          <path id="Shape-2" data-name="Shape" class="cls-30" d="M95.48,15.85A17.55,17.55,0,1,1,77.93,33.4,17.55,17.55,0,0,1,95.48,15.85ZM79.25,25.18a17.69,17.69,0,0,0-2.4,8.76,17,17,0,0,0,2.6,9.28L54,34.3Z"/>
+          <circle id="Oval-5" data-name="Oval" class="cls-31" cx="95.85" cy="33.4" r="17.55"/>
+          <text class="cls-32" transform="translate(90 38.53) scale(0.92 1)">A</text></g>
   </g>
-  
+  <desc id="explanation-annotation">
+  Voorlopige status - De status wordt definitief zodra logius heeft vastgesteld dat de onderbouwing voldoet aan alle controlekenmerken.
+</desc>
+<g id="Annotation" transform="translate(145.000000, 262.000000)">
+  <polygon id="AnnotationBackground" fill-opacity="0.5" fill="#FFFAC0" points="0 0 377 0 377 46 0 46"></polygon>
+  <text id="AnnotationText" fill="#000000">
+    <tspan x="33" y="18" class="st6 st8">Voorlopige status</tspan>
+    <tspan x="119.989258" y="18" class="st4 st8"> - De status wordt definitief zodra logius heeft</tspan>
+    <tspan x="33" y="29" class="st4 st8">vastgesteld dat de onderbouwing voldoet aan alle controlekenmerken.</tspan>
+  </text>
+  <g id="zandloper" transform="translate(6.000000, 10.000000)" fill="none">
+  <g id="_x36_4px_Boxes">
+    <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+  </g>
+  <g id="Production" transform="translate(4.375000, 2.187500)" fill="#000000" fill-rule="nonzero">
+    <g id="Group">
+      <path d="M2.95184375,4.0625 C5.813625,7.128375 4.9519375,6.20303125 5.42871875,6.72665625 C5.5821875,6.8951875 5.6626875,6.89984375 5.8213125,6.72665625 C6.4446875,6.04615625 5.75253125,6.7899375 8.298,4.0625 L2.95184375,4.0625 Z" id="Path"></path>
+      <path d="M9.68796875,5.3128125 C10.2922188,4.66553125 10.625,3.8076875 10.625,2.8975 L10.625,1.5625 C11.0521563,1.5625 11.25,1.21621875 11.25,0.7890625 L11.25,0.7734375 C11.25,0.34628125 11.0521563,0 10.625,0 L0.625,0 C0.19784375,0 0,0.34628125 0,0.7734375 L0,0.7890625 C0,1.21621875 0.19784375,1.5625 0.625,1.5625 L0.625,2.8975 C0.625,3.8076875 0.95778125,4.66553125 1.56203125,5.3128125 L3.468,7.35490625 C3.69946875,7.603 3.69946875,8.02203125 3.46815625,8.26996875 L1.56203125,10.3122187 C0.95778125,10.9594688 0.625,11.8173125 0.625,12.7275 L0.625,14.0625 C0.19784375,14.0625 0,14.4087813 0,14.8359375 L0,14.8515625 C0,15.2787187 0.19784375,15.625 0.625,15.625 L10.625,15.625 C11.0521563,15.625 11.25,15.2787187 11.25,14.8515625 L11.25,14.8359375 C11.25,14.4087813 11.0521563,14.0625 10.625,14.0625 L10.625,12.7275 C10.625,11.8173125 10.2922188,10.9594688 9.68796875,10.3121875 L7.782,8.27009375 C7.55053125,8.022 7.55053125,7.60296875 7.78184375,7.35503125 L9.68796875,5.3128125 Z M6.868125,9.1229375 L8.77425,11.1651875 C9.15603125,11.5740937 9.375,12.1435625 9.375,12.7275 L9.375,14.0625 L8.75,14.0625 L8.75,12.7275 C8.75,12.707625 8.7453125,12.6884688 8.744625,12.6686563 C7.6380625,11.6822813 6.29775,10.6247813 5.63715625,10.6247813 C4.97409375,10.6247813 3.61959375,11.6900313 2.50440625,12.679375 C2.5039375,12.6955938 2.5,12.71125 2.5,12.7275 L2.5,14.0625 L1.875,14.0625 L1.875,12.7275 C1.875,12.1435313 2.09396875,11.5740937 2.47575,11.1651563 L4.38203125,9.12278125 C5.05615625,8.40028125 5.05615625,7.22475 4.381875,6.50209375 L2.47575,4.45984375 C2.09396875,4.05090625 1.875,3.4814375 1.875,2.8975 L1.875,1.5625 L9.375,1.5625 L9.375,2.8975 C9.375,3.48146875 9.15603125,4.05090625 8.77425,4.45984375 L6.86796875,6.50221875 C6.19384375,7.22471875 6.19384375,8.40028125 6.868125,9.1229375 Z" id="Shape"></path>
+      <circle id="Oval" cx="5.625" cy="8.4375" r="1"></circle>
+      <circle id="Oval" cx="5.625" cy="9.6875" r="1"></circle>
+    </g>
+  </g>
+</g>
+</g>
 </svg>

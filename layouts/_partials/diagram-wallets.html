@@ -1,0 +1,108 @@
+{{- /* Vereenvoudigd landschap van wallets. Eén bron voor twee doelen: inline in
+       de pagina (zonder css) en als los te downloaden bestand (met css).
+
+       Iconen als <g> met transform, geen geneste <svg>: na een geneste </svg>
+       verlaat de minifier de SVG-modus en laat hij <rect> open, waarna de
+       rest van het diagram niet meer getekend wordt. */ -}}
+<svg viewBox="0 -28 960 488" width="960" height="488" lang="nl"{{ with .css }} data-scheme="light"{{ end }} role="img" aria-labelledby="diagram-wallets-titel" aria-describedby="diagram-wallets-beschrijving" xmlns="http://www.w3.org/2000/svg">
+  <title id="diagram-wallets-titel">Landschap van wallets</title>
+  <desc id="diagram-wallets-beschrijving">Drie kolommen: personen, de onderneming en dienstverleners. KVK en de gemeente hebben zelf ook een business wallet. De Rijksdienst voor Identiteitsgegevens zet persoonsgegevens in de persoonlijke wallet van de eigenaar en van de medewerker. KVK zet de bevoegdheid om namens de onderneming te handelen in de persoonlijke wallet van de eigenaar, en de gegevens van de onderneming in de business wallet. De eigenaar beheert de business wallet. De gemeente zet een vergunning in de business wallet. Vanuit de business wallet krijgt de medewerker een machtiging in de eigen persoonlijke wallet. Daarmee vraagt de medewerker bij de gemeente een vergunning aan.</desc>
+{{- with .css }}
+  {{- /* CDATA: geneste CSS bevat & en is anders geen geldige XML */}}
+  <style><![CDATA[{{ . | safeCSS }}]]></style>
+{{- end }}
+
+  <defs>
+    <marker id="diagram-wallets-pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-marker" d="M0 0 L10 5 L0 10 z" />
+    </marker>
+  </defs>
+
+  <g aria-hidden="true">
+
+  <!-- Kolommen -->
+  <rect class="dg-zone" x="16" y="16" width="272" height="428" rx="14" />
+  <text class="dg-zone-label" x="152" y="50">Personen</text>
+  <rect class="dg-zone" x="320" y="16" width="296" height="428" rx="14" />
+  <text class="dg-zone-label" x="468" y="50">Onderneming</text>
+  <rect class="dg-zone" x="648" y="16" width="296" height="428" rx="14" />
+  <text class="dg-zone-label" x="796" y="50">Dienstverleners</text>
+
+  <!-- Persoonsgegevens: links om de eigenaar heen, zodat geen andere lijn gekruist wordt -->
+  <path class="dg-arrow" d="M668 104 L152 104 L152 132" marker-end="url(#diagram-wallets-pijl)" />
+  <path class="dg-arrow" d="M152 104 L28 104 L28 296 L152 296 L152 320" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="372" y="94">persoonsgegevens</text>
+
+  <!-- Bevoegdheid -->
+  <path class="dg-arrow" d="M668 176 L268 176" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="372" y="166">bevoegdheid</text>
+
+  <!-- Gegevens onderneming: door de ruimte tussen de kolommen -->
+  <path class="dg-arrow" d="M668 208 L632 208 L632 244 L580 244" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="624" y="204" text-anchor="end">gegevens onderneming</text>
+
+  <!-- Beheren -->
+  <path class="dg-arrow" d="M200 232 L200 264 L340 264" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="212" y="254">beheert</text>
+
+  <!-- Vergunning -->
+  <path class="dg-arrow" d="M668 296 L580 296" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="624" y="286" text-anchor="middle">vergunning</text>
+
+  <!-- Machtiging -->
+  <path class="dg-arrow" d="M460 312 L460 348 L268 348" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="336" y="338">machtiging</text>
+
+  <!-- Vergunning aanvragen: door de ruimte tussen de kolommen naar de gemeente -->
+  <path class="dg-arrow" d="M264 388 L640 388 L640 328 L668 328" marker-end="url(#diagram-wallets-pijl)" />
+  <text class="dg-route-label" x="470" y="378">vergunning aanvragen</text>
+
+  <!-- Eigenaar -->
+  <g>
+    <rect class="dg-node" x="40" y="136" width="224" height="96" rx="12" />
+    <g class="dg-icon" transform="translate(58 152) scale(1.1667)"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6M7 7a5 5 0 1 1 10 0A5 5 0 0 1 7 7m2 9a3 3 0 0 0-3 3v3H4v-3a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5l-.032 3h-2L18 19a3 3 0 0 0-3-3z" /></g>
+    <text class="dg-title start" x="94" y="173">Eigenaar</text>
+    <text class="dg-text" x="58" y="212">persoonlijke wallet</text>
+  </g>
+
+  <!-- Medewerker -->
+  <g>
+    <rect class="dg-node" x="40" y="324" width="224" height="96" rx="12" />
+    <g class="dg-icon" transform="translate(58 340) scale(1.1667)"><path d="M10 14c2.2 0 4 1.8 4 4v3h-2v-3a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3H2v-3c0-2.2 1.8-4 4-4zM22 17v3h-2v-3a2 2 0 0 0-2-2h-3.93a5 5 0 0 0-1.92-1.55A4 4 0 0 1 14 13h4c2.2 0 4 1.8 4 4" /><path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4M16 3a4 4 0 1 1-3.2 6.4 5 5 0 0 0-.5-3.94A4 4 0 0 1 16 3m0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" /></g>
+    <text class="dg-title start" x="94" y="361">Medewerker</text>
+    <text class="dg-text" x="58" y="400">persoonlijke wallet</text>
+  </g>
+
+  <!-- Business wallet -->
+  <g>
+    <rect class="dg-node accent" x="344" y="216" width="232" height="96" rx="12" />
+    <g class="dg-icon accent" transform="translate(362 250) scale(1.1667)"><path d="M8 16H6v-2h2zm4 0h-2v-2h2zm-4-4H6v-2h2zm4 0h-2v-2h2zM8 8H6V6h2zm4 0h-2V6h2z" /><path d="M13 2a3 3 0 0 1 3 3v17h-6v-2H8v2H2V5a3 3 0 0 1 3-3zM5 4a1 1 0 0 0-1 1v15h2v-2h6v2h2V5a1 1 0 0 0-1-1zm14 0a3 3 0 0 1 3 3v15h-5v-2h3V7a1 1 0 0 0-1-1h-2V4z" /><path d="M18.5 18H17v-2h1.5zm0-4H17v-2h1.5zm0-4H17V8h1.5z" /></g>
+    <text class="dg-title start" x="398" y="271">Business wallet</text>
+  </g>
+
+  <!-- Rijksdienst voor Identiteitsgegevens: icoon gecentreerd op de titel van twee regels -->
+  <g>
+    <rect class="dg-node" x="672" y="72" width="248" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(690 90) scale(1.1667)"><path d="m15.66 7.41-4.7 4.71-2.71-2.7L9.66 8l1.3 1.3L14.25 6z" /><path d="M12 1a8 8 0 0 1 5 14.24V23l-5-2-5 2v-7.76A8 8 0 0 1 12 1m3 15.42a8 8 0 0 1-6 0v3.62l3-1.2 3 1.2zM12 3a6 6 0 1 0 0 12 6 6 0 0 0 0-12" /></g>
+    <text class="dg-title start" x="726" y="99">Rijksdienst voor</text>
+    <text class="dg-title start" x="726" y="121">Identiteitsgegevens</text>
+  </g>
+
+  <!-- KVK -->
+  <g>
+    <rect class="dg-node" x="672" y="160" width="248" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(690 178) scale(1.1667)"><path d="m15.66 7.41-4.7 4.71-2.71-2.7L9.66 8l1.3 1.3L14.25 6z" /><path d="M12 1a8 8 0 0 1 5 14.24V23l-5-2-5 2v-7.76A8 8 0 0 1 12 1m3 15.42a8 8 0 0 1-6 0v3.62l3-1.2 3 1.2zM12 3a6 6 0 1 0 0 12 6 6 0 0 0 0-12" /></g>
+    <text class="dg-title start" x="726" y="187">KVK</text>
+    <text class="dg-text" x="726" y="209">business wallet</text>
+  </g>
+
+  <!-- Gemeente -->
+  <g>
+    <rect class="dg-node" x="672" y="280" width="248" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(690 298) scale(1.1667)"><path d="m14 16.5-1 1V22H2v-4.5l-1-1L7.5 10zm-10-.172V20h2.25v-2.5h2.5V20H11v-3.672l-3.5-3.5z" /><path d="M19 2a3 3 0 0 1 3 3v17h-5.5v-2H14v-2h4.5v2H20V5a1 1 0 0 0-1-1h-7a1 1 0 0 0-1 1v7.086l-2-2V5a3 3 0 0 1 3-3z" /><path d="M18.33 16h-2v-2h2zm-3.66-.244L12.914 14h1.756zm0-3.756h-2v-2h2zm3.66 0h-2v-2h2zm-3.66-4h-2V6h2zm3.66 0h-2V6h2z" /></g>
+    <text class="dg-title start" x="726" y="307">Gemeente</text>
+    <text class="dg-text" x="726" y="329">business wallet</text>
+  </g>
+
+  </g>
+</svg>

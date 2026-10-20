@@ -1,5 +1,5 @@
 ---
-title: "Berichten/FBS"
+title: "Berichten"
 description: "Alle berichten van de overheid lezen op de plek die op dat moment voor jou logisch is, als burger of ondernemer."
 weight: 6
 ---

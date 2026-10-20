@@ -9,6 +9,11 @@
   background-color: var(--color-bg-muted);
   border-radius: 0.5rem;
   overflow-x: auto;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
 }
 
 /* Alleen nodig zolang de plaat (min-width 620px) breder is dan het scherm */
@@ -20,6 +25,10 @@
 
 @media (min-width: 700px) {
   .diagram-scroll-hint { display: none; }
+}
+
+@media (max-width: 699px) {
+  .diagram-panel { padding-top: 3rem; }
 }
 
 .diagram-download {
@@ -44,15 +53,17 @@
   stroke-width: 1.5;
 }
 
+/* Minimaal 0.6 voor 3:1 tegen het paneel (WCAG 1.4.11) */
 .dg-block,
 .dg-node {
-  stroke: var(--color-border);
+  stroke: var(--color-text-muted);
+  stroke-opacity: 0.6;
 }
 
 .dg-zone {
   fill: none;
   stroke: var(--color-text-muted);
-  stroke-opacity: 0.5;
+  stroke-opacity: 0.6;
   stroke-dasharray: 6 6;
 }
 
@@ -66,6 +77,7 @@
 
 .dg-node.accent {
   stroke: var(--color-primary);
+  stroke-opacity: 1;
   stroke-width: 2.5;
 }
 
@@ -121,4 +133,74 @@
   font-size: 16px;
   font-weight: 600;
   text-anchor: middle;
+}
+
+.dg-heading {
+  fill: var(--color-text-heading);
+  font-size: 24px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.dg-title.start {
+  font-size: 18px;
+  text-anchor: start;
+}
+
+.dg-text {
+  fill: var(--color-text);
+  font-size: 15px;
+}
+
+.dg-tag,
+.dg-route-label {
+  fill: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dg-tag {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dg-route-label {
+  font-size: 14px;
+}
+
+.dg-stack-label {
+  fill: var(--color-text-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dg-icon {
+  fill: var(--color-text-muted);
+}
+
+.dg-icon.accent,
+.dg-marker.route {
+  fill: var(--color-primary);
+}
+
+.dg-arrow.route {
+  stroke: var(--color-primary);
+  stroke-dasharray: 8 5;
+}
+
+.dg-band {
+  fill: var(--color-highlight);
+}
+
+.dg-icon.band,
+.dg-band-text {
+  fill: var(--color-highlight-text);
+}
+
+.dg-band-text {
+  font-size: 15px;
+}
+
+.dg-strong {
+  font-weight: 700;
 }

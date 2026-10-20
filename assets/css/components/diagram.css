@@ -134,3 +134,73 @@
   font-weight: 600;
   text-anchor: middle;
 }
+
+.dg-heading {
+  fill: var(--color-text-heading);
+  font-size: 24px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.dg-title.start {
+  font-size: 18px;
+  text-anchor: start;
+}
+
+.dg-text {
+  fill: var(--color-text);
+  font-size: 15px;
+}
+
+.dg-tag,
+.dg-route-label {
+  fill: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dg-tag {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dg-route-label {
+  font-size: 14px;
+}
+
+.dg-stack-label {
+  fill: var(--color-text-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dg-icon {
+  fill: var(--color-text-muted);
+}
+
+.dg-icon.accent,
+.dg-marker.route {
+  fill: var(--color-primary);
+}
+
+.dg-arrow.route {
+  stroke: var(--color-primary);
+  stroke-dasharray: 8 5;
+}
+
+.dg-band {
+  fill: var(--color-highlight);
+}
+
+.dg-icon.band,
+.dg-band-text {
+  fill: var(--color-highlight-text);
+}
+
+.dg-band-text {
+  font-size: 15px;
+}
+
+.dg-strong {
+  font-weight: 700;
+}

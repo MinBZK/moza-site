@@ -128,7 +128,7 @@ graph LR
 
 Die knip is een bewuste keuze:
 
-* **De bron blijft bij de eigenaar.** De KVK levert de bedrijfsgegevens, RegelRecht toetst de regel en RVO ontvangt de rapportage. Er ontstaat geen centrale kopie van gegevens en geen nieuwe partij die namens anderen antwoord geeft. Dezelfde federatieve gedachte als bij [Berichten](/onderwerpen/berichten-fbs/).
+* **De bron blijft bij de eigenaar.** De KVK levert de bedrijfsgegevens, RegelRecht toetst de regel en RVO ontvangt de rapportage. Er ontstaat geen centrale kopie van gegevens en geen nieuwe partij die namens anderen antwoord geeft. Dezelfde federatieve gedachte als bij het [Federatief Berichtenstelsel](/onderwerpen/berichten/fbs/).
 * **Eén koppelvlak in plaats van een koppeling per assistent.** Een organisatie sluit haar bron één keer aan via MCP en die aansluiting is daarna bruikbaar voor elke AI-host. Daarom werken we ook mee aan een MCP-standaard voor de overheid.
 * **Geen eigen assistent per organisatie.** Een assistent per organisatie levert dezelfde versnippering op als een portaal per organisatie: de ondernemer moet dan opnieuw uitzoeken bij wie hij moet zijn.
 * **Vervangbare onderdelen.** Het taalmodel bevat zelf geen kennis van wetten of bedrijfsgegevens. Een ander model of een andere host inzetten is daarmee een wissel en geen verbouwing.

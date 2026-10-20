@@ -1,0 +1,102 @@
+{{- /* De bouwblokken van de proefopstelling voor berichten. Eén bron voor twee
+       doelen: inline in de pagina (zonder css) en als los te downloaden
+       bestand (met css).
+
+       Iconen als <g> met transform, geen geneste <svg>: na een geneste </svg>
+       verlaat de minifier de SVG-modus en laat hij <rect> open, waarna de
+       rest van het diagram niet meer getekend wordt. */ -}}
+<svg viewBox="0 -76 991 504" width="991" height="504" lang="nl"{{ with .css }} data-scheme="light"{{ end }} role="img" aria-labelledby="diagram-berichtenstelsel-titel" aria-describedby="diagram-berichtenstelsel-beschrijving" xmlns="http://www.w3.org/2000/svg">
+  <title id="diagram-berichtenstelsel-titel">De bouwblokken van de proefopstelling</title>
+  <desc id="diagram-berichtenstelsel-beschrijving">De ondernemer leest berichten in een portaal, een app of bedrijfssoftware, zoals MijnOverheid Zakelijk. Een burger kan dat ook. In route 1 vraagt het portaal de berichten op bij het Berichten Uitvraag Systeem. Dat bevraagt alle berichtenmagazijnen en zet de berichten in één lijst. Het bewaart tijdelijk een paar gegevens per bericht. Het praat met de magazijnen van organisatie A en organisatie B, die een eigen magazijn hebben, en met organisatie C, die haar magazijn laat hosten. Tussen het uitvraagsysteem en de magazijnen gelden de vaste afspraken van Federated Service Connectivity (FSC): wie mag welke dienst aanroepen. In route 2 haalt het portaal of de app de berichten rechtstreeks op bij de berichtenmagazijnen, zonder uitvraagsysteem.</desc>
+{{- with .css }}
+  <style>{{ . | safeCSS }}</style>
+{{- end }}
+
+  <defs>
+    <marker id="diagram-berichtenstelsel-pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-marker" d="M0 0 L10 5 L0 10 z" />
+    </marker>
+    <marker id="diagram-berichtenstelsel-pijl-route" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path class="dg-marker route" d="M0 0 L10 5 L0 10 z" />
+    </marker>
+  </defs>
+
+  <g aria-hidden="true">
+
+  <text class="dg-heading" x="496" y="-34">De bouwblokken van de proefopstelling</text>
+
+  <!-- Zone om alle magazijnen: route 2 eindigt op de rand, niet bij één magazijn -->
+  <rect class="dg-zone" x="725" y="22" width="250" height="308" rx="14" />
+
+  <!-- Route 2: van het portaal over het uitvraagsysteem heen naar de magazijnen -->
+  <path class="dg-arrow route" d="M336 123 L336 49 L719 49" marker-end="url(#diagram-berichtenstelsel-pijl-route)" />
+  <text class="dg-route-label" x="348" y="35">Route 2: rechtstreeks bij de berichtenmagazijnen</text>
+
+  <!-- Verbindingen: overal 36 tussen de kolommen en een pijl van 28 -->
+  <path class="dg-arrow" d="M192 157 L220 157" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+  <path class="dg-arrow" d="M192 239 L220 239" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+  <path class="dg-arrow" d="M452 198 L480 198" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+  <path class="dg-arrow" d="M706 115 L734 115" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+  <path class="dg-arrow" d="M706 198 L734 198" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+  <path class="dg-arrow" d="M706 281 L734 281" marker-start="url(#diagram-berichtenstelsel-pijl)" marker-end="url(#diagram-berichtenstelsel-pijl)" />
+
+  <!-- Ondernemer en burger: samen even hoog als het portaal -->
+  <g>
+    <rect class="dg-node" x="16" y="123" width="172" height="68" rx="12" />
+    <g class="dg-icon" transform="translate(34 143) scale(1.1667)"><path d="M14 2c1.66 0 3 1.34 3 3v1h2a3 3 0 0 1 3 3v9c0 1.66-1.34 3-3 3H5c-1.66 0-3-1.34-3-3V9a3 3 0 0 1 3-3h2V5a3 3 0 0 1 3-3zM5 8a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm5-4a1 1 0 0 0-1 1v1h6V5a1 1 0 0 0-1-1z" /></g>
+    <text class="dg-title start" x="70" y="163">Ondernemer</text>
+  </g>
+  <g>
+    <rect class="dg-node" x="16" y="205" width="172" height="68" rx="12" />
+    <g class="dg-icon" transform="translate(34 225) scale(1.1667)"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6M7 7a5 5 0 1 1 10 0A5 5 0 0 1 7 7m2 9a3 3 0 0 0-3 3v3H4v-3a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5l-.032 3h-2L18 19a3 3 0 0 0-3-3z" /></g>
+    <text class="dg-title start" x="70" y="245">Burger</text>
+  </g>
+
+  <!-- Portaal of app: verticaal gecentreerd naast het uitvraagsysteem -->
+  <g>
+    <rect class="dg-node" x="224" y="123" width="224" height="150" rx="12" />
+    <g class="dg-icon" transform="translate(242 160) scale(1.1667)"><path d="M19 3a3 3 0 0 1 3 3v9a3 3 0 0 1-2.85 3H15v2h2v2H7v-2h2v-2H4.85A3 3 0 0 1 2 15.15V6a3 3 0 0 1 3-3zM5 5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z" /></g>
+    <text class="dg-title start" x="278" y="180">Portaal of app</text>
+    <text class="dg-text" x="242" y="212">MijnOverheid (Zakelijk),</text>
+    <text class="dg-text" x="242" y="232">een app of bedrijfssoftware</text>
+  </g>
+
+  <!-- Berichten Uitvraag Systeem: icoon gecentreerd op de titel van twee regels -->
+  <g>
+    <rect class="dg-node" x="484" y="80" width="218" height="236" rx="12" />
+    <text class="dg-tag" x="502" y="129">Route 1</text>
+    <g class="dg-icon" transform="translate(502 150) scale(1.1667)"><path d="M21 6v12c0 1.66-1.34 3-3 3H6c-1.66 0-3-1.34-3-3V6a3 3 0 0 1 3-3h12c1.66 0 3 1.34 3 3M5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4h-3.126a4.002 4.002 0 0 1-7.748 0H5zM6 5a1 1 0 0 0-1 1v6h5v1c0 1.083.92 2 2 2s2-.918 2-2v-1h5V6a1 1 0 0 0-1-1z" /></g>
+    <text class="dg-title start" x="538" y="159">Berichten</text>
+    <text class="dg-title start" x="538" y="181">Uitvraag Systeem</text>
+    <text class="dg-text" x="502" y="213">Bevraagt alle magazijnen en</text>
+    <text class="dg-text" x="502" y="233">zet de berichten in één lijst.</text>
+    <text class="dg-text" x="502" y="259">Bewaart tijdelijk een paar</text>
+    <text class="dg-text" x="502" y="279">gegevens per bericht.</text>
+  </g>
+
+  <!-- Berichtenmagazijnen: één icoon bij de groep, gelijk met de rand van de blokken -->
+  <g class="dg-icon" transform="translate(738 35) scale(1.1667)"><path d="M20 18c0 2.2-3.58 4-8 4s-8-1.8-8-4V6c0-2.2 3.58-4 8-4s8 1.8 8 4zm-13.84.27c.18.21.52.5 1.08.77A11 11 0 0 0 12 20a11 11 0 0 0 4.76-.96q.82-.44 1.08-.77c.06-.07.16-.18.16-.27v-3.36A12.5 12.5 0 0 1 12 16c-2.39 0-4.53-.53-6-1.36V18c0 .1.1.2.16.27M18 8.64A12.5 12.5 0 0 1 12 10c-2.39 0-4.53-.53-6-1.36V12c0 .1.1.2.16.27.18.21.52.5 1.08.77A11 11 0 0 0 12 14a11 11 0 0 0 4.76-.96q.82-.44 1.08-.77c.06-.07.16-.18.16-.27zM12 4a11 11 0 0 0-4.76.96q-.83.44-1.08.77C6.1 5.8 6 5.91 6 6s.1.2.16.27c.18.21.52.5 1.08.77A11 11 0 0 0 12 8a11 11 0 0 0 4.76-.96q.82-.44 1.08-.77c.06-.07.16-.18.16-.27s-.1-.2-.16-.27c-.18-.21-.52-.5-1.08-.77A11 11 0 0 0 12 4" /></g>
+  <text class="dg-stack-label" x="774" y="56">Berichtenmagazijnen</text>
+  <g>
+    <rect class="dg-node" x="738" y="80" width="224" height="70" rx="10" />
+    <text class="dg-text" x="756" y="120">Organisatie A, eigen magazijn</text>
+  </g>
+  <g>
+    <rect class="dg-node" x="738" y="163" width="224" height="70" rx="10" />
+    <text class="dg-text" x="756" y="203">Organisatie B, eigen magazijn</text>
+  </g>
+  <g>
+    <rect class="dg-node" x="738" y="246" width="224" height="70" rx="10" />
+    <text class="dg-text" x="756" y="286">Organisatie C, gehost magazijn</text>
+  </g>
+
+  <!-- FSC: onder de koppeling tussen uitvraagsysteem en magazijnen -->
+  <g>
+    <rect class="dg-band" x="484" y="344" width="491" height="68" rx="12" />
+    <g class="dg-icon band" transform="translate(502 364) scale(1.1667)"><path d="M10.53 11.03l-.72 .72h3.19v1.5h-3.19l.72 .72l-1.06 1.06l-2.53-2.53l2.53-2.53l1.06 1.06z M17.06 8.5l-2.53 2.53l-1.06-1.06l.72-.72h-3.19v-1.5h3.19l-.72-.72l1.06-1.06l2.53 2.53z M6.94 2.69c3.28-1.1 6.84-1.1 10.12 0l2.57 .85c.82 .28 1.37 1.04 1.37 1.9l0 6.53c-.08 2.58-1.41 4.97-3.56 6.41l-5.44 3.62l-5.44-3.62c-2.15-1.44-3.48-3.83-3.56-6.41l0-6.53c0-.86 .55-1.62 1.37-1.9l2.57-.85zm9.49 1.89c-2.88-.95-5.98-.95-8.86 0l-2.57 .86v6.28c0 2 1 3.88 2.67 4.99l4.33 2.89l4.33-2.89c1.67-1.11 2.67-2.99 2.67-4.99v-6.28l-2.57-.86z" /></g>
+    <text class="dg-band-text" x="538" y="372"><tspan class="dg-strong">FSC</tspan>: vaste afspraken tussen het uitvraagsysteem</text>
+    <text class="dg-band-text" x="538" y="394">en de magazijnen. Wie mag welke dienst aanroepen?</text>
+  </g>
+
+  </g>
+</svg>

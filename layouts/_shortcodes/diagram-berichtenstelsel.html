@@ -1,0 +1,28 @@
+{{- /* De bouwblokken van de proefopstelling voor berichten. Onderschrift via de
+       parameter caption, zodat de tekst in de markdown staat.
+
+       De tekening zelf staat in de partial en wordt twee keer gerenderd: inline
+       in de pagina, en met de stijlen ingebakken als downloadbaar bestand. */ -}}
+
+{{- $primitives := (resources.Get "css/nldd-primitives.css").Content -}}
+{{- $tokens := (resources.Get "css/tokens.css").Content -}}
+{{- $regels := (resources.Get "css/components/diagram.css").Content -}}
+{{- $eigen := "svg { background: var(--color-bg-muted); color: var(--color-text-muted); font-family: var(--font-sans); }" -}}
+{{- /* Zonder ingebed lettertype loopt de tekst in het losse bestand buiten de vakken. */ -}}
+{{- $font := printf `@font-face { font-family: "RijksSans"; src: url("data:font/woff2;base64,%s") format("woff2-variations"); font-weight: 200 800; font-style: normal; }` (os.ReadFile "static/fonts/RijksSansWeb-Regular.woff2" | base64Encode) -}}
+{{- $bestand := partial "diagram-berichtenstelsel.html" (dict "css" (printf "%s\n%s\n%s\n%s\n%s" $font $primitives $tokens $regels $eigen)) -}}
+{{- $svg := resources.FromString "images/diagrammen/berichtenstelsel.svg" $bestand -}}
+
+<figure class="diagram">
+  <div class="diagram-panel" tabindex="0" role="group" aria-labelledby="diagram-berichtenstelsel-titel">
+    {{ partial "diagram-berichtenstelsel.html" (dict "css" "") }}
+  </div>
+  <p class="diagram-scroll-hint">Schuif opzij om de hele plaat te zien.</p>
+  <a class="diagram-download button-ghost" href="{{ $svg.RelPermalink }}" download="berichtenstelsel.svg" data-tooltip="Download als afbeelding">
+    {{- partial "icon.html" "download" -}}
+    <span class="visually-hidden">Download als afbeelding</span>
+  </a>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{- end }}
+</figure>

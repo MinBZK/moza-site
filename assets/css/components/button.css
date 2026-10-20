@@ -39,6 +39,7 @@ button,
 
 a.button {
   cursor: default;
+  overflow-wrap: anywhere;
 }
 
 /* Outline variant */

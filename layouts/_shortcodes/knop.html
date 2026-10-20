@@ -1,0 +1,6 @@
+{{- /* Link als knop. Gebruik: {{< knop >}}[Tekst](/pad/){{< /knop >}} */ -}}
+{{- $link := .Inner | strings.TrimSpace | .Page.RenderString -}}
+{{- if not (hasPrefix $link "<a ") -}}
+  {{- errorf "knop-shortcode: verwacht één Markdown-link, kreeg %q (%s)" .Inner .Position -}}
+{{- end -}}
+<p>{{ replace $link "<a " `<a class="button" ` 1 | safeHTML }}</p>

@@ -47,8 +47,7 @@ params:
         limiet: 10
       - sectie: documenten
         kop: Documenten
-        # Eigen sleutel van moza (layouts/home.llmsfull.txt): wel in llms.txt,
-        # niet in llms-full.txt.
+        # Wel in llms.txt, niet in llms-full.txt.
         volledig: false
       - sectie: handboek
         kop: Handboek

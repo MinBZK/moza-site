@@ -1,5 +1,7 @@
 pre-commit:
   commands:
+    stille-terugdraai:
+      run: npm run --silent terugdraai
     rapport-versie:
       run: npm run --silent rapport-versie
     hugo-build:

@@ -48,7 +48,8 @@
           <span class="page-nav-title">{{ $prev.Params.card_title | default $prev.Title }}</span>
         </a>
       {{- end -}}
-      {{- if $isLast -}}
+      {{- if and $isLast (eq $currentIdx 1) -}}
+      {{- else if $isLast -}}
         <a href="{{ $parent.RelPermalink }}" class="page-nav-next">
           <span class="page-nav-label">Terug naar</span>
           <span class="page-nav-title">{{ $parent.Params.card_title | default $parent.Title }}</span>

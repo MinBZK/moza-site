@@ -21,6 +21,8 @@ Er zijn twee soorten wallets:
 
 De twee werken samen. De eigenaar van een onderneming heeft een persoonlijke wallet en bedient daarmee de business wallet van de onderneming.
 
+{{< diagram-wallets >}}
+
 In het [schema van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html) zie je hoe dat werkt. Aan de hand van een onderneming met een eigenaar en een medewerker laat het zien wie welke gegevens in welke wallet zet. KVK geeft bijvoorbeeld de identiteit van de onderneming uit, en de gemeente een vergunning. Ook zie je hoe de eigenaar vanuit de business wallet een medewerker machtigt. Klik op een gegeven in het schema om te zien wat erin staat.
 
 ## Wat we beproeven

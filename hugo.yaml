@@ -14,7 +14,6 @@ params:
     url: https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties
     tekst: MijnOverheid Zakelijk is een programma van het
   footer:
-    tagline: Eén Overheid. Voor iedereen!
     links: Zie ook
     rechts: Over deze site
   search:

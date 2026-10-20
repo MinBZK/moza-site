@@ -12,6 +12,7 @@ import {
   checkContentImageAlt,
   checkDiagramBeschrijving,
   checkVoetnootRol,
+  checkSvgGesloten,
   presentatieSoort,
 } from "./regels.js";
 
@@ -236,4 +237,64 @@ test("presentatiesoort: nldd-deck, ook tussen andere klassen", () => {
 test("presentatiesoort: een klasse die er alleen op lijkt telt niet", () => {
   assert.equal(presentatieSoort('<div class="deck-close revealed">'), null);
   assert.equal(presentatieSoort("<p>class=deck staat hier als tekst</p>"), null);
+});
+
+test("svg: een geminificeerde tekening met zelfsluitende elementen levert geen bevindingen", () => {
+  const html =
+    '<article><svg viewBox="0 0 100 100" role="img"><title>Tekening</title><g>' +
+    '<rect class="dg-node" x="0" y="0" width="10" height="10" rx="2"/>' +
+    '<path d="M0 0 L10 10"/><circle cx="5" cy="5" r="2"/><text x="1" y="1">Tekst</text>' +
+    "</g></svg></article>";
+  assert.deepEqual(checkSvgGesloten(html), []);
+});
+
+test("svg: een <rect> zonder slash na een geneste <svg> wordt gemeld", () => {
+  const html =
+    '<svg viewBox="0 0 100 100"><g><svg x="4" y="4" viewBox="0 0 24 24"><path d="M0 0h24"/></svg>' +
+    "<rect class=dg-node x=10 y=10 width=50 height=20 rx=12>" +
+    '<text x="12" y="20">Verdwijnt</text></g></svg>';
+  const findings = checkSvgGesloten(html);
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /^<rect class=dg-node .*> is niet gesloten$/);
+});
+
+test("svg: elk open element wordt apart gemeld, ook aan het eind van de tekening", () => {
+  const html = "<svg><rect x=1><circle r=2></svg><p>Na de tekening</p>";
+  const findings = checkSvgGesloten(html);
+  assert.equal(findings.length, 2);
+  assert.match(findings[0], /^<rect/);
+  assert.match(findings[1], /^<circle/);
+});
+
+test("svg: een expliciet gesloten <rect></rect> levert geen bevindingen", () => {
+  const html = '<svg viewBox="0 0 10 10"><rect x="0" y="0" width="5" height="5"></rect></svg>';
+  assert.deepEqual(checkSvgGesloten(html), []);
+});
+
+test("svg: een vorm met een eigen <title> en sluittag levert geen bevindingen", () => {
+  const html = '<svg><path d="M0 0"><title>Lijn</title></path></svg>';
+  assert.deepEqual(checkSvgGesloten(html), []);
+});
+
+test("svg: tekeningen buiten het artikel tellen ook mee", () => {
+  const html =
+    '<header><svg class="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18"></svg></header>' +
+    "<article><p>Tekst</p></article>";
+  const findings = checkSvgGesloten(html);
+  assert.equal(findings.length, 1);
+  assert.match(findings[0], /<path d="M3 6h18">/);
+});
+
+test("svg: HTML buiten een <svg> blijft buiten beschouwing", () => {
+  const html =
+    "<p>Een <span>open element<p>buiten SVG</p><!-- <svg><rect x=1></svg> -->" +
+    '<script>const s = "<svg><rect x=1></svg>";</script>';
+  assert.deepEqual(checkSvgGesloten(html), []);
+});
+
+test("svg: een lange tag wordt ingekort in de melding", () => {
+  const html = `<svg><path d="${"M0 0 L1 1 ".repeat(20)}"></svg>`;
+  const [finding] = checkSvgGesloten(html);
+  assert.ok(finding.length < 120);
+  assert.match(finding, /…> is niet gesloten$/);
 });

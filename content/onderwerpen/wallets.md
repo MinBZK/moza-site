@@ -49,10 +49,9 @@ Wil je het zelf proberen? Druk op de inlogpagina op **Shift+P**. Je krijgt dan s
 
 ## Wat we nog willen weten
 
-* Hoe kunnen eHerkenning en de business wallet straks samenwerken?
-* Kun je met DigiD eenmalig een attestatie in je wallet zetten, en daarmee inloggen bij de business wallet?
-* Welke rol kan MOZa spelen bij het uitgeven van zakelijke attestaties?
-* Hoe log je in namens een eenmanszaak? Voor zover bekend bestaat daarvoor nog geen Europese attestatie. Nu regelt eHerkenning dat.
+* Hoe gebruiken ondernemers eHerkenning en de business wallet straks naast elkaar?
+* Welke rol kan MOZa spelen bij het opzetten van het stelsel van zakelijke wallets?
+* Kan een eenmanszaak zonder business wallet ook een vergunning in de persoonlijke wallet ontvangen?
 
 ## Samenwerking
 

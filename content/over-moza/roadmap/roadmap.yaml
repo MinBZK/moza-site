@@ -1,0 +1,189 @@
+intro: >-
+  Stand oktober 2026. Dit is geen vastgestelde planning. Fase 5 van MOZa loopt
+  van oktober 2026 t/m januari 2027.
+caption: "Roadmap MOZa, per kwartaal van het vierde kwartaal van 2026 t/m 2027, en per halfjaar in 2028"
+kolommen:
+  - kolom: q4-2026
+    label: "Q4 2026"
+    fase_label: "fase 5"
+    klasse: rm-fase
+  - kolom: q1-2027
+    label: "Q1 2027"
+    fase_label: "fase 5 t/m januari"
+    klasse: rm-fase-deel
+  - kolom: q2-2027
+    label: "Q2 2027"
+  - kolom: q3-2027
+    label: "Q3 2027"
+  - kolom: q4-2027
+    label: "Q4 2027"
+  - kolom: h1-2028
+    label: "2028"
+    fase_label: "eerste helft"
+  - kolom: h2-2028
+    label: "2028"
+    fase_label: "tweede helft"
+groepen:
+  - id: g1
+    naam: "Tijdig informeren"
+    rijen:
+      - id: r1
+        naam: "Notificatie Management Component (NMC)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r2
+        naam: "NotifyNL (Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r3
+        naam: "Contactherstel (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+            detail: "Aanpassingen voor ondernemers"
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r4
+        naam: "Profielservice"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: realisatie
+            detail: "Inclusief juridisch proces"
+          - kolommen: [q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r5
+        naam: "Positionering profieldienst (met KVK)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027, q3-2027, q4-2027, h1-2028, h2-2028]
+            type: leeg
+      - id: r6
+        naam: "Berichtenstelsel"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+            detail: "Proof of concept beproeven"
+          - kolommen: [q1-2027]
+            type: verkenning
+            label: "Verkenning / realisatie"
+          - kolommen: [q2-2027, q3-2027, q4-2027]
+            type: realisatie
+          - kolommen: [h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r7
+        naam: "Berichtenbox voor Burgers en Ondernemers (BBO, Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: leeg
+          - kolommen: [q3-2027, q4-2027, h1-2028, h2-2028]
+            type: realisatie
+            detail: "Voor ondernemers verwacht eind 2027"
+  - id: g2
+    naam: "Overzicht geven"
+    rijen:
+      - id: r8
+        naam: "Portaal zakelijk op MijnOverheid (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r9
+        naam: "Inzage bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027, q4-2027]
+            type: realisatie
+          - kolommen: [h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r14
+        naam: "MijnZaken (track & trace)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027, q4-2027]
+            type: realisatie
+          - kolommen: [h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r15
+        naam: "MijnTaken"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027, q4-2027]
+            type: realisatie
+          - kolommen: [h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r16
+        naam: "MijnProducten"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: leeg
+          - kolommen: [q3-2027, q4-2027]
+            type: verkenning
+          - kolommen: [h1-2028]
+            type: realisatie
+          - kolommen: [h2-2028]
+            type: doorbouwen
+      - id: r17
+        naam: "MijnContactmomenten"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027, q3-2027, q4-2027]
+            type: leeg
+          - kolommen: [h1-2028]
+            type: verkenning
+          - kolommen: [h2-2028]
+            type: realisatie
+  - id: g3
+    naam: "Meedenken"
+    rijen:
+      - id: r12
+        naam: "Delen bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: verkenning
+            detail: "Via de European Business Wallet"
+          - kolommen: [q3-2027, q4-2027]
+            type: realisatie
+          - kolommen: [h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r13
+        naam: "Digitale Assistent 2.0 (machine-uitvoerbare wetgeving)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+            detail: "Het vervolg hangt af van de uitkomst"
+          - kolommen: [q2-2027, q3-2027, q4-2027, h1-2028, h2-2028]
+            type: leeg
+  - id: g4
+    naam: "Inloggen en machtigen"
+    rijen:
+      - id: r11
+        naam: "Inloggen met eHerkenning (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027, q4-2027, h1-2028, h2-2028]
+            type: doorbouwen
+      - id: r10
+        naam: "Inloggen en machtigen met wallets"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+            detail: "Beproeving met wallets"
+          - kolommen: [q2-2027, q3-2027, q4-2027, h1-2028, h2-2028]
+            type: leeg

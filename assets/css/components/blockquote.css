@@ -9,6 +9,14 @@ blockquote {
   }
 }
 
+blockquote + blockquote {
+  border-radius: var(--radius-bottom-right);
+}
+
+blockquote + blockquote + blockquote {
+  border-radius: var(--radius-upper-left);
+}
+
 blockquote.quote {
   font-style: italic;
 }

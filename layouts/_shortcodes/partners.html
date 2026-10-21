@@ -1,0 +1,13 @@
+{{- /* Logo's van de organisaties waarmee MOZa samenwerkt. De lijst staat in
+       partners-lijst.html; markdown-body maakt er in de tekstuitvoer een
+       opsomming van. */ -}}
+<ul class="partners" aria-label="Organisaties waarmee we samenwerken">
+  {{- range partial "partners-lijst.html" . }}
+  {{- $naam := .naam }}
+  {{- with resources.Get (printf "images/beeldbank/logos/%s" .logo) }}
+  <li class="logo-{{ path.BaseName .Name }}"><img src="{{ .RelPermalink }}" alt="{{ $naam }}"></li>
+  {{- else }}
+  {{- errorf "partners: logo %q ontbreekt in assets/images/beeldbank/logos/" .logo }}
+  {{- end }}
+  {{- end }}
+</ul>

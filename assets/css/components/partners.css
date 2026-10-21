@@ -1,0 +1,37 @@
+.partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-bg-logo);
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Logo's zonder eigen witruimte zouden anders zwaarder ogen dan de Rijkslogo's. */
+  .logo-kvk img,
+  .logo-uwv img { height: 80%; }
+  .logo-ondernemersplein img,
+  .logo-rotterdam img { height: 40%; }
+  .logo-rdw img { height: 50%; }
+  .logo-amsterdam img { height: 48%; }
+  .logo-vng img { height: 62%; }
+}

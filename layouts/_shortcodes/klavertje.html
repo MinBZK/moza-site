@@ -1,0 +1,37 @@
+{{- /* Het klavertje vier: de vier overheidsbrede portalen, met MijnOverheid
+       Zakelijk gemarkeerd. Noem de vier portalen ook in de tekst: die is de
+       tekstversie. Het blad komt uit de presentaties (dia-bibliotheek). */ -}}
+{{- $primitives := (resources.Get "css/nldd-primitives.css").Content -}}
+{{- $tokens := (resources.Get "css/tokens.css").Content -}}
+{{- $regels := (resources.Get "css/components/klavertje.css").Content -}}
+{{- $bestand := partial "klavertje-svg.html" (dict "css" (printf "%s\n%s\n%s" $primitives $tokens $regels)) -}}
+{{- $svg := resources.FromString "images/diagrammen/klavertje.svg" $bestand -}}
+<figure class="klavertje">
+  <a class="diagram-download button-ghost" href="{{ $svg.RelPermalink }}" download="klavertje.svg" data-tooltip="Download als afbeelding">
+    {{- partial "icon.html" "download" -}}
+    <span class="visually-hidden">Download als afbeelding</span>
+  </a>
+  <div class="klavertje-raster" role="img" aria-label="Klavertje vier: Overheid.nl en MijnOverheid voor burgers, Ondernemersplein en MijnOverheid Zakelijk voor ondernemers. MijnOverheid Zakelijk is gemarkeerd.">
+    <svg class="klavertje-beeld" viewBox="0 0 32.8 32.8" aria-hidden="true" focusable="false">
+      <defs>
+        <path id="klavertje-blad" d="M0 0V-4C0 -8 -1.6 -16.2 -8 -16.2C-13 -16.2 -16.2 -13 -16.2 -8C-16.2 -1.6 -8 0 -4 0Z"/>
+        <clipPath id="klavertje-onder-bladen">
+          <path d="M16.4 20.4C16.4 24.4 18 32.6 24.4 32.6H40V48H-8V32.6H8.4C14.8 32.6 16.4 24.4 16.4 20.4Z"/>
+        </clipPath>
+      </defs>
+      <path class="klavertje-steel" clip-path="url(#klavertje-onder-bladen)" d="M16.12 18.4C16.13 19.17 16.14 21.63 16.16 23.05C16.19 24.47 16.22 25.75 16.28 26.93C16.35 28.1 16.42 29.15 16.53 30.12C16.64 31.08 16.78 31.93 16.96 32.71C17.13 33.49 17.34 34.17 17.6 34.79C17.86 35.42 18.16 35.96 18.52 36.45C18.87 36.94 19.28 37.36 19.74 37.74C20.21 38.13 21.06 38.59 21.32 38.76A0.17 0.17 0 0 0 21.48 38.44C21.23 38.28 20.42 37.82 19.98 37.45C19.54 37.08 19.17 36.68 18.84 36.21C18.51 35.74 18.23 35.23 17.99 34.63C17.75 34.03 17.56 33.38 17.39 32.61C17.23 31.85 17.11 31.02 17.01 30.07C16.9 29.11 16.84 28.07 16.78 26.9C16.73 25.73 16.71 24.46 16.69 23.04C16.67 21.62 16.68 19.17 16.67 18.4A0.28 0.28 0 0 0 16.12 18.4Z"/>
+      <use href="#klavertje-blad" class="klavertje-blad" transform="translate(16.4 16.4)"/>
+      <use href="#klavertje-blad" class="klavertje-blad" transform="translate(16.4 16.4) scale(-1 1)"/>
+      <use href="#klavertje-blad" class="klavertje-blad" transform="translate(16.4 16.4) scale(1 -1)"/>
+      <use href="#klavertje-blad" class="klavertje-blad klavertje-blad-moza" transform="translate(16.4 16.4) scale(-1 -1)"/>
+    </svg>
+    <span class="klavertje-kolom klavertje-kolom-1">Burgers</span>
+    <span class="klavertje-kolom klavertje-kolom-2">Ondernemers</span>
+    <span class="klavertje-rij klavertje-rij-1">Openbare informatie</span>
+    <span class="klavertje-rij klavertje-rij-2">Met eigen gegevens</span>
+    <span class="klavertje-blad-tekst klavertje-lb">Overheid.nl</span>
+    <span class="klavertje-blad-tekst klavertje-rb">Ondernemers&shy;plein</span>
+    <span class="klavertje-blad-tekst klavertje-lo">MijnOverheid</span>
+    <span class="klavertje-blad-tekst klavertje-ro">MijnOverheid Zakelijk</span>
+  </div>
+</figure>

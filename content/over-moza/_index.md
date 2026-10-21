@@ -9,7 +9,7 @@ sectienavigatie: true
 
 ## Onze opdracht
 
-Ondernemers als één overheid overzicht geven, en tijdig informeren over wat voor hen relevant is. Zo staat het in de [intentieverklaring](/documenten/intentieverklaring/) die in mei 2026 namens de stuurgroep is getekend.
+Ondernemers als één overheid overzicht geven, en tijdig informeren over wat voor hen relevant is. Zo staat het in de [intentieverklaring](/documenten/intentieverklaring/) die [negen overheidsorganisaties](/over-moza/samenwerking/) in mei 2026 samen hebben getekend.
 
 Alles wat we doen, toetsen we aan één vraag: heeft de ondernemer hierdoor minder gedoe?
 
@@ -33,7 +33,7 @@ Je hoeft daarvoor nu niets te doen. Ons doel is dat je het merkt op plekken die 
 
 We maken samen met overheidsorganisaties gedeelde digitale bouwstenen. Dat zijn diensten die elke organisatie kan gebruiken. Zo hoeft niet elke organisatie hetzelfde zelf te bouwen. Dat [scheelt ook de overheid werk](/over-moza/samenwerking/#wat-het-organisaties-oplevert): minder zelf bouwen, minder herhaalvragen en minder herstelwerk. Logius, een van de ICT-dienstverleners van de overheid, is de beoogde beheerder van deze diensten.
 
-Met steun van de stuurgroep kozen we bewust voor focus. We beginnen met drie bouwstenen, zodat ondernemers hun post van de overheid digitaal kunnen ontvangen als ze dat willen:
+Samen met de organisaties die meedoen kozen we bewust voor focus. We beginnen met drie bouwstenen, zodat ondernemers hun post van de overheid digitaal kunnen ontvangen als ze dat willen:
 
 - **[Berichten](/onderwerpen/berichten/):** je berichten van de overheid lees je op de plek waar jij werkt.
 - **[Notificeren](/onderwerpen/notificatiedienst/):** je krijgt een seintje als er iets voor je klaarstaat.

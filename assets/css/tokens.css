@@ -27,7 +27,7 @@
   --color-bg-light: light-dark(var(--primitives-color-lintblauw-25), var(--primitives-color-neutral-100));
 
   /* Tekstkleuren */
-  --color-text: var(--primitives-color-neutral-950);
+  --color-text: light-dark(var(--primitives-color-neutral-950), var(--primitives-color-neutral-925));
   --color-text-heading: var(--primitives-color-neutral-950);
   --color-text-muted: var(--primitives-color-neutral-800);
   --color-text-inverse: #ffffff;

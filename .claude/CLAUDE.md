@@ -56,7 +56,7 @@ Kleurtokens in `assets/css/tokens.css` verwijzen naar NLDD-primitives in het geg
 ## Skills
 
 Workflow: `/check`, `/nieuwe-weekly`, `/nieuwe-presentatie`, `/herzie-onderzoek`
-Review: `/content-review`, `/a11y-review`, `/seo-check`
+Review: `/content-review`, `/lezerspanel`, `/a11y-review`, `/seo-check`
 Hulp: `/hugo`
 
 ## Rules

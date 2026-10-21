@@ -54,6 +54,11 @@
   {{- $content = replace $content . (delimit $regels "\n") -}}
 {{- end -}}
 
+{{- range findRESubmatch `\{\{<\s*roadmap(?:\s+"([^"]+)")?\s*>\}\}` $content -}}
+  {{- $tabel := partial "roadmap-markdown.html" (dict "page" $p "naam" (index . 1 | default "roadmap.yaml")) -}}
+  {{- $content = replace $content (index . 0) $tabel -}}
+{{- end -}}
+
 {{- /* Moet vóór het strippen hieronder, anders verdwijnt de emoji mee. */ -}}
 {{- /* Een getekend diagram staat als shortcode in de tekst; in de download
        hoort de plaat zelf. De shortcode bewaart hem als

@@ -1,0 +1,34 @@
+{{- /* De roadmap uit roadmap.yaml als GFM-tabel, voor de tekstuitvoer
+       (markdown-body). Een cel over meer kwartalen staat in elk kwartaal
+       apart: een Markdown-tabel kent geen colspan. */ -}}
+{{- $bron := .page.Resources.GetMatch .naam -}}
+{{- with $bron -}}{{- else -}}{{- errorf "Roadmap: %q niet gevonden bij %s" $.naam $.page.File.Path -}}{{- end -}}
+{{- $data := $bron | transform.Unmarshal -}}
+{{- $kop := slice "Onderdeel" -}}
+{{- $streep := slice "---" -}}
+{{- range $data.kolommen -}}
+  {{- $kop = $kop | append (cond (isset . "fase_label") (printf "%s (%s)" .label .fase_label) .label) -}}
+  {{- $streep = $streep | append "---" -}}
+{{- end -}}
+{{- $regels := slice (printf "| %s |" (delimit $kop " | ")) (printf "| %s |" (delimit $streep " | ")) -}}
+{{- $leeg := slice -}}
+{{- range $data.kolommen }}{{ $leeg = $leeg | append "" }}{{ end -}}
+{{- range $groep := $data.groepen -}}
+  {{- $groepsregel := slice (printf "**%s**" (replace $groep.naam "|" `\|`)) | append $leeg -}}
+  {{- $regels = $regels | append (printf "| %s |" (delimit $groepsregel " | ")) -}}
+  {{- range $rij := $groep.rijen -}}
+    {{- $perKolom := dict -}}
+    {{- range $cel := $rij.cellen -}}
+      {{- if ne $cel.type "leeg" -}}
+        {{- $tekst := $cel.label | default (title $cel.type) -}}
+        {{- with $cel.detail }}{{ $tekst = printf "%s: %s" $tekst . }}{{ end -}}
+        {{- range $cel.kolommen }}{{ $perKolom = merge $perKolom (dict . $tekst) }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $cellen := slice $rij.naam -}}
+    {{- range $data.kolommen }}{{ $cellen = $cellen | append (index $perKolom .kolom | default "") }}{{ end -}}
+    {{- $cellen = apply $cellen "replace" "." "|" `\|` -}}
+    {{- $regels = $regels | append (printf "| %s |" (delimit $cellen " | ")) -}}
+  {{- end -}}
+{{- end -}}
+{{- return printf "%s\n\n%s:\n\n%s" $data.intro $data.caption (delimit $regels "\n") -}}

@@ -21,6 +21,10 @@ Deze regels gelden voor alle content en communicatie.
 - Gebruik "profielservice" (één woord), niet "profiel service"
 - Hetzelfde geldt voor andere services: "notificatieservice", niet "notificatie service"
 
+## Vaste teksten
+
+- Hint bij een plaat, tabel of tijdlijn die breder is dan het scherm: "Schuif opzij om de hele [plaat/roadmap/tijdlijn] te zien." Niet "Veeg opzij": schuiven kan ook met muis, trackpad en toetsenbord.
+
 ## Rijkshuisstijl
 
 - Volg de Rijkshuisstijl voor overheidswebsites

@@ -4,7 +4,9 @@
 {{- $primitives := (resources.Get "css/nldd-primitives.css").Content -}}
 {{- $tokens := (resources.Get "css/tokens.css").Content -}}
 {{- $regels := (resources.Get "css/components/klavertje.css").Content -}}
-{{- $bestand := partial "klavertje-svg.html" (dict "css" (printf "%s\n%s\n%s" $primitives $tokens $regels)) -}}
+{{- /* Zonder ingebed lettertype loopt de tekst in het losse bestand buiten de bladen. */ -}}
+{{- $font := printf `@font-face { font-family: "RijksSans"; src: url("data:font/woff2;base64,%s") format("woff2-variations"); font-weight: 200 800; font-style: normal; }` (os.ReadFile "static/fonts/RijksSansWeb-Regular.woff2" | base64Encode) -}}
+{{- $bestand := partial "klavertje-svg.html" (dict "css" (printf "%s\n%s\n%s\n%s" $font $primitives $tokens $regels)) -}}
 {{- $svg := resources.FromString "images/diagrammen/klavertje.svg" $bestand -}}
 <figure class="klavertje">
   <a class="diagram-download button-ghost" href="{{ $svg.RelPermalink }}" download="klavertje.svg" data-tooltip="Download als afbeelding">

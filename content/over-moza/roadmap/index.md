@@ -24,7 +24,7 @@ Bij onderdelen met "Logius" maakt Logius de planning en zorgt Logius voor de rea
 
 - **Notificeren:** een seintje als er iets voor je klaarstaat. De Notificatie Management Component (NMC) en NotifyNL van Logius verzorgen samen het versturen. Contactherstel zorgt dat de overheid alsnog contact met je legt als een bericht niet aankomt. Lees meer over de [notificatiedienst](/onderwerpen/notificatiedienst/).
 - **Profiel:** je contactgegevens en voorkeuren, één keer voor de hele overheid. De profielservice is het onderdeel waarin je die gegevens beheert. Samen met KVK verkennen we waar de profieldienst het beste past. Lees meer over de [profielservice](/onderwerpen/profielservice/).
-- **Berichten:** berichten van alle overheden blijven bij de organisatie die ze stuurt, en komen samen op de plek waar jij werkt. De Berichtenbox van MijnOverheid gaat ook berichten voor ondernemers tonen. Lees meer over [berichten](/onderwerpen/berichten-fbs/).
+- **Berichten:** berichten van alle overheden blijven bij de organisatie die ze stuurt, en komen samen op de plek waar jij werkt. De Berichtenbox van MijnOverheid gaat ook berichten voor ondernemers tonen. Lees meer over [berichten](/onderwerpen/berichten/).
 
 **Overzicht geven:** een ingang voor ondernemers op MijnOverheid, en inzage in de gegevens die de overheid over je bedrijf heeft. Met MijnZaken zie je hoe je aanvragen ervoor staan, met MijnTaken wat je nog moet doen. Later volgen overzichten van je producten en van je contactmomenten met de overheid.
 
@@ -38,7 +38,7 @@ Nu log je als ondernemer bij de overheid in met DigiD of eHerkenning. De komende
 
 Elk land in de Europese Unie moet zijn inwoners eind 2026 een persoonlijke wallet aanbieden. Dat staat in de [eIDAS-verordening](https://eur-lex.europa.eu/eli/reg/2024/1183/oj). Voor ondernemingen komt er een eigen wallet: de [European Business Wallet](https://digital-strategy.ec.europa.eu/nl/policies/business-wallets). De regels daarvoor staan nog niet vast.
 
-Wij verkennen wat wallets betekenen voor ondernemers. Hoe log je in namens je onderneming? En hoe geef je een medewerker toestemming om iets voor de onderneming te regelen? In de [proeftuin](/onderwerpen/proeftuin/) kun je al inloggen met een testversie van de NL Wallet. In januari 2027 weten we welke manieren van inloggen de proeftuin gaat ondersteunen.
+Wij verkennen wat wallets betekenen voor ondernemers. Hoe log je in namens je onderneming? En hoe geef je een medewerker toestemming om iets voor de onderneming te regelen? In de [proeftuin](/onderwerpen/proeftuin/) kun je al inloggen met een testversie van de NL Wallet. In januari 2027 weten we welke manieren van inloggen de proeftuin gaat ondersteunen. Lees meer over [wallets](/onderwerpen/wallets/).
 
 ## Doorkijk naar 2030
 

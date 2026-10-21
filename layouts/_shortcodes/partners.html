@@ -5,14 +5,14 @@
 <ul class="partners" aria-label="Organisaties waarmee we samenwerken">
   {{- range partial "partners-lijst.html" . }}
   {{- $org := . }}
-  {{- with resources.Get (printf "images/beeldbank/logos/%s" .logo) }}
+  {{- with resources.Get (printf "images/beeldbank/%s" .logo) }}
   <li class="logo-{{ path.BaseName .Name }}{{ if $org.rijkslogo }} partners-rijkslogo{{ end }}">
     <a href="{{ $org.url }}" rel="external noreferrer" data-tooltip="{{ $org.naam }}" data-tooltip-uitlijning="midden">
       <img src="{{ .RelPermalink }}" alt="{{ $org.naam }}">
     </a>
   </li>
   {{- else }}
-  {{- errorf "partners: logo %q ontbreekt in assets/images/beeldbank/logos/" .logo }}
+  {{- errorf "partners: logo %q ontbreekt in assets/images/beeldbank/" .logo }}
   {{- end }}
   {{- end }}
 </ul>

@@ -35,7 +35,7 @@ We maken samen met overheidsorganisaties gedeelde digitale bouwstenen. Dat zijn 
 
 Met steun van de stuurgroep kozen we bewust voor focus. We beginnen met drie bouwstenen, zodat ondernemers hun post van de overheid digitaal kunnen ontvangen als ze dat willen:
 
-- **[Berichten](/onderwerpen/berichten-fbs/):** je berichten van de overheid lees je op de plek waar jij werkt.
+- **[Berichten](/onderwerpen/berichten/):** je berichten van de overheid lees je op de plek waar jij werkt.
 - **[Notificeren](/onderwerpen/notificatiedienst/):** je krijgt een seintje als er iets voor je klaarstaat.
 - **[Profiel](/onderwerpen/profielservice/):** je contactgegevens en voorkeuren geef je één keer door, voor de hele overheid.
 
@@ -44,5 +44,6 @@ Daarnaast werken we aan:
 - **Zaken en taken:** overzicht van je lopende aanvragen en dossiers, en van wat je nog moet doen.
 - **Gegevens delen:** je bedrijfsgegevens inzien, en zelf bepalen met wie je ze deelt.
 - **Wetten als code:** regels die een computer kan uitvoeren, zodat bijvoorbeeld een [digitale assistent](/onderwerpen/digitale-assistent/) ze op jouw situatie kan toepassen.
-- **[Wallets](/over-moza/roadmap/#inloggen-machtigen-en-wallets):** inloggen en gegevens delen met een app, zoals de European Business Wallet.
+- **[Wallets](/onderwerpen/wallets/):** inloggen en gegevens delen met een app, zoals de European Business Wallet.
+
 ## Meer over MOZa

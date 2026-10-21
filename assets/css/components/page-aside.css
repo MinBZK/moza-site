@@ -118,28 +118,29 @@ article:has(> .page-aside) {
   }
 }
 
-.toc + .downloads {
+.toc + .downloads,
+.relevante-paginas + nav {
   margin-top: 1.5rem;
 }
 
+.relevante-paginas h2,
 .toc h2,
-.downloads h2,
-.relevante-links h2 {
+.downloads h2 {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;
 }
 
+.relevante-paginas ul,
 .toc ul,
-.downloads ul,
-.relevante-links ul {
+.downloads ul {
   margin: 0;
   padding-left: 0;
   list-style: none;
 }
 
+.relevante-paginas a,
 .toc a,
-.downloads a,
-.relevante-links a {
+.downloads a {
   display: block;
   min-height: 24px;
   padding-block: 0.125rem;
@@ -155,6 +156,24 @@ article:has(> .page-aside) {
   &:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
+  }
+}
+
+/* Relevante pagina's en links */
+.relevante-paginas {
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a[aria-current="page"] {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .relevante-link a::before {
+    content: "→";
+    display: inline-block;
+    margin-right: 0.4em;
   }
 }
 
@@ -193,15 +212,4 @@ article:has(> .page-aside) {
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;
-}
-
-/* Relevante links: pijl als opsommingsteken */
-.relevante-links li {
-  margin-bottom: 0.5rem;
-}
-
-.relevante-links a::before {
-  content: "→";
-  display: inline-block;
-  margin-right: 0.4em;
 }

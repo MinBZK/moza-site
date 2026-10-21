@@ -17,11 +17,12 @@
 {{- end -}}
 {{- $hasToc := and .showToc $toc (ne $p.Params.toc false) (gt (len (findRE "<li>" $toc)) 0) -}}
 {{- $hasDownload := eq $p.Params.download true -}}
-{{- $hasLinks := $p.Params.relevante_links -}}
-{{- if or $hasToc $hasDownload $hasLinks -}}
+{{- $relevant := partial "relevante-paginas.html" $p -}}
+{{- if or $relevant $hasToc $hasDownload -}}
 <aside class="page-aside">
   {{- /* Chevron voor de uitklapknoppen op smal scherm (toc.js). */}}
   <template id="page-aside-chevron">{{ partial "icon.html" "chevron-down" }}</template>
+  {{- $relevant -}}
   {{- if $hasToc -}}
   <nav id="toc" class="toc" aria-label="Inhoudsopgave">
     <h2>Op deze pagina</h2>
@@ -30,9 +31,6 @@
   {{- end -}}
   {{- if $hasDownload -}}
   {{- partial "downloads.html" $p -}}
-  {{- end -}}
-  {{- with $hasLinks -}}
-  {{- partial "relevante-links.html" $p -}}
   {{- end -}}
 </aside>
 {{- end -}}

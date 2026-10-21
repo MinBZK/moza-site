@@ -16,7 +16,7 @@
   ballon.hidden = true;
   document.body.appendChild(ballon);
 
-  const RUIMTE = 6;
+  const RUIMTE = 2;
   let actief = null;
   let gesloten = null; // met Escape weggeklikt; pas weer na verlaten
   let opBallon = false;
@@ -25,9 +25,13 @@
     const r = el.getBoundingClientRect();
     ballon.style.top = `${r.bottom + RUIMTE}px`;
     ballon.style.left = "0px";
-    // Rechts uitlijnen op de knop, maar binnen het venster blijven.
+    // Rechts uitlijnen op de knop, of in het midden met
+    // data-tooltip-uitlijning="midden", maar binnen het venster blijven.
     const breedte = ballon.getBoundingClientRect().width;
-    const links = Math.min(Math.max(8, r.right - breedte), window.innerWidth - breedte - 8);
+    const gewenst = el.dataset.tooltipUitlijning === "midden"
+      ? r.left + (r.width - breedte) / 2
+      : r.right - breedte;
+    const links = Math.min(Math.max(8, gewenst), window.innerWidth - breedte - 8);
     ballon.style.left = `${links}px`;
   }
 

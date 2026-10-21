@@ -1,6 +1,9 @@
 .klavertje {
   position: relative;
   margin: 1.5rem 0 2rem;
+
+  /* Op de hoogte van de kolomlabels */
+  .diagram-download { top: -0.5rem; }
 }
 
 /* Kolom met rijlabels, dan twee kolommen van één blad. Het beeld ligt over de
@@ -85,7 +88,7 @@
 .klavertje-lb { grid-area: 2 / 2; padding: 12% 9% 6% 14%; }
 .klavertje-rb { grid-area: 2 / 3; padding: 12% 14% 6% 9%; }
 .klavertje-lo { grid-area: 3 / 2; padding: 6% 9% 12% 14%; }
-.klavertje-ro { grid-area: 3 / 3; padding: 6% 14% 12% 9%; color: var(--color-primary); }
+.klavertje-ro { grid-area: 3 / 3; padding: 6% 14% 12% 9%; }
 
 /* Even veel ruimte rechts als de rijlabels links innemen, zodat de bladen in
    het midden staan en niet het hele blok */
@@ -123,8 +126,6 @@
   text-anchor: middle;
   fill: var(--color-text);
 }
-
-.kl-blad-moza { fill: var(--color-primary); }
 
 @media (width < 30rem) {
   .klavertje-raster {

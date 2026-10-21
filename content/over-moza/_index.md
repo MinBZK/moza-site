@@ -31,7 +31,7 @@ Je hoeft daarvoor nu niets te doen. Ons doel is dat je het merkt op plekken die 
 
 ## Hoe we dat doen
 
-We maken samen met overheidsorganisaties gedeelde digitale bouwstenen. Dat zijn diensten die elke organisatie kan gebruiken. Zo hoeft niet elke organisatie hetzelfde zelf te bouwen. Logius, een van de ICT-dienstverleners van de overheid, is de beoogde beheerder van deze diensten.
+We maken samen met overheidsorganisaties gedeelde digitale bouwstenen. Dat zijn diensten die elke organisatie kan gebruiken. Zo hoeft niet elke organisatie hetzelfde zelf te bouwen. Dat [scheelt ook de overheid werk](/over-moza/samenwerking/#wat-het-organisaties-oplevert): minder zelf bouwen, minder herhaalvragen en minder herstelwerk. Logius, een van de ICT-dienstverleners van de overheid, is de beoogde beheerder van deze diensten.
 
 Met steun van de stuurgroep kozen we bewust voor focus. We beginnen met drie bouwstenen, zodat ondernemers hun post van de overheid digitaal kunnen ontvangen als ze dat willen:
 

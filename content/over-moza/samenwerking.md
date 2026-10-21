@@ -40,6 +40,12 @@ We bouwen voort op wat er al is. Daarom werken we samen met programma's die aan 
 - **[Overheidsbrede Interactieservices (OBIS)](https://www.logius.nl/onze-dienstverlening/interactie).** Het programma van Logius voor berichten en notificaties, vanuit burgers. Wij werken vanuit ondernemers, en doen mee in de werkgroepen van OBIS.
 - **De [Nederlandse Digitale Dienst](/over-moza/groter-geheel/).** Sinds september 2026 is MOZa een van de drie doorbraaktrajecten van de NLDD. We werken samen met de andere twee trajecten.
 
+## Wat het organisaties oplevert
+
+- **Minder zelf bouwen.** Je gebruikt gedeelde diensten, in plaats van alles zelf te ontwikkelen en te beheren.
+- **Minder vragen en minder herstelwerk.** Ondernemers krijgen op tijd een seintje over wat ze moeten doen. Dat voorkomt fouten en achterstanden, en scheelt werk voor je klantcontact.
+- **Minder gegevens uitvragen.** Gegevens blijven bij de bron. Met toestemming van de ondernemer gebruik je wat al bekend is, in plaats van het nog eens te vragen.
+
 ## Meedoen
 
 - **Aansluiten.** Wil je met jouw organisatie een dienst gaan gebruiken? Wat dat van je vraagt, verschilt per dienst. Op de [onderwerppagina's](/onderwerpen/) lees je per dienst hoe ver we zijn. Stuur ons een e-mail, dan bekijken we samen wat past.

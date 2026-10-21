@@ -20,6 +20,7 @@ Met het Ondernemersplein van KVK verkennen we hoe we elkaar aanvullen. Met Logiu
 - **[Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).** De gedeelde bouwstenen van de overheid, zoals DigiD en MijnOverheid met de Berichtenbox. MOZa hoort daarbij.
 - **Architectuur Digitale Overheid.** Het gezamenlijke beeld van hoe de overheid in 2030 als één geheel werkt. Onze diensten passen daarin.
 - **[Overheidsbrede Interactieservices (OBIS)](https://www.logius.nl/onze-dienstverlening/interactie).** Het programma van Logius voor berichten en notificaties. OBIS werkt vanuit burgers, wij vanuit ondernemers, met dezelfde bouwstenen.
+- **[Federatief datastelsel](https://federatief.datastelsel.nl/).** Afspraken en standaarden om gegevens veilig te delen, terwijl ze bij de bron blijven. Daarbij horen [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) voor veilige verbindingen tussen organisaties, [Federatieve ToegangsVerlening (FTV)](https://vng-realisatie.github.io/ftv/) voor wie welke gegevens mag gebruiken, en [Logboek Dataverwerkingen (LDV)](https://logius-standaarden.github.io/logboek-dataverwerkingen/) om vast te leggen wie gegevens heeft gebruikt.
 - **Nederlandse Digitaliseringsstrategie.** Burgers en ondernemers centraal stellen is een van de prioriteiten. MOZa werkt daaraan voor ondernemers.
 
 ## Doorbraaktraject van de Nederlandse Digitale Dienst

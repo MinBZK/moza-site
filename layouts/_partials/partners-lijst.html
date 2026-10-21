@@ -1,18 +1,20 @@
 {{- /* De organisaties waarmee MOZa samenwerkt, voor het logoraster (shortcode
        partners) en de tekstuitvoer (markdown-body). Logo's staan in
-       assets/images/beeldbank/logos/. */ -}}
+       assets/images/beeldbank/logos/. Een Rijkslogo heeft onder het lint
+       ruimte voor meer regels; rijkslogo zet het daarom lager (partners.css). */ -}}
 {{- return slice
-  (dict "logo" "belastingdienst.svg" "naam" "Belastingdienst")
-  (dict "logo" "kvk.png" "naam" "KVK")
-  (dict "logo" "ondernemersplein.svg" "naam" "Ondernemersplein")
-  (dict "logo" "rvo.svg" "naam" "RVO")
-  (dict "logo" "uwv.png" "naam" "UWV")
-  (dict "logo" "rdw.png" "naam" "RDW")
-  (dict "logo" "douane.svg" "naam" "Douane")
-  (dict "logo" "logius.svg" "naam" "Logius")
-  (dict "logo" "vng.png" "naam" "VNG")
-  (dict "logo" "amsterdam.svg" "naam" "Gemeente Amsterdam")
-  (dict "logo" "rotterdam.svg" "naam" "Gemeente Rotterdam")
-  (dict "logo" "bzk.svg" "naam" "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties")
-  (dict "logo" "ezk.svg" "naam" "Ministerie van Economische Zaken en Klimaat")
+  (dict "rijkslogo" true "logo" "belastingdienst.svg" "naam" "Belastingdienst" "url" "https://www.belastingdienst.nl/")
+  (dict "logo" "kvk.png" "naam" "KVK" "url" "https://www.kvk.nl/")
+  (dict "logo" "ondernemersplein.svg" "naam" "Ondernemersplein" "url" "https://ondernemersplein.overheid.nl/")
+  (dict "rijkslogo" true "logo" "rvo.svg" "naam" "RVO" "url" "https://www.rvo.nl/")
+  (dict "logo" "uwv.png" "naam" "UWV" "url" "https://www.uwv.nl/")
+  (dict "logo" "rdw.png" "naam" "RDW" "url" "https://www.rdw.nl/")
+  (dict "rijkslogo" true "logo" "douane.svg" "naam" "Douane" "url" "https://www.douane.nl/")
+  (dict "rijkslogo" true "logo" "logius.svg" "naam" "Logius" "url" "https://www.logius.nl/")
+  (dict "logo" "vng.png" "naam" "VNG" "url" "https://vng.nl/")
+  (dict "logo" "amsterdam.svg" "naam" "Gemeente Amsterdam" "url" "https://www.amsterdam.nl/")
+  (dict "logo" "rotterdam.svg" "naam" "Gemeente Rotterdam" "url" "https://www.rotterdam.nl/")
+  (dict "rijkslogo" true "logo" "odi.svg" "naam" "Rijksorganisatie ODI, Digi Gilde" "url" "https://www.rijksorganisatieodi.nl/")
+  (dict "rijkslogo" true "logo" "bzk.svg" "naam" "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties" "url" "https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties")
+  (dict "rijkslogo" true "logo" "ezk.svg" "naam" "Ministerie van Economische Zaken en Klimaat" "url" "https://www.rijksoverheid.nl/ministeries/ministerie-van-economische-zaken-en-klimaat")
 -}}

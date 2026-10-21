@@ -7,15 +7,23 @@
 
 const HEADING = /<h([1-6])\b[^>]*>/gi;
 const MERMAID_IMG = /<img\b[^>]*\bclass="[^"]*\bmermaid-img\b[^"]*"[^>]*>/gi;
-const ALT = /\balt="([^"]*)"/i;
 const ARTICLE = /<article\b[^>]*>([\s\S]*?)<\/article>/gi;
 const IMG = /<img\b[^>]*>/gi;
 const MERMAID_CLASS = /\bclass="[^"]*\bmermaid-img\b[^"]*"/i;
-const DECORATIEF = /\brole="presentation"|\baria-hidden="true"/i;
+const DECORATIEF = /\brole=["']?presentation\b|\baria-hidden=["']?true\b/i;
 const ZIJKOLOM = /<aside\b[^>]*\bclass="[^"]*\bpage-aside\b[^"]*"[\s\S]*?<\/aside>/gi;
 const MERMAID_DIAGRAM = /<div\b[^>]*\bclass="[^"]*\bmermaid-diagram\b[^"]*"[\s\S]*?<\/div>/gi;
 const BESCHRIJVING = /<p\b[^>]*\bclass="[^"]*\bmermaid-beschrijving\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i;
 const VOETNOTEN_ROL = /<div\b[^>]*\brole=["']?doc-endnotes/gi;
+
+/**
+ * De minifier haalt aanhalingstekens weg bij een waarde zonder spaties, en
+ * maakt van een lege waarde (alt="") een kaal attribuut (alt).
+ */
+function attribuut(tag, naam) {
+  const m = tag.match(new RegExp(`\\s${naam}(?:=(?:"([^"]*)"|([^\\s"'>]+)))?(?=[\\s/>])`, "i"));
+  return m ? (m[1] ?? m[2] ?? "") : null;
+}
 
 /**
  * Koppenstructuur (WCAG 1.3.1). Axe rekent `heading-order` tot best-practice
@@ -58,7 +66,7 @@ function checkDiagramAlt(html) {
   const findings = [];
 
   for (const [tag] of html.matchAll(MERMAID_IMG)) {
-    const alt = tag.match(ALT)?.[1] ?? null;
+    const alt = attribuut(tag, "alt");
     if (alt === null) {
       findings.push("diagram zonder alt-attribuut");
     } else if (alt.trim() === "") {
@@ -85,8 +93,8 @@ function checkContentImageAlt(html) {
     for (const [tag] of inhoud.matchAll(IMG)) {
       if (MERMAID_CLASS.test(tag)) continue;
 
-      const alt = tag.match(ALT)?.[1] ?? null;
-      const src = tag.match(/\bsrc="([^"]*)"/i)?.[1] ?? "afbeelding";
+      const alt = attribuut(tag, "alt");
+      const src = attribuut(tag, "src") ?? "afbeelding";
 
       if (alt === null) {
         findings.push(`${src} zonder alt-attribuut`);

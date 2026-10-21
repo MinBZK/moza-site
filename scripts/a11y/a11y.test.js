@@ -208,6 +208,19 @@ test("contentafbeelding: een ontbrekend alt-attribuut wordt gemeld", () => {
   assert.match(findings[0], /zonder alt-attribuut/);
 });
 
+test("contentafbeelding: een alt-tekst zonder aanhalingstekens telt ook", () => {
+  assert.deepEqual(checkContentImageAlt("<article><img src=/logo/kvk.png alt=KVK></article>"), []);
+});
+
+test("contentafbeelding: een kale alt telt als lege alt-tekst", () => {
+  const findings = checkContentImageAlt("<article><img src=logo.svg alt></article>");
+  assert.match(findings[0], /lege alt-tekst/);
+});
+
+test("contentafbeelding: een geminificeerde decoratieve afbeelding met kale alt is in orde", () => {
+  assert.deepEqual(checkContentImageAlt("<article><img src=logo.svg alt role=presentation></article>"), []);
+});
+
 test("contentafbeelding: een decoratieve afbeelding mag een lege alt hebben", () => {
   const html = '<article><img src="streep.svg" alt="" role="presentation"></article>';
   assert.deepEqual(checkContentImageAlt(html), []);

@@ -4,6 +4,7 @@ description: "Post van de overheid digitaal, op de plek die voor jou logisch is.
 weight: 6
 hide_tiles: true
 prev_next: true
+sectienavigatie: true
 ---
 
 Als ondernemer kun je je post van de overheid ook digitaal ontvangen. Dat kan als je zelf aangeeft dat je digitaal bereikbaar wilt zijn.

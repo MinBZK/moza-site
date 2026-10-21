@@ -1,0 +1,38 @@
+{{- /* De pagina's van de dichtstbijzijnde sectie met sectienavigatie: true,
+       en de links uit de front matter:
+         relevante_links:
+           - titel: "De intentieverklaring"
+             pagina: "/documenten/intentieverklaring"   # interne pageRef
+           - titel: "Externe bron"
+             url: "https://voorbeeld.nl"                 # of een directe URL */ -}}
+{{- $p := . -}}
+{{- $sectie := false -}}
+{{- range (slice $p | append $p.Ancestors) -}}
+  {{- if and (not $sectie) (eq .Kind "section") .Params.sectienavigatie }}{{ $sectie = . }}{{ end -}}
+{{- end -}}
+{{- $links := slice -}}
+{{- range $p.Params.relevante_links -}}
+  {{- $item := . -}}
+  {{- $href := $item.url -}}
+  {{- with $item.pagina }}{{ with site.GetPage . }}{{ $href = .RelPermalink }}{{ end }}{{ end -}}
+  {{- with $href }}{{ $links = $links | append (dict "href" . "titel" ($item.titel | default .)) }}{{ end -}}
+{{- end -}}
+{{- $kop := "" -}}
+{{- if and $sectie $links }}{{ $kop = "Relevante pagina's en links" -}}
+{{- else if $sectie }}{{ $kop = "Relevante pagina's" -}}
+{{- else if $links }}{{ $kop = "Relevante links" }}{{ end -}}
+{{- with $kop -}}
+<nav class="relevante-paginas" aria-label="{{ . }}">
+  <h2>{{ . }}</h2>
+  <ul>
+    {{- with $sectie }}
+    {{- range (slice . | append .Pages.ByWeight) }}
+    <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $p.RelPermalink }} aria-current="page"{{ end }}>{{ .Params.card_title | default .Title }}</a></li>
+    {{- end }}
+    {{- end }}
+    {{- range $links }}
+    <li class="relevante-link">{{ partial "render-link" (dict "href" .href "text" .titel) }}</li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end -}}

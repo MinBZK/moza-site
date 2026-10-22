@@ -125,6 +125,7 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 
 ## Exporteren (Plak, offline)
 
+- `download: true` in de front matter (standaard in het archetype) zet een link "Download als PDF" in de footer. De build maakt die PDF met `scripts/downloads/render-downloads.js`: één dia per pagina, alle stappen zichtbaar, getoetst op PDF/UA. In de losse HTML-export hieronder valt de link weg.
 - `just presentatie-export <slug>` bouwt de site (ook drafts) en exporteert de presentatie als één HTML-bestand in `tmp/export/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-export.js`.
 - Publiceren op Plak, zie ook de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:
   - eenmalig een site aanmaken: `plak site create moza/<slug> --title "<titel>" --access sso`;

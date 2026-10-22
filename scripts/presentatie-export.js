@@ -80,8 +80,8 @@ html = html.replace(/(<img\b[^>]*?\s)src=("[^"]*"|'[^']*'|[^\s>]+)/g, (match, be
 // Links die zonder de site niets doen
 html = html.replace(/<link\b[^>]*\brel=["']?(canonical|alternate|icon|apple-touch-icon|manifest)["']?[^>]*>/g, "");
 
-// De sluitknop leidt naar de site; in de export heeft die geen doel
-html = html.replace(/<nldd-icon-button\b[^>]*\bdata-close\b[^>]*><\/nldd-icon-button>/g, "");
+// De sluitknop en de PDF-download leiden naar de site; in de export hebben die geen doel
+html = html.replace(/<nldd-icon-button\b[^>]*\bdata-(?:close|pdf)\b[^>]*>[\s\S]*?<\/nldd-icon-button>/g, "");
 
 if (/data-lokaal|lokaal\//.test(html)) {
   console.error("Er staat nog een verwijzing naar lokale bestanden in de pagina; die mag niet naar buiten.");

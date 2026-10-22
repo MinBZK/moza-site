@@ -20,7 +20,7 @@ In de [intentieverklaring](/documenten/intentieverklaring/) spreken we samen af:
 
 Wat we samen besluiten, bouwen we. Wat er wanneer komt, zie je in de [roadmap](/over-moza/roadmap/).
 
-Op 21 mei 2026 is de verklaring namens de stuurgroep getekend, tijdens het OBDO: het overheidsbrede overleg over de digitale overheid. De verklaring is getekend door de Belastingdienst, de Douane, KVK, Logius, RVO, UWV, VNG, het ministerie van Binnenlandse Zaken en Koninkrijksrelaties en het ministerie van Economische Zaken en Klimaat. Lees meer in het [nieuwsbericht over de ondertekening](/actueel/overheden-versterken-samenwerking-op-mijnoverheid-zakelijk/).
+Op 21 mei 2026 is de verklaring namens de stuurgroep getekend, tijdens het [OBDO](https://pgdi.nl/): het overheidsbrede overleg over de digitale overheid. De verklaring is getekend door de Belastingdienst, de Douane, KVK, Logius, RVO, UWV, VNG, het ministerie van Binnenlandse Zaken en Koninkrijksrelaties en het ministerie van Economische Zaken en Klimaat. Lees meer in het [nieuwsbericht over de ondertekening](/actueel/overheden-versterken-samenwerking-op-mijnoverheid-zakelijk/).
 
 ## Hoe we samenwerken
 

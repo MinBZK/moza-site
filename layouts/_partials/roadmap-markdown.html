@@ -1,9 +1,28 @@
-{{- /* De roadmap uit roadmap.yaml als GFM-tabel, voor de tekstuitvoer
-       (markdown-body). Een cel over meer kwartalen staat in elk kwartaal
-       apart: een Markdown-tabel kent geen colspan. */ -}}
+{{- /* De roadmap uit roadmap.yaml voor de tekstuitvoer (markdown-body). Een
+       tijdlijn (van/tot) wordt een lijst per onderdeel; de oude opzet met
+       kolommen een GFM-tabel, met een cel per kwartaal: Markdown kent geen colspan. */ -}}
 {{- $bron := .page.Resources.GetMatch .naam -}}
 {{- with $bron -}}{{- else -}}{{- errorf "Roadmap: %q niet gevonden bij %s" $.naam $.page.File.Path -}}{{- end -}}
 {{- $data := $bron | transform.Unmarshal -}}
+{{- $uit := "" -}}
+{{- if isset $data "van" -}}
+  {{- $r := partial "roadmap-rijen.html" $data -}}
+  {{- $regels := slice -}}
+  {{- range $type := slice "verkenning" "realisatie" "doorbouwen" -}}
+    {{- $regels = $regels | append (printf "- %s: %s" (title $type) (index $data.legenda $type)) -}}
+  {{- end -}}
+  {{- range $groep := $r.groepen -}}
+    {{- $regels = $regels | append "" (printf "**%s**" $groep.naam) "" -}}
+    {{- range $rij := $groep.rijen -}}
+      {{- $delen := slice -}}
+      {{- range $rij.balken }}{{ $delen = $delen | append (printf "%s %s" .type .periode) }}{{ end -}}
+      {{- range $rij.noten }}{{ $delen = $delen | append (printf "%s: %s" .wanneer .tekst) }}{{ end -}}
+      {{- $naam := $rij.naam }}{{ with $rij.voluit }}{{ $naam = printf "%s (%s)" $naam . }}{{ end -}}
+      {{- $regels = $regels | append (printf "- %s, %s: %s" $naam $rij.wie (delimit $delen "; ")) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $uit = printf "%s\n\n%s:\n\n%s" $data.intro $data.caption (delimit $regels "\n") -}}
+{{- else -}}
 {{- $kop := slice "Onderdeel" -}}
 {{- $streep := slice "---" -}}
 {{- range $data.kolommen -}}
@@ -31,4 +50,6 @@
     {{- $regels = $regels | append (printf "| %s |" (delimit $cellen " | ")) -}}
   {{- end -}}
 {{- end -}}
-{{- return printf "%s\n\n%s:\n\n%s" $data.intro $data.caption (delimit $regels "\n") -}}
+{{- $uit = printf "%s\n\n%s:\n\n%s" $data.intro $data.caption (delimit $regels "\n") -}}
+{{- end -}}
+{{- return $uit -}}

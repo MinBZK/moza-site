@@ -1,11 +1,15 @@
 {{- /* Roadmap-tabel uit een YAML-bestand naast de pagina (page bundle). Gebruik:
    {{< roadmap >}} of {{< roadmap "roadmap.yaml" >}}
+   Met van/tot in de YAML wordt het een tijdlijn per maand (roadmap-tijdlijn.html).
    Rendert alleen de intro en de tabel; de <details>/<summary>-wrapper
    staat in het content-bestand zelf. */ -}}
 {{- $naam := .Get 0 | default "roadmap.yaml" -}}
 {{- $bron := .Page.Resources.GetMatch $naam -}}
 {{- with $bron -}}{{- else -}}{{- errorf "Roadmap: %q niet gevonden bij %s" $naam $.Page.File.Path -}}{{- end -}}
 {{- $data := $bron | transform.Unmarshal -}}
+{{- if isset $data "van" -}}
+{{ partial "roadmap-tijdlijn.html" $data }}
+{{- else -}}
 <p class="rm-intro">{{ $data.intro }}</p>
 
 <div class="rm-wrap">
@@ -37,3 +41,4 @@
     </table>
   </div>
 </div>
+{{- end -}}

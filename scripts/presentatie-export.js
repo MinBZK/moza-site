@@ -80,7 +80,7 @@ html = html.replace(/(<img\b[^>]*?\s)src=("[^"]*"|'[^']*'|[^\s>]+)/g, (match, be
 // Links die zonder de site niets doen
 html = html.replace(/<link\b[^>]*\brel=["']?(canonical|alternate|icon|apple-touch-icon|manifest)["']?[^>]*>/g, "");
 
-// De sluitknop en de PDF-download leiden naar de site; in de export hebben die geen doel
+// Los van de site werken deze knoppen niet: Sluiten gaat naar "/" en de PDF staat alleen op de site
 html = html.replace(/<nldd-icon-button\b[^>]*\bdata-(?:close|pdf)\b[^>]*>[\s\S]*?<\/nldd-icon-button>/g, "");
 
 if (/data-lokaal|lokaal\//.test(html)) {

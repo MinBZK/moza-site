@@ -11,7 +11,7 @@ sectienavigatie: true
 
 Ondernemers als één overheid overzicht geven, en tijdig informeren over wat voor hen relevant is. Zo staat het in de [intentieverklaring](/documenten/intentieverklaring/) die [negen overheidsorganisaties](/over-moza/samenwerking/) in mei 2026 samen hebben getekend.
 
-Alles wat we doen, toetsen we aan één vraag: heeft de ondernemer hierdoor minder gedoe?
+Alles wat we doen, toetsen we aan één vraag: zorgt dit ervoor dat de ondernemer makkelijker zaken kan doen met de overheid?
 
 ## Waarom dit nodig is
 

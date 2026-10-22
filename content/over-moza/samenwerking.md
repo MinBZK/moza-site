@@ -38,7 +38,7 @@ We bouwen voort op wat er al is. Daarom werken we samen met programma's die aan 
 
 - **[MijnServices](https://vng.nl/artikelen/veelgestelde-vragen-mijnservices) en [Common Ground](https://commonground.nl/).** Gemeenten en leveranciers maken samen met VNG open bouwstenen voor een Mijn-omgeving. We nemen die niet één op één over, maar stemmen af en bouwen voort op wat werkt. Zo bouwt de [notificatiedienst](/onderwerpen/notificatiedienst/) voort op een onderdeel dat voor gemeenten is gemaakt.
 - **[Overheidsbrede Interactieservices (OBIS)](https://www.logius.nl/onze-dienstverlening/interactie).** Het programma van Logius voor berichten en notificaties, vanuit burgers. Wij werken vanuit ondernemers, en doen mee in de werkgroepen van OBIS.
-- **De [Nederlandse Digitale Dienst](/over-moza/groter-geheel/).** Sinds september 2026 is MOZa een van de drie doorbraaktrajecten van de NLDD. We werken samen met de andere twee trajecten.
+- **De [Nederlandse Digitale Dienst](/over-moza/groter-geheel/).** Sinds september 2026 is MOZa een van de drie doorbraaktrajecten in de test- en leerfase van de NLDD. De NLDD in oprichting leert van de werkwijze van MOZa en adviseert ons. We werken samen met de andere twee trajecten.
 
 ## Wat het organisaties oplevert
 

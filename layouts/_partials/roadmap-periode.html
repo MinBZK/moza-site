@@ -1,0 +1,17 @@
+{{- /* Een periode in woorden: "Q4 2026 t/m Q1 2027", "vanaf Q2 2027" of met
+       maanden als de periode niet op een kwartaalgrens begint of eindigt.
+       Zonder tot loopt de periode door na het einde van de tijdlijn. */ -}}
+{{- $namen := slice "januari" "februari" "maart" "april" "mei" "juni" "juli" "augustus" "september" "oktober" "november" "december" -}}
+{{- $v := split .van "-" -}}
+{{- $vj := index $v 0 -}}
+{{- $vm := int (strings.TrimLeft "0" (index $v 1)) -}}
+{{- $van := cond (eq (mod $vm 3) 1) (printf "Q%d %s" (div (add $vm 2) 3) $vj) (printf "%s %s" (index $namen (sub $vm 1)) $vj) -}}
+{{- $tekst := printf "vanaf %s" $van -}}
+{{- with .tot -}}
+  {{- $t := split . "-" -}}
+  {{- $tj := index $t 0 -}}
+  {{- $tm := int (strings.TrimLeft "0" (index $t 1)) -}}
+  {{- $tot := cond (eq (mod $tm 3) 0) (printf "Q%d %s" (div (add $tm 2) 3) $tj) (printf "%s %s" (index $namen (sub $tm 1)) $tj) -}}
+  {{- $tekst = cond (eq $van $tot) $van (printf "%s t/m %s" $van $tot) -}}
+{{- end -}}
+{{- return $tekst -}}

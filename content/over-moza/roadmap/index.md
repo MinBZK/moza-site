@@ -8,13 +8,9 @@ Hier zie je waar we aan werken en wanneer we wat verwachten. De roadmap is geen 
 
 ## Per onderdeel
 
-In de roadmap zie je per onderdeel in welke fase het zit:
+De kleur van een balk laat zien in welke fase een onderdeel zit: verkenning, realisatie of doorbouwen. Een bouwsteen is nooit af. Onder **Wie** zie je wie het onderdeel maakt.
 
-- **Verkenning:** we onderzoeken wat nodig is en maken prototypes.
-- **Realisatie:** we bouwen het onderdeel zo dat organisaties het echt kunnen gebruiken.
-- **Doorbouwen:** het onderdeel werkt, en we breiden het uit. Een bouwsteen is nooit af.
-
-Bij onderdelen met "Logius" maakt Logius de planning en zorgt Logius voor de realisatie, in afstemming met het ministerie van Binnenlandse Zaken en Koninkrijksrelaties. MOZa draagt bij, bijvoorbeeld aan het deel voor ondernemers.
+Staat er "Logius", dan maakt Logius de planning en zorgt Logius voor de realisatie, in afstemming met het ministerie van Binnenlandse Zaken en Koninkrijksrelaties. MOZa draagt bij, bijvoorbeeld aan het deel voor ondernemers.
 
 {{< roadmap >}}
 
@@ -26,11 +22,21 @@ Bij onderdelen met "Logius" maakt Logius de planning en zorgt Logius voor de rea
 - **Profiel:** je contactgegevens en voorkeuren, één keer voor de hele overheid. De profielservice is het onderdeel waarin je die gegevens beheert. Samen met KVK verkennen we waar de profieldienst het beste past. Lees meer over de [profielservice](/onderwerpen/profielservice/).
 - **Berichten:** berichten van alle overheden blijven bij de organisatie die ze stuurt, en komen samen op de plek waar jij werkt. De Berichtenbox van MijnOverheid gaat ook berichten voor ondernemers tonen. Lees meer over [berichten](/onderwerpen/berichten/).
 
-**Overzicht geven:** een ingang voor ondernemers op MijnOverheid, en inzage in de gegevens die de overheid over je bedrijf heeft. Met MijnZaken zie je hoe je aanvragen ervoor staan, met MijnTaken wat je nog moet doen. Later volgen overzichten van je producten en van je contactmomenten met de overheid.
+**Overzicht geven**
 
-**Meedenken:** weten wat je moet en kunt doen. Bijvoorbeeld met een [digitale assistent](/onderwerpen/digitale-assistent/) die wetten kan toepassen op jouw situatie.
+- **Portaal zakelijk:** een ingang voor ondernemers op MijnOverheid.
+- **Inzage bedrijfsgegevens:** de gegevens die de overheid over je bedrijf heeft.
+- **MijnZaken en MijnTaken:** met MijnZaken zie je hoe je aanvragen ervoor staan, met MijnTaken wat je nog moet doen.
+- **MijnProducten en MijnContactmomenten:** later volgen overzichten van je producten en van je contactmomenten met de overheid.
 
-**Inloggen en machtigen:** wie namens een onderneming mag inloggen en iets mag regelen. Met eHerkenning, en straks ook met wallets.
+**Meedenken**
+
+- **Delen bedrijfsgegevens:** gegevens van je onderneming delen, via de European Business Wallet.
+- **Digitale assistent:** weten wat je moet en kunt doen, met een [digitale assistent](/onderwerpen/digitale-assistent/) die wetten kan toepassen op jouw situatie.
+
+**Inloggen en machtigen**
+
+- **eHerkenning en wallets:** wie namens een onderneming mag inloggen en iets mag regelen. Met eHerkenning, en straks ook met wallets.
 
 ## Inloggen, machtigen en wallets
 

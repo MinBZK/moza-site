@@ -1,0 +1,7 @@
+{{- /* Volgnummer van een maand ("2027-03") op de tijdlijn, vanaf 1 voor de
+       beginmaand. strings.TrimLeft: int leest "08" en "09" als octaal. */ -}}
+{{- $m := split .maand "-" -}}
+{{- $b := split .begin "-" -}}
+{{- $jaren := sub (int (index $m 0)) (int (index $b 0)) -}}
+{{- $maanden := sub (int (strings.TrimLeft "0" (index $m 1))) (int (strings.TrimLeft "0" (index $b 1))) -}}
+{{- return add (mul $jaren 12) $maanden 1 -}}

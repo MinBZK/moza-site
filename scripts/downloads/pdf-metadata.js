@@ -223,7 +223,9 @@ function readStream(text, object) {
 
 /**
  * PDF/UA 7.2-20: een `LI` mag alleen `Lbl` en `LBody` bevatten. Chromium zet de
- * inhoud direct naast het opsommingsteken en schrijft nooit een `LBody`.
+ * inhoud direct naast het opsommingsteken en schrijft nooit een `LBody`. Een
+ * lijstitem zonder opsommingsteken, zoals een flex- of grid-item, heeft ook
+ * geen `Lbl`.
  */
 function buildLijstParts(text, objecten, eersteVrijeNummer) {
   const perNummer = new Map(objecten.map((o) => [o.nummer, o]));
@@ -235,9 +237,11 @@ function buildLijstParts(text, objecten, eersteVrijeNummer) {
     const kinderen = object.dict.match(/\/K\s*\[([^\]]*)\]/);
     if (!kinderen) continue;
     const verwijzingen = [...kinderen[1].matchAll(/(\d+)\s+\d+\s+R/g)].map((m) => Number(m[1]));
-    if (verwijzingen.length < 2) continue;
-    const [label, ...inhoud] = verwijzingen;
-    if (!/\/S\s*\/Lbl\b/.test(perNummer.get(label)?.dict ?? "")) continue;
+    const label = /\/S\s*\/Lbl\b/.test(perNummer.get(verwijzingen[0])?.dict ?? "")
+      ? verwijzingen[0]
+      : null;
+    const inhoud = label === null ? verwijzingen : verwijzingen.slice(1);
+    if (!inhoud.length) continue;
 
     const body = volgend++;
     parts.push({
@@ -263,13 +267,38 @@ function buildLijstParts(text, objecten, eersteVrijeNummer) {
       number: object.nummer,
       bytes: Buffer.from(
         `${object.nummer} 0 obj\n` +
-          object.dict.replace(/\/K\s*\[[^\]]*\]/, `/K [${label} 0 R ${body} 0 R]`) +
+          object.dict.replace(
+            /\/K\s*\[[^\]]*\]/,
+            `/K [${label === null ? "" : `${label} 0 R `}${body} 0 R]`
+          ) +
           `\nendobj\n`,
         "latin1"
       ),
     });
   }
   return { parts, volgendNummer: volgend };
+}
+
+/**
+ * PDF/UA 7.3-1: een `Figure` moet een Alt hebben. Chromium maakt van een
+ * `<figure>` een Figure zonder Alt, met de `<img>` als Figure mét Alt erin.
+ * Zo'n omhulsel wordt een `Div`; de Alt overnemen zou hem twee keer laten
+ * voorlezen.
+ */
+function buildFiguurObjecten(objecten) {
+  const perNummer = new Map(objecten.map((o) => [o.nummer, o]));
+  return objecten.map((object) => {
+    if (!/\/S\s*\/Figure\b/.test(object.dict) || /\/(Alt|ActualText)\b/.test(object.dict)) {
+      return object;
+    }
+    const k = object.dict.match(/\/K\s*(\[[^\]]*\]|\d+\s+\d+\s+R)/);
+    if (!k || k[1].replace(/\d+\s+\d+\s+R/g, "").replace(/[[\]\s]/g, "")) return object;
+    const kinderen = [...k[1].matchAll(/(\d+)\s+\d+\s+R/g)].map((m) => perNummer.get(Number(m[1])));
+    if (!kinderen.length || !kinderen.every((kind) => /\/Type\s*\/StructElem\b/.test(kind?.dict ?? ""))) {
+      return object;
+    }
+    return { ...object, dict: object.dict.replace(/\/S\s*\/Figure\b/, "/S /Div") };
+  });
 }
 
 const WITRUIMTE = " \t\r\n\f\0";
@@ -343,37 +372,68 @@ function eersteNietWit(tekst, i) {
  * Een gat loopt tot waar de operanden van de volgende tag beginnen, niet tot de
  * tag zelf: `/NonStruct << /MCID 2 >> BDC` hoort in zijn geheel buiten het
  * artefact te blijven.
+ *
+ * Een reeks zonder MCID die geen artefact is, telt niet als tag maar hoort bij
+ * het gat. Chromium zet zo'n reeks om een ligatuur in ongetagde tekst
+ * (`/Span << /ActualText (fi) >> BDC`); die zou het gat anders in tweeën breken.
  */
 function gatenBuitenTags(tekst) {
   const gaten = [];
   let diepte = 0;
+  let los = 0;
   let tags = 0;
   let gatBegin = 0;
   let inkt = false;
-  let xobject = false;
+  let xobjecten = [];
   let vorigEinde = 0;
 
   for (const operator of operatoren(tekst)) {
     if (operator.naam === "BDC" || operator.naam === "BMC") {
-      if (diepte === 0) {
-        tags++;
-        if (inkt) gaten.push({ begin: gatBegin, einde: eersteNietWit(tekst, vorigEinde), xobject });
-        inkt = false;
-        xobject = false;
+      const operanden = tekst.slice(vorigEinde, operator.begin);
+      if (diepte === 0 && (los > 0 || !/\/MCID\b|\/Artifact\b/.test(operanden))) {
+        los++;
+      } else {
+        if (diepte === 0) {
+          tags++;
+          if (inkt) gaten.push({ begin: gatBegin, einde: eersteNietWit(tekst, vorigEinde), xobjecten });
+          inkt = false;
+          xobjecten = [];
+        }
+        diepte++;
       }
-      diepte++;
     } else if (operator.naam === "EMC") {
-      diepte = Math.max(0, diepte - 1);
-      if (diepte === 0) gatBegin = operator.einde;
+      if (los > 0) {
+        los--;
+      } else {
+        diepte = Math.max(0, diepte - 1);
+        if (diepte === 0) gatBegin = operator.einde;
+      }
     } else if (diepte === 0 && INKTOPERATOREN.has(operator.naam)) {
       inkt = true;
-      if (operator.naam === "Do") xobject = true;
+      if (operator.naam === "Do") xobjecten.push(tekst.slice(vorigEinde, operator.begin).trim());
     }
     vorigEinde = operator.einde;
   }
-  if (inkt) gaten.push({ begin: gatBegin, einde: tekst.length, xobject });
+  if (inkt) gaten.push({ begin: gatBegin, einde: tekst.length, xobjecten });
 
   return { gaten, tags };
+}
+
+function isVersiering(text, paginaDict, naam, perNummer) {
+  const xobjecten = paginaDict.match(/\/XObject\s*<<([^>]*)>>/);
+  if (!xobjecten || !/^\/[^\s/]+$/.test(naam)) return false;
+  const patroon = naam.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const verwijzing = xobjecten[1].match(new RegExp(`${patroon}\\s+(\\d+)\\s+\\d+\\s+R`));
+  const xobject = verwijzing && perNummer.get(Number(verwijzing[1]));
+  if (!xobject || /\/StructParents?\b/.test(xobject.dict)) return false;
+  if (/\/Subtype\s*\/Image\b/.test(xobject.dict)) return true;
+  if (!/\/Subtype\s*\/Form\b/.test(xobject.dict)) return false;
+  const inhoud = readStream(text, xobject);
+  if (!inhoud) return false;
+  for (const { naam: operator } of operatoren(inhoud.toString("latin1"))) {
+    if (["BDC", "BMC", "Do"].includes(operator)) return false;
+  }
+  return true;
 }
 
 /**
@@ -402,9 +462,10 @@ function buildPaginaParts(text, objecten) {
 
     const invoegingen = [];
     for (const gat of gaten) {
-      // Een XObject hoort bij de structuurboom en mag dus niet in een artefact
-      // belanden; dat zou regel 7.1-2 breken.
-      if (gat.xobject) {
+      // Een XObject met getagde inhoud mag niet in een artefact belanden; dat
+      // zou regel 7.1-2 breken. Een afbeelding of vorm zonder tags is versiering
+      // (alt="", aria-hidden) en hoort daar juist wel.
+      if (gat.xobjecten.some((naam) => !isVersiering(text, object.dict, naam, perNummer))) {
         throw new Error(
           `Pagina-object ${object.nummer} heeft een XObject buiten de getagde inhoud; ` +
             `dat kan niet als artefact gemarkeerd worden.`
@@ -711,8 +772,16 @@ function buildIncrementalUpdate(buffer, meta) {
     });
   }
 
-  const objecten = objectDictionaries(text);
+  const origineel = objectDictionaries(text);
+  const objecten = buildFiguurObjecten(origineel);
   const { parts: lijstParts, volgendNummer } = buildLijstParts(text, objecten, size + 2);
+  const figuurParts = objecten
+    .filter((object, i) => object !== origineel[i])
+    .filter((object) => !lijstParts.some((p) => p.number === object.nummer))
+    .map((object) => ({
+      number: object.nummer,
+      bytes: Buffer.from(`${object.nummer} 0 obj\n${object.dict}\nendobj\n`, "latin1"),
+    }));
   const paginaParts = buildPaginaParts(text, objecten);
   const hoogsteNummer = Math.max(volgendNummer - 1, metadataNumber);
 
@@ -741,6 +810,7 @@ function buildIncrementalUpdate(buffer, meta) {
     ...(structPart ? [structPart] : []),
     ...linkParts,
     ...lijstParts,
+    ...figuurParts,
     ...paginaParts,
   ];
 
@@ -810,6 +880,7 @@ export {
   setPdfMetadata,
   buildIncrementalUpdate,
   buildLijstParts,
+  buildFiguurObjecten,
   buildPaginaParts,
   buildTaalParts,
   objectDictionaries,

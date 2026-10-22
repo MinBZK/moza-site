@@ -528,6 +528,7 @@ html:not(.js) {
     break-after: page;
     background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
   }
+  .slide:last-child { break-after: auto; }
   [data-step] { opacity: 1 !important; }
   .deck-footer, .progress, .deck-close, .deck-melding { display: none !important; }
   .print-footer { position: absolute; bottom: 0.8cqw; left: 1.3cqw; display: block; font-size: 0.9cqw; color: var(--ink); }

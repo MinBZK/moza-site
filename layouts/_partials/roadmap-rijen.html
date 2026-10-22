@@ -1,10 +1,8 @@
 {{- /* De groepen uit een roadmap met tijdlijn (van/tot), met per groep de rijen
-       gesorteerd op hun eerste maand en de noten doorlopend genummerd. Elke
-       balk en noot krijgt zijn plek op de tijdlijn (start, eind). */ -}}
+       gesorteerd op hun eerste maand. Elke balk krijgt zijn plek op de
+       tijdlijn (start, eind). */ -}}
 {{- $d := . -}}
 {{- $n := partial "roadmap-maand.html" (dict "maand" $d.tot "begin" $d.van) -}}
-{{- $nr := 0 -}}
-{{- $maandnamen := slice "januari" "februari" "maart" "april" "mei" "juni" "juli" "augustus" "september" "oktober" "november" "december" -}}
 {{- $groepen := slice -}}
 {{- range $groep := $d.groepen -}}
   {{- $items := slice -}}
@@ -24,14 +22,7 @@
       {{- $eind := cond (isset . "tot") (partial "roadmap-maand.html" (dict "maand" (.tot | default $d.tot) "begin" $d.van)) $n -}}
       {{- $balken = $balken | append (dict "type" .type "start" $start "eind" $eind "periode" (partial "roadmap-periode.html" (dict "van" .van "tot" .tot))) -}}
     {{- end -}}
-    {{- $noten := slice -}}
-    {{- range $rij.noten -}}
-      {{- $nr = add $nr 1 -}}
-      {{- $m := split .maand "-" -}}
-      {{- $wanneer := printf "eind %s %s" (index $maandnamen (sub (int (strings.TrimLeft "0" (index $m 1))) 1)) (index $m 0) -}}
-      {{- $noten = $noten | append (dict "nr" $nr "maand" (partial "roadmap-maand.html" (dict "maand" .maand "begin" $d.van)) "wanneer" $wanneer "tekst" .tekst) -}}
-    {{- end -}}
-    {{- $rijen = $rijen | append (dict "naam" $rij.naam "voluit" $rij.voluit "wie" $rij.wie "balken" $balken "noten" $noten) -}}
+    {{- $rijen = $rijen | append (dict "naam" $rij.naam "voluit" $rij.voluit "pagina" $rij.pagina "wie" $rij.wie "balken" $balken) -}}
   {{- end -}}
   {{- $groepen = $groepen | append (dict "id" $groep.id "naam" $groep.naam "rijen" $rijen) -}}
 {{- end -}}

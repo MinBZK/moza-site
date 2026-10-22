@@ -1,6 +1,7 @@
-/* Styling voor de roadmap-tabel (shortcode layouts/_shortcodes/roadmap.html).
-   Gebruikt site-brede tokens uit tokens.css, geen --rapport-* variabelen: zo
-   werkt de roadmap ook op een gewone pagina zonder rapportages.css. */
+/* Roadmap als tijdlijn per maand (layouts/_partials/roadmap-tijdlijn.html).
+   Alleen in de site-CSS: dit bestand wordt als template uitgevoerd (de lus
+   hieronder) en hoort niet in de bundel van de rapportages. De tabel van
+   Plan fase 5 staat in roadmap-fase5.css. */
 
 .rm-intro {
   font-size: var(--primitives-font-size-100);
@@ -9,11 +10,7 @@
   margin: 0 0 1rem;
 }
 
-/* Het vlak waaronder de tabel ligt en de achtergrond van de kopregel. Op een
-   rapportage ligt de tabel in een card; rapportages.css overschrijft ze daar. */
 .rm-wrap {
-  --rm-vlak: var(--color-bg-page);
-  --rm-kop-bg: var(--color-bg-muted);
   min-width: 0;
   container-type: inline-size;
 }
@@ -22,13 +19,7 @@
   display: none;
   margin: 0 0 0.5rem;
   font-size: var(--primitives-font-size-80);
-  color: var(--rapport-text-muted, var(--color-text-muted));
-}
-
-/* Containerquery, zodat dit meeschaalt met de breedte en met de basislettergrootte. */
-@container (max-width: 48rem) {
-  .rm-scroll { overflow-x: auto; }
-  .rm-wrap .scroll-hint { display: block; }
+  color: var(--color-text-muted);
 }
 
 .rm-scroll:focus-visible {
@@ -36,143 +27,9 @@
   outline-offset: 2px;
 }
 
-.rm-table {
-  --rm-onderdeel: 22%;
-  width: 100%;
-  min-width: 48rem;
-  border-collapse: separate;
-  border-spacing: 4px;
-  table-layout: fixed;
-  font-size: var(--primitives-font-size-90);
-  line-height: var(--primitives-line-height-tight);
-  color: var(--color-text);
-}
-
-/* Op een gewone pagina geeft table.css elke cel een onderrand */
-.rm-table th,
-.rm-table td {
-  border-bottom: 0;
-}
-
-.rm-caption {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* Kopregel blijft staan tot de tabel voorbij is; de schaduw dekt de ruimte tussen de cellen af */
-.rm-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  text-align: left;
-  font-weight: 700;
-  padding: 0.5rem;
-  background: var(--rm-kop-bg);
-  border-radius: 6px;
-  box-shadow: 0 0 0 4px var(--rm-vlak);
-}
-
-.rm-table thead th:first-child { width: var(--rm-onderdeel); }
-
-/* Met zes of meer periodes (kolom 7 in de kop): smallere kolom "Onderdeel",
-   zodat elk blok "Verkenning" nog op één regel kwijt kan */
-.rm-table:has(thead th:nth-child(7)) {
-  --rm-onderdeel: 18%;
-
-  .rm-bar { padding-inline: 0.375rem; }
-}
-
-.rm-table thead th.rm-fase {
-  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-700), 0 0 0 4px var(--rm-vlak);
-}
-
-/* Fase 5 loopt door in januari: lichtere streep onder het eerste kwartaal van 2027 */
-.rm-table thead th.rm-fase-deel {
-  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-400), 0 0 0 4px var(--rm-vlak);
-}
-
-.rm-fase-label {
-  display: block;
-  font-weight: 400;
-  color: var(--color-text-muted);
-}
-
-.rm-group th {
-  text-align: left;
-  font-size: var(--primitives-font-size-100);
-  font-weight: 700;
-  padding: 1.25rem 0.5rem 0.375rem;
-  position: relative;
-}
-
-/* Streep alleen onder de kolom "Onderdeel" */
-.rm-group th::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: var(--rm-onderdeel);
-  height: 2px;
-  background: var(--color-border);
-}
-
-.rm-table tbody th[scope="row"] {
-  text-align: left;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  vertical-align: middle;
-}
-
-/* height: 1px op de cel laat height: 100% op het blok werken */
-.rm-table td {
-  height: 1px;
-  padding: 0;
-  vertical-align: middle;
-}
-
-.rm-bar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  box-sizing: border-box;
-  height: 100%;
-  /* Ruimte voor het label plus twee regels tekst, zodat alle blokken even hoog zijn */
-  min-height: 4.625rem;
-  padding: 0.375rem 0.5rem;
-  border-radius: 6px;
-  hyphens: auto;
-}
-
-.rm-type { font-weight: 700; }
-
-/* Zelfde kleuren als "verkenning" en "in aanbouw" in de plaat van het componentenoverzicht */
-.rm-verkenning {
-  background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200));
-  color: var(--primitives-color-mark-800);
-}
-
-.rm-realisatie {
-  background: var(--primitives-color-accent-700);
-  color: var(--primitives-color-accent-0);
-}
-
-/* Doorbouwen na de eerste livegang; groen, zoals "beschikbaar" in de plaat */
-.rm-doorbouwen {
-  background: var(--primitives-color-success-500);
-  color: #ffffff;
-}
-
-/* ---- Roadmap als tijdlijn per maand (layouts/_partials/roadmap-tijdlijn.html) ---- */
-
 .rm-legenda {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  display: grid;
+  gap: 0.5rem;
   margin: 0 0 1rem;
   padding: 0;
   list-style: none;
@@ -196,39 +53,27 @@
   align-self: center;
 }
 
-.rm-staal.rm-doorbouwen { height: 0.5rem; }
-
-.rm-staal-noot {
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-inline: 0.5rem;
-  border: 2px solid var(--color-text);
-  border-radius: 1px;
-  rotate: 45deg;
-}
-
 .rm-tijdlijn {
-  --rm-naam: 12rem;
-  --rm-wie: 5.5rem;
+  --rm-naam: 18rem;
   min-width: 48rem;
   font-size: var(--primitives-font-size-90);
   line-height: var(--primitives-line-height-tight);
   color: var(--color-text);
 }
 
-/* Elke regel is een eigen grid met dezelfde kolommen: naam, wie en een kolom per maand.
+/* Elke regel is een eigen grid met dezelfde kolommen: naam en een kolom per maand.
    De maandkolommen ontstaan doordat .rm-spoor in elke regel de hele periode beslaat. */
 .rm-as,
 .rm-raster,
 .rm-rij {
   display: grid;
-  grid-template-columns: var(--rm-naam) var(--rm-wie);
+  grid-template-columns: var(--rm-naam);
   grid-auto-columns: minmax(0, 1fr);
 }
 
 {{ range seq 48 -}}
-.rm-van-{{ . }} { grid-column-start: {{ add . 2 }}; }
-.rm-tot-{{ . }} { grid-column-end: {{ add . 3 }}; }
+.rm-van-{{ . }} { grid-column-start: {{ add . 1 }}; }
+.rm-tot-{{ . }} { grid-column-end: {{ add . 2 }}; }
 {{ end }}
 
 .rm-spoor { grid-row: 1; }
@@ -240,14 +85,13 @@
   border-bottom: 2px solid var(--color-border);
 }
 
-.rm-as-kop {
+.rm-as-onderdeel {
+  grid-column: 1;
   grid-row: 3;
+  font-size: var(--primitives-font-size-100);
   font-weight: 700;
   padding-right: 0.5rem;
 }
-
-.rm-as-onderdeel { grid-column: 1; }
-.rm-as-wie { grid-column: 2; }
 
 .rm-jaar {
   grid-row: 1;
@@ -261,7 +105,7 @@
   color: var(--color-text-muted);
 }
 
-.rm-fase {
+.rm-as-fase {
   grid-row: 2;
   margin: 0 1px 0.25rem;
   padding: 0.125rem 0.375rem;
@@ -272,19 +116,18 @@
 
 .rm-lijf {
   position: relative;
-  padding-bottom: 1.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .rm-raster {
   position: absolute;
-  inset: 0 0 1.5rem;
+  inset: 0;
   grid-template-rows: 1fr;
   pointer-events: none;
 }
 
 .rm-lijn,
-.rm-faselijn,
-.rm-nu { grid-row: 1; }
+.rm-faselijn { grid-row: 1; }
 
 .rm-lijn {
   justify-self: start;
@@ -297,23 +140,6 @@
   justify-self: end;
   border-right: 2px dashed var(--primitives-color-accent-700);
   margin-right: -1px;
-}
-
-.rm-nu {
-  position: relative;
-  z-index: 2;
-  justify-self: center;
-  width: 0;
-  border-left: 2px solid var(--color-text);
-}
-
-.rm-nu-label {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  translate: -50% 0.125rem;
-  font-size: var(--primitives-font-size-80);
-  font-weight: 700;
 }
 
 .rm-groepen,
@@ -329,14 +155,14 @@
 .rm-groep-naam {
   position: relative;
   display: block;
-  width: calc(var(--rm-naam) + var(--rm-wie));
-  padding: 1rem 0 0.25rem;
+  width: var(--rm-naam);
+  padding: 1.25rem 0 0.375rem;
   font-size: var(--primitives-font-size-100);
   font-weight: 700;
 }
 
 .rm-rij {
-  grid-template-rows: 2rem;
+  grid-template-rows: minmax(2rem, auto);
   align-items: center;
 }
 
@@ -348,15 +174,22 @@
   overflow-wrap: anywhere;
 }
 
+/* Onderstreept: anders onderscheidt een naam met link zich alleen door kleur
+   van een naam zonder link in dezelfde lijst. */
+.rm-naam a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .rm-wie {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: start;
+  display: inline-block;
+  margin-left: 0.375rem;
   padding: 0.0625rem 0.375rem;
-  border-radius: 3px;
-  background: var(--color-bg-muted);
+  border-radius: 0.25rem;
+  background: var(--color-bg-light);
   font-size: var(--primitives-font-size-80);
-  color: var(--color-text-muted);
+  font-weight: 600;
+  color: var(--color-text);
   white-space: nowrap;
 }
 
@@ -370,11 +203,12 @@
   border-radius: 4px;
 }
 
-/* Licht, vol, gedempt: ook in grijstinten te onderscheiden */
+/* Een eigen vorm per fase (open, vol, gestreept): zo blijven ze ook zonder
+   kleurzien en in grijstinten te onderscheiden. */
 .rm-tijdlijn .rm-verkenning,
 .rm-legenda .rm-verkenning {
-  background: var(--primitives-color-accent-150);
-  border: 1px solid var(--primitives-color-accent-600);
+  background: var(--primitives-color-accent-100);
+  border: 2px solid var(--primitives-color-accent-600);
 }
 
 .rm-tijdlijn .rm-realisatie,
@@ -384,74 +218,53 @@
 
 .rm-tijdlijn .rm-doorbouwen,
 .rm-legenda .rm-doorbouwen {
-  height: 0.5rem;
-  background: repeating-linear-gradient(135deg, var(--primitives-color-accent-300) 0 2px, transparent 2px 5px);
-  border: 1px solid var(--primitives-color-accent-400);
+  background:
+    repeating-linear-gradient(135deg, var(--primitives-color-success-400) 0 2px, transparent 2px 6px),
+    var(--primitives-color-success-100);
+  border: 1px solid var(--primitives-color-success-600);
 }
 
-.rm-noot {
-  position: relative;
-  z-index: 2;
-  grid-row: 1;
-  justify-self: end;
-  translate: 50% 0;
-  display: grid;
-  place-items: center;
-  width: 1.375rem;
-  height: 1.375rem;
+/* Smal: de naam boven de balken, zodat de hele tijdlijn zonder schuiven
+   past. .rm-wrap is de container. */
+@container (max-width: 48rem) {
+  .rm-tijdlijn {
+    --rm-naam: 0;
+    min-width: 18rem;
+  }
+
+  .rm-as-onderdeel { display: none; }
+
+  .rm-jaar,
+  .rm-kwartaal,
+  .rm-as-fase { padding-inline: 0.125rem; }
+
+  .rm-groep-naam {
+    width: auto;
+    padding-top: 0.75rem;
+  }
+
+  .rm-rij { grid-template-rows: auto 1.5rem; }
+
+  .rm-rij > * { grid-row: 2; }
+
+  /* De naamkolom is 0 breed; de naam loopt over de maandkolommen door. */
+  .rm-rij > .rm-naam {
+    grid-row: 1;
+    width: max-content;
+    max-width: calc(100cqi - 1rem);
+    padding-top: 0.375rem;
+  }
+
+  .rm-groep-naam,
+  .rm-rij > .rm-naam {
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-page);
+  }
 }
 
-.rm-noot { cursor: default; }
-
-.rm-noot:focus-visible {
-  outline: 3px solid var(--color-link);
-  outline-offset: 2px;
-  border-radius: 2px;
+/* Alleen als de naamregels het niet meer redden. */
+@container (max-width: 18rem) {
+  .rm-scroll { overflow-x: auto; }
+  .rm-wrap .scroll-hint { display: block; }
 }
-
-.rm-noot::before,
-.rm-noten-nr::before {
-  content: "";
-  position: absolute;
-  inset: 0.125rem;
-  background: var(--color-bg-page);
-  border: 2px solid var(--color-text);
-  border-radius: 1px;
-  rotate: 45deg;
-}
-
-.rm-noot-nr,
-.rm-noten-nr {
-  position: relative;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.rm-noten {
-  margin: 0.75rem 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--primitives-font-size-80);
-  line-height: var(--primitives-line-height-snug);
-  color: var(--color-text-muted);
-}
-
-.rm-noten li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.375rem;
-  margin: 0 0 0.25rem;
-}
-
-.rm-noten-nr {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  align-self: center;
-}
-
-.rm-noten-nr { isolation: isolate; }
-.rm-noten-nr::before { z-index: -1; }

@@ -1,5 +1,6 @@
 intro: >-
-  Stand oktober 2026. Dit is geen vastgestelde planning.
+  Dit is de stand van oktober 2026. Dit is een dynamische planning die we
+  bijwerken op basis van de laatste inzichten.
 caption: "Roadmap MOZa per kwartaal, van het vierde kwartaal van 2026 t/m 2028"
 van: "2026-10"
 tot: "2028-12"
@@ -7,96 +8,79 @@ legenda:
   verkenning: "we onderzoeken wat nodig is en maken prototypes"
   realisatie: "we bouwen het zo dat organisaties het echt kunnen gebruiken"
   doorbouwen: "het werkt, en we breiden het uit"
-fases:
-  - label: "fase 5"
-    van: "2026-10"
-    tot: "2027-01"
 groepen:
   - id: g1
     naam: "Tijdig informeren"
     rijen:
-      - naam: "NMC"
-        voluit: "Notificatie Management Component"
-        wie: "MOZa"
+      - naam: "Notificatie Management Component"
+        pagina: "/onderwerpen/notificatiedienst/"
         balken:
           - { type: realisatie, van: "2026-10", tot: "2027-03" }
           - { type: doorbouwen, van: "2027-04" }
       - naam: "NotifyNL"
+        pagina: "/onderwerpen/notificatiedienst/"
         wie: "Logius"
         balken:
           - { type: realisatie, van: "2026-10", tot: "2027-03" }
           - { type: doorbouwen, van: "2027-04" }
       - naam: "Contactherstel"
+        pagina: "/onderwerpen/notificatiedienst/#contactherstel"
         wie: "Logius"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2026-12" }
           - { type: realisatie, van: "2027-01", tot: "2027-06" }
           - { type: doorbouwen, van: "2027-07" }
-        noten:
-          - { maand: "2026-12", tekst: "Verkenning van aanpassingen voor ondernemers" }
       - naam: "Profielservice"
-        wie: "MOZa"
+        pagina: "/onderwerpen/profielservice/"
         balken:
           - { type: realisatie, van: "2026-10", tot: "2027-06" }
           - { type: doorbouwen, van: "2027-07" }
-        noten:
-          - { maand: "2027-06", tekst: "Realisatie inclusief juridisch proces" }
-      - naam: "Positionering profieldienst"
-        wie: "MOZa, KVK"
+      - naam: "Plek van de profielservice"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2026-12" }
       - naam: "Berichtenstelsel"
-        wie: "MOZa"
+        pagina: "/onderwerpen/berichten/"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-01" }
-          - { type: realisatie, van: "2027-02", tot: "2027-12" }
-          - { type: doorbouwen, van: "2028-01" }
-        noten:
-          - { maand: "2027-01", tekst: "Proof of concept beproeven" }
-      - naam: "BBO"
-        voluit: "Berichtenbox voor Burgers en Ondernemers"
+          - { type: realisatie, van: "2027-02", tot: "2027-09" }
+          - { type: doorbouwen, van: "2027-10" }
+      - naam: "Berichtenbox voor Burgers en Ondernemers"
+        pagina: "/onderwerpen/berichten/"
         wie: "Logius"
         balken:
           - { type: realisatie, van: "2027-07" }
-        noten:
-          - { maand: "2027-12", tekst: "Voor ondernemers verwacht eind 2027" }
   - id: g2
     naam: "Overzicht geven"
     rijen:
-      - naam: "Portaal zakelijk"
-        voluit: "op MijnOverheid"
+      - naam: "Portaal zakelijk op MijnOverheid"
+        pagina: "/onderwerpen/portaal/"
         wie: "Logius"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2026-12" }
           - { type: realisatie, van: "2027-01", tot: "2027-06" }
           - { type: doorbouwen, van: "2027-07" }
       - naam: "Inzage bedrijfsgegevens"
-        wie: "MOZa"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-03" }
           - { type: realisatie, van: "2027-04", tot: "2027-12" }
           - { type: doorbouwen, van: "2028-01" }
-      - naam: "MijnZaken"
+      - naam: "Zaken / dossiers"
         voluit: "track & trace"
-        wie: "MOZa"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-03" }
           - { type: realisatie, van: "2027-04", tot: "2027-12" }
           - { type: doorbouwen, van: "2028-01" }
-      - naam: "MijnTaken"
-        wie: "MOZa"
+      - naam: "Taken"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-03" }
           - { type: realisatie, van: "2027-04", tot: "2027-12" }
           - { type: doorbouwen, van: "2028-01" }
-      - naam: "MijnProducten"
-        wie: "MOZa"
+      - naam: "Producten"
         balken:
           - { type: verkenning, van: "2027-07", tot: "2027-12" }
           - { type: realisatie, van: "2028-01", tot: "2028-06" }
           - { type: doorbouwen, van: "2028-07" }
-      - naam: "MijnContactmomenten"
-        wie: "MOZa"
+      - naam: "Contactmomenten"
         balken:
           - { type: verkenning, van: "2028-01", tot: "2028-06" }
           - { type: realisatie, van: "2028-07", tot: "2028-12" }
@@ -104,34 +88,26 @@ groepen:
     naam: "Meedenken"
     rijen:
       - naam: "Delen bedrijfsgegevens"
-        wie: "MOZa"
+        pagina: "/onderwerpen/wallets/"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-06" }
           - { type: realisatie, van: "2027-07", tot: "2027-12" }
           - { type: doorbouwen, van: "2028-01" }
-        noten:
-          - { maand: "2027-06", tekst: "Verkenning via de European Business Wallet" }
-      - naam: "Digitale Assistent 2.0"
+      - naam: "Digitale Assistent"
+        pagina: "/onderwerpen/digitale-assistent/"
         voluit: "machine-uitvoerbare wetgeving"
-        wie: "MOZa"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-03" }
-        noten:
-          - { maand: "2027-03", tekst: "Het vervolg hangt af van de uitkomst" }
   - id: g4
     naam: "Inloggen en machtigen"
     rijen:
-      - naam: "eHerkenning"
-        voluit: "inloggen"
+      - naam: "Inloggen met eHerkenning"
         wie: "Logius"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2026-12" }
           - { type: realisatie, van: "2027-01", tot: "2027-06" }
           - { type: doorbouwen, van: "2027-07" }
-      - naam: "Wallets"
-        voluit: "inloggen en machtigen"
-        wie: "MOZa"
+      - naam: "Inloggen en machtigen met wallets"
+        pagina: "/onderwerpen/wallets/"
         balken:
           - { type: verkenning, van: "2026-10", tot: "2027-03" }
-        noten:
-          - { maand: "2027-03", tekst: "Beproeving met wallets" }

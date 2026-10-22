@@ -9,6 +9,7 @@ import {
   setPdfMetadata,
   buildIncrementalUpdate,
   buildLijstParts,
+  buildFiguurObjecten,
   buildPaginaParts,
   objectDictionaries,
   readPdfMetadata,
@@ -207,6 +208,36 @@ test("een lijstitem krijgt een LBody om alles na het opsommingsteken", () => {
   assert.equal(perNummer.has(11), false);
 });
 
+test("een lijstitem zonder opsommingsteken krijgt een LBody om alles", () => {
+  const text =
+    "\n10 0 obj\n<< /Type /StructElem /S /LI /P 9 0 R /K [12 0 R 13 0 R] >>\nendobj\n" +
+    "\n12 0 obj\n<< /Type /StructElem /S /NonStruct /P 10 0 R >>\nendobj\n" +
+    "\n13 0 obj\n<< /Type /StructElem /S /H3 /P 10 0 R >>\nendobj\n";
+
+  const { parts } = buildLijstParts(text, objectDictionaries(text), 20);
+  const perNummer = new Map(parts.map((p) => [p.number, p.bytes.toString("latin1")]));
+
+  assert.match(perNummer.get(20), /\/S \/LBody \/P 10 0 R \/K \[12 0 R 13 0 R\]/);
+  assert.match(perNummer.get(10), /\/K \[20 0 R\]/);
+  assert.match(perNummer.get(12), /\/P 20 0 R/);
+  assert.match(perNummer.get(13), /\/P 20 0 R/);
+});
+
+test("een figure-omhulsel zonder Alt wordt een Div, de afbeelding erin niet", () => {
+  const text =
+    "\n10 0 obj\n<< /Type /StructElem /S /Figure /P 9 0 R /K [11 0 R] >>\nendobj\n" +
+    "\n11 0 obj\n<< /Type /StructElem /S /Figure /P 10 0 R /Alt (Foto) /K [3] >>\nendobj\n" +
+    "\n12 0 obj\n<< /Type /StructElem /S /Figure /P 9 0 R /K [4] >>\nendobj\n";
+
+  const objecten = objectDictionaries(text);
+  const perNummer = new Map(buildFiguurObjecten(objecten).map((o) => [o.nummer, o.dict]));
+
+  assert.match(perNummer.get(10), /\/S \/Div /);
+  assert.match(perNummer.get(11), /\/S \/Figure /);
+  // Een Figure met eigen inhoud en zonder Alt is een echte fout; die blijft zichtbaar.
+  assert.match(perNummer.get(12), /\/S \/Figure /);
+});
+
 test("een lijstitem zonder inhoud naast het label blijft ongemoeid", () => {
   const text =
     "\n10 0 obj\n<< /Type /StructElem /S /LI /P 9 0 R /K [11 0 R] >>\nendobj\n" +
@@ -249,6 +280,20 @@ test("inhoud tussen twee tags wordt als artefact gemarkeerd", () => {
   assert.doesNotMatch(nieuw, /^1 0 0 1 0 0 cm\n\/Artifact/);
 });
 
+test("een ligatuur in ongetagde tekst blijft in het artefact", () => {
+  // Zo schrijft Chromium "fi" in een voettekst met aria-hidden.
+  const stroom =
+    "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\n" +
+    "BT\n(noti) Tj\n/Span<</ActualText (fi) >> BDC\n(x) Tj\nEMC\n(catie) Tj\nET\n";
+  const text = paginaMetStroom(stroom);
+
+  const nieuw = uitStreamPart(buildPaginaParts(text, objectDictionaries(text))[0]);
+  assert.match(
+    nieuw,
+    /EMC\n\/Artifact << \/Type \/Pagination >> BDC\nBT\n\(noti\) Tj\n\/Span<<\/ActualText \(fi\) >> BDC\n\(x\) Tj\nEMC\n\(catie\) Tj\nET\n\nEMC\n$/
+  );
+});
+
 test("een gat zonder inkt blijft ongemarkeerd", () => {
   const stroom =
     "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\n" +
@@ -275,6 +320,22 @@ test("een XObject buiten de tags laat de artefactstap hard falen", () => {
     () => buildPaginaParts(text, objectDictionaries(text)),
     /XObject buiten de getagde inhoud/
   );
+});
+
+test("een XObject zonder tags buiten de tags wordt een artefact", () => {
+  // Zo tekent Chromium een <img alt=""> of een svg met aria-hidden.
+  const stroom = "1 0 0 1 0 0 cm\n/P << /MCID 0 >> BDC\n(tekst) Tj\nEMC\nq\n/X9 Do\nQ\n/P << /MCID 1 >> BDC\n(meer) Tj\nEMC\n";
+  const metXObject = (subtype, inhoud = "") =>
+    paginaMetStroom(stroom).replace("/Contents 5 0 R", "/Contents 5 0 R /Resources << /XObject << /X9 9 0 R >> >>") +
+    `\n9 0 obj\n<< /Type /XObject /Subtype /${subtype} /Length ${inhoud.length} >>\nstream\n${inhoud}\nendstream\nendobj\n`;
+
+  for (const pdf of [metXObject("Image"), metXObject("Form", "0 0 10 10 re f")]) {
+    const nieuw = uitStreamPart(buildPaginaParts(pdf, objectDictionaries(pdf))[0]);
+    assert.match(nieuw, /EMC\n\/Artifact BMC\nq\n\/X9 Do\nQ\nEMC\n\/P << \/MCID 1 >> BDC/);
+  }
+
+  const getagd = metXObject("Form", "/P << /MCID 2 >> BDC (x) Tj EMC");
+  assert.throws(() => buildPaginaParts(getagd, objectDictionaries(getagd)), /XObject buiten de getagde inhoud/);
 });
 
 test("een pagina zonder tags wordt met rust gelaten", () => {

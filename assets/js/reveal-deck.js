@@ -9,14 +9,18 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   if (typeof Reveal !== 'undefined') {
+    // Een toetscode met waarde null laat reveal zijn eigen binding overslaan.
+    // Configure vervangt deze map, dus geef hem mee bij elke configure die
+    // keyboard aanraakt, anders komen de bindingen van een letter terug.
+    const TOETSEN = {
+      58: null, 59: null, 63: null, 66: null, 70: null, 71: null,
+      72: null, 74: null, 75: null, 76: null, 78: null, 79: null,
+      80: null, 86: null, 190: null, 191: null
+    };
+
     Reveal.initialize({
       embedded: true,
-      // Een toetscode met waarde null laat reveal zijn eigen binding overslaan.
-      keyboard: {
-        58: null, 59: null, 63: null, 66: null, 70: null, 71: null,
-        72: null, 74: null, 75: null, 76: null, 78: null, 79: null,
-        80: null, 86: null, 190: null, 191: null
-      },
+      keyboard: TOETSEN,
       // Reveal roept preventDefault aan op spatie; zonder dit bladert Tab+spatie
       // op een knop door in plaats van die knop te bedienen.
       keyboardCondition: e =>
@@ -155,7 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // De scrollweergave schaalt elke dia opnieuw passend en zou op een smal
       // scherm over de leesmodus heen komen.
       Reveal.configure({
-        keyboard: !vergroot,
+        keyboard: vergroot ? false : TOETSEN,
         scrollActivationWidth: vergroot ? null : scrollBreedte
       });
       if (vergroot && Reveal.isScrollView()) Reveal.toggleScrollView(false);

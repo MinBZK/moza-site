@@ -107,6 +107,13 @@
   outline: none;
 }
 
+/* De regel hierboven houdt het veld randloos in de balk; zonder deze krijgt
+   het veld daardoor ook bij toetsenbordbediening geen zichtbare focus. */
+.search-modal .search-input:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
 .search-modal .search-input::placeholder {
   color: var(--color-text-muted);
 }

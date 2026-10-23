@@ -154,9 +154,12 @@ b {
   font-weight: 700;
 }
 
+/* Naast de achtergrond een kenmerk dat geen kleur is: de markering moet ook
+   te zien zijn voor wie het kleurverschil niet waarneemt. */
 mark {
   background-color: var(--color-highlight);
   color: var(--color-highlight-text);
+  font-weight: 700;
 }
 
 .semibold {

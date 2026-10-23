@@ -136,6 +136,40 @@ def test_organisatie_na_een_tussenvoegsel_blijft_staan():
     assert _redact_message("Truus van Logius belde", name_re) == "[collega] van Logius belde"
 
 
+def test_achternaam_met_tussenvoegsel_gaat_mee():
+    name_re = _build_name_redactor(_authors(), ["Truus"])
+    assert _redact_message("Truus van der Marel belde", name_re) == "[collega] belde"
+    assert _redact_message("Truus van de Weerd zei", name_re) == "[collega] zei"
+    assert _redact_message("Truus van \u2019t Hoff zei", name_re) == "[collega] zei"
+    assert _redact_message("Truus op de Berg zei", name_re) == "[collega] zei"
+
+
+def test_organisatie_zonder_tussenvoegsel_van_twee_woorden_blijft_staan():
+    name_re = _build_name_redactor(_authors(), ["Truus"])
+    assert _redact_message("Truus van Logius belde", name_re) == "[collega] van Logius belde"
+    assert _redact_message("Truus de Belastingdienst", name_re) == "[collega] de Belastingdienst"
+
+
+def test_hostnaam_van_een_url_blijft_heel():
+    name_re = _build_name_redactor(_authors(), ["Truus"])
+    assert _redact_message("zie https://truus.voorbeeld.app/pad", name_re) == (
+        "zie https://truus.voorbeeld.app/pad"
+    )
+    assert _redact_message("zie http://truus.voorbeeld.app:8080.", name_re) == (
+        "zie http://truus.voorbeeld.app:8080."
+    )
+
+
+def test_naam_in_pad_en_query_van_een_url_wordt_wel_geschrubd():
+    name_re = _build_name_redactor(_authors(), ["Truus"])
+    assert _redact_message("https://truus.voorbeeld.app/truus/repo?u=Truus#Truus", name_re) == (
+        "https://truus.voorbeeld.app/[collega]/repo?u=[collega]#[collega]"
+    )
+    assert _redact_message("Truus deelde https://voorbeeld.app", name_re) == (
+        "[collega] deelde https://voorbeeld.app"
+    )
+
+
 def test_zin_die_na_een_naam_begint_blijft_heel():
     name_re = _build_name_redactor(_authors(), ["Jan"])
     assert _redact_message("Bedankt Jan. Deze week...", name_re) == (

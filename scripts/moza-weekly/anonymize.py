@@ -195,9 +195,27 @@ _GITHUB_ATTRIBUTIE_RE = re.compile(r"\bby\s+[\w][\w.-]{2,}\s+·")
 
 
 # "Truus Bakker" werd anders "[collega] Bakker": nog steeds herleidbaar.
-# Alleen een direct volgend hoofdletterwoord zonder leesteken ertussen, zodat
-# "[collega] van Logius" en "[collega]. Deze week" heel blijven.
-_ACHTERNAAM_RE = re.compile(r"(\[collega\]) +([A-Z][\w'’-]+)")
+# Alleen een direct volgend hoofdletterwoord, eventueel na een tussenvoegsel van
+# twee woorden ("van der", "op de"), zonder leesteken ertussen. Een los "van" of
+# "de" geldt niet als tussenvoegsel, zodat "[collega] van Logius" en
+# "[collega]. Deze week" heel blijven.
+_ACHTERNAAM_RE = re.compile(
+    r"(\[collega\]) +"
+    r"(?:(?:van +(?:der|den|de|het|['’]t)|in +['’]t|op +de|uit +de) +)?"
+    r"[A-Z][\w'’-]+"
+)
+
+# Hostnaam van een URL (met eventuele poort of gebruikersdeel): hier blijft de
+# naamredactie af, het pad en de query worden wel geredigeerd.
+_URL_HOST_RE = re.compile(r"(https?://[^/\s?#<>()\[\]]+)")
+
+
+def _redact_names(text: str, name_re: "re.Pattern[str]") -> str:
+    delen = _URL_HOST_RE.split(text)
+    # Oneven plekken zijn de hostnamen (capture group van de split).
+    for i in range(0, len(delen), 2):
+        delen[i] = name_re.sub("[collega]", delen[i])
+    return "".join(delen)
 
 
 def _redact_message(message: str, name_re: "re.Pattern[str] | None") -> str:
@@ -206,7 +224,7 @@ def _redact_message(message: str, name_re: "re.Pattern[str] | None") -> str:
     redacted = MENTION_RE.sub("[@collega]", message)
     redacted = _GITHUB_ATTRIBUTIE_RE.sub("by [collega] ·", redacted)
     if name_re is not None:
-        redacted = name_re.sub("[collega]", redacted)
+        redacted = _redact_names(redacted, name_re)
         redacted = _ACHTERNAAM_RE.sub(r"\1", redacted)
     return redacted
 

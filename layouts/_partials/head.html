@@ -32,8 +32,10 @@
 {{ $code := resources.Get "css/components/code.css" }}
 {{ $tooltip := resources.Get "css/components/tooltip.css" }}
 {{ $roadmap := resources.Get "css/roadmap.css" }}
+{{ $partners := resources.Get "css/components/partners.css" }}
+{{ $klavertje := resources.Get "css/components/klavertje.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ partial "print-kolombreedtes.html" . }}

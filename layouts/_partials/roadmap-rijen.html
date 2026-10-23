@@ -1,0 +1,29 @@
+{{- /* De groepen uit een roadmap met tijdlijn (van/tot), met per groep de rijen
+       gesorteerd op hun eerste maand. Elke balk krijgt zijn plek op de
+       tijdlijn (start, eind). */ -}}
+{{- $d := . -}}
+{{- $n := partial "roadmap-maand.html" (dict "maand" $d.tot "begin" $d.van) -}}
+{{- $groepen := slice -}}
+{{- range $groep := $d.groepen -}}
+  {{- $items := slice -}}
+  {{- range $rij := $groep.rijen -}}
+    {{- $eerste := $n -}}
+    {{- range $rij.balken -}}
+      {{- $eerste = math.Min $eerste (partial "roadmap-maand.html" (dict "maand" .van "begin" $d.van)) | int -}}
+    {{- end -}}
+    {{- $items = $items | append (dict "eerste" $eerste "rij" $rij) -}}
+  {{- end -}}
+  {{- $rijen := slice -}}
+  {{- range sort $items "eerste" -}}
+    {{- $rij := .rij -}}
+    {{- $balken := slice -}}
+    {{- range $rij.balken -}}
+      {{- $start := partial "roadmap-maand.html" (dict "maand" .van "begin" $d.van) -}}
+      {{- $eind := cond (isset . "tot") (partial "roadmap-maand.html" (dict "maand" (.tot | default $d.tot) "begin" $d.van)) $n -}}
+      {{- $balken = $balken | append (dict "type" .type "start" $start "eind" $eind "periode" (partial "roadmap-periode.html" (dict "van" .van "tot" .tot))) -}}
+    {{- end -}}
+    {{- $rijen = $rijen | append (dict "naam" $rij.naam "voluit" $rij.voluit "pagina" $rij.pagina "wie" $rij.wie "balken" $balken) -}}
+  {{- end -}}
+  {{- $groepen = $groepen | append (dict "id" $groep.id "naam" $groep.naam "rijen" $rijen) -}}
+{{- end -}}
+{{- return dict "maanden" $n "groepen" $groepen -}}

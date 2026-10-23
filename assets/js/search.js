@@ -9,6 +9,7 @@
   var searchStatus;
   var searchTriggers;
   var activeFilter = '';
+  var ingedruktOpAchtergrond = false;
   // Voorkeur per sectie: lager telt als betere score, dus eerder in de lijst.
   // Een onderwerp-pagina is meestal wat je zoekt, een weekly noemt het terloops.
   var SECTIE_VOORKEUR = {
@@ -316,10 +317,24 @@
       }, 150);
     });
 
-    searchModal.addEventListener('click', function (e) {
-      if (e.target === searchModal) {
+    // Een click vuurt op de gemeenschappelijke voorouder van indrukken en
+    // loslaten: indrukken op een knop en loslaten naast het paneel geeft dus de
+    // dialog als target. Daarom beide kanten apart bijhouden, zodat wegschuiven
+    // de handeling afbreekt in plaats van het venster te sluiten.
+    searchModal.addEventListener('pointerdown', function (e) {
+      ingedruktOpAchtergrond = e.target === searchModal;
+    });
+
+    searchModal.addEventListener('pointerup', function (e) {
+      var opAchtergrond = ingedruktOpAchtergrond && e.target === searchModal;
+      ingedruktOpAchtergrond = false;
+      if (opAchtergrond) {
         closeModal();
       }
+    });
+
+    searchModal.addEventListener('pointercancel', function () {
+      ingedruktOpAchtergrond = false;
     });
 
     document.addEventListener('keydown', function (e) {

@@ -163,6 +163,15 @@ mark {
   font-weight: 600;
 }
 
+/* Grote tekst zonder kop te zijn: niet vet, zodat de regel ook voor wie kijkt
+   geen kop nabootst. */
+.nadruk {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
 code {
   background: var(--color-bg-muted);
   padding: 0.125rem 0.25rem;

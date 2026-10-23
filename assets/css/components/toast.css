@@ -30,6 +30,18 @@
   display: none;
 }
 
+/* De melding staat vast onderaan en zou anders de onderste links en knoppen
+   bedekken, ook die met focus. */
+body:has(.toast:not([hidden])) {
+  padding-bottom: var(--toast-ruimte, 0);
+}
+
+/* Zonder dit schuift de browser een element met focus tot net in beeld, en dus
+   tot achter de melding. */
+html:has(.toast:not([hidden])) {
+  scroll-padding-bottom: var(--toast-ruimte, 0);
+}
+
 /* Interactive toast (button) */
 button.toast {
   &:hover,

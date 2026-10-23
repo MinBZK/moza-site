@@ -39,6 +39,20 @@ Secties sluiten vaak aan op bestaande onderwerpen (zie `content/onderwerpen/`) o
 - **Geen persoonlijke namen** en geen persoonlijk nieuws (ziek zijn, verjaardagen, etc.)
 - Emoji: kijk per emoji of de schermlezer iets zinnigs voorleest. Zo niet, gebruik de shortcode `emoji` met `aria-label` of `aria-hidden=true` (zie de sectie Emoji in de skill `content-review`)
 
+## Inhoud en bronnen
+
+- **Lees de bron zelf, niet alleen de titel**: Kamerstukken, EU-dossiers (eerstekamer.nl, tweedekamer.nl), Staatscourant, ADR's in MinBZK/MijnOverheidZakelijk, verslagen. Haal eruit wat er gevraagd of besloten wordt en waarom dat voor MOZa telt. Een brief van de Eerste Kamer met nadere vragen over de business wallet bleek bijvoorbeeld een vraag over een uitvoeringstoets van Logius te bevatten.
+- **Besluit in de Staatscourant**: noem het bij soort en afzender, bijvoorbeeld "autorisatiebesluit van de Rijksdienst voor Identiteitsgegevens".
+- **Noem geen bewindspersonen**: schrijf "het kabinet".
+- **Geef elk punt een haakje**: wat heeft de ondernemer of lezer eraan? Schrijf het effect, niet de techniek: niet "unieke id per magazijn", wel "je moet erop kunnen vertrouwen dat je niets mist". Zonder haakje hoort het punt er waarschijnlijk niet in. Een ADR of de kwaliteitseisen leggen vaak uit waarom iets gebouwd wordt.
+- **Controleer elke bewering tegen de bron**: niet afronden, niet aanvullen met wat aannemelijk klinkt. Is iets niet te vinden, meld dat aan de gebruiker in plaats van het op te schrijven.
+- **Geen vulling**: geen aantallen deelnemers, geen "flink wat wijzigingen", geen verwachting wanneer iets wordt samengevoegd, geen "meer hierover lees je hieronder".
+- **Tijd en status kloppen**: wat af is staat in de verleden tijd; een voornemen zonder datum blijft een voornemen ("willen we"). Schrijf bij samenwerking niet "meer samenwerking" (klinkt alsof het eerst niet zo was) maar bijvoorbeeld "nadrukkelijker dan eerst".
+- **Links achter een inlog** mogen, met de linktitel "besloten": `[tekst](https://... "besloten")`. De render hook (`layouts/_partials/render-link.html`) zet er dan het slotje en de verborgen tekst "(besloten omgeving)" bij. Gebruik geen eigen emoji.
+- **Plak-links** (plak.rijks.app): controleer elke link vooraf met `curl`. 302 naar `/-/login` is besloten, 200 is publiek, 404 bestaat niet.
+- **Herstel geanonimiseerde links**: de anonimisering vervangt soms een deel van een domein door `[collega]` (`plak.[collega].app` is `plak.rijks.app`). Herstel zo'n link en controleer hem.
+- **Namen**: geen namen van teamleden. Wie in een openbare rol optreedt, zoals een gast in een podcast, mag bij naam met organisatie; neem de spelling over van de openbare bron.
+
 ## Agenda
 
 Agenda is **cumulatief**: neem items uit de vorige weekly over die nog niet zijn geweest, verwijder voorbije items (inclusief de publicatiedatum zelf — de weekly verschijnt 's ochtends). Structuur en inleidingsregel uit de vorige weekly overnemen. Items staan in **chronologische volgorde**.

@@ -1,0 +1,4 @@
+{{- /* Tekst met nadruk, en nadrukkelijk geen kop: staat hier iets wat een
+       sectie opent, gebruik dan een echte kop, anders slaat een schermlezer
+       die sectie over bij het springen van kop naar kop. */ -}}
+<p class="nadruk">{{ trim .Inner "\n " | markdownify }}</p>

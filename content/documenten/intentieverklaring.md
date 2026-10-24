@@ -15,7 +15,7 @@ outputs:
 > [!NOTE]
 > Deze verklaring is geen overeenkomst in juridische zin.
 
-## Ja,
+{{< nadruk >}}Ja,{{< /nadruk >}}
 
 Wij willen ondernemers als één overheid overzicht geven én tijdig informeren over informatie die voor hen relevant is. Zo verbeteren we de dienstverlening en de één overheidsbeleving voor ondernemers. Hiermee geven we invulling aan de prioriteit van de Nederlandse Digitaliseringsstrategie: de overheid stelt burgers en ondernemers centraal in (digitale) dienstverlening. Wij geloven dat dit alleen lukt als we als overheidsorganisaties gezamenlijk werken aan en gebruikmaken van generieke digitale bouwstenen. Daarom werken wij via het programma MijnOverheid Zakelijk vanuit de volgende uitgangspunten:
 

@@ -7,6 +7,7 @@
  * manifest `downloads.json` (door Hugo gegenereerd) en maakt per pagina:
  *   - <naam>.odt  via pandoc, uit de door Hugo gegenereerde index.pandoc.md
  *   - <naam>.pdf  via Puppeteer, door de gebouwde HTML-pagina af te drukken
+ * Een presentatie (layout nldd-deck) krijgt alleen de .pdf, één dia per pagina.
  *
  * De PDF gebruikt de echte sitestijl: een tijdelijke webserver serveert de
  * outputmap, zodat de root-relatieve CSS/JS/fonts laden. De afdrukstijl
@@ -407,10 +408,13 @@ function siteOrigin(url) {
   }
 }
 
-async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
+async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta, { deck = false } = {}) {
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "light" },
   ]);
+  // Een smal venster zet de presentatie bij het laden in de scrollweergave.
+  const viewport = page.viewport();
+  if (deck) await page.setViewport({ width: 1536, height: 864 });
   await page.goto(baseUrl + relPermalink, { waitUntil: "networkidle0" });
 
   // Verberg het losse print-logo (dat is voor browser-printen, Ctrl/Cmd-P); deze
@@ -474,15 +478,22 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta) {
       .map((el) => ({ lang: el.lang, text: el.textContent }))
   );
 
-  await page.pdf({
-    path: pdfOut,
-    format: "A4",
-    printBackground: true,
-    displayHeaderFooter: true,
-    headerTemplate,
-    footerTemplate,
-    margin: { top: "30mm", bottom: "20mm", left: "18mm", right: "18mm" },
-  });
+  // Een presentatie houdt zijn eigen paginamaat (@page in nldd-deck.css) en
+  // zet de voettekst zelf op elke dia.
+  await page.pdf(
+    deck
+      ? { path: pdfOut, preferCSSPageSize: true, printBackground: true }
+      : {
+          path: pdfOut,
+          format: "A4",
+          printBackground: true,
+          displayHeaderFooter: true,
+          headerTemplate,
+          footerTemplate,
+          margin: { top: "30mm", bottom: "20mm", left: "18mm", right: "18mm" },
+        }
+  );
+  if (deck) await page.setViewport(viewport);
 
   setPdfMetadata(pdfOut, {
     title: meta.title,
@@ -514,8 +525,14 @@ async function main() {
 
   try {
     const page = await browser.newPage();
-    for (const { relPermalink, name } of entries) {
+    for (const { relPermalink, name, deck, title, description, url } of entries) {
       const pageDir = join(OUTPUT_DIR, relPermalink);
+      if (deck) {
+        const pdfOut = join(pageDir, `${name}.pdf`);
+        await renderPdf(page, baseUrl, relPermalink, pdfOut, { title, description, url }, { deck });
+        console.log(`  ✓ ${relPermalink}${name}.pdf`);
+        continue;
+      }
       const mdFile = join(pageDir, "index.pandoc.md");
       if (!existsSync(mdFile)) {
         console.warn(`  ⚠ ${relPermalink}: index.pandoc.md ontbreekt, overgeslagen`);

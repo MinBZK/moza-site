@@ -59,12 +59,14 @@ body {
   container-type: inline-size;
 }
 
+/* Met `safe` schuift inhoud die niet in de dia past alleen naar onderen, waar de
+   pagina meescrollt; zonder `safe` valt de helft boven de rand en is onbereikbaar. */
 .slide {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   padding: 4cqw 6cqw 6cqw;
 }
 

@@ -61,6 +61,22 @@ De twee labels onder `## Agenda` zijn echte koppen: `### MOZa` en `### Evenement
 
 **Vaste overleggen altijd op de agenda**: MOZa Pulse, Regieteam en Stuurgroep horen altijd met een eerstvolgende datum op de agenda. Als één van deze drie is geweest en er geen nieuwe datum in de input staat, vraag proactief om de volgende datum voordat je de weekly afrondt.
 
+**Agenda-items uit alle kanalen**: een evenement of debat staat niet altijd in `~agenda`. Loop de hele input langs (ook `~in-de-kamer`, `~check-in` en de themakanalen) op datums en evenementen, en leg wat nog niet op de agenda staat voor aan de gebruiker.
+
+**Kamerdebatten controleren**: haal de geplande debatten van de komende maanden op uit de open data van de Tweede Kamer, bijvoorbeeld:
+
+```bash
+curl -s -G "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Activiteit" \
+  --data-urlencode "\$filter=Datum ge 2026-11-01T00:00:00Z and Datum le 2027-01-31T00:00:00Z and Verwijderd eq false and Soort ne 'Procedurevergadering' and (Voortouwnaam eq 'vaste commissie voor Digitale Zaken' or Voortouwnaam eq 'vaste commissie voor Binnenlandse Zaken')" \
+  --data-urlencode "\$select=Nummer,Soort,Onderwerp,Aanvangstijd,Status" \
+  --data-urlencode "\$expand=Agendapunt(\$select=Onderwerp)"
+```
+
+- Plenaire debatten, zoals een begroting, hebben `Voortouwnaam eq 'TK'`; zoek die op onderwerp.
+- Kijk op de agendapunten welke debatten MOZa raken: digitale overheid, regeldruk, GDI, de Digitale Dienst.
+- Vergelijk met de agenda van de vorige weekly. Staat een debat er al op, controleer dan `Status`: een `Verplaatst` debat hoort eraf of krijgt de nieuwe datum. De oude activiteit noemt de nieuwe datum vaak in het `Onderwerp`.
+- Een relevant debat dat ontbreekt, komt in `~agenda` als eigen post, met korte context en de link `https://www.tweedekamer.nl/debat_en_vergadering/commissievergaderingen/details?id=<Nummer>`. Een plenair debat gebruikt `plenaire_vergaderingen/details/activiteit?id=<Nummer>`. Laat de teksten eerst aan de gebruiker zien, want de post verschijnt onder de naam van de gebruiker.
+
 ## Bij onduidelijkheden
 
 Benoem expliciet aan de gebruiker wat ontbreekt (datums, links, context) in plaats van te gokken.

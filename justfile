@@ -134,7 +134,7 @@ presentatie-export slug: node-deps
 [private]
 build-check: node-deps
     npm run render-mermaid
-    just wis tmp/public && hugo --minify --quiet --baseURL / --destination tmp/public
+    just wis tmp/public && HUGO_PARAMS_LINKCONTROLE=true hugo --minify --quiet --baseURL / --destination tmp/public
 
 # Verplaats paden naar de prullenbak; paden die niet bestaan worden overgeslagen
 [private]

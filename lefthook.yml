@@ -7,4 +7,4 @@ pre-commit:
     hugo-build:
       run: rm -rf public && hugo --minify --logLevel warn
     htmltest:
-      run: rm -rf tmp/public && hugo --minify --quiet --baseURL / --destination tmp/public && htmltest && rm -rf tmp/public
+      run: rm -rf tmp/public && HUGO_PARAMS_LINKCONTROLE=true hugo --minify --quiet --baseURL / --destination tmp/public && htmltest && rm -rf tmp/public

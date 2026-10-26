@@ -163,6 +163,11 @@ mark {
   font-weight: 600;
 }
 
+.nadruk {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 code {
   background: var(--color-bg-muted);
   padding: 0.125rem 0.25rem;

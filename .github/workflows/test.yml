@@ -111,6 +111,8 @@ jobs:
         run: hugo --gc --minify --logLevel warning
 
       - name: Bouw site voor de controles
+        env:
+          HUGO_PARAMS_LINKCONTROLE: "true"
         run: hugo --minify --quiet --baseURL / --destination tmp/public
 
       - name: Deel de gebouwde site

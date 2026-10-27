@@ -203,6 +203,11 @@
   color: var(--color-highlight-text);
 }
 
+.search-result-title mark {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .search-no-results {
   padding: 2rem 1rem;
   color: var(--color-text);

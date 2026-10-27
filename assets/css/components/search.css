@@ -98,13 +98,18 @@
 
 .search-modal .search-input {
   flex: 1;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
   font-size: 1.125rem;
   font-family: var(--font-sans);
   color: var(--color-text);
   background: transparent;
   border: none;
   outline: none;
+}
+
+.search-modal .search-input:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
 }
 
 .search-modal .search-input::placeholder {

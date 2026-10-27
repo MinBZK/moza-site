@@ -154,9 +154,11 @@ b {
   font-weight: 700;
 }
 
+/* Zonder vet leunt de markering alleen op kleur: het vlak haalt 1,35:1. */
 mark {
   background-color: var(--color-highlight);
   color: var(--color-highlight-text);
+  font-weight: 700;
 }
 
 .semibold {

@@ -59,12 +59,13 @@ body {
   container-type: inline-size;
 }
 
+/* Zonder `safe` valt inhoud die niet past boven de rand, buiten bereik. */
 .slide {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   padding: 4cqw 6cqw 6cqw;
 }
 

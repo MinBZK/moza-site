@@ -201,6 +201,35 @@ async function toetsNlddDeck(page, baseUrl, route) {
   if (breed.length > 0) {
     findings.push(`op 320px breed vallen ${breed.length} element(en) buiten beeld, bijvoorbeeld ${breed[0]}`);
   }
+
+  // Tekstafstand (WCAG 1.4.12). Onder de 900px van de media query stapelen de
+  // dia's en valt er niets meer buiten een dia te meten.
+  await page.setViewport({ width: 1024, height: 640 });
+  await page.goto(baseUrl + route, { waitUntil: "networkidle0" });
+  await page.waitForFunction(() => document.querySelector(".slide:not([hidden])"), { timeout: 15000 });
+  await page.addStyleTag({
+    content: `* { line-height: 1.5 !important; letter-spacing: 0.12em !important;
+                  word-spacing: 0.16em !important }
+              p, li { margin-bottom: 2em !important }`,
+  });
+  for (let n = 0; n < aantal; n++) {
+    await page.evaluate((i) => { location.hash = `#/${i + 1}`; }, n);
+    await page.waitForFunction((i) => !document.querySelectorAll(".slide")[i].hidden, { timeout: 5000 }, n);
+    const weg = await page.evaluate((i) => {
+      const dia = document.querySelectorAll(".slide")[i];
+      // Een coverfoto steekt met opzet full-bleed buiten de dia uit, en een
+      // leeg element (printvoettekst, notities) heeft geen bovenkant om te meten.
+      const inhoud = [...dia.children].filter(
+        (el) => el.getBoundingClientRect().height > 0 && getComputedStyle(el).position !== "absolute"
+      );
+      if (inhoud.length === 0) return 0;
+      const boven = Math.min(...inhoud.map((el) => el.getBoundingClientRect().top));
+      return Math.round(dia.getBoundingClientRect().top - boven);
+    }, n);
+    if (weg > 0) {
+      findings.push(`dia ${n + 1}: met ruimere tekstafstand valt ${weg}px boven de rand van de dia`);
+    }
+  }
   await page.setViewport(viewport);
 
   return findings;

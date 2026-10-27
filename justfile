@@ -124,11 +124,18 @@ pdfua: build-check
 # Exporteer een presentatie (ook een draft) als één HTML-bestand in
 # tmp/export/<slug>/, klaar om te publiceren met: plak publish tmp/export/<slug> ...
 presentatie-export slug: node-deps
+    @grep -qs "layout: nldd-deck" content/documenten/presentaties/{{quote(slug)}}/index.html || { printf 'Geen nldd-deck-presentatie: "%s". Kies uit:\n' {{quote(slug)}} >&2; grep -l "layout: nldd-deck" content/documenten/presentaties/*/index.* | cut -d/ -f4 >&2; exit 1; }
     npm run render-mermaid
     just wis tmp/presentatie
     hugo -D -F --minify --quiet --baseURL / --destination tmp/presentatie
     node scripts/presentatie-export.js tmp/presentatie {{slug}} tmp/export/{{slug}}/index.html
     just wis tmp/presentatie
+
+# Exporteer een presentatie als OpenDocument-presentatie: elke opbouwstap een
+# dia, als beeld, met notities. Zonder uitvoer komt <slug>.odp in de map waar
+# je just aanroept; geef anders een map of een bestandsnaam op.
+presentatie-odp slug uitvoer="": (presentatie-export slug)
+    cd {{quote(invocation_directory())}} && node {{quote(justfile_directory() / "scripts/presentatie-odp.js")}} {{quote(justfile_directory() / "tmp/export" / slug / "index.html")}} {{quote(uitvoer)}}
 
 # Bouw de site naar tmp/public, waarop links, a11y en csp draaien
 [private]

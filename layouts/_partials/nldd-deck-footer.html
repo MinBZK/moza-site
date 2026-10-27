@@ -9,6 +9,12 @@
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-down-left-arrow-up-right" text="Volledig scherm" data-fullscreen></nldd-icon-button>
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="display" text="Presentatiemodus" data-modus></nldd-icon-button>
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="note" text="Sprekersweergave" data-spreker></nldd-icon-button>
+  {{- if ne .Params.download false }}
+  {{- $pdf := print .RelPermalink (path.Base .RelPermalink) ".pdf" }}
+  {{- /* De link erin is er alleen voor zonder JavaScript: het component heeft
+     geen slot voor de inhoud, dus de browser toont hem pas als het niet laadt. */}}
+  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-down-in-bucket" text="Download als PDF" data-pdf="{{ .Title }}.pdf" href="{{ $pdf }}"><a href="{{ $pdf }}" download="{{ .Title }}.pdf">Download als PDF</a></nldd-icon-button>
+  {{- end }}
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
   <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
 </nav>

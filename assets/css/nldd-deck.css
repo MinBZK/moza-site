@@ -353,6 +353,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 .deck-footer .footer-text { flex: 1; min-width: 0; color: var(--ink); }
 .footer-text strong, .print-footer strong { font-weight: 600; }
 .deck-footer .counter { font-variant-numeric: tabular-nums; }
+.deck-footer [data-pdf] a { color: var(--ink); }
 .print-footer { display: none; }
 
 .deck-close { position: fixed; top: 0.75rem; right: 1rem; z-index: 10; color: var(--ink-72); }
@@ -483,7 +484,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 
   .deck-close { position: absolute; }
   .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
-  .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
+  .deck-footer .counter, .deck-footer nldd-icon-button:not([data-pdf]), .progress { display: none; }
 }
 
 /* ---------- Zonder JavaScript: dezelfde stapeling, op elke breedte ----------
@@ -507,7 +508,7 @@ html:not(.js) {
 
   .deck-close { position: absolute; }
   .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
-  .deck-footer .counter, .deck-footer nldd-icon-button, .progress { display: none; }
+  .deck-footer .counter, .deck-footer nldd-icon-button:not([data-pdf]), .progress { display: none; }
 }
 
 /* ---------- Print: één dia per pagina, alle stappen zichtbaar ---------- */

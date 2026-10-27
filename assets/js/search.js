@@ -9,6 +9,7 @@
   var searchStatus;
   var searchTriggers;
   var activeFilter = '';
+  var meldingMeter;
   // Voorkeur per sectie: lager telt als betere score, dus eerder in de lijst.
   // Een onderwerp-pagina is meestal wat je zoekt, een weekly noemt het terloops.
   var SECTIE_VOORKEUR = {
@@ -398,8 +399,21 @@
 
     querySpan.textContent = query;
     highlightBar.hidden = false;
+    volgMeldingHoogte(highlightBar);
     highlightBar.addEventListener('click', hideHighlights);
     document.addEventListener('keydown', handleHighlightEscape);
+  }
+
+  // De melding is even hoog als haar tekst, en op een smal scherm loopt die over
+  // meer regels; de ruimte eronder moet die hoogte volgen.
+  function volgMeldingHoogte(balk) {
+    if (!meldingMeter) {
+      meldingMeter = new ResizeObserver(function () {
+        var bedekt = window.innerHeight - balk.getBoundingClientRect().top;
+        document.documentElement.style.setProperty('--toast-ruimte', bedekt + 'px');
+      });
+    }
+    meldingMeter.observe(balk);
   }
 
   function handleHighlightEscape(e) {
@@ -421,6 +435,11 @@
     if (highlightBar) {
       highlightBar.hidden = true;
     }
+
+    if (meldingMeter) {
+      meldingMeter.disconnect();
+    }
+    document.documentElement.style.removeProperty('--toast-ruimte');
 
     var url = new URL(window.location.href);
     url.searchParams.delete('q');

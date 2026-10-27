@@ -41,7 +41,7 @@ Zo werkt het, van boven naar beneden:
 
 ## Wat we beproeven
 
-We leren door te bouwen. Een eerste beproeving voor [inloggen met een wallet](https://proef.moza.rijksapp.dev/inloggen/zakelijk/) staat klaar. Je logt bij MOZa in met een testversie van de NL Wallet op je telefoon. MOZa vraagt twee gegevens: je naam en je bevoegdheid voor de onderneming. Een gebruikersnaam en wachtwoord heb je niet nodig.
+We leren door te bouwen. Een eerste beproeving voor [inloggen met een wallet](https://proef.moza.rijksapp.nl/inloggen/zakelijk) staat klaar. Je logt bij MOZa in met een testversie van de NL Wallet op je telefoon. MOZa vraagt twee gegevens: je naam en je bevoegdheid voor de onderneming. Een gebruikersnaam en wachtwoord heb je niet nodig.
 
 Een business wallet heb je daarvoor niet nodig: een onderneming kan ook zonder. De bevoegdheid komt in de beproeving van een fictieve KVK.
 

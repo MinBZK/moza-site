@@ -68,4 +68,4 @@ Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit 
 
 ## Prototype
 
-Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.dev](https://proef.moza.rijksapp.dev/moza/)
+Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.nl](https://proef.moza.rijksapp.nl/)

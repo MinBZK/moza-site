@@ -1,6 +1,7 @@
 # scripts/downloads
 
 Genereert downloadbestanden voor pagina's met `download: true` in de front matter.
+Een presentatie (layout `nldd-deck`) krijgt standaard alleen een `.pdf`, één dia per pagina, tenzij `download: false`.
 Draait ná de Hugo-build (zie `just build` en de Containerfile).
 
 > **Pandoc-versie:** de Containerfile pint pandoc op een vaste versie

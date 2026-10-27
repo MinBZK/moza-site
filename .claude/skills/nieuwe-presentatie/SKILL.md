@@ -125,6 +125,7 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 
 ## Exporteren (Plak, offline)
 
+- Elke presentatie heeft in de footer een link "Download als PDF"; `download: false` in de front matter haalt hem weg. De build maakt die PDF met `scripts/downloads/render-downloads.js`: één dia per pagina, alle stappen zichtbaar, getoetst op PDF/UA. In de losse HTML-export hieronder valt de link weg.
 - `just presentatie-export <slug>` bouwt de site (ook drafts) en exporteert de presentatie als één HTML-bestand in `tmp/export/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-export.js`.
 - `just presentatie-odp <slug> [uitvoer]` doet dezelfde export en zet die om naar een OpenDocument-presentatie. Zonder `uitvoer` komt `<slug>.odp` in de map waar je `just` aanroept; geef anders een map of een bestandsnaam op (`.odp` wordt aangevuld). Bedoeld voor wie in LibreOffice, PowerPoint of Keynote presenteert. Elke opbouwstap wordt een eigen dia, als beeld, met een korte overvloeier ertussen. De sprekersnotities en een alt-tekst per dia gaan mee, maar de tekst is niet te bewerken: wijzig de presentatie zelf en exporteer opnieuw. Het script is `scripts/presentatie-odp.js`.
 - Publiceren op Plak, zie ook de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:

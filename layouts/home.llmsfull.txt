@@ -16,6 +16,12 @@
 {{- end }}
 {{- end }}
 {{- end }}
+{{- range (site.GetPage "/over-moza").Pages.ByWeight }}
+
+## {{ .Title }}
+
+{{ partial "markdown-body" . }}
+{{- end }}
 {{- /* Onderwerpen */ -}}
 {{- range where .Site.RegularPages "Section" "onderwerpen" }}
 

@@ -58,6 +58,9 @@
   {{- $tabel := partial "roadmap-markdown.html" (dict "page" $p "naam" (index . 1 | default "roadmap.yaml")) -}}
   {{- $content = replace $content (index . 0) $tabel -}}
 {{- end -}}
+{{- $partners := slice -}}
+{{- range partial "partners-lijst.html" $p }}{{ $partners = $partners | append (printf "- [%s](%s)" .naam .url) }}{{ end -}}
+{{- $content = replaceRE `\{\{<\s*partners\s*>\}\}` (delimit $partners "\n") $content -}}
 
 {{- /* Moet vóór het strippen hieronder, anders verdwijnt de emoji mee. */ -}}
 {{- /* Een getekend diagram staat als shortcode in de tekst; in de download

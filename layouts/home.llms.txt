@@ -9,6 +9,11 @@
 - [{{ .Name }}]({{ .URL }}): {{ with site.GetPage .PageRef }}{{ .Description | default .Title }}{{ end }}
 {{- end }}
 
+## Over MOZa
+{{- range (site.GetPage "/over-moza").Pages.ByWeight }}
+- [{{ .Title }}]({{ .RelPermalink }}): {{ .Description | default .Title }}
+{{- end }}
+
 ## Onderwerpen
 {{- range where .Site.RegularPages "Section" "onderwerpen" }}
 - [{{ .Title }}]({{ .RelPermalink }}): {{ .Description | default .Title }}

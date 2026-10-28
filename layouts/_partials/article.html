@@ -35,6 +35,9 @@
   <div class="artikel-tekst">
   {{ partial "lead-image.html" . }}
   {{ partial "inhoud.html" .Content }}
+  {{- if and (eq .Kind "section") .Params.sectienavigatie (not .Params.hide_tiles) }}
+  {{ partial "sectie-kaarten.html" . }}
+  {{- end -}}
   {{- if gt $navCount 1 -}}
   <footer>
     {{- $isFirst := eq $currentIdx 0 -}}

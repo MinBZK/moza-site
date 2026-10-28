@@ -1,0 +1,21 @@
+{{- /* De organisaties waarmee MOZa samenwerkt, voor het logoraster (shortcode
+       partners) en de tekstuitvoer (markdown-body). Het pad van logo is
+       relatief aan assets/images/beeldbank/; zonder logos/ ervoor ziet de
+       beeldcontrole (npm run beeld) het bestand als ongebruikt. Een Rijkslogo heeft onder het lint
+       ruimte voor meer regels; rijkslogo zet het daarom lager (partners.css). */ -}}
+{{- return slice
+  (dict "rijkslogo" true "logo" "logos/belastingdienst.svg" "naam" "Belastingdienst" "url" "https://www.belastingdienst.nl/")
+  (dict "logo" "logos/kvk.png" "naam" "KVK" "url" "https://www.kvk.nl/")
+  (dict "logo" "logos/ondernemersplein.svg" "naam" "Ondernemersplein" "url" "https://ondernemersplein.overheid.nl/")
+  (dict "rijkslogo" true "logo" "logos/rvo.svg" "naam" "RVO" "url" "https://www.rvo.nl/")
+  (dict "logo" "logos/uwv.png" "naam" "UWV" "url" "https://www.uwv.nl/")
+  (dict "logo" "logos/rdw.png" "naam" "RDW" "url" "https://www.rdw.nl/")
+  (dict "rijkslogo" true "logo" "logos/douane.svg" "naam" "Douane" "url" "https://www.douane.nl/")
+  (dict "rijkslogo" true "logo" "logos/logius.svg" "naam" "Logius" "url" "https://www.logius.nl/")
+  (dict "logo" "logos/vng.png" "naam" "VNG" "url" "https://vng.nl/")
+  (dict "logo" "logos/amsterdam.svg" "naam" "Gemeente Amsterdam" "url" "https://www.amsterdam.nl/")
+  (dict "logo" "logos/rotterdam.svg" "naam" "Gemeente Rotterdam" "url" "https://www.rotterdam.nl/")
+  (dict "rijkslogo" true "logo" "logos/odi.svg" "naam" "Rijksorganisatie ODI, Digi Gilde" "url" "https://www.rijksorganisatieodi.nl/")
+  (dict "rijkslogo" true "logo" "logos/bzk.svg" "naam" "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties" "url" "https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties")
+  (dict "rijkslogo" true "logo" "logos/ezk.svg" "naam" "Ministerie van Economische Zaken en Klimaat" "url" "https://www.rijksoverheid.nl/ministeries/ministerie-van-economische-zaken-en-klimaat")
+-}}

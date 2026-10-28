@@ -16,9 +16,9 @@
     {{- range $rij := $groep.rijen -}}
       {{- $delen := slice -}}
       {{- range $rij.balken }}{{ $delen = $delen | append (printf "%s %s" .type .periode) }}{{ end -}}
-      {{- range $rij.noten }}{{ $delen = $delen | append (printf "%s: %s" .wanneer .tekst) }}{{ end -}}
-      {{- $naam := $rij.naam }}{{ with $rij.voluit }}{{ $naam = printf "%s (%s)" $naam . }}{{ end -}}
-      {{- $regels = $regels | append (printf "- %s, %s: %s" $naam $rij.wie (delimit $delen "; ")) -}}
+      {{- $naam := $rij.naam }}{{ with $rij.pagina }}{{ $naam = printf "[%s](%s)" $naam . }}{{ end }}{{ with $rij.voluit }}{{ $naam = printf "%s (%s)" $naam . }}{{ end -}}
+      {{- with $rij.wie }}{{ $naam = printf "%s, %s" $naam . }}{{ end -}}
+      {{- $regels = $regels | append (printf "- %s: %s" $naam (delimit $delen "; ")) -}}
     {{- end -}}
   {{- end -}}
   {{- $uit = printf "%s\n\n%s:\n\n%s" $data.intro $data.caption (delimit $regels "\n") -}}

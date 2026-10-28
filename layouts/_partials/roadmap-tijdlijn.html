@@ -1,21 +1,18 @@
-{{- /* Roadmap als tijdlijn per maand (roadmap.yaml met van/tot). De as, het
-       raster en de nu-lijn zijn alleen beeld: elke rij noemt zijn periodes
-       en noten ook als verborgen tekst. De noten onder de tijdlijn staan
-       daarom niet in de toegankelijkheidsboom. */ -}}
+{{- /* Roadmap als tijdlijn per maand (roadmap.yaml met van/tot). De as en het
+       raster zijn alleen beeld: elke rij noemt zijn periodes ook als
+       verborgen tekst. */ -}}
 {{- $d := . -}}
 {{- $r := partial "roadmap-rijen.html" $d -}}
 {{- $n := $r.maanden -}}
 {{- $b := split $d.van "-" -}}
 {{- $bj := int (index $b 0) -}}
 {{- $bm := int (strings.TrimLeft "0" (index $b 1)) -}}
-{{- $nu := add (mul (sub now.Year $bj) 12) (sub (int now.Month) $bm) 1 -}}
 <p class="rm-intro">{{ $d.intro }}</p>
 
 <ul class="rm-legenda">
   {{- range $type := slice "verkenning" "realisatie" "doorbouwen" }}
   <li><span class="rm-staal rm-{{ $type }}"></span><span><strong>{{ title $type }}:</strong> {{ index $d.legenda $type }}</span></li>
   {{- end }}
-  <li><span class="rm-staal rm-staal-noot"></span><span>Mijlpaal of toelichting, met een noot onder de roadmap</span></li>
 </ul>
 
 <div class="rm-wrap">
@@ -23,8 +20,7 @@
   <div class="rm-scroll" role="region" tabindex="0" aria-label="{{ $d.caption }}">
     <div class="rm-tijdlijn">
       <div class="rm-as" aria-hidden="true">
-        <span class="rm-as-kop rm-as-onderdeel">Onderdeel</span>
-        <span class="rm-as-kop rm-as-wie">Wie</span>
+        <span class="rm-as-onderdeel">Onderdeel</span>
         {{- range $i := seq $n }}
           {{- $m := add (mod (add $bm $i -2) 12) 1 -}}
           {{- $j := add $bj (div (add $bm $i -2) 12) -}}
@@ -36,7 +32,7 @@
           {{- end }}
         {{- end }}
         {{- range $d.fases }}
-        <span class="rm-fase rm-van-{{ partial "roadmap-maand.html" (dict "maand" .van "begin" $d.van) }} rm-tot-{{ partial "roadmap-maand.html" (dict "maand" .tot "begin" $d.van) }}">{{ .label }}</span>
+        <span class="rm-as-fase rm-van-{{ partial "roadmap-maand.html" (dict "maand" .van "begin" $d.van) }} rm-tot-{{ partial "roadmap-maand.html" (dict "maand" .tot "begin" $d.van) }}">{{ .label }}</span>
         {{- end }}
         <span class="rm-spoor rm-van-1 rm-tot-{{ $n }}"></span>
       </div>
@@ -56,9 +52,6 @@
           <span class="rm-faselijn rm-van-{{ $eind }}"></span>
             {{- end }}
           {{- end }}
-          {{- if and (ge $nu 1) (le $nu $n) }}
-          <span class="rm-nu rm-van-{{ $nu }}"><span class="rm-nu-label">nu</span></span>
-          {{- end }}
         </div>
 
         <ul class="rm-groepen">
@@ -68,14 +61,10 @@
             <ul class="rm-rijen" aria-labelledby="rm-{{ $groep.id }}">
               {{- range $rij := $groep.rijen }}
               <li class="rm-rij">
-                <span class="rm-naam">{{ $rij.naam }}{{ with $rij.voluit }}<span class="visually-hidden"> ({{ . }})</span>{{ end }}</span>
-                <span class="rm-wie"><span class="visually-hidden">, </span>{{ $rij.wie }}<span class="visually-hidden">:</span></span>
+                <span class="rm-naam">{{ with $rij.pagina }}<a href="{{ . | relURL }}">{{ $rij.naam }}</a>{{ else }}{{ $rij.naam }}{{ end }}{{ with $rij.voluit }}<span class="visually-hidden"> ({{ . }})</span>{{ end }}{{ with $rij.wie }}<span class="visually-hidden">, </span><span class="rm-wie">{{ . }}</span>{{ end }}<span class="visually-hidden">:</span></span>
                 <span class="rm-spoor rm-van-1 rm-tot-{{ $n }}"></span>
                 {{- range $rij.balken }}
                 <span class="rm-balk rm-{{ .type }} rm-van-{{ .start }} rm-tot-{{ .eind }}"><span class="visually-hidden">{{ title .type }} {{ .periode }}.</span></span>
-                {{- end }}
-                {{- range $rij.noten }}
-                <span class="rm-noot rm-van-{{ .maand }} rm-tot-{{ .maand }}" tabindex="0" data-tooltip="{{ $rij.naam }}, {{ .wanneer }}: {{ .tekst }}" data-tooltip-uitlijning="midden"><span class="rm-noot-nr" aria-hidden="true">{{ .nr }}</span><span class="visually-hidden">Noot, {{ .wanneer }}: {{ .tekst }}.</span></span>
                 {{- end }}
               </li>
               {{- end }}
@@ -87,9 +76,3 @@
     </div>
   </div>
 </div>
-
-<ol class="rm-noten" aria-hidden="true">
-  {{- range $groep := $r.groepen }}{{ range $rij := $groep.rijen }}{{ range $rij.noten }}
-  <li><span class="rm-noten-nr">{{ .nr }}</span><span><strong>{{ $rij.naam }}</strong>, {{ .wanneer }}: {{ .tekst }}</span></li>
-  {{- end }}{{ end }}{{ end }}
-</ol>

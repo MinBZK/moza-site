@@ -1,0 +1,168 @@
+/* Roadmap als tabel (shortcode layouts/_shortcodes/roadmap.html, roadmap.yaml
+   met kolommen), alleen in de bundel van de rapportages: Plan fase 5 is
+   gedeeld en blijft zo. De tijdlijn op de site staat in roadmap.css. */
+
+.rm-intro {
+  font-size: var(--primitives-font-size-100);
+  line-height: var(--primitives-line-height-snug);
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+/* Het vlak waaronder de tabel ligt en de achtergrond van de kopregel. Op een
+   rapportage ligt de tabel in een card; rapportages.css overschrijft ze daar. */
+.rm-wrap {
+  --rm-vlak: var(--color-bg-page);
+  --rm-kop-bg: var(--color-bg-muted);
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.rm-wrap .scroll-hint {
+  display: none;
+  margin: 0 0 0.5rem;
+  font-size: var(--primitives-font-size-80);
+  color: var(--rapport-text-muted, var(--color-text-muted));
+}
+
+/* Containerquery, zodat dit meeschaalt met de breedte en met de basislettergrootte. */
+@container (max-width: 48rem) {
+  .rm-scroll { overflow-x: auto; }
+  .rm-wrap .scroll-hint { display: block; }
+}
+
+.rm-scroll:focus-visible {
+  outline: 3px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+.rm-table {
+  --rm-onderdeel: 22%;
+  width: 100%;
+  min-width: 48rem;
+  border-collapse: separate;
+  border-spacing: 4px;
+  table-layout: fixed;
+  font-size: var(--primitives-font-size-90);
+  line-height: var(--primitives-line-height-tight);
+  color: var(--color-text);
+}
+
+/* Op een gewone pagina geeft table.css elke cel een onderrand */
+.rm-table th,
+.rm-table td {
+  border-bottom: 0;
+}
+
+.rm-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Kopregel blijft staan tot de tabel voorbij is; de schaduw dekt de ruimte tussen de cellen af */
+.rm-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  font-weight: 700;
+  padding: 0.5rem;
+  background: var(--rm-kop-bg);
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px var(--rm-vlak);
+}
+
+.rm-table thead th:first-child { width: var(--rm-onderdeel); }
+
+/* Met zes of meer periodes (kolom 7 in de kop): smallere kolom "Onderdeel",
+   zodat elk blok "Verkenning" nog op één regel kwijt kan */
+.rm-table:has(thead th:nth-child(7)) {
+  --rm-onderdeel: 18%;
+
+  .rm-bar { padding-inline: 0.375rem; }
+}
+
+.rm-table thead th.rm-fase {
+  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-700), 0 0 0 4px var(--rm-vlak);
+}
+
+/* Fase 5 loopt door in januari: lichtere streep onder het eerste kwartaal van 2027 */
+.rm-table thead th.rm-fase-deel {
+  box-shadow: inset 0 -3px 0 var(--primitives-color-accent-400), 0 0 0 4px var(--rm-vlak);
+}
+
+.rm-fase-label {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.rm-group th {
+  text-align: left;
+  font-size: var(--primitives-font-size-100);
+  font-weight: 700;
+  padding: 1.25rem 0.5rem 0.375rem;
+  position: relative;
+}
+
+/* Streep alleen onder de kolom "Onderdeel" */
+.rm-group th::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--rm-onderdeel);
+  height: 2px;
+  background: var(--color-border);
+}
+
+.rm-table tbody th[scope="row"] {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  vertical-align: middle;
+}
+
+/* height: 1px op de cel laat height: 100% op het blok werken */
+.rm-table td {
+  height: 1px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.rm-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  box-sizing: border-box;
+  height: 100%;
+  /* Ruimte voor het label plus twee regels tekst, zodat alle blokken even hoog zijn */
+  min-height: 4.625rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 6px;
+  hyphens: auto;
+}
+
+.rm-type { font-weight: 700; }
+
+/* Zelfde kleuren als "verkenning" en "in aanbouw" in de plaat van het componentenoverzicht */
+.rm-verkenning {
+  background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200));
+  color: var(--primitives-color-mark-800);
+}
+
+.rm-realisatie {
+  background: var(--primitives-color-accent-700);
+  color: var(--primitives-color-accent-0);
+}
+
+/* Doorbouwen na de eerste livegang; groen, zoals "beschikbaar" in de plaat */
+.rm-doorbouwen {
+  background: var(--primitives-color-success-500);
+  color: #ffffff;
+}

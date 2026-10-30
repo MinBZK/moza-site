@@ -29,7 +29,7 @@ Een voorbeeld: een onderneming met een eigenaar en een medewerker. De eigenaar m
 
 {{< diagram-wallets >}}
 
-De plaat geeft een eenvoudig beeld. Meer details staan in ons [overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html). Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet vallen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
+De plaat geeft een eenvoudig beeld. Meer details staan in ons [overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html). Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet worden genomen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
 
 Zo werkt het, van boven naar beneden:
 

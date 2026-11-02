@@ -1,7 +1,10 @@
 ---
 title: "Berichten in de context van MOZa"
 description: "De soorten berichten van de overheid: wat ze betekenen, wat ze juridisch inhouden en wat de wet, GEMMA en NORA erover zeggen."
-weight: 2
+card_title: "Begrippen berichten"
+weight: 7
+aliases:
+  - /onderwerpen/berichten/begrippen/
 ---
 
 ## Overzicht

@@ -1,4 +1,4 @@
-name: Plak
+name: Toon
 
 on:
   pull_request:
@@ -13,8 +13,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PLAK_SITE: moza/website
-  PLAK_ORIGIN: https://plak.rijks.app
+  TOON_SITE: moza/website
+  TOON_ORIGIN: https://toon.rijks.app
   PREVIEW_REF: pr-${{ github.event.pull_request.number }}
   SITE_PATH: moza/website/_preview/pr-${{ github.event.pull_request.number }}
   HUGO_VERSION: 0.166.0
@@ -62,31 +62,31 @@ jobs:
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
 
-      # De site landt in tmp/plak/<pad op Plak>, zodat render-downloads met
-      # tmp/plak als webroot dezelfde URL's ziet als een bezoeker op Plak.
+      # De site landt in tmp/toon/<pad op Toon>, zodat render-downloads met
+      # tmp/toon als webroot dezelfde URL's ziet als een bezoeker op Toon.
       - name: Build site
         run: |
-          hugo --minify --baseURL "${PLAK_ORIGIN}/${SITE_PATH}/" \
-            --destination "tmp/plak/${SITE_PATH}" --buildDrafts
-          cp "tmp/plak/${SITE_PATH}/download.json" tmp/plak/
+          hugo --minify --baseURL "${TOON_ORIGIN}/${SITE_PATH}/" \
+            --destination "tmp/toon/${SITE_PATH}" --buildDrafts
+          cp "tmp/toon/${SITE_PATH}/download.json" tmp/toon/
 
       - name: Genereer de downloads
-        run: npm run render-downloads -- tmp/plak
+        run: npm run render-downloads -- tmp/toon
 
       - name: Genereer de deelafbeeldingen
-        run: npm run og-cards -- "tmp/plak/${SITE_PATH}"
+        run: npm run og-cards -- "tmp/toon/${SITE_PATH}"
 
       # Bouwsteiger voor de twee stappen hierboven; hoort niet online.
       - name: Ruim de manifesten op
-        run: rm tmp/plak/download.json "tmp/plak/${SITE_PATH}/download.json" "tmp/plak/${SITE_PATH}/og.json"
+        run: rm tmp/toon/download.json "tmp/toon/${SITE_PATH}/download.json" "tmp/toon/${SITE_PATH}/og.json"
 
       - name: Publiceer preview
-        uses: DigiGilde/plak/actions/publish@792a00fc60e47aed50db761dd93d62d8d483bd47 # v2026.10.7
+        uses: DigiGilde/toon/actions/publish@8da2d7a7be607cd708471df5c12963f667faedec # v2026.11.2.1
         with:
-          site: ${{ env.PLAK_SITE }}
-          dist-path: tmp/plak/${{ env.SITE_PATH }}
+          site: ${{ env.TOON_SITE }}
+          dist-path: tmp/toon/${{ env.SITE_PATH }}
           preview-ref: ${{ env.PREVIEW_REF }}
-          environment: plak-preview
+          environment: toon-preview
           comment-on-pr: true
 
   teardown:
@@ -99,10 +99,10 @@ jobs:
       pull-requests: write
     steps:
       - name: Verwijder preview
-        uses: DigiGilde/plak/actions/publish@792a00fc60e47aed50db761dd93d62d8d483bd47 # v2026.10.7
+        uses: DigiGilde/toon/actions/publish@8da2d7a7be607cd708471df5c12963f667faedec # v2026.11.2.1
         with:
-          site: ${{ env.PLAK_SITE }}
+          site: ${{ env.TOON_SITE }}
           preview-ref: ${{ env.PREVIEW_REF }}
           teardown: true
-          environment: plak-preview
+          environment: toon-preview
           comment-on-pr: true

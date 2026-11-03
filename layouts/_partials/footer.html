@@ -1,7 +1,9 @@
 <footer>
   {{- $ancestors := .Ancestors.Reverse -}}
   {{- $hasBreadcrumb := and (not .IsHome) (gt (len $ancestors) 1) -}}
-  {{- $showLastmod := eq .Params.show_lastmod true -}}
+  {{- /* Zelfde voorwaarde als in list.html: een sectie met eigen tekst is een leespagina, geen lijst. */ -}}
+  {{- $isLeespagina := or .IsPage .Params.hide_tiles (and .Params.sectienavigatie .Content) -}}
+  {{- $showLastmod := and (eq .Params.show_lastmod true) $isLeespagina -}}
   {{- if or $hasBreadcrumb $showLastmod -}}
   <div class="page-meta">
     {{- if $hasBreadcrumb -}}

@@ -49,8 +49,8 @@ Secties sluiten vaak aan op bestaande onderwerpen (zie `content/onderwerpen/`) o
 - **Geen vulling**: geen aantallen deelnemers, geen "flink wat wijzigingen", geen verwachting wanneer iets wordt samengevoegd, geen "meer hierover lees je hieronder".
 - **Tijd en status kloppen**: wat af is staat in de verleden tijd; een voornemen zonder datum blijft een voornemen ("willen we"). Schrijf bij samenwerking niet "meer samenwerking" (klinkt alsof het eerst niet zo was) maar bijvoorbeeld "nadrukkelijker dan eerst".
 - **Links achter een inlog** mogen, met de linktitel "besloten": `[tekst](https://... "besloten")`. De render hook (`layouts/_partials/render-link.html`) zet er dan het slotje en de verborgen tekst "(besloten omgeving)" bij. Gebruik geen eigen emoji.
-- **Plak-links** (plak.rijks.app): controleer elke link vooraf met `curl`. 302 naar `/-/login` is besloten, 200 is publiek, 404 bestaat niet.
-- **Herstel geanonimiseerde links**: de anonimisering vervangt soms een deel van een domein door `[collega]` (`plak.[collega].app` is `plak.rijks.app`). Herstel zo'n link en controleer hem.
+- **Toon-links** (toon.rijks.app; oude links op plak.rijks.app sturen door): controleer elke link vooraf met `curl`. 302 naar `/-/login` is besloten, 200 is publiek, 404 bestaat niet.
+- **Herstel geanonimiseerde links**: de anonimisering vervangt soms een deel van een domein door `[collega]` (`toon.[collega].app` is `toon.rijks.app`). Herstel zo'n link en controleer hem.
 - **Namen**: geen namen van teamleden. Wie in een openbare rol optreedt, zoals een gast in een podcast, mag bij naam met organisatie; neem de spelling over van de openbare bron.
 
 ## Agenda

@@ -146,7 +146,7 @@ import "@nldd/design-system/button";
 
   // Publieks- en sprekersvenster volgen elkaar via een BroadcastChannel (zelfde
   // origin) en via postMessage tussen opener en popup. Dat laatste werkt ook
-  // als de pagina in een sandbox draait, zoals op Plak: daar heeft elk venster
+  // als de pagina in een sandbox draait, zoals op Toon: daar heeft elk venster
   // een eigen, anonieme origin en bereikt het BroadcastChannel niemand.
   // `synced` voorkomt dat een ontvangen stand weer wordt teruggestuurd.
   const channel = "BroadcastChannel" in window ? new BroadcastChannel(`nldd-deck:${location.pathname}`) : null;

@@ -121,17 +121,17 @@ Alleen in presentatiemodus; in leesmodus staat alles er meteen.
 
 - Notities staan per dia in `<aside class="notes">`, als gewone alinea's. Ze zijn nooit zichtbaar op de dia en komen niet in de zoekindex. Ze staan wel in de HTML-bron: wat niet openbaar mag, hoort niet in een presentatie die live gaat.
 - <kbd>S</kbd> opent de **sprekersweergave** in een eigen venster (`?spreker`): de dia van nu, de volgende stap of dia, de notities, een klok en de verstreken tijd. Zet `duur: 10` (minuten) in de front matter om de tijd af te zetten tegen het plan; daarna kleurt hij geel.
-- Beide vensters volgen elkaar, wie er ook bladert. Sleep het publieksvenster naar de beamer en druk daar op <kbd>F</kbd>. Werkt binnen dezelfde browser, ook in een sandbox (zoals op Plak) zolang je de sprekersweergave met <kbd>S</kbd> opent.
+- Beide vensters volgen elkaar, wie er ook bladert. Sleep het publieksvenster naar de beamer en druk daar op <kbd>F</kbd>. Werkt binnen dezelfde browser, ook in een sandbox (zoals op Toon) zolang je de sprekersweergave met <kbd>S</kbd> opent.
 
-## Exporteren (Plak, offline)
+## Exporteren (Toon, offline)
 
 - Elke presentatie heeft in de footer een link "Download als PDF"; `download: false` in de front matter haalt hem weg. De build maakt die PDF met `scripts/downloads/render-downloads.js`: één dia per pagina, alle stappen zichtbaar, getoetst op PDF/UA. In de losse HTML-export hieronder valt de link weg.
 - `just presentatie-export <slug>` bouwt de site (ook drafts) en exporteert de presentatie als één HTML-bestand in `tmp/export/<slug>/index.html`: opmaak, fonts, script en afbeeldingen zitten erin. Het script is `scripts/presentatie-export.js`.
 - `just presentatie-odp <slug> [uitvoer]` doet dezelfde export en zet die om naar een OpenDocument-presentatie. Zonder `uitvoer` komt `<slug>.odp` in de map waar je `just` aanroept; geef anders een map of een bestandsnaam op (`.odp` wordt aangevuld). Bedoeld voor wie in LibreOffice, PowerPoint of Keynote presenteert. Elke opbouwstap wordt een eigen dia, als beeld, met een korte overvloeier ertussen. De sprekersnotities en een alt-tekst per dia gaan mee, maar de tekst is niet te bewerken: wijzig de presentatie zelf en exporteer opnieuw. Het script is `scripts/presentatie-odp.js`.
-- Publiceren op Plak, zie ook de skill `plak:plak-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:
-  - eenmalig een site aanmaken: `plak site create moza/<slug> --title "<titel>" --access sso`;
-  - live zetten: `plak publish tmp/export/<slug> --site moza/<slug>`; met `--preview <ref>` wordt het een preview.
-- Een site mag 200 MB gebruiken, en oude live versies tellen mee tot Plak ze 's nachts opruimt. Een grote video in elke versie loopt dus snel vast. Comprimeer zo'n video eerst, bijvoorbeeld met `ffmpeg -i in.mp4 -c:v libx264 -crf 20 -preset slow -c:a copy -movflags +faststart uit.mp4` (31 naar 3,6 MB zonder zichtbaar verschil), of laat hem weg.
+- Publiceren op Toon, zie ook de skill `toon:toon-publish`. Presentaties van MOZa staan in de groep `moza`, met toegang SSO Rijk:
+  - eenmalig een site aanmaken: `toon site create moza/<slug> --title "<titel>" --access sso`;
+  - live zetten: `toon publish tmp/export/<slug> --site moza/<slug>`; met `--preview <ref>` wordt het een preview.
+- Een site mag 200 MB gebruiken, en oude live versies tellen mee tot Toon ze 's nachts opruimt. Een grote video in elke versie loopt dus snel vast. Comprimeer zo'n video eerst, bijvoorbeeld met `ffmpeg -i in.mp4 -c:v libx264 -crf 20 -preset slow -c:a copy -movflags +faststart uit.mp4` (31 naar 3,6 MB zonder zichtbaar verschil), of laat hem weg.
 - De sluitknop en links naar de site vallen weg. De notities gaan wel mee: wie de bron bekijkt, kan ze lezen.
 - Materiaal dat niet publiek mag (zoals video uit gebruikersonderzoek) zet je in de map `lokaal/` van de bundle; `.gitignore` houdt elke `lokaal/`-map onder `content/` buiten git. Zet de dia zelf ook daar, in een eigen HTML-bestand, en voeg hem in met `{{< lokaal "video-dia.html" >}}reservedia{{< /lokaal >}}`. Ontbreekt het bestand (zoals bij anderen), dan komt de reservedia in de plaats, bijvoorbeeld een vervaagd beeld zonder mensen met een titel. Geef de lokale dia `data-lokaal`: de export zet er dan ook de reservedia voor in de plaats.
 

@@ -202,5 +202,5 @@ De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebi
 ## Meer info
 
 * [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
-* [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/workspace/documentation/Profiel%20Service)
+* [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/main/profiel-service/)
 * Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)

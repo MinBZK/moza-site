@@ -1,21 +1,5 @@
-/* Opmaak die alleen voor deze presentatie is: de terugpijl onder de flow,
-   de demodia en de bouwblokkenplaat. De algemene opmaak staat in
-   assets/css/nldd-deck.css. */
-
-/* Terugverbinding van stap 4 naar stap 1, onder de kaarten langs.
-   De viewBox rekent in cqw: 88 = dia-breedte min de padding. */
-.flow-return { position: relative; margin-top: 0; }
-.flow-return svg { display: block; width: 100%; height: 4.4cqw; overflow: visible; }
-.flow-return path { fill: none; stroke: var(--accent); stroke-width: 0.2; stroke-dasharray: 0.8 0.5; }
-.flow-return .head { fill: var(--accent); stroke: none; }
-.flow-return p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1cqw;
-  margin: 0.8cqw 0 0;
-  font-size: 1.35cqw;
-}
+/* Opmaak die alleen voor deze presentatie is: de demodia en de bouwblokkenplaat.
+   De algemene opmaak staat in assets/css/nldd-deck.css. */
 
 /* ---------- Demo: screenshot die de demo opent ---------- */
 

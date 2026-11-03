@@ -5,7 +5,7 @@ description: Maak een nieuwe presentatie aan met de layout nldd-deck (NLDD-compo
 
 Nieuwe presentaties gebruiken de layout `nldd-deck`. De oudere MOZa Pulse-presentaties draaien op Reveal.js; die laten we zoals ze zijn, maar nieuwe presentaties maak je niet meer met Reveal.
 
-Begin bij de **dia-bibliotheek**: `content/documenten/presentaties/dia-bibliotheek/index.html` (draft, lokaal op `/documenten/presentaties/dia-bibliotheek/`). Daarin staat elke dia die in MOZa-presentaties terugkomt één keer, in de nieuwste versie en met neutrale sprekersnotities: titel en slot met foto, historie, waarom met citaten, klavertje vier, ringen, opdracht, context, drie blokken, werkwijze, proeftuin, digitale assistent en gebruikersonderzoek.
+Begin bij de **dia-bibliotheek**: `content/documenten/presentaties/dia-bibliotheek/index.html` (draft, lokaal op `/documenten/presentaties/dia-bibliotheek/`). Daarin staat elke dia die in MOZa-presentaties terugkomt één keer, in de nieuwste versie en met neutrale sprekersnotities: titel en slot met foto, historie, waarom met citaten, klavertje vier, ringen, opdracht, context, drie blokken, werkwijze, proeftuin, digitale assistent, berichtenketen en gebruikersonderzoek.
 
 ## Waar hoort wat
 
@@ -68,6 +68,7 @@ De basis, in `nldd-deck.css`:
 | `footnote` | Toelichting met gele streep, max. twee regels |
 | `compare`, `card` | Twee kaarten naast elkaar (bijvoorbeeld nu en straks) |
 | `flow`, `flow-step` | Stappen in een rij met pijlen ertussen; het aantal kolommen volgt het aantal stappen |
+| `flow-return` | Gestippelde pijl onder een `flow`, terug naar een eerdere stap; de SVG staat in de HTML |
 | `slide-cover` met `cover` | Titel- of slotdia met foto over de hele dia; met `data-overgang` vervaagt de foto |
 | `slide-video`, `slide-reserve` | Video over de hele dia (via de shortcode `lokaal`), met een reservedia voor online |
 | `quotes` | Drie citaten naast elkaar |

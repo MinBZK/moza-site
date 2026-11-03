@@ -1,0 +1,128 @@
+kolommen:
+  - kolom: q4-2026
+    label: "Q4 2026"
+    fase_label: "fase 5"
+  - kolom: q1-2027
+    label: "Q1 2027"
+    fase_label: "fase 5 t/m januari"
+  - kolom: q2-2027
+    label: "Q2 2027"
+  - kolom: q3-2027
+    label: "Q3 2027"
+groepen:
+  - id: g1
+    naam: "Berichtenstelsel"
+    rijen:
+      - id: r1
+        naam: "Berichtenstelsel"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027]
+            type: verkenning
+            label: "Verkenning / realisatie"
+          - kolommen: [q2-2027, q3-2027]
+            type: realisatie
+      - id: r2
+        naam: "Berichtenbox voor Burgers en Ondernemers (Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: leeg
+          - kolommen: [q3-2027]
+            type: realisatie
+  - id: g2
+    naam: "Notificatiedienst"
+    rijen:
+      - id: r3
+        naam: "Notificatie Management Component (NMC)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027]
+            type: doorbouwen
+      - id: r4
+        naam: "NotifyNL (Logius)"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: realisatie
+          - kolommen: [q2-2027, q3-2027]
+            type: doorbouwen
+      - id: r5
+        naam: "Contactherstel (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027]
+            type: doorbouwen
+  - id: g3
+    naam: "Profieldienst"
+    rijen:
+      - id: r6
+        naam: "Profielservice"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027]
+            type: doorbouwen
+      - id: r7
+        naam: "Plek van de profielservice"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027, q3-2027]
+            type: leeg
+  - id: g4
+    naam: "Inzicht en overzicht"
+    rijen:
+      - id: r8
+        naam: "Portaal zakelijk op MijnOverheid (Logius)"
+        cellen:
+          - kolommen: [q4-2026]
+            type: verkenning
+          - kolommen: [q1-2027, q2-2027]
+            type: realisatie
+          - kolommen: [q3-2027]
+            type: doorbouwen
+      - id: r9
+        naam: "Inzage bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027]
+            type: realisatie
+  - id: g5
+    naam: "Handelingsperspectief"
+    rijen:
+      - id: r10
+        naam: "Machine-uitvoerbare wetgeving"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: verkenning
+          - kolommen: [q3-2027]
+            type: leeg
+      - id: r11
+        naam: "Digitale Assistent"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027]
+            type: leeg
+      - id: r12
+        naam: "Delen bedrijfsgegevens"
+        cellen:
+          - kolommen: [q4-2026, q1-2027, q2-2027]
+            type: verkenning
+          - kolommen: [q3-2027]
+            type: realisatie
+  - id: g6
+    naam: "Inloggen en machtigen"
+    rijen:
+      - id: r13
+        naam: "Inloggen en machtigen met wallets"
+        cellen:
+          - kolommen: [q4-2026, q1-2027]
+            type: verkenning
+          - kolommen: [q2-2027, q3-2027]
+            type: leeg

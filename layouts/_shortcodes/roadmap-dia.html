@@ -24,7 +24,7 @@
     <tr>
       <th id="{{ $pre }}-{{ $rij.id }}" headers="{{ $pre }}-{{ $groep.id }} {{ $pre }}-onderdeel" scope="row">{{ $rij.naam }}</th>
       {{- range $cel := $rij.cellen }}
-      <td headers="{{ $pre }}-{{ $groep.id }} {{ $pre }}-{{ $rij.id }}{{ range $cel.kolommen }} {{ $pre }}-{{ . }}{{ end }}"{{ if gt (len $cel.kolommen) 1 }} colspan="{{ len $cel.kolommen }}"{{ end }}>{{ if ne $cel.type "leeg" }}<span class="planning-balk planning-{{ $cel.type }}"><strong>{{ $cel.label | default (title $cel.type) }}</strong></span>{{ end }}</td>
+      <td headers="{{ $pre }}-{{ $groep.id }} {{ $pre }}-{{ $rij.id }}{{ range $cel.kolommen }} {{ $pre }}-{{ . }}{{ end }}"{{ if gt (len $cel.kolommen) 1 }} colspan="{{ len $cel.kolommen }}"{{ end }}>{{ if ne $cel.type "leeg" }}<span class="planning-balk planning-{{ $cel.type }}"><strong>{{ $cel.label | default (title $cel.type) }}</strong></span>{{ else }}<span class="planning-leeg">Niet ingepland</span>{{ end }}</td>
       {{- end }}
     </tr>
     {{- end }}

@@ -49,5 +49,6 @@
 .planning-verkenning { border: 0.12cqw dashed var(--accent); color: var(--ink); }
 .planning-realisatie { background: var(--primitives-color-lintblauw-200); color: var(--primitives-color-lintblauw-850); }
 .planning-doorbouwen { background: var(--primitives-color-groen-600); color: var(--primitives-color-coolgray-0); }
+.planning-leeg { color: transparent; }
 
 .slide .planning + .footnote { margin-top: 1.2cqw; max-width: none; font-size: 1.25cqw; }

@@ -20,6 +20,12 @@ disableKinds:
 enableRobotsTXT: true
 enableGitInfo: true
 
+cascade:
+  - params:
+      show_lastmod: true
+    target:
+      path: '{/over-moza,/over-moza/**,/handboek,/handboek/**,/privacy,/toegankelijkheid}'
+
 # Whitelist van toegestane contenttypes. Vanaf Hugo v0.162 blokkeert de
 # standaardpolicy text/html. Omdat allowContent een whitelist is die de
 # standaard volledig vervangt, moeten alle gebruikte types hier staan:

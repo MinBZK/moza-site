@@ -4,6 +4,13 @@
   {{- /* Zelfde voorwaarde als in list.html: een sectie met eigen tekst is een leespagina, geen lijst. */ -}}
   {{- $isLeespagina := or .IsPage .Params.hide_tiles (and .Params.sectienavigatie .Content) -}}
   {{- $showLastmod := and (eq .Params.show_lastmod true) $isLeespagina -}}
+  {{- $lastmod := .Lastmod -}}
+  {{- if .File -}}
+    {{- with index (hugo.Data.bundel_lastmod | default dict) .File.Dir -}}
+      {{- $bundel := time.AsTime . -}}
+      {{- if $bundel.After $lastmod }}{{ $lastmod = $bundel }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
   {{- if or $hasBreadcrumb $showLastmod -}}
   <div class="page-meta">
     {{- if $hasBreadcrumb -}}
@@ -15,9 +22,9 @@
         <li><span class="current" aria-current="page">{{ .Title }}</span></li>
       </ol>
     </nav>
-    {{- if $showLastmod }} <span class="lastmod">(laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>)</span>{{ end -}}
+    {{- if $showLastmod }} <span class="lastmod">(laatst bijgewerkt op <time datetime="{{ $lastmod.Format "2006-01-02" }}">{{ $lastmod | time.Format ":date_long" }}</time>)</span>{{ end -}}
     {{- else if $showLastmod -}}
-    <p class="lastmod">Deze pagina is voor het laatst bijgewerkt op <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>.</p>
+    <p class="lastmod">Deze pagina is voor het laatst bijgewerkt op <time datetime="{{ $lastmod.Format "2006-01-02" }}">{{ $lastmod | time.Format ":date_long" }}</time>.</p>
     {{- end -}}
   </div>
   {{- end -}}

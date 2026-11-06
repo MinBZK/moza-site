@@ -160,6 +160,16 @@ def test_hostnaam_van_een_url_blijft_heel():
     )
 
 
+def test_naam_in_het_gebruikersdeel_van_een_url_wordt_wel_geschrubd():
+    name_re = _build_name_redactor(_authors(), ["Truus"])
+    assert _redact_message("zie https://Truus@voorbeeld.app/pad", name_re) == (
+        "zie https://[collega]@voorbeeld.app/pad"
+    )
+    assert _redact_message("zie https://Truus:geheim@truus.voorbeeld.app/", name_re) == (
+        "zie https://[collega]:geheim@truus.voorbeeld.app/"
+    )
+
+
 def test_naam_in_pad_en_query_van_een_url_wordt_wel_geschrubd():
     name_re = _build_name_redactor(_authors(), ["Truus"])
     assert _redact_message("https://truus.voorbeeld.app/truus/repo?u=Truus#Truus", name_re) == (

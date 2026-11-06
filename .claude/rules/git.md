@@ -16,3 +16,10 @@
 
 - Gebruik `git mv` in plaats van `mv` (behoudt historie)
 - Gebruik `git rm` in plaats van `rm` voor tracked files
+
+## Verplichte checks
+
+De ruleset `main` op GitHub eist vijf jobs uit `.github/workflows/test.yml` op naam: Python-scripts, Node-scripts, Toegankelijkheid, Downloads en PDF/UA, Content-Security-Policy. "Site en links" is bewust niet verplicht: een externe URL die even plat ligt, mag een merge niet tegenhouden.
+
+- Hernoem of verwijder je zo'n job, pas dan de ruleset aan (Settings, Rules) zodra die PR gemerged is; de ruleset staat niet in de repo. Anders wacht elke PR op een check die nooit komt.
+- Een nieuwe job wordt niet vanzelf verplicht; voeg hem toe aan de ruleset als hij een merge moet tegenhouden.

@@ -1,0 +1,54 @@
+.slide-uitklap { justify-content: flex-start; }
+.slide-uitklap .blocks { align-items: start; }
+/* Drie regels: dichte blokken zijn even hoog en de onderdelen beginnen op dezelfde hoogte. */
+.slide-uitklap .blocks p { min-height: 4.2em; }
+/* De min-height is de hoogte van het langste uitgeklapte blok, zodat open blokken even hoog zijn. */
+.uitklap { display: grid; grid-template-rows: 1fr; min-height: 18.9cqw; margin-top: 1.2cqw; transition: grid-template-rows 0.35s ease, min-height 0.35s ease, margin-top 0.35s ease, opacity 0.35s ease; }
+/* Zonder JavaScript krijgt niets .is-shown; dan moet alles open blijven. */
+.js .uitklap:not(.is-shown) { grid-template-rows: 0fr; min-height: 0; margin-top: 0; }
+/* Marge of padding op deze dl zou bij 0fr zichtbaar blijven. */
+.onderdelen { display: grid; align-content: start; gap: 0.7cqw; overflow: hidden; min-height: 0; margin: 0; }
+.onderdelen div { padding-top: 0.7cqw; border-top: 0.1cqw solid var(--ink-18); font-size: 1.4cqw; line-height: 1.35; }
+.onderdelen dt { font-weight: 700; }
+.onderdelen dd { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .uitklap { transition: none; }
+}
+
+.doelen,
+.daarnaast { display: grid; gap: 1.2cqw; margin: 0; padding: 0; list-style: none; }
+.doelen { grid-template-columns: repeat(5, 1fr); margin-top: 2cqw; }
+.doelen .card { display: flex; flex-direction: column; gap: 0.6cqw; padding: 1.3cqw 1.3cqw 1.5cqw; }
+.doelen .flow-num { border-color: var(--accent); color: var(--accent); }
+.doelen h3 { font-size: 1.45cqw; line-height: 1.2; }
+.doelen p { font-size: 1.2cqw; line-height: 1.35; }
+.daarnaast-kop { margin: 1.6cqw 0 0.8cqw; font-size: 1.45cqw; color: var(--accent); }
+.daarnaast { grid-template-columns: repeat(3, 1fr); }
+.daarnaast li { padding: 1cqw 1.3cqw; border: 0.1cqw dashed var(--ink-35); border-radius: 1cqw; }
+.daarnaast h4 { margin: 0 0 0.3cqw; font-size: 1.35cqw; }
+.daarnaast p { margin: 0; font-size: 1.2cqw; line-height: 1.35; }
+
+.doelen a,
+.daarnaast a,
+.terug a { color: var(--accent); text-underline-offset: 0.2em; }
+.doelen a:focus-visible,
+.daarnaast a:focus-visible,
+.terug a:focus-visible { outline: 0.2cqw solid var(--accent); outline-offset: 0.2cqw; }
+
+.terug { position: absolute; top: 4.4cqw; right: 6cqw; margin: 0; font-size: 1.3cqw; }
+
+.planning { width: 100%; margin-top: 1.6cqw; border-spacing: 0.35cqw; table-layout: fixed; font-size: 1.25cqw; line-height: 1.25; }
+.planning th { padding: 0 0.6cqw; font-weight: 600; text-align: left; }
+.planning thead th { padding-bottom: 0.3cqw; border-bottom: 0.1cqw solid var(--ink-35); }
+.planning thead th:first-child { width: 25cqw; }
+.planning-fase { display: block; font-size: 1cqw; font-weight: 400; color: var(--ink-72); }
+.planning-groep th { padding-top: 0.8cqw; font-size: 1.45cqw; font-weight: 700; color: var(--accent); }
+.planning td { padding: 0; }
+.planning-balk { display: flex; flex-direction: column; justify-content: center; min-height: 2.8cqw; padding: 0.2cqw 0.8cqw; border-radius: 0.5cqw; }
+.planning-balk strong { color: inherit; }
+.planning-verkenning { border: 0.12cqw dashed var(--accent); color: var(--ink); }
+.planning-realisatie { background: var(--primitives-color-lintblauw-200); color: var(--primitives-color-lintblauw-850); }
+.planning-doorbouwen { background: var(--primitives-color-groen-600); color: var(--primitives-color-coolgray-0); }
+.planning-leeg { color: transparent; }
+
+.slide .planning + .footnote { margin-top: 1.2cqw; max-width: none; font-size: 1.25cqw; }

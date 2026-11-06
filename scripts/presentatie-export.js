@@ -3,7 +3,7 @@
 /**
  * Exporteer een gebouwde nldd-deck-presentatie als één HTML-bestand:
  * stylesheets, fonts, script en afbeeldingen zitten erin. Bedoeld om los te
- * publiceren, bijvoorbeeld op Plak, of om offline te presenteren.
+ * publiceren, bijvoorbeeld op Toon, of om offline te presenteren.
  *
  * Draait NA de Hugo-build. Een losse pagina heeft geen site om naar terug te
  * gaan, dus de sluitknop en links naar de site (canonical, favicon) vallen weg.

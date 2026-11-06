@@ -35,7 +35,7 @@ Zien hoe aanvragen en dossiers ervoor staan, wat er nog moet gebeuren en welke g
 - [Portaal zakelijk op MijnOverheid](/onderwerpen/portaal/)
 - [Zaken en taken op de roadmap](/over-moza/roadmap/#overzicht-geven)
 {{< /kaart >}}
-{{< kaart titel="Minder regeldruk" >}}
+{{< kaart titel="Minder ervaren regeldruk" >}}
 Weten welke regels voor een onderneming gelden en wat die moet doen, zonder alles zelf uit te zoeken.
 
 - [Digitale Assistent](/onderwerpen/digitale-assistent/)

@@ -14,7 +14,7 @@ Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij 
 
 ### Welke soorten berichten zijn er?
 
-Alles wat de overheid verstuurt of klaarzet, is een *bericht*: "Een afgebakende hoeveelheid gegevens die een verzender naar een ontvanger stuurt" ([NORA, Bericht](https://www.noraonline.nl/wiki/Bericht)). We kijken alleen naar berichten van de overheid. Berichten aan de overheid, zoals een aanvraag of een bezwaar, vallen buiten deze indeling. Alleen de ontvangstbevestiging die je daarop krijgt, hoort erbij.
+Alles wat de overheid verstuurt of klaarzet, is een *bericht*: "Een afgebakende hoeveelheid gegevens die een verzender naar een ontvanger stuurt" ([NORA, Bericht](https://www.noraonline.nl/wiki/Bericht)). We kijken alleen naar berichten van de overheid. Berichten aan de overheid, zoals een aanvraag of een bezwaar, vallen buiten deze indeling. De ontvangstbevestiging die je daarop krijgt, hoort er wel bij.
 
 We delen berichten in twee families in, naar wat ze doen:
 

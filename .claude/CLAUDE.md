@@ -68,3 +68,4 @@ Zie `.claude/rules/` voor:
 - `git.md` - Commit conventies
 - `toegankelijkheidsrapport.md` - Onderzoek en verklaring, versie en checklist
 - `browser-testing.md` - Playwright MCP voor browser tests
+- `video.md` - Video op de site: ondertitels, uitgeschreven tekst, bestandsgrootte

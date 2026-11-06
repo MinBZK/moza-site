@@ -72,6 +72,10 @@
     display: none !important;
   }
 
+  .video {
+    display: none;
+  }
+
   /* Op .tabel-wrap zou de rand bij een paginaovergang om de lege ruimte heen
      vallen die het schuifvenster overhoudt. */
   article .tabel-wrap {

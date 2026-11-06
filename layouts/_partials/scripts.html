@@ -5,6 +5,7 @@
 {{- /* Fuse is ESM; esbuild maakt er een klassiek script van (zet window.Fuse) */ -}}
 {{- $fuseJs := resources.Get "js/fuse-global.js" | js.Build (dict "minify" true "format" "iife" "target" "es2020") -}}
 {{- $searchJs := resources.Get "js/search.js" -}}
-{{- $js := slice $baseJs $tocJs $tooltipJs $fuseJs $searchJs | resources.Concat "js/bundle.js" | fingerprint "md5" -}}
+{{- $plaatStappenJs := resources.Get "js/plaat-stappen.js" -}}
+{{- $js := slice $baseJs $tocJs $tooltipJs $fuseJs $searchJs $plaatStappenJs | resources.Concat "js/bundle.js" | fingerprint "md5" -}}
 <script src="{{ $js.RelPermalink }}"></script>
 

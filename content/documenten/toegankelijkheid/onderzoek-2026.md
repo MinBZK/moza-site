@@ -59,7 +59,7 @@ bevinding aan de hand was in [Bevindingen](#bevindingen).
 | Basisniveau toegankelijkheid | Windows met Edge en NVDA, macOS met Safari en VoiceOver, iOS met Safari en VoiceOver, Chrome op macOS, en bediening met alleen het toetsenbord. De versies staan in het hoofdstuk [Waarmee is getoetst](/documenten/toegankelijkheid/onderzoek-2026/#waarmee-is-getoetst). |
 | Soort onderzoek | Volledig onderzoek |
 | Geldig tot | 5 september 2029, drie jaar na de oudste meting |
-| Versie van dit rapport | 1.2, 19 oktober 2026 |
+| Versie van dit rapport | 1.3, 6 november 2026. Reden: de site laat met JavaScript nu ook een plaat per stap doorlopen; zie [Gebruikte technologieën](/documenten/toegankelijkheid/onderzoek-2026/#gebruikte-technologieën). De oordelen zijn niet veranderd |
 {{< /table-without-header >}}
 
 ### Over het conformiteitsdoel
@@ -92,6 +92,14 @@ themawissel, het inklappen van de rechterkolom op smal scherm en de tooltip bij
 de downloadknop aan toe. Valt het weg, dan blijven alle content en alle
 navigatie bereikbaar; zoeken vervalt, en daarvoor zijn de menustructuur en de
 kruisverwijzingen het alternatief.
+
+Sinds versie 1.3 van dit rapport (6 november 2026) voegt JavaScript ook het per
+stap doorlopen van een plaat toe, op de pagina
+[Begrippen in de praktijk](/onderwerpen/berichten/begrippen-in-de-praktijk/). Het
+script laat je een scenario kiezen, maakt de korte stappen onder de plaat
+klikbaar, toont de uitleg van één stap en laat de onderdelen van die stap
+oplichten. Valt het weg, dan staan alle scenario's onder elkaar, linken de korte
+stappen naar hun uitleg verderop, en staat alle uitleg onder elkaar.
 
 **Voor de presentaties is JavaScript wel nodig om te kunnen bladeren.** Een
 presentatie toont één dia tegelijk, en dat doet het script. Valt het weg, dan

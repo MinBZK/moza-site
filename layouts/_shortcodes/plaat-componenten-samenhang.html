@@ -1,0 +1,28 @@
+{{- /* Plaat "Componenten in samenhang, versie 1" uit het plan voor fase 5.
+       stappen="ja": genummerde cirkels voor de stappen op de begrippenpagina.
+       rapportage="ja": opmaak van de rapportage (kaart met legenda). */ -}}
+{{- $stappen := eq (.Get "stappen") "ja" -}}
+{{- if eq (.Get "rapportage") "ja" }}
+<div class="cp-diagram-card">
+  <div class="cp-diagram-head">
+    {{ partial "plaat-componenten-samenhang-legenda.html" . }}
+  </div>
+  <p class="scroll-hint">Schuif opzij om de hele plaat te zien.</p>
+  <div class="cp-diagram-wrap">
+    {{ partial "plaat-componenten-samenhang.html" (dict "stappen" $stappen) }}
+  </div>
+</div>
+{{- else }}
+<figure class="diagram plaat-samenhang"{{ if $stappen }} data-stappen-speler{{ end }}>
+  {{- if not $stappen }}
+  {{ partial "plaat-componenten-samenhang-legenda.html" . }}
+  {{- end }}
+  <div class="diagram-panel" tabindex="0" role="group" aria-labelledby="cpDgTitle">
+    {{ partial "plaat-componenten-samenhang.html" (dict "stappen" $stappen) }}
+  </div>
+  <p class="diagram-scroll-hint">Schuif opzij om de hele plaat te zien.</p>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{- end }}
+</figure>
+{{- end }}

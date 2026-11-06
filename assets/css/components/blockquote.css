@@ -73,6 +73,10 @@ blockquote.quote {
     ul,
     ol {
       padding-left: 1.4rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

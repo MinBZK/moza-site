@@ -67,17 +67,15 @@ Waar we aan werken en wanneer we wat verwachten, met een doorkijk naar 2030.
 
 ## Lees verder op deze site
 
-Elk onderwerp heeft een eigen pagina. Onder Over MOZa lees je met wie en hoe we werken.
-
 {{< kaarten lijst=true >}}
+{{< kaart titel="Over MOZa" pagina="/over-moza" >}}
+Wat we doen en waarom, en wat ondernemers ervan gaan merken.
+{{< /kaart >}}
 {{< kaart titel="Met wie we samenwerken" pagina="/over-moza/samenwerking" >}}
 Negen organisaties tekenden de intentieverklaring. Lees wie er meedoen, wat het oplevert en hoe je aansluit.
 {{< /kaart >}}
 {{< kaart titel="Hoe we werken" pagina="/over-moza/werkwijze" >}}
 In korte stappen, met ondernemers aan tafel en zo open mogelijk.
-{{< /kaart >}}
-{{< kaart titel="Alle onderwerpen" pagina="/onderwerpen" >}}
-Een overzicht van alle onderwerpen waar we aan werken.
 {{< /kaart >}}
 {{< /kaarten >}}
 

@@ -1,0 +1,396 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.240
+Hallo, ik heb even nagedacht over hoe ik het
+het beste kon laten zien, want aan de
+buitenkant van deze rework
+
+00:00:06.240 --> 00:00:13.440
+lijkt niks veranderd te zijn aan de NMC. Je
+stuurt je notificaties, dat doet die nog
+steeds.
+
+00:00:13.440 --> 00:00:20.560
+Alleen intern is het hele mechanisme herzien.
+Dus de vraag is: waarom was dat nu nodig?
+
+00:00:20.560 --> 00:00:29.520
+Dat komt neer op drie dingen eigenlijk. De
+eerste: er gaat nu niks meer verloren. Een
+notificatie is aangenomen
+
+00:00:29.520 --> 00:00:35.840
+zodra hij is opgeslagen in onze database, en
+elke notificatie zonder eindstatus heeft
+altijd een open taak.
+
+00:00:35.840 --> 00:00:44.080
+De tweede: we zijn niet meer afhankelijk van
+de callback van NotifyNL. Die komt uiterlijk
+vijf keer terug en dan is die weg.
+
+00:00:44.080 --> 00:00:53.040
+Wat we nu doen is: we slaan nu de receipts
+eerst op, vragen zelf na indien dat nodig is,
+en stellen de bezorging pas na zeven dagen
+vast.
+
+00:00:53.040 --> 00:01:02.160
+De derde: de dienstverlener krijgt een
+afleverbewijs en een eventlog die hij kan
+uitlezen, zo vaak hij maar wil.
+
+00:01:02.160 --> 00:01:11.680
+De eerste stap is voor de dienstverlener niet
+echt veranderd. Hij stuurt een bericht naar
+ons en krijgt direct een 200 terug.
+
+00:01:11.680 --> 00:01:20.560
+In de oude variant betekende dit dat wij al
+naar NotifyNL een bericht hadden gestuurd. In
+de nieuwe versie hebben wij hem alleen intern
+opgeslagen.
+
+00:01:20.560 --> 00:01:33.680
+Na opslag intern gaat een verzendtaak het
+e-mailadres ophalen bij de profielservice, in
+het geval van een centrale koppeling, en
+daarna verstuurt hij hem naar NotifyNL.
+
+00:01:33.680 --> 00:01:39.850
+Asynchroon meldt NotifyNL delivered terug aan
+ons. De receipt wordt dan opgeslagen,
+
+00:01:39.850 --> 00:01:46.560
+wat ik net al zei, en dan verwerkt. De status
+wordt dan ook op bezorgd gezet. Dan is het
+voor ons bezorgd.
+
+00:01:46.560 --> 00:01:58.400
+Zeven dagen later, als er geen faalreceipts
+meer kwamen van NotifyNL, stellen we de
+bezorging vast met een heel andere taak, en
+dan staat hij dus op definitief bezorgd.
+
+00:01:58.400 --> 00:02:10.560
+Elke overgang is een event in het log, en dat
+log leest de dienstverlener mee met een
+cursor. Dat is het tweede grote zichtbare
+verschil.
+
+00:02:10.560 --> 00:02:19.520
+Al het andere zie je pas als er echt iets
+misgaat. En dat is eigenlijk de grootste reden
+waarom we het deden.
+
+00:02:19.520 --> 00:02:24.480
+Die situaties zijn hier even uitgeschetst,
+waar het oude model niet echt een antwoord op
+had.
+
+00:02:24.480 --> 00:02:32.160
+Als NotifyNL of de profielservice onbereikbaar
+is, dan wordt de taak uitgesteld en later
+opnieuw geprobeerd.
+
+00:02:32.160 --> 00:02:42.810
+Ontvangen wij de receipt niet van NotifyNL,
+dan vraagt de NMC nu periodiek zelf na.
+
+00:02:42.810 --> 00:02:51.040
+Als dat zonder uitkomst blijft, dan eindigt de
+bezorgstatus op onbekend, wat dus nog wel zou
+kunnen gebeuren.
+
+00:02:51.040 --> 00:02:58.070
+Valt een pod uit tijdens het verzenden, dan
+kan hij nu opgepakt worden door een andere
+pod.
+
+00:02:58.070 --> 00:03:13.040
+Voorheen, omdat die de directe koppeling had
+met NotifyNL, verloor je hem dan een beetje.
+Maar omdat dat nu altijd wordt vastgelegd in
+deze taaktabellen, wordt dat nu goed
+bijgehouden.
+
+00:03:13.040 --> 00:03:22.400
+Een ander ding dat zou kunnen gebeuren in het
+vorige is dat je twee receipts krijgt die
+botsen van NotifyNL.
+
+00:03:22.400 --> 00:03:36.660
+Nu zit er dus een taakverwerker tussen die
+kijkt: welke van deze receipts is nu precies
+nieuwer, welke kan ik vertrouwen. En die gaat
+hij dan opslaan, in de juiste volgorde,
+
+00:03:36.660 --> 00:03:42.560
+en je kunt ook de geschiedenis terugzien van
+wat er nu allemaal ontvangen is.
+
+00:03:42.560 --> 00:03:54.000
+Dan heb je hier nu hoe een status verandert.
+Elke statuswijziging, van welke kant die ook
+komt, loopt door dezelfde zes stappen.
+
+00:03:54.000 --> 00:04:05.350
+Iets wil een statuswijziging doorvoeren, of
+dat nu een receipt is, een verzendtaak, een
+navraag of het vangnet dat we intern hebben
+ingebouwd. Als eerste wordt de rij in de
+database
+
+00:04:05.350 --> 00:04:10.000
+vergrendeld, zodat niemand anders hem meer
+aanpast terwijl deze pod ermee bezig is.
+
+00:04:10.000 --> 00:04:21.340
+Dan wordt hij getoetst: staat deze overgang in
+een tabel van toegestane overgangen. Je mag
+niet zeggen: ik wil van de eerste status
+gelijk naar definitief.
+
+00:04:21.340 --> 00:04:26.000
+Dat staan we gewoon niet toe, dus dat houden
+we dan tegen.
+
+00:04:26.000 --> 00:04:39.040
+Dan komt de commit, daar zit ook een extra
+slot op. De database controleert ook nog:
+probeer je nu een oudere versie weg te
+schrijven dan al is opgeslagen?
+
+00:04:39.040 --> 00:04:49.920
+Dus als je iets wegschrijft en zegt: dit is
+versie 1, en je komt daarna terug met versie
+0.5, dan zegt de database: je doet iets fout,
+dat klopt niet.
+
+00:04:49.920 --> 00:05:01.040
+Dus daar hebben we nu ook een muurtje voor
+gebouwd, zodat dat goed veilig wordt gesteld.
+En alles staat er nu ook in de database.
+
+00:05:01.040 --> 00:05:11.920
+Dat was hiervoor ook al zo, maar dat was een
+afweging die we gemaakt hebben, om dus geen
+broker of workflow engine of ander systeem
+hierbij te betrekken.
+
+00:05:11.920 --> 00:05:25.040
+Dat maakt het voor ons makkelijker om ervoor
+te zorgen dat receipts niet botsen met elkaar,
+omdat je dus echt maar op één plek die
+verandering uiteindelijk hebt.
+
+00:05:25.040 --> 00:05:34.000
+En die kunnen we goed vergrendelen terwijl dat
+gebeurt, zodat je hierdoor nooit
+conflicterende berichten over een notificatie
+hebt.
+
+00:05:34.000 --> 00:05:51.040
+Dan de cyclus waar een notificatie doorheen
+moet. Wat ik zei: vroeger gebeurde alles in de
+aanroep of in de callback, en als dat wegviel,
+dan viel de notificatie een beetje weg.
+
+00:05:51.040 --> 00:06:07.040
+En nu staat alles dus in een takentabel. Die
+wordt dan geclaimd door pods. Dit hebben we
+dus ook gedaan zodat meerdere pods makkelijk
+de data tegelijk kunnen verwerken.
+
+00:06:07.040 --> 00:06:17.040
+Laten we zeggen: er zijn 40 nieuwe
+aanmeldingen. We hebben twee pods draaien,
+beide pods claimen 20 van die aanmeldingen en
+gaan daarmee aan de slag.
+
+00:06:17.040 --> 00:06:25.040
+En dan kijken ze natuurlijk ook naar elkaar:
+ik kan niet degene oppakken waar een andere
+pod al mee bezig is.
+
+00:06:25.040 --> 00:06:39.040
+De aanroep naar NotifyNL valt buiten elke
+databasetransactie en blijft binnen een
+configureerbaar verzendbudget dat we ook
+hebben ingezet. En dat verzendbudget is weer
+verdeeld over dienstverleners.
+
+00:06:39.040 --> 00:06:51.040
+En dat is ook met reden, omdat NotifyNL in
+principe een gelimiteerd aantal berichten
+heeft. Die heeft ook een verzendbudget, om het
+zo te zeggen.
+
+00:06:51.040 --> 00:06:57.040
+We kunnen niet 10 miljoen berichten per
+seconde sturen. Ik weet even niet het precieze
+getal, maar er zit een getal op.
+
+00:06:57.040 --> 00:07:09.040
+Afronden, maar alleen als de claim nog van
+deze pod is. Dus wat ik zei: een pod claimt
+een set taken. Als hij die niet afkrijgt
+binnen zijn lease,
+
+00:07:09.040 --> 00:07:13.040
+wat in principe nooit moet gebeuren, maar als
+er een error komt zou dat kunnen gebeuren,
+wordt dat weer geweigerd.
+
+00:07:13.040 --> 00:07:21.040
+Dat zie je ook als een controletaak: je mag er
+niet te lang over doen, want dan is het
+misschien al verlopen en opgepakt door een
+andere pod.
+
+00:07:21.040 --> 00:07:37.040
+En dat komt dus ook weer terug op punt 1 van
+de intro, dat we niet willen dat er iets
+verloren gaat. Want die taak wordt echt op
+slot gezet door de pod, en dan gaat hij ermee
+aan de slag.
+
+00:07:37.040 --> 00:07:45.040
+En bovenop dit hele podverhaal komt ook de
+schaalbaarheid van het hele product mee.
+
+00:07:45.040 --> 00:07:57.040
+Ik heb het nu getest met 10.000 aanvragen
+binnen een minuut, daar had hij helemaal geen
+problemen mee. Dus dat gaat ook de goede kant
+op.
+
+00:07:57.040 --> 00:08:03.040
+Dan de dienstverlener.
+
+00:08:03.040 --> 00:08:21.040
+In eerste instantie hadden we gezegd: we gaan
+twee mogelijkheden bieden. De dienstverlener
+kan per notificatie de status opvragen, of hij
+kan per notificatie een callback krijgen: hij
+is nu afgeleverd. Dus hij kwam vragen, of wij
+kwamen het vertellen.
+
+00:08:21.040 --> 00:08:35.040
+In het geval van miljoenen notificaties
+dachten wij: misschien ook niet het handigst.
+We hebben nu een derde manier geïntroduceerd
+en dat is een eventfeed.
+
+00:08:35.040 --> 00:08:43.040
+Daar kan een dienstverlener eigenlijk bij ons
+aankloppen: geef mij de laatste 100 updates
+over notificaties die van mij zijn.
+
+00:08:43.040 --> 00:08:51.040
+Dan krijgt hij gewoon een lijst terug: dit was
+het. En dan mag hij zeggen: ik heb tot hier
+deze lijst gelezen.
+
+00:08:51.040 --> 00:08:59.040
+De volgende keer wil ik dat je bij 100
+verdergaat, en dan krijg je 101 tot en met
+200.
+
+00:08:59.040 --> 00:09:11.040
+En dat is dus naar verwachting uiteindelijk
+ook handiger voor de dienstverlener. Dat is
+meer uit voorzorg, dat hebben we nu alvast
+geïmplementeerd.
+
+00:09:11.040 --> 00:09:20.040
+Je kan ook nog steeds de webhook registreren,
+en daar hebben we nu ook de functie in
+meegenomen dat hij dat gebundeld terug kan
+leveren.
+
+00:09:20.040 --> 00:09:31.040
+Zodat je dus niet per se over één notificatie
+steeds een update krijgt, maar dat je het ook
+over 100 notificaties tegelijk zou kunnen
+krijgen.
+
+00:09:31.040 --> 00:09:44.040
+Dat hebben we al configureerbaar gemaakt per
+dienstverlener, want wij accepteren ook dat
+niet elke dienstverlener klaar is om zoiets op
+te pakken.
+
+00:09:44.040 --> 00:09:54.040
+Een punt is wel: als wij een 200 krijgen op de
+webhook, hebben we nog wel gezegd dat dat nog
+geen bevestiging is dat de dienstverlener het
+ook heeft ontvangen.
+
+00:09:54.040 --> 00:10:04.040
+Dat moeten ze zelf afmelden bij de eventfeed.
+Dat betekent niet dat we ze gaan spammen met
+callbacks, dat doen we nog steeds maar één
+keer.
+
+00:10:04.040 --> 00:10:15.040
+Maar ze moeten het dus zelf afmelden, als ze
+dat willen.
+
+00:10:15.040 --> 00:10:25.040
+Tot slot, wat niet in de drie punten van net
+zat maar wel meekwam: de persoonsgegevens.
+
+00:10:25.040 --> 00:10:33.040
+Met deze methodiek, omdat we die data langer
+vasthouden, hebben wij wel meer data en staat
+er meer in de database.
+
+00:10:33.040 --> 00:10:46.040
+Dat betekent bij ons dat we nu bij aanname de
+ontvanger en de inhoud gelijk versleuteld
+opslaan, met een eigen sleutel per
+notificatie.
+
+00:10:46.040 --> 00:10:57.040
+En alleen de verzendtaak, dus degene die moet
+weten wat nu precies iemands e-mailadres is of
+wat het BSN is, zodat ik iemands e-mailadres
+kan ophalen, die ontsleutelt nog.
+
+00:10:57.040 --> 00:11:09.040
+Zeven dagen na het ontvangen van de eindstatus
+wordt de sleutel gewist, en dan zijn de
+gegevens dus in principe niet meer uit te
+lezen.
+
+00:11:09.040 --> 00:11:15.040
+Het afleverbewijs blijft er dan wel.
+
+00:11:15.040 --> 00:11:20.040
+Na een jaar gaat de rij in zijn geheel weg.
+
+00:11:20.040 --> 00:11:26.040
+Dat gezegd hebbende: dit zijn configureerbare
+waardes die we nu hebben neergelegd.
+
+00:11:26.040 --> 00:11:34.040
+Dan nog een punt over het eventlog: die bevat
+natuurlijk nooit persoonsgegevens.
+
+00:11:34.040 --> 00:11:43.040
+En om de cirkel weer rond te krijgen: vanaf
+buiten stuurt de NMC nog steeds de
+notificatie.
+
+00:11:43.040 --> 00:11:49.040
+Vanaf binnen gaat er nu minder verloren, en is
+er meer zekerheid voor ons vooral.
+
+00:11:49.040 --> 00:11:56.040
+We zijn niet meer afhankelijk van een NotifyNL
+of een profielservice die misschien down is.
+
+00:11:56.040 --> 00:12:03.040
+En de dienstverlener kan beter afleverbewijzen
+ontvangen.

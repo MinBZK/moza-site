@@ -8,7 +8,7 @@ weight: 2
 
 Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebruiken voor berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische gevolgen en wat de wet, GEMMA en NORA erover zeggen.
 
-Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten via de [contactpagina van MOZa](/contact/).
+Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten in het kanaal [~berichtenservice op Mattermost](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/channels/berichtenservice) of via de [contactpagina van MOZa](/contact/).
 
 ### Welke soorten berichten zijn er?
 
@@ -19,7 +19,7 @@ Alles wat de overheid verstuurt of klaarzet, is een *bericht*: "Een afgebakende 
 
 Hieronder zie je in een schema de soorten berichten die voor MOZa relevant zijn, ingedeeld naar familie, onder de paraplu van *bericht*:
 
-{{< boom bijschrift="De soorten berichten, ingedeeld in twee families." >}}
+{{< boom >}}
 - **Bericht** (NORA)
   - **Notificatie**: wijst op iets
     - [Kennisgeving (melding)](#kennisgeving-melding)

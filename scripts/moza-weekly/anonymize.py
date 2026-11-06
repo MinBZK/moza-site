@@ -205,16 +205,26 @@ _ACHTERNAAM_RE = re.compile(
     r"[A-Z][\w'’-]+"
 )
 
-# Hostnaam van een URL (met eventuele poort of gebruikersdeel): hier blijft de
-# naamredactie af, het pad en de query worden wel geredigeerd.
-_URL_HOST_RE = re.compile(r"(https?://[^/\s?#<>()\[\]]+)")
+# Het deel van een URL tot de eerste schuine streep: een eventueel
+# gebruikersdeel plus de hostnaam met poort. In de hostnaam blijft de
+# naamredactie af, zodat de link heel blijft; het pad, de query en het
+# gebruikersdeel worden wel geredigeerd.
+_URL_AUTHORITY_RE = re.compile(r"(https?://(?:[^/\s?#<>()\[\]]*@)?[^/\s?#<>()\[\]@]+)")
+_URL_GEBRUIKERSDEEL_RE = re.compile(r"(https?://)([^/\s?#<>()\[\]]*)(@)")
 
 
 def _redact_names(text: str, name_re: "re.Pattern[str]") -> str:
-    delen = _URL_HOST_RE.split(text)
-    # Oneven plekken zijn de hostnamen (capture group van de split).
-    for i in range(0, len(delen), 2):
-        delen[i] = name_re.sub("[collega]", delen[i])
+    delen = _URL_AUTHORITY_RE.split(text)
+
+    def zonder_naam(match: "re.Match[str]") -> str:
+        return match.group(1) + name_re.sub("[collega]", match.group(2)) + match.group(3)
+
+    # Oneven plekken zijn de URL-delen (capture group van de split).
+    for i, deel in enumerate(delen):
+        if i % 2 == 0:
+            delen[i] = name_re.sub("[collega]", deel)
+        else:
+            delen[i] = _URL_GEBRUIKERSDEEL_RE.sub(zonder_naam, deel)
     return "".join(delen)
 
 

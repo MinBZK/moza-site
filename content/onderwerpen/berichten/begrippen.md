@@ -6,7 +6,7 @@ weight: 2
 
 ## Overzicht
 
-Op deze pagina bundelen we wat we bij MijnOverheid Zakelijk (MOZa) hebben verzameld over berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische gevolgen en wat de wet, GEMMA en NORA erover zeggen.
+Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebruiken voor berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische gevolgen en wat de wet, GEMMA en NORA erover zeggen.
 
 Dit is een voorstel voor de begrippen die we gebruiken. We horen graag of ze voor jou werken. Reageren kan via de [contactpagina van MOZa](/contact/).
 

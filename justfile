@@ -122,7 +122,7 @@ pdfua: build-check
     just wis tmp/public
 
 # Exporteer een presentatie (ook een draft) als één HTML-bestand in
-# tmp/export/<slug>/, klaar om te publiceren met: plak publish tmp/export/<slug> ...
+# tmp/export/<slug>/, klaar om te publiceren met: toon publish tmp/export/<slug> ...
 presentatie-export slug: node-deps
     @grep -qs "layout: nldd-deck" content/documenten/presentaties/{{quote(slug)}}/index.html || { printf 'Geen nldd-deck-presentatie: "%s". Kies uit:\n' {{quote(slug)}} >&2; grep -l "layout: nldd-deck" content/documenten/presentaties/*/index.* | cut -d/ -f4 >&2; exit 1; }
     npm run render-mermaid

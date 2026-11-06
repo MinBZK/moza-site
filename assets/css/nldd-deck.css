@@ -201,6 +201,21 @@ strong { font-weight: 700; color: var(--ink); }
 }
 .flow-fallback .ic { font-size: 1.6cqw; color: var(--ink-72); }
 
+/* Terugverbinding onder de stappen van een flow; de pijl is een SVG in de HTML.
+   De viewBox rekent in cqw: 88 = dia-breedte min de padding. */
+.flow-return { position: relative; margin-top: 0; }
+.flow-return svg { display: block; width: 100%; height: 4.4cqw; overflow: visible; }
+.flow-return path { fill: none; stroke: var(--accent); stroke-width: 0.2; stroke-dasharray: 0.8 0.5; }
+.flow-return .head { fill: var(--accent); stroke: none; }
+.flow-return p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1cqw;
+  margin: 0.8cqw 0 0;
+  font-size: 1.35cqw;
+}
+
 /* ---------- Video over de hele dia ---------- */
 
 .slide-video { padding: 0; }
@@ -354,7 +369,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 .deck-footer .footer-text { flex: 1; min-width: 0; color: var(--ink); }
 .footer-text strong, .print-footer strong { font-weight: 600; }
 .deck-footer .counter { font-variant-numeric: tabular-nums; }
-.deck-footer [data-pdf] a { color: var(--ink); }
+.deck-footer [download] a { color: var(--ink); }
 .print-footer { display: none; }
 
 .deck-close { position: fixed; top: 0.75rem; right: 1rem; z-index: 10; color: var(--ink-72); }
@@ -485,7 +500,7 @@ body:has(.slide-video:not([hidden])) .progress { visibility: hidden; }
 
   .deck-close { position: absolute; }
   .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
-  .deck-footer .counter, .deck-footer nldd-icon-button:not([data-pdf]), .progress { display: none; }
+  .deck-footer .counter, .deck-footer nldd-icon-button:not([download]), .progress { display: none; }
 }
 
 /* ---------- Zonder JavaScript: dezelfde stapeling, op elke breedte ----------
@@ -509,7 +524,7 @@ html:not(.js) {
 
   .deck-close { position: absolute; }
   .deck-footer { position: static; padding: 1rem 1.25rem 1.5rem; }
-  .deck-footer .counter, .deck-footer nldd-icon-button:not([data-pdf]), .progress { display: none; }
+  .deck-footer .counter, .deck-footer nldd-icon-button:not([download]), .progress { display: none; }
 }
 
 /* ---------- Print: één dia per pagina, alle stappen zichtbaar ---------- */

@@ -5,6 +5,9 @@ node_modules
 static/images/render
 .cache
 
+# Git-datums van yaml in page bundles (scripts/bundel-lastmod.js)
+data/bundel_lastmod.json
+
 # Hugo
 public
 resources

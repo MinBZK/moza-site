@@ -1,0 +1,34 @@
+{{- /* Planning op een dia, uit de roadmap.yaml in de page bundle van de presentatie. Gebruik:
+   {{< roadmap-dia groepen="g1 g2" titel="Toegankelijke naam" >}}
+   Alleen voor roadmaps met kolommen en cellen, niet voor een tijdlijn met van/tot.
+   De opmaak staat in de presentatie.css van de presentatie. */ -}}
+{{- $data := .Page.Resources.GetMatch "roadmap.yaml" | transform.Unmarshal -}}
+{{- $ids := split (.Get "groepen") " " -}}
+{{- /* Twee tabellen op één pagina mogen geen id's delen. */ -}}
+{{- $pre := printf "planning-%d" .Ordinal -}}
+<table class="planning">
+  <caption class="sr-only">{{ .Get "titel" }}</caption>
+  <thead>
+    <tr>
+      <th id="{{ $pre }}-onderdeel" scope="col">Onderdeel</th>
+      {{- range $data.kolommen }}
+      <th id="{{ $pre }}-{{ .kolom }}" scope="col">{{ .label }}{{ with .fase_label }} <span class="planning-fase">{{ . }}</span>{{ end }}</th>
+      {{- end }}
+    </tr>
+  </thead>
+  {{- range $groep := $data.groepen }}
+  {{- if in $ids $groep.id }}
+  <tbody>
+    <tr class="planning-groep"><th id="{{ $pre }}-{{ $groep.id }}" scope="rowgroup" colspan="{{ len $data.kolommen | add 1 }}">{{ $groep.naam }}</th></tr>
+    {{- range $rij := $groep.rijen }}
+    <tr>
+      <th id="{{ $pre }}-{{ $rij.id }}" headers="{{ $pre }}-{{ $groep.id }} {{ $pre }}-onderdeel" scope="row">{{ $rij.naam }}</th>
+      {{- range $cel := $rij.cellen }}
+      <td headers="{{ $pre }}-{{ $groep.id }} {{ $pre }}-{{ $rij.id }}{{ range $cel.kolommen }} {{ $pre }}-{{ . }}{{ end }}"{{ if gt (len $cel.kolommen) 1 }} colspan="{{ len $cel.kolommen }}"{{ end }}>{{ if ne $cel.type "leeg" }}<span class="planning-balk planning-{{ $cel.type }}"><strong>{{ $cel.label | default (title $cel.type) }}</strong></span>{{ else }}<span class="planning-leeg">Niet ingepland</span>{{ end }}</td>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </tbody>
+  {{- end }}
+  {{- end }}
+</table>

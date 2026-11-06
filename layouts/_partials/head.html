@@ -18,6 +18,7 @@
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
 {{ $figure := resources.Get "css/components/figure.css" }}
 {{ $list := resources.Get "css/components/list.css" }}
+{{ $boom := resources.Get "css/components/boom.css" }}
 {{ $footer := resources.Get "css/components/footer.css" }}
 {{ $toast := resources.Get "css/components/toast.css" }}
 {{ $search := resources.Get "css/components/search.css" }}
@@ -35,7 +36,7 @@
 {{ $partners := resources.Get "css/components/partners.css" }}
 {{ $klavertje := resources.Get "css/components/klavertje.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $boom $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ partial "print-kolombreedtes.html" . }}

@@ -19,20 +19,20 @@ Alles wat de overheid verstuurt of klaarzet, is een *bericht*: "Een afgebakende 
 
 Hieronder zie je in een schema de soorten berichten die voor MOZa relevant zijn, ingedeeld naar familie, onder de paraplu van *bericht*:
 
-```
-Bericht (NORA)
-├── Notificatie: wijst op iets
-│   ├── Kennisgeving (melding)
-│   ├── Ontvangstbevestiging
-│   ├── Attendering
-│   ├── Kennisgeving (publicatie)
-│   ├── Mededeling (Awb 3:43)
-│   └── Gebeurtenisbericht
-└── Inhoudelijk bericht: is het iets zelf
-    ├── Besluit, bijvoorbeeld een beschikking
-    ├── Volledige publicatie in het publicatieblad
-    └── Overig inhoudelijk bericht, bijvoorbeeld een jaaropgave AOW
-```
+{{< boom bijschrift="De soorten berichten, ingedeeld in twee families." >}}
+- **Bericht** (NORA)
+  - **Notificatie**: wijst op iets
+    - [Kennisgeving (melding)](#kennisgeving-melding)
+    - [Ontvangstbevestiging](#ontvangstbevestiging)
+    - [Attendering](#attendering)
+    - [Kennisgeving (publicatie)](#kennisgeving-publicatie)
+    - [Mededeling](#mededeling) (Awb 3:43)
+    - [Gebeurtenisbericht](#gebeurtenisbericht)
+  - **Inhoudelijk bericht**: is het iets zelf
+    - [Besluit](#besluit), bijvoorbeeld een beschikking
+    - [Volledige publicatie](#volledige-publicatie) in het publicatieblad
+    - [Overig inhoudelijk bericht](#overig-inhoudelijk-bericht), bijvoorbeeld een jaaropgave AOW
+{{< /boom >}}
 
 ### Zo lees je de begrippen
 

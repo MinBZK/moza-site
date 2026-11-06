@@ -41,7 +41,7 @@ Eerst staat er een overzichtstabel met de definitie van elk begrip. Daarna volgt
 - **Begrip**: het type bericht, benoemd naar zijn betekenis. Het medium (bijvoorbeeld e-mail, post, een berichtenbox, een publicatieblad of een koppeling tussen systemen) staat daar los van.
 - **Definitie binnen MOZa**: de betekenis die we binnen MOZa gebruiken.
 - **Andere bronnen**: wat de wet, GEMMA en NORA over het begrip zeggen, letterlijk geciteerd.
-- **Juridische gevolgen**: wat het type juridisch teweegbrengt. Dat is ruimer dan *rechtsgevolg* (een besluit dat rechten of plichten verandert): ook gevolgen voor de procedure tellen mee, zoals een termijn die gaat lopen of niet wordt tegengeworpen. Dit onderdeel vervangt de classificatie *formeel bericht*.
+- **Juridische gevolgen**: wat het type juridisch teweegbrengt. Dat is ruimer dan *rechtsgevolg* (een besluit dat rechten of plichten verandert): ook gevolgen voor de procedure tellen mee, zoals een termijn die gaat lopen of niet wordt tegengeworpen. Dit onderdeel vervangt de classificatie *formeel bericht*; waarom lees je bij [*Welke keuzes hebben we gemaakt?*](#welke-keuzes-hebben-we-gemaakt)
 - **Plichten van de overheid**: wat de overheid volgens de wet moet doen.
 - **Voorgeschreven methode**: hoe het bericht verstuurd of gepubliceerd moet worden, als de wet of een standaard dat voorschrijft. Bijvoorbeeld elektronisch, via het publicatieblad of volgens een technische standaard.
 - **Toelichting**: grenzen met andere begrippen, voorbeelden, de keuze voor een term en hoe het in de praktijk gaat.
@@ -51,9 +51,7 @@ Je kunt de wetsartikelen direct aanklikken.
 Na de begrippen volgen:
 
 - welke woorden meer betekenissen hebben
-- aanvullende uitleg: publicatiebladen en CloudEvents
-- andere relevante begrippen: formeel bericht, informatiearme en informatierijke notificatie, bekendmaking en notificatieplicht
-- hoe we kennisgeving en attendering gebruiken
+- aanvullende uitleg: publicatiebladen, CloudEvents en informatiearme en informatierijke notificaties
 - welke keuzes we hebben gemaakt
 - de afkortingen
 - de bronnen
@@ -79,9 +77,9 @@ Na de begrippen volgen:
 | [Volledige publicatie](#volledige-publicatie) | De volledige tekst van een stuk in het publicatieblad. Verschil met de kennisgeving (publicatie): die bevat alleen een zakelijke weergave en verwijst naar de stukken. |
 | [Overig inhoudelijk bericht](#overig-inhoudelijk-bericht) | Een bericht met inhoud dat geen besluit is, bijvoorbeeld een jaaropgave AOW (SVB) of een betaalspecificatie WW (UWV). |
 
-### De begrippen één voor één
+## De begrippen één voor één
 
-#### Kennisgeving (melding)
+### Kennisgeving (melding)
 
 Een notificatie die meldt dat een bericht in een berichtenmagazijn, zoals de Berichtenbox van MijnOverheid, toegankelijk is geworden. Bijvoorbeeld de e-mail "er staat een nieuw bericht klaar".
 
@@ -89,9 +87,9 @@ Een notificatie die meldt dat een bericht in een berichtenmagazijn, zoals de Ber
 - **Juridische gevolgen**: Is de kennisgeving niet verzonden, of buiten schuld van de geadresseerde niet ontvangen, dan wordt een termijnoverschrijding de geadresseerde niet tegengeworpen (Awb [2:22](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.5_Artikel2:22)).
 - **Plichten van de overheid**: Binnen 48 uur melden, tenzij de geadresseerde geen kennisgeving wil (Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10)). Niet bezorgd: opnieuw verzenden of langs andere weg informeren (Awb [2:11](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:11) lid 2). De bewijslast van verzending en ontvangst ligt bij de overheid (Awb [2:25](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.6_Artikel2:25)). Vanaf 1 januari 2027: "De kennisgeving ontsluit het bericht of bevat informatie over de aard en de rechtsgevolgen van het bericht en vermeldt, voor zover van toepassing, de termijn voor het verrichten van een handeling door de geadresseerde." (Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2027-01-01/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) lid 2)
 - **Voorgeschreven methode**: Elektronisch: "elektronisch meegedeeld" (Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10)).
-- **Toelichting**: Het bericht zelf staat in een systeem, bijvoorbeeld de Berichtenbox van MijnOverheid; de kennisgeving gaat bijvoorbeeld per e-mail. Naar hoeveelheid informatie meestal *informatiearm*. [Logius-training (2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf): "Burger ontvangt, na registratie e-mailadres, e-mailnotificatie bij nieuw bericht in Berichtenbox of statuswijziging in Lopende Zaken. Mogelijk: herhaalnotificatie na 3 weken." Verder: "7% wil geen e-mail notificatie" (dia 42) en "E-mail-notificatie heeft geen juridische status: burger kan zich niet beroepen op niet-ontvangen". Dat laatste gold vóór de Wmebv; zie [*Notificatieplicht*](#notificatieplicht).
+- **Toelichting**: Het bericht zelf staat in een systeem, bijvoorbeeld de Berichtenbox van MijnOverheid; de kennisgeving gaat bijvoorbeeld per e-mail. In MOZa hebben kennisgevingen "de Overheid.nl merkidentiteit" ([MOZa, kennisgeving en attendering](https://github.com/MinBZK/MijnOverheidZakelijk/tree/main/Docs/kennisgeving-attendering)). Naar hoeveelheid informatie meestal [*informatiearm*](#informatiearme-en-informatierijke-notificatie). [Logius-training (2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf): "Burger ontvangt, na registratie e-mailadres, e-mailnotificatie bij nieuw bericht in Berichtenbox of statuswijziging in Lopende Zaken. Mogelijk: herhaalnotificatie na 3 weken." Verder: "7% wil geen e-mail notificatie" (dia 42) en "E-mail-notificatie heeft geen juridische status: burger kan zich niet beroepen op niet-ontvangen". Dat laatste gold vóór de Wmebv. Sindsdien is de kennisgeving verplicht: de *notificatieplicht*, met de juridische gevolgen en plichten hierboven. [Kamerstuk 35261, nr. 24](https://zoek.officielebekendmakingen.nl/kst-35261-24.html) legt die uit. De Logius-training noemde haar nog als toekomstige wijziging: "Nu is het sturen van een notificatie niet verplicht."
 
-#### Ontvangstbevestiging
+### Ontvangstbevestiging
 
 De bevestiging aan een burger of ondernemer dat het elektronische bericht dat die aan de overheid stuurde, zoals een aanvraag of bezwaar, is ontvangen. De richting is andersom: een reactie op een bericht áán de overheid.
 
@@ -101,7 +99,7 @@ De bevestiging aan een burger of ondernemer dat het elektronische bericht dat di
 - **Voorgeschreven methode**: Niet uitdrukkelijk voorgeschreven.
 - **Toelichting**: Lid 2 regelt alleen het geval dat gegevens rechtstreeks in een systeem van de overheid worden ingevoerd: dan stelt het bestuursorgaan "de ingevoerde gegevens aan de verzender ter beschikking op een voldoende betrouwbare en vertrouwelijke manier."
 
-#### Attendering
+### Attendering
 
 Een notificatie die zelf wijst op iets wat voor de ontvanger relevant is, zoals de stand van een aanvraag of een actie die nodig is (bijvoorbeeld aangifte doen of een paspoort dat verloopt). De informatie staat in de attendering zelf; ze verwijst niet naar een bericht in een berichtenmagazijn.
 
@@ -111,7 +109,7 @@ Een notificatie die zelf wijst op iets wat voor de ontvanger relevant is, zoals 
 - **Voorgeschreven methode**: Geen.
 - **Toelichting**: *Verschil met kennisgeving (melding)*: een kennisgeving verwijst naar een apart bericht in een berichtenmagazijn en meldt dat het klaarstaat; een attendering bevat de informatie zelf. *Voorbeelden*: een verhuisaanvraag bij een gemeente, een herinnering voor het doen van belastingaangifte en een aanvraag bij de RDW (aanvraag ontvangen en in behandeling); een attendering kan gaan over "het volgen van een status of het wijzigen van gegevens" ([MOZa, kennisgeving en attendering](https://github.com/MinBZK/MijnOverheidZakelijk/tree/main/Docs/kennisgeving-attendering)). *Grens met besluit*: bevat een "attendering" zelf een beslissing, bijvoorbeeld een toekenning, dan is het een besluit en gelden de regels voor de bekendmaking (Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)-[3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42)). *Medium*: organisaties kunnen eigen tekstuele templates en tot op zekere hoogte hun eigen merkidentiteit gebruiken. Een attendering kan ook in de Berichtenbox van MijnOverheid of de Berichtenbox voor bedrijven staan; de berichtenbox is dan het medium, niet het type.
 
-#### Kennisgeving (publicatie)
+### Kennisgeving (publicatie)
 
 Een openbare aankondiging in het publicatieblad dat er iets ter inzage ligt, bijvoorbeeld een ontwerpbesluit. Ze bevat een zakelijke weergave van de inhoud, niet de volledige tekst. Ze is niet persoonlijk gericht.
 
@@ -121,7 +119,7 @@ Een openbare aankondiging in het publicatieblad dat er iets ter inzage ligt, bij
 - **Voorgeschreven methode**: Het publicatieblad van de organisatie, zoals het gemeenteblad of de Staatscourant (Awb [3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12), Bekendmakingswet [art. 12](https://wetten.overheid.nl/BWBR0004287/2024-01-01/#Artikel12)); zie [*Publicatiebladen*](#publicatiebladen).
 - **Toelichting**: *Verschil met volledige publicatie*: binnen het publicatieblad is het publiek hetzelfde; het verschil zit in de inhoud. Een kennisgeving wijst op stukken die ter inzage liggen (notificatie); een volledige publicatie bevat de hele tekst (inhoudelijk bericht). *Medium*: niet via een persoonlijke berichtenbox. Technisch levert het systeem van de organisatie de publicatie aan bij het publicatiesysteem, bijvoorbeeld via DROP; dat aanleveren is een bericht tussen systemen, maar juridisch telt de publicatie in het blad.
 
-#### Mededeling
+### Mededeling
 
 Een notificatie waarmee de overheid bekende personen, zoals indieners van een zienswijze of een adviseur, laat weten dat er een besluit is en wanneer en hoe het is bekendgemaakt. De mededeling is persoonlijk gericht.
 
@@ -131,7 +129,7 @@ Een notificatie waarmee de overheid bekende personen, zoals indieners van een zi
 - **Voorgeschreven methode**: Geen.
 - **Toelichting**: *Grens met inhoudelijk bericht*: bij een uitgebreide procedure krijgen indieners van een zienswijze ook een exemplaar van het besluit (Awb [3:44](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:44) lid 1). Dat besluit is dan een inhoudelijk bericht; de mededeling is het begeleidende "u weet het nu". *Medium*: een mededeling gaat naar bekende personen en kan dus bijvoorbeeld via een berichtenbox of het FBS lopen, net als een bekendmaking door toezending. *Ander gebruik van het werkwoord*: Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) zegt dat de geadresseerde "elektronisch meegedeeld" wordt dat er een bericht klaarstaat. Dat is gewoon taalgebruik; een kennisgeving (melding) is géén mededeling in de zin van artikel [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43).
 
-#### Gebeurtenisbericht
+### Gebeurtenisbericht
 
 Een bericht van systeem naar systeem over een gebeurtenis in een domein. Binnen MOZa: berichten tussen de systemen van MOZa en die van organisaties, bijvoorbeeld een statusupdate.
 
@@ -139,9 +137,9 @@ Een bericht van systeem naar systeem over een gebeurtenis in een domein. Binnen 
 - **Juridische gevolgen**: Geen: dit is verkeer tussen systemen, buiten het bestuursrecht.
 - **Plichten van de overheid**: Geen wettelijke plichten.
 - **Voorgeschreven methode**: Geen wettelijk voorgeschreven methode. De vorm is vastgelegd in de standaard NL GOV Profile for CloudEvents (zie [*CloudEvents*](#cloudevents) onder *Aanvullende uitleg*).
-- **Toelichting**: *Term*: [NORA](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren) noemt dit "notificatie" (ook in het Federatief Datastelsel), [GEMMA](https://www.gemmaonline.nl/wiki/Informatiearme_en_informatierijke_notificaties) onder meer "notificatiebericht". We gebruiken *gebeurtenisbericht*, om het te onderscheiden van notificaties aan mensen. Naar hoeveelheid informatie kan het een *signaal*, *gegevensmutatie*, *informatierijke* of *informatiearme* notificatie zijn. Een gebeurtenisbericht kan ook het vervoer zijn van een ander type, bijvoorbeeld bij het aanleveren van een publicatie.
+- **Toelichting**: *Term*: [NORA](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren) noemt dit "notificatie" (ook in het Federatief Datastelsel), [GEMMA](https://www.gemmaonline.nl/wiki/Informatiearme_en_informatierijke_notificaties) onder meer "notificatiebericht". We gebruiken *gebeurtenisbericht*, om het te onderscheiden van notificaties aan mensen. Naar hoeveelheid informatie kan het een *signaal*, *gegevensmutatie*, *informatierijke* of *informatiearme* notificatie zijn (zie [*Informatiearme en informatierijke notificatie*](#informatiearme-en-informatierijke-notificatie)). Een gebeurtenisbericht kan ook het vervoer zijn van een ander type, bijvoorbeeld bij het aanleveren van een publicatie.
 
-#### Besluit
+### Besluit
 
 Een beslissing van de overheid, bijvoorbeeld een beschikking of een aanslag.
 
@@ -149,9 +147,9 @@ Een beslissing van de overheid, bijvoorbeeld een beschikking of een aanslag.
 - **Juridische gevolgen**: "Een besluit treedt niet in werking voordat het is bekendgemaakt." (Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)) De bezwaartermijn "vangt aan met ingang van de dag na die waarop het besluit op de voorgeschreven wijze is bekendgemaakt." (Awb [6:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk6_Afdeling6.2_Artikel6:8) lid 1)
 - **Plichten van de overheid**: Bekendmaken: besluiten aan belanghebbenden "door toezending of uitreiking aan hen" (Awb [3:41](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:41) lid 1); andere besluiten via het publicatieblad (Awb [3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42)). Vermelden of bezwaar of beroep mogelijk is (Awb [3:45](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:45) lid 1).
 - **Voorgeschreven methode**: Toezending of uitreiking, bijvoorbeeld het plaatsen in een berichtenbox (Awb [3:41](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:41)); elektronisch alleen als de geadresseerde "uitdrukkelijk kenbaar heeft gemaakt dat hij langs deze weg voldoende bereikbaar is" (Awb [2:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:8)). Andere besluiten: het publicatieblad (Awb [3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42)).
-- **Toelichting**: Juridisch telt het **moment van bekendmaking**: pas dan gaat het besluit gelden. Zie [*Bekendmaking*](#bekendmaking) onder *Andere relevante begrippen*.
+- **Toelichting**: Juridisch telt het **moment van bekendmaking**: pas dan gaat het besluit gelden (zie *Bekendmaking* bij [*Welke woorden hebben meer betekenissen?*](#welke-woorden-hebben-meer-betekenissen)). Een besluit dat in de Berichtenbox van MijnOverheid wordt gezet, geldt als toegezonden en dus bekendgemaakt. In een zaak over een parkeerboete oordeelde de rechtbank dat het niet ontvangen van een e-mailnotificatie het tijdstip van de bekendmaking niet verandert ([Binnenlands Bestuur](https://www.binnenlandsbestuur.nl/digitaal/jong-en-ambtenaar/parkeerboete-in-de-berichtenbox-moet-je-zelf-opmerken), 24 maart 2025). Die zaak viel nog onder het oude artikel 2:14, dat alleen vroeg dat de geadresseerde het "kenbaar" had gemaakt, zonder "uitdrukkelijk" ([Awb, versie 1 januari 2025](https://wetten.overheid.nl/BWBR0005537/2025-01-01/#Hoofdstuk2_Afdeling2.3_Artikel2:14)).
 
-#### Volledige publicatie
+### Volledige publicatie
 
 De volledige tekst van een stuk in het publicatieblad. Verschil met de kennisgeving (publicatie): die bevat alleen een zakelijke weergave en verwijst naar de stukken.
 
@@ -161,7 +159,7 @@ De volledige tekst van een stuk in het publicatieblad. Verschil met de kennisgev
 - **Voorgeschreven methode**: Het publicatieblad; zie [*Publicatiebladen*](#publicatiebladen).
 - **Toelichting**: *Term*: de Bekendmakingswet noemt dit een "mededeling". We gebruiken *volledige publicatie*, om verwarring met de mededeling uit Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43) te voorkomen.
 
-#### Overig inhoudelijk bericht
+### Overig inhoudelijk bericht
 
 Een bericht met inhoud dat geen besluit is, bijvoorbeeld een jaaropgave AOW (SVB) of een betaalspecificatie WW (UWV).
 
@@ -171,7 +169,7 @@ Een bericht met inhoud dat geen besluit is, bijvoorbeeld een jaaropgave AOW (SVB
 - **Voorgeschreven methode**: Geen.
 - **Toelichting**: *Voorbeelden*: [Logius-training (2019)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/Training%20aansluiten%20Berichtenbox%20MijnOverheid%20Blok%201%20-%206%20september%202019.pdf), dia "Toepassingsvoorbeelden", noemt onder meer "Jaaropgaven AOW" (SVB), "Betaalspecificaties WW, AW, ZW" (UWV) en "Uniform Pensioen Overzicht" (pensioenfondsen); de dia "Toepassingen in aantocht (2019/2020)" noemt "Pilot uitnodiging deelname enquêtes" (CBS). Dit zijn geen besluiten: er zit geen beslissing in, het is een overzicht of een uitnodiging. *Term*: bewust niet "brief", omdat dat een medium (papier) suggereert. *Medium*: kan in de Berichtenbox van MijnOverheid staan.
 
-### Welke woorden hebben meer betekenissen?
+## Welke woorden hebben meer betekenissen?
 
 Vier woorden worden in de bronnen op meer dan één manier gebruikt. Per woord lees je hieronder hoe we het gebruiken.
 
@@ -185,7 +183,7 @@ Vier woorden worden in de bronnen op meer dan één manier gebruikt. Per woord l
 
 **Mededeling**: de Bekendmakingswet ([art. 12](https://wetten.overheid.nl/BWBR0004287/2024-01-01/#Artikel12)) gebruikt "mededeling" ook voor een **volledige publicatie** in het publicatieblad. Dat is iets anders dan de mededeling op deze pagina (Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43)), en staat op deze pagina als *Volledige publicatie*. Binnen het publicatieblad zit het verschil met de kennisgeving (publicatie) niet in het publiek, maar in de inhoud. Een volledige publicatie bevat de hele tekst. Een kennisgeving bevat een zakelijke weergave en verwijst naar de stukken die ter inzage liggen.
 
-**Bekendmaking**: in de wet is bekendmaking geen bericht, maar een handeling: de manier waarop een besluit gaat gelden. "Een besluit treedt niet in werking voordat het is bekendgemaakt." (Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)) Dat gebeurt door toezending of uitreiking aan belanghebbenden (Awb [3:41](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:41)) of via het publicatieblad (Awb [3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42)). In het dagelijks taalgebruik heet de publicatie zelf vaak een bekendmaking, zoals in *officielebekendmakingen.nl*. In deze indeling is het bericht dat verstuurd of gepubliceerd wordt een *besluit* of een *volledige publicatie*; de bekendmaking is wat er met dat bericht gebeurt. Ook NORA gebruikt het woord anders: "Een notificatie kan worden gezien als de bekendmaking van een gebeurtenis." ([NORA, Kernbegrippen Notificeren](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren)) Zie ook [*Bekendmaking*](#bekendmaking) onder *Andere relevante begrippen*.
+**Bekendmaking**: in de wet is bekendmaking geen bericht, maar een handeling: de manier waarop een besluit gaat gelden. "Een besluit treedt niet in werking voordat het is bekendgemaakt." (Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)) Dat gebeurt door toezending of uitreiking aan belanghebbenden (Awb [3:41](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:41)) of via het publicatieblad (Awb [3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42)). In het dagelijks taalgebruik heet de publicatie zelf vaak een bekendmaking, zoals in *officielebekendmakingen.nl*. In deze indeling is het bericht dat verstuurd of gepubliceerd wordt een *besluit* of een *volledige publicatie*; de bekendmaking is wat er met dat bericht gebeurt. Ook NORA gebruikt het woord anders: "Een notificatie kan worden gezien als de bekendmaking van een gebeurtenis." ([NORA, Kernbegrippen Notificeren](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren)) Hoe bekendmaking via de Berichtenbox werkt, lees je bij [*Besluit*](#besluit).
 
 ## Aanvullende uitleg
 
@@ -210,21 +208,6 @@ CloudEvents is geen type bericht, maar een standaard voor de vorm van een gebeur
 - **NORA** ([Kernbegrippen Notificeren](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren)): de kernbegrippen "zijn gebaseerd op de architectuur die eerder is opgesteld in VNG project Notificatieservices en de CloudEvents standaard." De CloudEvents-begrippen "zijn van toepassing op de applicatielaag en zitten dus op een ander niveau dan begrippen zoals aanbieder, intermediair en afnemer die op organisatieniveau zijn gedefinieerd." NORA noemt drie rollen uit CloudEvents: *Producer* ("verantwoordelijk voor het creëren van de datastructuur waarmee de gebeurtenis wordt beschreven"), *Consumer* ("Ontvangt de notificatie en acteert op basis hiervan") en *Intermediary* (ontvangt een bericht "met als doel om het door te sturen naar de volgende ontvanger").
 - **Wet**: geen.
 
-## Andere relevante begrippen
-
-Deze begrippen zijn geen type bericht, maar horen er wel bij: de classificaties formeel bericht en informatiearme en informatierijke notificatie, de handeling bekendmaking en de notificatieplicht.
-
-### Formeel bericht
-
-"Formeel" is geen type bericht, maar een classificatie: een eigenschap die een bericht wel of niet heeft. Op deze pagina is deze classificatie vervangen door het onderdeel *Juridische gevolgen* bij elk begrip.
-
-- **Omschrijving**: een bericht met rechtsgevolg in een bestuursrechtelijke procedure, zoals een aanvraag, besluit of bezwaar.
-- **GEMMA** ([Notificeren introductie](https://www.gemmaonline.nl/wiki/Notificeren_introductie)): noemt het begrip wel, maar omschrijft het niet: de Wmebv maakt het "steeds vaker verplicht om burgers te informeren. Bijvoorbeeld wanneer er nieuwe formele berichten beschikbaar zijn, zoals een besluit."
-- **NORA**: geen.
-- **Wet**: de term "formeel bericht" staat niet in de Awb. Het dichtst erbij komt Awb [2:13](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.3_Artikel2:13) lid 1: "Een ieder kan een bericht dat deel uitmaakt van een procedure over een besluit of een klacht of een ander krachtens wettelijk voorschrift voorgeschreven bericht elektronisch aan een bestuursorgaan zenden."
-- **Medium**: [Logius-training (2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf), dia 20: "De Berichtenbox kan als formeel alternatief voor fysieke post worden gebruikt, zelfs voor berichten met rechtsgevolgen."
-- **Waarom niet eenduidig**: alleen bij een besluit is het antwoord duidelijk "ja" (rechtsgevolg, Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)). Een mededeling (Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43)) en een kennisgeving (Awb [3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12), [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10)) zijn wettelijk voorgeschreven, maar hebben zelf geen rechtsgevolg. De kennisgeving heeft wel gevolgen voor de procedure (Awb [3:16](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:16), [2:22](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.5_Artikel2:22)); de mededeling niet: termijnen hangen aan de bekendmaking of de terinzagelegging (Awb [6:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk6_Afdeling6.2_Artikel6:8)). Daarom gebruikt MOZa het onderdeel *Juridische gevolgen* in plaats van deze classificatie.
-
 ### Informatiearme en informatierijke notificatie
 
 Geen type, maar een indeling van notificaties naar de hoeveelheid informatie die erin staat. De indeling is van toepassing op de *kennisgeving (melding)*, die meestal informatiearm is, en op het *gebeurtenisbericht*, dat elk van de vier soorten kan zijn.
@@ -240,45 +223,17 @@ GEMMA ([Notificeren introductie](https://www.gemmaonline.nl/wiki/Notificeren_int
 
 **Voorbeeld**: de melding over een bericht in de Berichtenbox van MijnOverheid is informatiearm: wel dat er iets is, niet wat; de inhoud staat alleen in de box. Vanaf 1 januari 2027 moet die melding volgens Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2027-01-01/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) lid 2 het bericht ontsluiten of informatie geven over de aard en de rechtsgevolgen, en waar dat van toepassing is de termijn noemen.
 
-### Bekendmaking
-
-- **Omschrijving**: de handeling waardoor een besluit in werking treedt. Bij een besluit aan belanghebbenden gebeurt dat door toezending of uitreiking; anders door publicatie via de Bekendmakingswet. *(Awb)* Het besluit zelf is een inhoudelijk bericht; zie [*Besluit*](#besluit).
-- **GEMMA**: geen eigen definitie.
-- **NORA**: geen eigen definitie. Let op: NORA ([Kernbegrippen Notificeren](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren)) schrijft "Een notificatie kan worden gezien als de bekendmaking van een gebeurtenis." Dat is niet de Awb-betekenis.
-- **Wet**: Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40): "Een besluit treedt niet in werking voordat het is bekendgemaakt." Awb [3:41](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:41) lid 1: "De bekendmaking van besluiten die tot een of meer belanghebbenden zijn gericht, geschiedt door toezending of uitreiking aan hen, onder wie begrepen de aanvrager." Awb [3:42](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:42): besluiten die niet tot belanghebbenden zijn gericht, worden bekendgemaakt volgens de Bekendmakingswet.
-- **Medium**: een besluit dat in de Berichtenbox van MijnOverheid wordt gezet, geldt als toegezonden en dus bekendgemaakt. Elektronisch verzenden mag alleen als de geadresseerde "uitdrukkelijk kenbaar heeft gemaakt dat hij langs deze weg voldoende bereikbaar is" (Awb [2:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:8)). In een zaak over een parkeerboete oordeelde de rechtbank dat het niet ontvangen van een e-mailnotificatie het tijdstip van de bekendmaking niet verandert ([Binnenlands Bestuur](https://www.binnenlandsbestuur.nl/digitaal/jong-en-ambtenaar/parkeerboete-in-de-berichtenbox-moet-je-zelf-opmerken), 24 maart 2025). Die zaak viel nog onder het oude artikel 2:14, dat alleen vroeg dat de geadresseerde het "kenbaar" had gemaakt, zonder "uitdrukkelijk" ([Awb, versie 1 januari 2025](https://wetten.overheid.nl/BWBR0005537/2025-01-01/#Hoofdstuk2_Afdeling2.3_Artikel2:14)).
-
-### Notificatieplicht
-
-- **Omschrijving**: de plicht om een kennisgeving (melding) te sturen als een bericht klaarstaat in een omgeving waar de ontvanger het kan inzien. Die vervalt als de ontvanger geen kennisgevingen wil. *(Awb)*
-- **GEMMA** ([Notificeren introductie](https://www.gemmaonline.nl/wiki/Notificeren_introductie)): de Wmebv maakt het "steeds vaker verplicht om burgers te informeren. Bijvoorbeeld wanneer er nieuwe formele berichten beschikbaar zijn, zoals een besluit."
-- **NORA**: geen.
-- **Wet**:
-  - Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) lid 1: de plicht om binnen 48 uur te melden dat een bericht toegankelijk is geworden, "tenzij de geadresseerde heeft laten weten een dergelijke kennisgeving niet te willen ontvangen."
-  - Awb [2:11](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:11) lid 2: "Indien een bestuursorgaan een in artikel [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) bedoelde kennisgeving niet met succes kan bezorgen bij de geadresseerde, wordt de kennisgeving nogmaals verzonden of spant het bestuursorgaan zich in om geadresseerde langs andere weg te informeren over het niet kunnen bezorgen van de kennisgeving en van de maatregelen die hij kan nemen om kennisgevingen te ontvangen."
-  - Awb [2:22](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.5_Artikel2:22) lid 2: "De overschrijding van een termijn wordt de geadresseerde evenmin tegengeworpen indien hij de kennisgeving, bedoeld in artikel [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10), niet heeft ontvangen en redelijkerwijs niet kan worden geoordeeld dat hij in verzuim is geweest."
-  - Awb [2:25](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.6_Artikel2:25): bij een systeem waarin de geadresseerde toegang heeft tot het bericht "rust op het bestuursorgaan de bewijslast" van verzending en ontvangst.
-- **Toelichting**: [Kamerstuk 35261, nr. 24](https://zoek.officielebekendmakingen.nl/kst-35261-24.html) (Wmebv) legt dit uit; de [Logius-training (2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf) noemde de verplichte notificatie nog als toekomstige wijziging: "Nu is het sturen van een notificatie niet verplicht."
-
-## Hoe gebruiken we kennisgeving en attendering?
-
-Notificaties aan burgers en ondernemers zijn er binnen MOZa in twee soorten (zie [*Kennisgeving (melding)*](#kennisgeving-melding) en [*Attendering*](#attendering)):
-
-- **Kennisgeving**: "een notificatie die verwijst naar een bericht in een berichtenmagazijn (BBO). Deze hebben de Overheid.nl merkidentiteit." ([MOZa, kennisgeving en attendering](https://github.com/MinBZK/MijnOverheidZakelijk/tree/main/Docs/kennisgeving-attendering))
-- **Attendering**: een notificatie die níét verwijst naar een bericht in een berichtenmagazijn; de informatie staat in de attendering zelf. Organisaties kunnen eigen tekstuele templates en tot op zekere hoogte hun eigen merkidentiteit gebruiken. Ook attenderingen kunnen in de Berichtenbox van MijnOverheid of de Berichtenbox voor bedrijven belanden.
-
-Het verschil zit dus niet in waar de notificatie terechtkomt, maar in waar ze naar verwijst. Verhouding tot de andere bronnen:
-
-- **Kennisgeving** sluit aan bij Awb [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10): daar is de kennisgeving de melding dat een bericht in een systeem toegankelijk is geworden. De Awb gebruikt het woord ook voor een publicatie in een publicatieblad ([3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12)); daarom onderscheiden we *kennisgeving (melding)* en *kennisgeving (publicatie)*.
-- **Attendering** staat niet in de Awb. In GEMMA Omnichannel is attendering een synoniem van notificatie, dus ook voor meldingen over berichten in een berichtenbox. De betekenis in MOZa komt overeen met het [GEMMA-proces *Attenderen*](https://www.gemmaonline.nl/wiki/GEMMA/id-815e8d82-70e2-4d5e-860e-6d5b10f092ad) ("Het proactief berichten van een klant").
-
 ## Welke keuzes hebben we gemaakt?
 
 1. **"Notificatie" is een van de twee families onder *bericht***, naast *inhoudelijk bericht*: een notificatie wijst op iets, een inhoudelijk bericht is het iets zelf. NORA gebruikt het woord alleen voor berichten tussen systemen, GEMMA Omnichannel vooral voor meldingen aan mensen. De Awb gebruikt het woord niet en spreekt van "kennisgeving". We gebruiken *notificatie* voor meldingen aan mensen en *gebeurtenisbericht* voor berichten tussen systemen.
-2. **"Kennisgeving" heeft in de Awb zelf twee betekenissen** (melding en publicatie). We noemen ze *kennisgeving (melding)* en *kennisgeving (publicatie)*, en gebruiken in de notificatiedienst de eerste.
-3. **"Mededeling" heeft twee betekenissen**: een gericht bericht (Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43), een notificatie) en een volledige publicatie in het publicatieblad (Bekendmakingswet [art. 12](https://wetten.overheid.nl/BWBR0004287/2024-01-01/#Artikel12), een inhoudelijk bericht). We noemen de tweede *volledige publicatie*.
-4. **"Attendering" staat niet in de wet** en heeft in GEMMA Omnichannel een andere betekenis. In MOZa is een attendering een notificatie waarin de informatie zelf staat en die niet verwijst naar een bericht in een berichtenmagazijn.
-5. **Type en medium staan los van elkaar.** Een berichtenbox, e-mail, post en het publicatieblad zijn media, geen typen. Een attendering in een berichtenbox blijft een attendering. Sommige typen schrijven een medium voor (kennisgeving (melding): elektronisch; kennisgeving (publicatie): publicatieblad).
+2. **Woorden met twee betekenissen krijgen elk een eigen naam.** De Awb gebruikt "kennisgeving" voor een melding en voor een publicatie. We noemen ze *kennisgeving (melding)* en *kennisgeving (publicatie)*, en gebruiken in de notificatiedienst de eerste. De "mededeling" uit de Bekendmakingswet noemen we *volledige publicatie*, zodat hij niet verward wordt met de mededeling uit Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43). Zie [*Welke woorden hebben meer betekenissen?*](#welke-woorden-hebben-meer-betekenissen)
+3. **"Attendering" gebruiken we zoals het [GEMMA-proces *Attenderen*](https://www.gemmaonline.nl/wiki/GEMMA/id-815e8d82-70e2-4d5e-860e-6d5b10f092ad)**, niet als synoniem van notificatie zoals in GEMMA Omnichannel. Een attendering bevat de informatie zelf en verwijst niet naar een bericht in een berichtenmagazijn. Het woord staat niet in de wet.
+4. **Type en medium staan los van elkaar.** Een berichtenbox, e-mail, post en het publicatieblad zijn media, geen typen. Een attendering in een berichtenbox blijft een attendering. Sommige typen schrijven een medium voor (kennisgeving (melding): elektronisch; kennisgeving (publicatie): publicatieblad).
+5. **We gebruiken "formeel bericht" niet als indeling.** Meestal bedoelt men ermee: een bericht met rechtsgevolg in een bestuursrechtelijke procedure, zoals een aanvraag, besluit of bezwaar. In plaats daarvan staan bij elk begrip de *juridische gevolgen*, omdat de term niet eenduidig is:
+   - De Awb kent de term niet. Het dichtst erbij komt Awb [2:13](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.3_Artikel2:13) lid 1: "Een ieder kan een bericht dat deel uitmaakt van een procedure over een besluit of een klacht of een ander krachtens wettelijk voorschrift voorgeschreven bericht elektronisch aan een bestuursorgaan zenden."
+   - GEMMA ([Notificeren introductie](https://www.gemmaonline.nl/wiki/Notificeren_introductie)) noemt de term wel, maar omschrijft hem niet: de Wmebv maakt het "steeds vaker verplicht om burgers te informeren. Bijvoorbeeld wanneer er nieuwe formele berichten beschikbaar zijn, zoals een besluit." NORA kent de term niet.
+   - Logius gebruikt "formeel" voor het medium: "De Berichtenbox kan als formeel alternatief voor fysieke post worden gebruikt, zelfs voor berichten met rechtsgevolgen." ([Logius-training (2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf), dia 20)
+   - Alleen bij een besluit is het antwoord duidelijk "ja" (rechtsgevolg, Awb [3:40](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:40)). Een mededeling (Awb [3:43](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.6_Artikel3:43)) en een kennisgeving (Awb [3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12), [2:10](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10)) zijn wettelijk voorgeschreven, maar hebben zelf geen rechtsgevolg. De kennisgeving heeft wel gevolgen voor de procedure (Awb [3:16](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:16), [2:22](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.5_Artikel2:22)); de mededeling niet: termijnen hangen aan de bekendmaking of de terinzagelegging (Awb [6:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk6_Afdeling6.2_Artikel6:8)).
 
 ## Afkortingen
 

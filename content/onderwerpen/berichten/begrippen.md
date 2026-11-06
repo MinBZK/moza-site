@@ -44,8 +44,8 @@ Zo hangen de begrippen samen bij een vergunning die de gemeente voorbereidt met 
 
 1. Een ondernemer vraagt de vergunning digitaal aan. De gemeente stuurt een [ontvangstbevestiging](#ontvangstbevestiging).
 2. De gemeente stuurt het ontwerpbesluit naar de ondernemer en legt het ter inzage. In het gemeenteblad staat een [kennisgeving (publicatie)](#kennisgeving-publicatie). Buurtbewoners die zich hebben aangemeld voor berichten over hun buurt, krijgen een [attendering](#attendering).
-3. Een buurtbewoner die belanghebbende is, stuurt digitaal een zienswijze. Ook die krijgt een ontvangstbevestiging.
-4. De gemeente neemt het [besluit](#besluit) en zet het in de berichtenbox van de ondernemer. Binnen 48 uur krijgt de ondernemer een [kennisgeving (melding)](#kennisgeving-melding) per e-mail.
+3. Een buurtbewoner die belanghebbende is, stuurt digitaal een zienswijze. Ook die krijgt een [ontvangstbevestiging](#ontvangstbevestiging).
+4. De gemeente neemt het [besluit](#besluit) en zet het in een berichtenmagazijn, zoals de Berichtenbox voor bedrijven. Binnen 48 uur krijgt de ondernemer een [kennisgeving (melding)](#kennisgeving-melding) per e-mail.
 5. De buurtbewoner krijgt een [mededeling](#mededeling) dat het besluit er is, met een exemplaar van het besluit. In het gemeenteblad staat opnieuw een kennisgeving (publicatie).
 6. Achter de schermen sturen de systemen van de gemeente en de notificatiedienst elkaar [gebeurtenisberichten](#gebeurtenisbericht).
 

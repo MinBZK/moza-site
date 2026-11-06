@@ -256,40 +256,40 @@ Deze bronnen zijn geraadpleegd bij het opstellen van deze pagina. Niet alle bron
 
 GEMMA en NORA
 
-- Bericht (NORA): https://www.noraonline.nl/wiki/Bericht
-- Kernbegrippen Notificeren (NORA): https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren
-- Aanbevelingen Notificeren (NORA): https://www.noraonline.nl/wiki/Aanbevelingen_Notificeren
-- Architectuur Notificeren in het Federatief Datastelsel (NORA): https://www.noraonline.nl/wiki/Architectuur_Notificeren_in_het_Federatief_Datastelsel
-- Berichtenbox voor burgers (NORA): https://www.noraonline.nl/wiki/Berichtenbox_voor_burgers
-- bericht (GEMMA, projectarchitectuur Omnichannel): https://www.gemmaonline.nl/wiki/Omnichannel/id-a7ecabcf-d6c1-47bc-8397-25a2c879f32c
-- Notificeren introductie (GEMMA): https://www.gemmaonline.nl/wiki/Notificeren_introductie
-- Informatiearme en informatierijke notificaties (GEMMA): https://www.gemmaonline.nl/wiki/Informatiearme_en_informatierijke_notificaties
-- notificatie (GEMMA, projectarchitectuur Omnichannel): https://www.gemmaonline.nl/wiki/Omnichannel/id-485497dc-29d4-4c31-be21-5a87dbcaebff
-- Klantnotificatiecomponent (GEMMA, projectarchitectuur Omnichannel): https://www.gemmaonline.nl/wiki/Omnichannel/id-381f35c5-3f2a-4615-9cbc-4f7785d92cef
-- Attendering, bedrijfsfunctie (GEMMA): https://www.gemmaonline.nl/wiki/GEMMA/id-9a2cbc39-8527-4eb9-9309-324ee963c7de
-- Attenderen, bedrijfsproces (GEMMA): https://www.gemmaonline.nl/wiki/GEMMA/id-815e8d82-70e2-4d5e-860e-6d5b10f092ad
-- Invoeren decentrale regelgeving / DROP (GEMMA): https://www.gemmaonline.nl/wiki/GEMMA/id-56920801-733e-467c-ab20-7b2d6edc731e
+- [Bericht (NORA)](https://www.noraonline.nl/wiki/Bericht)
+- [Kernbegrippen Notificeren (NORA)](https://www.noraonline.nl/wiki/Kernbegrippen_Notificeren)
+- [Aanbevelingen Notificeren (NORA)](https://www.noraonline.nl/wiki/Aanbevelingen_Notificeren)
+- [Architectuur Notificeren in het Federatief Datastelsel (NORA)](https://www.noraonline.nl/wiki/Architectuur_Notificeren_in_het_Federatief_Datastelsel)
+- [Berichtenbox voor burgers (NORA)](https://www.noraonline.nl/wiki/Berichtenbox_voor_burgers)
+- [bericht (GEMMA, projectarchitectuur Omnichannel)](https://www.gemmaonline.nl/wiki/Omnichannel/id-a7ecabcf-d6c1-47bc-8397-25a2c879f32c)
+- [Notificeren introductie (GEMMA)](https://www.gemmaonline.nl/wiki/Notificeren_introductie)
+- [Informatiearme en informatierijke notificaties (GEMMA)](https://www.gemmaonline.nl/wiki/Informatiearme_en_informatierijke_notificaties)
+- [notificatie (GEMMA, projectarchitectuur Omnichannel)](https://www.gemmaonline.nl/wiki/Omnichannel/id-485497dc-29d4-4c31-be21-5a87dbcaebff)
+- [Klantnotificatiecomponent (GEMMA, projectarchitectuur Omnichannel)](https://www.gemmaonline.nl/wiki/Omnichannel/id-381f35c5-3f2a-4615-9cbc-4f7785d92cef)
+- [Attendering, bedrijfsfunctie (GEMMA)](https://www.gemmaonline.nl/wiki/GEMMA/id-9a2cbc39-8527-4eb9-9309-324ee963c7de)
+- [Attenderen, bedrijfsproces (GEMMA)](https://www.gemmaonline.nl/wiki/GEMMA/id-815e8d82-70e2-4d5e-860e-6d5b10f092ad)
+- [Invoeren decentrale regelgeving / DROP (GEMMA)](https://www.gemmaonline.nl/wiki/GEMMA/id-56920801-733e-467c-ab20-7b2d6edc731e)
 
 Wet- en regelgeving
 
-- Algemene wet bestuursrecht, versie geldend vanaf 15 augustus 2026 (afdeling 2.3 Verkeer langs elektronische weg, afdeling 3.6 Bekendmaking en mededeling, artikelen [3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12), [3:16](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:16) en [6:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk6_Afdeling6.2_Artikel6:8)): https://wetten.overheid.nl/BWBR0005537/2026-08-15
-- Algemene wet bestuursrecht, versie per 1 januari 2027 (artikel [2:10](https://wetten.overheid.nl/BWBR0005537/2027-01-01/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) lid 2): https://wetten.overheid.nl/BWBR0005537/2027-01-01
-- Bekendmakingswet, versie per 1 januari 2024 (artikelen 1, 2 en 12): https://wetten.overheid.nl/BWBR0004287/2024-01-01
-- Kamerstuk 35261, nr. 4: https://zoek.officielebekendmakingen.nl/kst-35261-4.html
-- Kamerstuk 35261, nr. 24 (Wmebv): https://zoek.officielebekendmakingen.nl/kst-35261-24.html
+- [Algemene wet bestuursrecht, versie geldend vanaf 15 augustus 2026](https://wetten.overheid.nl/BWBR0005537/2026-08-15) (afdeling 2.3 Verkeer langs elektronische weg, afdeling 3.6 Bekendmaking en mededeling, artikelen [3:12](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:12), [3:16](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk3_Afdeling3.4_Artikel3:16) en [6:8](https://wetten.overheid.nl/BWBR0005537/2026-08-15/#Hoofdstuk6_Afdeling6.2_Artikel6:8))
+- [Algemene wet bestuursrecht, versie per 1 januari 2027](https://wetten.overheid.nl/BWBR0005537/2027-01-01) (artikel [2:10](https://wetten.overheid.nl/BWBR0005537/2027-01-01/#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:10) lid 2)
+- [Bekendmakingswet, versie per 1 januari 2024 (artikelen 1, 2 en 12)](https://wetten.overheid.nl/BWBR0004287/2024-01-01)
+- [Kamerstuk 35261, nr. 4](https://zoek.officielebekendmakingen.nl/kst-35261-4.html)
+- [Kamerstuk 35261, nr. 24 (Wmebv)](https://zoek.officielebekendmakingen.nl/kst-35261-24.html)
 
 Standaarden
 
-- NL GOV Profile for CloudEvents (Logius): https://logius-standaarden.github.io/NL-GOV-profile-for-CloudEvents/
-- NL GOV Profile for CloudEvents (Forum Standaardisatie): https://www.forumstandaardisatie.nl/open-standaarden/nl-gov-profile-cloudevents
-- CloudEvents (internationale standaard): https://cloudevents.io/
+- [NL GOV Profile for CloudEvents (Logius)](https://logius-standaarden.github.io/NL-GOV-profile-for-CloudEvents/)
+- [NL GOV Profile for CloudEvents (Forum Standaardisatie)](https://www.forumstandaardisatie.nl/open-standaarden/nl-gov-profile-cloudevents)
+- [CloudEvents (internationale standaard)](https://cloudevents.io/)
 
 Overige bronnen
 
-- Requirements notificeren volgens de Wmebv (VNG): https://vng.nl/sites/default/files/2024-01/requirements_notificeren_volgens_de_wmebv_v1.0.pdf
-- Training aansluiten Berichtenbox MijnOverheid, blok 1 (Logius, 6 september 2019): https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/Training%20aansluiten%20Berichtenbox%20MijnOverheid%20Blok%201%20-%206%20september%202019.pdf
-- Training MijnOverheid-Berichtenbox, blok 1 (Logius, 11 februari 2022): https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf
-- Parkeerboete in de Berichtenbox moet je zelf opmerken (Binnenlands Bestuur): https://www.binnenlandsbestuur.nl/digitaal/jong-en-ambtenaar/parkeerboete-in-de-berichtenbox-moet-je-zelf-opmerken
-- Notificatiedienst (MOZa): https://mijnoverheidzakelijk.nl/onderwerpen/notificatiedienst/
-- Federatief Berichtenstelsel (MOZa): https://mijnoverheidzakelijk.nl/onderwerpen/berichten/fbs/
-- Kennisgeving en attendering (MOZa): https://github.com/MinBZK/MijnOverheidZakelijk/tree/main/Docs/kennisgeving-attendering
+- [Requirements notificeren volgens de Wmebv (VNG)](https://vng.nl/sites/default/files/2024-01/requirements_notificeren_volgens_de_wmebv_v1.0.pdf)
+- [Training aansluiten Berichtenbox MijnOverheid, blok 1 (Logius, 6 september 2019)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/Training%20aansluiten%20Berichtenbox%20MijnOverheid%20Blok%201%20-%206%20september%202019.pdf)
+- [Training MijnOverheid-Berichtenbox, blok 1 (Logius, 11 februari 2022)](https://www.logius.nl/sites/default/files/public/bestanden/diensten/MijnOverheid/20220211%20Training%20MijnOverheid-Berichtenbox%20-%20Blok%201.pdf)
+- [Parkeerboete in de Berichtenbox moet je zelf opmerken (Binnenlands Bestuur)](https://www.binnenlandsbestuur.nl/digitaal/jong-en-ambtenaar/parkeerboete-in-de-berichtenbox-moet-je-zelf-opmerken)
+- [Notificatiedienst (MOZa)](/onderwerpen/notificatiedienst/)
+- [Federatief Berichtenstelsel (MOZa)](/onderwerpen/berichten/fbs/)
+- [Kennisgeving en attendering (MOZa)](https://github.com/MinBZK/MijnOverheidZakelijk/tree/main/Docs/kennisgeving-attendering)

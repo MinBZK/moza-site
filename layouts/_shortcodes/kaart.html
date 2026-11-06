@@ -1,0 +1,75 @@
+{{- /* Eén kaart in de shortcode kaarten: een kop, een statuswoord en tekst in
+       Markdown. pagina="/pad#anker" maakt van de kop een link. In een
+       leeslijst is de titel een link zonder kop.
+
+       Met faseplan=true wijst de kaart naar het nieuwste faseplan: de pagina
+       in /documenten/rapportages met de laatste fase_einde in de front
+       matter. De titel is dan de linkTitle van dat plan, en achter het
+       statuswoord komt de maand uit fase_einde.
+
+       Ook de interne Markdown-links in de tekst gaan langs pagina-link.html,
+       zodat de build afbreekt als hun pagina of anker verdwijnt. */ -}}
+{{- $faseplan := .Get "faseplan" -}}
+{{- $titel := .Get "titel" -}}
+{{- $status := .Get "status" -}}
+{{- /* .Position wijst bij een geneste shortcode niet naar de kaart zelf;
+       de titel wel. */ -}}
+{{- $plek := printf "%s, kaart %q" .Position (cond (not $faseplan) $titel "faseplan") -}}
+{{- $lijst := false -}}
+{{- with .Parent -}}
+  {{- if ne .Name "kaarten" }}{{ errorf "%s: hoort direct in kaarten, niet in %s" $plek .Name }}{{ end -}}
+  {{- $lijst = .Get "lijst" -}}
+{{- else -}}
+  {{- errorf "%s: zet deze shortcode in kaarten" $plek -}}
+{{- end -}}
+{{- $href := "" -}}
+{{- if $faseplan -}}
+  {{- if or $titel (.Get "pagina") }}{{ errorf "%s: titel en pagina komen uit het faseplan, laat ze weg" $plek }}{{ end -}}
+  {{- $plan := false -}}
+  {{- $einde := false -}}
+  {{- with site.GetPage "/documenten/rapportages" -}}
+    {{- range where .RegularPages "Params.fase_einde" "!=" nil -}}
+      {{- $p := . -}}
+      {{- with try (time.AsTime .Params.fase_einde) -}}
+        {{- if .Err -}}
+          {{- errorf "%s: fase_einde %q in %s is geen datum" $plek $p.Params.fase_einde $p.Path -}}
+        {{- else if or (not $einde) (.Value.After $einde) -}}
+          {{- $plan = $p -}}
+          {{- $einde = .Value -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $plan -}}
+    {{- $titel = .LinkTitle -}}
+    {{- $href = .RelPermalink -}}
+    {{- with $status }}{{ $status = printf "%s %s" . ($einde | time.Format "January 2006") }}{{ end -}}
+  {{- else -}}
+    {{- errorf "%s: geen faseplan met fase_einde in /documenten/rapportages" $plek -}}
+  {{- end -}}
+{{- else -}}
+  {{- with .Get "pagina" }}{{ $href = partial "pagina-link.html" (dict "pad" . "plek" $plek "bron" $.Page) }}{{ end -}}
+{{- end -}}
+{{- if not $titel }}{{ errorf "%s: titel ontbreekt" $plek }}{{ end -}}
+{{- if and $lijst (not $href) }}{{ errorf "%s: in een leeslijst heeft een kaart een pagina nodig" $plek }}{{ end -}}
+{{- range findRESubmatch `\]\((/[^)\s]*)` .Inner -}}
+  {{- $_ := partial "pagina-link.html" (dict "pad" (index . 1) "plek" $plek "bron" $.Page) -}}
+{{- end -}}
+{{- $tekst := .Inner | strings.TrimSpace | .Page.RenderString (dict "display" "block") -}}
+{{- if $lijst }}
+<li>
+  <a href="{{ $href }}">{{ $titel }}</a>
+  {{- with $status }}
+  <p class="tag">{{ . }}</p>
+  {{- end }}
+  {{ $tekst }}
+</li>
+{{- else }}
+<li class="kaart">
+  <h3>{{ with $href }}<a href="{{ . }}">{{ $titel }}</a>{{ else }}{{ $titel }}{{ end }}</h3>
+  {{- with $status }}
+  <p class="tag">{{ . }}</p>
+  {{- end }}
+  {{ $tekst }}
+</li>
+{{- end -}}

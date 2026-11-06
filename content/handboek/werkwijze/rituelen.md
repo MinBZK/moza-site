@@ -102,3 +102,7 @@ Eens per fase (ongeveer elke 4 maanden) nemen we een hele dag de tijd om:
 - Richting en prioriteiten voor de volgende fase te bepalen
 
 Dit is een belangrijk moment om samen stil te staan bij onze voortgang en de volgende stappen te zetten.
+
+Daarna lopen we de homepage na. Kloppen de blokken over digitale post en over wat daarnaast loopt nog? En de statuswoorden op de kaarten? Verandert de prioriteit, pas dan ook Over MOZa aan. Daar staat bijna dezelfde tekst.
+
+Het plan voor de nieuwe fase staat in `content/documenten/rapportages/`. Zet in de [front matter](/handboek/bijdragen/aan-handboek/#front-matter) de laatste dag van de fase, zoals `fase_einde: 2027-05-31`. Zet er ook een korte `linkTitle` bij, zoals "Plan fase 6". Dan wijst de kaart Plan op de homepage er vanzelf naar. Zonder `fase_einde` blijft de kaart bij het oude plan. Geef het plan als `date` de dag waarop je het publiceert. Met een datum in de toekomst komt het plan pas online bij de eerste build na die datum. Kijk ook of de tekst op de kaart nog klopt.

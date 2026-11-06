@@ -24,5 +24,5 @@ Kom in contact met ons op Mattermost. Je kunt hier vragen stellen, ervaringen de
 
 ## Blijf op de hoogte
 
-- **MOZa Weekly.** Elke week delen we wat we doen. Lees hem [op deze site](/weekly/), volg hem met de [RSS-feed](/weekly/index.xml) of vraag hem per mail aan via <moza@minbzk.nl>.
-- **MOZa Pulse.** Elke maand laten we online zien wat we onderzoeken, bouwen en leren, met ruimte voor vragen. Aanmelden kan via <moza@minbzk.nl>.
+- **MOZa Weekly:** Elke week delen we wat we doen. Lees hem [op deze site](/weekly/), volg hem met de [RSS-feed](/weekly/index.xml) of vraag hem per mail aan via <moza@minbzk.nl>.
+- **MOZa Pulse:** Elke maand laten we online zien wat we onderzoeken, bouwen en leren, met ruimte voor vragen. Aanmelden kan via <moza@minbzk.nl>.

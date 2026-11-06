@@ -467,15 +467,6 @@ import "@nldd/design-system/button";
     });
   }
 
-  // nldd-icon-button geeft geen download-attribuut door aan zijn <a>
-  const pdf = document.querySelector("[data-pdf]");
-  if (pdf) {
-    pdf.addEventListener("click", (e) => {
-      e.preventDefault();
-      Object.assign(document.createElement("a"), { href: pdf.getAttribute("href"), download: pdf.dataset.pdf }).click();
-    });
-  }
-
   scrollMode.addEventListener("change", () => {
     settle();
     step = minStep(slides[index]);

@@ -133,6 +133,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     let scrollBreedte;
+    let tekstmeter;
 
     // De maat die de dia in de leesmodus krijgt: de 32px van .reveal, maal de
     // schaal die Reveal anders op de dia zou zetten (zelfde rekensom als daar),
@@ -148,11 +149,24 @@ window.addEventListener('DOMContentLoaded', () => {
       return 32 * begrensd * (wortel / 16);
     }
 
+    // Een gebruikersstijl voor tekstafstand (WCAG 1.4.12) is niet aan de maat van
+    // de meter te zien maar wel aan zijn stijl: die overschrijft de vaste
+    // waarden uit reveal.css.
+    function ruimereTekstafstand() {
+      if (!tekstmeter) return false;
+      const stijl = getComputedStyle(tekstmeter);
+      const grootte = parseFloat(stijl.fontSize) || 16;
+      return parseFloat(stijl.lineHeight) / grootte > 1.2 ||
+        parseFloat(stijl.letterSpacing) / grootte > 0.1 ||
+        parseFloat(stijl.wordSpacing) / grootte > 0.14;
+    }
+
     // Boven de 16px loopt de dia als gewone tekst door de pagina (zie reveal.css)
-    // en laat Reveal de toetsen los, zodat de pijltoetsen schuiven.
+    // en laat Reveal de toetsen los, zodat de pijltoetsen schuiven. Hetzelfde
+    // geldt bij ruimere tekstafstand, want dan past de tekst niet in de dia.
     function pasTekstgrootteToe() {
       const wortel = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      const vergroot = wortel > 16.5;
+      const vergroot = wortel > 16.5 || ruimereTekstafstand();
       if (vergroot) document.documentElement.style.setProperty('--leesmaat', leesmaat(wortel) + 'px');
       else document.documentElement.style.removeProperty('--leesmaat');
       document.documentElement.classList.toggle('tekst-vergroot', vergroot);
@@ -173,7 +187,10 @@ window.addEventListener('DOMContentLoaded', () => {
       const meter = document.createElement('div');
       meter.className = 'tekstmeter';
       meter.setAttribute('aria-hidden', 'true');
+      // Tekst in de meter, zodat regelhoogte en letterafstand zijn maat bepalen
+      meter.textContent = 'a a';
       document.body.append(meter);
+      tekstmeter = meter;
       new ResizeObserver(pasTekstgrootteToe).observe(meter);
       window.addEventListener('resize', pasTekstgrootteToe);
     }

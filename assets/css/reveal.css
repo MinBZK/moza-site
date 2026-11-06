@@ -518,13 +518,15 @@ html.tekst-vergroot .reveal:not(.overview) .progress {
   position: fixed;
 }
 
-/* Geeft reveal-deck.js een maat die met de basislettergrootte meebeweegt */
+/* Geeft reveal-deck.js een maat die met de basislettergrootte meebeweegt, en
+   vaste waarden waartegen het een gebruikersstijl voor tekstafstand herkent */
 .tekstmeter {
   position: fixed;
   top: 0;
   left: 0;
   width: 1rem;
-  height: 1rem;
   visibility: hidden;
   pointer-events: none;
+  font-size: 1rem;
+  line-height: 1;
 }

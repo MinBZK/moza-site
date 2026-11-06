@@ -102,6 +102,40 @@ async function toetsReveal(page, baseUrl, route) {
     findings.push(`focus verlaat de presentatie niet binnen ${MAX_TABS} tabs`);
   }
 
+  // Tekstafstand (WCAG 1.4.12): de dia heeft een vaste hoogte, dus ruimere
+  // tekst valt eruit. Dat mag, zolang de pagina er dan omheen kan scrollen.
+  await page.goto(baseUrl + route, { waitUntil: "networkidle0" });
+  await page.waitForFunction(() => window.Reveal?.isReady?.(), { timeout: 15000 });
+  await page.addStyleTag({
+    content: `* { line-height: 1.5 !important; letter-spacing: 0.12em !important;
+                  word-spacing: 0.16em !important }
+              p, li { margin-bottom: 2em !important }`,
+  });
+  const posities = await page.evaluate(() =>
+    window.Reveal.getSlides().map((s) => {
+      const i = window.Reveal.getIndices(s);
+      return [i.h, i.v || 0];
+    })
+  );
+  for (const [h, v] of posities) {
+    await page.evaluate(([x, y]) => window.Reveal.slide(x, y), [h, v]);
+    await page.waitForFunction(() => document.querySelector(".slides section.present"), { timeout: 5000 });
+    const weg = await page.evaluate(() => {
+      const dia = document.querySelector(".slides section.present");
+      // Een achtergrond of logo staat absoluut en hoort niet bij de leesbare inhoud.
+      const inhoud = [...dia.children].filter(
+        (el) => el.getBoundingClientRect().height > 0 && getComputedStyle(el).position !== "absolute"
+      );
+      if (inhoud.length === 0) return 0;
+      const onder = Math.max(...inhoud.map((el) => el.getBoundingClientRect().bottom));
+      const scrollbaar = document.documentElement.scrollHeight > window.innerHeight + 1;
+      return scrollbaar ? 0 : Math.round(onder - window.innerHeight);
+    });
+    if (weg > 0) {
+      findings.push(`dia ${h}/${v}: met ruimere tekstafstand valt ${weg}px buiten beeld zonder te kunnen scrollen`);
+    }
+  }
+
   return findings;
 }
 

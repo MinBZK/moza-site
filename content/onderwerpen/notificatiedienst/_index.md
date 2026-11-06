@@ -10,7 +10,7 @@ sectienavigatie: true
 
 ## Huidige uitdaging
 
-Overheidsorganisaties willen burgers en ondernemers betrouwbaar en efficiënt informeren. Er is alleen geen gezamenlijke voorziening voor het versturen van meldingen, notificaties en e-mails. Daardoor lopen we tegen knelpunten aan:
+Overheidsorganisaties willen burgers en ondernemers betrouwbaar en efficiënt informeren. Er is alleen geen gezamenlijke voorziening voor het versturen van notificaties, bijvoorbeeld per e-mail. Daardoor lopen we tegen knelpunten aan:
 
 * **Versnippering:** organisaties gebruiken elk hun eigen systemen, teksten en werkwijzen.
 * **Complexiteit:** elke organisatie regelt zelf het versturen, beheren en loggen van notificaties. Dat leidt tot dubbel werk en tot verschillen in uitvoering.
@@ -38,18 +38,34 @@ De notificatiedienst ondersteunt vijf stappen in het verzenden en opvolgen van d
 4. **Contactherstel bepalen.** Signaleren dat een bericht niet aankomt en vaststellen welke vervolgstappen nodig zijn.
 5. **Contactherstel uitvoeren.** Het starten, volgen en afhandelen van acties om alsnog contact te leggen.
 
-Een organisatie kan de hele notificatiedienst afnemen, maar ook alleen de onderdelen die zij nodig heeft. Zo sluit de dienst aan op de behoeften die binnen MOZa en OBIS zijn opgehaald bij ondernemers, burgers, overheidsorganisaties en medewerkers van die organisaties.
+De notificatiedienst sluit aan op de behoeften die binnen MOZa en OBIS zijn opgehaald bij ondernemers, burgers, overheidsorganisaties en medewerkers van die organisaties.
 
 Voor deze stappen legt de notificatiedienst gegevens vast. Dat doen we alleen zolang het proces die gegevens nodig heeft, inclusief de terugmeldingen aan de dienstverlener. Daarna verwijderen we ze zo snel mogelijk. De notificatiedienst is vooralsnog geen archief waarin je achteraf kunt nagaan wat er is verstuurd. Dat legt de dienstverlener zelf vast.
 
+### Hoe werkt de centrale opzet?
+
+Een dienstverlener bepaalt zelf welke van de vijf stappen die inzet. Zo kan een dienstverlener kiezen voor het bepalen van het ontvangstadres (stap 1), het versturen (stap 2) en het verwerken van reacties (stap 3). Een andere dienstverlener zet misschien alleen het bepalen van contactherstel (stap 4) en het uitvoeren daarvan (stap 5) in.
+
+Welke stappen een dienstverlener ook kiest: de notificatiedienst voert ze altijd op dezelfde, eenduidige manier uit. Daarbij gebruikt de dienst de informatie die voor die stap relevant is.
+
+> [!INFO]
+> **Twee voorbeelden:**
+>
+> * **Versturen (stap 2).** De dienst controleert vóór het versturen: loopt er voor dit ontvangstadres al contactherstel? Zo ja, dan melden we dat direct terug aan de dienstverlener.
+> * **Contactherstel bepalen (stap 4).** De dienst controleert, op basis van de informatie die de dienstverlener meegeeft: is contactherstel juridisch vereist voor dit type bericht? De juridische eisen verschillen per type bericht. Bij een kennisgeving (melding) is contactherstel juridisch vereist, bij een attendering niet. <!-- Placeholder: na samenvoegen van PR #340 links toevoegen naar /onderwerpen/begrippen-berichten/ bij "type bericht" (#welke-soorten-berichten-zijn-er), "kennisgeving (melding)" (#kennisgeving-melding) en "attendering" (#attendering). -->
+
+De notificatiedienst werkt dus niet als doorgeefluik dat alleen uitvoert wat er gevraagd wordt. Bij elke stap die een dienstverlener afneemt, maakt de dienst zelf een afweging, volgens dezelfde centrale logica.
+
+Ook bij het bepalen van de ontvanger gaat de voorkeur uit naar een centrale voorziening: de [centrale profielservice](#wie-bepaalt-naar-wie-wordt-genotificeerd).
+
 ## Wat de dienst wel en niet doet
 
-De notificatiedienst verstuurt geen officiële documenten. De dienst ondersteunt het digitale proces en informeert burgers en ondernemers dát er ergens een bericht klaarstaat, en waar. Denk aan een melding dat een beschikking, aanvraag of ander document klaarstaat in een portaal.
+De notificatiedienst verstuurt geen inhoudelijke berichten, zoals een besluit. De dienst ondersteunt het digitale proces en informeert burgers en ondernemers dát er ergens een bericht klaarstaat, en waar. Denk aan een kennisgeving (melding) dat een beschikking, aanvraag of ander document klaarstaat in een portaal.
 
 De dienst is vooralsnog niet geschikt voor het afleveren van het inhoudelijke bericht zelf.
 
 > [!INFO]
-> Een beschikking kan dus niet via de notificatiedienst worden verstuurd, wél het bericht dat er een beschikking klaarstaat en waar die te vinden is.
+> Een beschikking kan dus niet via de notificatiedienst worden verstuurd, wél de kennisgeving (melding) dat er een beschikking klaarstaat en waar die te vinden is.
 >
 > **Voorbeeld:**  
 > een ondernemer ontvangt een e-mail met de boodschap "Er staat een nieuw bericht voor u klaar. U kunt dit bekijken via [naam portaal]."  
@@ -84,7 +100,7 @@ Geen enkele e-maildienst kan garanderen dat een bericht daadwerkelijk door de on
 De notificatiedienst koppelt per functionaliteit terug wat de status is. De verzendende organisatie weet daardoor steeds waar haar notificatie in het proces staat. Die terugkoppeling bestaat uit twee delen:
 
 1. **Wat is de huidige status,** en wat is er eventueel al opgevolgd? De dienst meldt dat het bericht is verzonden en meldt problemen zodra ze zich voordoen. Dat kan uitmonden in de terugkoppeling dat verzending niet is gelukt en dat wordt overgegaan op contactherstel.
-2. **Wat gebeurt er hierna,** als er geen tegenbericht komt? Bijvoorbeeld: "notificatie verzonden, we wachten 7 dagen op een eventuele foutmelding". Komt er in die 7 dagen geen foutmelding, dan geldt de verzending als gelukt. Komt er een melding dat de ontvanger tijdelijk onbereikbaar is (softbounce), bijvoorbeeld omdat de mailbox vol is, dan volgt "tijdelijke afleverfout, nieuwe poging gepland". Komt er een melding dat het adres niet werkt (hardbounce), dan volgt geen nieuwe poging, maar "notificatie niet afgeleverd, contactherstel gestart".[^hardbounce]
+2. **Wat gebeurt er hierna,** als er geen tegenbericht komt? Bijvoorbeeld: "notificatie verzonden, we wachten 7 dagen op een eventuele foutmelding". Komt er in die 7 dagen geen foutmelding, dan geldt de verzending als gelukt. Komt er een foutmelding dat de ontvanger tijdelijk onbereikbaar is (softbounce), bijvoorbeeld omdat de mailbox vol is, dan volgt "tijdelijke afleverfout, nieuwe poging gepland". Komt er een foutmelding dat het adres niet werkt (hardbounce), dan volgt geen nieuwe poging, maar "notificatie niet afgeleverd, contactherstel gestart".[^hardbounce]
 
 Voorbeelden van statussen die kunnen optreden:
 
@@ -119,7 +135,7 @@ De notificatiedienst heeft in de meeste situaties verder geen rol meer in het **
 
 Het feit dat een notificatie niet kan worden afgeleverd, betekent in veel gevallen ook dat contactherstel nodig is. Ofwel, we starten een proces op waarmee we de ondernemer of burger vragen om hun contactgegevens bij te werken. Het doel daarvan is dat de burger of ondernemer het digitale adres corrigeert, zodat toekomstige notificaties weer aankomen.
 
-Neemt de dienstverlener contactherstel centraal af, dan start de notificatiedienst contactherstel altijd na een hardbounce. Neemt de dienstverlener contactherstel niet centraal af, dan krijgt die de foutmelding terug. Op basis van die melding bepaalt de dienstverlener zelf of contactherstel nodig is en hoe die het uitvoert. De dienstverlener bepaalt zelf hoe het contacthersteladres wordt vastgesteld. Dat kan op twee manieren:
+Neemt de dienstverlener contactherstel centraal af, dan start de notificatiedienst contactherstel altijd na een hardbounce. Neemt de dienstverlener contactherstel niet centraal af, dan krijgt die de foutmelding terug. Op basis van die foutmelding bepaalt de dienstverlener zelf of contactherstel nodig is en hoe die het uitvoert. De dienstverlener bepaalt zelf hoe het contacthersteladres wordt vastgesteld. Dat kan op twee manieren:
 
 1. **Via de dienstverlener zelf.** Net als bij het initiëren van de notificatie kan de dienstverlener het contacthersteladres zelf meegeven. Dat kan direct bij het initiëren van de notificatie, of het adres wordt op dat moment actief bij de dienstverlener opgehaald. Onze voorkeur gaat uit naar het tweede, omdat dat beter past bij het principe van dataminimalisatie.
 
@@ -140,25 +156,16 @@ Bij het versturen van berichten worden gegevens verwerkt. Op basis van de standa
 
 Bij het vormgeven van de notificatiedienst hanteren we de volgende uitgangspunten:
 
-* **Functionaliteit is leidend,** de techniek volgt daaruit.
+* **Functionaliteit is leidend,** de techniek volgt daaruit. We geven de techniek zo vorm dat we deze uitgangspunten zo goed mogelijk waarmaken. Dat doen we stap voor stap.
 * **Zo snel mogelijk meerwaarde bieden** voor zoveel mogelijk dienstverleners.
 * **De aansluitdrempel is zo laag mogelijk** voor alle dienstverleners.
 * **De regiekeuze blijft bij de dienstverlener.** Die bepaalt zelf welke functionaliteiten er gebruikt worden.
 
-### Hoe werkt de centrale opzet?
+### Centraal, tenzij ...
 
-Een dienstverlener bepaalt zelf welke van de [vijf stappen](#vijf-stappen) die inzet. Zo kan een dienstverlener kiezen voor het bepalen van het ontvangstadres (stap 1), het versturen (stap 2) en het verwerken van reacties (stap 3). Een andere dienstverlener zet misschien alleen het bepalen van contactherstel (stap 4) en het uitvoeren daarvan (stap 5) in.
+Het uitgangspunt is: "centraal, tenzij ...". De primaire route is centraal. Dienstverleners gebruiken de notificatiedienst met de [centrale logica](#hoe-werkt-de-centrale-opzet) bij elke stap die ze afnemen. Een dienstverlener gebruikt dus bijvoorbeeld niet alleen het versturen, zonder die logica.
 
-Welke stappen een dienstverlener ook kiest: de notificatiedienst voert ze altijd op dezelfde, eenduidige manier uit. Daarbij gebruikt de dienst de informatie die voor die stap relevant is. Twee voorbeelden:
-
-* **Versturen (stap 2).** De dienst doet vóór het versturen een extra controle: loopt er voor dat ontvangstadres al contactherstel? Is dat zo, dan melden we dat direct terug aan de dienstverlener.
-* **Contactherstel bepalen (stap 4).** Op basis van de informatie die de dienstverlener meegeeft, bepaalt de dienst of contactherstel voor het type notificatie juridisch vereist is. Zo kunnen per type bericht de juridische eisen voor contactherstel verschillen. Een kennisgeving (melding) heeft bijvoorbeeld juridische gevolgen, een attendering niet. Bij een attendering is contactherstel daarom niet juridisch vereist. <!-- Placeholder: na samenvoegen van PR #340 links toevoegen naar /onderwerpen/begrippen-berichten/ bij "type bericht" (#welke-soorten-berichten-zijn-er), "kennisgeving (melding)" (#kennisgeving-melding) en "attendering" (#attendering). -->
-
-Het uitgangspunt is: "centraal, tenzij ...". De notificatiedienst werkt niet als doorgeefluik dat alleen uitvoert wat er gevraagd wordt. Bij elke stap die een dienstverlener afneemt, maakt de dienst zelf een afweging, volgens dezelfde centrale logica. Een dienstverlener gebruikt dus bijvoorbeeld niet alleen het versturen, zonder die logica.
-
-Sommige dienstverleners, zoals gemeenten, hebben al een eigen voorziening die zulke afwegingen maakt. Dan maken twee plekken een afweging over dezelfde notificatie. Het kan zijn dat de notificatiedienst in zo'n situatie tijdelijk geen eigen afweging maakt. Dat is de uitzondering, niet waar we naartoe willen.
-
-Hoe we dit technisch inrichten, volgt uit wat we willen bereiken. We geven de techniek zo vorm dat we deze uitgangspunten zo goed mogelijk waarmaken. Dat doen we stap voor stap.
+Tegelijk is er ruimte om te kijken naar mogelijke transitiescenario's: manieren om geleidelijk over te gaan op de centrale route.
 
 ### Moderne overheidsstandaarden
 
@@ -195,7 +202,7 @@ De notificatiedienst bouwen we samen met overheidsorganisaties. De dienst heeft 
 
 **Outputmanagementcomponent (OMC).** Decentraal component dat binnen het domein van de dienstverlener de regie voert op het notificatieproces en lokale koppelingen kan leggen.
 
-**Notificatie Management Component (NMC).** Het component dat vanuit centraal oogpunt invulling geeft aan de vijf functionaliteiten van de notificatiedienst. Een dienstverlener kan alle vijf functionaliteiten afnemen, of alleen de onderdelen die nodig zijn.
+**Notificatie Management Component (NMC).** Het component dat vanuit centraal oogpunt invulling geeft aan de vijf stappen van de notificatiedienst. Een dienstverlener kan alle vijf stappen afnemen, of alleen de onderdelen die nodig zijn.
 
 **Decentraal profiel.** De gegevens van een burger of ondernemer die een dienstverlener lokaal heeft staan. In de praktijk kan dat uit meerdere applicaties of informatiebronnen bestaan.
 
@@ -212,4 +219,4 @@ De notificatiedienst bouwen we samen met overheidsorganisaties. De dienst heeft 
 * [Besluiten uit de werksessies](/onderwerpen/notificatiedienst/besluiten/)
 * Lees ook over de [profielservice](/onderwerpen/profielservice/), waar contactgegevens en voorkeuren worden vastgelegd
 
-[^hardbounce]: De wet schrijft iets anders voor. Volgens [artikel 2:11 van de Algemene wet bestuursrecht (Awb)](https://wetten.overheid.nl/BWBR0005537/2026-08-15#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:11) wordt een kennisgeving die niet is bezorgd, opnieuw verzonden. Bij een hardbounce wijken we daarvan af: we doen geen nieuwe poging.
+[^hardbounce]: De wet schrijft iets anders voor. Volgens [artikel 2:11 van de Algemene wet bestuursrecht (Awb)](https://wetten.overheid.nl/BWBR0005537/2026-08-15#Hoofdstuk2_Afdeling2.3_Paragraaf2.3.2_Artikel2:11) wordt een kennisgeving (melding) die niet is bezorgd, opnieuw verzonden. Bij een hardbounce wijken we daarvan af: we doen geen nieuwe poging.

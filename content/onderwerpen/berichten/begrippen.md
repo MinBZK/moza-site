@@ -8,7 +8,7 @@ weight: 2
 
 Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebruiken voor berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische gevolgen en wat de wet, GEMMA en NORA erover zeggen.
 
-Dit is een voorstel voor de begrippen die we gebruiken. We horen graag of ze voor jou werken. Reageren kan via de [contactpagina van MOZa](/contact/).
+Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten via de [contactpagina van MOZa](/contact/).
 
 ### Welke soorten berichten zijn er?
 

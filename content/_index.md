@@ -26,7 +26,7 @@ Contactgegevens en voorkeuren één keer doorgeven, voor de hele overheid.
 {{< /kaart >}}
 {{< /kaarten >}}
 
-## Daarnaast werken we aan wat zakendoen echt makkelijk maakt
+## Daarnaast werken we aan wat zakendoen makkelijker maakt
 
 {{< kaarten >}}
 {{< kaart titel="Overzicht" >}}

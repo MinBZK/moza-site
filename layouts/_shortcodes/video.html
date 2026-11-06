@@ -1,0 +1,10 @@
+{{- $video := .Page.Resources.Get (.Get "bestand") -}}
+{{- $ondertitels := .Page.Resources.Get (.Get "ondertitels") -}}
+{{- if not (and $video $ondertitels) -}}
+  {{- errorf "Shortcode video op %s: video of ondertitels niet gevonden in de page bundle" .Page.RelPermalink -}}
+{{- end -}}
+<video class="video" controls preload="metadata" width="{{ .Get "breedte" }}" height="{{ .Get "hoogte" }}" aria-label="{{ .Get "titel" }}">
+  <source src="{{ $video.RelPermalink }}" type="video/mp4">
+  <track kind="captions" src="{{ $ondertitels.RelPermalink }}" srclang="nl" label="Nederlands">
+  <a href="{{ $video.RelPermalink }}">Download de video: {{ .Get "titel" }}</a>
+</video>

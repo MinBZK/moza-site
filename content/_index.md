@@ -12,7 +12,7 @@ hero:
 
 ## We beginnen met digitale post
 
-Onze opdracht is ondernemers als één overheid overzicht te geven, en op tijd te informeren over wat voor hen relevant is. Veel post van de overheid komt nog op papier. Daarom werken we nu eerst aan drie bouwstenen waarmee ondernemers hun post digitaal kunnen krijgen, en op tijd een seintje als er iets voor hen is.
+Onze opdracht is ondernemers als één overheid overzicht te geven, en op tijd te informeren over wat voor hen relevant is. Veel post van de overheid komt nog op papier. Daarom werken we nu eerst aan drie bouwstenen waarmee ondernemers hun post digitaal kunnen krijgen, en op tijd een seintje krijgen als er iets voor hen is.
 
 {{< kaarten groot=true >}}
 {{< kaart titel="Berichten" pagina="/onderwerpen/berichten" >}}

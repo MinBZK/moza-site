@@ -10,7 +10,7 @@ Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebrui
 
 De pagina is een naslagwerk. Je kunt ernaar verwijzen als je werkt aan berichten en notificaties, bijvoorbeeld bij het aansluiten op de notificatiedienst.
 
-Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten in het kanaal [~berichtenservice op Mattermost](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/channels/berichtenservice) of via de [contactpagina van MOZa](/contact/).
+Deze begrippen hebben geen officiële status. We houden ze bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten in het kanaal [~berichtenservice op Mattermost](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/channels/berichtenservice). Hoe je daar komt, of hoe je ons op een andere manier bereikt, lees je op de [contactpagina](/contact/).
 
 ### Welke soorten berichten zijn er?
 

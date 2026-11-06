@@ -1,13 +1,4 @@
-{{- /* De link naar een pagina van deze site, eventueel met een anker:
-       partial "pagina-link.html" (dict "pad" "/contact#blijf-op-de-hoogte" "plek" .Position "bron" .Page)
-
-       Bestaat de pagina of het anker niet meer, dan breekt de build af. Zo
-       wijst een kaart nooit stil naar een pagina die een andere naam kreeg.
-       Het pad mag ook het adres van een pagina zijn, zoals /weekly/<slug>/.
-       Een bestand (een pad met een extensie) of een andere host gaat
-       ongecontroleerd door; dat doet htmltest. Een anker telt als het als id
-       in de inhoud van de pagina staat. Een id dat alleen de layout van die
-       pagina maakt, kent de build niet. */ -}}
+{{- /* Een id dat alleen de layout van een pagina maakt, ziet deze controle niet. */ -}}
 {{- $plek := .plek -}}
 {{- $pad := .pad -}}
 {{- $u := urls.Parse $pad -}}
@@ -25,9 +16,7 @@
     {{- with $u.Fragment -}}
       {{- $anker := . -}}
       {{- $bekend := false -}}
-      {{- /* Fragments kent alleen Markdown-koppen, en is leeg bij HTML-content.
-             Zoek dus ook in de inhoud, maar niet in die van de bron: die wordt
-             op dat moment gebouwd, en de build zou op zichzelf wachten. */ -}}
+      {{- /* Niet in de inhoud van de bron zoeken: de build zou op zichzelf wachten. */ -}}
       {{- with $pagina.Fragments }}{{ $bekend = .Identifiers.Contains $anker }}{{ end -}}
       {{- $zelf := and $.bron ($pagina.Eq $.bron) -}}
       {{- if not (or $bekend $zelf) -}}

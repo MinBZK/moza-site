@@ -1,7 +1,3 @@
-{{- /* Link naar de nieuwste MOZa Weekly. De linktekst staat in de shortcode,
-       de datum komt erachter:
-       {{< nieuwste-weekly >}}de laatste, van{{< /nieuwste-weekly >}}
-       wordt "de laatste, van 28 oktober 2026". */ -}}
 {{- $tekst := trim .Inner " \n\r\t" -}}
 {{- if not $tekst }}{{ errorf "nieuwste-weekly: linktekst ontbreekt (%s)" .Position }}{{ end -}}
 {{- with sort (where site.RegularPages "Section" "weekly") ".Date" "desc" -}}

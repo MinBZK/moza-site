@@ -21,3 +21,8 @@ Kom in contact met ons op Mattermost. Je kunt hier vragen stellen, ervaringen de
 > 3. [Ga naar het MOZa kanaal](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/) of [vraag ons om je toe te voegen](mailto:moza@minbzk.nl) aan het MijnOverheid Zakelijk team
 >
 > Kom je er niet uit? [Stuur ons een e-mail](mailto:moza@minbzk.nl)!
+
+## Blijf op de hoogte
+
+- **MOZa Weekly:** Elke week delen we wat we doen. Lees hem [op deze site](/weekly/), volg hem met de [RSS-feed](/weekly/index.xml) of vraag hem per mail aan via <moza@minbzk.nl>.
+- **MOZa Pulse:** Elke maand laten we online zien wat we onderzoeken, bouwen en leren, met ruimte voor vragen. Aanmelden kan via <moza@minbzk.nl>.

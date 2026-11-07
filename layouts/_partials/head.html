@@ -13,6 +13,7 @@
 {{ $header := resources.Get "css/components/header.css" }}
 {{ $hero := resources.Get "css/components/hero.css" }}
 {{ $cardGrid := resources.Get "css/components/card-grid.css" }}
+{{ $kaarten := resources.Get "css/components/kaarten.css" }}
 {{ $box := resources.Get "css/components/box.css" }}
 {{ $button := resources.Get "css/components/button.css" }}
 {{ $blockquote := resources.Get "css/components/blockquote.css" }}
@@ -35,7 +36,7 @@
 {{ $partners := resources.Get "css/components/partners.css" }}
 {{ $klavertje := resources.Get "css/components/klavertje.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $kaarten $box $button $blockquote $figure $list $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ partial "print-kolombreedtes.html" . }}

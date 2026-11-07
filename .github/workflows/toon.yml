@@ -81,7 +81,7 @@ jobs:
         run: rm tmp/toon/download.json "tmp/toon/${SITE_PATH}/download.json" "tmp/toon/${SITE_PATH}/og.json"
 
       - name: Publiceer preview
-        uses: DigiGilde/toon/actions/publish@8da2d7a7be607cd708471df5c12963f667faedec # v2026.11.2.1
+        uses: DigiGilde/toon/actions/publish@3c0427f19f9ea7e367d9f6574e74d51fd789d0d7 # v2026.11.4
         with:
           site: ${{ env.TOON_SITE }}
           dist-path: tmp/toon/${{ env.SITE_PATH }}
@@ -99,7 +99,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Verwijder preview
-        uses: DigiGilde/toon/actions/publish@8da2d7a7be607cd708471df5c12963f667faedec # v2026.11.2.1
+        uses: DigiGilde/toon/actions/publish@3c0427f19f9ea7e367d9f6574e74d51fd789d0d7 # v2026.11.4
         with:
           site: ${{ env.TOON_SITE }}
           preview-ref: ${{ env.PREVIEW_REF }}

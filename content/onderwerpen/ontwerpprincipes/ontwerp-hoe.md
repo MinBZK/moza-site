@@ -2,70 +2,113 @@
 title: "Hoe: werkwijze en techniek"
 page_title: "Ontwerpprincipes - Hoe: werkwijze en techniek"
 weight: 2
-description: "Het “Hoe” beschrijft de concrete technische keuzes en werkwijze waarmee de principes worden vertaald naar code."
+description: "Het “Hoe” beschrijft welke techniek wij gebruiken en hoe wij werken."
 ---
 
-De eindgebruiker staat centraal, maar uiteindelijk moet er ook iets gemaakt worden. We ontwerpen direct in code – en om snel te kunnen werken, kiezen we bewust voor eenvoud. Hieronder onze technische keuzes: welke CSS we gebruiken, hoe Claude meedenkt, welke patronen steeds terugkeren en hoe feature flags varianten mogelijk maken zonder parallelle versies.
+Bij het ontwerpen staat de gebruiker voorop. Maar uiteindelijk moet er ook iets gebouwd worden. Wij ontwerpen daarom direct in code. Zo kunnen wij snel werken en blijft het prototype dicht bij een echt product. Hieronder leest u welke keuzes wij maken.
 
-## CSS
+## Techniek
 
-Stylesheets maken gebruik van moderne CSS-functionaliteit die breed ondersteund wordt door de huidige generatie browsers. Dit maakt [preprocessors](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) en [polyfills](<https://en.wikipedia.org/wiki/Polyfill_(programming)>) overbodig en houdt de technische stack zo dicht mogelijk bij het webplatform.
+Het prototype is een website die wij bouwen met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. Wij schrijven de code in [TypeScript](https://www.typescriptlang.org/). Die taal vangt fouten op voordat de website online staat.
 
-### Logical properties
+* **De server doet het meeste werk**. De pagina's maken wij zoveel mogelijk op de server klaar. In de browser draait alleen code als het echt nodig is, bijvoorbeeld bij een formulier of een schuifregelaar. Zo blijft de website snel.
+* **Alle bouwstenen staan op één pagina**. In het prototype staat [een overzicht van alle bouwstenen](https://moza.mijnoverheidzakelijk.nl/demo), met een voorbeeld en de mogelijke instellingen.
+* **Gegevens ophalen gebeurt op één plek**. De code die gegevens ophaalt, staat apart van de code die iets toont. Voor tests gebruiken wij voorbeeldgegevens die op echte gegevens lijken.
+* **Wij rekenen met de echte wet**. Bijvoorbeeld bij [een taak als Iemand aannemen met afstand tot de arbeidsmarkt](https://moza.mijnoverheidzakelijk.nl/personeel/iemand-aannemen/) rekent een programma in de browser uit welke regelingen gelden. Dat programma volgt de wet. Zo kloppen de bedragen en de voorwaarden. Hierbij maken wij onder andere gebruik van [RegelRecht](https://regelrecht.rijks.app/).
+* **Automatische controles**. Bij elke wijziging controleren programma's of de code goed is opgemaakt en geen fouten bevat.
 
-De CSS maken gebruik van logical properties (`inline-size`, `margin-block-start`, `padding-inline`) in plaats van physical properties (`width`, `margin-top`, `padding-left`). Dit maakt het ondermeer toekomstbestendig voor meertalige ondersteuning en verschillende schrijfrichtingen.
+## Opmaak (CSS)
 
-### CSS nesting en custom properties
+Met CSS bepalen wij hoe de website eruitziet. Wij gebruiken alleen wat moderne browsers zelf kunnen. Er zijn dus geen extra programma's nodig om de opmaak te laten werken.
 
-De CSS maakt gebruik van [native nesting](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting) voor bijvoorbeeld component-staten en varianten, en [custom properties (herbruikbare variabelen)](https://css-tricks.com/a-complete-guide-to-custom-properties/) voor ontwerp-waarden.
+### Drie lagen
 
-### Layout en spacing
+De opmaak bestaat uit drie lagen:
 
-Spacing tussen elementen wordt aangestuurd door één schaal van layout tokens (`--toepassing-space-layout-*`), ongeacht richting. Het juiste CSS-mechanisme wordt gekozen op basis van de context:
+* De basis (`rhc.css`) geldt altijd, in elke huisstijl. Hierin staat bijvoorbeeld hoe onderdelen naast of onder elkaar staan.
+* Het thema (`mox.css`) geeft de website het uiterlijk van MijnOverheid. Met een schakelaar kunt u kiezen tussen de huidige huisstijl en de nieuwe huisstijl die voor MijnOverheid in ontwikkeling is.
+* Hulpmiddelen (`utils.css`) zijn alleen voor het prototype, zoals het Flags-paneel. Die horen niet bij het product.
 
-- **`> * + *` met margin** – voor content flow waar de parent geen specifiek layout-model nodig heeft. Voorbeelden: `body`, `header`, `.card`, `.accordion`, `footer nav`, `ul`/`ol`. Het voordeel is dat het het eerste element geen onnodige marge krijgt en dat spacing alleen ontstaat _tussen_ elementen.
+Elke laag heeft een eigen begin van de naam (*‘namespace’*): `rhc-mox-`, `mox-` en `prototype-`. Zo ziet u meteen waar iets bij hoort. Namen zeggen wat iets is, niet hoe het eruitziet. Een waarschuwing heet dus `--warning`, niet `--oranje`.
 
-- **`gap` met flexbox of grid** – voor layouts waarbij specifieke uitlijning, richting-wisseling (bijvoorbeeld voor verschil in scherm-breedte) of een strikt raster van rijen en kolommen nodig is. Voorbeelden: `.action-group` (wisselt van kolom naar rij), `.tiles` (grid), `.footer-links` (wisselt van kolom naar rij), `.icon-link` (horizontaal, icoon naast tekst), `summary` (icoon naast tekst).
+### Vaste waarden (design tokens)
 
-Per container wordt altijd één van deze twee mechanismes gebruikt, nooit beide tegelijk. De keuze voor `gap` of `> * + *` is een implementatiedetail – de spacing-waarde komt altijd uit dezelfde `layout-*` tokens.
+Kleuren, afstanden, letters en randen liggen vast in zogenoemde design tokens. Dat zijn vaste waarden met een naam. Wij gebruiken die van de Rijkshuisstijl. Wijken wij af, dan maken wij een eigen token. Zo staat een waarde maar op één plek. Een voorbeeld: de kleur als u met de muis over een knop gaat, is overal hetzelfde. Dat geldt voor knoppen, het menu en uitklappers.
 
-## AI-assistentie in het ontwerpproces
+### Werkt in elke schrijfrichting
 
-In het ontwerpproces wordt [Claude](https://claude.ai/) ingezet als assistent bij het maken en itereren van het prototype. Dit is geen vervanging van het ontwerpproces, maar een versnelling ervan. De ontwerper blijft verantwoordelijk voor de richting, de keuzes en de kwaliteit.
+Wij gebruiken in onze code niet de woorden *links* en *rechts*, maar *begin* en *eind van de regel*. Zo werkt de pagina ook goed als iemand een andere taal kiest, bijvoorbeeld met een vertaalprogramma. Sommige talen worden van rechts naar links geschreven. Ook dan staat alles op de juiste plek. Een programma controleert dit automatisch.
 
-Claude wordt onder andere ingezet voor:
+### Afstand tussen onderdelen
 
-- **Semi-realistische content** – het prototype wordt gevuld met inhoud die dicht bij de werkelijkheid ligt: bestaande subsidienamen, echte wetten, herkenbare bekendmakingen. Dit maakt het prototype geloofwaardiger in gebruikerstests dan _lorem ipsum_ of duidelijk verzonnen tekst. Claude genereert deze content op basis van publiek beschikbare (overheids)informatie.
-- **Variatie en volume** – waar een ontwerp meerdere pagina's of varianten nodig heeft (bijvoorbeeld gepagineerde lijsten met berichten, subsidies of regelgeving), helpt Claude bij het aanmaken van consistente, gevarieerde content zonder dat elke regel handmatig geschreven hoeft te worden.
-- **Component- en patronenontwikkeling** – Claude assisteert bij het schrijven van HTML, CSS en JavaScript voor nieuwe componenten en interactiepatronen, altijd binnen de bestaande ontwerpprincipes (semantische HTML, design tokens, toegankelijkheid).
-- **Refactoring en abstractie** – herhalende patronen in de code worden met hulp van Claude geïdentificeerd en omgezet naar herbruikbare [_includes_](https://www.smashingmagazine.com/2018/03/static-site-with-nunjucks/) of geautomatiseerde logica, waardoor de codebase onderhoudbaar blijft naarmate het prototype groeit.
+De ruimte tussen onderdelen regelt het blok eromheen. Een element neemt zelf geen ruimte mee. Dit zorgt voor visuele consistentie, en maakt het mogelijk om afstanden op één plek aan te passen.
 
-De inzet van AI-assistentie past bij het principe van _de eenvoudigst mogelijke oplossing_: het versnelt het werk zonder extra tooling, frameworks of afhankelijkheden te introduceren. De gegenereerde code en content worden altijd beoordeeld en waar nodig aangepast.
+Alleen bij tekst die wij niet zelf maken, zoals tekst uit een ander systeem, werkt dat anders. Daar krijgt elk stuk tekst ruimte boven zich. Wij gebruiken per blok altijd maar één van deze twee manieren.
+
+## Toegankelijk voor iedereen
+
+Wij bouwen volgens de regels voor digitale toegankelijkheid ([WCAG 2.2 AA](https://www.w3.org/Translations/WCAG22-nl/)/[EN 301 549](https://accessible-eu-centre.ec.europa.eu/content-corner/digital-library/en-3015492021-accessibility-requirements-ict-products-and-services_en)):
+
+* de website werkt ook met alleen het toetsenbord;
+* u ziet altijd waar u bent op de pagina;
+* een label staat boven het invulveld;
+* een knop werkt altijd, en zegt wat er nog ontbreekt;
+* beweging gaat uit als u dat in uw computer heeft ingesteld.
+* gebruikers met een gezichtbeperking kunnen structuur en inhoud voor laten lezen.
+
+## Hulp van AI bij het ontwerpen
+
+Bij het ontwerpen gebruiken wij [Claude Code](https://claude.com/claude-code). Dat is een assistent die werkt met kunstmatige intelligentie (AI). De assistent neemt het ontwerpen niet over, maar helpt ons sneller te werken. De ontwerper bepaalt de richting, maakt de keuzes en bewaakt de kwaliteit. We proberen AI zo spaarzaam mogelijk in te zetten om zo controle over het eindproduct te behouden.
+
+De assistent volgt afspraken die bij de code staan. Zo werkt iedereen in het team met dezelfde regels:
+
+* **Een vast bestand met afspraken**. Daarin staat hoe de code is opgebouwd, hoe de opmaak werkt, wat de regels voor toegankelijkheid zijn en hoe wij schrijven. De assistent leest dit bestand elke keer.
+Vaste werkwijzen. Voor taken die vaak terugkomen, heeft de assistent een vaste aanpak. Een voorbeeld is de tekstcontrole: die loopt alle teksten na op woordkeus, taalniveau en aanspreking.
+Automatische controles. Sommige afspraken controleert een programma meteen. Bijvoorbeeld dat er geen overbodige uitleg in de opmaak komt.
+* **Vaste werkwijzen**. Voor taken die vaak terugkomen, heeft de assistent een vaste aanpak. Een voorbeeld is de tekstcontrole: die loopt alle teksten na op woordkeus, taalniveau en aanspreking.
+* **Automatische controles**. Sommige afspraken controleert een programma meteen. Bijvoorbeeld dat er geen overbodige uitleg in de opmaak komt.
+
+De assistent helpt onder meer met:
+
+* **Teksten die echt lijken**. Het prototype bevat bestaande regelingen, echte wetten en herkenbare berichten. Dat werkt in tests beter dan nepteksten. De assistent maakt deze teksten op basis van openbare informatie van de overheid.
+* **Bouwstenen en patronen**. De assistent schrijft code binnen onze afspraken. Maakt de assistent een nieuwe bouwsteen, dan meldt die dat en zet de bouwsteen in het overzicht om vervolgens door een mens gecontroleerd te worden.
+* **Controles**. De assistent loopt teksten, toegankelijkheid en code na. Daarna volgt een rapport met concrete voorstellen.
+* **Opruimen**. Code die vaak terugkomt, maakt de assistent herbruikbaar. Zo blijft het prototype ook bij groei goed te onderhouden.
+
+Wij bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
 
 ## Schrijfwijzer
 
-Het prototype hanteert een schrijfwijzer die consistentie waarborgt in taalgebruik, aanspreekvormen, terminologie, datumnotatie en _microcopy_. Kernafspraken zijn onder andere: formele aanspreekvorm (“u”), genderneutraal taalgebruik, vaste termen per concept (bijvoorbeeld “Bewaar” in plaats van “Opslaan”), en correcte typografische aanhalingstekens en interpunctie.
+Wij hebben een schrijfwijzer. Daarin staan afspraken over hoe wij schrijven:
+
+* wij spreken de gebruiker aan met *“u”* en schrijven *“u heeft”*. Over onszelf schrijven wij *“wij”*;
+* wij schrijven genderneutraal en op taalniveau B1;
+* voor elk begrip gebruiken wij één woord. Bewaren, Opslaan en Versturen betekenen bijvoorbeeld elk iets anders. Na het versturen heet een aanvraag een dossier;
+* er zijn vaste afspraken voor datums, bedragen, aanhalingstekens, knoppen, foutmeldingen en lege pagina's.
 
 ## Ontwerppatronen
 
-Het prototype wordt gebouwd vanuit terugkerende ontwerppatronen met onderbouwing vanuit gebruikersonderzoek en externe bronnen, zoals:
+Een ontwerppatroon is een vaste oplossing voor iets dat vaak terugkomt. Wij onderbouwen elk patroon met onderzoek en met betrouwbare bronnen, zoals GOV.UK, Nielsen Norman Group, het Web Web Accessibility
+Initiative van de W3C en de regels voor toegankelijkheid. Elk patroon staat met uitleg op een eigen pagina in het prototype. Een paar voorbeelden:
 
-- **Interactie op inhoud** – het patroon waarmee gebruikers door middel van acties als Bewaar, Relevant, Niet relevant en Deel een profiel opbouwen dat de basis vormt voor gepersonaliseerde content (aanbevelingssysteem).
-- **Context wisselen** – het patroon waarmee een gebruiker kan wisselen tussen privé- en zakelijke contexten, eigen ondernemingen en machtigingen, zonder opnieuw in te loggen. Geïmplementeerd als accountwisselaar in de header.
+* **Interactie op inhoud**. Met Bewaren, Niet relevant voor mij en Delen laat de gebruiker zien wat belangrijk is. Daarmee tonen wij informatie die beter past.
+* **Context wisselen**. De gebruiker wisselt tussen privé, de eigen bedrijven en machtigingen. Opnieuw inloggen is niet nodig. U vindt dit bovenaan de pagina.
+* **Een taak in stappen**. Een taak zoals Iemand aannemen bestaat uit stappen, met een balk die laat zien waar u bent. De knop Verder werkt altijd. Ontbreekt er iets, dan wijst de pagina aan wat.
+* **Zoeken en hulp op elke pagina**, **Veranderde waarden tonen** en **Verschillende invoerformaten accepteren**.
 
-## Feature flags
+## Varianten en het ‘Flags’-paneel
 
-Het prototype bevat een feature-flag systeem waarmee secties en functionaliteit in- of uitgeschakeld kunnen worden. Dit maakt het mogelijk om verschillende configuraties van het prototype te tonen zonder aparte versies te bouwen – bijvoorbeeld tijdens gebruikerstests of stakeholdergesprekken.
+Met schakelaars (*feature flags*) zetten wij onderdelen aan of uit. Zo tonen wij verschillende versies van het prototype zonder dat wij aparte versies hoeven te bouwen. Dat is handig bij onderzoeken met gebruikers en in gesprekken.
 
-- **Togglebaar via het paneel** – rechtsonder in het prototype bevindt zich een “Flags”-knop die een paneel opent met alle beschikbare feature flags, gegroepeerd in _Pagina's_ (navigatie-items en secties) en _Functionaliteit_ (interactiemogelijkheden zoals delen en relevantie aangeven). Deze kunnen per pagina verschillen.
-- **Onthouden in de browser** – feature flags worden opgeslagen in de browser middels [_localStorage_](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API). Standaard staan alle features aan; pas als een feature expliciet wordt uitgezet, wordt deze verborgen.
-- **Declaratief in de markup** – een element markeren als feature-flagged is een kwestie van `data-feature="Naam"` en `data-feature-type="pagina|functionaliteit"` toevoegen.
-- **localStorage wissen** – het paneel bevat een knop om alle opgeslagen staten (feature flags, favorieten, verborgen topics, gesloten notificaties) in één keer te resetten.
-
-## Statische site-generatie
-
-[Eleventy](https://www.11ty.dev/) wordt ingezet om herhalende elementen (header, footer, navigatie) als includes te beheren en pagina's te genereren. Dit houdt de HTML van individuele pagina's schoon en onderhoudbaar.
+* **Het Flags-paneel**. Rechtsonder in het prototype staat een knop. Die opent een paneel met onder meer:
+  * de keuze tussen de huidige en de nieuwe huisstijl die in ontwikkeling is;
+  * de digitale assistent aan of uit;
+  * verschillende versies van de berichtenbox;
+  * een persona kiezen: een voorbeeldgebruiker met een eigen bedrijf, eigen gegevens en eigen berichten.
+* **Keuzes blijven bewaard**. De browser onthoudt de keuzes in een cookie. Daardoor toont de pagina meteen de juiste versie.
+* **Hulp bij onderzoek**. Met **Interactie-flow herstellen** zet een onderzoeker een taak terug naar het begin, voor de volgende deelnemer. Met **Alles wissen** gaat alles terug naar het begin.
+* **Gescheiden van het product**. Hulpmiddelen voor het team staan altijd in het Flags-paneel, nooit op de pagina's zelf. Deelnemers aan een test zien zo alleen het product.
 
 ## Prototype
 
-Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.nl](https://proef.moza.rijksapp.nl/)
+Het prototype van MijnOverheid Zakelijk staat op [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/). Deze versie leggen wij ook voor aan gebruikers.

@@ -1,0 +1,12 @@
+{{- $groot := .Get "groot" -}}
+{{- $lijst := .Get "lijst" -}}
+{{- if and $groot $lijst -}}
+  {{- errorf "kaarten: kies groot of lijst, niet allebei (%s)" .Position -}}
+{{- end -}}
+{{- $inhoud := trim .Inner " \n\r\t" -}}
+{{- if not (and (hasPrefix $inhoud "<li") (hasSuffix $inhoud "</li>")) -}}
+  {{- errorf "kaarten: zet er alleen kaart-shortcodes in (%s)" .Position -}}
+{{- end -}}
+<ul class="{{ cond $lijst "leeslijst" (cond $groot "kaarten kaarten-groot" "kaarten") }}" role="list">
+{{ $inhoud | safeHTML }}
+</ul>

@@ -16,6 +16,11 @@ Deze regels gelden voor alle content en communicatie.
 - Houd alinea's kort (max 3-4 zinnen)
 - Spreek de lezer aan met "je" (informeel maar respectvol)
 
+## Vanuit onszelf
+
+- Schrijf vanuit wat wij doen en nog niet weten, niet vanuit wat een ander (nog) niet deed. Niet: "een verkenning bij Logius ... die zijn nog steeds niet beantwoord", wel: "een eerdere verkenning binnen MOZa ... daar hebben we nog geen antwoorden op gevonden".
+- Vermijd woorden die als verwijt kunnen klinken, zoals "nog steeds niet", "blijkbaar" en "al langer". Partners lezen mee.
+
 ## Naamgeving services
 
 - Gebruik "profielservice" (één woord), niet "profiel service"

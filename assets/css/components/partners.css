@@ -1,3 +1,8 @@
+:root {
+  /* Logo's van organisaties zijn gemaakt voor een witte achtergrond, ook in dark. */
+  --color-bg-logo: #ffffff;
+}
+
 .partners {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));

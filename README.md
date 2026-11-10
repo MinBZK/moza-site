@@ -132,8 +132,9 @@ Deze bestanden houdt moza bewust zelf:
 | `layouts/_partials/llm-instructies.html` | Hook: de instructies voor taalmodellen in `llms.txt` en `llms-full.txt`. |
 | `layouts/_partials/rss-extra.html` | Hook: de RSS-feeds zonder de sprekersnotities van de presentaties. |
 | `layouts/_partials/head-extra.html` | Hook: de afdrukbreedtes van de tabelkolommen (`print-kolombreedtes.html`). |
+| `layouts/_partials/lastmod-datum.html` | Hook: "laatst bijgewerkt" telt ook een gewijzigde yaml in de page bundle mee (`scripts/bundel-lastmod.js`). |
 | `layouts/_markup/render-table.html` | Versie van het theme plus de afdrukattributen `print-kolombreedtes` en `print-bijeen`. |
-| `layouts/_partials/markdown-body.html` | Zet de shortcode `diagram-...` om in de plaat en laat de sprekersnotities weg, voor de Markdown-, ODT- en PDF-downloads. |
+| `layouts/_partials/markdown-body.html` | Zet de shortcodes `diagram-...`, `roadmap` en `partners` om en laat de sprekersnotities weg, voor de Markdown-, ODT- en PDF-downloads. |
 | `static/favicon.ico`, `static/favicon-192x192.png` | Moza's eigen favicon, met dezelfde naam als die van het theme. |
 | `assets/css/components/downloads.css`, `afdruk.css` | Opmaak van het downloadblok en afdrukregels voor wat alleen moza heeft. |
 

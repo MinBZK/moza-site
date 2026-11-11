@@ -3,26 +3,25 @@
        {{% %}}, zodat de koppen in de inhoudsopgave komen.
 
          {{% gebruikersonderzoeken %}}
-             alle onderzoeken, titels als h3 (de h2 staat op de pagina),
-             met een lijn tussen de onderzoeken
+             alle onderzoeken, titels als h3 (de h2 staat op de pagina)
          {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             een complete sectie voor een onderwerpspagina: lijn, h2
+             een complete sectie voor een onderwerpspagina: h2
              "Uitgevoerde gebruikersonderzoeken", de onderzoeken bij dat
-             onderwerp (zonder lijn ertussen), een link naar het overzicht en
-             weer een lijn */ -}}
+             onderwerp, een link naar het overzicht en een lijn die de
+             sectie afsluit
+
+       Elk onderzoek begint met een lijn, ook het eerste. */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
 {{- $onderzoeken := sort (hugo.Data.gebruikersonderzoeken | default slice) "datum" "desc" -}}
 {{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
 {{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
 {{- if $onderwerp }}
----
-
 ## Uitgevoerde gebruikersonderzoeken
 {{ end -}}
 {{- range $i, $o := $onderzoeken }}
-{{ if and $i (not $onderwerp) }}
+
 ---
-{{ end }}
+
 ### {{ $o.titel }}
 
 *Uitgevoerd op {{ $o.uitgevoerd }}*

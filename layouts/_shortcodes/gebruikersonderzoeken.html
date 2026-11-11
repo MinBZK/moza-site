@@ -1,0 +1,31 @@
+{{- /* Toont gebruikersonderzoeken uit data/gebruikersonderzoeken.yaml, het
+       nieuwste bovenaan. Aanroepen met {{% %}}, zodat de koppen in de
+       inhoudsopgave komen.
+
+         {{% gebruikersonderzoeken %}}
+             alle onderzoeken, titels als h2
+         {{% gebruikersonderzoeken onderwerp="berichten" %}}
+             alleen de onderzoeken bij dat onderwerp, titels als h3, met een
+             link naar het overzicht van alle onderzoeken */ -}}
+{{- $onderwerp := .Get "onderwerp" -}}
+{{- $kop := cond (ne $onderwerp "") "###" "##" -}}
+{{- $onderzoeken := sort (hugo.Data.gebruikersonderzoeken | default slice) "datum" "desc" -}}
+{{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
+{{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
+{{- range $onderzoeken }}
+{{ $kop }} {{ .titel }}
+
+*Uitgevoerd op {{ .uitgevoerd }}*
+
+{{ .samenvatting }}
+
+**Belangrijkste conclusies:**
+
+{{ range .conclusies -}}
+- {{ . }}
+{{ end }}
+[Lees het volledige onderzoek {{ .kort }} op gebruikersonderzoeken.nl]({{ .url }})
+{{ end -}}
+{{- if $onderwerp }}
+[Bekijk alle uitgevoerde gebruikersonderzoeken voor MijnOverheid Zakelijk](/onderwerpen/gebruikersonderzoeken/)
+{{- end }}

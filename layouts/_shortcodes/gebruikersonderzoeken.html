@@ -1,31 +1,41 @@
 {{- /* Toont gebruikersonderzoeken uit data/gebruikersonderzoeken.yaml, het
-       nieuwste bovenaan. Aanroepen met {{% %}}, zodat de koppen in de
-       inhoudsopgave komen.
+       nieuwste bovenaan, met een lijn tussen de onderzoeken. Aanroepen met
+       {{% %}}, zodat de koppen in de inhoudsopgave komen.
 
          {{% gebruikersonderzoeken %}}
-             alle onderzoeken, titels als h2
+             alle onderzoeken, titels als h3 (de h2 staat op de pagina)
          {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             alleen de onderzoeken bij dat onderwerp, titels als h3, met een
-             link naar het overzicht van alle onderzoeken */ -}}
+             een complete sectie voor een onderwerpspagina: lijn, h2
+             "Uitgevoerde gebruikersonderzoeken", de onderzoeken bij dat
+             onderwerp, een link naar het overzicht en weer een lijn */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
-{{- $kop := cond (ne $onderwerp "") "###" "##" -}}
 {{- $onderzoeken := sort (hugo.Data.gebruikersonderzoeken | default slice) "datum" "desc" -}}
 {{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
 {{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
-{{- range $onderzoeken }}
-{{ $kop }} {{ .titel }}
+{{- if $onderwerp }}
+---
 
-*Uitgevoerd op {{ .uitgevoerd }}*
+## Uitgevoerde gebruikersonderzoeken
+{{ end -}}
+{{- range $i, $o := $onderzoeken }}
+{{ if $i }}
+---
+{{ end }}
+### {{ $o.titel }}
 
-{{ .samenvatting }}
+*Uitgevoerd op {{ $o.uitgevoerd }}*
+
+{{ $o.samenvatting }}
 
 **Belangrijkste conclusies:**
 
-{{ range .conclusies -}}
+{{ range $o.conclusies -}}
 - {{ . }}
 {{ end }}
-[Lees het volledige onderzoek {{ .kort }} op gebruikersonderzoeken.nl]({{ .url }})
+[Lees het volledige onderzoek {{ $o.kort }} op gebruikersonderzoeken.nl]({{ $o.url }})
 {{ end -}}
 {{- if $onderwerp }}
 [Bekijk alle uitgevoerde gebruikersonderzoeken voor MijnOverheid Zakelijk](/onderwerpen/gebruikersonderzoeken/)
-{{- end }}
+
+---
+{{ end -}}

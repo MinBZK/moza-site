@@ -41,8 +41,6 @@ Dat doen we samen met Logius, in de werkgroep Berichten van het programma Overhe
 
 {{< knop >}}[Lees meer over de proefopstelling en de pilot van het Federatief Berichtenstelsel](/onderwerpen/berichten/fbs/){{< /knop >}}
 
-## Gebruikersonderzoek
-
 {{% gebruikersonderzoeken onderwerp="berichten" %}}
 
 ## Meer info

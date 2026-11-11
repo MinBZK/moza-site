@@ -199,8 +199,6 @@ Bij de ontwikkeling volgen we de [principes](/handboek/werkwijze/principes/) van
 
 De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebieden, van beleid en ontwerp tot juridisch en techniek. Want deze voorziening heeft alleen waarde als alle overheidsorganisaties meedoen. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen. Benieuwd? Sluit je aan en [praat met ons mee!](/contact/)
 
-## Gebruikersonderzoek
-
 {{% gebruikersonderzoeken onderwerp="profielservice" %}}
 
 ## Meer info

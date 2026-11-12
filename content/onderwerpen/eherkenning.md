@@ -1,16 +1,16 @@
 ---
 title: "eHerkenning: inloggen en machtigen"
 card_title: "eHerkenning"
-description: "Hoe eHerkenning werkt voor ondernemers en wat dat betekent voor inloggen bij meerdere dienstverleners via MijnOverheid Zakelijk."
+description: "Hoe inloggen en machtigen met eHerkenning werkt voor ondernemers, en wat dat betekent voor MijnOverheid Zakelijk."
 status: "Verkenning"
 weight: 10
 ---
 
 ## eHerkenning in Nederland
 
-eHerkenning is het zakelijke inlogmiddel voor ondernemers en organisaties. Wat DigiD is voor inwoners, is eHerkenning voor bedrijven. Je logt ermee in namens je onderneming, bijvoorbeeld bij de Belastingdienst, UWV, RVO of je gemeente. De [Wet digitale overheid](https://wetten.overheid.nl/BWBR0048156/) verplicht overheidsorganisaties om inloggen met eHerkenning te ondersteunen.
+eHerkenning is het zakelijke middel om in te loggen en te machtigen, voor ondernemers en organisaties. Wat DigiD is voor inwoners, is eHerkenning voor bedrijven. Je logt ermee in namens je onderneming, bijvoorbeeld bij de Belastingdienst, UWV, RVO of je gemeente. En met machtigingen leg je vast wie namens de onderneming wat mag regelen. De [Wet digitale overheid](https://wetten.overheid.nl/BWBR0048156/) verplicht overheidsorganisaties om inloggen met eHerkenning te ondersteunen.
 
-Ook MijnOverheid Zakelijk (MOZa) gaat inloggen met eHerkenning ondersteunen, naast DigiD en wallets. Daarom verkennen we hoe eHerkenning nu werkt en wat dat betekent voor MOZa. Ons doel: een ondernemer logt één keer in en ziet alles wat de overheid voor de onderneming heeft klaarstaan.
+Ook MijnOverheid Zakelijk (MOZa) gaat eHerkenning ondersteunen, naast DigiD en wallets. Daarom verkennen we hoe inloggen en machtigen met eHerkenning nu werkt en wat dat betekent voor MOZa. Ons doel: een ondernemer of medewerker logt één keer in. En ziet dan alles wat de overheid voor de onderneming heeft klaarstaan, voor zover die daarvoor gemachtigd is.
 
 ## Wat is eHerkenning?
 

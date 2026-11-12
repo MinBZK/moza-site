@@ -34,8 +34,6 @@ Zo werkt het, stap voor stap:
 4. **Verklaring.** De dienstverlener krijgt een verklaring terug. Daarin staat het KVK-nummer van de onderneming en een pseudo-ID van de medewerker. Ook staat erin dat de medewerker voor deze dienst gemachtigd is.
 5. **Gebruiken.** De medewerker regelt de zaak namens de onderneming.
 
-Meer details staan in onze [kennisbank over eHerkenning](https://roadmap-moza.rijksapp.dev/eherkenning.html). Dat is nog een werkversie. Daar lees je meer over inloggen, machtigen, aansluiten en de dienstencatalogus.
-
 ## eHerkenning en MOZa
 
 ### Eén inlog, één dienstverlener
@@ -79,15 +77,21 @@ We werken onder andere samen met:
 
 Daarnaast zoeken we contact met architecten van eHerkenning en met leveranciers. Ook halen we ervaringen op bij dienstverleners die gebruikmaken van eHerkenning als inlogmiddel.
 
-## Meedoen
-
-Heb je feedback op deze pagina? Of wil je meedenken over inloggen met eHerkenning in MOZa? Dat kan altijd: [neem contact met ons op!](/contact/)
-
 ## Meer info
 
-* [Onze kennisbank over eHerkenning](https://roadmap-moza.rijksapp.dev/eherkenning.html) (werkversie)
+> [!NOTE] Kennisbank over eHerkenning
+> Meer details staan in onze kennisbank over eHerkenning. Dat is nog een werkversie. Daar lees je meer over inloggen, machtigen, aansluiten en de dienstencatalogus.
+>
+> {{< knop >}}[Naar de kennisbank over eHerkenning](https://roadmap-moza.rijksapp.dev/eherkenning.html){{< /knop >}}
+
+Andere bronnen:
+
 * [eHerkenning.nl](https://www.eherkenning.nl/): informatie voor ondernemers en dienstverleners
 * [Afsprakenstelsel Elektronische Toegangsdiensten](https://afsprakenstelsel.etoegang.nl/)
 * [eHerkenning aanvragen op Ondernemersplein](https://ondernemersplein.overheid.nl/wetten-en-regels/eherkenning-aanvragen/)
 * [Inloggen met DigiD op Mijn Belastingdienst Zakelijk vanaf januari 2027](https://www.belastingdienst.nl/wps/wcm/connect/nl/ondernemers/content/vanaf-januari-2027-inloggen-met-digid-op-mijn-belastingdienst-zakelijk-voor-meer-ondernemers)
 * [Wallets: inloggen en machtigen](/onderwerpen/wallets/)
+
+## Meedoen
+
+Heb je feedback op deze pagina? Of wil je meedenken over inloggen met eHerkenning in MOZa? Dat kan altijd: [neem contact met ons op!](/contact/)

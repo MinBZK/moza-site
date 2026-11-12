@@ -128,3 +128,9 @@ blockquote.quote {
 .pull-quote figcaption::before {
   content: "— ";
 }
+
+/* De standaardknop heeft in licht dezelfde kleur als het blok. */
+.callout .button:not(:hover, :focus-visible) {
+  background-color: light-dark(var(--color-bg-page), var(--color-text));
+  border-color: light-dark(var(--color-bg-page), var(--color-text));
+}

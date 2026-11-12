@@ -34,6 +34,8 @@ Zo werkt het, stap voor stap:
 4. **Verklaring.** De dienstverlener krijgt een verklaring terug. Daarin staat het KVK-nummer van de onderneming en een pseudo-ID van de medewerker. Ook staat erin dat de medewerker voor deze dienst gemachtigd is.
 5. **Gebruiken.** De medewerker regelt de zaak namens de onderneming.
 
+Meer details staan in onze [kennisbank over eHerkenning](https://roadmap-moza.rijksapp.dev/eherkenning.html). Dat is nog een werkversie. Daar lees je meer over inloggen, machtigen, aansluiten en de dienstencatalogus.
+
 ## eHerkenning en MOZa
 
 ### Eén inlog, één dienstverlener
@@ -83,6 +85,7 @@ Heb je feedback op deze pagina? Of wil je meedenken over inloggen met eHerkennin
 
 ## Meer info
 
+* [Onze kennisbank over eHerkenning](https://roadmap-moza.rijksapp.dev/eherkenning.html) (werkversie)
 * [eHerkenning.nl](https://www.eherkenning.nl/): informatie voor ondernemers en dienstverleners
 * [Afsprakenstelsel Elektronische Toegangsdiensten](https://afsprakenstelsel.etoegang.nl/)
 * [eHerkenning aanvragen op Ondernemersplein](https://ondernemersplein.overheid.nl/wetten-en-regels/eherkenning-aanvragen/)

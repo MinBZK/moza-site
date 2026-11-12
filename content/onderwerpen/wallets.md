@@ -29,7 +29,7 @@ Een voorbeeld: een onderneming met een eigenaar en een medewerker. De eigenaar m
 
 {{< diagram-wallets >}}
 
-De plaat geeft een eenvoudig beeld. Meer details staan in ons [overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html). Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet worden genomen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
+De plaat geeft een eenvoudig beeld. Meer details staan in ons overzicht van het EBW-landschap, onder [Meer info](#meer-info).
 
 Zo werkt het, van boven naar beneden:
 
@@ -66,13 +66,15 @@ We werken onder andere samen met:
 
 We bouwen voort op wat anderen al verkend hebben. Zo volgen we het [WE BUILD-consortium](https://www.webuildconsortium.eu/) en leren we van de resultaten. Daarin beproeven onder andere KVK en de Belastingdienst de business wallet in Europa. Ook hebben we goede contacten met de gemeenten Nijmegen en Rotterdam, die al langer met wallets aan de slag zijn.
 
-## Meedoen
-
-Heb je feedback op deze pagina of op de beproeving? Of wil je meedenken over wallets voor ondernemers? Dat kan altijd: [neem contact met ons op!](/contact/)
-
 ## Meer info
 
-* [Ons overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html) (werkversie)
+> [!NOTE] Overzicht van het EBW-landschap
+> Meer details staan in ons overzicht van het EBW-landschap. Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet worden genomen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
+>
+> {{< knop >}}[Naar het overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html){{< /knop >}}
+
+Andere bronnen:
+
 * [Code van de inlogbeproeving](https://github.com/MinBZK/moza-poc/tree/main/server/nl-wallet)
 * [Code van de testomgeving van de NL Wallet voor MOZa](https://github.com/MinBZK/moza-wallet-testomgeving)
 * [Code van de NL Wallet](https://github.com/MinBZK/nl-wallet)
@@ -81,3 +83,7 @@ Heb je feedback op deze pagina of op de beproeving? Of wil je meedenken over wal
 * [Onderzoek naar ID-wallets bij de gemeente Nijmegen](https://www.nijmegen.nl/onderzoek-id-wallets/)
 * [ID-wallets bij gemeenten](https://id-wallets.nl/): voorbeelden en onderzoek uit het sociaal domein
 * [Peter en de Wallet](https://peterendewallet.nl/): voorbeelden van het gebruik van persoonlijke en business wallets in Europa
+
+## Meedoen
+
+Heb je feedback op deze pagina of op de beproeving? Of wil je meedenken over wallets voor ondernemers? Dat kan altijd: [neem contact met ons op!](/contact/)

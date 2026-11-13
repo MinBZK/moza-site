@@ -190,7 +190,7 @@ jobs:
           - naam: pa11y
             toetsen: run
           - naam: reflow en focus
-            toetsen: reflow focus
+            toetsen: reflow bestaat-niet focus
           - naam: presentaties, koppen en svg
             toetsen: presentaties controleer svg
     steps:

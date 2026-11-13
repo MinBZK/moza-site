@@ -179,10 +179,20 @@ jobs:
           key: htmltest-${{ github.run_id }}-${{ github.run_attempt }}
 
   a11y:
-    name: Toegankelijkheid
+    name: Toegankelijkheid (${{ matrix.naam }})
     runs-on: ubuntu-latest
     needs: site
     if: ${{ !cancelled() }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - naam: pa11y
+            toetsen: run
+          - naam: reflow en focus
+            toetsen: reflow focus
+          - naam: presentaties, koppen en svg
+            toetsen: presentaties controleer svg
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -203,7 +213,24 @@ jobs:
           path: tmp/public
 
       - name: Toets toegankelijkheid (WCAG 2.1 AA)
-        run: npm run a11y
+        env:
+          TOETSEN: ${{ matrix.toetsen }}
+        run: |
+          status=0
+          for toets in ${TOETSEN}; do
+            node "scripts/a11y/${toets}.js" || status=1
+          done
+          exit "${status}"
+
+  # De ruleset eist deze naam; hij faalt als een van de toetsen hierboven faalt.
+  a11y-resultaat:
+    name: Toegankelijkheid
+    runs-on: ubuntu-latest
+    needs: a11y
+    if: ${{ !cancelled() }}
+    steps:
+      - name: Alle toetsen geslaagd
+        run: test "${{ needs.a11y.result }}" = success
 
   downloads:
     name: Downloads en PDF/UA

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Draai alle toegankelijkheidstoetsen op de gebouwde site.
- *
- * pa11y (run.js) toetst zelf al vier pagina's tegelijk; meer toetsen naast
- * pa11y maakt het op een runner met vier cores niet sneller.
+ * Draai alle toegankelijkheidstoetsen tegelijk op de gebouwde site. In CI
+ * verdeelt test.yml ze over drie runners.
  *
  * Gebruik:
  *   node scripts/a11y/alles.js [outputmap]
@@ -13,7 +11,7 @@
 import { spawn } from "node:child_process";
 import { join } from "node:path";
 
-const RIJEN = [["run"], ["controleer", "svg", "reflow", "focus", "presentaties"]];
+const TOETSEN = ["controleer", "svg", "reflow", "focus", "presentaties", "run"];
 
 function draai(naam) {
   return new Promise((done) => {
@@ -31,12 +29,8 @@ function draai(naam) {
   });
 }
 
-const gefaald = [];
-await Promise.all(
-  RIJEN.map(async (rij) => {
-    for (const naam of rij) if (!(await draai(naam))) gefaald.push(naam);
-  })
-);
+const geslaagd = await Promise.all(TOETSEN.map(draai));
+const gefaald = TOETSEN.filter((_, i) => !geslaagd[i]);
 if (gefaald.length > 0) {
   console.error(`\nGefaald: ${gefaald.map((n) => `${n}.js`).join(", ")}`);
   process.exit(1);

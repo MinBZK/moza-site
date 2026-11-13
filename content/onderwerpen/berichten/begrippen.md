@@ -54,6 +54,8 @@ In dit voorbeeld volg je een vergunning van aanvraag tot besluit. Bij elke stap 
 6. De buurtbewoner krijgt een [mededeling](#mededeling) dat het besluit er is, met een exemplaar van het besluit. In het gemeenteblad staat opnieuw een kennisgeving (publicatie), nu over de terinzagelegging van het besluit.
 7. Achter de schermen laat de notificatiedienst het systeem van de gemeente weten hoe het met de e-mail aan de ondernemer gaat, bijvoorbeeld "notificatie verzonden". Zo'n statusupdate tussen systemen is een [gebeurtenisbericht](#gebeurtenisbericht).
 
+Hoe de begrippen langs de onderdelen van MOZa lopen, zie je stap voor stap op [Begrippen in de praktijk](/onderwerpen/berichten/begrippen-in-de-praktijk/).
+
 ## Overzicht van de begrippen
 
 ### Notificatie: wijst op iets

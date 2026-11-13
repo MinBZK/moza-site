@@ -6,6 +6,7 @@
  */
 import { execFileSync } from "node:child_process";
 import { readdirSync, existsSync } from "node:fs";
+import { availableParallelism } from "node:os";
 import { join } from "node:path";
 
 const map = process.argv[2] || "tmp/public";
@@ -28,7 +29,8 @@ if (!pdfs.length) {
 
 let rapport;
 try {
-  rapport = execFileSync("verapdf", ["--format", "mrr", "--flavour", "ua1", ...pdfs], {
+  const processen = String(Math.min(4, availableParallelism()));
+  rapport = execFileSync("verapdf", ["--format", "mrr", "--flavour", "ua1", "--processes", processen, ...pdfs], {
     encoding: "utf-8",
     maxBuffer: 256 * 1024 * 1024,
     stdio: ["ignore", "pipe", "ignore"],

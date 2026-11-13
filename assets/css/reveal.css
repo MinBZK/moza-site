@@ -266,6 +266,10 @@ body:has(.reveal.paused) .presentatie-knop:focus-visible {
   pointer-events: none;
 }
 
+.reveal.overview .slides section.present {
+  outline-color: var(--rijksoverheid-grijs-donker);
+}
+
 .reveal .controls button:focus-visible {
   outline: 2px solid var(--rijksoverheid-blauw);
   outline-offset: 2px;

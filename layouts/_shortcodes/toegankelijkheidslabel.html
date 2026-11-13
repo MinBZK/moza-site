@@ -27,9 +27,9 @@
   {{- if not $status -}}
     {{- errorf "toegankelijkheidslabel: geen statusomschrijving in de SVG gevonden" -}}
   {{- end -}}
-  {{- $beschrijving := printf "Status toegankelijkheid van deze website. Het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht deze website toegankelijk te maken. De status van deze website is: %s, niveau %s op een schaal van A tot en met E. Deze status is toegekend op basis van een eigen verklaring. Voor het laatst bijgewerkt op %s." (lower (index $status 0 1)) (index $letter 0 1) $datumNL -}}
+  {{- $beschrijving := printf "Het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties is wettelijk verplicht deze website toegankelijk te maken. De status is %s, %s, op een schaal van A tot en met E. Die status is toegekend op basis van een eigen verklaring, voor het laatst bijgewerkt op %s." (index $letter 0 1) (lower (index $status 0 1)) $datumNL -}}
   <a href="{{ $register }}"><img src="{{ $label.RelPermalink }}" alt="Toegankelijkheidslabel: status {{ index $letter 0 1 }} van A tot en met E" width="{{ index $maten 0 1 }}" height="{{ index $maten 0 2 }}" /></a>
-  <p class="visually-hidden">{{ $beschrijving }}</p>
+  <p>{{ $beschrijving }}</p>
 {{- else -}}
   {{- errorf "toegankelijkheidslabel: assets/images/toegankelijkheidslabel.svg ontbreekt" -}}
 {{- end -}}

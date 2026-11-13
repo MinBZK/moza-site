@@ -80,6 +80,7 @@ import "@nldd/design-system/button";
       <div class="speaker-bar">
         <span class="speaker-timer"><span data-elapsed>0:00</span><span data-duration></span></span>
         <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-2-counter-clockwise" text="Tijd opnieuw starten" data-reset></nldd-icon-button>
+        <nldd-icon-button appearance="inherit-tinted" size="sm" icon="media-pause" text="Tijd pauzeren" data-pause></nldd-icon-button>
         <span class="speaker-clock" data-clock></span>
         <span class="speaker-counter" data-position></span>
         <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
@@ -94,9 +95,18 @@ import "@nldd/design-system/button";
     const minutes = Number(document.body.dataset.duur) || 0;
     if (minutes) $("[data-duration]").textContent = ` / ${minutes}:00`;
     let started = Date.now();
-    $("[data-reset]").addEventListener("click", () => { started = Date.now(); tick(); });
+    let pausedAt = null;
+    const pauseButton = $("[data-pause]");
+    $("[data-reset]").addEventListener("click", () => { started = Date.now(); if (pausedAt) pausedAt = started; tick(); });
+    pauseButton.addEventListener("click", () => {
+      if (pausedAt) { started += Date.now() - pausedAt; pausedAt = null; }
+      else pausedAt = Date.now();
+      pauseButton.setAttribute("icon", pausedAt ? "media-play" : "media-pause");
+      pauseButton.setAttribute("text", pausedAt ? "Tijd hervatten" : "Tijd pauzeren");
+      tick();
+    });
     function tick() {
-      const s = Math.floor((Date.now() - started) / 1000);
+      const s = Math.floor(((pausedAt ?? Date.now()) - started) / 1000);
       $("[data-elapsed]").textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
       $(".speaker-timer").classList.toggle("is-over", minutes > 0 && s >= minutes * 60);
       $("[data-clock]").textContent = new Date().toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });

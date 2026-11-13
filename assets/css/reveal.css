@@ -101,6 +101,13 @@ body {
   margin: 0 !important;
 }
 
+.reveal-viewport.reveal-scroll #header-logo {
+  position: absolute;
+  left: 1rem;
+  transform: none;
+  height: min(100px, 18vh);
+}
+
 .logo-hidden {
   display: none !important;
 }

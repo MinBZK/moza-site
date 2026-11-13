@@ -1,16 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Draai alle toegankelijkheidstoetsen op de gebouwde site, in twee rijen naast
- * elkaar. Binnen een rij draaien de toetsen na elkaar.
+ * Draai alle toegankelijkheidstoetsen op de gebouwde site.
  *
- * pa11y (run.js) toetst zelf al vier pagina's tegelijk en heeft een eigen rij.
- * Alles tegelijk is op een runner met vier cores niet sneller: de browsers
- * zitten elkaar dan in de weg.
- *
- * Elke toets start zijn eigen server en browser. De uitvoer van een toets
- * verschijnt pas als hij klaar is, zodat regels van verschillende toetsen niet
- * door elkaar lopen. Faalt er één, dan faalt het geheel; de rij gaat wel door.
+ * pa11y (run.js) toetst zelf al vier pagina's tegelijk; meer toetsen naast
+ * pa11y maakt het op een runner met vier cores niet sneller.
  *
  * Gebruik:
  *   node scripts/a11y/alles.js [outputmap]

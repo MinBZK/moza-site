@@ -185,7 +185,7 @@ strong { font-weight: 700; color: var(--ink); }
   font-weight: 700;
   color: var(--ink-85);
 }
-.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-65); }
+.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-85); }
 .flow-step h3 { margin: 0; font-size: 1.8cqw; line-height: 1.15; }
 .flow-step p { margin: 0; font-size: 1.35cqw; line-height: 1.4; }
 

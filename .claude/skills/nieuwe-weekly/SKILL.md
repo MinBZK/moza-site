@@ -63,6 +63,8 @@ De twee labels onder `## Agenda` zijn echte koppen: `### MOZa` en `### Evenement
 
 **Agenda-items uit alle kanalen**: een evenement of debat staat niet altijd in `~agenda`. Loop de hele input langs (ook `~in-de-kamer`, `~check-in` en de themakanalen) op datums en evenementen, en leg wat nog niet op de agenda staat voor aan de gebruiker.
 
+**Agenda van de Digitale Dienst**: kijk elke week welke MOZa-items op de agenda van [digitaledienst.overheid.nl](https://digitaledienst.overheid.nl/agenda/) kunnen, zoals de volgende MOZa Pulse of een open demo. Die agenda staat in de private repo `NederlandseDigitaleDienst/website`, één Markdown-bestand per item in `content/agenda/` (voorbeeld: `moza-pulse-2026-11.md`). Vergelijk de lijst daar met de MOZa-agenda van de weekly: `gh api repos/NederlandseDigitaleDienst/website/contents/content/agenda --jq '.[].name'`. Leg de kandidaten voor aan de gebruiker; maak zelf geen branch of PR in die repo.
+
 **Kamerdebatten controleren**: haal de geplande debatten van de komende maanden op uit de open data van de Tweede Kamer, bijvoorbeeld:
 
 ```bash

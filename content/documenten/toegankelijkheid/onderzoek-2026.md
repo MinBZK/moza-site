@@ -1838,7 +1838,7 @@ Veertien van de eenenveertig PDF-downloads.
 
 In de pagina staan Engelse woordgroepen met een taalaanduiding, en in de
 ODF-downloads komt die mee. In de PDF niet: daar stond alleen de taal van het
-document als geheel. Een schermlezer leest "trusted party" dan met Nederlandse
+document als geheel. Een schermlezer leest <span lang="en">"trusted party"</span> dan met Nederlandse
 uitspraak voor. Het gaat om zestien fragmenten.
 
 #### Maatregel

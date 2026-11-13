@@ -18,9 +18,10 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { tmpdir, availableParallelism } from "node:os";
 import { join, resolve, delimiter } from "node:path";
-import { execFileSync } from "node:child_process";
+import { execFile, execFileSync } from "node:child_process";
+import { promisify } from "node:util";
 import puppeteer from "puppeteer";
 import { startServer } from "../lib/static-server.js";
 import { setPdfMetadata } from "./pdf-metadata.js";
@@ -380,7 +381,8 @@ async function renderOdt(mdFile, odtOut, pageDir, meta, page, baseUrl) {
     const args = [bron, "--metadata", "lang=nl", "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
     if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
     args.push("-o", odtOut);
-    execFileSync("pandoc", args, { stdio: ["pipe", "pipe", "pipe"] });
+    // Asynchroon: een synchrone aanroep houdt ook de andere werkers stil.
+    await promisify(execFile)("pandoc", args);
   } finally {
     if (tmp) rmSync(tmp, { recursive: true, force: true });
   }
@@ -521,35 +523,48 @@ async function main() {
   const server = await startServer(OUTPUT_DIR);
   const { port } = server.address();
   const baseUrl = `http://127.0.0.1:${port}`;
-  const browser = await puppeteer.launch({ args: PUPPETEER_ARGS });
+
+  const renderEntry = async (page, { relPermalink, name, deck, title, description, url }) => {
+    const pageDir = join(OUTPUT_DIR, relPermalink);
+    if (deck) {
+      const pdfOut = join(pageDir, `${name}.pdf`);
+      await renderPdf(page, baseUrl, relPermalink, pdfOut, { title, description, url }, { deck });
+      console.log(`  ✓ ${relPermalink}${name}.pdf`);
+      return;
+    }
+    const mdFile = join(pageDir, "index.pandoc.md");
+    if (!existsSync(mdFile)) {
+      console.warn(`  ⚠ ${relPermalink}: index.pandoc.md ontbreekt, overgeslagen`);
+      return;
+    }
+    const odtOut = join(pageDir, `${name}.odt`);
+    const pdfOut = join(pageDir, `${name}.pdf`);
+
+    const docMeta = parseDocMeta(mdFile);
+    await renderOdt(mdFile, odtOut, pageDir, docMeta, page, baseUrl);
+    console.log(`  ✓ ${relPermalink}${name}.odt`);
+
+    await renderPdf(page, baseUrl, relPermalink, pdfOut, docMeta);
+    console.log(`  ✓ ${relPermalink}${name}.pdf`);
+  };
+
+  // Eén browser per werker, niet één tabblad per werker: een tabblad op de
+  // achtergrond is `hidden`, en dan tekent een presentatie geen dia's.
+  const werkers = Math.min(4, availableParallelism(), entries.length);
+  const browsers = await Promise.all(
+    Array.from({ length: werkers }, () => puppeteer.launch({ args: PUPPETEER_ARGS }))
+  );
 
   try {
-    const page = await browser.newPage();
-    for (const { relPermalink, name, deck, title, description, url } of entries) {
-      const pageDir = join(OUTPUT_DIR, relPermalink);
-      if (deck) {
-        const pdfOut = join(pageDir, `${name}.pdf`);
-        await renderPdf(page, baseUrl, relPermalink, pdfOut, { title, description, url }, { deck });
-        console.log(`  ✓ ${relPermalink}${name}.pdf`);
-        continue;
-      }
-      const mdFile = join(pageDir, "index.pandoc.md");
-      if (!existsSync(mdFile)) {
-        console.warn(`  ⚠ ${relPermalink}: index.pandoc.md ontbreekt, overgeslagen`);
-        continue;
-      }
-      const odtOut = join(pageDir, `${name}.odt`);
-      const pdfOut = join(pageDir, `${name}.pdf`);
-
-      const docMeta = parseDocMeta(mdFile);
-      await renderOdt(mdFile, odtOut, pageDir, docMeta, page, baseUrl);
-      console.log(`  ✓ ${relPermalink}${name}.odt`);
-
-      await renderPdf(page, baseUrl, relPermalink, pdfOut, docMeta);
-      console.log(`  ✓ ${relPermalink}${name}.pdf`);
-    }
+    const wachtrij = [...entries];
+    await Promise.all(
+      browsers.map(async (browser) => {
+        const page = await browser.newPage();
+        for (let entry; (entry = wachtrij.shift()); ) await renderEntry(page, entry);
+      })
+    );
   } finally {
-    await browser.close();
+    await Promise.all(browsers.map((b) => b.close()));
     server.close();
   }
 

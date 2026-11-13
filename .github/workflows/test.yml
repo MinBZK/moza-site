@@ -12,6 +12,8 @@ concurrency:
 
 env:
   TZ: Europe/Amsterdam
+  PANDOC_VERSION: "3.11"
+  PANDOC_SHA256: 37edb3bbcf722f921a009941bf5874e2e0c09263226c9b4a2d980788cb062ab6
 
 jobs:
   scripts:
@@ -44,7 +46,13 @@ jobs:
         run: npm ci
 
       - name: Install pandoc (voor ODF-downloads)
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -sLo pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz"
+          echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c -
+          mkdir -p "${HOME}/.local/bin"
+          tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 
       - name: Run tests
         run: npm test
@@ -218,7 +226,13 @@ jobs:
         run: npm ci
 
       - name: Install pandoc (voor de .odt-downloads)
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -sLo pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz"
+          echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c -
+          mkdir -p "${HOME}/.local/bin"
+          tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 
       # De installer is IzPack en heeft een Java nodig; die staat op de runner.
       - name: Install veraPDF

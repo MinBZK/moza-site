@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * Draai alle toegankelijkheidstoetsen tegelijk op de gebouwde site.
+ * Draai alle toegankelijkheidstoetsen op de gebouwde site, in twee rijen naast
+ * elkaar. Binnen een rij draaien de toetsen na elkaar.
+ *
+ * pa11y (run.js) toetst zelf al vier pagina's tegelijk en heeft een eigen rij.
+ * Alles tegelijk is op een runner met vier cores niet sneller: de browsers
+ * zitten elkaar dan in de weg.
  *
  * Elke toets start zijn eigen server en browser. De uitvoer van een toets
  * verschijnt pas als hij klaar is, zodat regels van verschillende toetsen niet
- * door elkaar lopen. Faalt er één, dan faalt het geheel.
+ * door elkaar lopen. Faalt er één, dan faalt het geheel; de rij gaat wel door.
  *
  * Gebruik:
  *   node scripts/a11y/alles.js [outputmap]
@@ -14,7 +19,7 @@
 import { spawn } from "node:child_process";
 import { join } from "node:path";
 
-const TOETSEN = ["controleer", "svg", "reflow", "focus", "presentaties", "run"];
+const RIJEN = [["run"], ["controleer", "svg", "reflow", "focus", "presentaties"]];
 
 function draai(naam) {
   return new Promise((done) => {
@@ -32,8 +37,12 @@ function draai(naam) {
   });
 }
 
-const geslaagd = await Promise.all(TOETSEN.map(draai));
-const gefaald = TOETSEN.filter((_, i) => !geslaagd[i]);
+const gefaald = [];
+await Promise.all(
+  RIJEN.map(async (rij) => {
+    for (const naam of rij) if (!(await draai(naam))) gefaald.push(naam);
+  })
+);
 if (gefaald.length > 0) {
   console.error(`\nGefaald: ${gefaald.map((n) => `${n}.js`).join(", ")}`);
   process.exit(1);

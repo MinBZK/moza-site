@@ -86,9 +86,9 @@ import "@nldd/design-system/button";
         <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
         <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
       </div>
-      <div class="speaker-current"><p class="speaker-label">Nu</p><div class="speaker-stage" data-current></div></div>
-      <div class="speaker-next"><p class="speaker-label" data-next-label>Hierna</p><div class="speaker-stage" data-upcoming></div></div>
-      <div class="speaker-notes"><p class="speaker-label">Notities</p><div class="speaker-notes-body" data-notes></div></div>`;
+      <div class="speaker-current"><h2 class="speaker-label">Nu</h2><div class="speaker-stage" data-current></div></div>
+      <div class="speaker-next"><h2 class="speaker-label" data-next-label>Hierna</h2><div class="speaker-stage" data-upcoming></div></div>
+      <div class="speaker-notes"><h2 class="speaker-label">Notities</h2><div class="speaker-notes-body" data-notes></div></div>`;
     document.body.append(root);
     const $ = (sel) => root.querySelector(sel);
 

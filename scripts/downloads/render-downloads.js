@@ -381,7 +381,6 @@ async function renderOdt(mdFile, odtOut, pageDir, meta, page, baseUrl) {
     const args = [bron, "--metadata", "lang=nl", "--resource-path", `${pageDir}${delimiter}${OUTPUT_DIR}`];
     if (existsSync(REFERENCE_ODT)) args.push("--reference-doc", REFERENCE_ODT);
     args.push("-o", odtOut);
-    // Asynchroon: een synchrone aanroep houdt ook de andere werkers stil.
     await promisify(execFile)("pandoc", args);
   } finally {
     if (tmp) rmSync(tmp, { recursive: true, force: true });
@@ -548,8 +547,8 @@ async function main() {
     console.log(`  ✓ ${relPermalink}${name}.pdf`);
   };
 
-  // Eén browser per werker, niet één tabblad per werker: een tabblad op de
-  // achtergrond is `hidden`, en dan tekent een presentatie geen dia's.
+  // Eén browser per werker: een tabblad op de achtergrond is `hidden`, en dan
+  // tekent een presentatie geen dia's.
   const werkers = Math.min(4, availableParallelism(), entries.length);
   const browsers = await Promise.all(
     Array.from({ length: werkers }, () => puppeteer.launch({ args: PUPPETEER_ARGS }))

@@ -119,7 +119,7 @@ strong { font-weight: 700; color: var(--ink); }
 /* ---------- Statementdia ---------- */
 
 
-.statement { font-size: 4.2cqw; display: flex; flex-direction: column; gap: 1.4cqw; font-weight: 400; }
+.statement { font-size: 4.2cqw; display: flex; flex-direction: column; gap: 1.4cqw; font-weight: 400; padding: 0; list-style: none; }
 .statement strong { font-weight: 700; color: var(--accent); }
 
 .footnote {

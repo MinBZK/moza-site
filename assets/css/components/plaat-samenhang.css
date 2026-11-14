@@ -1,0 +1,206 @@
+/* Plaat "Componenten in samenhang" (shortcode plaat-componenten-samenhang).
+   Staat in het plan voor fase 5 en op onderwerppagina's; buiten de rapportage
+   bestaan de --rapport-* variabelen niet, vandaar de terugvalwaarden. */
+.cp-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  font-size: var(--cp-fs-sm, var(--primitives-font-size-80));
+  color: var(--rapport-text-muted, var(--color-text-muted));
+}
+.cp-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.cp-legend-swatch { width: 78px; height: 18px; flex-shrink: 0; display: block; }
+.cp-legend-swatch svg { display: block; }
+
+.cp-dg-container { fill: none; stroke: var(--rapport-text-muted, var(--color-text-muted)); stroke-width: 1.5; stroke-dasharray: 6 6; }
+.cp-dg-zone-label { fill: var(--rapport-text, var(--color-text)); font-size: 17px; font-weight: 600; }
+.cp-dg-sub-container { fill: var(--color-bg-muted); stroke: var(--rapport-text-muted, var(--color-text-muted)); stroke-width: 1.5; }
+.cp-dg-block-label { fill: var(--rapport-text-muted, var(--color-text-muted)); font-size: 15px; font-weight: 600; font-style: italic; text-anchor: middle; }
+.cp-dg-node { fill: var(--rapport-surface, var(--color-bg-page)); stroke: var(--primitives-color-neutral-500); stroke-width: 1.5; }
+.cp-dg-node.cp-beschikbaar { stroke: var(--primitives-color-success-600); stroke-width: 2.5; }
+.cp-dg-node.cp-aanbouw { stroke: var(--primitives-color-accent-600); stroke-width: 2.5; stroke-dasharray: 14 8; }
+.cp-dg-node.cp-verkenning { stroke: var(--primitives-color-mark-600); stroke-width: 2.5; stroke-dasharray: 4 4; }
+.cp-dg-node.cp-aandacht { stroke: var(--primitives-color-critical-600); stroke-width: 2.5; stroke-dasharray: 14 7 0.01 7; stroke-linecap: round; }
+.cp-dg-title { fill: var(--rapport-text, var(--color-text)); font-size: 15px; font-weight: 600; text-anchor: middle; }
+.cp-dg-team-bg { fill: var(--color-bg-muted); stroke: var(--rapport-border, var(--color-border)); stroke-width: 1; }
+.cp-dg-team { fill: var(--rapport-text-muted, var(--color-text-muted)); font-size: 11px; font-weight: 600; }
+.cp-dg-arrow { fill: none; stroke: var(--rapport-text-muted, var(--color-text-muted)); stroke-width: 1.6; }
+.cp-dg-arrow-head { fill: var(--rapport-text-muted, var(--color-text-muted)); }
+.cp-dg-icon-label { fill: var(--rapport-text, var(--color-text)); font-size: 12px; text-anchor: middle; }
+.cp-dg-glyph { fill: none; stroke: var(--rapport-text-muted, var(--color-text-muted)); stroke-width: 1.6; }
+.cp-dg-person { fill: none; stroke: var(--rapport-text-muted, var(--color-text-muted)); stroke-width: 1.8; }
+.cp-dg-at { fill: var(--rapport-text-muted, var(--color-text-muted)); }
+
+.plaat-samenhang .cp-legend { margin-bottom: 0.75rem; }
+.plaat-samenhang .diagram-panel { background-color: var(--color-bg-page); border: 1px solid var(--color-border); }
+.plaat-samenhang .diagram-panel > svg { min-width: 820px; }
+
+@media (min-width: 700px) and (max-width: 919px) {
+  .plaat-samenhang .diagram-scroll-hint { display: block; }
+}
+
+/* Speler (assets/js/plaat-stappen.js): de actieve stap licht op, de rest vervaagt */
+.plaat-samenhang[data-stappen-speler] .diagram-panel > svg { min-width: 0; }
+.plaat-samenhang[data-stappen-speler] .diagram-scroll-hint { display: none; }
+.plaat-samenhang[data-stappen-speler] :is(.cp-dg-team-bg, .cp-dg-team) { display: none; }
+/* In de speler gaat het om de stroom, niet om de status: neutrale blokjes. */
+.plaat-samenhang[data-stappen-speler] .cp-dg-node {
+  stroke: var(--primitives-color-neutral-500);
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+}
+
+.plaat-samenhang[data-actief] [data-stappen] {
+  transition: opacity 0.2s ease, stroke 0.2s ease, fill 0.2s ease;
+}
+
+.plaat-samenhang[data-actief] [data-stappen]:not(.cp-actief) { opacity: 0.2; }
+/* Per scenario alleen de pijlen en optielabels van dat scenario. */
+.plaat-samenhang[data-actief] :is(.cp-dg-arrow, .cp-dg-optie).cp-buiten { display: none; }
+
+.plaat-samenhang .cp-dg-arrow.cp-actief {
+  stroke: var(--color-link);
+  stroke-width: 3;
+}
+
+.plaat-samenhang .cp-dg-arrow.cp-actief[marker-start] { marker-start: url(#cp-arrow-actief); }
+.plaat-samenhang .cp-dg-arrow.cp-actief[marker-end] { marker-end: url(#cp-arrow-actief); }
+.cp-dg-arrow-head-actief { fill: var(--color-link); }
+/* Ligt over de gewone pijlen; alleen tonen bij de eigen stap. */
+.cp-dg-arrow-fout:not(.cp-actief) { display: none; }
+.plaat-samenhang .cp-dg-arrow-fout.cp-actief { stroke: light-dark(var(--primitives-color-critical-600), var(--primitives-color-critical-400)); }
+.plaat-samenhang .cp-dg-arrow-fout.cp-actief[marker-end] { marker-end: url(#cp-arrow-fout); }
+.cp-dg-arrow-head-fout { fill: light-dark(var(--primitives-color-critical-600), var(--primitives-color-critical-400)); }
+
+.plaat-samenhang .cp-dg-node.cp-actief {
+  stroke: var(--color-link);
+  fill: color-mix(in srgb, var(--color-link) 15%, var(--color-bg-page));
+  stroke-width: 3.5;
+}
+
+.plaat-samenhang .cp-dg-title.cp-actief { font-weight: 700; }
+
+.plaat-samenhang :is(.cp-dg-person, .cp-dg-glyph).cp-actief {
+  stroke: var(--color-link);
+  stroke-width: 2.5;
+}
+
+.plaat-samenhang .cp-dg-at.cp-actief { fill: var(--color-link); }
+
+.cp-dg-optie { fill: var(--color-link); font-size: 18px; font-weight: 700; }
+/* Over één pijl lopen per stap verschillende typen; zonder actieve stap (geen JS) overlappen ze. */
+.cp-dg-type { display: none; }
+.plaat-samenhang .cp-dg-type.cp-actief {
+  display: inline;
+  fill: var(--color-text);
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  paint-order: stroke;
+  stroke: var(--color-bg-page);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+.cp-dg-type-midden { text-anchor: middle; }
+.plaat-samenhang .cp-dg-fout-label.cp-actief { fill: light-dark(var(--primitives-color-critical-600), var(--primitives-color-critical-300)); font-style: normal; }
+.cp-dg-type-eind { text-anchor: end; }
+
+.plaat-samenhang[data-actief] [data-stappen]:not([data-stappen=""]) { cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  .plaat-samenhang[data-actief] [data-stappen] { transition: none; }
+}
+
+/* Korte stappen onder de plaat: één zin per stap, met JavaScript de knoppen */
+.stappen-kort {
+  margin-top: 0.5rem;
+
+  li { margin-bottom: 0.25rem; }
+
+  a[aria-current="step"] {
+    display: block;
+    padding: 0.125rem 0.5rem 0.125rem 0.75rem;
+    box-shadow: inset 4px 0 0 var(--color-link);
+    background-color: color-mix(in srgb, var(--color-link) 12%, var(--color-bg-page));
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+/* Keuze tussen de scenario's als tabbladen, boven de korte stappen */
+.plaat-scenario-keuze {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 1rem;
+  border-bottom: 1px solid var(--color-border);
+
+  button {
+    margin-bottom: -1px;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-bottom: 4px solid transparent;
+    max-width: 100%;
+    white-space: normal;
+    text-align: start;
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--color-link);
+    font-weight: 600;
+  }
+
+  button:hover {
+    background-color: color-mix(in srgb, var(--color-link) 10%, var(--color-bg-page));
+    border-color: transparent;
+    color: var(--color-link);
+  }
+
+  button[aria-pressed="true"] {
+    border-bottom-color: var(--color-link);
+    color: var(--color-text);
+    font-weight: 700;
+  }
+}
+
+.plaat-speler {
+  margin-top: 1.5rem;
+}
+
+.plaat-speler-balk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+
+  &[hidden] { display: none; }
+}
+
+.plaat-speler-pijl {
+  padding: 0.375rem 1rem;
+  max-width: 100%;
+  white-space: normal;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.plaat-speler-stap {
+  padding-left: 1rem;
+  border-left: 4px solid var(--color-link);
+
+  > :first-child { margin-top: 0; }
+}
+
+@media print {
+  .plaat-speler-balk,
+  .plaat-scenario-keuze { display: none; }
+  .stappen-kort[hidden],
+  .plaat-scenario-titel[hidden] { display: block; }
+  .plaat-speler-stap[hidden] { display: block; }
+  .plaat-speler-stap + .plaat-speler-stap { margin-top: 2rem; }
+  .plaat-samenhang[data-actief] [data-stappen]:not(.cp-actief) { opacity: 1; }
+}

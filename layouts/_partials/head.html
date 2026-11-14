@@ -25,6 +25,7 @@
 {{ $search := resources.Get "css/components/search.css" }}
 {{ $mermaid := resources.Get "css/components/mermaid.css" }}
 {{ $diagram := resources.Get "css/components/diagram.css" }}
+{{ $plaatSamenhang := resources.Get "css/components/plaat-samenhang.css" }}
 {{ $pageNav := resources.Get "css/components/page-nav.css" }}
 {{ $actueel := resources.Get "css/components/actueel.css" }}
 {{ $pageAside := resources.Get "css/components/page-aside.css" }}
@@ -37,7 +38,7 @@
 {{ $partners := resources.Get "css/components/partners.css" }}
 {{ $klavertje := resources.Get "css/components/klavertje.css" }}
 {{ $print := resources.Get "css/components/print.css" }}
-{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $kaarten $box $button $blockquote $figure $list $boom $footer $toast $search $mermaid $diagram $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
+{{ $css := slice $primitives $tokens $fonts $base $layout $header $hero $cardGrid $kaarten $box $button $blockquote $figure $list $boom $footer $toast $search $mermaid $diagram $plaatSamenhang $pageNav $actueel $pageAside $leadImage $tag $table $code $tooltip $roadmap $partners $klavertje $print | resources.Concat "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ partial "print-kolombreedtes.html" . }}

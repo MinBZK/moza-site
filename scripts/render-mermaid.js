@@ -14,19 +14,19 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
 import puppeteer from "puppeteer";
 import { PUPPETEER_ARGS } from "./lib/puppeteer-args.js";
+import { resolveThemeFile } from "./lib/theme.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const CONTENT_DIR = join(ROOT, "content");
 const RENDER_DIR = join(ROOT, "static", "images", "render");
 const CACHE_DIR = join(ROOT, ".cache", "mermaid");
-const FONTS_DIR = join(ROOT, "static", "fonts");
 
 // ── Theme from design tokens ────────────────────────────────────────────────
 
 // Volgorde is de cascade: latere bestanden overschrijven eerdere.
 const TOKEN_FILES = [
-  join(ROOT, "assets", "css", "nldd-primitives.css"),
-  join(ROOT, "assets", "css", "tokens.css"),
+  resolveThemeFile("assets/css/nldd-primitives.css"),
+  resolveThemeFile("assets/css/tokens.css"),
 ];
 
 const TOKEN_MAP = {
@@ -174,7 +174,7 @@ let fontCSS;
 function getFontCSS() {
   if (fontCSS !== undefined) return fontCSS;
   fontCSS = FONT_FILES.map(({ file, weight }) => {
-    const buf = readFileSync(join(FONTS_DIR, file));
+    const buf = readFileSync(resolveThemeFile(`static/fonts/${file}`));
     const b64 = buf.toString("base64");
     return `@font-face{font-family:"RijksSans";src:url("data:font/woff2;base64,${b64}") format("woff2-variations");font-weight:${weight};font-style:normal}`;
   }).join("\n");

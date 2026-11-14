@@ -2,7 +2,6 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { relative, resolve } from "node:path";
-import { generate as generateTokens } from "./nldd-tokens.js";
 import { generate as generateIconen, generateRaster, FAVICON_ICO } from "./nldd-iconen.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
@@ -12,7 +11,7 @@ const pngMaat = (buf) => [buf.readUInt32BE(16), buf.readUInt32BE(20)];
 // De maten in een ICO staan als losse bytes in de index, 0 voor 256
 const icoMaten = (buf) => Array.from({ length: buf.readUInt16LE(4) }, (_, i) => buf[6 + i * 16] || 256);
 
-const tekstbestanden = { ...generateTokens(), ...(await generateIconen()) };
+const tekstbestanden = await generateIconen();
 const rasterbestanden = await generateRaster();
 
 // Bewaakt dat de gegenereerde bestanden in git gelijk zijn aan wat het

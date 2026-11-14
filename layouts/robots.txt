@@ -1,6 +1,0 @@
-User-agent: *
-
-Sitemap: {{ .Site.BaseURL }}sitemap.xml
-
-# AI-crawlers welkom (zoeken én training); content is publiek.
-# Voor taalmodellen: /llms.txt en /llms-full.txt.

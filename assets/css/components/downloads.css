@@ -1,0 +1,14 @@
+/* Downloadblok in de rechterkolom: bestandstype-icoon + label. De selector
+   moet zwaarder zijn dan de linkregel van page-aside.css uit het theme, dat
+   op naam later in de bundel staat. */
+.page-aside .downloads li > a:not(.button) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.downloads a svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}

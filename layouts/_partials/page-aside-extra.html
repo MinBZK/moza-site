@@ -1,0 +1,4 @@
+{{- /* Hook van het theme: extra blok in de rechterkolom. Context: de pagina. */ -}}
+{{- if eq .Params.download true -}}
+  {{- partial "downloads.html" . -}}
+{{- end -}}

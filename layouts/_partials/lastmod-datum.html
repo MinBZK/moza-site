@@ -1,0 +1,10 @@
+{{- /* Hook van het theme: telt ook een gewijzigde yaml in de page bundle mee,
+       zoals roadmap.yaml. scripts/bundel-lastmod.js legt die datum vast. */ -}}
+{{- $lastmod := .Lastmod -}}
+{{- with .File -}}
+  {{- with index (hugo.Data.bundel_lastmod | default dict) .Dir -}}
+    {{- $bundel := time.AsTime . -}}
+    {{- if $bundel.After $lastmod }}{{ $lastmod = $bundel }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $lastmod -}}

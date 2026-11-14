@@ -1,0 +1,2 @@
+{{- /* Hook van het theme: de sprekersnotities van een deck horen niet in de feed. */ -}}
+{{- return replaceRE `(?s)<aside class="notes">.*?</aside>` "" .tekst -}}

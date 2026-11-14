@@ -296,13 +296,13 @@ zoals audio, video, formulieren en inloggen.
 Het landelijke register telt alleen de 55 van WCAG 2.2; 4.1.1 komt daar niet in
 voor. Het aantal in de verklaring is daarom één lager dan het aantal hier.
 
-| | Aantal |
+| Oordeel | Aantal succescriteria |
 | --- | --- |
-| Onderzochte succescriteria (A en AA) | 56, waarvan 55 uit WCAG 2.2 |
 | Voldoet | 40 |
 | Voldoet niet | 0 |
 | Niet van toepassing | 16 |
 | Niet onderzocht | 0 |
+| **Totaal** | **56, waarvan 55 uit WCAG 2.2** |
 {print-bijeen="ja"}
 
 Het onderzoek leverde negenenveertig bevindingen op. Die zijn alle opgelost en

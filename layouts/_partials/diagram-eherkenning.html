@@ -1,0 +1,73 @@
+{{- /* Eén persoon, een ander pseudo-ID per dienstverlener. Eén bron voor twee
+       doelen: inline in de pagina (zonder css) en als los te downloaden
+       bestand (met css).
+
+       Iconen als <g> met transform, geen geneste <svg>: na een geneste </svg>
+       verlaat de minifier de SVG-modus en laat hij <rect> open. */ -}}
+<svg viewBox="0 0 960 296" width="960" height="296" lang="nl"{{ with .css }} data-scheme="light"{{ end }} role="img" aria-labelledby="diagram-eherkenning-titel" aria-describedby="diagram-eherkenning-beschrijving" xmlns="http://www.w3.org/2000/svg">
+  <title id="diagram-eherkenning-titel">Eén persoon, een ander pseudo-ID per dienstverlener</title>
+  <desc id="diagram-eherkenning-beschrijving">Een ondernemer logt in met eHerkenning. MOZa, de Belastingdienst en de gemeente krijgen elk een ander pseudo-ID van dezelfde persoon: A, B en C. De ondernemer is ingelogd bij MOZa (doorgetrokken lijn). Bij de Belastingdienst en de gemeente is de ondernemer nog niet ingelogd (stippellijnen). Daardoor geldt de inlog bij MOZa niet voor de andere dienstverleners.</desc>
+{{- with .css }}
+  {{- /* CDATA: geneste CSS bevat & en is anders geen geldige XML */}}
+  <style><![CDATA[{{ . | safeCSS }}]]></style>
+{{- end }}
+
+  <defs>
+    <marker id="diagram-eherkenning-pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-marker" d="M0 0 L10 5 L0 10 z" />
+    </marker>
+  </defs>
+
+  <g aria-hidden="true">
+
+  <!-- Inloggen -->
+  <path class="dg-arrow" d="M224 160 L296 160" marker-end="url(#diagram-eherkenning-pijl)" />
+
+  <!-- MOZa: ingelogd -->
+  <path class="dg-arrow" d="M528 160 L712 160" marker-end="url(#diagram-eherkenning-pijl)" />
+  <text class="dg-route-label" x="636" y="150" text-anchor="middle">pseudo-ID A</text>
+
+  <!-- Belastingdienst en gemeente: nog niet ingelogd -->
+  <path class="dg-arrow optioneel" d="M560 160 L560 72 L712 72" marker-end="url(#diagram-eherkenning-pijl)" />
+  <text class="dg-route-label" x="636" y="62" text-anchor="middle">pseudo-ID B</text>
+  <path class="dg-arrow optioneel" d="M560 160 L560 248 L712 248" marker-end="url(#diagram-eherkenning-pijl)" />
+  <text class="dg-route-label" x="636" y="238" text-anchor="middle">pseudo-ID C</text>
+
+  <!-- Ondernemer -->
+  <g>
+    <rect class="dg-node" x="24" y="128" width="200" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(42 146) scale(1.1667)"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6M7 7a5 5 0 1 1 10 0A5 5 0 0 1 7 7m2 9a3 3 0 0 0-3 3v3H4v-3a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5l-.032 3h-2L18 19a3 3 0 0 0-3-3z" /></g>
+    <text class="dg-title start" x="78" y="167">Ondernemer</text>
+  </g>
+
+  <!-- eHerkenning -->
+  <g>
+    <rect class="dg-node" x="296" y="128" width="232" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(314 146) scale(1.1667)"><path d="m15.66 7.41-4.7 4.71-2.71-2.7L9.66 8l1.3 1.3L14.25 6z" /><path d="M12 1a8 8 0 0 1 5 14.24V23l-5-2-5 2v-7.76A8 8 0 0 1 12 1m3 15.42a8 8 0 0 1-6 0v3.62l3-1.2 3 1.2zM12 3a6 6 0 1 0 0 12 6 6 0 0 0 0-12" /></g>
+    <text class="dg-title start" x="350" y="156">Inloggen met</text>
+    <text class="dg-title start" x="350" y="178">eHerkenning</text>
+  </g>
+
+  <!-- Belastingdienst -->
+  <g>
+    <rect class="dg-node" x="712" y="40" width="224" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(730 58) scale(1.1667)"><path d="M8 16H6v-2h2zm4 0h-2v-2h2zm-4-4H6v-2h2zm4 0h-2v-2h2zM8 8H6V6h2zm4 0h-2V6h2z" /><path d="M13 2a3 3 0 0 1 3 3v17h-6v-2H8v2H2V5a3 3 0 0 1 3-3zM5 4a1 1 0 0 0-1 1v15h2v-2h6v2h2V5a1 1 0 0 0-1-1zm14 0a3 3 0 0 1 3 3v15h-5v-2h3V7a1 1 0 0 0-1-1h-2V4z" /><path d="M18.5 18H17v-2h1.5zm0-4H17v-2h1.5zm0-4H17V8h1.5z" /></g>
+    <text class="dg-title start" x="766" y="79">Belastingdienst</text>
+  </g>
+
+  <!-- MOZa -->
+  <g>
+    <rect class="dg-node accent" x="712" y="128" width="224" height="64" rx="12" />
+    <g class="dg-icon accent" transform="translate(730 146) scale(1.1667)"><path d="M8 16H6v-2h2zm4 0h-2v-2h2zm-4-4H6v-2h2zm4 0h-2v-2h2zM8 8H6V6h2zm4 0h-2V6h2z" /><path d="M13 2a3 3 0 0 1 3 3v17h-6v-2H8v2H2V5a3 3 0 0 1 3-3zM5 4a1 1 0 0 0-1 1v15h2v-2h6v2h2V5a1 1 0 0 0-1-1zm14 0a3 3 0 0 1 3 3v15h-5v-2h3V7a1 1 0 0 0-1-1h-2V4z" /><path d="M18.5 18H17v-2h1.5zm0-4H17v-2h1.5zm0-4H17V8h1.5z" /></g>
+    <text class="dg-title start" x="766" y="167">MOZa</text>
+  </g>
+
+  <!-- Gemeente -->
+  <g>
+    <rect class="dg-node" x="712" y="216" width="224" height="64" rx="12" />
+    <g class="dg-icon" transform="translate(730 234) scale(1.1667)"><path d="m14 16.5-1 1V22H2v-4.5l-1-1L7.5 10zm-10-.172V20h2.25v-2.5h2.5V20H11v-3.672l-3.5-3.5z" /><path d="M19 2a3 3 0 0 1 3 3v17h-5.5v-2H14v-2h4.5v2H20V5a1 1 0 0 0-1-1h-7a1 1 0 0 0-1 1v7.086l-2-2V5a3 3 0 0 1 3-3z" /><path d="M18.33 16h-2v-2h2zm-3.66-.244L12.914 14h1.756zm0-3.756h-2v-2h2zm3.66 0h-2v-2h2zm-3.66-4h-2V6h2zm3.66 0h-2V6h2z" /></g>
+    <text class="dg-title start" x="766" y="255">Gemeente</text>
+  </g>
+
+  </g>
+</svg>

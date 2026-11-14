@@ -2,92 +2,90 @@
 title: "Wat: visie en principes"
 page_title: "Ontwerpprincipes - Wat: visie en principes"
 weight: 1
-description: "Het “Wat” beschrijft de overtuigingen en uitgangspunten die aan het ontwerp ten grondslag liggen."
+description: "Het “Wat” beschrijft waar wij in geloven en van uitgaan bij het ontwerpen."
 ---
 
-## Ontwerp met de eindgebruiker centraal
+## De gebruiker staat voorop
 
-Goed ontwerp begint bij luisteren. Daarom betrekken wij eindgebruikers vanaf het allereerste moment bij ons ontwerpproces. We starten met het in kaart brengen van hun dagelijkse praktijk: waar lopen zij tegenaan, wat kost onnodig tijd of frustratie, en waar liggen juist kansen?
+Goed ontwerpen begint met luisteren. Daarom betrekken wij gebruikers vanaf het begin bij het ontwerpen. Eerst kijken wij hoe hun werkdag eruitziet. Waar lopen zij tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen?
 
-Door zowel pijnpunten als wensen te inventariseren, creëren we een scherp en gedeeld beeld van wat er echt toe doet.
+Wij verzamelen zowel problemen als behoeften en wensen. Zo krijgen wij een duidelijk beeld van wat echt belangrijk is voor onze gebruikers, en delen wij dat beeld met elkaar.
 
-### Van idee tot initiatief
+### Van inzicht naar product
 
-Het ministerie van Binnenlandse Zaken en Koninkrijksrelaties heeft in 2024 MKB’ers en ZZP’ers uitgenodigd om samen over oplossingen na te denken. Zij kwamen met het voorstel voor een centrale Mijn-omgeving, iets dat in de basis lijkt op MijnOverheid. Daar hebben ze zelf ontwerpen voor bedacht. Met die plannen werken we nu verder.
+Wij leggen onze ideeën voor aan gebruikers. Dat doen wij in gesprekken, interviews en gebruikersonderzoek. Zo controleren wij of onze aannames kloppen. Ook horen wij zo bijvoorbeeld wat gebruikers vinden van de functies, het gemak en de stappen in een taak. Op basis daarvan kiezen wij een richting voor het ontwerp.
 
-### Van inzicht naar eindproduct
+Bij gebruikersonderzoek werken wij met een prototype dat echt werkt. Daarmee zoeken wij samen met gebruikers naar oplossingen. Ook onderbouwen wij er keuzes mee. Wat wij leren, passen wij direct toe in het ontwerp. Daarna testen wij opnieuw.
 
-In interactieve sessies, interviews en gebruikersonderzoeken leggen we onze inzichten en ideeën voor aan eindgebruikers. Zo toetsen we aannames en krijgen we waardevolle feedback op functionaliteit, gebruiksgemak en flows. Deze inzichten vormen de basis voor onze ontwerprichtingen.
-
-Voor gebruikersonderzoeken maken we gebruik van interactieve prototypes. Deze gebruiken we als hulpmiddel om samen te verkennen, keuzes te onderbouwen en verbeteringen door te voeren. De feedback die we ophalen verwerken we direct in het ontwerp, waarna we opnieuw testen en itereren.
-
-Door deze continue iteratie-cyclus van onderzoeken, ontwerpen, testen en verfijnen zorgen we ervoor dat wat we ontwikkelen aansluit op de behoeften en verwachtingen van eindgebruikers. Waar directe inzichten nog ontbreken, werken we op basis van aannames. Deze maken we toetsbaar door ze te vertalen naar concrete ontwerpen die we voorleggen aan gebruikers.
+Zo onderzoeken, ontwerpen, testen en verbeteren wij steeds opnieuw. Daardoor past wat wij maken bij wat gebruikers nodig hebben en verwachten. Weten wij iets nog niet zeker? Dan gaan wij uit van een aanname. Die verwerken wij in een ontwerp, en dat leggen wij voor aan gebruikers.
 
 ## Ontwerpen in code
 
-Het ontwerpproces vindt niet plaats in grafische design tooling zoals Figma of Sketch, maar direct in front-end code: HTML, CSS en waar nodig JavaScript. Design tooling voegt een vertaalstap toe tussen ontwerp en eindresultaat – een vertaalstap die tijd kost, informatie verliest en afwijkingen introduceert. Door direct in het daadwerkelijke medium te werken vervalt die vertaling. Wat ontworpen wordt, is direct wat de gebruiker te zien krijgt.
+Wij ontwerpen niet in een ontwerpprogramma zoals Figma of Sketch, maar direct in de code van de website. Een tekenprogramma voegt een extra stap toe: het ontwerp moet daarna nog worden omgezet in code. Die stap kost tijd. Er gaat informatie verloren, en het resultaat wijkt vaak af. Als wij direct in code werken, is die stap niet nodig. Wat wij ontwerpen, is meteen wat de gebruiker ziet.
 
-Dit biedt een aantal concrete voordelen:
+Dat heeft deze voordelen:
 
-- **Direct resultaat** – een wijziging in de code is onmiddellijk zichtbaar in de browser. Er is geen export, overdracht of herinterpretatie nodig.
-- **Echte interactie** – hover-staten, toetsenbordnavigatie, focusgedrag en animaties zijn direct te ervaren en te testen.
-- **Responsief vanaf het begin** – door in de browser te ontwerpen wordt het gedrag op diverse schermformaten direct zichtbaar en testbaar, van mobiel tot groot scherm. Er hoeven geen aparte ontwerpen gemaakt te worden per breekpunt.
-- **Toegankelijk vanaf het begin** – toegankelijkheid is onderdeel van het ontwerpproces. Het ontwerp kan direct getest worden met diverse invoermethoden (muis, toetsenbord, spraaknavigatie) en uitvoermethoden (scherm, screenreader, braillelezer, print).
-- **Eén bron van waarheid** – de code is het ontwerp. Er ontstaat geen discrepantie tussen wat in een ontwerptool staat en wat daadwerkelijk gebouwd is.
-- **Lagere drempel voor wijzigingen** – aanpassingen naar aanleiding van gebruikersonderzoek of feedback worden direct in de code doorgevoerd, zonder tussenliggende stappen of afhankelijkheden van specifieke tooling.
+- **U ziet het resultaat meteen.** Een wijziging is direct zichtbaar in de browser. Niemand hoeft het ontwerp over te nemen of uit te leggen.
+- **De interactie is echt.** U kunt direct ervaren wat er gebeurt als u met de muis over een knop gaat, met het toetsenbord werkt of op een knop drukt. Dat kunnen wij ook direct testen.
+- **Het werkt meteen op elk scherm.** In de browser zien wij hoe het ontwerp werkt op een telefoon, een tablet en een groot scherm. Wij hoeven geen apart ontwerp per schermgrootte te maken.
+- **Het is meteen toegankelijk.** Toegankelijkheid hoort bij het ontwerpen. Wij testen direct met muis, toetsenbord en spraak.
+- **Er is maar één versie.** De code is het ontwerp. Er kan dus geen verschil ontstaan tussen het ontwerp en wat er gebouwd is.
+- **Aanpassen is makkelijk.** Na een test of feedback passen wij de code direct aan. Daar zijn geen tussenstappen of extra programma’s voor nodig.
 
 ## Ontwerpprincipes
 
-### 1. Toegankelijkheid als fundament
+### 1. Toegankelijkheid is de basis
 
-Toegankelijkheid is geen toevoeging achteraf maar een uitgangspunt van het ontwerp. Alles wordt vanaf het begin ontworpen en gebouwd met toegankelijkheid in gedachten.
+Toegankelijkheid is geen extraatje achteraf. Wij houden er vanaf het begin rekening mee, bij het ontwerpen en bij het bouwen. Wij volgen de regels van WCAG 2.2 op niveau AA en de Europese norm EN 301 549.
 
-- **Semantische HTML eerst** – het ontwerp maakt gebruik van [de juiste HTML-elementen voor de juiste functie](https://developer.mozilla.org/en-US/curriculum/core/semantic-html/). Een knop is een `<button>`, navigatie een `<ul>` binnen een `<nav>`, koptekst een `<h1>`–`<h6>`.
-- **[ARIA](https://www.w3.org/TR/wai-aria/#introroles) waar nodig, niet als vervanging** – ARIA-attributen zoals `aria-current="page"`, `aria-disabled` en `aria-invalid` geven staten en relaties aan die niet met HTML alleen uitgedrukt kunnen worden. `aria-disabled` heeft bijvoorbeeld de voorkeur boven het `disabled`-attribuut, omdat het element hiermee bereikbaar blijft voor hulptechnologie.
-- **Toetsenbord- en spraakbediening** – alle interactieve elementen zijn bereikbaar en bedienbaar met toetsenbord en spraak. Focusindicatoren worden getoond via `:focus-visible`, zodat ze zichtbaar zijn bij toetsenbordnavigatie maar niet bij muisinteractie.
+- **Eerst de juiste HTML.** Wij gebruiken [het juiste HTML-element voor elke functie](https://developer.mozilla.org/en-US/curriculum/core/semantic-html/). Een knop is een `<button>`, een menu staat in een `<nav>` en een kop is een `<h1>` tot en met `<h6>`. Hulpmiddelen zoals een schermlezer begrijpen de pagina daardoor goed.
+- **[ARIA](https://www.w3.org/TR/wai-aria/#introroles) alleen als het nodig is.** Met ARIA geven wij extra informatie door aan een schermlezer, bijvoorbeeld welke pagina actief is (`aria-current="page"`). Dat doen wij alleen als HTML dat zelf niet kan.
+- **Alles werkt met toetsenbord en spraak.** Elke knop, link en elk veld is te bereiken en te bedienen met het toetsenbord en met spraak. Gebruikt u het toetsenbord, dan ziet u altijd waar u bent op de pagina.
 
-### 2. Rijkshuisstijl als visuele basis
+### 2. De Rijkshuisstijl als basis
 
-Het ontwerp volgt [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de visuele identiteit van de Rijksoverheid. Dit zorgt voor herkenbaarheid en vertrouwen.
+Het ontwerp volgt [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de huisstijl van de Rijksoverheid. Gebruikers herkennen die, en dat geeft vertrouwen.
 
-- **Rijkslettertype** – alle tekst wordt weergegeven in het lettertype Rijks Sans. We gebruiken hiervoor het [variabele font](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Fonts/Variable_fonts) zodat we diverse tekstgewichten en -stijlen uit een enkele bron halen.
-- **Kleurenpalet** – alle kleuren komen uit het Rijkshuisstijl-palet en toepassingen worden bewust gekozen. Kleurcontrast voldoet aan [de WCAG-richtlijnen](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html).
-- **Herkenbare patronen** – de componenten sluiten aan bij wat gebruikers verwachten van een overheidswebsite: duidelijke navigatie, voorspelbare interactie en een professionele uitstraling.
+- **Het lettertype Rijks Sans.** Alle tekst staat in Rijks Sans. Wij gebruiken één [variabel lettertypebestand](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Fonts/Variable_fonts). Daarin zitten alle diktes, van dun tot vet.
+- **De kleuren van de Rijksoverheid.** Alle kleuren komen uit de Rijkshuisstijl. Tekst en achtergrond verschillen genoeg van elkaar, volgens [de regels van WCAG](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html).
+- **Herkenbare onderdelen.** De onderdelen werken zoals gebruikers dat verwachten van een overheidswebsite: een duidelijk menu, knoppen die doen wat ze beloven en een professionele uitstraling.
 
-### 3. Design tokens als gedeelde taal
+### 3. Vaste waarden als gedeelde taal
 
-[Design tokens](https://www.w3.org/community/design-tokens/) vormen de brug tussen ontwerp en ontwikkeling. Ontwerp-waarden zoals kleuren, typografie en maatvoering zijn opgeslagen in een centraal JSON-bestand (`tokens.json`) dat zowel vanuit Figma (via [Tokens Studio](https://tokens.studio/)) als vanuit de code bewerkt kan worden.
+Kleuren, afstanden, letters en randen liggen vast als [design tokens](https://www.w3.org/community/design-tokens/). Dat zijn vaste waarden met een naam. Ontwerpers en ontwikkelaars gebruiken dezelfde namen. Zo begrijpen zij elkaar.
 
-- **Twee lagen** – de [tokens zijn opgedeeld](https://medium.com/eightshapes-llc/tokens-in-design-systems-25dd82d58421) in _opties_ (de beschikbare waarden uit de Rijkshuisstijl) en _toepassingen_ (semantische verwijzingen die bepalen hoe de opties worden ingezet). In de code worden altijd toepassingsvariabelen gebruikt, nooit opties rechtstreeks.
-- **Eén bron van waarheid** – alle ontwerp-waarden leven in `tokens.json`. [Style Dictionary](https://styledictionary.com/) vertaalt deze naar CSS custom properties. De gegenereerde CSS-bestanden worden niet handmatig aangepast.
-- **Tweerichtingsverkeer** – ontwerpers en ontwikkelaars werken op hetzelfde tokenbestand. Wijzigingen in Figma worden teruggeschreven naar Git en andersom.
+- **De tokens van de Rijkshuisstijl Community.** Wij gebruiken de tokens van de [Rijkshuisstijl Community](https://rijkshuisstijl-community.vercel.app/) (RHC). Deze worden door veel overheidsorganisaties gebruikt.
+- **Eigen tokens alleen als het nodig is.** Wijkt MijnOverheid Zakelijk af, dan maken wij een eigen token. Een voorbeeld is de kleur als u met de muis over een knop gaat. Die waarde staat op één plek, en geldt dan voor knoppen, het menu en uitklappers tegelijk.
+- **Geen losse waarden.** In de code staan geen losse kleuren of afstanden. Wij gebruiken altijd een token. Zo blijft alles overal hetzelfde.
 
-### 4. Component-gedreven ontwerp
+### 4. Bouwen met vaste bouwstenen
 
-Het ontwerp is opgebouwd uit herbruikbare componenten die afzonderlijk ontwikkeld, getest en gedocumenteerd worden.
+Het ontwerp bestaat uit bouwstenen die wij steeds opnieuw gebruiken, zoals knoppen, formulieren, tabellen en kaarten. In vaktaal heten die componenten.
 
-- **Van component naar pagina** – pagina's zijn samengesteld uit bestaande componenten. Dit zorgt voor consistentie en vermindert duplicatie.
-- **Documentatie bij de code** – elk component heeft een beschrijving die uitlegt wanneer en hoe je het inzet.
+- **Eerst wat er al is.** Wij gebruiken bouwstenen van de Rijkshuisstijl Community. Volstaat die niet, dan breiden wij een bestaande bouwsteen uit met een nieuwe variant. Pas als dat ook niet kan, maken wij een nieuwe bouwsteen. Die maken wij dan zo algemeen mogelijk zodat deze in verschillende situaties te gebruiken is.
+- **Van bouwsteen naar pagina.** Een pagina bestaat uit bestaande bouwstenen. Daardoor ziet alles er hetzelfde uit en schrijven wij minder dubbele code.
+- **Uitleg bij elke bouwsteen.** In het prototype staat een overzicht van alle bouwstenen, met een voorbeeld en de mogelijke instellingen. Daar staat ook wanneer u een bouwsteen gebruikt. Voor oplossingen voor een hele taak staan er ontwerppatronen.
 
-### 5. De eenvoudigst mogelijke oplossing
+### 5. De eenvoudigste oplossing
 
-Elk ontwerpvraagstuk wordt beantwoord met de eenvoudigst mogelijke technische oplossing. Complexiteit wordt pas toegevoegd wanneer eenvoud aantoonbaar tekortschiet.
+Wij kiezen altijd de eenvoudigste oplossing die werkt. Wij maken iets pas ingewikkelder als de eenvoudige oplossing aantoonbaar tekortschiet.
 
-- **HTML en CSS waar het kan, JavaScript waar het moet** – standaard browsergedrag en semantische HTML lossen veel interactieproblemen op zonder aanvullende code. JavaScript wordt alleen toegevoegd wanneer de gewenste functionaliteit niet met HTML en CSS te realiseren is.
-- **Webplatform boven framework** – het ontwerp leunt op wat de browser al biedt. Frameworks en bibliotheken worden alleen ingezet als het webplatform aantoonbaar niet volstaat.
-- **Minder is beter te onderhouden** – elke extra laag technologie is een extra laag die begrepen, onderhouden en getest moet worden. Door de oplossing zo dicht mogelijk bij de basis te houden, blijft het prototype toegankelijk voor een breed team en is het eenvoudiger over te dragen voor uiteindelijke realisatie.
+- **Eerst wat de browser al kan.** Een browser kan al veel zelf, zoals een uitklapper of een formulier. Daar gebruiken wij HTML en CSS voor. Extra code voegen wij alleen toe als het niet anders kan.
+- **Een bekende basis.** Het portaal toont echte gegevens en taken in stappen, met berekeningen. Daarom bouwen wij met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. Wij voegen pas een extra hulpmiddel toe als dat echt nodig is.
+- **Minder is makkelijker te onderhouden.** Elk extra hulpmiddel moet iemand begrijpen, bijhouden en testen. Hoe dichter wij bij de basis blijven, hoe meer mensen in het team ermee kunnen werken. Ook is het prototype dan makkelijker over te dragen aan wie het product straks echt bouwt.
 
-### 6. Prototypen als communicatiemiddel
+### 6. Het prototype helpt om te praten
 
-Het prototype is geen afgewerkt product maar een communicatiemiddel. Het wordt ingezet om ontwerpbeslissingen te toetsen in gebruikersonderzoek en om gesprekken met stakeholders concreet te maken.
+Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype toetsen wij ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet.
 
-- **Echte HTML en CSS** – het prototype is gebouwd met dezelfde technologie als het uiteindelijke product. Dit geeft een realistischer beeld dan statische ontwerpen en maakt het mogelijk om interactie, toegankelijkheid en responsiviteit vroegtijdig te toetsen.
-- **Iteratief proces** – het ontwerp wordt stapsgewijs verbeterd op basis van inzichten uit gebruikersonderzoek. Componenten en pagina's worden aangepast, niet vanaf nul opnieuw gemaakt.
+- **Dezelfde techniek als het echte product.** Het prototype is gebouwd met dezelfde techniek als een echte website. Dat geeft een beter beeld dan een plaatje. Ook kunnen wij de interactie, de toegankelijkheid en de werking op elk scherm vroeg testen.
+- **Varianten zonder aparte versies.** Met schakelaars zetten wij onderdelen aan of uit. Zo tonen wij verschillende versies in één prototype, bijvoorbeeld de huidige en de aankomende nieuwe huisstijl.
+- **Stap voor stap beter.** Wij verbeteren het ontwerp stap voor stap, op basis van wat wij leren in onderzoek. Wij passen bouwstenen en pagina’s aan. Wij beginnen niet steeds opnieuw.
 
-### 7. Iteratief ontwerpen tussen vandaag en morgen
+### 7. Ontwerpen voor nu en voor later
 
-Het ontwerpproces beweegt zich continu tussen twee perspectieven: wat we nu kunnen bouwen en valideren, en waar we uiteindelijk naartoe willen. De stip op de horizon geeft richting, ook als die op dit moment technisch, juridisch of organisatorisch nog niet bereikbaar is.
+Bij het ontwerpen kijken wij steeds naar twee dingen. Wat kunnen wij nu bouwen en testen? En waar willen wij uiteindelijk naartoe? Dat einddoel geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
 
-- **Ontwerpen op aannames, valideren met gebruikers** – niet elk ontwerpbesluit kan vooraf onderbouwd worden met onderzoek. Waar directe inzichten ontbreken, formuleren we expliciete aannames die we zo snel mogelijk met gebruikers toetsen. Onderzoek en ontwerp wisselen elkaar voortdurend af.
-- **De stip op de horizon als kompas** – sommige oplossingen zijn nu nog niet realiseerbaar: wetgeving staat het niet toe, systemen zijn er nog niet klaar voor, of de organisatie moet eerst anders ingericht worden. Toch ontwerpen we alvast voor die toekomst, zodat we daar klaar voor zijn wanneer de randvoorwaarden veranderen.
-- **Kleine stappen in de goede richting** – elk increment levert iets op dat getest en gebruikt kan worden, maar brengt het ontwerp ook dichter bij het grotere doel. We kiezen bewust voor oplossingen die zowel op korte termijn waarde leveren als op lange termijn passen in het toekomstbeeld.
+- **Ontwerpen op aannames, toetsen bij gebruikers.** Niet elke keuze kunnen wij vooraf onderbouwen met onderzoek. Weten wij iets nog niet? Dan schrijven wij onze aanname op, en toetsen wij die zo snel mogelijk bij gebruikers. Onderzoek en ontwerp wisselen elkaar steeds af.
+- **Het einddoel als kompas.** Sommige oplossingen kunnen nu nog niet. De wet staat het niet toe, systemen zijn er nog niet klaar voor, of de overheid moet eerst anders werken. Toch ontwerpen wij er alvast voor. Dan zijn wij klaar als dat wel kan.
+- **Kleine stappen in de goede richting.** Elke stap levert iets op dat wij kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij het einddoel. Wij kiezen oplossingen die nu waarde hebben en later blijven passen.

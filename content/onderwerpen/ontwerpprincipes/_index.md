@@ -10,22 +10,22 @@ aliases:
   - /onderwerpen/ontwerp/
 ---
 
-Het prototype van MijnOverheid Zakelijk is gebouwd vanuit een set ontwerpprincipes die richting geven aan elke keuze. Van de structuur van een pagina tot de tekst op een knop. Deze principes zijn geen checklist achteraf, maar het startpunt van elk ontwerpbesluit. In het ontwerpproces staat altijd de eindgebruiker centraal.
+Het prototype van MijnOverheid Zakelijk is gebouwd volgens een aantal ontwerpprincipes. Die principes helpen ons bij elke ontwerpkeuze die we maken. Bijvoorbeeld bij de opbouw van een pagina, maar ook bij de tekst op een knop. We gebruiken de principes niet als controlelijst achteraf. Bij ons ontwerp staan onze gebruikers altijd voorop.
 
-De principes zijn opgedeeld in twee delen:
+We hebben de principes in twee delen verdeeld:
 
 ## [Wat: visie en principes](ontwerp-wat)
 
-Het _Wat_ beschrijft de uitgangspunten die aan het ontwerp ten grondslag liggen. Waarom ontwerpen we met de eindgebruiker centraal? Waarom direct in code en niet in design tooling? Wat betekent toegankelijkheid als fundament?
+Het _Wat_ legt uit waarom we het zo doen. Waarom zetten we de gebruiker voorop? Waarom werken we direct in code en niet in een ontwerpprogramma? En wat betekent het dat digitale toegankelijkheid de basis is?
 
-Dit deel is bedoeld voor iedereen die wil begrijpen _waarom_ het prototype is zoals het is – ontwerpers, ontwikkelaars, beleidsmakers en stakeholders.
+Dit deel is voor iedereen die wil weten _waarom_ het prototype zo wordt gemaakt. Bijvoorbeeld ontwerpers, ontwikkelaars, beleidsmakers en andere betrokkenen.
 
 ## [Hoe: werkwijze en techniek](ontwerp-hoe)
 
-Het _Hoe_ beschrijft de concrete technische keuzes en werkwijze waarmee de principes worden vertaald naar ontwerp. Welke CSS-technieken gebruiken we en waarom? Hoe werken de design tokens? Hoe zetten we AI-assistentie in? Hoe waarborgen we consistentie in tekst- en taalgebruik?
+Het _Hoe_ legt uit hoe we de principes in de praktijk brengen. Welke CSS-technieken gebruiken we en waarom? Hoe werken design tokens? Hoe gebruiken we AI als hulpmiddel? En hoe zorgen we dat onze teksten overal op elkaar lijken?
 
-Dit deel is bedoeld voor iedereen die aan het prototype werkt of wil begrijpen hoe het technisch in elkaar zit.
+Dit deel is voor iedereen die aan het prototype werkt. Ook als je wilt weten hoe het technisch werkt, vind je hier het antwoord.
 
 ## Prototype
 
-Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.nl](https://proef.moza.rijksapp.nl/)
+[Hier vind je het prototype van MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/). Dit is dezelfde versie die we aan gebruikers laten zien tijdens de onderzoeken die we met gebruikers uitvoeren om onze ontwerpen te testen: [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/)

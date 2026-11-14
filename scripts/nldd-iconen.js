@@ -26,7 +26,6 @@ const OUTPUT_DIR = join(ROOT, "static", "images", "icons");
 // bestandsnaam -> NLDD-icoon (canonieke naam), plus de class die CSS of JS verwacht
 const ICONS = {
   "file-type-md": { name: "markdown-rectangle" },
-  waarschuwing: { name: "exclamation-triangle" },
 };
 
 // Afronding zoals regelrecht.rijks.app: scheidt de tegel van de tabbladbalk

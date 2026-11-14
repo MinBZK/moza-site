@@ -1,10 +1,10 @@
 ---
 title: "Proeftuin"
-description: "Onze voorbeeld implementaties handig bij elkaar gezet in een proefopstelling."
+description: "Probeer het prototype van MijnOverheid Zakelijk zelf uit en vind de documentatie en broncode. Met dit prototype doen we ook gebruikersonderzoek."
 weight: 5
 ---
 
-Een overzicht van alle beschikbare tools, applicaties, documentatie en relevante links van MijnOverheid Zakelijk.
+Probeer de proeftuin van MijnOverheid Zakelijk zelf uit en vind de technische documentatie en broncode. Het prototype in de proeftuin gebruiken we ook voor onze [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/) met ondernemers.
 
 ## Probeer het zelf
 

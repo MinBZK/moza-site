@@ -1,0 +1,57 @@
+# Gebruikersonderzoeken van MijnOverheid Zakelijk, gepubliceerd op
+# gebruikersonderzoeken.nl. De shortcode gebruikersonderzoeken toont ze,
+# het nieuwste bovenaan (op datum, de laatste testdag).
+# onderwerpen: de onderwerpspagina's (pad onder /onderwerpen/) waarop het
+# onderzoek ook verschijnt.
+
+- titel: "Onderzoek MijnOverheid Zakelijk - Berichtenbox"
+  kort: "Berichtenbox"
+  datum: 2026-07-14
+  uitgevoerd: "13 en 14 juli 2026"
+  url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-berichtenbox/"
+  onderwerpen: ["berichten"]
+  samenvatting: >-
+    Ondernemers zien de Berichtenbox van MijnOverheid Zakelijk als een duidelijke
+    verbetering. Eén plek voor al hun zakelijke post van de overheid geeft overzicht
+    en gemak. Voorwaarde is wel dat berichten gelijk lopen met andere portalen, zoals
+    MijnBelastingdienst Zakelijk.
+  conclusies:
+    - "Ondernemers willen MijnOverheid Zakelijk als centrale verzamelplek. Verschillende portalen naast elkaar zijn geen probleem, zolang een gelezen of afgehandeld bericht overal zo te zien is."
+    - "Inloggen met DigiD voelt logisch en betrouwbaar, ook voor zakelijk gebruik."
+    - "Een PDF direct in het bericht vinden de meeste ondernemers handig. In een gedeelde werkruimte kan dat wel vertrouwelijke informatie zichtbaar maken."
+    - "Direct iets regelen vanuit een bericht wordt gewaardeerd, maar alleen als je niet opnieuw hoeft in te loggen. Ondernemers missen informatie over urgentie en deadlines."
+    - "De notificatiemail is duidelijk, maar ondernemers missen er een directe link naar MijnOverheid Zakelijk in."
+
+- titel: "Onderzoek MijnOverheid Zakelijk - Inloggen"
+  kort: "Inloggen"
+  datum: 2026-06-16
+  uitgevoerd: "28 mei 2026 (burgers, Den Haag) en 16 juni 2026 (startende ondernemers, Rotterdam)"
+  url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-inloggen/"
+  onderwerpen: ["portaal"]
+  samenvatting: >-
+    Burgers en startende ondernemers kunnen over het algemeen goed inloggen op
+    MijnOverheid en MijnOverheid Zakelijk. Er zijn wel verbeterpunten: de inlogknoppen
+    kunnen beter opvallen en moeten overal hetzelfde ontwerp hebben.
+  conclusies:
+    - "Ondernemers vinden inloggen met DigiD prettig, omdat ze het al kennen."
+    - "Een extra ingang voor MijnOverheid Zakelijk op mijnoverheid.nl zit burgers niet in de weg. Ze zien direct welke knop voor hen is."
+    - "Ondernemers willen dat de inlogknop voor MijnOverheid Zakelijk er op elke website hetzelfde uitziet. Dat voelt betrouwbaarder."
+    - "Veel startende ondernemers kennen overheid.nl en ondernemersplein.nl niet. Burgers halen overheid.nl vaak door elkaar met mijnoverheid.nl."
+    - "MijnOverheid Zakelijk is nog niet goed bruikbaar voor anderstalige ondernemers."
+
+- titel: "Onderzoek MijnOverheid Zakelijk - Minimum Viable Product (MVP)"
+  kort: "MVP"
+  datum: 2026-03-06
+  uitgevoerd: "4, 5 en 6 maart 2026"
+  url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-mvp/"
+  onderwerpen: ["portaal", "profielservice", "actualiteitenservice"]
+  samenvatting: >-
+    Het eerste prototype van MijnOverheid Zakelijk biedt ondernemers nog weinig
+    meerwaarde. Ze missen vooral een Berichtenbox en een overzicht van lopende zaken.
+    Ondernemers willen zien welke taken voor hen klaarliggen en daar direct mee aan de
+    slag gaan.
+  conclusies:
+    - "De doorkijkjes naar toekomstige functies, zoals de Berichtenbox en lopende zaken, vallen goed. Ondernemers zien daarin de waarde van één plek voor hun overheidszaken."
+    - "De homepage geeft een basisoverzicht, maar maakt niet duidelijk wat je er kunt doen. Een korte introductie helpt."
+    - "Actualiteiten worden gewaardeerd als de informatie echt over het eigen bedrijf gaat. Ondernemers willen zelf kiezen welke onderwerpen ze volgen."
+    - "Contactvoorkeuren voelen logisch, maar ondernemers missen organisaties in de lijst, vooral de Belastingdienst en gemeenten."

@@ -163,6 +163,8 @@ We hebben de actualiteitenservice gebouwd om ondernemers te helpen. Daarvoor heb
 
 Heb je nieuwe inzichten op dit gebied? Neem dan contact met ons op. We nodigen je uit om mee te denken, mee te bouwen en kennis te delen: [praat met ons mee!](/contact/)
 
+{{% gebruikersonderzoeken onderwerp="actualiteitenservice" %}}
+
 ## Meer info
 
 * [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-actualiteiten-service)

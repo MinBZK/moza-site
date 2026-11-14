@@ -9,3 +9,5 @@ Het prototype van MOZa is bedoeld om ideeën van het team en functionaliteiten t
 Klik hier om de website te bezoeken: [MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl)
 
 Wil je meer weten over hoe MOZa tot stand komt? Kijk dan op onze GitHub: [GitHub MijnOverheid Zakelijk](https://github.com/MinBZK/moza-portaal)
+
+{{% gebruikersonderzoeken onderwerp="portaal" %}}

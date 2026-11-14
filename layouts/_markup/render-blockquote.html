@@ -1,10 +1,11 @@
 {{- /* Niveau 3: elk infoblok met titel staat in de content onder een h2. */ -}}
 {{- if eq .Type "alert" -}}
-<div class="callout">
-  {{- if or (eq .AlertType "info") .AlertTitle }}
+{{- $icoon := index (dict "info" "info" "warning" "waarschuwing") .AlertType -}}
+<div class="callout{{ if eq .AlertType "warning" }} waarschuwing{{ end }}">
+  {{- if or $icoon .AlertTitle }}
   <header>
-    {{- if eq .AlertType "info" }}
-    {{- partial "icon.html" "info" -}}
+    {{- with $icoon }}
+    {{- partial "icon.html" . -}}
     {{- end }}
     {{- with .AlertTitle }}<h3 class="title">{{ . }}</h3>{{ end }}
   </header>

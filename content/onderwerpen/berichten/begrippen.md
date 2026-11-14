@@ -4,11 +4,14 @@ description: "De soorten berichten van de overheid: wat ze betekenen, wat de jur
 weight: 2
 ---
 
+> [!WARNING]
+> **Let op:** deze begrippen hebben geen officiële status. De juridische context is wat wij zelf hebben afgeleid. Een jurist heeft die nog niet getoetst.
+
 Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebruiken voor berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische context en wat [de wet](https://wetten.overheid.nl/), [NORA](https://www.noraonline.nl/) en [GEMMA](https://www.gemmaonline.nl/) erover zeggen. NORA is de referentiearchitectuur van de hele overheid, GEMMA die van gemeenten.
 
 De pagina is een naslagwerk naast de wet, NORA en GEMMA. Hier lees je wat wij binnen MOZa met elk begrip bedoelen. Je kunt ernaar verwijzen als je werkt aan berichten en notificaties, bijvoorbeeld bij het aansluiten op de notificatiedienst.
 
-Deze begrippen hebben geen officiële status. De juridische context is wat wij zelf hebben afgeleid. Zekerheid daarover kunnen we niet geven. We houden de begrippen bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten in het kanaal [~berichtenservice op Mattermost](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/channels/berichtenservice). Hoe je daar komt, of hoe je ons op een andere manier bereikt, lees je op de [contactpagina](/contact/).
+We houden de begrippen bij en werken ze bij als we iets nieuws leren. Mis je iets of klopt er iets niet? Laat het weten in het kanaal [~berichtenservice op Mattermost](https://digilab.overheid.nl/chat/mijnoverheid-zakelijk/channels/berichtenservice). Hoe je daar komt, of hoe je ons op een andere manier bereikt, lees je op de [contactpagina](/contact/).
 
 ## Welke soorten berichten zijn er?
 

@@ -31,6 +31,7 @@ const ICONS = {
   search: { name: "magnifier", class: "search-icon" },
   x: { name: "dismiss", class: "x-icon" },
   "chevron-down": { name: "chevron-down", class: "icon-expand" },
+  waarschuwing: { name: "exclamation-triangle" },
 };
 
 // Afronding zoals regelrecht.rijks.app: scheidt de tegel van de tabbladbalk

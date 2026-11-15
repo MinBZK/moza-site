@@ -35,7 +35,7 @@
   border-radius: var(--radius-bottom-right);
   background-color: var(--color-bg-page);
 
-  h3 {
+  :is(h2, h3) {
     margin: 0;
     font-size: 1.3rem;
 
@@ -72,6 +72,37 @@ main > .hero + .content > h2:first-child {
   }
 }
 
+.kaarten-accent {
+  @media (min-width: 56rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kaart {
+    padding: 1.5rem;
+    border-color: var(--color-bg-info);
+    background-color: var(--color-bg-info);
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* De standaardknop heeft in light mode dezelfde kleur als dit vlak. */
+  .button {
+    background-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    color: light-dark(var(--color-text-inverse), var(--color-bg-page));
+
+    /* De standaard-hover is Rijksblauw: onzichtbaar op dit vlak. */
+    &:hover,
+    &:focus-visible {
+      background-color: transparent;
+      border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+      color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    }
+  }
+}
+
 .leeslijst {
   max-width: var(--article-max-width);
   margin: 1rem 0 2.5rem;
@@ -105,5 +136,15 @@ main > .hero + .content > h2:first-child {
      in de tekst. */
   .kaart .tag {
     border: 1px solid currentColor;
+  }
+
+  .kaarten-accent {
+    .kaart {
+      border-color: currentColor;
+    }
+
+    .button {
+      color: var(--color-text);
+    }
   }
 }

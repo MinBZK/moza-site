@@ -15,7 +15,7 @@ MijnOverheid Zakelijk is er voor ondernemers. Werkt iets voor hen? Dat horen we 
 - **Met het prototype uit de [proeftuin](/onderwerpen/proeftuin/):** ondernemers doen in het prototype wat ze ook in het echt zouden doen. Bijvoorbeeld inloggen, een bericht openen of een vraag stellen aan de digitale assistent.
 - **Op verschillende manieren:** in online gesprekken laten ondernemers zien hoe ze het prototype gebruiken, en stellen we ze vragen. Ook doen we enquêtes en korte tests op locatie, bijvoorbeeld bij de KVK.
 - **Met de mensen voor wie we het maken:** zzp'ers en ondernemers met maximaal 50 medewerkers. Op hen richten we ons nu. Gaat het onderzoek ook over MijnOverheid, dan testen we ook met burgers.
-- **Samen met Logius:** het team UX Research van Logius doet de onderzoeken. Wij bedenken wat we willen weten en welke ideeën we willen testen.
+- **Met ons eigen onderzoeksteam:** het team UX Research van Logius is onderdeel van MOZa en doet de onderzoeken. We bepalen samen wat we willen weten en welke ideeën we testen. En we bouwen zelf het prototype waarmee ondernemers het uitproberen.
 - **We gebruiken en delen wat we leren:** met de uitkomsten maken we MijnOverheid Zakelijk beter. De rapporten zijn openbaar. Zo leren ook andere overheidsorganisaties ervan.
 
 ## Uitgevoerde gebruikersonderzoeken

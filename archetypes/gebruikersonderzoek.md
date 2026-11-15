@@ -5,7 +5,7 @@ title: "{{ .File.ContentBaseName | humanize }}"
 date: {{ now.Format "2006-01-02" }}
 uitgevoerd: ""
 rapport: ""
-# Optioneel.
+# Laat leeg als het prototype niet meer online staat.
 prototype: ""
 # Paden onder /onderwerpen/ waar het onderzoek ook verschijnt.
 onderwerpen: []

@@ -6,17 +6,17 @@
   {{- with .Params.disclaimer }}{{ $onderregel = . }}{{ end }}
   <span class="footer-text"><strong>MijnOverheid Zakelijk</strong>{{ with $onderregel }} · {{ . }}{{ end }}</span>
   <span class="counter" id="counter" aria-hidden="true">1 / 1</span>
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-down-left-arrow-up-right" text="Volledig scherm" data-fullscreen></nldd-icon-button>
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="display" text="Presentatiemodus" data-modus></nldd-icon-button>
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="note" text="Sprekersweergave" data-spreker></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-down-left-arrow-up-right" text="Volledig scherm" data-fullscreen></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="display" text="Presentatiemodus" data-modus></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="note" text="Sprekersweergave" data-spreker></nldd-icon-button>
   {{- if ne .Params.download false }}
   {{- $pdf := print .RelPermalink (path.Base .RelPermalink) ".pdf" }}
   {{- /* De link erin is er alleen voor zonder JavaScript: het component heeft
      geen slot voor de inhoud, dus de browser toont hem pas als het niet laadt. */}}
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-down-in-bucket" text="Download als PDF" href="{{ $pdf }}" download="{{ .Title }}.pdf"><a href="{{ $pdf }}" download="{{ .Title }}.pdf">Download als PDF</a></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-down-in-bucket" text="Download als PDF" href="{{ $pdf }}" download="{{ .Title }}.pdf"><a href="{{ $pdf }}" download="{{ .Title }}.pdf">Download als PDF</a></nldd-icon-button>
   {{- end }}
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
-  <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
+  <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
 </nav>
 <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress"></div></div>
 <p class="deck-melding" id="melding" role="status" hidden></p>

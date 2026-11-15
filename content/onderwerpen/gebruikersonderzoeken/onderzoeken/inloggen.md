@@ -5,9 +5,11 @@ uitgevoerd: "28 mei en 16 juni 2026"
 rapport: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-inloggen/"
 prototype: "https://proef.moza.rijksapp.nl/inloggen/"
 onderwerpen: ["portaal"]
-onderzocht: "Hoe burgers en ondernemers inloggen op MijnOverheid en MijnOverheid Zakelijk. En of ze vanaf overheid.nl, mijnoverheid.nl en ondernemersplein.nl de juiste weg vinden."
-vorm: "Korte tests op locatie met 18 mensen: 9 burgers bij een kringloopwinkel in Den Haag en 9 startende ondernemers bij de KVK in Rotterdam."
 ---
+
+**Wat we onderzochten:** Hoe burgers en ondernemers inloggen op MijnOverheid en MijnOverheid Zakelijk. En of ze vanaf overheid.nl, mijnoverheid.nl en ondernemersplein.nl de juiste weg vinden.
+
+**Hoe:** Korte tests op locatie met 18 mensen: 9 burgers bij een kringloopwinkel in Den Haag en 9 startende ondernemers bij de KVK in Rotterdam.
 
 Burgers en startende ondernemers kunnen over het algemeen goed inloggen op MijnOverheid en MijnOverheid Zakelijk. Er zijn wel verbeterpunten: de inlogknoppen kunnen beter opvallen en moeten overal hetzelfde ontwerp hebben.
 

@@ -201,7 +201,7 @@ De profielservice bouwen we samen met mensen uit diverse organisaties en vakgebi
 
 ## Gebruikersonderzoek
 
-In het prototype stelden ondernemers zelf hun contactvoorkeuren in. Lees hieronder wat ze ervan vonden. Alle onderzoeken die MOZa heeft uitgevoerd vind je bij [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/).
+In het prototype kunnen ondernemers zelf hun contactvoorkeuren invoeren. Daar deden we onderzoek naar. Lees hieronder wat ze ervan vonden. Alle onderzoeken die MOZa heeft uitgevoerd vind je bij [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/).
 
 {{% gebruikersonderzoeken onderwerp="profielservice" %}}
 

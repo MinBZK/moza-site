@@ -12,6 +12,6 @@ Wil je meer weten over hoe MOZa tot stand komt? Kijk dan op onze GitHub: [GitHub
 
 ## Gebruikersonderzoek
 
-We testen het portaal met ondernemers, en soms ook met burgers. Lees hieronder wat de onderzoeken opleverden.
+We testen het portaal met ondernemers, en soms ook met burgers. Lees hieronder wat de onderzoeken opleverden. Alle onderzoeken vind je bij [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/).
 
 {{% gebruikersonderzoeken onderwerp="portaal" %}}

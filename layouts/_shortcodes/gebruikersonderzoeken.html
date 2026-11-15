@@ -1,7 +1,10 @@
 {{- /* Aanroepen met {{% %}}: de uitvoer is Markdown, en zo komen de h3's in
        de inhoudsopgave. De h2 erboven schrijft de pagina zelf.
        De onderzoeken zijn resources van de bundle. Maak er geen pagina's van:
-       dan komen ze los in de zoekindex, llms.txt en RSS. */ -}}
+       dan komen ze los in de zoekindex, llms.txt en RSS.
+
+         {{% gebruikersonderzoeken %}}                        alle onderzoeken
+         {{% gebruikersonderzoeken onderwerp="portaal" %}}    alleen die bij /onderwerpen/portaal/ */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
 {{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
 {{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}

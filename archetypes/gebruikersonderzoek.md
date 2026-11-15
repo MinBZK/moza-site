@@ -1,6 +1,7 @@
 ---
 title: "{{ .File.ContentBaseName | humanize }}"
-# De laatste testdag; bepaalt de volgorde.
+# Vul de laatste dag van het onderzoek in, niet de dag van vandaag. Op deze
+# datum staat het nieuwste onderzoek bovenaan.
 date: {{ now.Format "2006-01-02" }}
 uitgevoerd: ""
 rapport: ""

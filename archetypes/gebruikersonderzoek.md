@@ -7,7 +7,8 @@ uitgevoerd: ""
 rapport: ""
 # Laat leeg als het prototype niet meer online staat.
 prototype: ""
-# Paden onder /onderwerpen/ waar het onderzoek ook verschijnt.
+# Onderwerpspagina's waar het onderzoek ook verschijnt: het deel van de URL na
+# /onderwerpen/. Voor /onderwerpen/portaal/ is dat "portaal".
 onderwerpen: []
 ---
 

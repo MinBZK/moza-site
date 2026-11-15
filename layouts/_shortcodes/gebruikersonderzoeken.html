@@ -31,7 +31,7 @@
 
 **Meer weten?**
 
-- [Lees het volledige onderzoek {{ .Params.kort }} op gebruikersonderzoeken.nl]({{ .Params.rapport }})
+- [Lees het volledige onderzoek op gebruikersonderzoeken.nl]({{ .Params.rapport }})
 {{ with .Params.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
 {{ end -}}
 {{ range .Params.onderwerpen }}{{ if ne . $onderwerp }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})

@@ -1,6 +1,5 @@
 ---
-title: "Onderzoek MijnOverheid Zakelijk - Inloggen"
-kort: "Inloggen"
+title: "Inloggen"
 date: 2026-06-16
 uitgevoerd: "28 mei en 16 juni 2026"
 rapport: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-inloggen/"

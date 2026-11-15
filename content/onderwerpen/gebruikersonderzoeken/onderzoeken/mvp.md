@@ -1,12 +1,11 @@
 ---
-title: "Onderzoek MijnOverheid Zakelijk - Minimum Viable Product (MVP)"
-kort: "MVP"
+title: "Eerste versie van het portaal (MVP)"
 date: 2026-03-06
 uitgevoerd: "4, 5 en 6 maart 2026"
 rapport: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-mvp/"
 prototype: "https://gebruikersonderzoek-2026-03-moza.rijksapp.dev/"
 onderwerpen: ["portaal", "profielservice", "actualiteitenservice"]
-onderzocht: "Of een eerste, kleine versie van MijnOverheid Zakelijk ondernemers al iets oplevert. Die versie had actualiteiten, bedrijfsgegevens en contactvoorkeuren, en een doorkijkje naar de Berichtenbox en lopende zaken."
+onderzocht: "Of een eerste, kleine versie van het portaal van MijnOverheid Zakelijk ondernemers al iets oplevert. Die versie had actualiteiten, bedrijfsgegevens en contactvoorkeuren, en een doorkijkje naar de Berichtenbox en lopende zaken."
 vorm: "Online interviews met 8 ondernemers: zzp'ers en ondernemers met maximaal 10 medewerkers."
 ---
 

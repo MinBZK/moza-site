@@ -20,6 +20,6 @@ MijnOverheid Zakelijk is er voor ondernemers. Werkt iets voor hen? Dat horen we 
 
 ## Uitgevoerde gebruikersonderzoeken
 
-Het nieuwste onderzoek staat bovenaan.
+Hieronder lees je per onderzoek een korte samenvatting en de belangrijkste conclusies. Het nieuwste onderzoek staat bovenaan. Het volledige rapport lees je op [gebruikersonderzoeken.nl](https://gebruikersonderzoeken.nl/). Daar komen de onderzoeken van de hele overheid samen.
 
 {{% gebruikersonderzoeken %}}

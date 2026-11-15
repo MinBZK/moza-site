@@ -1,20 +1,14 @@
-{{- /* Toont de gebruikersonderzoeken uit
-       content/onderwerpen/gebruikersonderzoeken/onderzoeken/*.md, het nieuwste
-       bovenaan, elk onder een h3: de h2 en de intro staan op de pagina zelf.
-       Die bestanden zijn resources van de bundle, geen pagina's: zo komen ze
-       niet los in de zoekindex, llms.txt of RSS. Aanroepen met {{% %}}, zodat
-       de koppen in de inhoudsopgave komen.
-
-         {{% gebruikersonderzoeken %}}
-             alle onderzoeken
-         {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             alleen de onderzoeken bij dat onderwerp */ -}}
+{{- /* Aanroepen met {{% %}}: de uitvoer is Markdown, en zo komen de h3's in
+       de inhoudsopgave. De h2 erboven schrijft de pagina zelf.
+       De onderzoeken zijn resources van de bundle. Maak er geen pagina's van:
+       dan komen ze los in de zoekindex, llms.txt en RSS. */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
 {{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
 {{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}
 {{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "Params.onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
 {{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
 {{- range $i, $_ := $onderzoeken }}
+{{- if not .Params.rapport }}{{ errorf "gebruikersonderzoeken: %s mist rapport" .Name }}{{ end }}
 {{ if $i }}
 ---
 {{ end }}

@@ -1,52 +1,43 @@
-{{- /* Toont gebruikersonderzoeken uit data/gebruikersonderzoeken.yaml, het
-       nieuwste bovenaan. Aanroepen met
+{{- /* Toont de gebruikersonderzoeken uit
+       content/onderwerpen/gebruikersonderzoeken/onderzoeken/*.md, het nieuwste
+       bovenaan. Die bestanden zijn resources van de bundle, geen pagina's: zo
+       komen ze niet los in de zoekindex, llms.txt of RSS. Aanroepen met
        {{% %}}, zodat de koppen in de inhoudsopgave komen.
 
          {{% gebruikersonderzoeken %}}
-             alle onderzoeken, titels als h3 (de h2 staat op de pagina)
+             alle onderzoeken, elk onder een h3 (de h2 staat op de pagina)
          {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             een complete sectie voor een onderwerpspagina: h2
-             "Uitgevoerde gebruikersonderzoeken", de onderzoeken bij dat
-             onderwerp, een link naar het overzicht en een lijn die de
-             sectie afsluit
-
-       Elk onderzoek begint met een lijn, ook het eerste. */ -}}
+             een lijst met de onderzoeken bij dat onderwerp; kop en intro
+             schrijft de onderwerpspagina zelf */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
-{{- $onderzoeken := sort (hugo.Data.gebruikersonderzoeken | default slice) "datum" "desc" -}}
-{{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
+{{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
+{{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}
+{{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "Params.onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
 {{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
 {{- if $onderwerp }}
-## Uitgevoerde gebruikersonderzoeken
-{{ end -}}
-{{- range $i, $o := $onderzoeken }}
-
----
-
-### {{ $o.titel }}
-
-*Uitgevoerd op {{ $o.uitgevoerd }}*
-
-**Wat we onderzochten:** {{ $o.onderzocht }}
-
-**Hoe:** {{ $o.vorm }}
-
-{{ $o.samenvatting }}
-
-**Belangrijkste conclusies:**
-
-{{ range $o.conclusies -}}
-- {{ . }}
+{{ range $onderzoeken -}}
+- [{{ .Params.kort }}]({{ $overzicht.RelPermalink }}#{{ path.BaseName .Name }}), {{ .Date | time.Format "January 2006" }}
 {{ end }}
+[Bekijk alle gebruikersonderzoeken]({{ $overzicht.RelPermalink }})
+{{- else }}
+{{- range $onderzoeken }}
+
+### {{ .Title }} {#{{ path.BaseName .Name }}}
+
+*Uitgevoerd op {{ .Params.uitgevoerd }}*
+
+**Wat we onderzochten:** {{ .Params.onderzocht }}
+
+**Hoe:** {{ .Params.vorm }}
+
+{{ .RawContent }}
+
 **Meer weten?**
 
-- [Lees het volledige onderzoek {{ $o.kort }} op gebruikersonderzoeken.nl]({{ $o.url }})
-{{ with $o.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
+- [Lees het volledige onderzoek {{ .Params.kort }} op gebruikersonderzoeken.nl]({{ .Params.rapport }})
+{{ with .Params.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
 {{ end -}}
-{{ if not $onderwerp }}{{ range $o.onderwerpen }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
-{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end }}{{ end -}}
+{{ range .Params.onderwerpen }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
+{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end -}}
 {{ end -}}
-{{- if $onderwerp }}
-[Bekijk alle uitgevoerde gebruikersonderzoeken voor MijnOverheid Zakelijk](/onderwerpen/gebruikersonderzoeken/)
-
----
 {{ end -}}

@@ -10,4 +10,8 @@ Klik hier om de website te bezoeken: [MijnOverheid Zakelijk](https://moza.mijnov
 
 Wil je meer weten over hoe MOZa tot stand komt? Kijk dan op onze GitHub: [GitHub MijnOverheid Zakelijk](https://github.com/MinBZK/moza-portaal)
 
+## Gebruikersonderzoek
+
+We testen het portaal met ondernemers, en soms ook met burgers. Lees wat de onderzoeken opleverden:
+
 {{% gebruikersonderzoeken onderwerp="portaal" %}}

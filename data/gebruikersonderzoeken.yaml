@@ -2,7 +2,7 @@
 # gebruikersonderzoeken.nl. De shortcode gebruikersonderzoeken toont ze,
 # het nieuwste bovenaan (op datum, de laatste testdag).
 # onderwerpen: de onderwerpspagina's (pad onder /onderwerpen/) waarop het
-# onderzoek ook verschijnt.
+# onderzoek ook verschijnt. prototype is optioneel.
 
 - titel: "Onderzoek MijnOverheid Zakelijk - Berichtenbox"
   kort: "Berichtenbox"
@@ -10,6 +10,12 @@
   uitgevoerd: "13 en 14 juli 2026"
   url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-berichtenbox/"
   onderwerpen: ["berichten"]
+  onderzocht: >-
+    Hoe ondernemers inloggen, een bericht openen en wisselen tussen de Berichtenbox
+    van MijnBelastingdienst Zakelijk en die van MijnOverheid Zakelijk. En of ze vanuit
+    een bericht direct iets willen regelen.
+  vorm: "Online interviews met 6 ondernemers: 2 zzp'ers en 4 ondernemers uit het klein mkb."
+  prototype: "https://proef.moza.rijksapp.nl/ux-onderzoek/juli-2026/"
   samenvatting: >-
     Ondernemers zien de Berichtenbox van MijnOverheid Zakelijk als een duidelijke
     verbetering. Eén plek voor al hun zakelijke post van de overheid geeft overzicht
@@ -25,9 +31,14 @@
 - titel: "Onderzoek MijnOverheid Zakelijk - Inloggen"
   kort: "Inloggen"
   datum: 2026-06-16
-  uitgevoerd: "28 mei 2026 (burgers, Den Haag) en 16 juni 2026 (startende ondernemers, Rotterdam)"
+  uitgevoerd: "28 mei en 16 juni 2026"
   url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-inloggen/"
   onderwerpen: ["portaal"]
+  onderzocht: >-
+    Hoe burgers en ondernemers inloggen op MijnOverheid en MijnOverheid Zakelijk. En of
+    ze vanaf overheid.nl, mijnoverheid.nl en ondernemersplein.nl de juiste weg vinden.
+  vorm: "Korte tests op locatie met 18 mensen: 9 burgers bij een kringloopwinkel in Den Haag en 9 startende ondernemers bij de KVK in Rotterdam."
+  prototype: "https://proef.moza.rijksapp.nl/inloggen/"
   samenvatting: >-
     Burgers en startende ondernemers kunnen over het algemeen goed inloggen op
     MijnOverheid en MijnOverheid Zakelijk. Er zijn wel verbeterpunten: de inlogknoppen
@@ -45,6 +56,12 @@
   uitgevoerd: "4, 5 en 6 maart 2026"
   url: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-mvp/"
   onderwerpen: ["portaal", "profielservice", "actualiteitenservice"]
+  onderzocht: >-
+    Of een eerste, kleine versie van MijnOverheid Zakelijk ondernemers al iets oplevert.
+    Die versie had actualiteiten, bedrijfsgegevens en contactvoorkeuren, en een
+    doorkijkje naar de Berichtenbox en lopende zaken.
+  vorm: "Online interviews met 8 ondernemers: zzp'ers en ondernemers met maximaal 10 medewerkers."
+  prototype: "https://gebruikersonderzoek-2026-03-moza.rijksapp.dev/"
   samenvatting: >-
     Het eerste prototype van MijnOverheid Zakelijk biedt ondernemers nog weinig
     meerwaarde. Ze missen vooral een Berichtenbox en een overzicht van lopende zaken.

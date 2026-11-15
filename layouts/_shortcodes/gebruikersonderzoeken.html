@@ -26,6 +26,10 @@
 
 *Uitgevoerd op {{ $o.uitgevoerd }}*
 
+**Wat we onderzochten:** {{ $o.onderzocht }}
+
+**Hoe:** {{ $o.vorm }}
+
 {{ $o.samenvatting }}
 
 **Belangrijkste conclusies:**
@@ -33,7 +37,13 @@
 {{ range $o.conclusies -}}
 - {{ . }}
 {{ end }}
-[Lees het volledige onderzoek {{ $o.kort }} op gebruikersonderzoeken.nl]({{ $o.url }})
+**Meer weten?**
+
+- [Lees het volledige onderzoek {{ $o.kort }} op gebruikersonderzoeken.nl]({{ $o.url }})
+{{ with $o.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
+{{ end -}}
+{{ if not $onderwerp }}{{ range $o.onderwerpen }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
+{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end }}{{ end -}}
 {{ end -}}
 {{- if $onderwerp }}
 [Bekijk alle uitgevoerde gebruikersonderzoeken voor MijnOverheid Zakelijk](/onderwerpen/gebruikersonderzoeken/)

@@ -43,7 +43,7 @@ Dat doen we samen met Logius, in de werkgroep Berichten van het programma Overhe
 
 ## Gebruikersonderzoek
 
-We legden de Berichtenbox voor aan ondernemers. Lees hieronder wat ze ervan vonden. Alle onderzoeken die MOZa heeft uitgevoerd vind je bij [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/).
+In het prototype kunnen ondernemers hun digitale post van de overheid op meer plekken bekijken: in de Berichtenbox van MijnOverheid Zakelijk en bij de Belastingdienst. Daar deden we onderzoek naar. Lees hieronder wat ze ervan vonden. Alle onderzoeken die MOZa heeft uitgevoerd vind je bij [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/).
 
 {{% gebruikersonderzoeken onderwerp="berichten" %}}
 

@@ -62,7 +62,10 @@ article > header:has(.tag-status) ~ .artikel-tekst > h2:first-child {
 /* Een lijn direct onder een kop hoort bij die kop, niet bij de alinea
    erboven (bijvoorbeeld de sectie gebruikersonderzoeken). */
 h2 + hr,
-h3 + hr {
+h3 + hr,
+h4 + hr,
+h5 + hr,
+h6 + hr {
   margin-top: 0;
 }
 

@@ -1,25 +1,20 @@
 {{- /* Toont de gebruikersonderzoeken uit
        content/onderwerpen/gebruikersonderzoeken/onderzoeken/*.md, het nieuwste
-       bovenaan. Die bestanden zijn resources van de bundle, geen pagina's: zo
-       komen ze niet los in de zoekindex, llms.txt of RSS. Aanroepen met
-       {{% %}}, zodat de koppen in de inhoudsopgave komen.
+       bovenaan, elk onder een h3: de h2 en de intro staan op de pagina zelf.
+       Die bestanden zijn resources van de bundle, geen pagina's: zo komen ze
+       niet los in de zoekindex, llms.txt of RSS. Aanroepen met {{% %}}, zodat
+       de koppen in de inhoudsopgave komen.
 
          {{% gebruikersonderzoeken %}}
-             alle onderzoeken, elk onder een h3 (de h2 staat op de pagina)
+             alle onderzoeken
          {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             een lijst met de onderzoeken bij dat onderwerp; kop en intro
-             schrijft de onderwerpspagina zelf */ -}}
+             alleen de onderzoeken bij dat onderwerp, met een link naar het
+             overzicht */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
 {{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
 {{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}
 {{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "Params.onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
 {{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
-{{- if $onderwerp }}
-{{ range $onderzoeken -}}
-- [{{ .Params.kort }}]({{ $overzicht.RelPermalink }}#{{ path.BaseName .Name }}), {{ .Date | time.Format "January 2006" }}
-{{ end }}
-[Bekijk alle gebruikersonderzoeken]({{ $overzicht.RelPermalink }})
-{{- else }}
 {{- range $i, $_ := $onderzoeken }}
 {{ if $i }}
 ---
@@ -39,7 +34,9 @@
 - [Lees het volledige onderzoek {{ .Params.kort }} op gebruikersonderzoeken.nl]({{ .Params.rapport }})
 {{ with .Params.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
 {{ end -}}
-{{ range .Params.onderwerpen }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
-{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end -}}
+{{ range .Params.onderwerpen }}{{ if ne . $onderwerp }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
+{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end }}{{ end -}}
 {{ end -}}
+{{ if $onderwerp }}
+[Bekijk alle gebruikersonderzoeken]({{ $overzicht.RelPermalink }})
 {{ end -}}

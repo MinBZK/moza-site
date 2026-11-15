@@ -165,7 +165,7 @@ Heb je nieuwe inzichten op dit gebied? Neem dan contact met ons op. We nodigen j
 
 ## Gebruikersonderzoek
 
-We legden ondernemers de actualiteiten in het prototype voor. Lees wat ze ervan vonden:
+We legden ondernemers de actualiteiten in het prototype voor. Lees hieronder wat ze ervan vonden.
 
 {{% gebruikersonderzoeken onderwerp="actualiteitenservice" %}}
 

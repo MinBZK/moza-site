@@ -79,12 +79,12 @@ import "@nldd/design-system/button";
     root.innerHTML = `
       <div class="speaker-bar">
         <span class="speaker-timer"><span data-elapsed>0:00</span><span data-duration></span></span>
-        <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-2-counter-clockwise" text="Tijd opnieuw starten" data-reset></nldd-icon-button>
-        <nldd-icon-button appearance="inherit-tinted" size="sm" icon="media-pause" text="Tijd pauzeren" data-pause></nldd-icon-button>
+        <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-2-counter-clockwise" text="Tijd opnieuw starten" data-reset></nldd-icon-button>
+        <nldd-icon-button appearance="content-tinted" size="sm" icon="media-pause" text="Tijd pauzeren" data-pause></nldd-icon-button>
         <span class="speaker-clock" data-clock></span>
         <span class="speaker-counter" data-position></span>
-        <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
-        <nldd-icon-button appearance="inherit-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
+        <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-left" text="Vorige" data-prev></nldd-icon-button>
+        <nldd-icon-button appearance="content-tinted" size="sm" icon="arrow-right" text="Volgende" data-next></nldd-icon-button>
       </div>
       <div class="speaker-current"><h2 class="speaker-label">Nu</h2><div class="speaker-stage" data-current></div></div>
       <div class="speaker-next"><h2 class="speaker-label" data-next-label>Hierna</h2><div class="speaker-stage" data-upcoming></div></div>

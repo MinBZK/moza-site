@@ -34,6 +34,8 @@ body {
   margin: 0;
   background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
   color: var(--ink);
+  --context-content-color: currentColor;
+  --context-background-color: var(--bg-start);
   font-family: var(--primitives-font-family-sans-serif);
   -webkit-font-smoothing: antialiased;
 }

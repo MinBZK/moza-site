@@ -20,8 +20,10 @@
 {{ end }}
 [Bekijk alle gebruikersonderzoeken]({{ $overzicht.RelPermalink }})
 {{- else }}
-{{- range $onderzoeken }}
-
+{{- range $i, $_ := $onderzoeken }}
+{{ if $i }}
+---
+{{ end }}
 ### {{ .Title }} {#{{ path.BaseName .Name }}}
 
 *Uitgevoerd op {{ .Params.uitgevoerd }}*

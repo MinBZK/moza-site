@@ -8,8 +8,7 @@
          {{% gebruikersonderzoeken %}}
              alle onderzoeken
          {{% gebruikersonderzoeken onderwerp="berichten" %}}
-             alleen de onderzoeken bij dat onderwerp, met een link naar het
-             overzicht */ -}}
+             alleen de onderzoeken bij dat onderwerp */ -}}
 {{- $onderwerp := .Get "onderwerp" -}}
 {{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
 {{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}
@@ -36,7 +35,4 @@
 {{ end -}}
 {{ range .Params.onderwerpen }}{{ if ne . $onderwerp }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
 {{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end }}{{ end -}}
-{{ end -}}
-{{ if $onderwerp }}
-[Bekijk alle gebruikersonderzoeken]({{ $overzicht.RelPermalink }})
 {{ end -}}

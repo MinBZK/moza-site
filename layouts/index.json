@@ -21,10 +21,13 @@
   {{- $content = replaceRE `\n#+\s*` "\n" $content -}}
   {{- /* Code blocks worden apart geïndexeerd */ -}}
   {{- $content = replaceRE "(?s)```[a-z]*\\n[^`]+```" "" $content -}}
-  {{- /* RawContent bevat de shortcodes nog als tekst; hun uitvoer zit niet in
-         de index. Van een tag blijven alleen titel en source over. */ -}}
-  {{- $content = replaceRE `(?s)\{\{[<%][^}]*?\b(?:titel|source)="([^"]*)"[^}]*?[>%]\}\}` " $1 " $content -}}
-  {{- $content = replaceRE `(?s)\{\{[<%].*?[>%]\}\}` "" $content -}}
+  {{- /* Na RenderShortcodes staat de uitvoer van {{< >}}-shortcodes er als HTML
+         in. Een autolink als <https://…> is geen tag en blijft staan. */ -}}
+  {{- $content = replaceRE `(?s)<!--.*?-->` "" $content -}}
+  {{- $content = replaceRE `</?[a-zA-Z][a-zA-Z0-9-]*(?:\s[^>]*)?/?>` " " $content -}}
+  {{- $content = replaceRE `\s*\{#[^}]+\}` "" $content -}}
+  {{- $content = replaceRE `(?m)^-{3,}\s*$` "" $content -}}
+  {{- $content = htmlUnescape $content -}}
   {{- $content = replaceRE `>\s*\[![A-Z]+\]` "" $content -}}
   {{- $content = replaceRE `^>\s*` "" $content -}}
   {{- $content = replaceRE `\n>\s*` "\n" $content -}}
@@ -118,7 +121,7 @@
         {{- end -}}
       {{- end -}}
     {{- else -}}
-      {{- $rawContent := .RawContent -}}
+      {{- $rawContent := string .RenderShortcodes -}}
       {{- $sections := split $rawContent "\n## " -}}
       {{- if eq (len $sections) 1 -}}
         {{- $code := partial "extract-code" $rawContent -}}

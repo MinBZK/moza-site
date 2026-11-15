@@ -26,6 +26,7 @@ Contactgegevens en voorkeuren één keer doorgeven, voor de hele overheid.
 {{< /kaart >}}
 {{< /kaarten >}}
 
+{{% band %}}
 ## Daarnaast werken we aan wat zakendoen makkelijker maakt
 
 {{< kaarten >}}
@@ -47,6 +48,7 @@ Regelen wie namens de onderneming iets mag doen, en met wie het bedrijf zijn geg
 - [Wallets](/onderwerpen/wallets/)
 {{< /kaart >}}
 {{< /kaarten >}}
+{{% /band %}}
 
 ## Zo volg je wat we doen en wat eraan komt
 

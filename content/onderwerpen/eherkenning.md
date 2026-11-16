@@ -1,7 +1,7 @@
 ---
 title: "eHerkenning: inloggen en machtigen"
 card_title: "eHerkenning"
-description: "Hoe inloggen en machtigen met eHerkenning werkt voor ondernemers, en wat dat betekent voor MijnOverheid Zakelijk."
+description: "Hoe ondernemers nu inloggen en machtigen met eHerkenning, en wat we daarover onderzoeken voor MijnOverheid Zakelijk."
 status: "Verkenning"
 weight: 10
 ---

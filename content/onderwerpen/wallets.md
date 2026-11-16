@@ -1,7 +1,7 @@
 ---
 title: "Wallets: inloggen en machtigen"
 card_title: "Wallets"
-description: "Wat wallets betekenen voor inloggen en machtigen door ondernemers, en wat MijnOverheid Zakelijk daarmee beproeft."
+description: "Hoe ondernemers straks met een wallet inloggen en anderen machtigen, en wat we nu al beproeven met de NL Wallet."
 status: "Verkenning"
 weight: 9
 ---

@@ -133,8 +133,17 @@ blockquote.quote {
   content: "— ";
 }
 
-/* De standaardknop heeft in licht dezelfde kleur als het blok. */
-.callout .button:not(:hover, :focus-visible) {
-  background-color: light-dark(var(--color-bg-page), var(--color-text));
-  border-color: light-dark(var(--color-bg-page), var(--color-text));
+/* De standaardknop heeft in light mode dezelfde kleur als het blok. */
+.callout .button {
+  background-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  color: light-dark(var(--color-text-inverse), var(--color-bg-page));
+
+  /* De standaard-hover is Rijksblauw: onzichtbaar op deze knop. */
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+    border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  }
 }

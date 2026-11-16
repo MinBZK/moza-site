@@ -67,6 +67,7 @@ Waar we aan werken en wanneer we wat verwachten, met een doorkijk naar 2030.
 {{< /kaart >}}
 {{< /kaarten >}}
 
+{{% band %}}
 ## Lees verder op deze site
 
 {{< kaarten lijst=true >}}
@@ -80,8 +81,8 @@ Negen organisaties tekenden de intentieverklaring. Lees wie er meedoen, wat het 
 In korte stappen, met ondernemers aan tafel en zo open mogelijk.
 {{< /kaart >}}
 {{< /kaarten >}}
+{{% /band %}}
 
-{{% band %}}
 {{< kaarten accent=true >}}
 {{< kaart titel="Werk je bij een overheidsorganisatie?" >}}
 Op deze site lees je waar we aan werken. Dat doen we graag samen met andere overheidsorganisaties. Heb je een vraag over ons werk, of wil je aansluiten?
@@ -95,4 +96,3 @@ Op deze site lees je wat we doen om zakendoen met de overheid makkelijker te mak
 - [Praktische informatie op het Ondernemersplein](https://ondernemersplein.overheid.nl/)
 {{< /kaart >}}
 {{< /kaarten >}}
-{{% /band %}}

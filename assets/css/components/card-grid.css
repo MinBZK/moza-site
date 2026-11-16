@@ -67,4 +67,8 @@
   p {
     padding-top: 0.5rem;
   }
+
+  .card-date {
+    margin-bottom: 0;
+  }
 }

@@ -5,7 +5,7 @@ aliases:
   - /presentaties/
 cascade:
   - params:
-      kaart_datum: Gepresenteerd op
+      kaart_datum: true
     target:
       kind: page
 ---

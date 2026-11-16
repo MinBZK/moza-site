@@ -71,7 +71,7 @@ We bouwen voort op wat anderen al verkend hebben. Zo volgen we het [WE BUILD-con
 > [!NOTE] Overzicht van het EBW-landschap
 > Meer details staan in ons overzicht van het EBW-landschap. Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet worden genomen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
 >
-> {{< knop >}}[Naar het overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw-landschap.html){{< /knop >}}
+> {{< knop >}}[Naar het overzicht van het EBW-landschap](https://roadmap-moza.rijksapp.dev/ebw.html){{< /knop >}}
 
 Andere bronnen:
 

@@ -50,6 +50,16 @@ Of door een bestand in de juiste `content > weekly > jjjj` map te plaatsen.
 
 Voor het ophalen van Mattermost-input als basis voor een Weekly, zie [`scripts/moza-weekly/README.md`](scripts/moza-weekly/README.md).
 
+### Gebruikersonderzoek
+
+Voeg een uitgevoerd gebruikersonderzoek toe met:
+
+```bash
+hugo new content --kind gebruikersonderzoek onderwerpen/gebruikersonderzoeken/onderzoeken/naam.md
+```
+
+Het verschijnt op de pagina gebruikersonderzoeken en op de onderwerpspagina's uit `onderwerpen`. Heeft zo'n pagina nog geen onderzoeken, zet er dan een kop, een intro en `{{% gebruikersonderzoeken onderwerp="naam" %}}` op.
+
 ### Presentatie
 
 Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Designsysteem](https://nederlandsedigitaledienst.github.io/design-system/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).

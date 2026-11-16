@@ -4,11 +4,11 @@ description: "Probeer het prototype van MijnOverheid Zakelijk zelf uit en vind d
 weight: 5
 ---
 
-Probeer de proeftuin van MijnOverheid Zakelijk zelf uit en vind de technische documentatie en broncode. Het prototype in de proeftuin gebruiken we ook voor onze [gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/) met ondernemers.
+In de proeftuin staat het prototype van MijnOverheid Zakelijk, met de laatste stand van zaken. Zo kun je zelf uitproberen waar we aan werken. Op deze pagina vind je meer achtergrond en relevante links.
 
 ## Probeer het zelf
 
-In de [proeftuin](https://proef.moza.rijksapp.nl/) probeer je uit waar we aan werken. Dit is ook de versie die we in gebruikersonderzoeken aan ondernemers voorleggen. De belangrijkste onderdelen die je er vindt:
+In de [proeftuin](https://proef.moza.rijksapp.nl/) probeer je uit waar we aan werken. Voor een [gebruikersonderzoek](/onderwerpen/gebruikersonderzoeken/) zetten we vanuit de proeftuin een versie klaar die we aan ondernemers voorleggen. De belangrijkste onderdelen die je er vindt:
 
 - **Berichtenbox:** een overzicht van berichten van de overheid, op één plek. Lees meer over [berichten](/onderwerpen/berichten/).
 - **Profielservice:** één plek om je contactvoorkeuren te beheren. Lees meer over de [profielservice](/onderwerpen/profielservice/).

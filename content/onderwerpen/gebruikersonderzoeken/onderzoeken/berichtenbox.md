@@ -3,7 +3,7 @@ title: "Berichtenbox"
 date: 2026-07-14
 uitgevoerd: "13 en 14 juli 2026"
 rapport: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-berichtenbox/"
-prototype: "https://proef.moza.rijksapp.nl/ux-onderzoek/juli-2026/"
+prototype: "https://proef.moza.rijksapp.dev/ux-onderzoek/juli-2026/"
 onderwerpen: ["berichten"]
 ---
 

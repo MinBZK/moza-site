@@ -14,15 +14,15 @@ Ook MijnOverheid Zakelijk (MOZa) gaat eHerkenning ondersteunen, naast DigiD en w
 
 ## Wat is eHerkenning?
 
-eHerkenning is geen dienst van de overheid zelf. Je schaft het inlogmiddel aan bij een [erkende leverancier](https://www.eherkenning.nl/). De afspraken waar iedereen zich aan houdt, staan in het [Afsprakenstelsel Elektronische Toegangsdiensten](https://afsprakenstelsel.etoegang.nl/). Logius beheert dat afsprakenstelsel.
+eHerkenning is geen dienst van de overheid zelf. Je schaft het inlogmiddel aan bij een [erkende leverancier](https://www.eherkenning.nl/nl/leveranciersoverzicht). De afspraken waar iedereen zich aan houdt, staan in het [Afsprakenstelsel Elektronische Toegangsdiensten](https://afsprakenstelsel.etoegang.nl/). Logius beheert dat afsprakenstelsel.
 
 Drie dingen zijn belangrijk:
 
 * **Persoonsgebonden.** Een inlogmiddel is van één persoon. Je mag het niet delen of overdragen. Iedere medewerker die namens de onderneming inlogt, heeft een eigen middel.
-* **Machtigingen per dienst.** Zonder machtiging werkt eHerkenning niet. In een machtiging staat bij welke dienstverleners en voor welke diensten iemand namens de onderneming mag inloggen.
+* **Machtigingen per dienst.** Met een machtiging kun je anderen toegang geven tot specifieke diensten. In een machtiging staat bij welke dienstverleners en voor welke diensten iemand namens de onderneming mag inloggen.
 * **Betrouwbaarheidsniveaus.** Er zijn drie niveaus: EH2+, EH3 en EH4. De dienstverlener bepaalt welk niveau nodig is. De meeste dienstverleners vragen EH3.
 
-### Zo hangt het samen
+### Zo werkt het
 
 Een voorbeeld: een onderneming met een eigenaar en een medewerker. De medewerker logt in bij een dienstverlener om iets te regelen namens de onderneming.
 

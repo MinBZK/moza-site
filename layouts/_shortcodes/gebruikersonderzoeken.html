@@ -1,0 +1,31 @@
+{{- /* Aanroepen met {{% %}}: de uitvoer is Markdown, en zo komen de h3's in
+       de inhoudsopgave. De h2 erboven schrijft de pagina zelf.
+       De onderzoeken zijn resources van de bundle. Maak er geen pagina's van:
+       dan komen ze los in de zoekindex, llms.txt en RSS.
+
+         {{% gebruikersonderzoeken %}}                        alle onderzoeken
+         {{% gebruikersonderzoeken onderwerp="portaal" %}}    alleen die bij /onderwerpen/portaal/ */ -}}
+{{- $onderwerp := .Get "onderwerp" -}}
+{{- $overzicht := site.GetPage "/onderwerpen/gebruikersonderzoeken" -}}
+{{- $onderzoeken := sort ($overzicht.Resources.Match "onderzoeken/*.md") "Date" "desc" -}}
+{{- if $onderwerp }}{{ $onderzoeken = where $onderzoeken "Params.onderwerpen" "intersect" (slice $onderwerp) }}{{ end -}}
+{{- if not $onderzoeken }}{{ errorf "gebruikersonderzoeken: geen onderzoeken gevonden voor %q (%s)" $onderwerp .Position }}{{ end -}}
+{{- range $i, $_ := $onderzoeken }}
+{{- if not .Params.rapport }}{{ errorf "gebruikersonderzoeken: %s mist rapport" .Name }}{{ end }}
+{{ if $i }}
+---
+{{ end }}
+### {{ .Title }} {#{{ path.BaseName .Name }}}
+
+*Uitgevoerd op {{ .Params.uitgevoerd }}*
+
+{{ .RawContent }}
+
+**Meer weten?**
+
+- [Lees het volledige onderzoek op gebruikersonderzoeken.nl]({{ .Params.rapport }})
+{{ with .Params.prototype }}- [Bekijk het prototype dat we gebruikten]({{ . }})
+{{ end -}}
+{{ range .Params.onderwerpen }}{{ if ne . $onderwerp }}{{ with site.GetPage (printf "/onderwerpen/%s" .) }}- [Lees meer over {{ .LinkTitle }}]({{ .RelPermalink }})
+{{ else }}{{ errorf "gebruikersonderzoeken: onderwerp %q bestaat niet" . }}{{ end }}{{ end }}{{ end -}}
+{{ end -}}

@@ -34,6 +34,8 @@ body {
   margin: 0;
   background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
   color: var(--ink);
+  --context-content-color: currentColor;
+  --context-background-color: var(--bg-start);
   font-family: var(--primitives-font-family-sans-serif);
   -webkit-font-smoothing: antialiased;
 }
@@ -119,7 +121,7 @@ strong { font-weight: 700; color: var(--ink); }
 /* ---------- Statementdia ---------- */
 
 
-.statement { font-size: 4.2cqw; display: flex; flex-direction: column; gap: 1.4cqw; font-weight: 400; }
+.statement { font-size: 4.2cqw; display: flex; flex-direction: column; gap: 1.4cqw; font-weight: 400; padding: 0; list-style: none; }
 .statement strong { font-weight: 700; color: var(--accent); }
 
 .footnote {
@@ -185,7 +187,7 @@ strong { font-weight: 700; color: var(--ink); }
   font-weight: 700;
   color: var(--ink-85);
 }
-.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-65); }
+.flow-kicker { font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-85); }
 .flow-step h3 { margin: 0; font-size: 1.8cqw; line-height: 1.15; }
 .flow-step p { margin: 0; font-size: 1.35cqw; line-height: 1.4; }
 

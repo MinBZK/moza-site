@@ -31,6 +31,10 @@ blockquote.quote {
   border-radius: var(--radius-upper-right);
   background-color: var(--color-bg-info);
 
+  &.waarschuwing {
+    background-color: var(--color-bg-warning);
+  }
+
   header {
     display: flex;
     align-items: center;

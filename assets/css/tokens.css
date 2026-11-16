@@ -25,6 +25,7 @@
   --color-bg-page: light-dark(var(--primitives-color-neutral-0), var(--primitives-color-neutral-50));
   --color-bg-hero: color-mix(in oklch, light-dark(var(--primitives-color-neutral-75), var(--primitives-color-neutral-100)) 92%, transparent);
   --color-bg-info: light-dark(var(--primitives-color-lintblauw-75), var(--primitives-color-lintblauw-200));
+  --color-bg-warning: light-dark(var(--primitives-color-warning-75), var(--primitives-color-warning-200));
   --color-bg-muted: light-dark(var(--primitives-color-neutral-25), var(--primitives-color-neutral-100));
   --color-bg-light: light-dark(var(--primitives-color-lintblauw-25), var(--primitives-color-neutral-100));
 

@@ -64,7 +64,7 @@ De basis, in `nldd-deck.css`:
 | `overline` | Klein geel label boven de titel |
 | `title`, `title-hero` | Titel; `title-hero` alleen op de titeldia |
 | `lead`, `lead-hero` | Inleidende zin onder de titel |
-| `title statement` | Drie korte zinnen, elk in een `<span>`, met één `<strong>` als geel accent per zin |
+| `title statement` | Drie korte zinnen als `<ul role="list">` met een `<li>` per zin en één `<strong>` als geel accent per zin; de `overline` erboven is dan de `<h2>` |
 | `footnote` | Toelichting met gele streep, max. twee regels |
 | `compare`, `card` | Twee kaarten naast elkaar (bijvoorbeeld nu en straks) |
 | `flow`, `flow-step` | Stappen in een rij met pijlen ertussen; het aantal kolommen volgt het aantal stappen |

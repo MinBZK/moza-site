@@ -29,7 +29,7 @@ Een voorbeeld: een onderneming met een eigenaar en een medewerker. De eigenaar m
 
 {{< diagram-wallets >}}
 
-De plaat geeft een eenvoudig beeld. Meer details staan in onze kennisbank over de EBW, onder [Meer info](#meer-info).
+De plaat geeft een eenvoudig beeld. Meer details staan in onze kennisbank over de wallet, onder [Meer info](#meer-info).
 
 Zo werkt het, van boven naar beneden:
 
@@ -68,10 +68,10 @@ We bouwen voort op wat anderen al verkend hebben. Zo volgen we het [WE BUILD-con
 
 ## Meer info
 
-> [!NOTE] Kennisbank over de EBW
-> Meer details staan in onze kennisbank over de EBW. Dat is nog een werkversie. Daar zie je welke gegevens er in elke wallet staan, hoe het stap voor stap werkt en welke keuzes een dienstverlener heeft. Ook zie je waarover nog een besluit moet worden genomen, zoals of een eigenaar bij sommige diensten toch een aparte machtiging nodig heeft.
+> [!NOTE] Kennisbank over de wallet
+> Meer details staan in onze kennisbank over de wallet. Dat is nog een werkversie. Daar zie je welke gegevens in elke wallet staan, hoe het stap voor stap werkt en welke keuzes nog open liggen.
 >
-> {{< knop >}}[Naar de kennisbank over de EBW](https://roadmap-moza.rijksapp.dev/ebw.html){{< /knop >}}
+> {{< knop >}}[Naar de kennisbank over de wallet](https://roadmap-moza.rijksapp.dev/ebw.html){{< /knop >}}
 
 Andere bronnen:
 

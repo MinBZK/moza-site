@@ -543,7 +543,7 @@ async function startWatch() {
 
 // ── Exports (voor tests) ─────────────────────────────────────────────────────
 
-export { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH };
+export { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH, ICON_PACKS };
 
 // ── CLI ──────────────────────────────────────────────────────────────────────
 

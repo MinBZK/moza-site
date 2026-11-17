@@ -1,0 +1,17 @@
+{{- $groot := .Get "groot" -}}
+{{- $lijst := .Get "lijst" -}}
+{{- $accent := .Get "accent" -}}
+{{- $gekozen := 0 -}}
+{{- range slice $groot $lijst $accent }}{{ if . }}{{ $gekozen = add $gekozen 1 }}{{ end }}{{ end -}}
+{{- if gt $gekozen 1 -}}
+  {{- errorf "kaarten: kies één van groot, lijst en accent (%s)" .Position -}}
+{{- end -}}
+{{- $inhoud := trim .Inner " \n\r\t" -}}
+{{- if not (and (hasPrefix $inhoud "<li") (hasSuffix $inhoud "</li>")) -}}
+  {{- errorf "kaarten: zet er alleen kaart-shortcodes in (%s)" .Position -}}
+{{- end -}}
+{{- $klasse := "kaarten" -}}
+{{- if $lijst }}{{ $klasse = "leeslijst" }}{{ else if $groot }}{{ $klasse = "kaarten kaarten-groot" }}{{ else if $accent }}{{ $klasse = "kaarten kaarten-accent" }}{{ end -}}
+<ul class="{{ $klasse }}" role="list">
+{{ $inhoud | safeHTML }}
+</ul>

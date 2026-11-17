@@ -101,6 +101,13 @@ body {
   margin: 0 !important;
 }
 
+.reveal-viewport.reveal-scroll #header-logo {
+  position: absolute;
+  left: 1rem;
+  transform: none;
+  height: min(100px, 18vh);
+}
+
 .logo-hidden {
   display: none !important;
 }
@@ -257,6 +264,10 @@ body:has(.reveal.paused) .presentatie-knop:focus-visible {
 
 .reveal .progress {
   pointer-events: none;
+}
+
+.reveal.overview .slides section.present {
+  outline-color: var(--rijksoverheid-grijs-donker);
 }
 
 .reveal .controls button:focus-visible {
@@ -518,13 +529,15 @@ html.tekst-vergroot .reveal:not(.overview) .progress {
   position: fixed;
 }
 
-/* Geeft reveal-deck.js een maat die met de basislettergrootte meebeweegt */
+/* Geeft reveal-deck.js een maat die met de basislettergrootte meebeweegt, en
+   vaste waarden waartegen het een gebruikersstijl voor tekstafstand herkent */
 .tekstmeter {
   position: fixed;
   top: 0;
   left: 0;
   width: 1rem;
-  height: 1rem;
   visibility: hidden;
   pointer-events: none;
+  font-size: 1rem;
+  line-height: 1;
 }

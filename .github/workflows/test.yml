@@ -12,6 +12,8 @@ concurrency:
 
 env:
   TZ: Europe/Amsterdam
+  PANDOC_VERSION: "3.11"
+  PANDOC_SHA256: 37edb3bbcf722f921a009941bf5874e2e0c09263226c9b4a2d980788cb062ab6
 
 jobs:
   scripts:
@@ -44,7 +46,13 @@ jobs:
         run: npm ci
 
       - name: Install pandoc (voor ODF-downloads)
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -sLo pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz"
+          echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c -
+          mkdir -p "${HOME}/.local/bin"
+          tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 
       - name: Run tests
         run: npm test
@@ -56,11 +64,10 @@ jobs:
         run: npm run beeld
 
   site:
-    name: Site en links
+    name: Site bouwen
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.162.1
-      HTMLTEST_VERSION: 0.17.0
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -73,6 +80,19 @@ jobs:
 
       - name: Install npm dependencies
         run: npm ci
+
+      # De hash per diagram dekt de code, de kleuren en de fontnamen. De
+      # renderer, de Mermaid-versie (package-lock) en de fontbestanden zitten er
+      # niet in; wijzigt een daarvan, dan matcht de sleutel niet en rendert alles
+      # opnieuw.
+      - name: Haal gerenderde Mermaid-diagrammen op
+        uses: actions/cache@v6
+        with:
+          path: |
+            .cache/mermaid
+            static/images/render
+          key: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'static/fonts/**') }}-${{ hashFiles('content/**/*.md', 'assets/css/tokens.css', 'assets/css/nldd-primitives.css') }}
+          restore-keys: mermaid-${{ hashFiles('scripts/render-mermaid.js', 'scripts/lib/**', 'package-lock.json', 'static/fonts/**') }}-
 
       - name: Render Mermaid SVGs
         run: npm run render-mermaid
@@ -94,18 +114,9 @@ jobs:
           rm "hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
 
-      - name: Install htmltest
-        run: |
-          curl -sLJO "https://github.com/wjdp/htmltest/releases/download/v${HTMLTEST_VERSION}/htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
-          mkdir -p "${HOME}/.local/htmltest"
-          tar -C "${HOME}/.local/htmltest" -xf "htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
-          rm "htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
-          echo "${HOME}/.local/htmltest" >> "${GITHUB_PATH}"
-
       - name: Verify installations
         run: |
           echo "Hugo: $(hugo version)"
-          echo "htmltest: $(htmltest --version)"
 
       - name: Build site
         run: hugo --gc --minify --logLevel warning
@@ -122,16 +133,66 @@ jobs:
           path: tmp/public
           retention-days: 1
 
+  links:
+    name: Links
+    runs-on: ubuntu-latest
+    needs: site
+    env:
+      HTMLTEST_VERSION: 0.17.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install htmltest
+        run: |
+          curl -sLJO "https://github.com/wjdp/htmltest/releases/download/v${HTMLTEST_VERSION}/htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
+          mkdir -p "${HOME}/.local/htmltest"
+          tar -C "${HOME}/.local/htmltest" -xf "htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
+          rm "htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz"
+          echo "${HOME}/.local/htmltest" >> "${GITHUB_PATH}"
+
+      - name: Haal de gebouwde site op
+        uses: actions/download-artifact@v8
+        with:
+          name: site
+          path: tmp/public
+
+      - name: Haal de refcache van htmltest op
+        uses: actions/cache/restore@v6
+        with:
+          path: tmp/.htmltest
+          key: htmltest-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: htmltest-
+
       # De refcache van htmltest bewaart alleen geslaagde links, dus de tweede
       # ronde controleert alleen wat de eerste keer faalde (vaak een losse 503).
       - name: Test links
         run: htmltest || { sleep 60; htmltest; }
 
+      # Ook bij een kapotte link bewaren, anders controleert de volgende run
+      # weer alle links.
+      - name: Bewaar de refcache van htmltest
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: tmp/.htmltest
+          key: htmltest-${{ github.run_id }}-${{ github.run_attempt }}
+
   a11y:
-    name: Toegankelijkheid
+    name: Toegankelijkheid (${{ matrix.naam }})
     runs-on: ubuntu-latest
     needs: site
     if: ${{ !cancelled() }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - naam: pa11y
+            toetsen: run
+          - naam: reflow en focus
+            toetsen: reflow focus
+          - naam: presentaties, koppen en svg
+            toetsen: presentaties controleer svg
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -152,7 +213,24 @@ jobs:
           path: tmp/public
 
       - name: Toets toegankelijkheid (WCAG 2.1 AA)
-        run: npm run a11y
+        env:
+          TOETSEN: ${{ matrix.toetsen }}
+        run: |
+          status=0
+          for toets in ${TOETSEN}; do
+            node "scripts/a11y/${toets}.js" || status=1
+          done
+          exit "${status}"
+
+  # De ruleset eist deze naam; hij faalt als een van de toetsen hierboven faalt.
+  a11y-resultaat:
+    name: Toegankelijkheid
+    runs-on: ubuntu-latest
+    needs: a11y
+    if: ${{ !cancelled() }}
+    steps:
+      - name: Alle toetsen geslaagd
+        run: test "${{ needs.a11y.result }}" = success
 
   downloads:
     name: Downloads en PDF/UA
@@ -175,7 +253,13 @@ jobs:
         run: npm ci
 
       - name: Install pandoc (voor de .odt-downloads)
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -sLo pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz"
+          echo "${PANDOC_SHA256}  pandoc.tar.gz" | sha256sum -c -
+          mkdir -p "${HOME}/.local/bin"
+          tar -xzf pandoc.tar.gz --strip-components=2 -C "${HOME}/.local/bin" "pandoc-${PANDOC_VERSION}/bin/pandoc"
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
 
       # De installer is IzPack en heeft een Java nodig; die staat op de runner.
       - name: Install veraPDF

@@ -1,0 +1,9 @@
+{{- $tekst := trim .Inner " \n\r\t" -}}
+{{- if not $tekst }}{{ errorf "nieuwste-weekly: linktekst ontbreekt (%s)" .Position }}{{ end -}}
+{{- with sort (where site.RegularPages "Section" "weekly") ".Date" "desc" -}}
+  {{- with index . 0 -}}
+<a href="{{ .RelPermalink }}">{{ $tekst }} {{ .Date | time.Format ":date_long" }}</a>
+  {{- end -}}
+{{- else -}}
+  {{- errorf "nieuwste-weekly: geen Weekly gevonden (%s)" .Position -}}
+{{- end -}}

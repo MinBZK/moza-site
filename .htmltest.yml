@@ -3,6 +3,7 @@ DirectoryPath: tmp/public
 # htmltest kent geen retry: één trage server is meteen een rode build.
 ExternalTimeout: 30
 HTTPConcurrencyLimit: 4
+CacheExpires: "168h"
 
 IgnoreAltEmpty: true
 

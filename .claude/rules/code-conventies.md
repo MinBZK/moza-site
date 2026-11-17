@@ -27,3 +27,8 @@
 - Description: max 160 tekens voor SEO en social media
   - Plaats belangrijkste info in eerste 69 tekens (LinkedIn limiet)
   - Hugo toont waarschuwing bij te lange descriptions
+
+## Zoekindex
+
+- Wat een bezoeker moet kunnen vinden, moet in de zoekindex staan (`layouts/index.json`, gebouwd als `public/index.json`). Valideer dat bij elke nieuwe shortcode, layout, datastructuur of soort content: bouw de site en zoek een woord uit die nieuwe tekst op in `public/index.json`.
+- Staat de tekst er niet in, pas dan de index aan in dezelfde PR. Tekst die alleen een shortcode of template toont, komt niet vanzelf in de index.

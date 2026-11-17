@@ -1,10 +1,30 @@
 import { describe, it, after } from "node:test";
 import assert from "node:assert/strict";
 import { writeFileSync, mkdirSync, rmSync } from "node:fs";
-import { join } from "node:path";
-import { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH } from "./render-mermaid.js";
+import { join, dirname } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH, ICON_PACKS } from "./render-mermaid.js";
 
 const ROOT = join(import.meta.dirname, "..");
+
+// ── iconpack ────────────────────────────────────────────────────────────────
+
+describe("NLDD-iconpack", () => {
+  const { data } = ICON_PACKS.find((pack) => pack.prefix === "nldd");
+
+  it("bevat iconen", () => {
+    assert.ok(Object.keys(data.icons).length > 0);
+  });
+
+  it("geeft elk icoon de maat van zijn viewBox", async () => {
+    const dir = dirname(fileURLToPath(import.meta.resolve("@nldd/design-system/icon")));
+    const { iconRegistry } = await import(pathToFileURL(join(dir, "icon-registry.js")).href);
+    for (const [name, svg] of iconRegistry) {
+      const [, , width, height] = svg.match(/viewBox="([^"]+)"/)[1].trim().split(/\s+/).map(Number);
+      assert.deepEqual([data.icons[name].width, data.icons[name].height], [width, height], name);
+    }
+  });
+});
 
 // ── slugify ─────────────────────────────────────────────────────────────────
 

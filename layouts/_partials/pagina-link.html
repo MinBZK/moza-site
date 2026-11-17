@@ -1,0 +1,34 @@
+{{- /* Een id dat alleen de layout van een pagina maakt, ziet deze controle niet. */ -}}
+{{- $plek := .plek -}}
+{{- $pad := .pad -}}
+{{- $u := urls.Parse $pad -}}
+{{- $href := "" -}}
+{{- if or $u.Host (path.Ext $u.Path) -}}
+  {{- $href = $pad -}}
+{{- else -}}
+  {{- $pagina := site.GetPage $u.Path -}}
+  {{- if not $pagina -}}
+    {{- with where site.Pages "RelPermalink" (printf "%s/" (strings.TrimSuffix "/" $u.Path)) }}{{ $pagina = index . 0 }}{{ end -}}
+  {{- end -}}
+  {{- with $pagina -}}
+    {{- $href = .RelPermalink -}}
+    {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
+    {{- with $u.Fragment -}}
+      {{- $anker := . -}}
+      {{- $bekend := false -}}
+      {{- /* Niet in de inhoud van de bron zoeken: de build zou op zichzelf wachten. */ -}}
+      {{- with $pagina.Fragments }}{{ $bekend = .Identifiers.Contains $anker }}{{ end -}}
+      {{- $zelf := and $.bron ($pagina.Eq $.bron) -}}
+      {{- if not (or $bekend $zelf) -}}
+        {{- $bekend = strings.Contains (partial "koppen-ids.html" $pagina.Content) (printf ` id="%s"` $anker) -}}
+      {{- end -}}
+      {{- if not $bekend -}}
+        {{- errorf "%s: anker #%s staat niet op %s" $plek $anker $u.Path -}}
+      {{- end -}}
+      {{- $href = printf "%s#%s" $href $anker -}}
+    {{- end -}}
+  {{- else -}}
+    {{- errorf "%s: pagina %q bestaat niet" $plek $pad -}}
+  {{- end -}}
+{{- end -}}
+{{- return $href -}}

@@ -293,17 +293,19 @@ function writeHash(svgPath, hash) {
 const mermaidIIFEPath = join(ROOT, "node_modules", "mermaid", "dist", "mermaid.js");
 
 // NLDD-iconen als Iconify-pack. De registry is een Map van naam naar SVG-string
-// (viewBox 0 0 24 24, fill="currentColor"); Iconify wil alleen de inhoud van de <svg>.
+// (fill="currentColor"); Iconify wil alleen de inhoud van de <svg>. De maat komt
+// uit de viewBox: het raster verschilt per versie van het designsysteem.
 async function loadNlddIconPack() {
   const iconDir = dirname(fileURLToPath(import.meta.resolve("@nldd/design-system/icon")));
   const { iconRegistry } = await import(pathToFileURL(join(iconDir, "icon-registry.js")).href);
   const { aliases } = await import(pathToFileURL(join(iconDir, "icon-aliases.js")).href);
   const icons = {};
   for (const [name, svg] of iconRegistry) {
-    icons[name] = { body: svg.replace(/^<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").trim() };
+    const [, , width, height] = svg.match(/viewBox="([^"]+)"/)[1].trim().split(/\s+/).map(Number);
+    icons[name] = { body: svg.replace(/^<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").trim(), width, height };
   }
   const aliasEntries = Object.fromEntries(Object.entries(aliases).map(([alias, parent]) => [alias, { parent }]));
-  return { prefix: "nldd", data: { prefix: "nldd", icons, aliases: aliasEntries, width: 24, height: 24 } };
+  return { prefix: "nldd", data: { prefix: "nldd", icons, aliases: aliasEntries } };
 }
 
 const ICON_PACKS = [await loadNlddIconPack()];
@@ -541,7 +543,7 @@ async function startWatch() {
 
 // ── Exports (voor tests) ─────────────────────────────────────────────────────
 
-export { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH };
+export { slugify, extractMermaidBlocks, contentSubdir, parseTokens, resolveToken, oklchToHex, buildThemes, resolveDiagramTokens, postProcessSVG, computeHash, TOKENS_HASH, ICON_PACKS };
 
 // ── CLI ──────────────────────────────────────────────────────────────────────
 

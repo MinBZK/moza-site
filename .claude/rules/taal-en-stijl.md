@@ -16,10 +16,22 @@ Deze regels gelden voor alle content en communicatie.
 - Houd alinea's kort (max 3-4 zinnen)
 - Spreek de lezer aan met "je" (informeel maar respectvol)
 
+## Vanuit onszelf
+
+- Schrijf vanuit wat wij doen en nog niet weten, niet vanuit wat een ander (nog) niet deed. Niet: "een verkenning bij Logius ... die zijn nog steeds niet beantwoord", wel: "een eerdere verkenning binnen MOZa ... daar hebben we nog geen antwoorden op gevonden".
+- Vermijd woorden die als verwijt kunnen klinken, zoals "nog steeds niet", "blijkbaar" en "al langer". Partners lezen mee.
+
 ## Naamgeving services
 
 - Gebruik "profielservice" (één woord), niet "profiel service"
 - Hetzelfde geldt voor andere services: "notificatieservice", niet "notificatie service"
+- "Profieldienst" is het onderwerp als geheel, net als "notificatiedienst". "Profielservice" is de software zelf, zoals een versie die in de proeftuin draait. De link blijft `/onderwerpen/profielservice/`.
+
+## Woordkeus
+
+- "Dienstverlener" voor de overheidsorganisatie die een bouwsteen gebruikt, niet "afnemer" of "uitvoeringsorganisatie".
+- "Onderdeel", niet "component". In technische stukken mag "component" wel.
+- "Uitproberen", niet "beproeven".
 
 ## Vaste teksten
 

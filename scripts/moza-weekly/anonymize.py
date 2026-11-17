@@ -195,9 +195,37 @@ _GITHUB_ATTRIBUTIE_RE = re.compile(r"\bby\s+[\w][\w.-]{2,}\s+·")
 
 
 # "Truus Bakker" werd anders "[collega] Bakker": nog steeds herleidbaar.
-# Alleen een direct volgend hoofdletterwoord zonder leesteken ertussen, zodat
-# "[collega] van Logius" en "[collega]. Deze week" heel blijven.
-_ACHTERNAAM_RE = re.compile(r"(\[collega\]) +([A-Z][\w'’-]+)")
+# Alleen een direct volgend hoofdletterwoord, eventueel na een tussenvoegsel van
+# twee woorden ("van der", "op de"), zonder leesteken ertussen. Een los "van" of
+# "de" geldt niet als tussenvoegsel, zodat "[collega] van Logius" en
+# "[collega]. Deze week" heel blijven.
+_ACHTERNAAM_RE = re.compile(
+    r"(\[collega\]) +"
+    r"(?:(?:van +(?:der|den|de|het|['’]t)|in +['’]t|op +de|uit +de) +)?"
+    r"[A-Z][\w'’-]+"
+)
+
+# Het deel van een URL tot de eerste schuine streep: een eventueel
+# gebruikersdeel plus de hostnaam met poort. In de hostnaam blijft de
+# naamredactie af, zodat de link heel blijft; het pad, de query en het
+# gebruikersdeel worden wel geredigeerd.
+_URL_AUTHORITY_RE = re.compile(r"(https?://(?:[^/\s?#<>()\[\]]*@)?[^/\s?#<>()\[\]@]+)")
+_URL_GEBRUIKERSDEEL_RE = re.compile(r"(https?://)([^/\s?#<>()\[\]]*)(@)")
+
+
+def _redact_names(text: str, name_re: "re.Pattern[str]") -> str:
+    delen = _URL_AUTHORITY_RE.split(text)
+
+    def zonder_naam(match: "re.Match[str]") -> str:
+        return match.group(1) + name_re.sub("[collega]", match.group(2)) + match.group(3)
+
+    # Oneven plekken zijn de URL-delen (capture group van de split).
+    for i, deel in enumerate(delen):
+        if i % 2 == 0:
+            delen[i] = name_re.sub("[collega]", deel)
+        else:
+            delen[i] = _URL_GEBRUIKERSDEEL_RE.sub(zonder_naam, deel)
+    return "".join(delen)
 
 
 def _redact_message(message: str, name_re: "re.Pattern[str] | None") -> str:
@@ -206,7 +234,7 @@ def _redact_message(message: str, name_re: "re.Pattern[str] | None") -> str:
     redacted = MENTION_RE.sub("[@collega]", message)
     redacted = _GITHUB_ATTRIBUTIE_RE.sub("by [collega] ·", redacted)
     if name_re is not None:
-        redacted = name_re.sub("[collega]", redacted)
+        redacted = _redact_names(redacted, name_re)
         redacted = _ACHTERNAAM_RE.sub(r"\1", redacted)
     return redacted
 

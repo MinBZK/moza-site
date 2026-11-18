@@ -62,7 +62,7 @@ Het verschijnt op de pagina gebruikersonderzoeken en op de onderwerpspagina's ui
 
 ### Presentatie
 
-Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Designsysteem](https://nederlandsedigitaledienst.github.io/design-system/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).
+Presentaties gebruiken de layout `nldd-deck`, met componenten uit het [NLDD Designsysteem](https://design.digitaledienst.overheid.nl/). Ze openen in leesmodus; met <kbd>P</kbd> zet je de presentatiemodus aan, die dia's per klik opbouwt. De oudere MOZa Pulse-presentaties draaien nog op [Reveal.js](https://revealjs.com/).
 
 Maak een nieuwe presentatie:
 

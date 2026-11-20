@@ -30,7 +30,7 @@ Hoe we gebruikersonderzoek doen, lees je op de pagina [Gebruikersonderzoeken](/o
 
 We hebben de principes in twee delen verdeeld:
 
-### [Waarom: wat wij belangrijk vinden](ontwerp-wat)
+### [Waarom: wat we belangrijk vinden](ontwerp-wat)
 
 Het _Waarom_ legt uit welke principes we volgen en waarom. Waarom zijn toegankelijkheid en de Rijkshuisstijl zo belangrijk? En hoe ontwerpen we voor nu en voor later?
 

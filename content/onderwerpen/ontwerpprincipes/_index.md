@@ -15,7 +15,9 @@ Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontw
 Bij elke ontwerpkeuze volgen we daarnaast deze principes:
 
 1. [Ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst)
+   - 1.1 [Hoe we ontwerpen: direct in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai)
 2. [Leren wat echt werkt met gebruikersonderzoek](#gebruikersonderzoek-leren-wat-echt-werkt)
+   - 2.1 [Het prototype](#het-prototype)
 3. [Ontwerpfundamenten](#ontwerpfundamenten)
    - 3.1 [Toegankelijkheid](#toegankelijkheid)
    - 3.2 [De Rijkshuisstijl](#de-rijkshuisstijl)
@@ -28,27 +30,7 @@ We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst k
 - **Aannames toetsen bij gebruikers.** Over de toekomst weten we nog niet alles. Daarom schrijven we onze aannames op en toetsen we die zo snel mogelijk bij gebruikers.
 - **Kleine stappen in de goede richting.** Elke stap levert nu iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij dat toekomstbeeld.
 
-## 2. Gebruikersonderzoek: leren wat echt werkt {#gebruikersonderzoek-leren-wat-echt-werkt}
-
-We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak.
-
-Wat we leren, passen we direct toe in het ontwerp. Daarna testen we opnieuw. Zo past wat we maken bij wat gebruikers nodig hebben en verwachten.
-
-Hoe we gebruikersonderzoek doen, lees je op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). Daar publiceren we ook de resultaten.
-
-Bij al deze onderzoeken gebruiken we een prototype: een website die echt werkt. Zo ervaren gebruikers hoe MijnOverheid Zakelijk zou kunnen werken, in plaats van dat ze naar plaatjes kijken.
-
-### Het prototype
-
-Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype proberen we nieuwe ideeën uit en toetsen we ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet. De code is daarom niet bedoeld om zo in een echt product te gebruiken.
-
-- **Dezelfde techniek als een echte website.** We bouwen het prototype met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. We schrijven de code in [TypeScript](https://www.typescriptlang.org/). Die taal vangt fouten op voordat de website online staat.
-- **Stap voor stap beter.** We verbeteren het ontwerp stap voor stap, op basis van wat we leren in onderzoek. We passen bouwstenen en pagina's aan. We beginnen niet steeds opnieuw.
-- **Begrijpelijke taal.** Alle teksten in het prototype schrijven we op taalniveau B1, zodat zoveel mogelijk mensen ze begrijpen.
-
-Het prototype staat op [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/). Dit is dezelfde versie die we in gebruikersonderzoeken aan ondernemers voorleggen.
-
-## Ontwerpen in code, met hulp van AI
+### 1.1 Hoe we ontwerpen: direct in code, met hulp van AI {#ontwerpen-in-code-met-hulp-van-ai}
 
 We ontwerpen direct in de code van de website, niet in een ontwerpprogramma zoals Figma of Sketch. Zo hoeft niemand een ontwerp nog om te zetten naar code. Dat scheelt tijd, er gaat geen informatie verloren en het resultaat wijkt niet af van het ontwerp. Wat we ontwerpen, is meteen wat de gebruiker ziet.
 
@@ -64,6 +46,26 @@ Dat heeft deze voordelen:
 Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een assistent die werkt met kunstmatige intelligentie (AI). De assistent neemt het ontwerpen niet over, maar helpt ons sneller te werken. De ontwerper bepaalt de richting, maakt de keuzes en bewaakt de kwaliteit. Claude helpt ons bijvoorbeeld bij het redigeren van teksten en bij een gebruikerservaring (UX) die overal hetzelfde is.
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
+
+## 2. Gebruikersonderzoek: leren wat echt werkt {#gebruikersonderzoek-leren-wat-echt-werkt}
+
+We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak.
+
+Wat we leren, passen we direct toe in het ontwerp. Daarna testen we opnieuw. Zo past wat we maken bij wat gebruikers nodig hebben en verwachten.
+
+Hoe we gebruikersonderzoek doen, lees je op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). Daar publiceren we ook de resultaten.
+
+Bij al deze onderzoeken gebruiken we een prototype: een website die echt werkt. Zo ervaren gebruikers hoe MijnOverheid Zakelijk zou kunnen werken, in plaats van dat ze naar plaatjes kijken.
+
+### 2.1 Het prototype {#het-prototype}
+
+Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype proberen we nieuwe ideeën uit en toetsen we ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet. De code is daarom niet bedoeld om zo in een echt product te gebruiken.
+
+- **Dezelfde techniek als een echte website.** We bouwen het prototype met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. We schrijven de code in [TypeScript](https://www.typescriptlang.org/). Die taal vangt fouten op voordat de website online staat.
+- **Stap voor stap beter.** We verbeteren het ontwerp stap voor stap, op basis van wat we leren in onderzoek. We passen bouwstenen en pagina's aan. We beginnen niet steeds opnieuw.
+- **Begrijpelijke taal.** Alle teksten in het prototype schrijven we op taalniveau B1, zodat zoveel mogelijk mensen ze begrijpen.
+
+Het prototype staat op [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/). Dit is dezelfde versie die we in gebruikersonderzoeken aan ondernemers voorleggen.
 
 ## 3. Ontwerpfundamenten {#ontwerpfundamenten}
 

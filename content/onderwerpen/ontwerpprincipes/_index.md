@@ -10,7 +10,7 @@ aliases:
   - /onderwerpen/ontwerpprincipes/ontwerp-wat/
 ---
 
-Op deze pagina lees je hoe we MijnOverheid Zakelijk ontwerpen. We beginnen bij de gebruiker: met gebruikersonderzoek en een werkend prototype toetsen we onze ideeën. We ontwerpen direct in code, met hulp van AI. En bij elke ontwerpkeuze volgen we een paar vaste ontwerpprincipes.
+Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. We ontwerpen voor ondernemers, en toetsen onze ideeën steeds bij hen. Bij elke ontwerpkeuze volgen we daarnaast een paar principes: we [ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai), [toegankelijkheid](#toegankelijkheid) is de basis, we volgen [de Rijkshuisstijl](#de-rijkshuisstijl) en we [ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst).
 
 ## De gebruiker staat voorop
 

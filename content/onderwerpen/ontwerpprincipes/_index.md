@@ -16,8 +16,7 @@ Bij elke ontwerpkeuze volgen we daarnaast deze principes:
 
 1. [Ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst)
 2. [Leren wat echt werkt met gebruikersonderzoek](#gebruikersonderzoek-leren-wat-echt-werkt)
-3. [Ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai)
-4. [Ontwerpfundamenten](#ontwerpfundamenten)
+3. [Ontwerpfundamenten](#ontwerpfundamenten)
    1. [Toegankelijkheid](#toegankelijkheid)
    2. [De Rijkshuisstijl](#de-rijkshuisstijl)
 

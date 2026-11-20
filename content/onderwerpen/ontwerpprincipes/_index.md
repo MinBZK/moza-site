@@ -10,15 +10,11 @@ aliases:
   - /onderwerpen/ontwerpprincipes/ontwerp-wat/
 ---
 
-Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. We ontwerpen voor ondernemers, en toetsen onze ideeën steeds bij hen. Bij elke ontwerpkeuze volgen we daarnaast een paar principes: we [ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai), [toegankelijkheid](#toegankelijkheid) is de basis, we volgen [de Rijkshuisstijl](#de-rijkshuisstijl) en we [ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst).
+Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontwerpen begint met luisteren. Daarom betrekken we ondernemers vanaf het begin bij het ontwerpen. We kijken hoe hun werkdag eruitziet. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen? Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor hen.
 
-## De gebruiker staat voorop
+Bij elke ontwerpkeuze volgen we daarnaast een paar principes: we [ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai), [toegankelijkheid](#toegankelijkheid) is de basis, we volgen [de Rijkshuisstijl](#de-rijkshuisstijl) en we [ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst).
 
-Goed ontwerpen begint met luisteren. Daarom betrekken we gebruikers vanaf het begin bij het ontwerpen. Eerst kijken we hoe hun werkdag eruitziet. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen?
-
-We verzamelen zowel problemen als behoeften en wensen. Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor onze gebruikers, en delen we dat beeld met elkaar.
-
-### Gebruikersonderzoek: leren wat echt werkt
+## Gebruikersonderzoek: leren wat echt werkt
 
 We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak. Daarbij werken we met een prototype dat echt werkt.
 
@@ -26,7 +22,7 @@ Wat we leren, passen we direct toe in het ontwerp. Daarna testen we opnieuw. Zo 
 
 Hoe we gebruikersonderzoek doen, lees je op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). Daar publiceren we ook de resultaten.
 
-#### Het prototype
+### Het prototype
 
 Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype proberen we nieuwe ideeën uit en toetsen we ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet. De code is daarom niet bedoeld om zo in een echt product te gebruiken.
 

@@ -30,11 +30,13 @@ We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst k
 
 ## 2. Gebruikersonderzoek: leren wat echt werkt {#gebruikersonderzoek-leren-wat-echt-werkt}
 
-We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak. Daarbij werken we met een prototype dat echt werkt.
+We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak.
 
 Wat we leren, passen we direct toe in het ontwerp. Daarna testen we opnieuw. Zo past wat we maken bij wat gebruikers nodig hebben en verwachten.
 
 Hoe we gebruikersonderzoek doen, lees je op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). Daar publiceren we ook de resultaten.
+
+Bij al deze onderzoeken gebruiken we een prototype: een website die echt werkt. Zo ervaren gebruikers hoe MijnOverheid Zakelijk zou kunnen werken, in plaats van dat ze naar plaatjes kijken.
 
 ### Het prototype
 

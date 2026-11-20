@@ -38,7 +38,7 @@ Het prototype staat op [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidz
 
 ## Ontwerpen in code, met hulp van AI
 
-We ontwerpen niet in een ontwerpprogramma zoals Figma of Sketch, maar direct in de code van de website. Een tekenprogramma voegt een extra stap toe: het ontwerp moet daarna nog worden omgezet in code. Die stap kost tijd. Er gaat informatie verloren, en het resultaat wijkt vaak af. Als we direct in code werken, is die stap niet nodig. Wat we ontwerpen, is meteen wat de gebruiker ziet.
+We ontwerpen direct in de code van de website, niet in een ontwerpprogramma zoals Figma of Sketch. Zo hoeft niemand een ontwerp nog om te zetten naar code. Dat scheelt tijd, er gaat geen informatie verloren en het resultaat wijkt niet af van het ontwerp. Wat we ontwerpen, is meteen wat de gebruiker ziet.
 
 Dat heeft deze voordelen:
 

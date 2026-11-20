@@ -65,7 +65,7 @@ De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We 
 
 ## Ontwerpfundamenten
 
-De basis van ons ontwerp bestaat uit een paar vaste fundamenten. Die bouwen we stap voor stap uit. Zo groeien we toe naar een volwaardig design systeem: een gedeelde set afspraken en bouwstenen die het hele team gebruikt.
+De basis van ons ontwerp bestaat uit een paar vaste fundamenten. Die bouwen we stap voor stap uit. Zo kunnen we toe groeien naar een volwaardig design systeem: een gedeelde set afspraken en bouwstenen die het hele team gebruikt.
 
 ### Toegankelijkheid
 

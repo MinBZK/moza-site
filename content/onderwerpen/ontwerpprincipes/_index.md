@@ -53,9 +53,7 @@ Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een a
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
 
-## Ontwerpprincipes
-
-### Toegankelijkheid
+## Toegankelijkheid
 
 Iedereen moet een overheidswebsite kunnen gebruiken. Ook mensen met een beperking. Toegankelijkheid is daarom geen extraatje achteraf. We houden er vanaf het begin rekening mee, bij het ontwerpen en bij het bouwen.
 
@@ -64,11 +62,11 @@ De regels voor digitale toegankelijkheid staan in de Europese norm [EN 301 549](
 - **Eerst de juiste HTML.** We gebruiken [het juiste HTML-element voor elke functie](https://developer.mozilla.org/en-US/curriculum/core/semantic-html/). Zo begrijpt een schermlezer de pagina. [ARIA](https://www.w3.org/TR/wai-aria/#introroles) gebruiken we alleen als HTML het zelf niet kan.
 - **Alles werkt met toetsenbord en spraak.** Je ziet altijd waar je bent op de pagina.
 
-### De Rijkshuisstijl
+## De Rijkshuisstijl
 
 Het ontwerp volgt zoveel mogelijk [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de huisstijl van de Rijksoverheid. Gebruikers herkennen die, en dat geeft vertrouwen. We nemen het lettertype, de kleuren en de vaste waarden (design tokens) over. Ook gebruiken we de bouwstenen van de [Rijkshuisstijl Community](https://rijkshuisstijl-community.vercel.app/), zoals knoppen, formulieren en tabellen. Alleen als iets daar niet in staat, maken we zelf een oplossing.
 
-### Ontwerpen voor nu en voor later
+## Ontwerpen voor nu en voor later
 
 Bij het ontwerpen kijken we steeds naar twee dingen. Wat kunnen we nu bouwen en testen? En waar willen we uiteindelijk naartoe? Dat einddoel geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
 

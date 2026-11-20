@@ -17,10 +17,10 @@ Bij elke ontwerpkeuze volgen we daarnaast deze principes:
 1. [Ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst)
 2. [Leren wat echt werkt met gebruikersonderzoek](#gebruikersonderzoek-leren-wat-echt-werkt)
 3. [Ontwerpfundamenten](#ontwerpfundamenten)
-   1. [Toegankelijkheid](#toegankelijkheid)
-   2. [De Rijkshuisstijl](#de-rijkshuisstijl)
+   - 3.1 [Toegankelijkheid](#toegankelijkheid)
+   - 3.2 [De Rijkshuisstijl](#de-rijkshuisstijl)
 
-## Ontwerpen voor de toekomst
+## 1. Ontwerpen voor de toekomst {#ontwerpen-voor-de-toekomst}
 
 We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst kan werken. Dat toekomstbeeld geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
 
@@ -28,7 +28,7 @@ We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst k
 - **Aannames toetsen bij gebruikers.** Over de toekomst weten we nog niet alles. Daarom schrijven we onze aannames op en toetsen we die zo snel mogelijk bij gebruikers.
 - **Kleine stappen in de goede richting.** Elke stap levert nu iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij dat toekomstbeeld.
 
-## Gebruikersonderzoek: leren wat echt werkt
+## 2. Gebruikersonderzoek: leren wat echt werkt {#gebruikersonderzoek-leren-wat-echt-werkt}
 
 We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak. Daarbij werken we met een prototype dat echt werkt.
 
@@ -63,11 +63,11 @@ Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een a
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
 
-## Ontwerpfundamenten
+## 3. Ontwerpfundamenten {#ontwerpfundamenten}
 
 De basis van ons ontwerp bestaat uit een paar vaste fundamenten. Die bouwen we stap voor stap uit. Zo kunnen we toe groeien naar een volwaardig design systeem: een gedeelde set afspraken en bouwstenen die het hele team gebruikt.
 
-### Toegankelijkheid
+### 3.1 Toegankelijkheid {#toegankelijkheid}
 
 Iedereen moet een overheidswebsite kunnen gebruiken. Ook mensen met een beperking. Toegankelijkheid is daarom geen extraatje achteraf. We houden er vanaf het begin rekening mee, bij het ontwerpen en bij het bouwen.
 
@@ -76,6 +76,6 @@ De regels voor digitale toegankelijkheid staan in de Europese norm [EN 301 549](
 - **Eerst de juiste HTML.** We gebruiken [het juiste HTML-element voor elke functie](https://developer.mozilla.org/en-US/curriculum/core/semantic-html/). Zo begrijpt een schermlezer de pagina. [ARIA](https://www.w3.org/TR/wai-aria/#introroles) gebruiken we alleen als HTML het zelf niet kan.
 - **Alles werkt met toetsenbord en spraak.** Je ziet altijd waar je bent op de pagina.
 
-### De Rijkshuisstijl
+### 3.2 De Rijkshuisstijl {#de-rijkshuisstijl}
 
 Het ontwerp volgt zoveel mogelijk [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de huisstijl van de Rijksoverheid. Gebruikers herkennen die, en dat geeft vertrouwen. We nemen het lettertype, de kleuren en de vaste waarden (design tokens) over. Ook gebruiken we de bouwstenen van de [Rijkshuisstijl Community](https://rijkshuisstijl-community.vercel.app/), zoals knoppen, formulieren en tabellen. Alleen als iets daar niet in staat, maken we zelf een oplossing.

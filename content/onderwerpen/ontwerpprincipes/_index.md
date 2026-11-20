@@ -12,15 +12,7 @@ aliases:
 
 Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontwerpen begint met luisteren. Daarom betrekken we ondernemers vanaf het begin bij het ontwerpen. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen? We verzamelen zowel problemen als behoeften en wensen. Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor onze gebruikers, en delen we dat beeld met elkaar.
 
-Bij elke ontwerpkeuze volgen we daarnaast deze principes:
-
-1. [Ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst)
-   - 1.1 [Hoe we ontwerpen: direct in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai)
-2. [Leren wat echt werkt met gebruikersonderzoek](#gebruikersonderzoek-leren-wat-echt-werkt)
-   - 2.1 [Het prototype](#het-prototype)
-3. [Ontwerpfundamenten](#ontwerpfundamenten)
-   - 3.1 [Toegankelijkheid](#toegankelijkheid)
-   - 3.2 [De Rijkshuisstijl](#de-rijkshuisstijl)
+Bij elke ontwerpkeuze volgen we daarnaast drie principes: ontwerpen voor de toekomst, leren van gebruikersonderzoek en vaste ontwerpfundamenten.
 
 ## 1. Ontwerpen voor de toekomst {#ontwerpen-voor-de-toekomst}
 

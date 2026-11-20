@@ -10,7 +10,7 @@ aliases:
   - /onderwerpen/ontwerpprincipes/ontwerp-wat/
 ---
 
-Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontwerpen begint met luisteren. Daarom betrekken we ondernemers vanaf het begin bij het ontwerpen. We kijken hoe hun werkdag eruitziet. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen? Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor hen.
+Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontwerpen begint met luisteren. Daarom betrekken we ondernemers vanaf het begin bij het ontwerpen. We kijken hoe hun werkdag eruitziet. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen? We verzamelen zowel problemen als behoeften en wensen. Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor onze gebruikers, en delen we dat beeld met elkaar.
 
 Bij elke ontwerpkeuze volgen we daarnaast deze principes:
 

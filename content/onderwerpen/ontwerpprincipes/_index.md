@@ -12,7 +12,22 @@ aliases:
 
 Bij het ontwerpen van MijnOverheid Zakelijk staat de gebruiker voorop. Goed ontwerpen begint met luisteren. Daarom betrekken we ondernemers vanaf het begin bij het ontwerpen. We kijken hoe hun werkdag eruitziet. Waar lopen ze tegenaan? Wat kost onnodig veel tijd of geeft ergernis? En waar liggen kansen? Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor hen.
 
-Bij elke ontwerpkeuze volgen we daarnaast een paar principes: we [ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai), [toegankelijkheid](#toegankelijkheid) is de basis, we volgen [de Rijkshuisstijl](#de-rijkshuisstijl) en we [ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst).
+Bij elke ontwerpkeuze volgen we daarnaast deze principes:
+
+1. [Ontwerpen voor de toekomst](#ontwerpen-voor-de-toekomst)
+2. [Leren wat echt werkt met gebruikersonderzoek](#gebruikersonderzoek-leren-wat-echt-werkt)
+3. [Ontwerpen in code, met hulp van AI](#ontwerpen-in-code-met-hulp-van-ai)
+4. [Ontwerpfundamenten](#ontwerpfundamenten)
+   1. [Toegankelijkheid](#toegankelijkheid)
+   2. [De Rijkshuisstijl](#de-rijkshuisstijl)
+
+## Ontwerpen voor de toekomst
+
+We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst kan werken. Dat toekomstbeeld geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
+
+- **Het toekomstbeeld als kompas.** Sommige oplossingen kunnen nu nog niet. Toch ontwerpen we er alvast voor. Zo laten we zien wat mogelijk is, en zijn we klaar als het wel kan.
+- **Aannames toetsen bij gebruikers.** Over de toekomst weten we nog niet alles. Daarom schrijven we onze aannames op en toetsen we die zo snel mogelijk bij gebruikers.
+- **Kleine stappen in de goede richting.** Elke stap levert nu iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij dat toekomstbeeld.
 
 ## Gebruikersonderzoek: leren wat echt werkt
 
@@ -49,7 +64,9 @@ Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een a
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
 
-## Toegankelijkheid
+## Ontwerpfundamenten
+
+### Toegankelijkheid
 
 Iedereen moet een overheidswebsite kunnen gebruiken. Ook mensen met een beperking. Toegankelijkheid is daarom geen extraatje achteraf. We houden er vanaf het begin rekening mee, bij het ontwerpen en bij het bouwen.
 
@@ -58,14 +75,6 @@ De regels voor digitale toegankelijkheid staan in de Europese norm [EN 301 549](
 - **Eerst de juiste HTML.** We gebruiken [het juiste HTML-element voor elke functie](https://developer.mozilla.org/en-US/curriculum/core/semantic-html/). Zo begrijpt een schermlezer de pagina. [ARIA](https://www.w3.org/TR/wai-aria/#introroles) gebruiken we alleen als HTML het zelf niet kan.
 - **Alles werkt met toetsenbord en spraak.** Je ziet altijd waar je bent op de pagina.
 
-## De Rijkshuisstijl
+### De Rijkshuisstijl
 
 Het ontwerp volgt zoveel mogelijk [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de huisstijl van de Rijksoverheid. Gebruikers herkennen die, en dat geeft vertrouwen. We nemen het lettertype, de kleuren en de vaste waarden (design tokens) over. Ook gebruiken we de bouwstenen van de [Rijkshuisstijl Community](https://rijkshuisstijl-community.vercel.app/), zoals knoppen, formulieren en tabellen. Alleen als iets daar niet in staat, maken we zelf een oplossing.
-
-## Ontwerpen voor de toekomst
-
-We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst kan werken. Dat toekomstbeeld geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
-
-- **Het toekomstbeeld als kompas.** Sommige oplossingen kunnen nu nog niet. Toch ontwerpen we er alvast voor. Zo laten we zien wat mogelijk is, en zijn we klaar als het wel kan.
-- **Aannames toetsen bij gebruikers.** Over de toekomst weten we nog niet alles. Daarom schrijven we onze aannames op en toetsen we die zo snel mogelijk bij gebruikers.
-- **Kleine stappen in de goede richting.** Elke stap levert nu iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij dat toekomstbeeld.

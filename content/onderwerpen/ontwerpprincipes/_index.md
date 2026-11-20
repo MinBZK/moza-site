@@ -53,7 +53,3 @@ Dat heeft deze voordelen:
 Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een assistent die werkt met kunstmatige intelligentie (AI). De assistent neemt het ontwerpen niet over, maar helpt ons sneller te werken. De ontwerper bepaalt de richting, maakt de keuzes en bewaakt de kwaliteit. Claude helpt ons bijvoorbeeld bij het redigeren van teksten en bij een gebruikerservaring (UX) die overal hetzelfde is.
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
-
-## De ontwerpprincipes
-
-Bij elke ontwerpkeuze volgen we drie principes: toegankelijkheid, de Rijkshuisstijl, en ontwerpen voor nu en voor later. Waarom die belangrijk zijn, lees je op de pagina [Waarom: wat we belangrijk vinden](ontwerp-wat).

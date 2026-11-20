@@ -38,10 +38,15 @@ Dit deel is voor iedereen die wil weten _waarom_ het prototype zo wordt gemaakt.
 
 ### [Hoe: uitgangspunten bij het ontwerpen](ontwerp-hoe)
 
-Het _Hoe_ beschrijft de uitgangspunten die we volgen bij het ontwerpen. Waar is het prototype voor? Waarom ontwerpen we direct in code, en hoe helpt AI daarbij? En hoe zorgen we dat onze teksten overal op elkaar lijken?
+Het _Hoe_ beschrijft de uitgangspunten die we volgen bij het ontwerpen. Waarom ontwerpen we direct in code, en hoe helpt AI daarbij? En hoe zorgen we dat onze teksten overal op elkaar lijken?
 
 Dit deel is voor iedereen die aan het prototype werkt, of wil weten hoe wij werken.
 
 ## Prototype
 
-[Hier vind je het prototype van MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/). Dit is dezelfde versie die we aan gebruikers laten zien tijdens de onderzoeken die we met gebruikers uitvoeren om onze ontwerpen te testen: [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/)
+Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype proberen we nieuwe ideeën uit en toetsen we ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet. De code is daarom niet bedoeld om zo in een echt product te gebruiken.
+
+- **Dezelfde techniek als een echte website.** We bouwen het prototype met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. We schrijven de code in [TypeScript](https://www.typescriptlang.org/). Die taal vangt fouten op voordat de website online staat.
+- **Stap voor stap beter.** We verbeteren het ontwerp stap voor stap, op basis van wat we leren in onderzoek. We passen bouwstenen en pagina's aan. We beginnen niet steeds opnieuw.
+
+Het prototype staat op [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/). Dit is dezelfde versie die we in gebruikersonderzoeken aan ondernemers voorleggen.

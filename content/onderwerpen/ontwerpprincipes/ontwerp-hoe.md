@@ -5,14 +5,7 @@ weight: 2
 description: "Het “Hoe” beschrijft de uitgangspunten die wij volgen bij het ontwerpen van het prototype."
 ---
 
-Bij het ontwerpen staat de gebruiker voorop. Daarnaast volgen wij een aantal uitgangspunten. Die gaan over het prototype, ontwerpen in code met hulp van AI en hoe wij schrijven.
-
-## Het prototype
-
-Het prototype is geen afgewerkt product. Het is een hulpmiddel om te testen en te praten. Met het prototype proberen wij nieuwe ideeën uit en toetsen wij ontwerpkeuzes in gebruikersonderzoek. Ook maakt het gesprekken met belanghebbenden concreet. De code is daarom niet bedoeld om zo in een echt product te gebruiken.
-
-- **Dezelfde techniek als een echte website.** Wij bouwen het prototype met [Next.js](https://nextjs.org/) en [React](https://react.dev/). Dat zijn veelgebruikte hulpmiddelen om websites te maken. Wij schrijven de code in [TypeScript](https://www.typescriptlang.org/). Die taal vangt fouten op voordat de website online staat.
-- **Stap voor stap beter.** Wij verbeteren het ontwerp stap voor stap, op basis van wat wij leren in onderzoek. Wij passen bouwstenen en pagina's aan. Wij beginnen niet steeds opnieuw.
+Bij het ontwerpen staat de gebruiker voorop. Daarnaast volgen wij een aantal uitgangspunten. Die gaan over ontwerpen in code met hulp van AI en over hoe wij schrijven.
 
 ## Ontwerpen in code, met hulp van AI
 

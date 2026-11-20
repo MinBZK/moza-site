@@ -18,7 +18,7 @@ Goed ontwerpen begint met luisteren. Daarom betrekken we gebruikers vanaf het be
 
 We verzamelen zowel problemen als behoeften en wensen. Zo krijgen we een duidelijk beeld van wat echt belangrijk is voor onze gebruikers, en delen we dat beeld met elkaar.
 
-### Gebruikersonderzoek
+### Gebruikersonderzoek: leren wat echt werkt
 
 We leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebruikersonderzoek. Zo controleren we of onze aannames kloppen. Ook horen we wat gebruikers vinden van de functies, het gemak en de stappen in een taak. Daarbij werken we met een prototype dat echt werkt.
 

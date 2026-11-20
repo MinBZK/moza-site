@@ -154,15 +154,18 @@
 .rm-verkenning {
   background: light-dark(var(--primitives-color-mark-100), var(--primitives-color-mark-200));
   color: var(--primitives-color-mark-800);
+  border: 1px solid var(--primitives-color-mark-500);
 }
 
 .rm-realisatie {
   background: var(--primitives-color-accent-700);
   color: var(--primitives-color-accent-0);
+  border: 1px solid var(--primitives-color-accent-800);
 }
 
 /* Doorbouwen na de eerste livegang; groen, zoals "beschikbaar" in de plaat */
 .rm-doorbouwen {
   background: var(--primitives-color-success-500);
   color: #ffffff;
+  border: 1px solid var(--primitives-color-success-600);
 }

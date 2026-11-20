@@ -31,6 +31,10 @@ blockquote.quote {
   border-radius: var(--radius-upper-right);
   background-color: var(--color-bg-info);
 
+  &.waarschuwing {
+    background-color: var(--color-bg-warning);
+  }
+
   header {
     display: flex;
     align-items: center;
@@ -127,4 +131,19 @@ blockquote.quote {
 
 .pull-quote figcaption::before {
   content: "— ";
+}
+
+/* De standaardknop heeft in light mode dezelfde kleur als het blok. */
+.callout .button {
+  background-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  color: light-dark(var(--color-text-inverse), var(--color-bg-page));
+
+  /* De standaard-hover is Rijksblauw: onzichtbaar op deze knop. */
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+    border-color: light-dark(var(--color-rijks-blauw), var(--color-text));
+    color: light-dark(var(--color-rijks-blauw), var(--color-text));
+  }
 }

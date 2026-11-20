@@ -26,6 +26,7 @@ Contactgegevens en voorkeuren één keer doorgeven, voor de hele overheid.
 {{< /kaart >}}
 {{< /kaarten >}}
 
+{{% band %}}
 ## Daarnaast werken we aan wat zakendoen makkelijker maakt
 
 {{< kaarten >}}
@@ -47,6 +48,7 @@ Regelen wie namens de onderneming iets mag doen, en met wie het bedrijf zijn geg
 - [Wallets](/onderwerpen/wallets/)
 {{< /kaart >}}
 {{< /kaarten >}}
+{{% /band %}}
 
 ## Zo volg je wat we doen en wat eraan komt
 
@@ -65,6 +67,7 @@ Waar we aan werken en wanneer we wat verwachten, met een doorkijk naar 2030.
 {{< /kaart >}}
 {{< /kaarten >}}
 
+{{% band %}}
 ## Lees verder op deze site
 
 {{< kaarten lijst=true >}}
@@ -78,8 +81,18 @@ Negen organisaties tekenden de intentieverklaring. Lees wie er meedoen, wat het 
 In korte stappen, met ondernemers aan tafel en zo open mogelijk.
 {{< /kaart >}}
 {{< /kaarten >}}
+{{% /band %}}
 
-> [!INFO]
-> **Werk je bij een overheidsorganisatie** en wil je meedoen? [Neem contact met ons op](/contact/).
->
-> **Ben je ondernemer?** Op deze site kun je niets regelen: MOZa is geen loket. Lees [wat je er als ondernemer van gaat merken](/over-moza/#wat-je-als-ondernemer-straks-merkt), of ga voor praktische informatie naar het [Ondernemersplein](https://ondernemersplein.overheid.nl/).
+{{< kaarten accent=true >}}
+{{< kaart titel="Werk je bij een overheidsorganisatie?" >}}
+Op deze site lees je waar we aan werken. Dat doen we graag samen met andere overheidsorganisaties. Heb je een vraag over ons werk, of wil je aansluiten?
+
+{{< knop >}}[Neem contact met ons op](/contact/){{< /knop >}}
+{{< /kaart >}}
+{{< kaart titel="Ben je ondernemer?" >}}
+Op deze site lees je wat we doen om zakendoen met de overheid makkelijker te maken. Zelf iets regelen met de overheid kan hier niet. Meer informatie voor ondernemers:
+
+- [Wat je er als ondernemer van gaat merken](/over-moza/#wat-je-als-ondernemer-straks-merkt)
+- [Praktische informatie op het Ondernemersplein](https://ondernemersplein.overheid.nl/)
+{{< /kaart >}}
+{{< /kaarten >}}

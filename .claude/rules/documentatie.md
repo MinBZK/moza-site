@@ -13,7 +13,7 @@ Dit project gebruikt Hugo v0.162.1+ met de nieuwe template structuur.
 
 ## Presentaties
 
-Presentaties staan in `content/documenten/presentaties/` als HTML page bundles. Nieuwe presentaties gebruiken de layout `nldd-deck` met NLDD-componenten; zie de skill `/nieuwe-presentatie`. Voor de componenten zelf: de `nldd`-skill en https://nederlandsedigitaledienst.github.io/design-system/.
+Presentaties staan in `content/documenten/presentaties/` als HTML page bundles. Nieuwe presentaties gebruiken de layout `nldd-deck` met NLDD-componenten; zie de skill `/nieuwe-presentatie`. Voor de componenten zelf: de `nldd`-skill en https://design.digitaledienst.overheid.nl/.
 
 De oudere MOZa Pulse-presentaties draaien op Reveal.js (https://revealjs.com/). Die laten we zoals ze zijn.
 

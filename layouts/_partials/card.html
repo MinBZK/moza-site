@@ -9,6 +9,9 @@
       <a href="{{ $pagina.RelPermalink }}">{{ $pagina.Params.card_title | default $pagina.Title }}</a>
     {{ printf "</%s>" $kop | safeHTML }}
   </header>
+  {{ if $pagina.Params.card_date }}
+  <p class="card-date"><em><time datetime="{{ $pagina.Date.Format "2006-01-02" }}">{{ $pagina.Date | time.Format ":date_long" }}</time></em></p>
+  {{ end }}
   {{ with $pagina.Params.card_description | default $pagina.Params.description }}
   <p>{{ . }}</p>
   {{ end }}

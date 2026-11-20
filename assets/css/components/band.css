@@ -1,0 +1,30 @@
+/* Grijze sectie over de volle breedte (shortcode band). */
+.band {
+  padding: 2rem 0;
+  background-color: var(--color-bg-muted);
+  box-shadow: 0 0 0 100vmax var(--color-bg-muted);
+  clip-path: inset(0 -100vmax);
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.band + .kaarten {
+  margin-top: 2rem;
+}
+
+main > .content:has(> .band:last-child) {
+  padding-bottom: 0;
+}
+
+/* Print laat de achtergrond weg, maar niet de schaduw: grijze stroken langs de rand. */
+@media print {
+  .band {
+    box-shadow: none;
+  }
+}

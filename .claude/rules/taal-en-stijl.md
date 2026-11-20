@@ -25,6 +25,13 @@ Deze regels gelden voor alle content en communicatie.
 
 - Gebruik "profielservice" (één woord), niet "profiel service"
 - Hetzelfde geldt voor andere services: "notificatieservice", niet "notificatie service"
+- "Profieldienst" is het onderwerp als geheel, net als "notificatiedienst". "Profielservice" is de software zelf, zoals een versie die in de proeftuin draait. De link blijft `/onderwerpen/profielservice/`.
+
+## Woordkeus
+
+- "Dienstverlener" voor de overheidsorganisatie die een bouwsteen gebruikt, niet "afnemer" of "uitvoeringsorganisatie".
+- "Onderdeel", niet "component". In technische stukken mag "component" wel.
+- "Uitproberen", niet "beproeven".
 
 ## Vaste teksten
 

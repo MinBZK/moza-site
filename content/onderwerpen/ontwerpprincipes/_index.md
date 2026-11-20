@@ -14,17 +14,17 @@ Het prototype van MijnOverheid Zakelijk is gebouwd volgens een aantal ontwerppri
 
 We hebben de principes in twee delen verdeeld:
 
-## [Wat: visie en principes](ontwerp-wat)
+## [Waarom: wat wij belangrijk vinden](ontwerp-wat)
 
-Het _Wat_ legt uit waarom we het zo doen. Waarom zetten we de gebruiker voorop? Waarom werken we direct in code en niet in een ontwerpprogramma? En wat betekent het dat digitale toegankelijkheid de basis is?
+Het _Waarom_ legt uit waarom we het zo doen. Waarom zetten we de gebruiker voorop? Waarom zijn toegankelijkheid en de Rijkshuisstijl zo belangrijk?
 
 Dit deel is voor iedereen die wil weten _waarom_ het prototype zo wordt gemaakt. Bijvoorbeeld ontwerpers, ontwikkelaars, beleidsmakers en andere betrokkenen.
 
-## [Hoe: werkwijze en techniek](ontwerp-hoe)
+## [Hoe: uitgangspunten bij het ontwerpen](ontwerp-hoe)
 
-Het _Hoe_ legt uit hoe we de principes in de praktijk brengen. Welke CSS-technieken gebruiken we en waarom? Hoe werken design tokens? Hoe gebruiken we AI als hulpmiddel? En hoe zorgen we dat onze teksten overal op elkaar lijken?
+Het _Hoe_ beschrijft de uitgangspunten die we volgen bij het ontwerpen. Waar is het prototype voor? Waarom ontwerpen we direct in code, en hoe helpt AI daarbij? En hoe zorgen we dat onze teksten overal op elkaar lijken?
 
-Dit deel is voor iedereen die aan het prototype werkt. Ook als je wilt weten hoe het technisch werkt, vind je hier het antwoord.
+Dit deel is voor iedereen die aan het prototype werkt, of wil weten hoe wij werken.
 
 ## Prototype
 

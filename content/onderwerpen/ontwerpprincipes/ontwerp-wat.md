@@ -17,7 +17,7 @@ Wij leggen onze ideeën voor aan gebruikers, in gesprekken, interviews en gebrui
 
 Wat wij leren, passen wij direct toe in het ontwerp. Daarna testen wij opnieuw. Zo past wat wij maken bij wat gebruikers nodig hebben en verwachten.
 
-Hoe wij gebruikersonderzoek doen en wat het oplevert, leest u op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). De resultaten publiceren wij ook op [gebruikersonderzoeken.nl](https://gebruikersonderzoeken.nl/).
+Hoe wij gebruikersonderzoek doen, leest u op de pagina [Gebruikersonderzoeken](/onderwerpen/gebruikersonderzoeken/). Daar publiceren wij ook de resultaten.
 
 ## Ontwerpprincipes
 

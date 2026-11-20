@@ -47,6 +47,6 @@ Dit deel is voor iedereen die wil weten _waarom_ het prototype zo wordt gemaakt.
 
 ### [Hoe: uitgangspunten bij het ontwerpen](ontwerp-hoe)
 
-Het _Hoe_ beschrijft de uitgangspunten die we volgen bij het ontwerpen. Waarom ontwerpen we direct in code, en hoe helpt AI daarbij? En hoe zorgen we dat onze teksten overal op elkaar lijken?
+Het _Hoe_ beschrijft de uitgangspunten die we volgen bij het ontwerpen. Waarom ontwerpen we direct in code, en hoe helpt AI daarbij? En op welk taalniveau schrijven we?
 
 Dit deel is voor iedereen die aan het prototype werkt, of wil weten hoe we werken.

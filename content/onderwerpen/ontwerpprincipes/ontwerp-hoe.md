@@ -5,7 +5,7 @@ weight: 2
 description: "Het “Hoe” beschrijft de uitgangspunten die we volgen bij het ontwerpen van het prototype."
 ---
 
-Bij het ontwerpen staat de gebruiker voorop. Daarnaast volgen we een aantal uitgangspunten. Die gaan over ontwerpen in code met hulp van AI en over hoe we schrijven.
+Bij het ontwerpen staat de gebruiker voorop. Daarnaast volgen we een aantal uitgangspunten. Die gaan over ontwerpen in code met hulp van AI. Alle teksten in het prototype schrijven we op taalniveau B1, zodat zoveel mogelijk mensen ze begrijpen.
 
 ## Ontwerpen in code, met hulp van AI
 
@@ -23,12 +23,3 @@ Dat heeft deze voordelen:
 Daarbij gebruiken we [Claude Code](https://claude.com/claude-code). Dat is een assistent die werkt met kunstmatige intelligentie (AI). De assistent neemt het ontwerpen niet over, maar helpt ons sneller te werken. De ontwerper bepaalt de richting, maakt de keuzes en bewaakt de kwaliteit. Claude helpt ons bijvoorbeeld bij het redigeren van teksten en bij een gebruikerservaring (UX) die overal hetzelfde is.
 
 De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We bekijken alles wat de assistent maakt, en passen het aan als dat nodig is.
-
-## Schrijfwijzer
-
-We hebben een schrijfwijzer. Daarin staan afspraken over hoe we in het prototype schrijven:
-
-* we spreken de gebruiker aan met *“u”* en schrijven *“u heeft”*. Over onszelf schrijven we *“wij”*;
-* we schrijven genderneutraal en op taalniveau B1;
-* voor elk begrip gebruiken we één woord. Bewaren, Opslaan en Versturen betekenen bijvoorbeeld elk iets anders. Na het versturen heet een aanvraag een dossier;
-* er zijn vaste afspraken voor datums, bedragen, aanhalingstekens, knoppen, foutmeldingen en lege pagina's.

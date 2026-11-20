@@ -11,7 +11,7 @@ aliases:
   - /onderwerpen/ontwerpprincipes/ontwerp-hoe/
 ---
 
-Het prototype van MijnOverheid Zakelijk is gebouwd volgens een aantal ontwerpprincipes. Die principes helpen ons bij elke ontwerpkeuze die we maken. Bijvoorbeeld bij de opbouw van een pagina, maar ook bij de tekst op een knop. We gebruiken de principes niet als controlelijst achteraf.
+Op deze pagina lees je hoe we MijnOverheid Zakelijk ontwerpen. We beginnen bij de gebruiker: met gebruikersonderzoek en een werkend prototype toetsen we onze ideeën. We ontwerpen direct in code, met hulp van AI. En bij elke ontwerpkeuze volgen we een paar vaste ontwerpprincipes.
 
 ## De gebruiker staat voorop
 

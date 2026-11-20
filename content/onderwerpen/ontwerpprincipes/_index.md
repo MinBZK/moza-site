@@ -66,6 +66,8 @@ De assistent volgt vaste afspraken over code, toegankelijkheid en schrijven. We 
 
 ## Ontwerpfundamenten
 
+De basis van ons ontwerp bestaat uit een paar vaste fundamenten. Die bouwen we stap voor stap uit. Zo groeien we toe naar een volwaardig design systeem: een gedeelde set afspraken en bouwstenen die het hele team gebruikt.
+
 ### Toegankelijkheid
 
 Iedereen moet een overheidswebsite kunnen gebruiken. Ook mensen met een beperking. Toegankelijkheid is daarom geen extraatje achteraf. We houden er vanaf het begin rekening mee, bij het ontwerpen en bij het bouwen.

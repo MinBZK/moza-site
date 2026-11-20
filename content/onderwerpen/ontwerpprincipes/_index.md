@@ -66,10 +66,10 @@ De regels voor digitale toegankelijkheid staan in de Europese norm [EN 301 549](
 
 Het ontwerp volgt zoveel mogelijk [de Rijkshuisstijl](https://www.rijkshuisstijl.nl/): de huisstijl van de Rijksoverheid. Gebruikers herkennen die, en dat geeft vertrouwen. We nemen het lettertype, de kleuren en de vaste waarden (design tokens) over. Ook gebruiken we de bouwstenen van de [Rijkshuisstijl Community](https://rijkshuisstijl-community.vercel.app/), zoals knoppen, formulieren en tabellen. Alleen als iets daar niet in staat, maken we zelf een oplossing.
 
-## Ontwerpen voor nu en voor later
+## Ontwerpen voor de toekomst
 
-Bij het ontwerpen kijken we steeds naar twee dingen. Wat kunnen we nu bouwen en testen? En waar willen we uiteindelijk naartoe? Dat einddoel geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
+We ontwerpen niet alleen voor wat nu kan, maar ook voor hoe het in de toekomst kan werken. Dat toekomstbeeld geeft richting. Ook als het nu nog niet haalbaar is, door techniek, wetgeving of de manier waarop de overheid is georganiseerd.
 
-- **Ontwerpen op aannames, toetsen bij gebruikers.** Niet elke keuze kunnen we vooraf onderbouwen met onderzoek. Weten we iets nog niet? Dan schrijven we onze aanname op, en toetsen we die zo snel mogelijk bij gebruikers. Onderzoek en ontwerp wisselen elkaar steeds af.
-- **Het einddoel als kompas.** Sommige oplossingen kunnen nu nog niet. De wet staat het niet toe, systemen zijn er nog niet klaar voor, of de overheid moet eerst anders werken. Toch ontwerpen we er alvast voor. Dan zijn we klaar als dat wel kan.
-- **Kleine stappen in de goede richting.** Elke stap levert iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij het einddoel. We kiezen oplossingen die nu waarde hebben en later blijven passen.
+- **Het toekomstbeeld als kompas.** Sommige oplossingen kunnen nu nog niet. Toch ontwerpen we er alvast voor. Zo laten we zien wat mogelijk is, en zijn we klaar als het wel kan.
+- **Aannames toetsen bij gebruikers.** Over de toekomst weten we nog niet alles. Daarom schrijven we onze aannames op en toetsen we die zo snel mogelijk bij gebruikers.
+- **Kleine stappen in de goede richting.** Elke stap levert nu iets op dat we kunnen testen en gebruiken. Tegelijk brengt elke stap ons dichter bij dat toekomstbeeld.

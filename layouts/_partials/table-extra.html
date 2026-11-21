@@ -1,0 +1,13 @@
+{{- /* Hook van het theme: {print-kolombreedtes="15% - - - 45%"} op de regel
+       direct onder een tabel (erboven hangt Goldmark hem aan het blok ervoor)
+       geeft de kolommen in de afdruk een breedte; een streepje deelt mee in
+       wat overblijft. De breedtes gaan via de store naar
+       print-kolombreedtes.html. */ -}}
+{{- $attributen := dict -}}
+{{- with index .attributes "print-kolombreedtes" -}}
+  {{- $eerdereTabellen := or ($.page.Store.Get "print-kolombreedtes") slice -}}
+  {{- $printnaam := printf "tabel-%d" (add (len $eerdereTabellen) 1) -}}
+  {{- $.page.Store.Set "print-kolombreedtes" ($eerdereTabellen | append (dict "naam" $printnaam "breedtes" (split . " "))) -}}
+  {{- $attributen = dict "data-print" $printnaam -}}
+{{- end -}}
+{{- return $attributen -}}

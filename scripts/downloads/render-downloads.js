@@ -204,7 +204,7 @@ function flattenOdtQuotations(odtOut) {
 const DIAGRAM =
   /<div\b[^>]*\bclass=["']?[^"'>]*\bmermaid-diagram\b[\s\S]*?<\/div>|<figure\b[^>]*\bclass=["']?[^"'>]*\bdiagram\b[\s\S]*?<\/figure>/gi;
 const LICHTE_AFBEELDING = /<img\b[^>]*\bmermaid-img--light\b[^>]*>/i;
-const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-beschrijving\b[^>]*>([\s\S]*?)<\/p>/i;
+const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-description\b[^>]*>([\s\S]*?)<\/p>/i;
 const GETEKEND = /<a\b[^>]*\bdiagram-download\b[^>]*>/i;
 const SVG_TAG = /<svg\b[^>]*>/i;
 const SVG_TITEL = /<title\b[^>]*>([\s\S]*?)<\/title>/i;
@@ -423,7 +423,7 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta, { deck = fal
   // diagram moet daar in de Alt van de figuur staan.
   await page.evaluate(() => {
     for (const diagram of document.querySelectorAll(".mermaid-diagram")) {
-      const beschrijving = diagram.querySelector(".mermaid-beschrijving")?.textContent.trim();
+      const beschrijving = diagram.querySelector(".mermaid-description")?.textContent.trim();
       if (!beschrijving) continue;
       for (const img of diagram.querySelectorAll("img.mermaid-img")) {
         img.alt = `${img.alt}. ${beschrijving}`;

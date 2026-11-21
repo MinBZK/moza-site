@@ -80,7 +80,7 @@ test("koppenstructuur: de rechterkolom maskeert een sprong niet", () => {
 test("diagram-beschrijving: een gevulde beschrijving levert geen bevindingen", () => {
   const html =
     '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +
-    '<p class="mermaid-beschrijving visually-hidden">Wat er te zien is.</p></div>';
+    '<p class="mermaid-description visually-hidden">Wat er te zien is.</p></div>';
   assert.deepEqual(checkDiagramBeschrijving(html), []);
 });
 
@@ -95,7 +95,7 @@ test("diagram-beschrijving: een ontbrekende beschrijving wordt gemeld", () => {
 test("diagram-beschrijving: een lege beschrijving wordt gemeld", () => {
   const html =
     '<div class="mermaid-diagram"><img class="mermaid-img" src="/a.svg" alt="Naam">' +
-    '<p class="mermaid-beschrijving visually-hidden"> </p></div>';
+    '<p class="mermaid-description visually-hidden"> </p></div>';
   assert.match(checkDiagramBeschrijving(html)[0], /lege beschrijving/);
 });
 
@@ -114,10 +114,10 @@ test("voetnoten: de doc-endnotes-rol van Goldmark wordt gemeld", () => {
     '<div class="footnotes" role="doc-endnotes"><hr><ol><li id="fn:1"><p>Noot.</p></li></ol></div>';
   const findings = checkVoetnootRol(html);
   assert.equal(findings.length, 1);
-  assert.match(findings[0], /inhoud\.html/);
+  assert.match(findings[0], /content\.html/);
 });
 
-test("layouts: elke paginatemplate stuurt .Content door inhoud.html", () => {
+test("layouts: elke paginatemplate stuurt .Content door content.html", () => {
   const layouts = fileURLToPath(new URL("../../layouts", import.meta.url));
   assert.deepEqual(checkLayouts(layouts), []);
 });
@@ -128,12 +128,12 @@ test("layouts: een template die .Content rechtstreeks uitvoert wordt gemeld", ()
   const findings = checkLayouts(root);
   rmSync(root, { recursive: true, force: true });
   assert.equal(findings.length, 1);
-  assert.match(findings[0], /inhoud\.html/);
+  assert.match(findings[0], /content\.html/);
 });
 
 test("layouts: een template die de partial gebruikt levert geen bevinding", () => {
   const root = mkdtempSync(join(tmpdir(), "moza-layouts-"));
-  writeFileSync(join(root, "list.html"), '{{ partial "inhoud.html" .Content }}');
+  writeFileSync(join(root, "list.html"), '{{ partial "content.html" .Content }}');
   const findings = checkLayouts(root);
   rmSync(root, { recursive: true, force: true });
   assert.deepEqual(findings, []);

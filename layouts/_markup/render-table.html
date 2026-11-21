@@ -1,4 +1,4 @@
-{{- /* "Tabel" zonder nummer: inhoud.html nummert de wikkels in documentvolgorde,
+{{- /* "Tabel" zonder nummer: content.html nummert de wikkels in documentvolgorde,
        want een shortcode en een render hook draaien niet in die volgorde. */ -}}
 {{- $label := or (index .Attributes "aria-label") "Tabel" -}}
 {{- /* Attributen op de regel direct onder de tabel in de Markdown sturen de
@@ -7,7 +7,7 @@
 
          print-kolombreedtes="15% - - - 45%"  breedte per kolom, een streepje
                                               deelt mee in wat overblijft
-         print-bijeen="ja"                    houd de tabel op één pagina
+         print-together="ja"                  houd de tabel op één pagina
 
        De breedtes gaan via de store naar print-kolombreedtes.html. */ -}}
 {{- $printnaam := "" -}}
@@ -16,14 +16,14 @@
   {{- $printnaam = printf "tabel-%d" (add (len $eerdereTabellen) 1) -}}
   {{- $.Page.Store.Set "print-kolombreedtes" ($eerdereTabellen | append (dict "naam" $printnaam "breedtes" (split . " "))) -}}
 {{- end -}}
-<div class="tabel-wrap" role="region" tabindex="0" aria-label="{{ $label }}">
-<table{{ with $printnaam }} data-print="{{ . }}"{{ end }}{{ with index .Attributes "print-bijeen" }} data-print-bijeen{{ end }}>
+<div class="table-wrap" role="region" tabindex="0" aria-label="{{ $label }}">
+<table{{ with $printnaam }} data-print="{{ . }}"{{ end }}{{ with index .Attributes "print-together" }} data-print-together{{ end }}>
   {{- with .THead }}
   <thead>
     {{- range . }}
     <tr>
       {{- range . }}
-      <th{{ with .Alignment }} class="uitlijning-{{ . }}"{{ end }}>{{ .Text }}</th>
+      <th{{ with .Alignment }} class="align-{{ . }}"{{ end }}>{{ .Text }}</th>
       {{- end }}
     </tr>
     {{- end }}
@@ -34,7 +34,7 @@
     {{- range . }}
     <tr>
       {{- range . }}
-      <td{{ with .Alignment }} class="uitlijning-{{ . }}"{{ end }}>{{ .Text }}</td>
+      <td{{ with .Alignment }} class="align-{{ . }}"{{ end }}>{{ .Text }}</td>
       {{- end }}
     </tr>
     {{- end }}

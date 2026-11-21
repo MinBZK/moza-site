@@ -18,22 +18,10 @@ node-deps:
 test: node-deps
     npm test
 
-# Schrijf alles wat uit het NLDD Designsysteem komt opnieuw weg (na een upgrade van het pakket)
-nldd: nldd-tokens nldd-iconen
-
-# Genereer alleen de kleurprimitives
-[private]
-nldd-tokens: node-deps
-    npm run nldd-tokens
-
-# Genereer alleen de iconen, de favicon en het touch-icon
-[private]
-nldd-iconen: node-deps
+# Schrijf moza's eigen iconen, de favicon en het touch-icon opnieuw weg uit het
+# NLDD Designsysteem (na een upgrade van het pakket)
+nldd: node-deps
     npm run nldd-iconen
-
-# Werk de vendored Fuse.js bij (zoeken); zonder versie de nieuwste
-fuse versie="latest": node-deps
-    npm run vendor-fuse -- {{versie}}
 
 # Genereer de afbeeldingen die bij een gedeelde link worden getoond, op een
 # bestaande build
@@ -141,7 +129,7 @@ presentatie-odp slug uitvoer="": (presentatie-export slug)
 [private]
 build-check: node-deps
     npm run render-mermaid
-    just wis tmp/public && HUGO_PARAMS_LINKCONTROLE=true hugo --minify --quiet --baseURL / --destination tmp/public
+    just wis tmp/public && HUGO_PARAMS_LINKCHECK=true hugo --minify --quiet --baseURL / --destination tmp/public
 
 # Verplaats paden naar de prullenbak; paden die niet bestaan worden overgeslagen
 [private]

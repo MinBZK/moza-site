@@ -116,7 +116,7 @@ jobs:
 
       - name: Bouw site voor de controles
         env:
-          HUGO_PARAMS_LINKCONTROLE: "true"
+          HUGO_PARAMS_LINKCHECK: "true"
         run: hugo --minify --quiet --baseURL / --destination tmp/public
 
       - name: Deel de gebouwde site

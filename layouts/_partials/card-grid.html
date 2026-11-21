@@ -1,6 +1,0 @@
-{{- $niveau := .niveau | default 2 -}}
-<ul class="card-grid" role="list">
-  {{- range .paginas -}}
-  <li>{{- partial "card.html" (dict "pagina" . "niveau" $niveau) -}}</li>
-  {{- end -}}
-</ul>

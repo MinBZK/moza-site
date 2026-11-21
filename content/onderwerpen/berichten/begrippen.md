@@ -26,7 +26,7 @@ We delen berichten in twee families in, naar wat ze doen:
 
 In dit schema staan de soorten berichten die voor MOZa relevant zijn. Ze staan per familie onder *bericht*, het begrip dat ze allemaal omvat.
 
-{{< boom >}}
+{{< tree >}}
 - **Bericht**
   - **Notificatie**: wijst op iets
     - [Kennisgeving (melding)](#kennisgeving-melding)
@@ -40,7 +40,7 @@ In dit schema staan de soorten berichten die voor MOZa relevant zijn. Ze staan p
     - [Besluit](#besluit), bijvoorbeeld een beschikking
     - [Volledige publicatie](#volledige-publicatie) in het publicatieblad
     - [Overig inhoudelijk bericht](#overig-inhoudelijk-bericht), bijvoorbeeld een jaaropgave AOW
-{{< /boom >}}
+{{< /tree >}}
 
 ### Een voorbeeld van aanvraag tot besluit
 

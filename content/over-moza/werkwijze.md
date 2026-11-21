@@ -46,7 +46,7 @@ Lees meer over [open werken](/onderwerpen/open-werken/).
 
 ## Werken met AI
 
-We laten ons in ons werk ondersteunen door AI: bij het programmamanagement, bij het maken van prototypes en bij het bouwen van software. Mensen blijven verantwoordelijk voor de keuzes en beoordelen wat AI maakt. Wat we daarbij leren, delen we met andere overheidsorganisaties. Hoe we AI inzetten bij het ontwerp van het prototype, lees je in de [ontwerpprincipes](/onderwerpen/ontwerpprincipes/ontwerp-hoe/#ai-assistentie-in-het-ontwerpproces).
+We laten ons in ons werk ondersteunen door AI: bij het programmamanagement, bij het maken van prototypes en bij het bouwen van software. Mensen blijven verantwoordelijk voor de keuzes en beoordelen wat AI maakt. Wat we daarbij leren, delen we met andere overheidsorganisaties. Hoe we AI inzetten bij het ontwerp van het prototype, lees je in de [ontwerpprincipes](/onderwerpen/ontwerpprincipes/#ontwerpen-in-code-met-hulp-van-ai).
 
 ## Uitgangspunten
 

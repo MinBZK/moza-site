@@ -141,10 +141,10 @@ Deze bestanden houdt moza bewust zelf:
 | `layouts/_partials/search-index-extra.html` | Hook: een zoekresultaat per dia van een presentatie. |
 | `layouts/_partials/llms-instructions.html` | Hook: de instructies voor taalmodellen in `llms.txt` en `llms-full.txt`. |
 | `layouts/_partials/rss-extra.html` | Hook: de RSS-feeds zonder de sprekersnotities van de presentaties. |
-| `layouts/_partials/head.html` | Versie van het theme plus `print-kolombreedtes.html`: het theme heeft nog geen hook in `<head>`. |
+| `layouts/_partials/head-extra.html` | Hook: de afdrukbreedtes van de tabelkolommen (`print-kolombreedtes.html`). |
+| `layouts/_partials/lastmod-date.html` | Hook: "laatst bijgewerkt" telt ook een gewijzigde yaml in de page bundle mee (`scripts/bundel-lastmod.js`). |
 | `layouts/_markup/render-table.html` | Versie van het theme plus de afdrukattributen `print-kolombreedtes` en `print-together`. |
 | `layouts/_partials/markdown-body.html` | Zet de shortcodes `diagram-...`, `roadmap` en `partners` om en laat de sprekersnotities weg, voor de Markdown-, ODT- en PDF-downloads. |
-| `layouts/home.llmsfull.txt` | Versie van het theme plus `volledig: false` in `llms.sections`: de presentaties staan wel in `llms.txt`, maar hun HTML niet in `llms-full.txt`. |
 | `static/favicon.ico`, `static/favicon-192x192.png` | Moza's eigen favicon, met dezelfde naam als die van het theme. |
 | `assets/css/components/downloads.css`, `afdruk.css` | Opmaak van het downloadblok en afdrukregels voor wat alleen moza heeft. |
 

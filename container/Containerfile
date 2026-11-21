@@ -40,7 +40,13 @@ RUN npm run og-cards
 RUN rm public/download.json public/og.json
 
 
-FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:5d8bb9437d74a600ec5dbf90c035451c724dc33eac8d3a71078f6f8612c345f6
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:5d8bb9437d74a600ec5dbf90c035451c724dc33eac8d3a71078f6f8612c345f6 AS runtime
+
+# De basis pint nginx in /etc/apk/world, dus `apk upgrade` alleen slaat nginx over.
+USER root
+RUN apk upgrade --no-cache \
+    && apk add --no-cache --upgrade nginx
+USER 101
 
 COPY --from=builder /app/public /usr/share/nginx/html
 COPY container/nginx.conf /etc/nginx/nginx.conf

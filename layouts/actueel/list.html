@@ -2,7 +2,7 @@
 <section class="sidebar-layout-right">
   <div>
     <h1>{{ .Title }}</h1>
-    {{ partial "inhoud.html" .Content }}
+    {{ partial "content.html" .Content }}
 
     {{/* Nieuwsberichten */}}
     {{ with .RegularPages }}
@@ -44,7 +44,7 @@
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
       </header>
       <div class="content">
-        {{ $inhoud := partial "inhoud.html" .Content }}
+        {{ $inhoud := partial "content.html" .Content }}
         {{ range $niveau := slice 4 3 2 }}
           {{ $inhoud = replaceRE (printf `<(/?)h%d([ >])` $niveau) (printf `<${1}h%d${2}` (add $niveau 2)) $inhoud }}
         {{ end }}

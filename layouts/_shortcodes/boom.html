@@ -1,9 +1,0 @@
-{{- /* Safari laat de lijstrol vallen bij list-style: none; role="list" houdt de niveaus hoorbaar. */ -}}
-{{- $lijst := .Page.RenderString (dict "display" "block") (trim .Inner "\n") -}}
-{{- $lijst = replace $lijst "<ul>" `<ul role="list">` -}}
-<figure class="boom">
-  {{ $lijst | safeHTML }}
-  {{- with .Get "bijschrift" }}
-  <figcaption>{{ . | markdownify }}</figcaption>
-  {{- end }}
-</figure>

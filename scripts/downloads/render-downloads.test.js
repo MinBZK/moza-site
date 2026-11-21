@@ -120,7 +120,7 @@ test(
           "<body><main><article><h1>Diagram</h1>" +
           '<div class="mermaid-diagram">' +
           '<img class="mermaid-img" src="diagram.svg" alt="Korte naam" width="40" height="10">' +
-          '<p class="mermaid-beschrijving visually-hidden">Lange beschrijving van het diagram.</p>' +
+          '<p class="mermaid-description visually-hidden">Lange beschrijving van het diagram.</p>' +
           "</div></article></main></body></html>"
       );
       writeFileSync(
@@ -171,7 +171,7 @@ test(
           '<div class="mermaid-diagram">' +
           '<img class="mermaid-img mermaid-img--light" src="/images/render/proef-light.svg?v=1"' +
           ' alt="Korte naam" width="400" height="100">' +
-          '<p class="mermaid-beschrijving visually-hidden">Lange beschrijving van het diagram.</p>' +
+          '<p class="mermaid-description visually-hidden">Lange beschrijving van het diagram.</p>' +
           "</div></article></main></body></html>"
       );
       writeFileSync(

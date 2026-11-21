@@ -2,7 +2,7 @@
 title: "Over MijnOverheid Zakelijk"
 description: "MijnOverheid Zakelijk zorgt samen met overheidsorganisaties dat ondernemers makkelijk zakendoen met de overheid. Lees wat we doen en waarom."
 card_title: "Over MOZa"
-sectienavigatie: true
+aside_nav: true
 ---
 
 **Elk uur minder aan gedoe, is een uur meer ondernemen.** Daar is MijnOverheid Zakelijk (MOZa) voor.

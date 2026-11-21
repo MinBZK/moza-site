@@ -43,6 +43,9 @@ IgnoreURLs:
   # via AWS WAF, fides.community via een captcha van SiteGround.
   - eur-lex.europa.eu
   - fides.community
+  # Pleio geeft een gearchiveerd item op realisatieibds.nl status 404, terwijl
+  # de pagina in de browser gewoon laadt, ook zonder inlog.
+  - realisatieibds.nl
   # Downloadbestanden (.odt/.pdf) worden ná de Hugo-build gegenereerd
   # (pandoc/Chromium) en bestaan dus niet in de kale build die htmltest checkt.
   - \.odt$

@@ -1,5 +1,5 @@
 /**
- * Controleert dat layouts de paginainhoud door de partial inhoud.html sturen.
+ * Controleert dat layouts de paginainhoud door de partial content.html sturen.
  *
  * Die partial repareert opmaak waar Goldmark geen render hook voor biedt, zoals
  * de rol op het voetnotenblok. Een layout die `.Content` rechtstreeks uitvoert,
@@ -21,7 +21,7 @@ const UITZONDERINGEN = {
   "documenten/presentaties/reveal-deck.html": "HTML page bundle",
 };
 
-const PAGINA_INHOUD = /(?<!"inhoud\.html" )\.Content\b/;
+const PAGINA_INHOUD = /(?<!"content\.html" )\.Content\b/;
 
 // `.Content` in een voorwaarde of een toewijzing wordt gelezen, niet uitgevoerd.
 const GELEZEN = /\bif\b|\bwith\b|:?=[^=]/;
@@ -53,7 +53,7 @@ function checkLayouts(layoutsDir) {
       if (!PAGINA_INHOUD.test(regel)) return;
       if (GELEZEN.test(regel)) return;
       findings.push(
-        `${naam}:${i + 1} voert .Content rechtstreeks uit; stuur hem door de partial inhoud.html`,
+        `${naam}:${i + 1} voert .Content rechtstreeks uit; stuur hem door de partial content.html`,
       );
     });
   }

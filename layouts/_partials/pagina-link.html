@@ -20,7 +20,7 @@
       {{- with $pagina.Fragments }}{{ $bekend = .Identifiers.Contains $anker }}{{ end -}}
       {{- $zelf := and $.bron ($pagina.Eq $.bron) -}}
       {{- if not (or $bekend $zelf) -}}
-        {{- $bekend = strings.Contains (partial "koppen-ids.html" $pagina.Content) (printf ` id="%s"` $anker) -}}
+        {{- $bekend = strings.Contains (partial "heading-ids.html" $pagina.Content) (printf ` id="%s"` $anker) -}}
       {{- end -}}
       {{- if not $bekend -}}
         {{- errorf "%s: anker #%s staat niet op %s" $plek $anker $u.Path -}}

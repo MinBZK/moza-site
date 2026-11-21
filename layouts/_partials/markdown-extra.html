@@ -1,0 +1,23 @@
+{{- /* Hook van het theme: zet de shortcodes roadmap, partners en diagram-...
+       om en laat de sprekersnotities weg, voor de .md, llms-full.txt en de
+       downloads. */ -}}
+{{- $p := .page -}}
+{{- $content := .text -}}
+{{- /* Sprekersnotities van een deck zijn niet voor lezers. */ -}}
+{{- $content = replaceRE `(?s)<aside class="notes">.*?</aside>` "" $content -}}
+
+{{- range findRESubmatch `\{\{<\s*roadmap(?:\s+"([^"]+)")?\s*>\}\}` $content -}}
+  {{- $tabel := partial "roadmap-markdown.html" (dict "page" $p "naam" (index . 1 | default "roadmap.yaml")) -}}
+  {{- $content = replace $content (index . 0) $tabel -}}
+{{- end -}}
+{{- $partners := slice -}}
+{{- range partial "partners-lijst.html" $p }}{{ $partners = $partners | append (printf "- [%s](%s)" .naam .url) }}{{ end -}}
+{{- $content = replaceRE `\{\{<\s*partners\s*>\}\}` (delimit $partners "\n") $content -}}
+
+{{- /* Een getekend diagram staat als shortcode in de tekst; in de download
+       hoort de plaat zelf. De shortcode bewaart hem als
+       /images/diagrammen/<naam>.svg. Net als bij links wijst de uitvoer voor
+       buiten de site naar de volledige URL. */ -}}
+{{- $diagrammen := cond .html (absURL "images/diagrammen") "/images/diagrammen" -}}
+{{- $content = replaceRE `\{\{<\s*diagram-([a-z0-9-]+)[^>]*>\}\}` (printf "![](%s/$1.svg)" $diagrammen) $content -}}
+{{- return $content -}}

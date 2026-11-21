@@ -53,3 +53,5 @@ jobs:
             BASE_URL=https://mijnoverheidzakelijk.nl
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          # Anders kan de apk-upgrade in de runtime-stage uit een oude cache komen.
+          no-cache-filters: runtime

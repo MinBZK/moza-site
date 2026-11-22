@@ -5,7 +5,7 @@ weight: 2
 ---
 
 > [!WARNING]
-> **Let op:** deze begrippen hebben geen officiële status. De juridische context is wat wij zelf hebben afgeleid. Een jurist heeft die nog niet getoetst.
+> Deze begrippen hebben geen officiële status. De juridische context is wat wij zelf hebben afgeleid. Een jurist heeft die nog niet getoetst.
 
 Op deze pagina staan de begrippen die we bij MijnOverheid Zakelijk (MOZa) gebruiken voor berichten van de overheid. Het gaat om de soorten, hun betekenis, de juridische context en wat [de wet](https://wetten.overheid.nl/), [NORA](https://www.noraonline.nl/) en [GEMMA](https://www.gemmaonline.nl/) erover zeggen. NORA is de referentiearchitectuur van de hele overheid, GEMMA die van gemeenten.
 

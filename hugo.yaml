@@ -188,7 +188,7 @@ outputFormats:
     isPlainText: true
     notAlternative: true
   # Bron voor de .odt-downloads: gelijk aan markdown, maar met de tabellen die
-  # pandoc nodig heeft. Zie layouts/_partials/markdown-body.html.
+  # pandoc nodig heeft. Zie layouts/_partials/markdown-body.html in het theme.
   pandoc:
     baseName: index.pandoc
     mediaType: text/markdown

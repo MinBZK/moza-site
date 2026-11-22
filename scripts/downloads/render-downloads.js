@@ -123,7 +123,7 @@ function styleOdtTables(odtOut) {
   // Een sleutel-waardetabel heeft geen koprij nodig: de eerste kolom is de kop.
   // De uitvoer voor pandoc geeft zo'n tabel een lege koprij, waarop pandoc geen
   // table:table-header-rows schrijft. Dat is hier het kenmerk; zie
-  // layouts/_partials/markdown-body.html.
+  // layouts/_partials/markdown-body.html in het theme.
   const zonderKoprij = xml.replace(
     /<table:table\b[\s\S]*?<\/table:table>/g,
     (tabel) => {

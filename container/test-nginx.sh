@@ -40,6 +40,11 @@ check / 200
 check /over-moza/ 200
 check /bestaat-niet/ 404
 
+if ! curl -s -H 'Accept-Encoding: gzip' -o /dev/null -D - "http://127.0.0.1:${port}/" | grep -qi '^content-encoding: gzip'; then
+  echo "FOUT / wordt niet met gzip geserveerd"
+  fail=1
+fi
+
 if ! curl -s -o /dev/null -D - "http://127.0.0.1:${port}/" | grep -qi '^content-security-policy:'; then
   echo "FOUT / heeft geen Content-Security-Policy"
   fail=1

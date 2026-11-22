@@ -7,10 +7,13 @@ import { generate as generateIconen, generateRaster, FAVICON_ICO } from "./nldd-
 
 const ROOT = resolve(import.meta.dirname, "..");
 const kort = (path) => relative(ROOT, path);
+// Een DataView, geen Buffer-methodes: Puppeteer geeft onder Node 26 een
+// Uint8Array terug in plaats van een Buffer.
+const view = (buf) => new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
 // Breedte en hoogte staan in de IHDR-chunk van een PNG, op vaste posities
-const pngMaat = (buf) => [buf.readUInt32BE(16), buf.readUInt32BE(20)];
+const pngMaat = (buf) => [view(buf).getUint32(16), view(buf).getUint32(20)];
 // De maten in een ICO staan als losse bytes in de index, 0 voor 256
-const icoMaten = (buf) => Array.from({ length: buf.readUInt16LE(4) }, (_, i) => buf[6 + i * 16] || 256);
+const icoMaten = (buf) => Array.from({ length: view(buf).getUint16(4, true) }, (_, i) => buf[6 + i * 16] || 256);
 
 const tekstbestanden = { ...generateTokens(), ...(await generateIconen()) };
 const rasterbestanden = await generateRaster();

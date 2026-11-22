@@ -40,6 +40,11 @@ check / 200
 check /over-moza/ 200
 check /bestaat-niet/ 404
 
+if ! curl -s -H 'Accept-Encoding: gzip' -o /dev/null -D - "http://127.0.0.1:${port}/" | grep -qi '^content-encoding: gzip'; then
+  echo "FOUT / wordt niet met gzip geserveerd"
+  fail=1
+fi
+
 if ! curl -s -o /dev/null -D - "http://127.0.0.1:${port}/" | grep -qi '^content-security-policy:'; then
   echo "FOUT / heeft geen Content-Security-Policy"
   fail=1
@@ -52,10 +57,8 @@ fi
 
 "$engine" exec "$name" nginx -t || fail=1
 
-# io_setup faalt onder emulatie (geen native AIO); dat is geen nginx-fout. Met
-# een willekeurige UID opent nginx bij de start eerst het ingebouwde logbestand,
-# voordat `error_log /dev/stderr` uit nginx.conf geldt; daarna logt hij gewoon.
-if "$engine" logs "$name" 2>&1 | grep -E '\[(emerg|alert|crit)\]' | grep -v -e 'io_setup()' -e 'could not open error log file'; then
+# io_setup faalt onder emulatie (geen native AIO); dat is geen nginx-fout.
+if "$engine" logs "$name" 2>&1 | grep -E '\[(emerg|alert|crit)\]' | grep -v 'io_setup()'; then
   echo "FOUT nginx logde fouten"
   fail=1
 fi

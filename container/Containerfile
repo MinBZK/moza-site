@@ -43,9 +43,13 @@ RUN rm public/download.json public/og.json
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:5d8bb9437d74a600ec5dbf90c035451c724dc33eac8d3a71078f6f8612c345f6 AS runtime
 
 # De basis pint nginx in /etc/apk/world, dus `apk upgrade` alleen slaat nginx over.
+# /var/lib/nginx is 0750 van uid 101, terwijl ZAD met een willekeurige UID
+# draait: nginx opent bij de start eerst het ingebouwde logpad daarin, voordat
+# nginx.conf geldt. Zelfde oplossing als in toetsingskader-archiefwet.
 USER root
 RUN apk upgrade --no-cache \
-    && apk add --no-cache --upgrade nginx
+    && apk add --no-cache --upgrade nginx \
+    && if [ -d /var/lib/nginx ]; then chmod 755 /var/lib/nginx; fi
 USER 101
 
 COPY --from=builder /app/public /usr/share/nginx/html

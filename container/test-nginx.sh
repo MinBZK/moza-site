@@ -57,10 +57,8 @@ fi
 
 "$engine" exec "$name" nginx -t || fail=1
 
-# io_setup faalt onder emulatie (geen native AIO); dat is geen nginx-fout. Met
-# een willekeurige UID opent nginx bij de start eerst het ingebouwde logbestand,
-# voordat `error_log /dev/stderr` uit nginx.conf geldt; daarna logt hij gewoon.
-if "$engine" logs "$name" 2>&1 | grep -E '\[(emerg|alert|crit)\]' | grep -v -e 'io_setup()' -e 'could not open error log file'; then
+# io_setup faalt onder emulatie (geen native AIO); dat is geen nginx-fout.
+if "$engine" logs "$name" 2>&1 | grep -E '\[(emerg|alert|crit)\]' | grep -v 'io_setup()'; then
   echo "FOUT nginx logde fouten"
   fail=1
 fi

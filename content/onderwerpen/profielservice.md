@@ -9,9 +9,9 @@ weight: 3
 
 Overheidsorganisaties (dienstverleners, gemeenten) slaan contactgegevens en voorkeuren los van elkaar (decentraal) op. Burgers en ondernemers voeren daarom dezelfde gegevens steeds opnieuw in bij verschillende portalen. Dat kost tijd en leidt tot fouten. Daarnaast worden op verschillende plekken dezelfde functionaliteiten (door)ontwikkeld. Een centrale profielservice biedt de oplossing. Daarmee bereiken we:
 
-* **Voor burgers en ondernemers:** je kunt je gegevens vanuit verschillende portalen aanpassen, maar ze worden centraal op één plek opgeslagen. Minder administratie, betere communicatie.
-* **Voor overheidsorganisaties/dienstverleners:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
-* **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
+- **Voor burgers en ondernemers:** je kunt je gegevens vanuit verschillende portalen aanpassen, maar ze worden centraal op één plek opgeslagen. Minder administratie, betere communicatie.
+- **Voor overheidsorganisaties/dienstverleners:** je krijgt actuele en betrouwbare gegevens uit één centrale bron.
+- **Voor de digitale overheid:** een herbruikbare bouwsteen die past binnen de [Generieke Digitale Infrastructuur (GDI)](https://www.digitaleoverheid.nl/mido/generieke-digitale-infrastructuur-gdi/).
 
 ## Wat is de profielservice?
 
@@ -25,9 +25,9 @@ Hieronder lichten we de belangrijkste uitgangspunten van de profielservice toe e
 
 De profielservice werkt met drie begrippen: een **identificatie**, een **contactgegeven** en een **voorkeur**. Elke vastlegging koppelt een contactgegeven of voorkeur aan een identificatie (de unieke 'sleutel' om gegevens terug te vinden).
 
-* **Identificatie**: hoe ben je uniek herkenbaar? Denk aan BSN, KVK-nummer, RSIN of een ander identificerend nummer.[^identificatie-personen]
-* **Contactgegeven**: waar kun je worden bereikt? Denk aan een specifiek e-mailadres, postadres of telefoonnummer.
-* **Voorkeur**: hoe wil je worden bereikt? Denk aan voorkeur voor e-mail boven post, of in welke taal je liever leest.
+- **Identificatie**: hoe ben je uniek herkenbaar? Denk aan BSN, KVK-nummer, RSIN of een ander identificerend nummer.[^identificatie-personen]
+- **Contactgegeven**: waar kun je worden bereikt? Denk aan een specifiek e-mailadres, postadres of telefoonnummer.
+- **Voorkeur**: hoe wil je worden bereikt? Denk aan voorkeur voor e-mail boven post, of in welke taal je liever leest.
 
 [^identificatie-personen]: Bij de toepassing bij personen in relatie tot ondernemingen bestaat de identificatie uit twee onderdelen: een persoonskenmerk (bijvoorbeeld BSN) en een organisatiekenmerk (bijvoorbeeld KVK-nummer of RSIN). Dit kan dus naast de koppeling KVK-nummer-contactgegeven bestaan.
 
@@ -39,8 +39,8 @@ De profielservice bevat alleen gegevens die nog niet ergens anders zijn vastgele
 
 De unieke vastlegging wordt gekoppeld aan een **dienstverlener** en eventueel een **dienst**:
 
-* **Dienstverlener** is bijvoorbeeld *Gemeente Amsterdam* of *Belastingdienst*.
-* **Dienst** wordt vastgesteld door, en is daarmee altijd gekoppeld aan, een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst).[^dienst-niet-verplicht]
+- **Dienstverlener** is bijvoorbeeld _Gemeente Amsterdam_ of _Belastingdienst_.
+- **Dienst** wordt vastgesteld door, en is daarmee altijd gekoppeld aan, een **dienstverlener**. Voorbeelden hiervan zijn Zorg (binnen Amsterdam) of Omzetbelasting (binnen Belastingdienst).[^dienst-niet-verplicht]
 
 [^dienst-niet-verplicht]: Een dienst is niet verplicht. Een contactgegeven of voorkeur kan ook alleen aan een dienstverlener gekoppeld zijn.
 
@@ -163,7 +163,7 @@ Hieronder beschrijven we eerst de functionele inzet, daarna de bredere technisch
 In deze eerste versie ondersteunt de profielservice de volgende functionele toepassingen:
 
 1. Een burger of ondernemer kan via een overheidsportaal de voorkeur (e-mail of fysiek) en eventueel bijbehorende gegevens (e-mailadres) invoeren.
-   * We willen hierbij zoveel mogelijk uitgaan van één e-mailadres dat overheidsbreed bruikbaar is.
+    - We willen hierbij zoveel mogelijk uitgaan van één e-mailadres dat overheidsbreed bruikbaar is.
 2. Wanneer er een notificatie verstuurd moet worden, bevraagt de notificatiedienst de profielservice. De overheidsinstantie moet daarbij de identifier(s) meesturen waaronder de ontvanger in de profielservice bekend is.
 
 > [!INFO]
@@ -173,21 +173,21 @@ In deze eerste versie ondersteunt de profielservice de volgende functionele toep
 
 In deze eerste versie kijken we verder dan alleen deze functionele toepassing. Vanuit de techniek zijn de volgende zaken ingeregeld:
 
-* Koppelen van unieke identifiers (**identificatie-contactgegeven** en **identificatie-voorkeur**) aan de verschillende overheidsorganisaties en eventuele specifieke diensten.
-* Mogelijkheid tot het instellen van een primaire voorkeur.
-* Mogelijkheid tot het instellen van verschillende voorkeuren, waaronder:
-  * SMS
-  * App-id's
-  * Taal
-* Mogelijkheid tot het verwijderen van gegevens (gekoppeld aan specifieke uitgangspunten).
-* Mogelijkheid tot het opvragen van informatie, ook door derde partijen (onder andere als onderdeel van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/)).
+- Koppelen van unieke identifiers (**identificatie-contactgegeven** en **identificatie-voorkeur**) aan de verschillende overheidsorganisaties en eventuele specifieke diensten.
+- Mogelijkheid tot het instellen van een primaire voorkeur.
+- Mogelijkheid tot het instellen van verschillende voorkeuren, waaronder:
+    - SMS
+    - App-id's
+    - Taal
+- Mogelijkheid tot het verwijderen van gegevens (gekoppeld aan specifieke uitgangspunten).
+- Mogelijkheid tot het opvragen van informatie, ook door derde partijen (onder andere als onderdeel van [Federatieve Service Connectiviteit (FSC)](https://fsc-standaard.nl/) en [Federatieve Toegangsverlening (FTV)](https://vng-realisatie.github.io/ftv/)).
 
 ## Vervolgstappen
 
 We blijven de profielservice verder ontwikkelen, waarbij we ons nu richten op:
 
-* Voorbereiden op beheer door Logius
-* Verfijning van functionaliteiten, zoals het verwijderen van gegevens
+- Voorbereiden op beheer door Logius
+- Verfijning van functionaliteiten, zoals het verwijderen van gegevens
 
 Voor de volledige en meest recente backlog, bekijk de taak ["Profielservice" op GitHub](https://github.com/MinBZK/MijnOverheidZakelijk/issues/24).
 
@@ -207,6 +207,6 @@ In het prototype kunnen ondernemers zelf hun contactvoorkeuren invoeren. Daar de
 
 ## Meer info
 
-* [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
-* [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/main/profiel-service/)
-* Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)
+- [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-profiel-service)
+- [Technische documentatie](https://docs.mijnoverheidzakelijk.nl/main/profiel-service/)
+- Uitproberen in [het portaal MijnOverheid Zakelijk](https://proef.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)

@@ -7,7 +7,7 @@ hide_tiles: true
 prev_next: true
 sectienavigatie: true
 aliases:
-  - /onderwerpen/ontwerp/
+    - /onderwerpen/ontwerp/
 ---
 
 Het prototype van MijnOverheid Zakelijk is gebouwd vanuit een set ontwerpprincipes die richting geven aan elke keuze. Van de structuur van een pagina tot de tekst op een knop. Deze principes zijn geen checklist achteraf, maar het startpunt van elk ontwerpbesluit. In het ontwerpproces staat altijd de eindgebruiker centraal.
@@ -28,4 +28,4 @@ Dit deel is bedoeld voor iedereen die aan het prototype werkt of wil begrijpen h
 
 ## Prototype
 
-Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.moza.rijksapp.nl](https://proef.moza.rijksapp.nl/)
+Het prototype van MijnOverheid Zakelijk, zoals we deze ook aan gebruikers voorleggen staat hier: [proef.mijnoverheidzakelijk.nl](https://proef.mijnoverheidzakelijk.nl/)

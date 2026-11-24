@@ -22,6 +22,6 @@ Deze services zijn federatief: de data blijft bij de bron en kan in verschillend
 
 Er is een werkende demo van MOZa beschikbaar. In deze demo kun je zien hoe MOZa eruit ziet en hoe het werkt. De demo wordt regelmatig bijgewerkt met nieuwe functionaliteit.
 
-> **Link**: [moza.mijnoverheidzakelijk.nl](https://moza.mijnoverheidzakelijk.nl/)
+> **Link**: [proef.mijnoverheidzakelijk.nl](https://proef.mijnoverheidzakelijk.nl/)
 
 Daarnaast is er veel meer om uit te proberen. Een overzicht hiervan vind je in [onze proeftuin](/onderwerpen/proeftuin/).

@@ -18,8 +18,8 @@ Een wallet is een app of dienst waarin je betrouwbare gegevens over jezelf of je
 
 Er zijn twee soorten wallets:
 
-* **De persoonlijke wallet (EDI-wallet).** Voor personen, zoals de eigenaar van een onderneming of een medewerker. Hierin staan bijvoorbeeld je persoonsgegevens, je rijbewijs of je diploma. EDI staat voor Europese digitale identiteit. In Nederland ontwikkelt de overheid de [NL Wallet](https://github.com/MinBZK/nl-wallet).
-* **De business wallet (EBW).** Voor ondernemingen en publieke organisaties. Hierin staan gegevens van de onderneming zelf, zoals de inschrijving in het Handelsregister of een vergunning. EBW staat voor European Business Wallet. Een onderneming kan een business wallet afnemen bij een aanbieder.
+- **De persoonlijke wallet (EDI-wallet).** Voor personen, zoals de eigenaar van een onderneming of een medewerker. Hierin staan bijvoorbeeld je persoonsgegevens, je rijbewijs of je diploma. EDI staat voor Europese digitale identiteit. In Nederland ontwikkelt de overheid de [NL Wallet](https://github.com/MinBZK/nl-wallet).
+- **De business wallet (EBW).** Voor ondernemingen en publieke organisaties. Hierin staan gegevens van de onderneming zelf, zoals de inschrijving in het Handelsregister of een vergunning. EBW staat voor European Business Wallet. Een onderneming kan een business wallet afnemen bij een aanbieder.
 
 ### Zo hangt het samen
 
@@ -41,7 +41,7 @@ Zo werkt het, van boven naar beneden:
 
 ## Wat we beproeven
 
-We leren door te bouwen. Een eerste beproeving voor [inloggen met een wallet](https://proef.moza.rijksapp.nl/inloggen/zakelijk) staat klaar. Je logt bij MOZa in met een testversie van de NL Wallet op je telefoon. MOZa vraagt twee gegevens: je naam en je bevoegdheid voor de onderneming. Een gebruikersnaam en wachtwoord heb je niet nodig.
+We leren door te bouwen. Een eerste beproeving voor [inloggen met een wallet](https://proef.mijnoverheidzakelijk.nl/inloggen/zakelijk) staat klaar. Je logt bij MOZa in met een testversie van de NL Wallet op je telefoon. MOZa vraagt twee gegevens: je naam en je bevoegdheid voor de onderneming. Een gebruikersnaam en wachtwoord heb je niet nodig.
 
 Een business wallet heb je daarvoor niet nodig: een onderneming kan ook zonder. De bevoegdheid komt in de beproeving van een fictieve KVK.
 
@@ -49,20 +49,20 @@ Wil je het zelf proberen? Druk op de inlogpagina op **Shift+P**. Je krijgt dan s
 
 ## Wat we nog willen weten
 
-* Hoe gebruiken ondernemers eHerkenning en de business wallet straks naast elkaar?
-* Welke rol kan MOZa spelen bij het opzetten van het stelsel van zakelijke wallets?
-* Kan een eenmanszaak zonder business wallet ook een vergunning in de persoonlijke wallet ontvangen?
+- Hoe gebruiken ondernemers eHerkenning en de business wallet straks naast elkaar?
+- Welke rol kan MOZa spelen bij het opzetten van het stelsel van zakelijke wallets?
+- Kan een eenmanszaak zonder business wallet ook een vergunning in de persoonlijke wallet ontvangen?
 
 ## Samenwerking
 
 We werken onder andere samen met:
 
-* het ministerie van Binnenlandse Zaken en Koninkrijksrelaties
-* het ministerie van Economische Zaken
-* KVK
-* DICTU
-* Logius
-* het NL Wallet-team
+- het ministerie van Binnenlandse Zaken en Koninkrijksrelaties
+- het ministerie van Economische Zaken
+- KVK
+- DICTU
+- Logius
+- het NL Wallet-team
 
 We bouwen voort op wat anderen al verkend hebben. Zo volgen we het [WE BUILD-consortium](https://www.webuildconsortium.eu/) en leren we van de resultaten. Daarin beproeven onder andere KVK en de Belastingdienst de business wallet in Europa. Ook hebben we goede contacten met de gemeenten Nijmegen en Rotterdam, die al langer met wallets aan de slag zijn.
 
@@ -75,14 +75,14 @@ We bouwen voort op wat anderen al verkend hebben. Zo volgen we het [WE BUILD-con
 
 Andere bronnen:
 
-* [Code van de inlogbeproeving](https://github.com/MinBZK/moza-poc/tree/main/server/nl-wallet)
-* [Code van de testomgeving van de NL Wallet voor MOZa](https://github.com/MinBZK/moza-wallet-testomgeving)
-* [Code van de NL Wallet](https://github.com/MinBZK/nl-wallet)
-* [Business wallets bij de Europese Commissie](https://digital-strategy.ec.europa.eu/nl/policies/business-wallets)
-* [WE BUILD-consortium](https://www.webuildconsortium.eu/) (Engels)
-* [Onderzoek naar ID-wallets bij de gemeente Nijmegen](https://www.nijmegen.nl/onderzoek-id-wallets/)
-* [ID-wallets bij gemeenten](https://id-wallets.nl/): voorbeelden en onderzoek uit het sociaal domein
-* [Peter en de Wallet](https://peterendewallet.nl/): voorbeelden van het gebruik van persoonlijke en business wallets in Europa
+- [Code van de inlogbeproeving](https://github.com/MinBZK/moza-poc/tree/main/server/nl-wallet)
+- [Code van de testomgeving van de NL Wallet voor MOZa](https://github.com/MinBZK/moza-wallet-testomgeving)
+- [Code van de NL Wallet](https://github.com/MinBZK/nl-wallet)
+- [Business wallets bij de Europese Commissie](https://digital-strategy.ec.europa.eu/nl/policies/business-wallets)
+- [WE BUILD-consortium](https://www.webuildconsortium.eu/) (Engels)
+- [Onderzoek naar ID-wallets bij de gemeente Nijmegen](https://www.nijmegen.nl/onderzoek-id-wallets/)
+- [ID-wallets bij gemeenten](https://id-wallets.nl/): voorbeelden en onderzoek uit het sociaal domein
+- [Peter en de Wallet](https://peterendewallet.nl/): voorbeelden van het gebruik van persoonlijke en business wallets in Europa
 
 ## Meedoen
 

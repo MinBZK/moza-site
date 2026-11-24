@@ -3,7 +3,7 @@ title: "Inloggen"
 date: 2026-06-16
 uitgevoerd: "28 mei en 16 juni 2026"
 rapport: "https://gebruikersonderzoeken.nl/docs/onderzoek-bekijken/mijn-zaken/logius-mijnoverheid-zakelijk-inloggen/"
-prototype: "https://proef.moza.rijksapp.nl/inloggen/"
+prototype: "https://proef.mijnoverheidzakelijk.nl/inloggen/"
 onderwerpen: ["portaal"]
 ---
 

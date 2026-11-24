@@ -8,7 +8,7 @@ In de proeftuin staat het prototype van MijnOverheid Zakelijk, met de laatste st
 
 ## Probeer het zelf
 
-In de [proeftuin](https://proef.moza.rijksapp.nl/) probeer je uit waar we aan werken. Voor een [gebruikersonderzoek](/onderwerpen/gebruikersonderzoeken/) zetten we vanuit de proeftuin een versie klaar die we aan ondernemers voorleggen. De belangrijkste onderdelen die je er vindt:
+In de [proeftuin](https://proef.mijnoverheidzakelijk.nl/) probeer je uit waar we aan werken. Voor een [gebruikersonderzoek](/onderwerpen/gebruikersonderzoeken/) zetten we vanuit de proeftuin een versie klaar die we aan ondernemers voorleggen. De belangrijkste onderdelen die je er vindt:
 
 - **Berichtenbox:** een overzicht van berichten van de overheid, op één plek. Lees meer over [berichten](/onderwerpen/berichten/).
 - **Profielservice:** één plek om je contactvoorkeuren te beheren. Lees meer over de [profielservice](/onderwerpen/profielservice/).

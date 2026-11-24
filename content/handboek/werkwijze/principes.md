@@ -32,7 +32,7 @@ Door open te werken kunnen anderen van ons werk leren en kunnen we zelf ook lere
 
 - [**Deze site**](../../) - Informatie over het programma
 - [**Proeftuin**](../../onderwerpen/proeftuin/) - Experimenteeromgeving waar we ontdekken wat werkt en wat niet
-- [**Demo portaal**](https://moza.mijnoverheidzakelijk.nl/) - Werkende demo, maar nog in ontwikkeling
+- [**Demo portaal**](https://proef.mijnoverheidzakelijk.nl/) - Werkende demo, maar nog in ontwikkeling
 - [**MOZa repositories**](https://github.com/topics/mijnoverheidzakelijk) - Alle broncode
 
 Dit helpt ons om vroeg feedback te krijgen en transparant te zijn over onze voortgang.
@@ -46,6 +46,7 @@ We werken volgens de **[NeRDS](https://nerds.digitaledienst.overheid.nl/)** (Ned
 ### Gebruikersgericht
 
 We bouwen voor en met gebruikers:
+
 - Regelmatig gebruikersonderzoek om behoeften te begrijpen
 - Testen van ontwerpen met echte ondernemers en gemachtigden
 - Iteratief werken: stap voor stap verbeteren op basis van feedback
@@ -70,6 +71,7 @@ We werken samen met communities zoals:
 ### Toegankelijk
 
 Iedereen moet MOZa kunnen gebruiken:
+
 - WCAG 2.1 niveau AA voor digitale toegankelijkheid
 - B1 taalniveau zodat teksten voor iedereen begrijpelijk zijn
 - NL Design System componenten die toegankelijkheid borgen

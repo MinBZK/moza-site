@@ -23,13 +23,13 @@ Hieronder lichten we de belangrijkste uitgangspunten van de actualiteitenservice
 
 De actualiteitenservice werkt met **informatie-berichten** en **filterkenmerken**. In de ideale opzet koppelt een dienstverlener elk informatie-bericht aan een of meer filterkenmerken. Zo komt een bericht alleen terecht bij de ondernemers voor wie het relevant is, in een inbox die daar speciaal voor bedoeld is.
 
-* **Informatie-bericht**: de informatie die een overheidsorganisatie wil delen, zoals een nieuwe wet, subsidie of lokale ontwikkeling.
+- **Informatie-bericht**: de informatie die een overheidsorganisatie wil delen, zoals een nieuwe wet, subsidie of lokale ontwikkeling.
 
-* **Filterkenmerken**: de kenmerken waarop de informatie gefilterd wordt, zoals branche, locatie, bedrijfsgrootte, onderwerp of urgentie.
+- **Filterkenmerken**: de kenmerken waarop de informatie gefilterd wordt, zoals branche, locatie, bedrijfsgrootte, onderwerp of urgentie.
 
 ### Informatie
 
-Elk informatie-bericht wordt gekoppeld aan een of meerdere **filterkenmerken**. Deze kenmerken bepalen welke ondernemers het informatie-bericht te zien krijgen. Een informatie-bericht kan bijvoorbeeld gekoppeld zijn aan de branche *Horeca* en de locatie *Amsterdam*, zodat alleen horecaondernemers in Amsterdam het informatie-bericht ontvangen.
+Elk informatie-bericht wordt gekoppeld aan een of meerdere **filterkenmerken**. Deze kenmerken bepalen welke ondernemers het informatie-bericht te zien krijgen. Een informatie-bericht kan bijvoorbeeld gekoppeld zijn aan de branche _Horeca_ en de locatie _Amsterdam_, zodat alleen horecaondernemers in Amsterdam het informatie-bericht ontvangen.
 
 De actualiteitenservice toont daarmee alleen informatie-berichten die relevant zijn voor ondernemers en die hen helpen hun bedrijfsprocessen beter uit te voeren. Concreet gaat het om informatie zoals wet- en regelgeving, subsidies, lokale ontwikkelingen en urgente mededelingen.
 
@@ -53,11 +53,12 @@ graph LR
   A --> B --> C --> D
 
 ```
+
 Je logt in met eHerkenning of een Europees inlogmiddel (eIDAS), stelt je actualiteitenprofiel in met de relevante filterkenmerken en bekijkt de informatie-berichten die voor jou relevant zijn. Daarnaast ontvang je proactieve signalen over nieuwe ontwikkelingen.
 
 ### Filterkenmerken
 
-De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hieronder een *illustratief* overzicht van de kenmerken waarop gefilterd kan worden:
+De service filtert informatie op basis van bedrijfsspecifieke kenmerken. Hieronder een _illustratief_ overzicht van de kenmerken waarop gefilterd kan worden:
 
 | **Categorie**       | **Voorbeelden**                                                            | **Toelichting**                                           |
 | ------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------- |
@@ -112,8 +113,8 @@ Overheidsorganisaties sluiten eenmalig aan via Federatieve Service Connectivitei
 
 Elk informatie-bericht moet voorzien zijn van gestructureerde filterkenmerken voor optimale filtering. Hieronder een voorbeeld van verschillende kenmerken.
 
-| **Filterkenmerk**   | **Voorbeeldwaarden**                      | **Verplicht?** | **Toelichting**                                       |
-| ------------------- | ----------------------------------------- | -------------- | ----------------------------------------------------- |
+| **Filterkenmerk**   | **Voorbeeldwaarden**                      | **Verplicht?** | **Toelichting**                                        |
+| ------------------- | ----------------------------------------- | -------------- | ------------------------------------------------------ |
 | **Doelgroep**       | Horeca, Bouw, Zorg, MKB, Grote bedrijven  | Ja             | Bepaalt welke ondernemers het informatie-bericht zien. |
 | **Regio**           | Landelijk, Noord-Holland, Amsterdam       | Ja             | Voor lokale of regionale informatie-berichten.         |
 | **Onderwerp**       | Subsidie, Wetgeving, Ruimtelijke ordening | Ja             | Categorie van het informatie-bericht.                  |
@@ -137,17 +138,16 @@ In deze eerste testversie kan de actualiteitenservice het volgende:
 
 Om die functies te bieden hebben we technisch het volgende ingeregeld:
 
-* Centraal ophalen van informatie uit verschillende bronnen:
+- Centraal ophalen van informatie uit verschillende bronnen:
+    - [de API van Ondernemersplein](https://ondernemersplein.overheid.nl/ondernemersplein-api/)
 
-  * [de API van Ondernemersplein](https://ondernemersplein.overheid.nl/ondernemersplein-api/)
+    - [wetten.overheid.nl](https://wetten.overheid.nl/)
 
-  * [wetten.overheid.nl](https://wetten.overheid.nl/)
+    - [Berichten over uw buurt](https://www.overheid.nl/berichten-over-uw-buurt)
 
-  * [Berichten over uw buurt](https://www.overheid.nl/berichten-over-uw-buurt)
+- Koppelen van informatie-berichten aan filterkenmerken
 
-* Koppelen van informatie-berichten aan filterkenmerken
-
-* Mogelijkheid tot het instellen van verschillende filterkenmerken, waaronder branche, locatie, bedrijfsgrootte, onderwerp en urgentie.
+- Mogelijkheid tot het instellen van verschillende filterkenmerken, waaronder branche, locatie, bedrijfsgrootte, onderwerp en urgentie.
 
 ## Vervolgstappen
 
@@ -171,6 +171,6 @@ We legden ondernemers de actualiteiten in het prototype voor. Lees hieronder wat
 
 ## Meer info
 
-* [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-actualiteiten-service)
+- [Voortgang en broncode op GitHub](https://github.com/MinBZK/moza-actualiteiten-service)
 
-* Uitproberen in [het portaal MijnOverheid Zakelijk](https://moza.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)
+- Uitproberen in [het portaal MijnOverheid Zakelijk](https://proef.mijnoverheidzakelijk.nl/) als onderdeel van [de proeftuin](/onderwerpen/proeftuin/)

@@ -5,6 +5,11 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
+function schrijfLogo(root) {
+  mkdirSync(join(root, "images"), { recursive: true });
+  writeFileSync(join(root, "images", "logo-rijksoverheid.svg"), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10"/></svg>');
+}
+
 function hasPandoc() {
   try {
     execFileSync("pandoc", ["--version"], { stdio: "ignore" });
@@ -52,6 +57,7 @@ test(
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    schrijfLogo(root);
     try {
       const pageDir = renderFixture(root, "https://mijnoverheidzakelijk.nl/documenten/test/");
 
@@ -79,6 +85,7 @@ test(
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    schrijfLogo(root);
     try {
       const pageDir = renderFixture(root, "/documenten/test/");
 
@@ -97,6 +104,7 @@ test(
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    schrijfLogo(root);
     try {
       const pageDir = join(root, "onderwerpen", "diagram");
       mkdirSync(pageDir, { recursive: true });
@@ -145,6 +153,7 @@ test(
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    schrijfLogo(root);
     try {
       const pageDir = join(root, "onderwerpen", "diagram");
       mkdirSync(pageDir, { recursive: true });
@@ -201,6 +210,7 @@ test(
   { skip: hasPandoc() ? false : "pandoc niet beschikbaar" },
   () => {
     const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+    schrijfLogo(root);
     try {
       const pageDir = join(root, "onderwerpen", "plaat");
       mkdirSync(pageDir, { recursive: true });
@@ -244,3 +254,22 @@ test(
     }
   }
 );
+
+// Het logo komt uit de gebouwde site, niet uit static/.
+test("render-downloads meldt duidelijk dat het logo in de build ontbreekt", () => {
+  const root = mkdtempSync(join(tmpdir(), "moza-downloads-"));
+  try {
+    writeFileSync(join(root, "download.json"), JSON.stringify([{ relPermalink: "/documenten/test/", name: "test", title: "Test" }]));
+    assert.throws(
+      () => execFileSync("node", [join(import.meta.dirname, "render-downloads.js"), root], { stdio: "pipe" }),
+      (err) => {
+        const melding = err.stderr.toString("utf-8");
+        assert.match(melding, /images\/logo-rijksoverheid\.svg staat niet in de gebouwde site/);
+        assert.match(melding, /Hugo-build/);
+        return true;
+      },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

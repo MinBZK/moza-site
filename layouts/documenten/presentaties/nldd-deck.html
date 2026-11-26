@@ -20,7 +20,7 @@
 {{- $nlddDir := "node_modules/@nldd/design-system/dist/css/" -}}
 {{- $colors := os.ReadFile (print $nlddDir "colors.generated.css") | resources.FromString "css/nldd-colors.css" -}}
 {{- $variables := os.ReadFile (print $nlddDir "variables.css") | replaceRE `@import[^;]*;` "" | resources.FromString "css/nldd-variables.css" -}}
-{{- $css := slice $fonts $colors $variables (resources.Get "css/nldd-deck.css") (resources.Get "css/nldd-deck-moza.css") | resources.Concat "css/nldd-deck-bundle.css" | minify | fingerprint "md5" }}
+{{- $css := slice $fonts $colors $variables (resources.Get "css/pagina/nldd-deck.css") (resources.Get "css/pagina/nldd-deck-moza.css") | resources.Concat "css/nldd-deck-bundle.css" | minify | fingerprint "md5" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{- /* Opmaak die alleen voor deze presentatie is, naast index.html in de bundle.
    Een eigen link in plaats van in de bundle hierboven: die heeft één vaste

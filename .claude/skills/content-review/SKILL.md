@@ -44,12 +44,12 @@ dan de shortcode `emoji`:
 | Situatie | Schrijf |
 | --- | --- |
 | De naam zegt wat je bedoelt: ✅ voor "klaar" | Gewoon `✅`, geen shortcode |
-| De emoji betekent iets anders dan zijn naam: 🚫 voor "kan beter" | `{{< emoji teken="🚫" aria-label="Kan beter" >}}` |
-| De emoji herhaalt alleen wat de tekst ernaast al zegt | `{{< emoji teken="💡" aria-hidden=true >}}` |
+| De emoji betekent iets anders dan zijn naam: 🚫 voor "kan beter" | `{{< emoji symbol="🚫" aria-label="Kan beter" >}}` |
+| De emoji herhaalt alleen wat de tekst ernaast al zegt | `{{< emoji symbol="💡" aria-hidden=true >}}` |
 
 `aria-hidden=true` verbergt de emoji alleen voor de schermlezer; zichtbaar
 blijft hij. Kies één van beide, niet allebei. Een losse `aria-hidden` zonder
-`=true`, een onbekende parameter of een ontbrekend `teken` laat de build
+`=true`, een onbekende parameter of een ontbrekend `symbol` laat de build
 falen, dus een tikfout valt meteen op. In de Markdown- en ODF-downloads wordt
 de shortcode weer de kale emoji.
 

@@ -5,7 +5,7 @@ description: "MijnOverheid Zakelijk is gebouwd vanuit een set ontwerpprincipes d
 weight: 4
 hide_tiles: true
 prev_next: true
-sectienavigatie: true
+aside_nav: true
 aliases:
     - /onderwerpen/ontwerp/
 ---

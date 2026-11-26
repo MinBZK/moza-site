@@ -4,7 +4,7 @@ card_title: "Onderzoek 2026"
 description: "Onderzoek naar de toegankelijkheid van MijnOverheid Zakelijk volgens WCAG-EM, getoetst aan WCAG 2.2 niveau A en AA."
 date: 2026-09-05
 download: true
-toc_tot_en_met: 3
+toc_depth: 3
 outputs:
   - HTML
   - markdown
@@ -49,7 +49,7 @@ bevinding aan de hand was in [Bevindingen](#bevindingen).
 
 ## Over dit onderzoek
 
-{{< table-without-header print-bijeen="ja" >}}
+{{< table-without-header print-together="ja" >}}
 | Website | <https://mijnoverheidzakelijk.nl/> |
 | Organisatie | Ministerie van Binnenlandse Zaken en Koninkrijksrelaties |
 | Uitgevoerd door | Team MijnOverheid Zakelijk |
@@ -125,7 +125,7 @@ hulptechnologie waartegen de conformiteit hieronder is vastgesteld.
 | macOS Tahoe 26.6.2 | Chrome for Testing 148.0.7778.97, headless | geen | Ronde 9, tweede automatische engine |
 | macOS Tahoe 26.6.2 | Chromium (Chrome for Testing) 153.0.8010.12 | geen | Ronde 10, het doorlopen met loep |
 | macOS Tahoe 26.6.2 | Chrome for Testing 154.0.8037.57, headless | geen | Ronde 11, het nameten |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 De versienummers van de rondes 1 tot en met 5 zijn die van 5 september 2026, de
 peildatum van dat deel van het onderzoek. De rondes 9 tot en met 11 zijn in
@@ -197,7 +197,7 @@ Elk proces is van begin tot eind doorlopen, inclusief de alternatieve routes.
 | Document downloaden | Pagina openen, downloadknop bedienen, bestand openen in .odt en in .pdf |
 | Presentatie bekijken | Openen, door de slides navigeren, presentatie sluiten |
 | Thema wisselen | Wisselen tussen licht en donker, en terug |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 ### Willekeurige steekproef
 
@@ -212,7 +212,7 @@ tachtig pagina's en inmiddels negentig.
 | --- |
 | [/weekly/moza-weekly-27-mei-2026/](/weekly/moza-weekly-27-mei-2026/) |
 | [/privacy/](/privacy/) |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 Op deze twee pagina's kwamen geen problemen naar voren die de gestructureerde
 steekproef niet al liet zien. Die selectie was dus representatief.
@@ -303,7 +303,7 @@ voor. Het aantal in de verklaring is daarom één lager dan het aantal hier.
 | Niet van toepassing | 16 |
 | Niet onderzocht | 0 |
 | **Totaal** | **56, waarvan 55 uit WCAG 2.2** |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 Het onderzoek leverde negenenveertig bevindingen op. Die zijn alle opgelost en
 nagemeten; wat er per bevinding aan de hand was staat verderop.
@@ -449,7 +449,7 @@ CSS-pixels breed en bij 200% tekstgrootte:
 | [/contact/](/contact/) | Een URL in een codefragment | 88px |
 | [/onderwerpen/profielservice/](/onderwerpen/profielservice/) | Een lang samengesteld woord | 32px |
 | [/onderwerpen/actualiteitenservice/](/onderwerpen/actualiteitenservice/) | Een linktekst bij 200% | 7px |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 #### Gevolg
 
@@ -587,7 +587,7 @@ ISO 14289-1, over alle 37 documenten die de site toen telde:
 | 7.20-2 | 357 | 0 | Het externe-linkicoon als transparantiegroep |
 | 7.2-43 | 3 | 0 | Tabelrijen met een ongelijk aantal kolommen |
 | 5-1 | 37 | 0 | De PDF/UA-identificatie in de metadata |
-{print-bijeen="ja"}
+{print-together="ja"}
 
 #### Status
 

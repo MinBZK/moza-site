@@ -1,7 +1,7 @@
 {{- /* Logo's van de organisaties waarmee MOZa samenwerkt. De naam is de
        alt-tekst en staat in een tooltip, want de naam in een Rijkslogo is op
        dit formaat niet te lezen. De lijst staat in partners-lijst.html;
-       markdown-body maakt er in de tekstuitvoer een opsomming van. */ -}}
+       markdown-extra.html maakt er in de tekstuitvoer een opsomming van. */ -}}
 <ul class="partners" aria-label="Organisaties waarmee we samenwerken">
   {{- range partial "partners-lijst.html" . }}
   {{- $org := . }}

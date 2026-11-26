@@ -5,7 +5,6 @@ description: "MijnOverheid Zakelijk: makkelijk zakendoen met de overheid. Overhe
 
 hero:
   image: images/hero/ondernemer-tablet.webp
-  image_alt: ""
   title: MijnOverheid Zakelijk
   text: Elk uur minder aan gedoe is een uur meer ondernemen. Daarom werken overheidsorganisaties in het programma MijnOverheid Zakelijk (MOZa) samen aan makkelijk zakendoen met de overheid. Wij ontwikkelen digitale bouwstenen voor betere dienstverlening van de hele overheid aan ondernemers. Op deze site kun je volgen wat we doen.
 ---

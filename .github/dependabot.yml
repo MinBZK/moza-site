@@ -16,6 +16,12 @@ updates:
       - dependency-name: "mermaid"
         update-types: ["version-update:semver-major"]
 
+  # Het theme (Hugo Module); tools.go houdt het in go.mod.
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
   - package-ecosystem: "docker"
     directory: "/container"
     schedule:

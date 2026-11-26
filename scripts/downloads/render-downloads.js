@@ -26,17 +26,14 @@ import puppeteer from "puppeteer";
 import { startServer } from "../lib/static-server.js";
 import { setPdfMetadata } from "./pdf-metadata.js";
 import { PUPPETEER_ARGS } from "../lib/puppeteer-args.js";
+import { zoekInBuild } from "../lib/build-output.js";
 
 const OUTPUT_DIR = resolve(process.cwd(), process.argv[2] || "public");
 const MANIFEST = join(OUTPUT_DIR, "download.json");
 // Pandoc-stijlsjabloon: Verdana 10pt, passende koppen, opgemaakte note. Zie
 // README.md in deze map voor hoe dit bestand is afgeleid van pandocs default.
 const REFERENCE_ODT = join(import.meta.dirname, "reference.odt");
-// Bronbestand van het logo. Hugo kopieert dit naar public/images, maar we lezen
-// de bron zodat het ook werkt zonder volledige build.
-const LOGO_SVG = join(
-  import.meta.dirname, "..", "..", "static", "images", "logo-rijksoverheid.svg"
-);
+let logoSvg;
 
 // ── Generatie ────────────────────────────────────────────────────────────────
 
@@ -126,7 +123,7 @@ function styleOdtTables(odtOut) {
   // Een sleutel-waardetabel heeft geen koprij nodig: de eerste kolom is de kop.
   // De uitvoer voor pandoc geeft zo'n tabel een lege koprij, waarop pandoc geen
   // table:table-header-rows schrijft. Dat is hier het kenmerk; zie
-  // layouts/_partials/markdown-body.html.
+  // layouts/_partials/markdown-body.html in het theme.
   const zonderKoprij = xml.replace(
     /<table:table\b[\s\S]*?<\/table:table>/g,
     (tabel) => {
@@ -207,7 +204,7 @@ function flattenOdtQuotations(odtOut) {
 const DIAGRAM =
   /<div\b[^>]*\bclass=["']?[^"'>]*\bmermaid-diagram\b[\s\S]*?<\/div>|<figure\b[^>]*\bclass=["']?[^"'>]*\bdiagram\b[\s\S]*?<\/figure>/gi;
 const LICHTE_AFBEELDING = /<img\b[^>]*\bmermaid-img--light\b[^>]*>/i;
-const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-beschrijving\b[^>]*>([\s\S]*?)<\/p>/i;
+const BESCHRIJVING_P = /<p\b[^>]*\bmermaid-description\b[^>]*>([\s\S]*?)<\/p>/i;
 const GETEKEND = /<a\b[^>]*\bdiagram-download\b[^>]*>/i;
 const SVG_TAG = /<svg\b[^>]*>/i;
 const SVG_TITEL = /<title\b[^>]*>([\s\S]*?)<\/title>/i;
@@ -395,7 +392,7 @@ async function renderOdt(mdFile, odtOut, pageDir, meta, page, baseUrl) {
 let logoDataUri;
 function rijksoverheidLogoDataUri() {
   if (!logoDataUri) {
-    const svg = readFileSync(LOGO_SVG);
+    const svg = readFileSync(logoSvg);
     logoDataUri = `data:image/svg+xml;base64,${svg.toString("base64")}`;
   }
   return logoDataUri;
@@ -426,7 +423,7 @@ async function renderPdf(page, baseUrl, relPermalink, pdfOut, meta, { deck = fal
   // diagram moet daar in de Alt van de figuur staan.
   await page.evaluate(() => {
     for (const diagram of document.querySelectorAll(".mermaid-diagram")) {
-      const beschrijving = diagram.querySelector(".mermaid-beschrijving")?.textContent.trim();
+      const beschrijving = diagram.querySelector(".mermaid-description")?.textContent.trim();
       if (!beschrijving) continue;
       for (const img of diagram.querySelectorAll("img.mermaid-img")) {
         img.alt = `${img.alt}. ${beschrijving}`;
@@ -516,6 +513,8 @@ async function main() {
     console.log("Geen pagina's met downloads — niets te genereren.");
     return;
   }
+
+  logoSvg = zoekInBuild(OUTPUT_DIR, "images/logo-rijksoverheid.svg", join(OUTPUT_DIR, entries[0].relPermalink));
 
   checkPandoc();
 

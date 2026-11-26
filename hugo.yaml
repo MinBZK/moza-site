@@ -2,15 +2,56 @@ baseURL: https://mijnoverheidzakelijk.nl/
 title: MijnOverheid Zakelijk
 defaultContentLanguage: nl
 
+module:
+  imports:
+    - path: github.com/RijksICTGilde/hugo-theme-rijksoverheid
+
 params:
   tagline: Makkelijk zakendoen met de overheid
   description: MijnOverheid Zakelijk zet ondernemers centraal. We zorgen voor overzicht en makkelijk zakendoen met de overheid. Een uur minder gedoe, een uur meer ondernemen.
-  afzender:
-    naam: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties
+  organization:
+    name: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties
     url: https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties
+    text: MijnOverheid Zakelijk is een programma van het
   footer:
-    links: Zie ook
-    rechts: Over deze site
+    left: Zie ook
+    right: Over deze site
+  search:
+    filters:
+      - label: Alles
+        section: ""
+      - label: MOZa Weekly
+        section: weekly
+      - label: Onderwerpen
+        section: onderwerpen
+      - label: Handboek
+        section: handboek
+      - label: Documenten
+        section: documenten
+    threshold: 0.2
+    max_results: 0
+    # Factor op de score van Fuse: lager dan 1 komt eerder, hoger later.
+    section_weights:
+      onderwerpen: 0.5
+      documenten: 0.9
+      handboek: 1
+      actueel: 1
+      weekly: 1.1
+  llms:
+    sections:
+      - section: over-moza
+        heading: Over MOZa
+      - section: onderwerpen
+        heading: Onderwerpen
+      - section: weekly
+        heading: Weekly updates
+        limit: 10
+      - section: documenten
+        heading: Documenten
+        # Wel in llms.txt, niet in llms-full.txt.
+        full: false
+      - section: handboek
+        heading: Handboek
 
 disableKinds:
   - taxonomy
@@ -88,7 +129,7 @@ menus:
       pageRef: /handboek/bijdragen
       weight: 5
 
-  footer-links:
+  footer-left:
     - name: Handboek
       pageRef: /handboek
       weight: 1
@@ -96,7 +137,7 @@ menus:
       url: https://github.com/topics/mijnoverheidzakelijk
       weight: 2
 
-  footer-rechts:
+  footer-right:
     - name: Privacy
       pageRef: /privacy
       weight: 1
@@ -147,7 +188,7 @@ outputFormats:
     isPlainText: true
     notAlternative: true
   # Bron voor de .odt-downloads: gelijk aan markdown, maar met de tabellen die
-  # pandoc nodig heeft. Zie layouts/_partials/markdown-body.html.
+  # pandoc nodig heeft. Zie layouts/_partials/markdown-body.html in het theme.
   pandoc:
     baseName: index.pandoc
     mediaType: text/markdown

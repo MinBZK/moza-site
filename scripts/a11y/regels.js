@@ -13,7 +13,7 @@ const MERMAID_CLASS = /\bclass="[^"]*\bmermaid-img\b[^"]*"/i;
 const DECORATIEF = /\brole=["']?presentation\b|\baria-hidden=["']?true\b/i;
 const ZIJKOLOM = /<aside\b[^>]*\bclass="[^"]*\bpage-aside\b[^"]*"[\s\S]*?<\/aside>/gi;
 const MERMAID_DIAGRAM = /<div\b[^>]*\bclass="[^"]*\bmermaid-diagram\b[^"]*"[\s\S]*?<\/div>/gi;
-const BESCHRIJVING = /<p\b[^>]*\bclass="[^"]*\bmermaid-beschrijving\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i;
+const BESCHRIJVING = /<p\b[^>]*\bclass="[^"]*\bmermaid-description\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i;
 const VOETNOTEN_ROL = /<div\b[^>]*\brole=["']?doc-endnotes/gi;
 
 /**
@@ -151,14 +151,14 @@ function checkDiagramBeschrijving(html) {
 /**
  * Voetnotenblok van Goldmark (WCAG 1.3.1). `role="doc-endnotes"` erft van list
  * en eist listitem-kinderen, maar er staat een <hr> en een <ol> in. De partial
- * inhoud.html haalt de rol eruit; slaat een layout die over, dan ontbreekt
+ * content.html haalt de rol eruit; slaat een layout die over, dan ontbreekt
  * die partial daar.
  */
 function checkVoetnootRol(html) {
   const aantal = [...html.matchAll(VOETNOTEN_ROL)].length;
   if (aantal === 0) return [];
   return [
-    `voetnotenblok met role="doc-endnotes" (${aantal}x); laat de layout .Content door de partial inhoud.html gaan`,
+    `voetnotenblok met role="doc-endnotes" (${aantal}x); laat de layout .Content door de partial content.html gaan`,
   ];
 }
 

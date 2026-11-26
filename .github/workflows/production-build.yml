@@ -41,12 +41,14 @@ jobs:
             type=raw,value=latest
             type=sha,format=short
 
-      - name: Build and push container image
+      # Eén build, die getest, gescand en daarna precies zo gepusht wordt: een
+      # tweede build zou de runtime-stage (no-cache-filters) opnieuw upgraden.
+      - name: Build container image
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./container/Containerfile
-          push: true
+          load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
@@ -55,3 +57,24 @@ jobs:
           cache-to: type=gha,mode=max
           # Anders kan de apk-upgrade in de runtime-stage uit een oude cache komen.
           no-cache-filters: runtime
+
+      - name: Test nginx in de container
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+        run: container/test-nginx.sh "$(head -n 1 <<< "$TAGS")"
+
+      - name: Trivy security scan
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: '1'
+
+      - name: Push container image
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+        run: |
+          while read -r tag; do
+            docker push "$tag"
+          done <<< "$TAGS"

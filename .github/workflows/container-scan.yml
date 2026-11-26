@@ -1,0 +1,24 @@
+name: Scan container image
+
+# Het image dat in productie staat; ook zonder nieuwe build verschijnen er CVE's
+# in. Een fix halen: Production build opnieuw draaien (apk upgrade in de runtime).
+on:
+  schedule:
+    - cron: '17 6 * * *'
+      timezone: Europe/Amsterdam
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trivy security scan
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ghcr.io/minbzk/moza-site:latest
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: '1'

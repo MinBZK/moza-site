@@ -17,5 +17,17 @@
       "WebFetch(domain:revealjs.com)",
       "WebFetch(domain:mermaid.js.org)"
     ]
+  },
+  "extraKnownMarketplaces": {
+    "hugo-theme-rijksoverheid": {
+      "source": {
+        "source": "github",
+        "repo": "RijksICTGilde/hugo-theme-rijksoverheid",
+        "ref": "v0.3.0"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "hugo-theme-rijksoverheid@hugo-theme-rijksoverheid": true
   }
 }

@@ -15,7 +15,7 @@ Alles wat we doen, toetsen we aan één vraag: zorgt dit ervoor dat de onderneme
 
 ## Onze opdracht
 
-Ondernemers als één overheid overzicht geven, en tijdig informeren over wat voor hen relevant is. Zo geven we invulling aan onze missie. [Negen overheidsorganisaties](/over-moza/samenwerking/) spraken dit samen af in de [intentieverklaring](/documenten/intentieverklaring/) die ze in mei 2026 hebben getekend.
+Ondernemers ervaren de overheid als één geheel: met overzicht op één plek en tijdige informatie over wat voor hen relevant is. Zo geven we invulling aan onze missie. [Negen overheidsorganisaties](/over-moza/samenwerking/) spraken dit samen af in de [intentieverklaring](/documenten/intentieverklaring/) die ze in mei 2026 hebben getekend.
 
 ## Waarom dit nodig is
 

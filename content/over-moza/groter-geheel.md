@@ -28,7 +28,7 @@ Met het Ondernemersplein van KVK verkennen we hoe we elkaar aanvullen. Met Logiu
 De [Nederlandse Digitale Dienst (NLDD)](https://digitaledienst.overheid.nl/) moet de digitalisering van de overheid versnellen. Op 21 september 2026 verscheen de [startnotitie van de NLDD](https://open.overheid.nl/details/2506fc99-0879-4b8f-a1f7-fda56e1a4fe2). De dienst start met drie doorbraaktrajecten:
 
 - [Fundament](https://github.com/fundament-oss/fundament): een soevereine cloud voor de overheid.
-- MijnOverheid Zakelijk: ondernemers als één overheid overzicht geven en tijdig informeren.
+- MijnOverheid Zakelijk: ondernemers ervaren de overheid als één geheel, met overzicht op één plek en tijdige informatie.
 - [RegelRecht](https://regelrecht.rijks.app/): wetten als regels die een computer kan uitvoeren.
 
 Met deze trajecten wil de NLDD snel zichtbare resultaten leveren voor burgers en ondernemers. En leren hoe de dienst het beste kan werken.

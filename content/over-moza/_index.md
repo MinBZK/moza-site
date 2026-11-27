@@ -15,7 +15,7 @@ Alles wat we doen, toetsen we aan één vraag: zorgt dit ervoor dat de onderneme
 
 ## Onze opdracht
 
-Voor ondernemers is er één overheid om zaken mee te doen. Wij zorgen dat die ook zo werkt. Met overzicht en op tijd de informatie die voor hen relevant is. Zo geven we invulling aan onze missie. [Negen overheidsorganisaties](/over-moza/samenwerking/) spraken dit samen af in de [intentieverklaring](/documenten/intentieverklaring/) die ze in mei 2026 hebben getekend.
+Voor ondernemers is er één overheid om zaken mee te doen. Samen zorgen we dat die ook zo werkt. Dan hebben ondernemers overzicht en krijgen ze op tijd de informatie die voor hen relevant is. Zo geven we invulling aan onze missie. [Negen overheidsorganisaties](/over-moza/samenwerking/) spraken dit samen af in de [intentieverklaring](/documenten/intentieverklaring/) die ze in mei 2026 hebben getekend.
 
 ## Waarom dit nodig is
 

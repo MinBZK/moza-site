@@ -12,7 +12,7 @@ hero:
 
 ## We beginnen met digitale post
 
-Voor ondernemers is er één overheid om zaken mee te doen. Wij zorgen dat die ook zo werkt. Met overzicht en op tijd de informatie die voor hen relevant is. Op de plek waar zij het verwachten.
+Voor ondernemers is er één overheid om zaken mee te doen. Samen met overheidsorganisaties zorgen we dat die ook zo werkt. Dan hebben ondernemers overzicht en krijgen ze op tijd de informatie die voor hen relevant is. Op de plek waar ze die verwachten.
 
 Veel post van de overheid komt nog op papier. Daarom werken we nu eerst aan drie bouwstenen waarmee ondernemers hun post digitaal kunnen krijgen, en op tijd een seintje krijgen als er iets voor hen is.
 
